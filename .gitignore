@@ -1,3 +1,4 @@
 .vscode
 a.out
 *.txt
+!app_info.txt
