@@ -44,8 +44,8 @@ int empty_int_creation_test() {
 int default_int_creation_test() {
   try {
     Matrix<int, 3, 7> m(90);
-    for (int i = 0; i < m.sizeX(); i++) {
-      for (int j = 0; j < m.sizeY(); j++) {
+    for (size_t i = 0; i < m.sizeX(); i++) {
+      for (size_t j = 0; j < m.sizeY(); j++) {
         if (m(i, j) != 90) {
           return ERROR;
         }
@@ -69,8 +69,8 @@ int empty_string_creation_test() {
 int default_string_creation_test() {
   try {
     Matrix<std::string, 3, 7> m(std::string("Hola Mundo"));
-    for (int i = 0; i < m.sizeX(); i++) {
-      for (int j = 0; j < m.sizeY(); j++) {
+    for (size_t i = 0; i < m.sizeX(); i++) {
+      for (size_t j = 0; j < m.sizeY(); j++) {
         if (m(i, j) != "Hola Mundo") {
           return ERROR;
         }
@@ -95,9 +95,8 @@ int size_test() {
 int fill_test() {
   Matrix<int, 9, 17> m;
   m.fill(5);
-  for (int i = 0; i < m.sizeX(); i++) {
-    for (int j = 0; j < m.sizeY(); j++) {
-      printf("[%d, %d] : %d\n", i, j, m(i, j));
+  for (size_t i = 0; i < m.sizeX(); i++) {
+    for (size_t j = 0; j < m.sizeY(); j++) {
       if (m(i, j) != 5) {
         return ERROR;
       }

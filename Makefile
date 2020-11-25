@@ -1,6 +1,6 @@
-SOURCES = $(wildcard src/main/*.cpp) $(wildcard src/main/editor/*.cpp)
+SOURCES = $(wildcard src/main/*/*.cpp)
 
-TESTS_SOURCES = $(filter-out src/main/main.cpp, $(wildcard src/*/*.cpp) $(wildcard src/main/editor/*.cpp)) 
+TESTS_SOURCES = $(filter-out src/main/main.cpp, $(wildcard src/**/*.cpp)) 
 
 ## COMPILER FLAGS ##
 CC = g++
