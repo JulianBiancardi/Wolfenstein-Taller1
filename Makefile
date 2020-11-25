@@ -1,6 +1,6 @@
-SOURCES = $(wildcard src/main/*.cpp)
+SOURCES = $(wildcard src/main/*.cpp) $(wildcard src/main/editor/*.cpp)
 
-TESTS_SOURCES = $(filter-out src/main/main.cpp, $(wildcard src/*/*.cpp))
+TESTS_SOURCES = $(filter-out src/main/main.cpp, $(wildcard src/*/*.cpp) $(wildcard src/main/editor/*.cpp)) 
 
 ## COMPILER FLAGS ##
 CC = g++
@@ -27,8 +27,9 @@ endif
 
 ## LINKER FLAGS ##
 threads = yes
-#threadsan = yes
+# threadsan = yes
 # math = yes
+graphics = yes
 
 LDFLAGS = 
 
@@ -42,6 +43,10 @@ endif
 
 ifdef math
 LDFLAGS += -lm
+endif
+
+ifdef graphics
+LDFLAGS += -lSDL2
 endif
 
 ## END OF LINKER ## 
