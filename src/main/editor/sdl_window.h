@@ -11,17 +11,23 @@ class SDLWindow {
   int height;
 
  public:
-  SDLWindow(int width, int height);
+  SDLWindow(const char* title, int width, int height);
   ~SDLWindow();
 };
 
-SDLWindow::SDLWindow(int width, int height) : width(width), height(height) {
+SDLWindow::SDLWindow(const char* title, int width, int height)
+    : width(width), height(height) {
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     throw -1;  // TODO Add SDLException
   }
+  /*
   // TODO Consider splitting Window and Renderer into their own classes.
   if (SDL_CreateWindowAndRenderer(width, height, SDL_RENDERER_ACCELERATED,
                                   &this->window, &this->renderer) < 0) {
+    throw -1;  // TODO Add SDLException
+  }*/
+  if (SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                       width, height, SDL_WINDOW_ALLOW_HIGHDPI)) {
     throw -1;  // TODO Add SDLException
   }
 }
