@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/fer/Escritorio/Wolfenstein-Taller1/common/third-party/yaml-cpp
-BuildDirectory: /home/fer/Escritorio/Wolfenstein-Taller1/build/common/third-party/yaml-cpp
+SourceDirectory: /home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/third-party/yaml-cpp
+BuildDirectory: /home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build/common/third-party/yaml-cpp
 
 # Where to place the cost data store
 CostDataFile: 
@@ -36,7 +36,7 @@ ScpCommand: /usr/bin/scp
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/fer/Escritorio/Wolfenstein-Taller1/common/third-party/yaml-cpp"
+ConfigureCommand: "/usr/bin/cmake" "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/third-party/yaml-cpp"
 MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 

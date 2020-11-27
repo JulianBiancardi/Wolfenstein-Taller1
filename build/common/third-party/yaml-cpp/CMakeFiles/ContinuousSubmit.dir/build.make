@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fer/Escritorio/Wolfenstein-Taller1
+CMAKE_SOURCE_DIR = "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fer/Escritorio/Wolfenstein-Taller1/build
+CMAKE_BINARY_DIR = "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build"
 
 # Utility rule file for ContinuousSubmit.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/fer/Escritorio/Wolfenstein-Taller1/build
 include common/third-party/yaml-cpp/CMakeFiles/ContinuousSubmit.dir/progress.make
 
 common/third-party/yaml-cpp/CMakeFiles/ContinuousSubmit:
-	cd /home/fer/Escritorio/Wolfenstein-Taller1/build/common/third-party/yaml-cpp && /usr/bin/ctest -D ContinuousSubmit
+	cd "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build/common/third-party/yaml-cpp" && /usr/bin/ctest -D ContinuousSubmit
 
 ContinuousSubmit: common/third-party/yaml-cpp/CMakeFiles/ContinuousSubmit
 ContinuousSubmit: common/third-party/yaml-cpp/CMakeFiles/ContinuousSubmit.dir/build.make
@@ -67,10 +67,10 @@ common/third-party/yaml-cpp/CMakeFiles/ContinuousSubmit.dir/build: ContinuousSub
 .PHONY : common/third-party/yaml-cpp/CMakeFiles/ContinuousSubmit.dir/build
 
 common/third-party/yaml-cpp/CMakeFiles/ContinuousSubmit.dir/clean:
-	cd /home/fer/Escritorio/Wolfenstein-Taller1/build/common/third-party/yaml-cpp && $(CMAKE_COMMAND) -P CMakeFiles/ContinuousSubmit.dir/cmake_clean.cmake
+	cd "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build/common/third-party/yaml-cpp" && $(CMAKE_COMMAND) -P CMakeFiles/ContinuousSubmit.dir/cmake_clean.cmake
 .PHONY : common/third-party/yaml-cpp/CMakeFiles/ContinuousSubmit.dir/clean
 
 common/third-party/yaml-cpp/CMakeFiles/ContinuousSubmit.dir/depend:
-	cd /home/fer/Escritorio/Wolfenstein-Taller1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fer/Escritorio/Wolfenstein-Taller1 /home/fer/Escritorio/Wolfenstein-Taller1/common/third-party/yaml-cpp /home/fer/Escritorio/Wolfenstein-Taller1/build /home/fer/Escritorio/Wolfenstein-Taller1/build/common/third-party/yaml-cpp /home/fer/Escritorio/Wolfenstein-Taller1/build/common/third-party/yaml-cpp/CMakeFiles/ContinuousSubmit.dir/DependInfo.cmake --color=$(COLOR)
+	cd "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1" "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/third-party/yaml-cpp" "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build" "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build/common/third-party/yaml-cpp" "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build/common/third-party/yaml-cpp/CMakeFiles/ContinuousSubmit.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : common/third-party/yaml-cpp/CMakeFiles/ContinuousSubmit.dir/depend
 

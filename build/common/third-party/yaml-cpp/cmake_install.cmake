@@ -1,4 +1,4 @@
-# Install script for directory: /home/fer/Escritorio/Wolfenstein-Taller1/common/third-party/yaml-cpp
+# Install script for directory: /home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/third-party/yaml-cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/fer/Escritorio/Wolfenstein-Taller1/build/common/third-party/yaml-cpp/util/cmake_install.cmake")
+  include("/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build/common/third-party/yaml-cpp/util/cmake_install.cmake")
 
 endif()
 

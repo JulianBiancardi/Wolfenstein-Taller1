@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fer/Escritorio/Wolfenstein-Taller1
+CMAKE_SOURCE_DIR = "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fer/Escritorio/Wolfenstein-Taller1/build
+CMAKE_BINARY_DIR = "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build"
 
 # Utility rule file for NightlyCoverage.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/fer/Escritorio/Wolfenstein-Taller1/build
 include common/third-party/yaml-cpp/CMakeFiles/NightlyCoverage.dir/progress.make
 
 common/third-party/yaml-cpp/CMakeFiles/NightlyCoverage:
-	cd /home/fer/Escritorio/Wolfenstein-Taller1/build/common/third-party/yaml-cpp && /usr/bin/ctest -D NightlyCoverage
+	cd "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build/common/third-party/yaml-cpp" && /usr/bin/ctest -D NightlyCoverage
 
 NightlyCoverage: common/third-party/yaml-cpp/CMakeFiles/NightlyCoverage
 NightlyCoverage: common/third-party/yaml-cpp/CMakeFiles/NightlyCoverage.dir/build.make
@@ -67,10 +67,10 @@ common/third-party/yaml-cpp/CMakeFiles/NightlyCoverage.dir/build: NightlyCoverag
 .PHONY : common/third-party/yaml-cpp/CMakeFiles/NightlyCoverage.dir/build
 
 common/third-party/yaml-cpp/CMakeFiles/NightlyCoverage.dir/clean:
-	cd /home/fer/Escritorio/Wolfenstein-Taller1/build/common/third-party/yaml-cpp && $(CMAKE_COMMAND) -P CMakeFiles/NightlyCoverage.dir/cmake_clean.cmake
+	cd "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build/common/third-party/yaml-cpp" && $(CMAKE_COMMAND) -P CMakeFiles/NightlyCoverage.dir/cmake_clean.cmake
 .PHONY : common/third-party/yaml-cpp/CMakeFiles/NightlyCoverage.dir/clean
 
 common/third-party/yaml-cpp/CMakeFiles/NightlyCoverage.dir/depend:
-	cd /home/fer/Escritorio/Wolfenstein-Taller1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fer/Escritorio/Wolfenstein-Taller1 /home/fer/Escritorio/Wolfenstein-Taller1/common/third-party/yaml-cpp /home/fer/Escritorio/Wolfenstein-Taller1/build /home/fer/Escritorio/Wolfenstein-Taller1/build/common/third-party/yaml-cpp /home/fer/Escritorio/Wolfenstein-Taller1/build/common/third-party/yaml-cpp/CMakeFiles/NightlyCoverage.dir/DependInfo.cmake --color=$(COLOR)
+	cd "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1" "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/third-party/yaml-cpp" "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build" "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build/common/third-party/yaml-cpp" "/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/build/common/third-party/yaml-cpp/CMakeFiles/NightlyCoverage.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : common/third-party/yaml-cpp/CMakeFiles/NightlyCoverage.dir/depend
 

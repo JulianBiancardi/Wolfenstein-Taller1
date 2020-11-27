@@ -366,13 +366,13 @@ yaml-cpp/node/parse.h
 yaml-cpp/node/emit.h
 ../common/third-party/yaml-cpp/include/yaml-cpp/yaml-cpp/node/emit.h
 
-/home/fer/Escritorio/Wolfenstein-Taller1/common/third-party/yaml-cpp/util/read.cpp
+/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/third-party/yaml-cpp/util/read.cpp
 yaml-cpp/emitterstyle.h
-/home/fer/Escritorio/Wolfenstein-Taller1/common/third-party/yaml-cpp/util/yaml-cpp/emitterstyle.h
+/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/third-party/yaml-cpp/util/yaml-cpp/emitterstyle.h
 yaml-cpp/eventhandler.h
-/home/fer/Escritorio/Wolfenstein-Taller1/common/third-party/yaml-cpp/util/yaml-cpp/eventhandler.h
+/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/third-party/yaml-cpp/util/yaml-cpp/eventhandler.h
 yaml-cpp/yaml.h
-/home/fer/Escritorio/Wolfenstein-Taller1/common/third-party/yaml-cpp/util/yaml-cpp/yaml.h
+/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/third-party/yaml-cpp/util/yaml-cpp/yaml.h
 cstdlib
 -
 fstream

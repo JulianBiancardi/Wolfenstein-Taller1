@@ -6,5 +6,5 @@ CXX_FLAGS =   -Wall -Wextra -Wshadow -Weffc++ -Wno-long-long -pedantic -pedantic
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/fer/Escritorio/Wolfenstein-Taller1/common/third-party/yaml-cpp/include -I/home/fer/Escritorio/Wolfenstein-Taller1/common/third-party/yaml-cpp/src 
+CXX_INCLUDES = -I"/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/third-party/yaml-cpp/include" -I"/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/third-party/yaml-cpp/src" 
 

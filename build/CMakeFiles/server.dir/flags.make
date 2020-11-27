@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/fer/Escritorio/Wolfenstein-Taller1/common/third-party/yaml-cpp/include 
+CXX_INCLUDES = -I"/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/third-party/yaml-cpp/include" 
 
