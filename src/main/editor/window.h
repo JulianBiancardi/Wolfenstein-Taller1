@@ -30,15 +30,15 @@ class Window {
    */
   int fill(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 
-  /* Draw a line from point (x1, y1) to (x2, y2).
-   * Return 0 on success, throws SDLError otherwise.
-   */
-  int draw_line(int x1, int y1, int x2, int y2);
-
   /* Sets the drawing color to the given RGBA color.
    * Return 0 on success, throws SDLError otherwise.
    */
   int set_draw_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
+
+  /* Draw a line from point (x1, y1) to (x2, y2).
+   * Return 0 on success, throws SDLError otherwise.
+   */
+  int draw_line(int x1, int y1, int x2, int y2);
 };
 
 #endif

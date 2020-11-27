@@ -41,3 +41,10 @@ int Window::fill(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
   clear();
   return NO_ERROR;
 }
+
+int Window::draw_line(int x1, int y1, int x2, int y2) {
+  if (SDL_RenderDrawLine(renderer, x1, y1, x2, y2) != NO_ERROR) {
+    return -1;  // TODO Throw Exception
+  }
+  return NO_ERROR;
+}
