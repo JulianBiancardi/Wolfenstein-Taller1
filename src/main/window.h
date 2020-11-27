@@ -39,6 +39,9 @@ class Window {
    * Return 0 on success, throws SDLError otherwise.
    */
   int draw_line(int x1, int y1, int x2, int y2);
+
+  /* Manually update the rendering. */
+  void update();
 };
 
 #endif

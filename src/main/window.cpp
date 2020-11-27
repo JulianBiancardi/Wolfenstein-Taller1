@@ -48,3 +48,5 @@ int Window::draw_line(int x1, int y1, int x2, int y2) {
   }
   return NO_ERROR;
 }
+
+void Window::update() { SDL_RenderPresent(renderer); }
