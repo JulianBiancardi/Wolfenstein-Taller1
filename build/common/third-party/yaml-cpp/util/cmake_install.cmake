@@ -1,4 +1,4 @@
-# Install script for directory: /home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/third-party/yaml-cpp/util
+# Install script for directory: /home/fer/Escritorio/Carpeta sin título 3/Wolfenstein-Taller1/common/third-party/yaml-cpp/util
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

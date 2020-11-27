@@ -354,9 +354,9 @@ yaml-cpp/node/parse.h
 yaml-cpp/node/emit.h
 ../common/third-party/yaml-cpp/include/yaml-cpp/yaml-cpp/node/emit.h
 
-/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/socket.cpp
+/home/fer/Escritorio/Carpeta sin título 3/Wolfenstein-Taller1/common/socket.cpp
 socket.h
-/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/socket.h
+/home/fer/Escritorio/Carpeta sin título 3/Wolfenstein-Taller1/common/socket.h
 cerrno
 -
 utility
@@ -364,9 +364,9 @@ utility
 iostream
 -
 socket_error.h
-/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/socket_error.h
+/home/fer/Escritorio/Carpeta sin título 3/Wolfenstein-Taller1/common/socket_error.h
 
-/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/socket.h
+/home/fer/Escritorio/Carpeta sin título 3/Wolfenstein-Taller1/common/socket.h
 sys/socket.h
 -
 sys/types.h
@@ -378,33 +378,33 @@ cstring
 unistd.h
 -
 
-/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/socket_error.cpp
+/home/fer/Escritorio/Carpeta sin título 3/Wolfenstein-Taller1/common/socket_error.cpp
 string
 -
 socket_error.h
-/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/socket_error.h
+/home/fer/Escritorio/Carpeta sin título 3/Wolfenstein-Taller1/common/socket_error.h
 
-/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/common/socket_error.h
+/home/fer/Escritorio/Carpeta sin título 3/Wolfenstein-Taller1/common/socket_error.h
 typeinfo
 -
 string
 -
 
-/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/server/config_loader.cpp
+/home/fer/Escritorio/Carpeta sin título 3/Wolfenstein-Taller1/server/config_loader.cpp
 config_loader.h
-/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/server/config_loader.h
+/home/fer/Escritorio/Carpeta sin título 3/Wolfenstein-Taller1/server/config_loader.h
 
-/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/server/config_loader.h
+/home/fer/Escritorio/Carpeta sin título 3/Wolfenstein-Taller1/server/config_loader.h
 iostream
 -
 fstream
 -
 yaml-cpp/yaml.h
-/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/server/yaml-cpp/yaml.h
+/home/fer/Escritorio/Carpeta sin título 3/Wolfenstein-Taller1/server/yaml-cpp/yaml.h
 
-/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/server/main_server.cpp
+/home/fer/Escritorio/Carpeta sin título 3/Wolfenstein-Taller1/server/main_server.cpp
 iostream
 -
 config_loader.h
-/home/fer/Escritorio/Carpeta sin título/Wolfenstein-Taller1/server/config_loader.h
+/home/fer/Escritorio/Carpeta sin título 3/Wolfenstein-Taller1/server/config_loader.h
 
