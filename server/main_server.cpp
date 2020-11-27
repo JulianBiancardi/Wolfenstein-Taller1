@@ -14,9 +14,6 @@ int main(int argc, char const *argv[]){
 //        AcceptorTh acceptor(repository, file, argv[1]);
  //       acceptor.start();
 
-
-
-
         std::cout << ConfigLoader::get_init_configs().sv_port;
 
         while (server_enabled){

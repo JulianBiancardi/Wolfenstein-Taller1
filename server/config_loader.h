@@ -2,16 +2,15 @@
 #define WOLFENSTEIN_TALLER1_CONFIG_LOADER_H
 #include <iostream>
 #include <fstream>
-#include "json.hpp"
+#include "yaml-cpp/yaml.h"
 
 class ConfigLoader {
     public:
-        nlohmann::json json_file;
 
-        ConfigLoader();
+    ConfigLoader();
+    static ConfigLoader& get_init_configs();
 
-        std::string sv_port;
-
-        static ConfigLoader& get_init_configs();
+    YAML::Node yaml_file;
+    std::string sv_port;
 };
 #endif //WOLFENSTEIN_TALLER1_CONFIG_LOADER_H
