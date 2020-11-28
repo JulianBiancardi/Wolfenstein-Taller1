@@ -1,10 +1,4 @@
-class RayCasting {
- private:
-  /* data */
- public:
-  RayCasting(/* args */);
-  ~RayCasting();
-};
+#include "ray_casting.h"
 
 RayCasting::RayCasting(/* args */) {}
 
