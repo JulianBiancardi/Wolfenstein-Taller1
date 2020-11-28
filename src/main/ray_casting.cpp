@@ -4,8 +4,6 @@ class RayCasting {
  public:
   RayCasting(/* args */);
   ~RayCasting();
-
-  cast
 };
 
 RayCasting::RayCasting(/* args */) {}
