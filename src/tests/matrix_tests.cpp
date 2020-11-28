@@ -5,9 +5,6 @@
 #include "../main/matrix.h"
 #include "tests_setup.h"
 
-#define NO_ERROR 0
-#define ERROR 1
-
 int empty_int_creation_test();
 int default_int_creation_test();
 int empty_string_creation_test();
@@ -34,7 +31,7 @@ void matrix_tests() {
 
 int empty_int_creation_test() {
   try {
-    Matrix<int, 2, 5> m;
+    Matrix<int> m(5, 2);
     return NO_ERROR;
   } catch (const std::exception& e) {
     return ERROR;
@@ -43,9 +40,9 @@ int empty_int_creation_test() {
 
 int default_int_creation_test() {
   try {
-    Matrix<int, 3, 7> m(90);
-    for (size_t i = 0; i < m.sizeX(); i++) {
-      for (size_t j = 0; j < m.sizeY(); j++) {
+    Matrix<int> m(7, 3, 90);
+    for (size_t i = 0; i < m.get_columns(); i++) {
+      for (size_t j = 0; j < m.get_rows(); j++) {
         if (m(i, j) != 90) {
           return ERROR;
         }
@@ -59,7 +56,7 @@ int default_int_creation_test() {
 
 int empty_string_creation_test() {
   try {
-    Matrix<std::string, 2, 5> m;
+    Matrix<std::string> m(5, 2);
     return NO_ERROR;
   } catch (const std::exception& e) {
     return ERROR;
@@ -68,9 +65,9 @@ int empty_string_creation_test() {
 
 int default_string_creation_test() {
   try {
-    Matrix<std::string, 3, 7> m(std::string("Hola Mundo"));
-    for (size_t i = 0; i < m.sizeX(); i++) {
-      for (size_t j = 0; j < m.sizeY(); j++) {
+    Matrix<std::string> m(8, 3, std::string("Hola Mundo"));
+    for (size_t i = 0; i < m.get_columns(); i++) {
+      for (size_t j = 0; j < m.get_rows(); j++) {
         if (m(i, j) != "Hola Mundo") {
           return ERROR;
         }
@@ -83,20 +80,20 @@ int default_string_creation_test() {
 }
 
 int size_test() {
-  Matrix<int, 2, 3> m;
-  size_t x = m.sizeX();
-  size_t y = m.sizeY();
-  if (x == 2 && y == 3) {
+  Matrix<int> m(2, 3);
+  size_t x = m.get_columns();
+  size_t y = m.get_rows();
+  if (x == 3 && y == 2) {
     return NO_ERROR;
   }
   return ERROR;
 }
 
 int fill_test() {
-  Matrix<int, 9, 17> m;
+  Matrix<int> m(17, 9);
   m.fill(5);
-  for (size_t i = 0; i < m.sizeX(); i++) {
-    for (size_t j = 0; j < m.sizeY(); j++) {
+  for (size_t i = 0; i < m.get_columns(); i++) {
+    for (size_t j = 0; j < m.get_rows(); j++) {
       if (m(i, j) != 5) {
         return ERROR;
       }

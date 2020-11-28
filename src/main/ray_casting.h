@@ -15,7 +15,7 @@ class RayCasting {
   ~RayCasting();
 
   template <size_t X, size_t Y>
-  Point cast(Matrix<int, X, Y>& m, Ray& ray);
+  Point cast(Matrix<int>& m, Ray& ray);
 };
 
 #endif

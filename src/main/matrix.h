@@ -1,25 +1,43 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#include <array>
+#include <algorithm>
+#include <vector>
 
-template <class T, size_t X, size_t Y>
+template <class T>
 class Matrix {
  private:
-  std::array<std::array<T, Y>, X> matrix;
+  std::vector<std::vector<T>> matrix;
+  size_t rows;
+  size_t columns;
 
  public:
-  Matrix() {}
-  explicit Matrix(const T& val) { fill(val); }
+  Matrix(size_t rows, size_t columns) : rows(rows), columns(columns) {
+    matrix.resize(columns, std::vector<T>(rows));
+  }
+
+  explicit Matrix(size_t rows, size_t columns, const T& val)
+      : rows(rows), columns(columns) {
+    matrix.resize(columns, std::vector<T>(rows));
+    fill(val);
+  }
+
   ~Matrix() {}
 
-  size_t sizeX() { return X; }
-  size_t sizeY() { return Y; }
+  /* Returns the amount of rows in the matrix. */
+  size_t get_rows() { return rows; }
+
+  /* Returns the amount of columns in the matrix. */
+  size_t get_columns() { return columns; }
+
+  /* Fills the entire matrix with the value given. */
   void fill(const T& val) {
-    for (size_t i = 0; i < X; ++i) {
-      matrix[i].fill(val);
+    for (size_t i = 0; i < columns; ++i) {
+      std::fill(matrix[i].begin(), matrix[i].end(), val);
     }
   }
+
+  /* Return the element in the position x,y. */
   T& operator()(int x, int y) { return matrix[x][y]; }
 };
 
