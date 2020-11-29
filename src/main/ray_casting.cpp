@@ -67,7 +67,7 @@ Point RayCasting::horizontal_axis(Matrix<int>& map, Ray& ray) {
     // FIXME Ask whether to attempt to optimize
     while (true) {
       try {
-        if (map((int)x, (int)y) == WALL) {
+        if (map((int)x, (int)y) >= WALL) {
           intersection = Point(x, y);
         }
       } catch (int FIXME) {
@@ -83,7 +83,7 @@ Point RayCasting::horizontal_axis(Matrix<int>& map, Ray& ray) {
 
     while (true) {
       try {
-        if (map((int)x, (int)y) == WALL) {
+        if (map((int)x, (int)y) >= WALL) {
           intersection = Point(x, y);
         }
       } catch (int FIXME) {
@@ -93,6 +93,7 @@ Point RayCasting::horizontal_axis(Matrix<int>& map, Ray& ray) {
       x = x - CELL_SIZE;
     }
   }
+  printf("HOR: (%d, %d)\n", intersection.getX(), intersection.getY());
   return intersection;
 }
 
@@ -112,7 +113,7 @@ Point RayCasting::vertical_axis(Matrix<int>& map, Ray& ray) {
 
     // FIXME Ask whether to attempt to optimize
     while (true) {
-      if (map((int)x, (int)y) == WALL) {
+      if (map((int)x, (int)y) >= WALL) {
         return Point(x, y);
       }
 
@@ -124,7 +125,7 @@ Point RayCasting::vertical_axis(Matrix<int>& map, Ray& ray) {
     double y = y_origin + (CELL_SIZE - dy);
 
     while (true) {
-      if (map((int)x, (int)y) == WALL) {
+      if (map((int)x, (int)y) >= WALL) {
         return Point(x, y);
       }
 
@@ -163,7 +164,7 @@ Point RayCasting::first_quad(Matrix<int>& map, Ray& ray) {
   while (true) {
     y_intersection = Point(x, y);
     try {
-      if (map(x, y) == WALL) {
+      if (map((int)x, (int)y) >= WALL) {
         break;
       }
     } catch (int a) {
@@ -182,7 +183,7 @@ Point RayCasting::first_quad(Matrix<int>& map, Ray& ray) {
   while (true) {
     x_intersection = Point(x, y);
     try {
-      if (map((int)x, (int)y) == WALL) {
+      if (map((int)x, (int)y) >= WALL) {
         break;
       }
     } catch (int a) {
@@ -237,7 +238,7 @@ Point RayCasting::second_quad(Matrix<int>& map, Ray& ray) {
   while (true) {
     y_intersection = Point(x, y);
     try {
-      if (map((int)x, (int)y) == WALL) {
+      if (map((int)x, (int)y) >= WALL) {
         break;
       }
     } catch (int FIXME) {
@@ -254,7 +255,7 @@ Point RayCasting::second_quad(Matrix<int>& map, Ray& ray) {
   while (true) {
     x_intersection = Point(x, y);
     try {
-      if (map((int)x, (int)y) == WALL) {
+      if (map((int)x, (int)y) >= WALL) {
         break;
       }
     } catch (int FIXME) {
@@ -301,7 +302,7 @@ Point RayCasting::third_quad(Matrix<int>& map, Ray& ray) {
   while (true) {
     y_intersection = Point(x, y);
     try {
-      if (map((int)x, (int)y) == WALL) {
+      if (map((int)x, (int)y) >= WALL) {
         break;
       }
     } catch (int FIXME) {
@@ -319,7 +320,7 @@ Point RayCasting::third_quad(Matrix<int>& map, Ray& ray) {
   while (true) {
     x_intersection = Point(x, y);
     try {
-      if (map((int)x, (int)y) == WALL) {
+      if (map((int)x, (int)y) >= WALL) {
         break;
       }
     } catch (int FIXME) {
@@ -366,7 +367,7 @@ Point RayCasting::forth_quad(Matrix<int>& map, Ray& ray) {
   while (true) {
     y_intersection = Point(x, y);
     try {
-      if (map((int)x, (int)y) == WALL) {
+      if (map((int)x, (int)y) >= WALL) {
         break;
       }
     } catch (int FIXME) {
@@ -384,7 +385,7 @@ Point RayCasting::forth_quad(Matrix<int>& map, Ray& ray) {
   while (true) {
     x_intersection = Point(x, y);
     try {
-      if (map((int)x, (int)y) == WALL) {
+      if (map((int)x, (int)y) >= WALL) {
         break;
       }
     } catch (int FIXME) {

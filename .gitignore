@@ -3,3 +3,4 @@
 a.out
 *.txt
 !app_info.txt
+vgcore.*

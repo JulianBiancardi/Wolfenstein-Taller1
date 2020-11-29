@@ -13,6 +13,10 @@
 #define CELL_SIZE 64
 #define WALL_SIZE 20000
 #define WALL 1
+#define RED_WALL 2
+#define GREEN_WALL 3
+#define BLUE_WALL 4
+#define YELLOW_WALL 5
 #define FOV 1.04
 
 void static handle_key_press(SDL_Keycode& key, Ray& player);
@@ -76,7 +80,25 @@ int main(int argc, char** argv) {
 
       int wall_size = (int)WALL_SIZE *
                       RayCasting::get_scaling_factor(ray, player, intersection);
-
+      /*switch (map(intersection.getX(), intersection.getY())) {
+        case 1:
+          window.set_draw_color(0, 0, 0, 255);
+          break;
+        case 2:
+          window.set_draw_color(255, 0, 0, 255);
+          break;
+        case 3:
+          window.set_draw_color(0, 255, 0, 255);
+          break;
+        case 4:
+          window.set_draw_color(0, 0, 255, 255);
+          break;
+        case 5:
+          window.set_draw_color(0, 255, 255, 255);
+          break;
+        default:
+          break;
+      }*/
       window.draw_line(i, SCREEN_HEIGHT_HALF - (wall_size / 2), i,
                        SCREEN_HEIGHT_HALF + (wall_size / 2));
 
@@ -110,6 +132,19 @@ void put_data(Matrix<int>& map_data) {
   map_data(3, 7) = WALL;
 
   map_data(6, 5) = WALL;
+  /*
+  map_data(7, 2) = GREEN_WALL;
+  map_data(6, 2) = BLUE_WALL;
+  map_data(7, 3) = RED_WALL;
+
+  map_data(2, 6) = YELLOW_WALL;
+  map_data(3, 6) = BLUE_WALL;
+  map_data(4, 6) = GREEN_WALL;
+  map_data(3, 5) = RED_WALL;
+  map_data(3, 7) = GREEN_WALL;
+
+  map_data(6, 5) = BLUE_WALL;
+  */
 }
 
 void draw_map(Matrix<int>& map_data, Matrix<int>& map) {
