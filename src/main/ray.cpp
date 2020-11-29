@@ -8,4 +8,8 @@ Ray::~Ray() {}
 
 Point Ray::get_origin() { return origin; }
 
+void Ray::set_origin(int x, int y) { origin = Point(x, y); }
+
 double Ray::get_angle() { return angle; }
+
+void Ray::set_angle(double angle) { this->angle = angle; }

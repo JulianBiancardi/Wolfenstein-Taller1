@@ -57,15 +57,21 @@ Point RayCasting::horizontal_axis(Matrix<int>& map, Ray& ray) {
   // Ray offset within the cell
   size_t dx = x_origin % CELL_SIZE;
 
+  Point intersection(-1, -1);
+
   if (ray_angle == 0) {
     // Point coord for first X intersection
-    double x = x_origin + (CELL_SIZE - dx) - 1;
-    double y = y_origin - 1;
+    double x = x_origin + (CELL_SIZE - dx);
+    double y = y_origin;
 
     // FIXME Ask whether to attempt to optimize
     while (true) {
-      if (map((int)x, (int)y) == WALL) {
-        return Point(x, y);
+      try {
+        if (map((int)x, (int)y) == WALL) {
+          intersection = Point(x, y);
+        }
+      } catch (int FIXME) {
+        break;
       }
 
       x = x + CELL_SIZE;
@@ -73,16 +79,21 @@ Point RayCasting::horizontal_axis(Matrix<int>& map, Ray& ray) {
   } else {
     // Point coord for first X intersection
     double x = x_origin - dx - 1;
-    double y = y_origin - 1;
+    double y = y_origin;
 
     while (true) {
-      if (map((int)x, (int)y) == WALL) {
-        return Point(x, y);
+      try {
+        if (map((int)x, (int)y) == WALL) {
+          intersection = Point(x, y);
+        }
+      } catch (int FIXME) {
+        break;
       }
 
       x = x - CELL_SIZE;
     }
   }
+  return intersection;
 }
 
 Point RayCasting::vertical_axis(Matrix<int>& map, Ray& ray) {
@@ -96,7 +107,7 @@ Point RayCasting::vertical_axis(Matrix<int>& map, Ray& ray) {
 
   if (ray_angle == M_PI_2) {
     // Point coord for first Y intersection
-    double x = x_origin - 1;
+    double x = x_origin;
     double y = y_origin - dy - 1;
 
     // FIXME Ask whether to attempt to optimize
@@ -109,8 +120,8 @@ Point RayCasting::vertical_axis(Matrix<int>& map, Ray& ray) {
     }
   } else {
     // Point coord for first X intersection
-    double x = x_origin - 1;
-    double y = y_origin + (CELL_SIZE - dy) - 1;
+    double x = x_origin;
+    double y = y_origin + (CELL_SIZE - dy);
 
     while (true) {
       if (map((int)x, (int)y) == WALL) {
@@ -124,7 +135,7 @@ Point RayCasting::vertical_axis(Matrix<int>& map, Ray& ray) {
 
 Point RayCasting::first_quad(Matrix<int>& map, Ray& ray) {
   // Starting point
-  printf("Q1 ");
+  // printf("Q1 ");
   size_t x_origin = ray.get_origin().getX();
   size_t y_origin = ray.get_origin().getY();
   double ray_angle = ray.get_angle();
@@ -185,20 +196,20 @@ Point RayCasting::first_quad(Matrix<int>& map, Ray& ray) {
   double distance1 = Point::distance(ray.get_origin(), x_intersection);
   double distance2 = Point::distance(ray.get_origin(), y_intersection);
 
-  printf("\nANGLE: %f\n", ray_angle);
-  printf("X_INT: (%d, %d)\n", x_intersection.getX(), x_intersection.getY());
-  printf("Y_INT: (%d, %d)\n", y_intersection.getX(), y_intersection.getY());
+  // printf("\nANGLE: %f\n", ray_angle);
+  // printf("X_INT: (%d, %d)\n", x_intersection.getX(), x_intersection.getY());
+  // printf("Y_INT: (%d, %d)\n", y_intersection.getX(), y_intersection.getY());
   if (distance1 < distance2) {
-    printf("X ");
+    // printf("X ");
     return x_intersection;
   } else {
-    printf("Y ");
+    // printf("Y ");
     return y_intersection;
   }
 }
 
 Point RayCasting::second_quad(Matrix<int>& map, Ray& ray) {
-  printf("Q2 ");
+  // printf("Q2 ");
   // Starting point
   size_t x_origin = ray.get_origin().getX();
   size_t y_origin = ray.get_origin().getY();
@@ -264,7 +275,7 @@ Point RayCasting::second_quad(Matrix<int>& map, Ray& ray) {
 }
 
 Point RayCasting::third_quad(Matrix<int>& map, Ray& ray) {
-  printf("Q3 ");
+  // printf("Q3 ");
   size_t x_origin = ray.get_origin().getX();
   size_t y_origin = ray.get_origin().getY();
   double ray_angle = ray.get_angle();
@@ -329,7 +340,7 @@ Point RayCasting::third_quad(Matrix<int>& map, Ray& ray) {
 }
 
 Point RayCasting::forth_quad(Matrix<int>& map, Ray& ray) {
-  printf("Q4 ");
+  // printf("Q4 ");
   size_t x_origin = ray.get_origin().getX();
   size_t y_origin = ray.get_origin().getY();
   double ray_angle = ray.get_angle();

@@ -14,7 +14,9 @@ class Ray {
   ~Ray();
 
   Point get_origin();
+  void set_origin(int x, int y);
   double get_angle();
+  void set_angle(double angle);
 };
 
 #endif

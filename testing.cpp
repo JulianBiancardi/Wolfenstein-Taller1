@@ -15,6 +15,7 @@
 #define WALL 1
 #define FOV 1.04
 
+void static handle_key_press(SDL_Keycode& key, Ray& player);
 void print_map(Matrix<int>& map);
 void put_data(Matrix<int>& map_data);
 void draw_map(Matrix<int>& map_data, Matrix<int>& map);
@@ -28,39 +29,66 @@ int main(int argc, char** argv) {
   draw_map(map_data, map);
 
   Window window("Hello World!", SCREEN_WIDTH, SCREEN_HEIGHT);
-  window.fill(255, 255, 255, 255);
-  window.set_draw_color(0, 0, 0, 255);
 
   Ray player(325, 350, 1);
 
-  double ray_angle = player.get_angle() + FOV / 2;
-  if (ray_angle > 2 * M_PI) {
-    ray_angle -= 2 * M_PI;
-  }
-  double angle_step = FOV / SCREEN_WIDTH;
-  for (int i = 0; i < SCREEN_WIDTH;) {
-    Ray ray(player.get_origin(), ray_angle);
-
-    Point intersection = RayCasting::get_intersection(map, ray);
-
-    std::cout << "(" << intersection.getX() << "," << intersection.getY() << ")"
-              << std::endl;
-
-    int wall_size = (int)WALL_SIZE *
-                    RayCasting::get_scaling_factor(ray, player, intersection);
-
-    window.draw_line(i, SCREEN_HEIGHT_HALF - (wall_size / 2), i,
-                     SCREEN_HEIGHT_HALF + (wall_size / 2));
-
-    i++;
-    ray_angle -= angle_step;
-    if (ray_angle < 0) {
-      ray_angle += 2 * M_PI;
+  SDL_Event event;
+  bool run = true;
+  while (run) {
+    while (SDL_PollEvent(&event)) {
+      switch (event.type) {
+        case SDL_QUIT:
+          run = false;
+          break;
+        case SDL_KEYDOWN:
+          printf("Key press\n");
+          handle_key_press(event.key.keysym.sym, player);
+          break;
+        case SDL_KEYUP:
+          printf("Key release\n");
+          break;
+        case SDL_MOUSEBUTTONDOWN:
+          printf("Mouse clicked\n");
+          break;
+        case SDL_MOUSEBUTTONUP:
+          printf("Mouse unclicked\n");
+          break;
+        default:
+          break;
+      }
     }
-  }
 
-  window.update();
-  SDL_Delay(5000);
+    window.fill(255, 255, 255, 255);
+    window.set_draw_color(0, 0, 0, 255);
+
+    double ray_angle = player.get_angle() + FOV / 2;
+    if (ray_angle > 2 * M_PI) {
+      ray_angle -= 2 * M_PI;
+    }
+    double angle_step = FOV / SCREEN_WIDTH;
+    for (int i = 0; i < SCREEN_WIDTH;) {
+      Ray ray(player.get_origin(), ray_angle);
+
+      Point intersection = RayCasting::get_intersection(map, ray);
+
+      // std::cout << "(" << intersection.getX() << "," << intersection.getY()
+      //          << ")" << std::endl;
+
+      int wall_size = (int)WALL_SIZE *
+                      RayCasting::get_scaling_factor(ray, player, intersection);
+
+      window.draw_line(i, SCREEN_HEIGHT_HALF - (wall_size / 2), i,
+                       SCREEN_HEIGHT_HALF + (wall_size / 2));
+
+      i++;
+      ray_angle -= angle_step;
+      if (ray_angle < 0) {
+        ray_angle += 2 * M_PI;
+      }
+    }
+
+    window.update();
+  }
 }
 
 void put_data(Matrix<int>& map_data) {
@@ -99,4 +127,34 @@ void print_map(Matrix<int>& map) {
     std::cout << std::endl;
   }
   std::cout << std::endl;
+}
+
+void static handle_key_press(SDL_Keycode& key, Ray& player) {
+  double angle = player.get_angle();
+  switch (key) {
+    case SDLK_w:
+      printf("W\n");
+      break;
+    case SDLK_s:
+      printf("S\n");
+      break;
+    case SDLK_a:
+      printf("A\n");
+      angle += 0.1;
+      if (angle >= 2 * M_PI) {
+        angle -= 2 * M_PI;
+      }
+      player.set_angle(angle);
+      break;
+    case SDLK_d:
+      printf("D\n");
+      angle -= 0.1;
+      if (angle < 0) {
+        angle += 2 * M_PI;
+      }
+      player.set_angle(angle);
+      break;
+    default:
+      break;
+  }
 }
