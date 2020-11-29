@@ -2,6 +2,7 @@
 #define MATRIX_H
 
 #include <algorithm>
+#include <cstdio>  // TODO DELETE
 #include <vector>
 
 template <class T>
@@ -38,7 +39,12 @@ class Matrix {
   }
 
   /* Return the element in the position x,y. */
-  T& operator()(int x, int y) { return matrix[x][y]; }
+  T& operator()(int x, int y) {
+    if (x >= columns || y >= rows) {
+      throw -1;
+    }
+    return matrix[x][y];
+  }
 };
 
 #endif

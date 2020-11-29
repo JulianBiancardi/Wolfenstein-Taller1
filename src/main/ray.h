@@ -10,11 +10,11 @@ class Ray {
 
  public:
   Ray(Point origin, double angle);
+  Ray(int x, int y, double angle);
   ~Ray();
+
+  Point get_origin();
+  double get_angle();
 };
-
-Ray::Ray(Point origin, double angle) : origin(origin), angle(angle) {}
-
-Ray::~Ray() {}
 
 #endif
