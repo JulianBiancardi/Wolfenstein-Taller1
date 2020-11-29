@@ -231,7 +231,7 @@ Point RayCasting::second_quad(Matrix<int>& map, Ray& ray) {
   Point y_intersection(0, 0);
 
   // Point coord for first Y intersection
-  double x = x_origin - (CELL_SIZE - dy) / tg;
+  double x = x_origin - dy / tg;
   double y = y_origin - dy - 1;
 
   while (true) {

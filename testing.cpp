@@ -30,7 +30,7 @@ int main(int argc, char** argv) {
 
   Window window("Hello World!", SCREEN_WIDTH, SCREEN_HEIGHT);
 
-  Ray player(325, 350, 1);
+  Ray player(100, 100, 0);
 
   SDL_Event event;
   bool run = true;
@@ -99,7 +99,17 @@ void put_data(Matrix<int>& map_data) {
     map_data(9, i) = WALL;  // RIGHT
   }
 
-  map_data(5, 3) = WALL;
+  map_data(7, 2) = WALL;
+  map_data(6, 2) = WALL;
+  map_data(7, 3) = WALL;
+
+  map_data(2, 6) = WALL;
+  map_data(3, 6) = WALL;
+  map_data(4, 6) = WALL;
+  map_data(3, 5) = WALL;
+  map_data(3, 7) = WALL;
+
+  map_data(6, 5) = WALL;
 }
 
 void draw_map(Matrix<int>& map_data, Matrix<int>& map) {
@@ -131,9 +141,23 @@ void print_map(Matrix<int>& map) {
 
 void static handle_key_press(SDL_Keycode& key, Ray& player) {
   double angle = player.get_angle();
+  double cos_angle = cos(angle);
+  double sin_angle = sin(angle);
+  Point position = player.get_origin();
+  int x = position.getX();
+  int y = position.getY();
   switch (key) {
     case SDLK_w:
       printf("W\n");
+      if (cos_angle > 0.9) {
+        player.set_origin(x + 5, y);
+      } else if (cos_angle < -0.9) {
+        player.set_origin(x - 5, y);
+      } else if (sin_angle > 0.9) {
+        player.set_origin(x, y - 5);
+      } else if (sin_angle < -0.9) {
+        player.set_origin(x, y + 5);
+      }
       break;
     case SDLK_s:
       printf("S\n");
