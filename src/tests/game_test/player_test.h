@@ -2,7 +2,7 @@
 #define WOLFENSTEIN_TALLER1_PLAYER_TEST_H
 
 
-class player_test {
+class PlayerTest {
 
 };
 

@@ -2,8 +2,8 @@
 #define WOLFENSTEIN_TALLER1_PLAYER_H
 
 
-class player {
-
+class Player {
+    Player();
 };
 
 
