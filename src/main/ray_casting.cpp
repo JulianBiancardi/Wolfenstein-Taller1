@@ -49,6 +49,7 @@ double RayCasting::get_scaling_factor(Ray& ray, Ray& player_direction,
 }
 
 Point RayCasting::horizontal_axis(Matrix<int>& map, Ray& ray) {
+  printf("HOR: ");
   // Starting point
   size_t x_origin = ray.get_origin().getX();
   size_t y_origin = ray.get_origin().getY();
@@ -149,8 +150,8 @@ Point RayCasting::first_quad(Matrix<int>& map, Ray& ray) {
   double tg = fabs(tan(ray_angle));
 
   // Steps between intersections
-  size_t x_step = CELL_SIZE / tg;
-  size_t y_step = CELL_SIZE * tg;
+  double x_step = CELL_SIZE / tg;
+  double y_step = CELL_SIZE * tg;
 
   // Points of intersection
   Point x_intersection(-1, -1);
@@ -224,8 +225,8 @@ Point RayCasting::second_quad(Matrix<int>& map, Ray& ray) {
   double tg = fabs(tan(ray_angle));
 
   // Steps between intersections
-  size_t x_step = CELL_SIZE / tg;
-  size_t y_step = CELL_SIZE * tg;
+  double x_step = CELL_SIZE / tg;
+  double y_step = CELL_SIZE * tg;
 
   // Points of intersection
   Point x_intersection(0, 0);
@@ -288,8 +289,8 @@ Point RayCasting::third_quad(Matrix<int>& map, Ray& ray) {
   double tg = fabs(tan(ray_angle));
 
   // Steps between intersections
-  size_t x_step = CELL_SIZE / tg;
-  size_t y_step = CELL_SIZE * tg;
+  double x_step = CELL_SIZE / tg;
+  double y_step = CELL_SIZE * tg;
 
   // Points of intersection
   Point x_intersection(0, 0);
@@ -353,8 +354,8 @@ Point RayCasting::forth_quad(Matrix<int>& map, Ray& ray) {
   double tg = fabs(tan(ray_angle));
 
   // Step between intersections
-  size_t x_step = CELL_SIZE / tg;
-  size_t y_step = CELL_SIZE * tg;
+  double x_step = CELL_SIZE / tg;
+  double y_step = CELL_SIZE * tg;
 
   // Points of intersection
   Point x_intersection(0, 0);
@@ -398,6 +399,9 @@ Point RayCasting::forth_quad(Matrix<int>& map, Ray& ray) {
 
   double distance1 = Point::distance(ray.get_origin(), x_intersection);
   double distance2 = Point::distance(ray.get_origin(), y_intersection);
+  // printf("\nANGLE: %f\n", ray_angle);
+  // printf("X_INT: (%d, %d)\n", x_intersection.getX(), x_intersection.getY());
+  // printf("Y_INT: (%d, %d)\n", y_intersection.getX(), y_intersection.getY());
   if (distance1 < distance2) {
     return x_intersection;
   } else {

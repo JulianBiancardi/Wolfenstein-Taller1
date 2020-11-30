@@ -41,7 +41,7 @@ class Matrix {
   /* Return the element in the position x,y. */
   T& operator()(size_t x, size_t y) {
     if (x >= columns || y >= rows) {
-      printf("(%ld, %ld) is out of range\n", x, y);
+      // printf("(%ld, %ld) is out of range\n", x, y);
       throw -1;
     }
     return matrix[x][y];

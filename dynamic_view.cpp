@@ -5,8 +5,8 @@
 #include "src/main/ray_casting.h"
 #include "src/main/window.h"
 
-#define SCREEN_WIDTH 320
-#define SCREEN_HEIGHT 200
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 400
 #define SCREEN_WIDTH_HALF (SCREEN_WIDTH / 2)
 #define SCREEN_HEIGHT_HALF (SCREEN_HEIGHT / 2)
 
