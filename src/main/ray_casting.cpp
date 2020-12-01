@@ -197,10 +197,30 @@ Point RayCasting::first_quad(Matrix<int>& map, Ray& ray) {
 
   double distance1 = Point::distance(ray.get_origin(), x_intersection);
   double distance2 = Point::distance(ray.get_origin(), y_intersection);
+  /* TODO ERASE
+  if (ray_angle < 0.001) {
+    printf("\nANGLE: %f\n", ray_angle);
+    printf("P_POS: (%ld, %ld)\n", x_origin, y_origin);
+    printf("X_INT: (%d, %d)\n", x_intersection.getX(), x_intersection.getY());
+    printf("Y_INT: (%d, %d)\n", y_intersection.getX(), y_intersection.getY());
+    printf("D1 %f\n", distance1);
+    printf("D2 %f\n", distance2);
 
-  // printf("\nANGLE: %f\n", ray_angle);
-  // printf("X_INT: (%d, %d)\n", x_intersection.getX(), x_intersection.getY());
-  // printf("Y_INT: (%d, %d)\n", y_intersection.getX(), y_intersection.getY());
+    printf("\nDistance Calculation: \n");
+    Point point1 = ray.get_origin();
+    Point point2 = y_intersection;
+    unsigned long term1 = ((long)(point2.getX() - point1.getX())) *
+                          ((long)(point2.getX() - point1.getX()));
+    unsigned long term2 =
+        (point1.getY() - point2.getY()) * (point1.getY() - point2.getY());
+    double result = sqrt(term1 + term2);
+    printf("POINT1: (%d, %d)\n", x_origin, y_origin);
+    printf("POINT2: (%d, %d)\n", y_intersection.getX(), y_intersection.getY());
+    printf("Px1 - Px2: %d\n", point1.getX() - point2.getX());
+    printf("TERM1: %d\n", term1);
+    printf("TERM2: %d\n", term2);
+    printf("SQRT: %f\n", result);
+  }*/
   if (distance1 < distance2) {
     // printf("X ");
     return x_intersection;

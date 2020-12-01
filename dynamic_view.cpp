@@ -5,19 +5,24 @@
 #include "src/main/ray_casting.h"
 #include "src/main/window.h"
 
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 400
+#define UNIT 5
+#define SCREEN_WIDTH (320 * UNIT)
+#define SCREEN_HEIGHT (200 * UNIT)
 #define SCREEN_WIDTH_HALF (SCREEN_WIDTH / 2)
 #define SCREEN_HEIGHT_HALF (SCREEN_HEIGHT / 2)
 
+#define SCALING_FACTOR 60
 #define CELL_SIZE 64
-#define WALL_SIZE 20000
+#define WALL_SIZE (SCALING_FACTOR * SCREEN_HEIGHT)
 #define WALL 1
 #define RED_WALL 2
 #define GREEN_WALL 3
 #define BLUE_WALL 4
 #define YELLOW_WALL 5
-#define FOV 1.04
+#define CYAN_WALL 6
+#define PINK_WALL 7
+#define FOV_DEG 70
+#define FOV (FOV_DEG * M_PI / 180)
 
 void static handle_key_press(SDL_Keycode& key, Ray& player);
 void print_map(Matrix<int>& map);
@@ -80,25 +85,31 @@ int main(int argc, char** argv) {
 
       int wall_size = (int)WALL_SIZE *
                       RayCasting::get_scaling_factor(ray, player, intersection);
-      /*switch (map(intersection.getX(), intersection.getY())) {
-        case 1:
+      switch (map(intersection.getX(), intersection.getY())) {
+        case WALL:
           window.set_draw_color(0, 0, 0, 255);
           break;
-        case 2:
+        case RED_WALL:
           window.set_draw_color(255, 0, 0, 255);
           break;
-        case 3:
+        case GREEN_WALL:
           window.set_draw_color(0, 255, 0, 255);
           break;
-        case 4:
+        case BLUE_WALL:
           window.set_draw_color(0, 0, 255, 255);
           break;
-        case 5:
+        case YELLOW_WALL:
+          window.set_draw_color(255, 255, 0, 255);
+          break;
+        case CYAN_WALL:
           window.set_draw_color(0, 255, 255, 255);
+          break;
+        case PINK_WALL:
+          window.set_draw_color(255, 0, 255, 255);
           break;
         default:
           break;
-      }*/
+      }
       window.draw_line(i, SCREEN_HEIGHT_HALF - (wall_size / 2), i,
                        SCREEN_HEIGHT_HALF + (wall_size / 2));
 
@@ -120,7 +131,7 @@ void put_data(Matrix<int>& map_data) {
     map_data(i, 9) = WALL;  // BOT
     map_data(9, i) = WALL;  // RIGHT
   }
-
+  /*
   map_data(7, 2) = WALL;
   map_data(6, 2) = WALL;
   map_data(7, 3) = WALL;
@@ -131,8 +142,8 @@ void put_data(Matrix<int>& map_data) {
   map_data(3, 5) = WALL;
   map_data(3, 7) = WALL;
 
-  map_data(6, 5) = WALL;
-  /*
+  map_data(6, 5) = WALL;*/
+
   map_data(7, 2) = GREEN_WALL;
   map_data(6, 2) = BLUE_WALL;
   map_data(7, 3) = RED_WALL;
@@ -141,10 +152,9 @@ void put_data(Matrix<int>& map_data) {
   map_data(3, 6) = BLUE_WALL;
   map_data(4, 6) = GREEN_WALL;
   map_data(3, 5) = RED_WALL;
-  map_data(3, 7) = GREEN_WALL;
+  map_data(3, 7) = CYAN_WALL;
 
-  map_data(6, 5) = BLUE_WALL;
-  */
+  map_data(6, 5) = PINK_WALL;
 }
 
 void draw_map(Matrix<int>& map_data, Matrix<int>& map) {
