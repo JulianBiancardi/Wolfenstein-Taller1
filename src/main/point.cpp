@@ -19,7 +19,9 @@ int Point::getX() const { return x; }
 int Point::getY() const { return y; }
 
 double Point::distance(const Point& point1, const Point& point2) {
-  int term1 = (point1.x - point2.x) * (point1.x - point2.x);
-  int term2 = (point1.y - point2.y) * (point1.y - point2.y);
+  unsigned long term1 =
+      ((long)(point1.x - point2.x)) * ((long)(point1.x - point2.x));
+  unsigned long term2 =
+      ((long)(point1.y - point2.y)) * ((long)(point1.y - point2.y));
   return sqrt(term1 + term2);
 }
