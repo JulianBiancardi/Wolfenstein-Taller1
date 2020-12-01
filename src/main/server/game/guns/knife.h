@@ -6,8 +6,10 @@ class Knife : public Gun {
     public:
         Knife();
         void shoot(Player &shooter) override;
+
     private:
-        int range;
+        const static int range;
+        const static int bullet_required = 0;
 };
 
 #endif //WOLFENSTEIN_TALLER1_KNIFE_H

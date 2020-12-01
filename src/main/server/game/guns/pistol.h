@@ -4,12 +4,13 @@
 #include "gun.h"
 
 class Pistol : public Gun {
-public:
-    Pistol();
-    void shoot(Player &shooter) override;
+    public:
+        Pistol();
+        void shoot(Player &shooter) override;
 
-private:
-    int range;
+    private:
+    /*static*/ int bullet_required;
+    /*static*/ int base_precision;
 };
 
 #endif //WOLFENSTEIN_TALLER1_GUN_H

@@ -1,2 +1,28 @@
 ---
 sv_port: '7777'
+#Guns
+knife_range: 2
+
+chain_cannon_bullet_required: 10
+chain_cannon_base_precision: 10
+
+pistol_bullet_required: 10
+pistol_base_precision: 10
+
+rocket_launcher_bullet_required: 10
+rocket_launcher_base_precision: 10
+
+machine_gun_bullet_required: 10
+machine_gun_base_precision: 10
+
+#Items
+food_health_recovered: 10
+medic_kit_health_recovered: 20
+blood_health_recovered: 1
+blood_health_recovered_if_less_than: 11
+
+crosses_points: 10
+cup_points: 50
+chests_points: 100
+crown_points: 200
+

@@ -1,16 +1,15 @@
 #ifndef WOLFENSTEIN_TALLER1_ROCKET_LAUNCHER_H
 #define WOLFENSTEIN_TALLER1_ROCKET_LAUNCHER_H
-
-
-
 #include "gun.h"
 
 class RocketLauncher : public Gun {
     public:
-    RocketLauncher();
+        RocketLauncher();
         void shoot(Player &shooter) override;
+
     private:
-        int range;
+        const static int bullet_required;
+        const static int base_precision;
 };
 
 

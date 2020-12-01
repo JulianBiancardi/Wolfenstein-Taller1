@@ -5,6 +5,7 @@
 
 class Blood : public Items{
     public:
+        Blood();
         void use() override;
         void remove() override;
 

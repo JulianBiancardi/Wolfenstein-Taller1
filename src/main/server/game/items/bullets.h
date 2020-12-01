@@ -5,6 +5,7 @@
 
 class Bullets : public Items{
 public:
+    Bullets();
     void use() override;
     void remove() override;
 

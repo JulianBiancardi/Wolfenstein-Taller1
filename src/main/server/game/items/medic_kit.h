@@ -5,6 +5,7 @@
 
 class MedicKit : public Items{
     public:
+        MedicKit();
         void use() override;
         void remove() override;
 

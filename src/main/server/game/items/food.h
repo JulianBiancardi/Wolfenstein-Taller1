@@ -5,6 +5,7 @@
 
 class Food : public Items {
     public:
+        Food();
         void use() override;
         void remove() override;
 

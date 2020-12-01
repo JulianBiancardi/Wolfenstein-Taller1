@@ -5,6 +5,7 @@
 
 class RocketLauncher : public Items{
     public:
+        RocketLauncher();
         void use() override;
         void remove() override;
 

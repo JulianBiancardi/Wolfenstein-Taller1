@@ -5,6 +5,7 @@
 
 class MachineGun : public Items {
     public:
+        MachineGun();
         void use() override;
         void remove() override;
 

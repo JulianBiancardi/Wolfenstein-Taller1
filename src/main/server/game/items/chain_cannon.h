@@ -6,6 +6,7 @@
 
 class ChainCannon : public Items{
 public:
+    ChainCannon();
     void use() override;
     void remove() override;
 

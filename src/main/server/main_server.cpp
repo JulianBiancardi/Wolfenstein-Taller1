@@ -1,5 +1,7 @@
 #include <iostream>
 #include "config_loader.h"
+#include "game/guns/chain_cannon.h"
+
 int main(int argc, char const *argv[]){
     try{
        /*
@@ -15,6 +17,17 @@ int main(int argc, char const *argv[]){
  //       acceptor.start();
 
         std::cout << ConfigLoader::get_init_configs().sv_port;
+
+
+        ChainCannon chainCannon;
+        /*
+
+
+
+
+         */
+
+
 
         while (server_enabled){
             std::cin >> char_read;
