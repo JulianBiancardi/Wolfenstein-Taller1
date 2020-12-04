@@ -154,11 +154,13 @@ Point RayCasting::first_quad(Map& map, Ray& ray) {
 }
 
 Point first_quad_x(Map& map, const Point& origin, double tg) {
-  double dx = std::fmod(origin.getX(), 1);
-
   // Point coord for first X intersection
-  double x = origin.getX() + (1 - dx);
-  double y = origin.getY() - (1 - dx) * tg;
+  double x;
+  double y;
+  double dx = std::modf(origin.getX(), &x);
+
+  x = x + 1;
+  y = origin.getY() - (1 - dx) * tg;
 
   double y_step = tg;
 
@@ -178,11 +180,13 @@ Point first_quad_x(Map& map, const Point& origin, double tg) {
 }
 
 Point first_quad_y(Map& map, const Point& origin, double tg) {
-  double dy = std::fmod(origin.getY(), 1);
-
   // Point coord for first Y intersection
-  double x = origin.getX() + dy / tg;
-  double y = origin.getY() - dy - 0.001;
+  double x;
+  double y;
+  double dy = std::modf(origin.getY(), &y);
+
+  x = origin.getX() + dy / tg;
+  y = y - 0.001;
 
   double x_step = 1 / tg;
 
@@ -216,11 +220,13 @@ Point RayCasting::second_quad(Map& map, Ray& ray) {
 }
 
 Point second_quad_x(Map& map, const Point& origin, double tg) {
-  double dx = std::fmod(origin.getX(), 1);
-
   // Point coord for first X intersection
-  double x = origin.getX() - dx - 0.0001;
-  double y = origin.getY() - dx * tg;
+  double x;
+  double y;
+  double dx = std::modf(origin.getX(), &x);
+
+  x = x - 0.0001;
+  y = origin.getY() - dx * tg;
 
   double y_step = tg;
 
@@ -240,11 +246,13 @@ Point second_quad_x(Map& map, const Point& origin, double tg) {
 }
 
 Point second_quad_y(Map& map, const Point& origin, double tg) {
-  double dy = std::fmod(origin.getY(), 1);
-
   // Point coord for first Y intersection
-  double x = origin.getX() - dy / tg;
-  double y = origin.getY() - dy - 0.0001;
+  double x;
+  double y;
+  double dy = std::modf(origin.getY(), &y);
+
+  x = origin.getX() - dy / tg;
+  y = y - 0.0001;
 
   double x_step = 1 / tg;
 
@@ -279,11 +287,13 @@ Point RayCasting::third_quad(Map& map, Ray& ray) {
 }
 
 Point third_quad_x(Map& map, const Point& origin, double tg) {
-  double dx = std::fmod(origin.getX(), 1);
-
   // Point coord for first X intersection
-  double x = origin.getX() - dx - 0.0001;
-  double y = origin.getY() + dx * tg;
+  double x;
+  double y;
+  double dx = std::modf(origin.getX(), &x);
+
+  x = x - 0.0001;
+  y = origin.getY() + dx * tg;
 
   double y_step = tg;
 
@@ -303,11 +313,13 @@ Point third_quad_x(Map& map, const Point& origin, double tg) {
 }
 
 Point third_quad_y(Map& map, const Point& origin, double tg) {
-  double dy = std::fmod(origin.getY(), 1);
-
   // Point coord for first Y intersection
-  double x = origin.getX() - (1 - dy) / tg;
-  double y = origin.getY() + (1 - dy);
+  double x;
+  double y;
+  double dy = std::modf(origin.getY(), &y);
+
+  x = origin.getX() - (1 - dy) / tg;
+  y = y + 1;
 
   double x_step = 1 / tg;
 
@@ -342,11 +354,13 @@ Point RayCasting::forth_quad(Map& map, Ray& ray) {
 }
 
 Point forth_quad_x(Map& map, const Point& origin, double tg) {
-  double dx = std::fmod(origin.getX(), 1);
-
   // Point coord for first X intersection
-  double x = origin.getX() + (1 - dx);
-  double y = origin.getY() + (1 - dx) * tg;
+  double x;
+  double y;
+  double dx = std::modf(origin.getX(), &x);
+
+  x = x + 1;
+  y = origin.getY() + (1 - dx) * tg;
 
   double y_step = tg;
 
@@ -366,11 +380,13 @@ Point forth_quad_x(Map& map, const Point& origin, double tg) {
 }
 
 Point forth_quad_y(Map& map, const Point& origin, double tg) {
-  double dy = std::fmod(origin.getY(), 1);
-
   // Point coord for first Y intersection
-  double x = origin.getX() + (1 - dy) / tg;
-  double y = origin.getY() + (1 - dy);
+  double x;
+  double y;
+  double dy = std::modf(origin.getY(), &y);
+
+  x = origin.getX() + (1 - dy) / tg;
+  y = y + 1;
 
   double x_step = 1 / tg;
 
