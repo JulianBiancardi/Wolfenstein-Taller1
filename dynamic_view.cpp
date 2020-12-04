@@ -31,15 +31,12 @@ void draw_map(Matrix<int>& map_data, Matrix<int>& map);
 void fill_cell(Matrix<int>& map, int i, int j, int data);
 
 int main(int argc, char** argv) {
-  Matrix<int> map_data(10, 10, 0);
-  put_data(map_data);
-  print_map(map_data);
-  Matrix<int> map(640, 640, 0);
-  draw_map(map_data, map);
+  Matrix<int> map(10, 10, 0);
+  put_data(map);
 
   Window window("Hello World!", SCREEN_WIDTH, SCREEN_HEIGHT);
 
-  Ray player(100, 100, 0);
+  Ray player(1, 1, 0);
 
   SDL_Event event;
   bool run = true;
@@ -131,7 +128,7 @@ void put_data(Matrix<int>& map_data) {
     map_data(i, 9) = WALL;  // BOT
     map_data(9, i) = WALL;  // RIGHT
   }
-  /*
+
   map_data(7, 2) = WALL;
   map_data(6, 2) = WALL;
   map_data(7, 3) = WALL;
@@ -142,46 +139,19 @@ void put_data(Matrix<int>& map_data) {
   map_data(3, 5) = WALL;
   map_data(3, 7) = WALL;
 
-  map_data(6, 5) = WALL;*/
+  map_data(6, 5) = WALL;
+  /*
+    map_data(7, 2) = GREEN_WALL;
+    map_data(6, 2) = BLUE_WALL;
+    map_data(7, 3) = RED_WALL;
 
-  map_data(7, 2) = GREEN_WALL;
-  map_data(6, 2) = BLUE_WALL;
-  map_data(7, 3) = RED_WALL;
+    map_data(2, 6) = YELLOW_WALL;
+    map_data(3, 6) = BLUE_WALL;
+    map_data(4, 6) = GREEN_WALL;
+    map_data(3, 5) = RED_WALL;
+    map_data(3, 7) = CYAN_WALL;
 
-  map_data(2, 6) = YELLOW_WALL;
-  map_data(3, 6) = BLUE_WALL;
-  map_data(4, 6) = GREEN_WALL;
-  map_data(3, 5) = RED_WALL;
-  map_data(3, 7) = CYAN_WALL;
-
-  map_data(6, 5) = PINK_WALL;
-}
-
-void draw_map(Matrix<int>& map_data, Matrix<int>& map) {
-  for (int i = 0; i < map_data.get_columns(); i++) {
-    for (int j = 0; j < map_data.get_rows(); j++) {
-      int data = map_data(i, j);
-      fill_cell(map, i, j, data);
-    }
-  }
-}
-
-void fill_cell(Matrix<int>& map, int i, int j, int data) {
-  for (int x = CELL_SIZE * i; x < CELL_SIZE * i + CELL_SIZE; x++) {
-    for (int y = CELL_SIZE * j; y < CELL_SIZE * j + CELL_SIZE; y++) {
-      map(x, y) = data;
-    }
-  }
-}
-
-void print_map(Matrix<int>& map) {
-  for (int i = 0; i < map.get_columns(); i++) {
-    for (int j = 0; j < map.get_rows(); j++) {
-      std::cout << map(i, j);
-    }
-    std::cout << std::endl;
-  }
-  std::cout << std::endl;
+    map_data(6, 5) = PINK_WALL;*/
 }
 
 void static handle_key_press(SDL_Keycode& key, Ray& player) {

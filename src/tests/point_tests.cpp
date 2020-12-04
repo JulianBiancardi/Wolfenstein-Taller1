@@ -23,6 +23,7 @@ void point_tests() {
              basic_distance_test, NO_ERROR);
   print_test("Se calcula correctamente la distancia entre 2 puntos muy lejanos",
              extreme_distance_test, NO_ERROR);
+
   end_tests();
 }
 
