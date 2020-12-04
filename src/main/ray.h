@@ -10,11 +10,11 @@ class Ray {
 
  public:
   Ray(Point origin, double angle);
-  Ray(int x, int y, double angle);
+  Ray(double x, double y, double angle);
   ~Ray();
 
   Point get_origin();
-  void set_origin(int x, int y);
+  void set_origin(double x, double y);
   double get_angle();
   void set_angle(double angle);
 };

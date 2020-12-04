@@ -11,7 +11,7 @@
 #define SCREEN_WIDTH_HALF (SCREEN_WIDTH / 2)
 #define SCREEN_HEIGHT_HALF (SCREEN_HEIGHT / 2)
 
-#define SCALING_FACTOR 60
+#define SCALING_FACTOR 1
 #define CELL_SIZE 64
 #define WALL_SIZE (SCALING_FACTOR * SCREEN_HEIGHT)
 #define WALL 1
@@ -31,12 +31,13 @@ void draw_map(Matrix<int>& map_data, Matrix<int>& map);
 void fill_cell(Matrix<int>& map, int i, int j, int data);
 
 int main(int argc, char** argv) {
-  Matrix<int> map(10, 10, 0);
-  put_data(map);
+  Matrix<int> map_data(10, 10, 0);
+  put_data(map_data);
+  Map map(map_data);
 
   Window window("Hello World!", SCREEN_WIDTH, SCREEN_HEIGHT);
 
-  Ray player(1, 1, 0);
+  Ray player(1.5, 1.5, 0);
 
   SDL_Event event;
   bool run = true;
@@ -128,30 +129,30 @@ void put_data(Matrix<int>& map_data) {
     map_data(i, 9) = WALL;  // BOT
     map_data(9, i) = WALL;  // RIGHT
   }
-
-  map_data(7, 2) = WALL;
-  map_data(6, 2) = WALL;
-  map_data(7, 3) = WALL;
-
-  map_data(2, 6) = WALL;
-  map_data(3, 6) = WALL;
-  map_data(4, 6) = WALL;
-  map_data(3, 5) = WALL;
-  map_data(3, 7) = WALL;
-
-  map_data(6, 5) = WALL;
   /*
-    map_data(7, 2) = GREEN_WALL;
-    map_data(6, 2) = BLUE_WALL;
-    map_data(7, 3) = RED_WALL;
+    map_data(7, 2) = WALL;
+    map_data(6, 2) = WALL;
+    map_data(7, 3) = WALL;
 
-    map_data(2, 6) = YELLOW_WALL;
-    map_data(3, 6) = BLUE_WALL;
-    map_data(4, 6) = GREEN_WALL;
-    map_data(3, 5) = RED_WALL;
-    map_data(3, 7) = CYAN_WALL;
+    map_data(2, 6) = WALL;
+    map_data(3, 6) = WALL;
+    map_data(4, 6) = WALL;
+    map_data(3, 5) = WALL;
+    map_data(3, 7) = WALL;
 
-    map_data(6, 5) = PINK_WALL;*/
+    map_data(6, 5) = WALL;*/
+
+  map_data(7, 2) = GREEN_WALL;
+  map_data(6, 2) = BLUE_WALL;
+  map_data(7, 3) = RED_WALL;
+
+  map_data(2, 6) = YELLOW_WALL;
+  map_data(3, 6) = BLUE_WALL;
+  map_data(4, 6) = GREEN_WALL;
+  map_data(3, 5) = RED_WALL;
+  map_data(3, 7) = CYAN_WALL;
+
+  map_data(6, 5) = PINK_WALL;
 }
 
 void static handle_key_press(SDL_Keycode& key, Ray& player) {
@@ -159,19 +160,19 @@ void static handle_key_press(SDL_Keycode& key, Ray& player) {
   double cos_angle = cos(angle);
   double sin_angle = sin(angle);
   Point position = player.get_origin();
-  int x = position.getX();
-  int y = position.getY();
+  double x = position.getX();
+  double y = position.getY();
   switch (key) {
     case SDLK_w:
       printf("W\n");
       if (cos_angle > 0.9) {
-        player.set_origin(x + 5, y);
+        player.set_origin(x + 0.1, y);
       } else if (cos_angle < -0.9) {
-        player.set_origin(x - 5, y);
+        player.set_origin(x - 0.1, y);
       } else if (sin_angle > 0.9) {
-        player.set_origin(x, y - 5);
+        player.set_origin(x, y - 0.1);
       } else if (sin_angle < -0.9) {
-        player.set_origin(x, y + 5);
+        player.set_origin(x, y + 0.1);
       }
       break;
     case SDLK_s:

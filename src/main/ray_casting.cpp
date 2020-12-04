@@ -5,19 +5,19 @@
 #define CELL_SIZE 64
 #define WALL 1
 
-Point first_quad_x(Matrix<int>& map, const Point& origin, double tg);
-Point first_quad_y(Matrix<int>& map, const Point& origin, double tg);
+Point first_quad_x(Map& map, const Point& origin, double tg);
+Point first_quad_y(Map& map, const Point& origin, double tg);
 
-Point second_quad_x(Matrix<int>& map, const Point& origin, double tg);
-Point second_quad_y(Matrix<int>& map, const Point& origin, double tg);
+Point second_quad_x(Map& map, const Point& origin, double tg);
+Point second_quad_y(Map& map, const Point& origin, double tg);
 
-Point third_quad_x(Matrix<int>& map, const Point& origin, double tg);
-Point third_quad_y(Matrix<int>& map, const Point& origin, double tg);
+Point third_quad_x(Map& map, const Point& origin, double tg);
+Point third_quad_y(Map& map, const Point& origin, double tg);
 
-Point forth_quad_x(Matrix<int>& map, const Point& origin, double tg);
-Point forth_quad_y(Matrix<int>& map, const Point& origin, double tg);
+Point forth_quad_x(Map& map, const Point& origin, double tg);
+Point forth_quad_y(Map& map, const Point& origin, double tg);
 
-Point RayCasting::get_intersection(Matrix<int>& map, Ray& ray) {
+Point RayCasting::get_intersection(Map& map, Ray& ray) {
   double angle = ray.get_angle();
 
   if (angle == 0) {
@@ -59,26 +59,26 @@ double RayCasting::get_scaling_factor(Ray& ray, Ray& player_direction,
   // Use similar scaling for sprites
 }
 
-Point RayCasting::horizontal_axis(Matrix<int>& map, Ray& ray) {
+Point RayCasting::horizontal_axis(Map& map, Ray& ray) {
   Point origin = ray.get_origin();
 
-  size_t dx = origin.getX() % CELL_SIZE;
+  double dx = std::fmod(origin.getX(), 1);
 
   if (ray.get_angle() == 0) {
     // Point coords for first intersection
-    double x = origin.getX() + (CELL_SIZE - dx);
+    double x = origin.getX() + (1 - dx);
     double y = origin.getY();
 
     while (true) {
       try {
-        if (map((int)x, (int)y) >= WALL) {
+        if (map.is_wall(x, y)) {
           return Point(x, y);
         }
       } catch (int FIXME) {
         return Point(x, y);
       }
 
-      x = x + CELL_SIZE;
+      x = x + 1;
     }
   } else {
     // Point coords for first intersection
@@ -87,22 +87,22 @@ Point RayCasting::horizontal_axis(Matrix<int>& map, Ray& ray) {
 
     while (true) {
       try {
-        if (map((int)x, (int)y) >= WALL) {
+        if (map.is_wall(x, y)) {
           return Point(x, y);
         }
       } catch (int FIXME) {
         return Point(x, y);
       }
 
-      x = x - CELL_SIZE;
+      x = x - 1;
     }
   }
 }
 
-Point RayCasting::vertical_axis(Matrix<int>& map, Ray& ray) {
+Point RayCasting::vertical_axis(Map& map, Ray& ray) {
   Point origin = ray.get_origin();
 
-  size_t dy = origin.getY() % CELL_SIZE;
+  double dy = std::fmod(origin.getY(), 1);
 
   if (ray.get_angle() == M_PI_2) {
     // Point coords for first intersection
@@ -111,35 +111,35 @@ Point RayCasting::vertical_axis(Matrix<int>& map, Ray& ray) {
 
     while (true) {
       try {
-        if (map((int)x, (int)y) >= WALL) {
+        if (map.is_wall(x, y)) {
           return Point(x, y);
         }
       } catch (int FIXME) {
         return Point(x, y);
       }
 
-      y = y - CELL_SIZE;
+      y = y - 1;
     }
   } else {
     // Point coords for first intersection
     double x = origin.getX();
-    double y = origin.getY() + (CELL_SIZE - dy);
+    double y = origin.getY() + (1 - dy);
 
     while (true) {
       try {
-        if (map((int)x, (int)y) >= WALL) {
+        if (map.is_wall(x, y)) {
           return Point(x, y);
         }
       } catch (int FIXME) {
         return Point(x, y);
       }
 
-      y = y + CELL_SIZE;
+      y = y + 1;
     }
   }
 }
 
-Point RayCasting::first_quad(Matrix<int>& map, Ray& ray) {
+Point RayCasting::first_quad(Map& map, Ray& ray) {
   Point origin = ray.get_origin();
 
   // Precalculate tangent to avoid multiple calls.
@@ -153,43 +153,43 @@ Point RayCasting::first_quad(Matrix<int>& map, Ray& ray) {
   return distance1 < distance2 ? x_intersection : y_intersection;
 }
 
-Point first_quad_x(Matrix<int>& map, const Point& origin, double tg) {
-  size_t dx = origin.getX() % CELL_SIZE;
+Point first_quad_x(Map& map, const Point& origin, double tg) {
+  double dx = std::fmod(origin.getX(), 1);
 
   // Point coord for first X intersection
-  double x = origin.getX() + (CELL_SIZE - dx);
-  double y = origin.getY() - (CELL_SIZE - dx) * tg;
+  double x = origin.getX() + (1 - dx);
+  double y = origin.getY() - (1 - dx) * tg;
 
-  double y_step = CELL_SIZE * tg;
+  double y_step = tg;
 
   while (true) {
     Point x_intersection(x, y);
     try {
-      if (map((int)x, (int)y) >= WALL) {
+      if (map.is_wall(x, y)) {
         return x_intersection;
       }
     } catch (int a) {
       return x_intersection;
     }
 
-    x = x + CELL_SIZE;
+    x = x + 1;
     y = y - y_step;
   }
 }
 
-Point first_quad_y(Matrix<int>& map, const Point& origin, double tg) {
-  size_t dy = origin.getY() % CELL_SIZE;
+Point first_quad_y(Map& map, const Point& origin, double tg) {
+  double dy = std::fmod(origin.getY(), 1);
 
   // Point coord for first Y intersection
   double x = origin.getX() + dy / tg;
-  double y = origin.getY() - dy - 1;
+  double y = origin.getY() - dy - 0.001;
 
-  double x_step = CELL_SIZE / tg;
+  double x_step = 1 / tg;
 
   while (true) {
     Point y_intersection(x, y);
     try {
-      if (map((int)x, (int)y) >= WALL) {
+      if (map.is_wall(x, y)) {
         return y_intersection;
       }
     } catch (int a) {
@@ -197,11 +197,11 @@ Point first_quad_y(Matrix<int>& map, const Point& origin, double tg) {
     }
 
     x = x + x_step;
-    y = y - CELL_SIZE;
+    y = y - 1;
   }
 }
 
-Point RayCasting::second_quad(Matrix<int>& map, Ray& ray) {
+Point RayCasting::second_quad(Map& map, Ray& ray) {
   Point origin = ray.get_origin();
 
   // Precalculate tangent to avoid multiple calls.
@@ -215,43 +215,43 @@ Point RayCasting::second_quad(Matrix<int>& map, Ray& ray) {
   return distance1 < distance2 ? x_intersection : y_intersection;
 }
 
-Point second_quad_x(Matrix<int>& map, const Point& origin, double tg) {
-  size_t dx = origin.getX() % CELL_SIZE;
+Point second_quad_x(Map& map, const Point& origin, double tg) {
+  double dx = std::fmod(origin.getX(), 1);
 
   // Point coord for first X intersection
-  double x = origin.getX() - dx - 1;
+  double x = origin.getX() - dx - 0.0001;
   double y = origin.getY() - dx * tg;
 
-  double y_step = CELL_SIZE * tg;
+  double y_step = tg;
 
   while (true) {
     Point x_intersection(x, y);
     try {
-      if (map((int)x, (int)y) >= WALL) {
+      if (map.is_wall(x, y)) {
         return x_intersection;
       }
     } catch (int FIXME) {
       return x_intersection;
     }
 
-    x = x - CELL_SIZE;
+    x = x - 1;
     y = y - y_step;
   }
 }
 
-Point second_quad_y(Matrix<int>& map, const Point& origin, double tg) {
-  size_t dy = origin.getY() % CELL_SIZE;
+Point second_quad_y(Map& map, const Point& origin, double tg) {
+  double dy = std::fmod(origin.getY(), 1);
 
   // Point coord for first Y intersection
   double x = origin.getX() - dy / tg;
-  double y = origin.getY() - dy - 1;
+  double y = origin.getY() - dy - 0.0001;
 
-  double x_step = CELL_SIZE / tg;
+  double x_step = 1 / tg;
 
   while (true) {
     Point y_intersection(x, y);
     try {
-      if (map((int)x, (int)y) >= WALL) {
+      if (map.is_wall(x, y)) {
         return y_intersection;
       }
     } catch (int FIXME) {
@@ -259,15 +259,12 @@ Point second_quad_y(Matrix<int>& map, const Point& origin, double tg) {
     }
 
     x = x - x_step;
-    y = y - CELL_SIZE;
+    y = y - 1;
   }
 }
 
-Point RayCasting::third_quad(Matrix<int>& map, Ray& ray) {
+Point RayCasting::third_quad(Map& map, Ray& ray) {
   Point origin = ray.get_origin();
-
-  size_t dx = origin.getX() % CELL_SIZE;
-  size_t dy = origin.getY() % CELL_SIZE;
 
   // Precalculate tangent to avoid multiple calls.
   double tg = fabs(tan(ray.get_angle()));
@@ -281,43 +278,43 @@ Point RayCasting::third_quad(Matrix<int>& map, Ray& ray) {
   return distance1 < distance2 ? x_intersection : y_intersection;
 }
 
-Point third_quad_x(Matrix<int>& map, const Point& origin, double tg) {
-  size_t dx = origin.getX() % CELL_SIZE;
+Point third_quad_x(Map& map, const Point& origin, double tg) {
+  double dx = std::fmod(origin.getX(), 1);
 
   // Point coord for first X intersection
-  double x = origin.getX() - dx - 1;
+  double x = origin.getX() - dx - 0.0001;
   double y = origin.getY() + dx * tg;
 
-  double y_step = CELL_SIZE * tg;
+  double y_step = tg;
 
   while (true) {
     Point x_intersection(x, y);
     try {
-      if (map((int)x, (int)y) >= WALL) {
+      if (map.is_wall(x, y)) {
         return x_intersection;
       }
     } catch (int FIXME) {
       return x_intersection;
     }
 
-    x = x - CELL_SIZE;
+    x = x - 1;
     y = y + y_step;
   }
 }
 
-Point third_quad_y(Matrix<int>& map, const Point& origin, double tg) {
-  size_t dy = origin.getY() % CELL_SIZE;
+Point third_quad_y(Map& map, const Point& origin, double tg) {
+  double dy = std::fmod(origin.getY(), 1);
 
   // Point coord for first Y intersection
-  double x = origin.getX() - (CELL_SIZE - dy) / tg;
-  double y = origin.getY() + (CELL_SIZE - dy);
+  double x = origin.getX() - (1 - dy) / tg;
+  double y = origin.getY() + (1 - dy);
 
-  double x_step = CELL_SIZE / tg;
+  double x_step = 1 / tg;
 
   while (true) {
     Point y_intersection(x, y);
     try {
-      if (map((int)x, (int)y) >= WALL) {
+      if (map.is_wall(x, y)) {
         return y_intersection;
       }
     } catch (int FIXME) {
@@ -325,11 +322,11 @@ Point third_quad_y(Matrix<int>& map, const Point& origin, double tg) {
     }
 
     x = x - x_step;
-    y = y + CELL_SIZE;
+    y = y + 1;
   }
 }
 
-Point RayCasting::forth_quad(Matrix<int>& map, Ray& ray) {
+Point RayCasting::forth_quad(Map& map, Ray& ray) {
   Point origin = ray.get_origin();
 
   // Precalculate tangent to avoid multiple calls.
@@ -344,43 +341,43 @@ Point RayCasting::forth_quad(Matrix<int>& map, Ray& ray) {
   return distance1 < distance2 ? x_intersection : y_intersection;
 }
 
-Point forth_quad_x(Matrix<int>& map, const Point& origin, double tg) {
-  size_t dx = origin.getX() % CELL_SIZE;
+Point forth_quad_x(Map& map, const Point& origin, double tg) {
+  double dx = std::fmod(origin.getX(), 1);
 
   // Point coord for first X intersection
-  double x = origin.getX() + (CELL_SIZE - dx);
-  double y = origin.getY() + (CELL_SIZE - dx) * tg;
+  double x = origin.getX() + (1 - dx);
+  double y = origin.getY() + (1 - dx) * tg;
 
-  double y_step = CELL_SIZE * tg;
+  double y_step = tg;
 
   while (true) {
     Point x_intersection(x, y);
     try {
-      if (map((int)x, (int)y) >= WALL) {
+      if (map.is_wall(x, y)) {
         return x_intersection;
       }
     } catch (int FIXME) {
       return x_intersection;
     }
 
-    x = x + CELL_SIZE;
+    x = x + 1;
     y = y + y_step;
   }
 }
 
-Point forth_quad_y(Matrix<int>& map, const Point& origin, double tg) {
-  size_t dy = origin.getY() % CELL_SIZE;
+Point forth_quad_y(Map& map, const Point& origin, double tg) {
+  double dy = std::fmod(origin.getY(), 1);
 
   // Point coord for first Y intersection
-  double x = origin.getX() + (CELL_SIZE - dy) / tg;
-  double y = origin.getY() + (CELL_SIZE - dy);
+  double x = origin.getX() + (1 - dy) / tg;
+  double y = origin.getY() + (1 - dy);
 
-  double x_step = CELL_SIZE / tg;
+  double x_step = 1 / tg;
 
   while (true) {
     Point y_intersection(x, y);
     try {
-      if (map((int)x, (int)y) >= WALL) {
+      if (map.is_wall(x, y)) {
         return y_intersection;
       }
     } catch (int FIXME) {
@@ -388,6 +385,6 @@ Point forth_quad_y(Matrix<int>& map, const Point& origin, double tg) {
     }
 
     x = x + x_step;
-    y = y + CELL_SIZE;
+    y = y + 1;
   }
 }
