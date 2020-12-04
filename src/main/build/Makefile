@@ -620,6 +620,222 @@ server/config_loader.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/config_loader.cpp.s
 .PHONY : server/config_loader.cpp.s
 
+server/game/damagable.o: server/game/damagable.cpp.o
+
+.PHONY : server/game/damagable.o
+
+# target to build an object file
+server/game/damagable.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/damagable.cpp.o
+.PHONY : server/game/damagable.cpp.o
+
+server/game/damagable.i: server/game/damagable.cpp.i
+
+.PHONY : server/game/damagable.i
+
+# target to preprocess a source file
+server/game/damagable.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/damagable.cpp.i
+.PHONY : server/game/damagable.cpp.i
+
+server/game/damagable.s: server/game/damagable.cpp.s
+
+.PHONY : server/game/damagable.s
+
+# target to generate assembly for a file
+server/game/damagable.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/damagable.cpp.s
+.PHONY : server/game/damagable.cpp.s
+
+server/game/guns/chain_cannon.o: server/game/guns/chain_cannon.cpp.o
+
+.PHONY : server/game/guns/chain_cannon.o
+
+# target to build an object file
+server/game/guns/chain_cannon.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o
+.PHONY : server/game/guns/chain_cannon.cpp.o
+
+server/game/guns/chain_cannon.i: server/game/guns/chain_cannon.cpp.i
+
+.PHONY : server/game/guns/chain_cannon.i
+
+# target to preprocess a source file
+server/game/guns/chain_cannon.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.i
+.PHONY : server/game/guns/chain_cannon.cpp.i
+
+server/game/guns/chain_cannon.s: server/game/guns/chain_cannon.cpp.s
+
+.PHONY : server/game/guns/chain_cannon.s
+
+# target to generate assembly for a file
+server/game/guns/chain_cannon.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.s
+.PHONY : server/game/guns/chain_cannon.cpp.s
+
+server/game/guns/gun.o: server/game/guns/gun.cpp.o
+
+.PHONY : server/game/guns/gun.o
+
+# target to build an object file
+server/game/guns/gun.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/gun.cpp.o
+.PHONY : server/game/guns/gun.cpp.o
+
+server/game/guns/gun.i: server/game/guns/gun.cpp.i
+
+.PHONY : server/game/guns/gun.i
+
+# target to preprocess a source file
+server/game/guns/gun.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/gun.cpp.i
+.PHONY : server/game/guns/gun.cpp.i
+
+server/game/guns/gun.s: server/game/guns/gun.cpp.s
+
+.PHONY : server/game/guns/gun.s
+
+# target to generate assembly for a file
+server/game/guns/gun.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/gun.cpp.s
+.PHONY : server/game/guns/gun.cpp.s
+
+server/game/guns/knife.o: server/game/guns/knife.cpp.o
+
+.PHONY : server/game/guns/knife.o
+
+# target to build an object file
+server/game/guns/knife.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/knife.cpp.o
+.PHONY : server/game/guns/knife.cpp.o
+
+server/game/guns/knife.i: server/game/guns/knife.cpp.i
+
+.PHONY : server/game/guns/knife.i
+
+# target to preprocess a source file
+server/game/guns/knife.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/knife.cpp.i
+.PHONY : server/game/guns/knife.cpp.i
+
+server/game/guns/knife.s: server/game/guns/knife.cpp.s
+
+.PHONY : server/game/guns/knife.s
+
+# target to generate assembly for a file
+server/game/guns/knife.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/knife.cpp.s
+.PHONY : server/game/guns/knife.cpp.s
+
+server/game/guns/machine_gun.o: server/game/guns/machine_gun.cpp.o
+
+.PHONY : server/game/guns/machine_gun.o
+
+# target to build an object file
+server/game/guns/machine_gun.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o
+.PHONY : server/game/guns/machine_gun.cpp.o
+
+server/game/guns/machine_gun.i: server/game/guns/machine_gun.cpp.i
+
+.PHONY : server/game/guns/machine_gun.i
+
+# target to preprocess a source file
+server/game/guns/machine_gun.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.i
+.PHONY : server/game/guns/machine_gun.cpp.i
+
+server/game/guns/machine_gun.s: server/game/guns/machine_gun.cpp.s
+
+.PHONY : server/game/guns/machine_gun.s
+
+# target to generate assembly for a file
+server/game/guns/machine_gun.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.s
+.PHONY : server/game/guns/machine_gun.cpp.s
+
+server/game/guns/pistol.o: server/game/guns/pistol.cpp.o
+
+.PHONY : server/game/guns/pistol.o
+
+# target to build an object file
+server/game/guns/pistol.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/pistol.cpp.o
+.PHONY : server/game/guns/pistol.cpp.o
+
+server/game/guns/pistol.i: server/game/guns/pistol.cpp.i
+
+.PHONY : server/game/guns/pistol.i
+
+# target to preprocess a source file
+server/game/guns/pistol.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/pistol.cpp.i
+.PHONY : server/game/guns/pistol.cpp.i
+
+server/game/guns/pistol.s: server/game/guns/pistol.cpp.s
+
+.PHONY : server/game/guns/pistol.s
+
+# target to generate assembly for a file
+server/game/guns/pistol.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/pistol.cpp.s
+.PHONY : server/game/guns/pistol.cpp.s
+
+server/game/guns/rocket_launcher.o: server/game/guns/rocket_launcher.cpp.o
+
+.PHONY : server/game/guns/rocket_launcher.o
+
+# target to build an object file
+server/game/guns/rocket_launcher.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o
+.PHONY : server/game/guns/rocket_launcher.cpp.o
+
+server/game/guns/rocket_launcher.i: server/game/guns/rocket_launcher.cpp.i
+
+.PHONY : server/game/guns/rocket_launcher.i
+
+# target to preprocess a source file
+server/game/guns/rocket_launcher.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.i
+.PHONY : server/game/guns/rocket_launcher.cpp.i
+
+server/game/guns/rocket_launcher.s: server/game/guns/rocket_launcher.cpp.s
+
+.PHONY : server/game/guns/rocket_launcher.s
+
+# target to generate assembly for a file
+server/game/guns/rocket_launcher.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.s
+.PHONY : server/game/guns/rocket_launcher.cpp.s
+
+server/game/player.o: server/game/player.cpp.o
+
+.PHONY : server/game/player.o
+
+# target to build an object file
+server/game/player.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/player.cpp.o
+.PHONY : server/game/player.cpp.o
+
+server/game/player.i: server/game/player.cpp.i
+
+.PHONY : server/game/player.i
+
+# target to preprocess a source file
+server/game/player.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/player.cpp.i
+.PHONY : server/game/player.cpp.i
+
+server/game/player.s: server/game/player.cpp.s
+
+.PHONY : server/game/player.s
+
+# target to generate assembly for a file
+server/game/player.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/player.cpp.s
+.PHONY : server/game/player.cpp.s
+
 server/main_server.o: server/main_server.cpp.o
 
 .PHONY : server/main_server.o
@@ -697,6 +913,30 @@ help:
 	@echo "... server/config_loader.o"
 	@echo "... server/config_loader.i"
 	@echo "... server/config_loader.s"
+	@echo "... server/game/damagable.o"
+	@echo "... server/game/damagable.i"
+	@echo "... server/game/damagable.s"
+	@echo "... server/game/guns/chain_cannon.o"
+	@echo "... server/game/guns/chain_cannon.i"
+	@echo "... server/game/guns/chain_cannon.s"
+	@echo "... server/game/guns/gun.o"
+	@echo "... server/game/guns/gun.i"
+	@echo "... server/game/guns/gun.s"
+	@echo "... server/game/guns/knife.o"
+	@echo "... server/game/guns/knife.i"
+	@echo "... server/game/guns/knife.s"
+	@echo "... server/game/guns/machine_gun.o"
+	@echo "... server/game/guns/machine_gun.i"
+	@echo "... server/game/guns/machine_gun.s"
+	@echo "... server/game/guns/pistol.o"
+	@echo "... server/game/guns/pistol.i"
+	@echo "... server/game/guns/pistol.s"
+	@echo "... server/game/guns/rocket_launcher.o"
+	@echo "... server/game/guns/rocket_launcher.i"
+	@echo "... server/game/guns/rocket_launcher.s"
+	@echo "... server/game/player.o"
+	@echo "... server/game/player.i"
+	@echo "... server/game/player.s"
 	@echo "... server/main_server.o"
 	@echo "... server/main_server.i"
 	@echo "... server/main_server.s"
