@@ -6,17 +6,39 @@
 
 #IncludeRegexTransform: 
 
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/itemsid.cpp
+itemsid.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/itemsid.h
+
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/main.cpp
 QApplication
 -
-prueba.h
-/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/prueba.h
+option.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.h
+
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.cpp
+option.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.h
+iostream
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/iostream
+
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/optionselected.cpp
+optionselected.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/optionselected.h
 
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/prueba.cpp
 prueba.h
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/prueba.h
 ui_prueba.h
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/ui_prueba.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/QMap
+qmap.h
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/QString
+qstring.h
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/QVariant
 qvariant.h
@@ -1084,9 +1106,17 @@ qapplication.h
 qbuttongroup.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qbuttongroup.h
 
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QFormLayout
+qformlayout.h
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qformlayout.h
+
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QHeaderView
 qheaderview.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qheaderview.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLayout
+qlayout.h
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayout.h
 
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton
 qpushbutton.h
@@ -1210,6 +1240,12 @@ QtCore/qobject.h
 QtWidgets/qtwidgetsglobal.h
 -
 QtWidgets/qwidget.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qformlayout.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/QLayout
 -
 
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h
@@ -1390,8 +1426,46 @@ QtGui/qkeysequence.h
 QtGui/qevent.h
 -
 
+include/itemsid.h
+QMap
+-
+QString
+-
+
+include/option.h
+QPushButton
+-
+QWidget
+-
+itemsid.h
+include/itemsid.h
+optionselected.h
+include/optionselected.h
+ui_option.h
+include/ui_option.h
+
+include/optionselected.h
+
 include/prueba.h
 QWidget
+-
+
+ui_option.h
+QtCore/QVariant
+-
+QtWidgets/QAction
+-
+QtWidgets/QApplication
+-
+QtWidgets/QButtonGroup
+-
+QtWidgets/QFormLayout
+-
+QtWidgets/QHeaderView
+-
+QtWidgets/QPushButton
+-
+QtWidgets/QWidget
 -
 
 ui_prueba.h

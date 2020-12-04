@@ -124,6 +124,21 @@ tp/fast:
 .PHONY : tp/fast
 
 # target to build an object file
+src/itemsid.o:
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/itemsid.o
+.PHONY : src/itemsid.o
+
+# target to preprocess a source file
+src/itemsid.i:
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/itemsid.i
+.PHONY : src/itemsid.i
+
+# target to generate assembly for a file
+src/itemsid.s:
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/itemsid.s
+.PHONY : src/itemsid.s
+
+# target to build an object file
 src/main.o:
 	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/main.o
 .PHONY : src/main.o
@@ -137,6 +152,36 @@ src/main.i:
 src/main.s:
 	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/main.s
 .PHONY : src/main.s
+
+# target to build an object file
+src/option.o:
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/option.o
+.PHONY : src/option.o
+
+# target to preprocess a source file
+src/option.i:
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/option.i
+.PHONY : src/option.i
+
+# target to generate assembly for a file
+src/option.s:
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/option.s
+.PHONY : src/option.s
+
+# target to build an object file
+src/optionselected.o:
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/optionselected.o
+.PHONY : src/optionselected.o
+
+# target to preprocess a source file
+src/optionselected.i:
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/optionselected.i
+.PHONY : src/optionselected.i
+
+# target to generate assembly for a file
+src/optionselected.s:
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/optionselected.s
+.PHONY : src/optionselected.s
 
 # target to build an object file
 src/prueba.o:
@@ -162,9 +207,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... tp"
 	@echo "... edit_cache"
+	@echo "... src/itemsid.o"
+	@echo "... src/itemsid.i"
+	@echo "... src/itemsid.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/option.o"
+	@echo "... src/option.i"
+	@echo "... src/option.s"
+	@echo "... src/optionselected.o"
+	@echo "... src/optionselected.i"
+	@echo "... src/optionselected.s"
 	@echo "... src/prueba.o"
 	@echo "... src/prueba.i"
 	@echo "... src/prueba.s"

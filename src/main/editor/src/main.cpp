@@ -1,14 +1,14 @@
 #include <QApplication>
 
-#include "prueba.h"
+#include "option.h"
 
 int main(int argc, char** argv) {
   // Clase que contiene el loop principal
   QApplication main_app(argc, argv);
 
-  Prueba prueba;
+  Option option;
   // Muestro el elemento
-  prueba.show();
+  option.show();
 
   // Arranca el loop de la UI
   return main_app.exec();

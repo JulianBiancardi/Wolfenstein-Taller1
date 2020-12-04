@@ -4,7 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/itemsid.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/tp.dir/src/itemsid.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/main.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/tp.dir/src/main.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/tp.dir/src/option.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/optionselected.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/tp.dir/src/optionselected.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/prueba.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/tp.dir/src/prueba.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

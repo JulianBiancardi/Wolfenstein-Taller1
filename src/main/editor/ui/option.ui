@@ -114,10 +114,6 @@ QPushButton#OptionButton:checked {
      <property name="text">
       <string/>
      </property>
-     <property name="icon">
-      <iconset resource="Resources.qrc">
-       <normaloff>:/images/IMG_Pistol.png</normaloff>:/images/IMG_Pistol.png</iconset>
-     </property>
      <property name="iconSize">
       <size>
        <width>80</width>

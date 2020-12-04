@@ -61,9 +61,85 @@ ui_prueba.h: ui/prueba.ui
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating ui_prueba.h"
 	/usr/lib/qt5/bin/uic -o /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/ui_prueba.h /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/ui/prueba.ui
 
+ui_option.h: ui/option.ui
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating ui_option.h"
+	/usr/lib/qt5/bin/uic -o /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/ui_option.h /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/ui/option.ui
+
+CMakeFiles/tp.dir/src/option.o: CMakeFiles/tp.dir/flags.make
+CMakeFiles/tp.dir/src/option.o: src/option.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tp.dir/src/option.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp.dir/src/option.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.cpp
+
+CMakeFiles/tp.dir/src/option.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tp.dir/src/option.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.cpp > CMakeFiles/tp.dir/src/option.i
+
+CMakeFiles/tp.dir/src/option.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tp.dir/src/option.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.cpp -o CMakeFiles/tp.dir/src/option.s
+
+CMakeFiles/tp.dir/src/option.o.requires:
+
+.PHONY : CMakeFiles/tp.dir/src/option.o.requires
+
+CMakeFiles/tp.dir/src/option.o.provides: CMakeFiles/tp.dir/src/option.o.requires
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/option.o.provides.build
+.PHONY : CMakeFiles/tp.dir/src/option.o.provides
+
+CMakeFiles/tp.dir/src/option.o.provides.build: CMakeFiles/tp.dir/src/option.o
+
+
+CMakeFiles/tp.dir/src/itemsid.o: CMakeFiles/tp.dir/flags.make
+CMakeFiles/tp.dir/src/itemsid.o: src/itemsid.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/tp.dir/src/itemsid.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp.dir/src/itemsid.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/itemsid.cpp
+
+CMakeFiles/tp.dir/src/itemsid.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tp.dir/src/itemsid.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/itemsid.cpp > CMakeFiles/tp.dir/src/itemsid.i
+
+CMakeFiles/tp.dir/src/itemsid.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tp.dir/src/itemsid.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/itemsid.cpp -o CMakeFiles/tp.dir/src/itemsid.s
+
+CMakeFiles/tp.dir/src/itemsid.o.requires:
+
+.PHONY : CMakeFiles/tp.dir/src/itemsid.o.requires
+
+CMakeFiles/tp.dir/src/itemsid.o.provides: CMakeFiles/tp.dir/src/itemsid.o.requires
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/itemsid.o.provides.build
+.PHONY : CMakeFiles/tp.dir/src/itemsid.o.provides
+
+CMakeFiles/tp.dir/src/itemsid.o.provides.build: CMakeFiles/tp.dir/src/itemsid.o
+
+
+CMakeFiles/tp.dir/src/optionselected.o: CMakeFiles/tp.dir/flags.make
+CMakeFiles/tp.dir/src/optionselected.o: src/optionselected.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/tp.dir/src/optionselected.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp.dir/src/optionselected.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/optionselected.cpp
+
+CMakeFiles/tp.dir/src/optionselected.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tp.dir/src/optionselected.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/optionselected.cpp > CMakeFiles/tp.dir/src/optionselected.i
+
+CMakeFiles/tp.dir/src/optionselected.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tp.dir/src/optionselected.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/optionselected.cpp -o CMakeFiles/tp.dir/src/optionselected.s
+
+CMakeFiles/tp.dir/src/optionselected.o.requires:
+
+.PHONY : CMakeFiles/tp.dir/src/optionselected.o.requires
+
+CMakeFiles/tp.dir/src/optionselected.o.provides: CMakeFiles/tp.dir/src/optionselected.o.requires
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/optionselected.o.provides.build
+.PHONY : CMakeFiles/tp.dir/src/optionselected.o.provides
+
+CMakeFiles/tp.dir/src/optionselected.o.provides.build: CMakeFiles/tp.dir/src/optionselected.o
+
+
 CMakeFiles/tp.dir/src/prueba.o: CMakeFiles/tp.dir/flags.make
 CMakeFiles/tp.dir/src/prueba.o: src/prueba.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/tp.dir/src/prueba.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/tp.dir/src/prueba.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp.dir/src/prueba.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/prueba.cpp
 
 CMakeFiles/tp.dir/src/prueba.i: cmake_force
@@ -87,7 +163,7 @@ CMakeFiles/tp.dir/src/prueba.o.provides.build: CMakeFiles/tp.dir/src/prueba.o
 
 CMakeFiles/tp.dir/src/main.o: CMakeFiles/tp.dir/flags.make
 CMakeFiles/tp.dir/src/main.o: src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tp.dir/src/main.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/tp.dir/src/main.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp.dir/src/main.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/main.cpp
 
 CMakeFiles/tp.dir/src/main.i: cmake_force
@@ -111,12 +187,18 @@ CMakeFiles/tp.dir/src/main.o.provides.build: CMakeFiles/tp.dir/src/main.o
 
 # Object files for target tp
 tp_OBJECTS = \
+"CMakeFiles/tp.dir/src/option.o" \
+"CMakeFiles/tp.dir/src/itemsid.o" \
+"CMakeFiles/tp.dir/src/optionselected.o" \
 "CMakeFiles/tp.dir/src/prueba.o" \
 "CMakeFiles/tp.dir/src/main.o"
 
 # External object files for target tp
 tp_EXTERNAL_OBJECTS =
 
+tp: CMakeFiles/tp.dir/src/option.o
+tp: CMakeFiles/tp.dir/src/itemsid.o
+tp: CMakeFiles/tp.dir/src/optionselected.o
 tp: CMakeFiles/tp.dir/src/prueba.o
 tp: CMakeFiles/tp.dir/src/main.o
 tp: CMakeFiles/tp.dir/build.make
@@ -124,7 +206,7 @@ tp: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.9.5
 tp: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.9.5
 tp: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.9.5
 tp: CMakeFiles/tp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable tp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable tp"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -132,6 +214,9 @@ CMakeFiles/tp.dir/build: tp
 
 .PHONY : CMakeFiles/tp.dir/build
 
+CMakeFiles/tp.dir/requires: CMakeFiles/tp.dir/src/option.o.requires
+CMakeFiles/tp.dir/requires: CMakeFiles/tp.dir/src/itemsid.o.requires
+CMakeFiles/tp.dir/requires: CMakeFiles/tp.dir/src/optionselected.o.requires
 CMakeFiles/tp.dir/requires: CMakeFiles/tp.dir/src/prueba.o.requires
 CMakeFiles/tp.dir/requires: CMakeFiles/tp.dir/src/main.o.requires
 
@@ -142,6 +227,7 @@ CMakeFiles/tp.dir/clean:
 .PHONY : CMakeFiles/tp.dir/clean
 
 CMakeFiles/tp.dir/depend: ui_prueba.h
+CMakeFiles/tp.dir/depend: ui_option.h
 	cd /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/tp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/tp.dir/depend
 
