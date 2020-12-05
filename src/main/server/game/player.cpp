@@ -1,6 +1,6 @@
 #include "player.h"
 
-void move_from_current_position_if_can(int x, int y){
+void Player::move_from_current_position_if_can(int x, int y){
   Ray next_position(angled_position.get_origin().getX() + x, 
                     angled_position.get_origin().getY() + y, 
                     angled_position.get_angle());

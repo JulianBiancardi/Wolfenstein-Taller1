@@ -13,6 +13,7 @@ class Player {
   Player(int x, int y, double angle) : angled_position(x,y,angle) { };
   ~Player() { }
 
+  void move_from_current_position_if_can(int x, int y);
   void move_up();
   void move_down();
   void move_right();
