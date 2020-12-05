@@ -123,6 +123,19 @@ tp/fast:
 	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/build
 .PHONY : tp/fast
 
+#=============================================================================
+# Target rules for targets named tp_autogen
+
+# Build rule for target.
+tp_autogen: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tp_autogen
+.PHONY : tp_autogen
+
+# fast build rule for target.
+tp_autogen/fast:
+	$(MAKE) -f CMakeFiles/tp_autogen.dir/build.make CMakeFiles/tp_autogen.dir/build
+.PHONY : tp_autogen/fast
+
 # target to build an object file
 src/itemsid.o:
 	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/itemsid.o
@@ -198,6 +211,21 @@ src/prueba.s:
 	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/src/prueba.s
 .PHONY : src/prueba.s
 
+# target to build an object file
+tp_autogen/mocs_compilation.o:
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/tp_autogen/mocs_compilation.o
+.PHONY : tp_autogen/mocs_compilation.o
+
+# target to preprocess a source file
+tp_autogen/mocs_compilation.i:
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/tp_autogen/mocs_compilation.i
+.PHONY : tp_autogen/mocs_compilation.i
+
+# target to generate assembly for a file
+tp_autogen/mocs_compilation.s:
+	$(MAKE) -f CMakeFiles/tp.dir/build.make CMakeFiles/tp.dir/tp_autogen/mocs_compilation.s
+.PHONY : tp_autogen/mocs_compilation.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -207,6 +235,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... tp"
 	@echo "... edit_cache"
+	@echo "... tp_autogen"
 	@echo "... src/itemsid.o"
 	@echo "... src/itemsid.i"
 	@echo "... src/itemsid.s"
@@ -222,6 +251,9 @@ help:
 	@echo "... src/prueba.o"
 	@echo "... src/prueba.i"
 	@echo "... src/prueba.s"
+	@echo "... tp_autogen/mocs_compilation.o"
+	@echo "... tp_autogen/mocs_compilation.i"
+	@echo "... tp_autogen/mocs_compilation.s"
 .PHONY : help
 
 

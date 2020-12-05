@@ -365,6 +365,7 @@ CMakeFiles/tp.dir/src/option.o
  include/itemsid.h
  include/option.h
  include/optionselected.h
+ tp_autogen/include/moc_option.cpp
  ui_option.h
 CMakeFiles/tp.dir/src/optionselected.o
  /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/optionselected.cpp
@@ -513,3 +514,5 @@ CMakeFiles/tp.dir/src/prueba.o
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h
  include/prueba.h
  ui_prueba.h
+CMakeFiles/tp.dir/tp_autogen/mocs_compilation.o
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/tp_autogen/mocs_compilation.cpp

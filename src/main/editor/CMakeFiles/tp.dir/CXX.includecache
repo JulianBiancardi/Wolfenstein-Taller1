@@ -13,14 +13,24 @@ itemsid.h
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/main.cpp
 QApplication
 -
+iostream
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/iostream
+itemsid.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/itemsid.h
 option.h
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.h
+optionselected.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/optionselected.h
 
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.cpp
 option.h
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.h
 iostream
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/iostream
+stdexcept
+-
+moc_option.cpp
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/moc_option.cpp
 
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/optionselected.cpp
 optionselected.h
@@ -31,6 +41,8 @@ prueba.h
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/prueba.h
 ui_prueba.h
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/ui_prueba.h
+
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/tp_autogen/mocs_compilation.cpp
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/QMap
 qmap.h
@@ -1448,6 +1460,14 @@ include/optionselected.h
 
 include/prueba.h
 QWidget
+-
+
+tp_autogen/include/moc_option.cpp
+../../include/option.h
+include/option.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
 -
 
 ui_option.h

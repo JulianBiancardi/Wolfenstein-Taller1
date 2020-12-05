@@ -12,7 +12,7 @@ class Option : public QWidget {
   Q_OBJECT
 
  public:
-  Option(QWidget* parent = 0, ssize_t id = -1, ItemsId* ids = nullptr,
+  Option(QWidget* parent = nullptr, ssize_t id = -1, ItemsId* ids = nullptr,
          OptionSelected* current_option = nullptr);
   ~Option();
 

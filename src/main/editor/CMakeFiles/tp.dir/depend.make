@@ -364,6 +364,7 @@ CMakeFiles/tp.dir/src/option.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwid
 CMakeFiles/tp.dir/src/option.o: include/itemsid.h
 CMakeFiles/tp.dir/src/option.o: include/option.h
 CMakeFiles/tp.dir/src/option.o: include/optionselected.h
+CMakeFiles/tp.dir/src/option.o: tp_autogen/include/moc_option.cpp
 CMakeFiles/tp.dir/src/option.o: ui_option.h
 
 CMakeFiles/tp.dir/src/optionselected.o: src/optionselected.cpp
@@ -512,4 +513,6 @@ CMakeFiles/tp.dir/src/prueba.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwi
 CMakeFiles/tp.dir/src/prueba.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h
 CMakeFiles/tp.dir/src/prueba.o: include/prueba.h
 CMakeFiles/tp.dir/src/prueba.o: ui_prueba.h
+
+CMakeFiles/tp.dir/tp_autogen/mocs_compilation.o: tp_autogen/mocs_compilation.cpp
 

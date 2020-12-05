@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/tp.dir/src/option.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/optionselected.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/tp.dir/src/optionselected.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/prueba.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/tp.dir/src/prueba.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/tp_autogen/mocs_compilation.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/tp.dir/tp_autogen/mocs_compilation.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -22,6 +23,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "tp_autogen/include"
   "include"
   "."
   "/usr/include/x86_64-linux-gnu/qt5"
