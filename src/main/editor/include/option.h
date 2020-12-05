@@ -5,7 +5,7 @@
 #include <QWidget>
 
 #include "itemsid.h"
-#include "optionselected.h"
+#include "option_selected.h"
 #include "ui_option.h"
 
 class Option : public QWidget {

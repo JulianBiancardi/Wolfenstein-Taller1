@@ -1,5 +1,5 @@
-#ifndef OPTIONSELECTED_H
-#define OPTIONSELECTED_H
+#ifndef OPTION_SELECTED_H
+#define OPTION_SELECTED_H
 
 class OptionSelected {
  public:
@@ -14,4 +14,4 @@ class OptionSelected {
   int current_id;
 };
 
-#endif  // OPTIONSELECTED_H
+#endif  // OPTION_SELECTED_H

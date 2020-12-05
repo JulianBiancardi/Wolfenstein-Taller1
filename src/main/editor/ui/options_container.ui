@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Options</class>
- <widget class="QWidget" name="Options">
+ <class>OptionContainer</class>
+ <widget class="QWidget" name="OptionContainer">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>326</width>
-    <height>523</height>
+    <width>302</width>
+    <height>565</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -62,8 +62,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>326</width>
-        <height>523</height>
+        <width>302</width>
+        <height>565</height>
        </rect>
       </property>
      </widget>

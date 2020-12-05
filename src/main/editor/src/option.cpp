@@ -1,9 +1,9 @@
 #include "option.h"
 
-#include "iostream"
-// Incluyo el archivo creado por el moc para que cmake lo detecte y compile
 #include <stdexcept>  //Runtime error
 
+#include "iostream"
+// Incluyo el archivo creado por el moc para que cmake lo detecte y compile
 #include "moc_option.cpp"
 
 //#define INVALID_ID -1
@@ -22,7 +22,7 @@ Option::Option(QWidget* parent, ssize_t id, ItemsId* ids,
   }
 }
 
-Option::~Option() {}  // delete ui;
+Option::~Option() {}
 
 QPushButton* Option::getButton() { return this->ui.OptionButton; }
 
