@@ -10,7 +10,7 @@ class Surface {
   SDL_Surface* surface;
 
  public:
-  Surface(std::string file);
+  Surface(std::string& file);
   ~Surface();
 
   size_t get_width();
