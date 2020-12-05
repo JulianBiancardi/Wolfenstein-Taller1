@@ -12,9 +12,14 @@ class Option : public QWidget {
   Q_OBJECT
 
  public:
-  Option(QWidget* parent = nullptr, ssize_t id = -1, ItemsId* ids = nullptr,
+  Option(QWidget* parent = nullptr, size_t id = 0, ItemsId* ids = nullptr,
          OptionSelected* current_option = nullptr);
   ~Option();
+
+  Option(const Option&) = delete;              // No copy constructor
+  Option& operator=(const Option&) = delete;   // No copy constructor
+  Option(Option&& other) = delete;             // No move constructor
+  Option& operator=(Option&& other) = delete;  // No move constructor
 
   QPushButton* getButton();
 

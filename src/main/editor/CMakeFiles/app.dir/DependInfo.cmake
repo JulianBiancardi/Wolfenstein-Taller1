@@ -4,13 +4,15 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/app_autogen/mocs_compilation.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/app_autogen/mocs_compilation.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/itemsid.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/src/itemsid.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/main.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/src/main.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/src/option.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option_selected.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/src/option_selected.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/options_container.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/src/options_container.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/prueba.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/src/prueba.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/app_autogen/mocs_compilation.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/celd.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/src/celd.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/itemsid.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/src/itemsid.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/main.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/src/main.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/mainwindow.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/src/mainwindow.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/mapgrid.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/src/mapgrid.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/src/option.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option_selected.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/src/option_selected.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/options_container.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/CMakeFiles/app.dir/src/options_container.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

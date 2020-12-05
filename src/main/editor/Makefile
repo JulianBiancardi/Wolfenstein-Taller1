@@ -136,110 +136,248 @@ app_autogen/fast:
 	$(MAKE) -f CMakeFiles/app_autogen.dir/build.make CMakeFiles/app_autogen.dir/build
 .PHONY : app_autogen/fast
 
-# target to build an object file
-app_autogen/mocs_compilation.o:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/app_autogen/mocs_compilation.o
+app_autogen/mocs_compilation.o: app_autogen/mocs_compilation.cpp.o
+
 .PHONY : app_autogen/mocs_compilation.o
 
-# target to preprocess a source file
-app_autogen/mocs_compilation.i:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/app_autogen/mocs_compilation.i
+# target to build an object file
+app_autogen/mocs_compilation.cpp.o:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o
+.PHONY : app_autogen/mocs_compilation.cpp.o
+
+app_autogen/mocs_compilation.i: app_autogen/mocs_compilation.cpp.i
+
 .PHONY : app_autogen/mocs_compilation.i
 
-# target to generate assembly for a file
-app_autogen/mocs_compilation.s:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/app_autogen/mocs_compilation.s
+# target to preprocess a source file
+app_autogen/mocs_compilation.cpp.i:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.i
+.PHONY : app_autogen/mocs_compilation.cpp.i
+
+app_autogen/mocs_compilation.s: app_autogen/mocs_compilation.cpp.s
+
 .PHONY : app_autogen/mocs_compilation.s
 
+# target to generate assembly for a file
+app_autogen/mocs_compilation.cpp.s:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.s
+.PHONY : app_autogen/mocs_compilation.cpp.s
+
+src/celd.o: src/celd.cpp.o
+
+.PHONY : src/celd.o
+
 # target to build an object file
-src/itemsid.o:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/itemsid.o
+src/celd.cpp.o:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/celd.cpp.o
+.PHONY : src/celd.cpp.o
+
+src/celd.i: src/celd.cpp.i
+
+.PHONY : src/celd.i
+
+# target to preprocess a source file
+src/celd.cpp.i:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/celd.cpp.i
+.PHONY : src/celd.cpp.i
+
+src/celd.s: src/celd.cpp.s
+
+.PHONY : src/celd.s
+
+# target to generate assembly for a file
+src/celd.cpp.s:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/celd.cpp.s
+.PHONY : src/celd.cpp.s
+
+src/itemsid.o: src/itemsid.cpp.o
+
 .PHONY : src/itemsid.o
 
-# target to preprocess a source file
-src/itemsid.i:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/itemsid.i
+# target to build an object file
+src/itemsid.cpp.o:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/itemsid.cpp.o
+.PHONY : src/itemsid.cpp.o
+
+src/itemsid.i: src/itemsid.cpp.i
+
 .PHONY : src/itemsid.i
 
-# target to generate assembly for a file
-src/itemsid.s:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/itemsid.s
+# target to preprocess a source file
+src/itemsid.cpp.i:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/itemsid.cpp.i
+.PHONY : src/itemsid.cpp.i
+
+src/itemsid.s: src/itemsid.cpp.s
+
 .PHONY : src/itemsid.s
 
-# target to build an object file
-src/main.o:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/main.o
+# target to generate assembly for a file
+src/itemsid.cpp.s:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/itemsid.cpp.s
+.PHONY : src/itemsid.cpp.s
+
+src/main.o: src/main.cpp.o
+
 .PHONY : src/main.o
 
-# target to preprocess a source file
-src/main.i:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/main.i
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
 .PHONY : src/main.i
 
-# target to generate assembly for a file
-src/main.s:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/main.s
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
 .PHONY : src/main.s
 
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+src/mainwindow.o: src/mainwindow.cpp.o
+
+.PHONY : src/mainwindow.o
+
 # target to build an object file
-src/option.o:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/option.o
+src/mainwindow.cpp.o:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/mainwindow.cpp.o
+.PHONY : src/mainwindow.cpp.o
+
+src/mainwindow.i: src/mainwindow.cpp.i
+
+.PHONY : src/mainwindow.i
+
+# target to preprocess a source file
+src/mainwindow.cpp.i:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/mainwindow.cpp.i
+.PHONY : src/mainwindow.cpp.i
+
+src/mainwindow.s: src/mainwindow.cpp.s
+
+.PHONY : src/mainwindow.s
+
+# target to generate assembly for a file
+src/mainwindow.cpp.s:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/mainwindow.cpp.s
+.PHONY : src/mainwindow.cpp.s
+
+src/mapgrid.o: src/mapgrid.cpp.o
+
+.PHONY : src/mapgrid.o
+
+# target to build an object file
+src/mapgrid.cpp.o:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/mapgrid.cpp.o
+.PHONY : src/mapgrid.cpp.o
+
+src/mapgrid.i: src/mapgrid.cpp.i
+
+.PHONY : src/mapgrid.i
+
+# target to preprocess a source file
+src/mapgrid.cpp.i:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/mapgrid.cpp.i
+.PHONY : src/mapgrid.cpp.i
+
+src/mapgrid.s: src/mapgrid.cpp.s
+
+.PHONY : src/mapgrid.s
+
+# target to generate assembly for a file
+src/mapgrid.cpp.s:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/mapgrid.cpp.s
+.PHONY : src/mapgrid.cpp.s
+
+src/option.o: src/option.cpp.o
+
 .PHONY : src/option.o
 
-# target to preprocess a source file
-src/option.i:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/option.i
+# target to build an object file
+src/option.cpp.o:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/option.cpp.o
+.PHONY : src/option.cpp.o
+
+src/option.i: src/option.cpp.i
+
 .PHONY : src/option.i
 
-# target to generate assembly for a file
-src/option.s:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/option.s
+# target to preprocess a source file
+src/option.cpp.i:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/option.cpp.i
+.PHONY : src/option.cpp.i
+
+src/option.s: src/option.cpp.s
+
 .PHONY : src/option.s
 
-# target to build an object file
-src/option_selected.o:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/option_selected.o
+# target to generate assembly for a file
+src/option.cpp.s:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/option.cpp.s
+.PHONY : src/option.cpp.s
+
+src/option_selected.o: src/option_selected.cpp.o
+
 .PHONY : src/option_selected.o
 
-# target to preprocess a source file
-src/option_selected.i:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/option_selected.i
+# target to build an object file
+src/option_selected.cpp.o:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/option_selected.cpp.o
+.PHONY : src/option_selected.cpp.o
+
+src/option_selected.i: src/option_selected.cpp.i
+
 .PHONY : src/option_selected.i
 
-# target to generate assembly for a file
-src/option_selected.s:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/option_selected.s
+# target to preprocess a source file
+src/option_selected.cpp.i:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/option_selected.cpp.i
+.PHONY : src/option_selected.cpp.i
+
+src/option_selected.s: src/option_selected.cpp.s
+
 .PHONY : src/option_selected.s
 
-# target to build an object file
-src/options_container.o:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/options_container.o
+# target to generate assembly for a file
+src/option_selected.cpp.s:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/option_selected.cpp.s
+.PHONY : src/option_selected.cpp.s
+
+src/options_container.o: src/options_container.cpp.o
+
 .PHONY : src/options_container.o
 
-# target to preprocess a source file
-src/options_container.i:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/options_container.i
+# target to build an object file
+src/options_container.cpp.o:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/options_container.cpp.o
+.PHONY : src/options_container.cpp.o
+
+src/options_container.i: src/options_container.cpp.i
+
 .PHONY : src/options_container.i
 
-# target to generate assembly for a file
-src/options_container.s:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/options_container.s
+# target to preprocess a source file
+src/options_container.cpp.i:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/options_container.cpp.i
+.PHONY : src/options_container.cpp.i
+
+src/options_container.s: src/options_container.cpp.s
+
 .PHONY : src/options_container.s
 
-# target to build an object file
-src/prueba.o:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/prueba.o
-.PHONY : src/prueba.o
-
-# target to preprocess a source file
-src/prueba.i:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/prueba.i
-.PHONY : src/prueba.i
-
 # target to generate assembly for a file
-src/prueba.s:
-	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/prueba.s
-.PHONY : src/prueba.s
+src/options_container.cpp.s:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/options_container.cpp.s
+.PHONY : src/options_container.cpp.s
 
 # Help Target
 help:
@@ -254,12 +392,21 @@ help:
 	@echo "... app_autogen/mocs_compilation.o"
 	@echo "... app_autogen/mocs_compilation.i"
 	@echo "... app_autogen/mocs_compilation.s"
+	@echo "... src/celd.o"
+	@echo "... src/celd.i"
+	@echo "... src/celd.s"
 	@echo "... src/itemsid.o"
 	@echo "... src/itemsid.i"
 	@echo "... src/itemsid.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/mainwindow.o"
+	@echo "... src/mainwindow.i"
+	@echo "... src/mainwindow.s"
+	@echo "... src/mapgrid.o"
+	@echo "... src/mapgrid.i"
+	@echo "... src/mapgrid.s"
 	@echo "... src/option.o"
 	@echo "... src/option.i"
 	@echo "... src/option.s"
@@ -269,9 +416,6 @@ help:
 	@echo "... src/options_container.o"
 	@echo "... src/options_container.i"
 	@echo "... src/options_container.s"
-	@echo "... src/prueba.o"
-	@echo "... src/prueba.i"
-	@echo "... src/prueba.s"
 .PHONY : help
 
 

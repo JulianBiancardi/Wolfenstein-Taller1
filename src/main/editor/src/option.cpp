@@ -6,12 +6,11 @@
 // Incluyo el archivo creado por el moc para que cmake lo detecte y compile
 #include "moc_option.cpp"
 
-//#define INVALID_ID -1
-
-Option::Option(QWidget* parent, ssize_t id, ItemsId* ids,
+//-----------------------------------------------------------------------------
+Option::Option(QWidget* parent, size_t id, ItemsId* ids,
                OptionSelected* current_option)
     : QWidget(parent), id(id), current_option(current_option) {
-  if (this->id == -1 || ids == nullptr || current_option == nullptr) {
+  if (ids == nullptr || current_option == nullptr) {
     // TODO exception
     throw std::runtime_error("Error to create Option");
   } else {
@@ -29,3 +28,4 @@ QPushButton* Option::getButton() { return this->ui.OptionButton; }
 void Option::on_OptionButton_clicked() {
   current_option->setCurrent_id(this->id);
 }
+//-----------------------------------------------------------------------------

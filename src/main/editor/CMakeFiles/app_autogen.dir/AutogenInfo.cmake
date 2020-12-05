@@ -7,7 +7,7 @@ set(AM_CMAKE_CURRENT_SOURCE_DIR "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1
 set(AM_CMAKE_CURRENT_BINARY_DIR "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/")
 set(AM_CMAKE_INCLUDE_DIRECTORIES_PROJECT_BEFORE "")
 set(AM_BUILD_DIR "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/app_autogen")
-set(AM_SOURCES "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/itemsid.cpp;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/main.cpp;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.cpp;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option_selected.cpp;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/options_container.cpp;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/prueba.cpp")
+set(AM_SOURCES "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/celd.cpp;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/itemsid.cpp;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/main.cpp;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/mainwindow.cpp;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/mapgrid.cpp;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option.cpp;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/option_selected.cpp;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/src/options_container.cpp")
 set(AM_HEADERS "")
 # Qt environment
 set(AM_QT_VERSION_MAJOR "5")
@@ -16,7 +16,7 @@ set(AM_QT_MOC_EXECUTABLE "/usr/lib/qt5/bin/moc")
 set(AM_QT_UIC_EXECUTABLE )
 set(AM_QT_RCC_EXECUTABLE )
 # MOC settings
-set(AM_MOC_SKIP "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/app_autogen/mocs_compilation.cpp;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/ui_option.h;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/ui_options_container.h;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/ui_prueba.h")
+set(AM_MOC_SKIP "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/app_autogen/mocs_compilation.cpp;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/ui_celd.h;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/ui_mainwindow.h;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/ui_mapgrid.h;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/ui_option.h;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/ui_options_container.h")
 set(AM_MOC_DEFINITIONS "QT_CORE_LIB;QT_GUI_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB")
 set(AM_MOC_INCLUDES "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/app_autogen/include;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/include;/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor;/usr/include/x86_64-linux-gnu/qt5;/usr/include/x86_64-linux-gnu/qt5/QtWidgets;/usr/include/x86_64-linux-gnu/qt5/QtGui;/usr/include/x86_64-linux-gnu/qt5/QtCore;/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++;/usr/include")
 set(AM_MOC_OPTIONS "")
