@@ -19,14 +19,14 @@ int main(int argc, char** argv) {
   Point pos1(64, 64);
   Point pos3(64, 0);
   Point pos2(0, 64);
-  Rectangle slice(0, 64, 0, 64);
+  Rectangle slice(0, 8, 0, 8);
 
   std::string source("res/walls/grey_brick_wall.bmp");
   Image image(window.get_renderer(), source);
-  image.draw(pos0, &slice);
-  image.draw(pos1, &slice, 6, 6);
-  image.draw(pos2, &slice);
-  image.draw(pos3, &slice);
+  image.draw(pos0, NULL);
+  image.draw(pos1, &slice, 8, 8);
+  image.draw(pos2, NULL);
+  image.draw(pos3, NULL);
 
   window.update();
   SDL_Delay(5000);
