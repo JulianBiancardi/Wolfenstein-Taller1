@@ -1,5 +1,10 @@
 ---
 sv_port: '7777'
+
+#Player Initial Options
+player_health: 40
+player_bullets: 8
+
 #Guns
 knife_range: 2
 
@@ -25,4 +30,3 @@ crosses_points: 10
 cup_points: 50
 chests_points: 100
 crown_points: 200
-

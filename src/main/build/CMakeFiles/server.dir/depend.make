@@ -8,6 +8,13 @@ CMakeFiles/server.dir/common/socket.cpp.o: ../common/socket_error.h
 CMakeFiles/server.dir/common/socket_error.cpp.o: ../common/socket_error.cpp
 CMakeFiles/server.dir/common/socket_error.cpp.o: ../common/socket_error.h
 
+CMakeFiles/server.dir/point.cpp.o: ../point.cpp
+CMakeFiles/server.dir/point.cpp.o: ../point.h
+
+CMakeFiles/server.dir/ray.cpp.o: ../point.h
+CMakeFiles/server.dir/ray.cpp.o: ../ray.cpp
+CMakeFiles/server.dir/ray.cpp.o: ../ray.h
+
 CMakeFiles/server.dir/server/config_loader.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
 CMakeFiles/server.dir/server/config_loader.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/dll.h
 CMakeFiles/server.dir/server/config_loader.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/emitter.h
@@ -42,9 +49,6 @@ CMakeFiles/server.dir/server/config_loader.cpp.o: ../common/third-party/yaml-cpp
 CMakeFiles/server.dir/server/config_loader.cpp.o: ../server/config_loader.cpp
 CMakeFiles/server.dir/server/config_loader.cpp.o: ../server/config_loader.h
 
-CMakeFiles/server.dir/server/game/damagable.cpp.o: ../server/game/damagable.cpp
-CMakeFiles/server.dir/server/game/damagable.cpp.o: ../server/game/damagable.h
-
 CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
 CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/dll.h
 CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/emitter.h
@@ -76,10 +80,14 @@ CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../common/third-party
 CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
 CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/traits.h
 CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
+CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../matrix.h
+CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../point.h
+CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../ray.h
 CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../server/config_loader.h
 CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../server/game/guns/chain_cannon.cpp
 CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../server/game/guns/chain_cannon.h
 CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../server/game/guns/gun.h
+CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../server/game/map.h
 CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../server/game/player.h
 
 CMakeFiles/server.dir/server/game/guns/gun.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
@@ -113,9 +121,13 @@ CMakeFiles/server.dir/server/game/guns/gun.cpp.o: ../common/third-party/yaml-cpp
 CMakeFiles/server.dir/server/game/guns/gun.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
 CMakeFiles/server.dir/server/game/guns/gun.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/traits.h
 CMakeFiles/server.dir/server/game/guns/gun.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
+CMakeFiles/server.dir/server/game/guns/gun.cpp.o: ../matrix.h
+CMakeFiles/server.dir/server/game/guns/gun.cpp.o: ../point.h
+CMakeFiles/server.dir/server/game/guns/gun.cpp.o: ../ray.h
 CMakeFiles/server.dir/server/game/guns/gun.cpp.o: ../server/config_loader.h
 CMakeFiles/server.dir/server/game/guns/gun.cpp.o: ../server/game/guns/gun.cpp
 CMakeFiles/server.dir/server/game/guns/gun.cpp.o: ../server/game/guns/gun.h
+CMakeFiles/server.dir/server/game/guns/gun.cpp.o: ../server/game/map.h
 CMakeFiles/server.dir/server/game/guns/gun.cpp.o: ../server/game/player.h
 
 CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
@@ -149,10 +161,14 @@ CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../common/third-party/yaml-c
 CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
 CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/traits.h
 CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
+CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../matrix.h
+CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../point.h
+CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../ray.h
 CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../server/config_loader.h
 CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../server/game/guns/gun.h
 CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../server/game/guns/knife.cpp
 CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../server/game/guns/knife.h
+CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../server/game/map.h
 CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../server/game/player.h
 
 CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
@@ -186,10 +202,14 @@ CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../common/third-party/
 CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
 CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/traits.h
 CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
+CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../matrix.h
+CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../point.h
+CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../ray.h
 CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../server/config_loader.h
 CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../server/game/guns/gun.h
 CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../server/game/guns/machine_gun.cpp
 CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../server/game/guns/machine_gun.h
+CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../server/game/map.h
 CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../server/game/player.h
 
 CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
@@ -223,10 +243,14 @@ CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../common/third-party/yaml-
 CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
 CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/traits.h
 CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
+CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../matrix.h
+CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../point.h
+CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../ray.h
 CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../server/config_loader.h
 CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../server/game/guns/gun.h
 CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../server/game/guns/pistol.cpp
 CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../server/game/guns/pistol.h
+CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../server/game/map.h
 CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../server/game/player.h
 
 CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
@@ -260,12 +284,57 @@ CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../common/third-pa
 CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
 CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/traits.h
 CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
+CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../matrix.h
+CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../point.h
+CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../ray.h
 CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../server/config_loader.h
 CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../server/game/guns/gun.h
 CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../server/game/guns/rocket_launcher.cpp
 CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../server/game/guns/rocket_launcher.h
+CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../server/game/map.h
 CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../server/game/player.h
 
+CMakeFiles/server.dir/server/game/map.cpp.o: ../matrix.h
+CMakeFiles/server.dir/server/game/map.cpp.o: ../point.h
+CMakeFiles/server.dir/server/game/map.cpp.o: ../server/game/map.cpp
+CMakeFiles/server.dir/server/game/map.cpp.o: ../server/game/map.h
+
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/dll.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/emitter.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/emitterdef.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/emittermanip.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/emitterstyle.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/exceptions.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/mark.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/convert.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/impl.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator_fwd.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/memory.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_data.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_iterator.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_ref.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/emit.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/impl.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/iterator.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/node.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/parse.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/ptr.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/type.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/noexcept.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/null.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/ostream_wrapper.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/parser.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/traits.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../matrix.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../point.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../ray.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../server/config_loader.h
+CMakeFiles/server.dir/server/game/player.cpp.o: ../server/game/map.h
 CMakeFiles/server.dir/server/game/player.cpp.o: ../server/game/player.cpp
 CMakeFiles/server.dir/server/game/player.cpp.o: ../server/game/player.h
 
@@ -300,9 +369,13 @@ CMakeFiles/server.dir/server/main_server.cpp.o: ../common/third-party/yaml-cpp/i
 CMakeFiles/server.dir/server/main_server.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
 CMakeFiles/server.dir/server/main_server.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/traits.h
 CMakeFiles/server.dir/server/main_server.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
+CMakeFiles/server.dir/server/main_server.cpp.o: ../matrix.h
+CMakeFiles/server.dir/server/main_server.cpp.o: ../point.h
+CMakeFiles/server.dir/server/main_server.cpp.o: ../ray.h
 CMakeFiles/server.dir/server/main_server.cpp.o: ../server/config_loader.h
 CMakeFiles/server.dir/server/main_server.cpp.o: ../server/game/guns/chain_cannon.h
 CMakeFiles/server.dir/server/main_server.cpp.o: ../server/game/guns/gun.h
+CMakeFiles/server.dir/server/main_server.cpp.o: ../server/game/map.h
 CMakeFiles/server.dir/server/main_server.cpp.o: ../server/game/player.h
 CMakeFiles/server.dir/server/main_server.cpp.o: ../server/main_server.cpp
 

@@ -57,105 +57,57 @@ include CMakeFiles/server.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/server.dir/flags.make
 
-CMakeFiles/server.dir/server/config_loader.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/server/config_loader.cpp.o: ../server/config_loader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/server/config_loader.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server/config_loader.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/config_loader.cpp
+CMakeFiles/server.dir/point.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/point.cpp.o: ../point.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/point.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/point.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.cpp
 
-CMakeFiles/server.dir/server/config_loader.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/server/config_loader.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/config_loader.cpp > CMakeFiles/server.dir/server/config_loader.cpp.i
+CMakeFiles/server.dir/point.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/point.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.cpp > CMakeFiles/server.dir/point.cpp.i
 
-CMakeFiles/server.dir/server/config_loader.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/server/config_loader.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/config_loader.cpp -o CMakeFiles/server.dir/server/config_loader.cpp.s
+CMakeFiles/server.dir/point.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/point.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.cpp -o CMakeFiles/server.dir/point.cpp.s
 
-CMakeFiles/server.dir/server/config_loader.cpp.o.requires:
+CMakeFiles/server.dir/point.cpp.o.requires:
 
-.PHONY : CMakeFiles/server.dir/server/config_loader.cpp.o.requires
+.PHONY : CMakeFiles/server.dir/point.cpp.o.requires
 
-CMakeFiles/server.dir/server/config_loader.cpp.o.provides: CMakeFiles/server.dir/server/config_loader.cpp.o.requires
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/config_loader.cpp.o.provides.build
-.PHONY : CMakeFiles/server.dir/server/config_loader.cpp.o.provides
+CMakeFiles/server.dir/point.cpp.o.provides: CMakeFiles/server.dir/point.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/point.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/point.cpp.o.provides
 
-CMakeFiles/server.dir/server/config_loader.cpp.o.provides.build: CMakeFiles/server.dir/server/config_loader.cpp.o
-
-
-CMakeFiles/server.dir/server/main_server.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/server/main_server.cpp.o: ../server/main_server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/server/main_server.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server/main_server.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/main_server.cpp
-
-CMakeFiles/server.dir/server/main_server.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/server/main_server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/main_server.cpp > CMakeFiles/server.dir/server/main_server.cpp.i
-
-CMakeFiles/server.dir/server/main_server.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/server/main_server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/main_server.cpp -o CMakeFiles/server.dir/server/main_server.cpp.s
-
-CMakeFiles/server.dir/server/main_server.cpp.o.requires:
-
-.PHONY : CMakeFiles/server.dir/server/main_server.cpp.o.requires
-
-CMakeFiles/server.dir/server/main_server.cpp.o.provides: CMakeFiles/server.dir/server/main_server.cpp.o.requires
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/main_server.cpp.o.provides.build
-.PHONY : CMakeFiles/server.dir/server/main_server.cpp.o.provides
-
-CMakeFiles/server.dir/server/main_server.cpp.o.provides.build: CMakeFiles/server.dir/server/main_server.cpp.o
+CMakeFiles/server.dir/point.cpp.o.provides.build: CMakeFiles/server.dir/point.cpp.o
 
 
-CMakeFiles/server.dir/server/game/damagable.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/server/game/damagable.cpp.o: ../server/game/damagable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/server/game/damagable.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server/game/damagable.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/damagable.cpp
+CMakeFiles/server.dir/ray.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/ray.cpp.o: ../ray.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/ray.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/ray.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/ray.cpp
 
-CMakeFiles/server.dir/server/game/damagable.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/server/game/damagable.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/damagable.cpp > CMakeFiles/server.dir/server/game/damagable.cpp.i
+CMakeFiles/server.dir/ray.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/ray.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fer/Escritorio/Wolfenstein-Taller1/src/main/ray.cpp > CMakeFiles/server.dir/ray.cpp.i
 
-CMakeFiles/server.dir/server/game/damagable.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/server/game/damagable.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/damagable.cpp -o CMakeFiles/server.dir/server/game/damagable.cpp.s
+CMakeFiles/server.dir/ray.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/ray.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fer/Escritorio/Wolfenstein-Taller1/src/main/ray.cpp -o CMakeFiles/server.dir/ray.cpp.s
 
-CMakeFiles/server.dir/server/game/damagable.cpp.o.requires:
+CMakeFiles/server.dir/ray.cpp.o.requires:
 
-.PHONY : CMakeFiles/server.dir/server/game/damagable.cpp.o.requires
+.PHONY : CMakeFiles/server.dir/ray.cpp.o.requires
 
-CMakeFiles/server.dir/server/game/damagable.cpp.o.provides: CMakeFiles/server.dir/server/game/damagable.cpp.o.requires
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/damagable.cpp.o.provides.build
-.PHONY : CMakeFiles/server.dir/server/game/damagable.cpp.o.provides
+CMakeFiles/server.dir/ray.cpp.o.provides: CMakeFiles/server.dir/ray.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/ray.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/ray.cpp.o.provides
 
-CMakeFiles/server.dir/server/game/damagable.cpp.o.provides.build: CMakeFiles/server.dir/server/game/damagable.cpp.o
-
-
-CMakeFiles/server.dir/server/game/player.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/server/game/player.cpp.o: ../server/game/player.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/server/game/player.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server/game/player.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.cpp
-
-CMakeFiles/server.dir/server/game/player.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/server/game/player.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.cpp > CMakeFiles/server.dir/server/game/player.cpp.i
-
-CMakeFiles/server.dir/server/game/player.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/server/game/player.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.cpp -o CMakeFiles/server.dir/server/game/player.cpp.s
-
-CMakeFiles/server.dir/server/game/player.cpp.o.requires:
-
-.PHONY : CMakeFiles/server.dir/server/game/player.cpp.o.requires
-
-CMakeFiles/server.dir/server/game/player.cpp.o.provides: CMakeFiles/server.dir/server/game/player.cpp.o.requires
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/player.cpp.o.provides.build
-.PHONY : CMakeFiles/server.dir/server/game/player.cpp.o.provides
-
-CMakeFiles/server.dir/server/game/player.cpp.o.provides.build: CMakeFiles/server.dir/server/game/player.cpp.o
+CMakeFiles/server.dir/ray.cpp.o.provides.build: CMakeFiles/server.dir/ray.cpp.o
 
 
 CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o: ../server/game/guns/chain_cannon.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/chain_cannon.cpp
 
 CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.i: cmake_force
@@ -179,7 +131,7 @@ CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o.provides.build: CMakeF
 
 CMakeFiles/server.dir/server/game/guns/gun.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/server/game/guns/gun.cpp.o: ../server/game/guns/gun.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/server/game/guns/gun.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/server/game/guns/gun.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server/game/guns/gun.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/gun.cpp
 
 CMakeFiles/server.dir/server/game/guns/gun.cpp.i: cmake_force
@@ -203,7 +155,7 @@ CMakeFiles/server.dir/server/game/guns/gun.cpp.o.provides.build: CMakeFiles/serv
 
 CMakeFiles/server.dir/server/game/guns/knife.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/server/game/guns/knife.cpp.o: ../server/game/guns/knife.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server.dir/server/game/guns/knife.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/server/game/guns/knife.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server/game/guns/knife.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/knife.cpp
 
 CMakeFiles/server.dir/server/game/guns/knife.cpp.i: cmake_force
@@ -227,7 +179,7 @@ CMakeFiles/server.dir/server/game/guns/knife.cpp.o.provides.build: CMakeFiles/se
 
 CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o: ../server/game/guns/machine_gun.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/machine_gun.cpp
 
 CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.i: cmake_force
@@ -251,7 +203,7 @@ CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o.provides.build: CMakeFi
 
 CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/server/game/guns/pistol.cpp.o: ../server/game/guns/pistol.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/server.dir/server/game/guns/pistol.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server.dir/server/game/guns/pistol.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server/game/guns/pistol.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/pistol.cpp
 
 CMakeFiles/server.dir/server/game/guns/pistol.cpp.i: cmake_force
@@ -275,7 +227,7 @@ CMakeFiles/server.dir/server/game/guns/pistol.cpp.o.provides.build: CMakeFiles/s
 
 CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o: ../server/game/guns/rocket_launcher.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/rocket_launcher.cpp
 
 CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.i: cmake_force
@@ -297,9 +249,105 @@ CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o.provides: CMakeFile
 CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o.provides.build: CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o
 
 
+CMakeFiles/server.dir/server/game/player.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/server/game/player.cpp.o: ../server/game/player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/server.dir/server/game/player.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server/game/player.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.cpp
+
+CMakeFiles/server.dir/server/game/player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/server/game/player.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.cpp > CMakeFiles/server.dir/server/game/player.cpp.i
+
+CMakeFiles/server.dir/server/game/player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/server/game/player.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.cpp -o CMakeFiles/server.dir/server/game/player.cpp.s
+
+CMakeFiles/server.dir/server/game/player.cpp.o.requires:
+
+.PHONY : CMakeFiles/server.dir/server/game/player.cpp.o.requires
+
+CMakeFiles/server.dir/server/game/player.cpp.o.provides: CMakeFiles/server.dir/server/game/player.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/player.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/server/game/player.cpp.o.provides
+
+CMakeFiles/server.dir/server/game/player.cpp.o.provides.build: CMakeFiles/server.dir/server/game/player.cpp.o
+
+
+CMakeFiles/server.dir/server/game/map.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/server/game/map.cpp.o: ../server/game/map.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/server.dir/server/game/map.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server/game/map.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/map.cpp
+
+CMakeFiles/server.dir/server/game/map.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/server/game/map.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/map.cpp > CMakeFiles/server.dir/server/game/map.cpp.i
+
+CMakeFiles/server.dir/server/game/map.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/server/game/map.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/map.cpp -o CMakeFiles/server.dir/server/game/map.cpp.s
+
+CMakeFiles/server.dir/server/game/map.cpp.o.requires:
+
+.PHONY : CMakeFiles/server.dir/server/game/map.cpp.o.requires
+
+CMakeFiles/server.dir/server/game/map.cpp.o.provides: CMakeFiles/server.dir/server/game/map.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/map.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/server/game/map.cpp.o.provides
+
+CMakeFiles/server.dir/server/game/map.cpp.o.provides.build: CMakeFiles/server.dir/server/game/map.cpp.o
+
+
+CMakeFiles/server.dir/server/config_loader.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/server/config_loader.cpp.o: ../server/config_loader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/server.dir/server/config_loader.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server/config_loader.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/config_loader.cpp
+
+CMakeFiles/server.dir/server/config_loader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/server/config_loader.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/config_loader.cpp > CMakeFiles/server.dir/server/config_loader.cpp.i
+
+CMakeFiles/server.dir/server/config_loader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/server/config_loader.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/config_loader.cpp -o CMakeFiles/server.dir/server/config_loader.cpp.s
+
+CMakeFiles/server.dir/server/config_loader.cpp.o.requires:
+
+.PHONY : CMakeFiles/server.dir/server/config_loader.cpp.o.requires
+
+CMakeFiles/server.dir/server/config_loader.cpp.o.provides: CMakeFiles/server.dir/server/config_loader.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/config_loader.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/server/config_loader.cpp.o.provides
+
+CMakeFiles/server.dir/server/config_loader.cpp.o.provides.build: CMakeFiles/server.dir/server/config_loader.cpp.o
+
+
+CMakeFiles/server.dir/server/main_server.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/server/main_server.cpp.o: ../server/main_server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/server.dir/server/main_server.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server/main_server.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/main_server.cpp
+
+CMakeFiles/server.dir/server/main_server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/server/main_server.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/main_server.cpp > CMakeFiles/server.dir/server/main_server.cpp.i
+
+CMakeFiles/server.dir/server/main_server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/server/main_server.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/main_server.cpp -o CMakeFiles/server.dir/server/main_server.cpp.s
+
+CMakeFiles/server.dir/server/main_server.cpp.o.requires:
+
+.PHONY : CMakeFiles/server.dir/server/main_server.cpp.o.requires
+
+CMakeFiles/server.dir/server/main_server.cpp.o.provides: CMakeFiles/server.dir/server/main_server.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/main_server.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/server/main_server.cpp.o.provides
+
+CMakeFiles/server.dir/server/main_server.cpp.o.provides.build: CMakeFiles/server.dir/server/main_server.cpp.o
+
+
 CMakeFiles/server.dir/common/socket.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/common/socket.cpp.o: ../common/socket.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/server.dir/common/socket.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/server.dir/common/socket.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/common/socket.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/common/socket.cpp
 
 CMakeFiles/server.dir/common/socket.cpp.i: cmake_force
@@ -323,7 +371,7 @@ CMakeFiles/server.dir/common/socket.cpp.o.provides.build: CMakeFiles/server.dir/
 
 CMakeFiles/server.dir/common/socket_error.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/common/socket_error.cpp.o: ../common/socket_error.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/server.dir/common/socket_error.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/server.dir/common/socket_error.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/common/socket_error.cpp.o -c /home/fer/Escritorio/Wolfenstein-Taller1/src/main/common/socket_error.cpp
 
 CMakeFiles/server.dir/common/socket_error.cpp.i: cmake_force
@@ -347,38 +395,42 @@ CMakeFiles/server.dir/common/socket_error.cpp.o.provides.build: CMakeFiles/serve
 
 # Object files for target server
 server_OBJECTS = \
-"CMakeFiles/server.dir/server/config_loader.cpp.o" \
-"CMakeFiles/server.dir/server/main_server.cpp.o" \
-"CMakeFiles/server.dir/server/game/damagable.cpp.o" \
-"CMakeFiles/server.dir/server/game/player.cpp.o" \
+"CMakeFiles/server.dir/point.cpp.o" \
+"CMakeFiles/server.dir/ray.cpp.o" \
 "CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o" \
 "CMakeFiles/server.dir/server/game/guns/gun.cpp.o" \
 "CMakeFiles/server.dir/server/game/guns/knife.cpp.o" \
 "CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o" \
 "CMakeFiles/server.dir/server/game/guns/pistol.cpp.o" \
 "CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o" \
+"CMakeFiles/server.dir/server/game/player.cpp.o" \
+"CMakeFiles/server.dir/server/game/map.cpp.o" \
+"CMakeFiles/server.dir/server/config_loader.cpp.o" \
+"CMakeFiles/server.dir/server/main_server.cpp.o" \
 "CMakeFiles/server.dir/common/socket.cpp.o" \
 "CMakeFiles/server.dir/common/socket_error.cpp.o"
 
 # External object files for target server
 server_EXTERNAL_OBJECTS =
 
-server: CMakeFiles/server.dir/server/config_loader.cpp.o
-server: CMakeFiles/server.dir/server/main_server.cpp.o
-server: CMakeFiles/server.dir/server/game/damagable.cpp.o
-server: CMakeFiles/server.dir/server/game/player.cpp.o
+server: CMakeFiles/server.dir/point.cpp.o
+server: CMakeFiles/server.dir/ray.cpp.o
 server: CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o
 server: CMakeFiles/server.dir/server/game/guns/gun.cpp.o
 server: CMakeFiles/server.dir/server/game/guns/knife.cpp.o
 server: CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o
 server: CMakeFiles/server.dir/server/game/guns/pistol.cpp.o
 server: CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o
+server: CMakeFiles/server.dir/server/game/player.cpp.o
+server: CMakeFiles/server.dir/server/game/map.cpp.o
+server: CMakeFiles/server.dir/server/config_loader.cpp.o
+server: CMakeFiles/server.dir/server/main_server.cpp.o
 server: CMakeFiles/server.dir/common/socket.cpp.o
 server: CMakeFiles/server.dir/common/socket_error.cpp.o
 server: CMakeFiles/server.dir/build.make
 server: common/third-party/yaml-cpp/libyaml-cpp.a
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -386,16 +438,18 @@ CMakeFiles/server.dir/build: server
 
 .PHONY : CMakeFiles/server.dir/build
 
-CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server/config_loader.cpp.o.requires
-CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server/main_server.cpp.o.requires
-CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server/game/damagable.cpp.o.requires
-CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server/game/player.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/point.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/ray.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server/game/guns/gun.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server/game/guns/knife.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server/game/guns/machine_gun.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server/game/guns/pistol.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server/game/player.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server/game/map.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server/config_loader.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server/main_server.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/common/socket.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/common/socket_error.cpp.o.requires
 

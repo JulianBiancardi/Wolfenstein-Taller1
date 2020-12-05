@@ -13,6 +13,9 @@ class ConfigLoader {
 
         std::string sv_port;
 
+        int player_health;
+        int player_bullets;
+
         int knife_range;
         int chain_cannon_bullet_required;
         int chain_cannon_base_precision;

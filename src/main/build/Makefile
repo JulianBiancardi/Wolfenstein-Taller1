@@ -593,6 +593,60 @@ common/socket_error.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/common/socket_error.cpp.s
 .PHONY : common/socket_error.cpp.s
 
+point.o: point.cpp.o
+
+.PHONY : point.o
+
+# target to build an object file
+point.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/point.cpp.o
+.PHONY : point.cpp.o
+
+point.i: point.cpp.i
+
+.PHONY : point.i
+
+# target to preprocess a source file
+point.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/point.cpp.i
+.PHONY : point.cpp.i
+
+point.s: point.cpp.s
+
+.PHONY : point.s
+
+# target to generate assembly for a file
+point.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/point.cpp.s
+.PHONY : point.cpp.s
+
+ray.o: ray.cpp.o
+
+.PHONY : ray.o
+
+# target to build an object file
+ray.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/ray.cpp.o
+.PHONY : ray.cpp.o
+
+ray.i: ray.cpp.i
+
+.PHONY : ray.i
+
+# target to preprocess a source file
+ray.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/ray.cpp.i
+.PHONY : ray.cpp.i
+
+ray.s: ray.cpp.s
+
+.PHONY : ray.s
+
+# target to generate assembly for a file
+ray.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/ray.cpp.s
+.PHONY : ray.cpp.s
+
 server/config_loader.o: server/config_loader.cpp.o
 
 .PHONY : server/config_loader.o
@@ -619,33 +673,6 @@ server/config_loader.s: server/config_loader.cpp.s
 server/config_loader.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/config_loader.cpp.s
 .PHONY : server/config_loader.cpp.s
-
-server/game/damagable.o: server/game/damagable.cpp.o
-
-.PHONY : server/game/damagable.o
-
-# target to build an object file
-server/game/damagable.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/damagable.cpp.o
-.PHONY : server/game/damagable.cpp.o
-
-server/game/damagable.i: server/game/damagable.cpp.i
-
-.PHONY : server/game/damagable.i
-
-# target to preprocess a source file
-server/game/damagable.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/damagable.cpp.i
-.PHONY : server/game/damagable.cpp.i
-
-server/game/damagable.s: server/game/damagable.cpp.s
-
-.PHONY : server/game/damagable.s
-
-# target to generate assembly for a file
-server/game/damagable.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/damagable.cpp.s
-.PHONY : server/game/damagable.cpp.s
 
 server/game/guns/chain_cannon.o: server/game/guns/chain_cannon.cpp.o
 
@@ -809,6 +836,33 @@ server/game/guns/rocket_launcher.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.s
 .PHONY : server/game/guns/rocket_launcher.cpp.s
 
+server/game/map.o: server/game/map.cpp.o
+
+.PHONY : server/game/map.o
+
+# target to build an object file
+server/game/map.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/map.cpp.o
+.PHONY : server/game/map.cpp.o
+
+server/game/map.i: server/game/map.cpp.i
+
+.PHONY : server/game/map.i
+
+# target to preprocess a source file
+server/game/map.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/map.cpp.i
+.PHONY : server/game/map.cpp.i
+
+server/game/map.s: server/game/map.cpp.s
+
+.PHONY : server/game/map.s
+
+# target to generate assembly for a file
+server/game/map.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/game/map.cpp.s
+.PHONY : server/game/map.cpp.s
+
 server/game/player.o: server/game/player.cpp.o
 
 .PHONY : server/game/player.o
@@ -910,12 +964,15 @@ help:
 	@echo "... common/socket_error.o"
 	@echo "... common/socket_error.i"
 	@echo "... common/socket_error.s"
+	@echo "... point.o"
+	@echo "... point.i"
+	@echo "... point.s"
+	@echo "... ray.o"
+	@echo "... ray.i"
+	@echo "... ray.s"
 	@echo "... server/config_loader.o"
 	@echo "... server/config_loader.i"
 	@echo "... server/config_loader.s"
-	@echo "... server/game/damagable.o"
-	@echo "... server/game/damagable.i"
-	@echo "... server/game/damagable.s"
 	@echo "... server/game/guns/chain_cannon.o"
 	@echo "... server/game/guns/chain_cannon.i"
 	@echo "... server/game/guns/chain_cannon.s"
@@ -934,6 +991,9 @@ help:
 	@echo "... server/game/guns/rocket_launcher.o"
 	@echo "... server/game/guns/rocket_launcher.i"
 	@echo "... server/game/guns/rocket_launcher.s"
+	@echo "... server/game/map.o"
+	@echo "... server/game/map.i"
+	@echo "... server/game/map.s"
 	@echo "... server/game/player.o"
 	@echo "... server/game/player.i"
 	@echo "... server/game/player.s"

@@ -390,6 +390,32 @@ typeinfo
 string
 -
 
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/matrix.h
+algorithm
+-
+cstdio
+-
+vector
+-
+
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.cpp
+point.h
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
+cmath
+-
+iostream
+-
+
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
+
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/ray.cpp
+ray.h
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/ray.h
+
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/ray.h
+point.h
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
+
 /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/config_loader.cpp
 config_loader.h
 /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/config_loader.h
@@ -401,12 +427,6 @@ fstream
 -
 yaml-cpp/yaml.h
 /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/yaml-cpp/yaml.h
-
-/home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/damagable.cpp
-damagable.h
-/home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/damagable.h
-
-/home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/damagable.h
 
 /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/chain_cannon.cpp
 chain_cannon.h
@@ -464,11 +484,29 @@ rocket_launcher.h
 gun.h
 /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/gun.h
 
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/map.cpp
+iostream
+-
+map.h
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/map.h
+
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/map.h
+../../matrix.h
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/matrix.h
+../../point.h
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
+
 /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.cpp
 player.h
 /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.h
 
 /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.h
+../config_loader.h
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/config_loader.h
+../../ray.h
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/ray.h
+map.h
+/home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/map.h
 
 /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/main_server.cpp
 iostream

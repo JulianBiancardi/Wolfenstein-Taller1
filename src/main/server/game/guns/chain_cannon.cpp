@@ -12,6 +12,6 @@ void ChainCannon::shoot(Player &shooter) {
     std::mt19937_64 mt(rd()); //Genero un valor pseudo-aleatorio de 64 bits.
     std::uniform_int_distribution<int> damage_dist(1, 10);
 
-    //   shooter.receive_damage(damage_dist(mt));
+    shooter.receive_damage(damage_dist(mt));
 
 }
