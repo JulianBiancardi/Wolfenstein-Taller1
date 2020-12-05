@@ -15,20 +15,18 @@ int main(int argc, char** argv) {
   Window window("Bitmap Testing", SCREEN_WIDTH, SCREEN_HEIGHT);
   window.fill(255, 255, 255, 255);
 
-  Point pos(0, 0);
-  printf("pos_point:\n%d %d\n", (int)pos.getX(), (int)pos.getY());
+  Point pos0(0, 0);
+  Point pos1(64, 64);
+  Point pos3(64, 0);
+  Point pos2(0, 64);
   Rectangle slice(0, 64, 0, 64);
 
-  Image image(window.get_renderer(), "res/walls/grey_brick_wall.bmp");
-  image.draw(pos, slice);
-  /*
-    SDL_Rect rect3;
-    rect3.x = 10;
-    rect3.y = 74;
-    rect3.w = 64;
-    rect3.h = 64;
-    SDL_Texture* texture = image.get_texture();
-    SDL_RenderCopy(window.get_renderer(), texture, NULL, &rect3);*/
+  std::string source("res/walls/grey_brick_wall.bmp");
+  Image image(window.get_renderer(), source);
+  image.draw(pos0, &slice);
+  image.draw(pos1, &slice, 6, 6);
+  image.draw(pos2, &slice);
+  image.draw(pos3, &slice);
 
   window.update();
   SDL_Delay(5000);
