@@ -1,8 +1,8 @@
 #include "pistol.h"
 
 Pistol::Pistol(){
-    bullet_required = ConfigLoader::get_init_configs().pistol_bullet_required;
-    base_precision = ConfigLoader::get_init_configs().pistol_base_precision;
+//    bullet_required = ConfigLoader::get_init_configs().pistol_bullet_required;
+//    base_precision = ConfigLoader::get_init_configs().pistol_base_precision;
 }
 
 void Pistol::shoot(Player &shooter) {

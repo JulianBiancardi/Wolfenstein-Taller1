@@ -4,9 +4,10 @@
 #include "../../ray.h"
 #include "map.h"
 
-//#include "guns/gun.h"
+//#include "guns/chain_cannon.h"
+#include <iostream>
 
-
+//class Gun;
 class Player {
  private:
   Ray angled_position;
@@ -15,6 +16,9 @@ class Player {
   int shot_bullets;
   int health;
   int points;
+
+  //Gun& gun;
+  //std::list<Gun&> guns;
   //
 
  public:
@@ -36,14 +40,16 @@ class Player {
   void move_down_right();
   void move_down_left();
   //
-  void shoot();
+  void shoot(Player& shot_player);
   bool has_bullets(int amount);
   void decrease_bullets(int amount);
   void receive_damage(int amount);
- // bool add_gun_if_hasnt(Gun gun);
+  bool add_gun_if_hasnt(/*Gun& gun*/);
   void add_points(int amount);
   void add_health(int amount);
   bool add_health_if_hass_less(int amount, int less_than);
+
+  int get_health();
   //
   Point get_position(){ return angled_position.get_origin(); };
 };

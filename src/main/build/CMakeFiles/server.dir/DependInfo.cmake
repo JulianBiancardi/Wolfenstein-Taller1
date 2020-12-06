@@ -6,6 +6,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/common/socket.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/common/socket.cpp.o"
   "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/common/socket_error.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/common/socket_error.cpp.o"
+  "/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/game_test/gun_tests.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/game_test/gun_tests.cpp.o"
+  "/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/main_tests.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/main_tests.cpp.o"
+  "/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/matrix_tests.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/matrix_tests.cpp.o"
+  "/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/point_tests.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/point_tests.cpp.o"
+  "/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.cpp.o"
+  "/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.cpp.o"
   "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/point.cpp.o"
   "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/ray.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/ray.cpp.o"
   "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/config_loader.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/server/config_loader.cpp.o"
@@ -17,7 +23,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/rocket_launcher.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/server/game/guns/rocket_launcher.cpp.o"
   "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/map.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/server/game/map.cpp.o"
   "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/server/game/player.cpp.o"
-  "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/main_server.cpp" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/CMakeFiles/server.dir/server/main_server.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

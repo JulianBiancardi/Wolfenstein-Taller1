@@ -8,6 +8,118 @@ CMakeFiles/server.dir/common/socket.cpp.o
 CMakeFiles/server.dir/common/socket_error.cpp.o
  /home/fer/Escritorio/Wolfenstein-Taller1/src/main/common/socket_error.cpp
  /home/fer/Escritorio/Wolfenstein-Taller1/src/main/common/socket_error.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/game_test/gun_tests.cpp.o
+ ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/dll.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emitter.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emitterdef.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emittermanip.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emitterstyle.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/exceptions.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/mark.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/convert.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/impl.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator_fwd.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/memory.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_data.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_iterator.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_ref.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/emit.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/impl.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/iterator.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/node.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/parse.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/ptr.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/type.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/noexcept.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/null.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/ostream_wrapper.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/parser.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/traits.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/matrix.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/ray.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/config_loader.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/chain_cannon.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/gun.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/knife.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/machine_gun.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/pistol.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/rocket_launcher.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/map.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/game_test/gun_tests.cpp
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/game_test/gun_tests.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/main_tests.cpp.o
+ ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/dll.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emitter.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emitterdef.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emittermanip.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emitterstyle.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/exceptions.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/mark.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/convert.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/impl.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator_fwd.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/memory.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_data.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_iterator.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_ref.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/emit.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/impl.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/iterator.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/node.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/parse.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/ptr.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/type.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/noexcept.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/null.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/ostream_wrapper.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/parser.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/traits.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/matrix.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/ray.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/config_loader.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/gun.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/machine_gun.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/map.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/game_test/gun_tests.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/main_tests.cpp
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/matrix_tests.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/point_tests.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/matrix_tests.cpp.o
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/matrix.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/matrix_tests.cpp
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/matrix_tests.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/point_tests.cpp.o
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/point_tests.cpp
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/point_tests.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.cpp.o
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/ray.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.cpp
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.cpp.o
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.cpp
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
 CMakeFiles/server.dir/point.cpp.o
  /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.cpp
  /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
@@ -338,44 +450,3 @@ CMakeFiles/server.dir/server/game/player.cpp.o
  /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/map.h
  /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.cpp
  /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.h
-CMakeFiles/server.dir/server/main_server.cpp.o
- ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/dll.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/emitter.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/emitterdef.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/emittermanip.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/emitterstyle.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/exceptions.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/mark.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/convert.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/impl.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator_fwd.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/memory.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_data.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_iterator.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_ref.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/emit.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/impl.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/iterator.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/node.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/parse.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/ptr.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/node/type.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/noexcept.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/null.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/ostream_wrapper.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/parser.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/traits.h
- ../common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
- /home/fer/Escritorio/Wolfenstein-Taller1/src/main/matrix.h
- /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
- /home/fer/Escritorio/Wolfenstein-Taller1/src/main/ray.h
- /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/config_loader.h
- /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/chain_cannon.h
- /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/guns/gun.h
- /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/map.h
- /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/game/player.h
- /home/fer/Escritorio/Wolfenstein-Taller1/src/main/server/main_server.cpp

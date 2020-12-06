@@ -40,47 +40,52 @@ int static gun_creation_test() {
 
 int static chain_cannon_check_damaged() {
     ChainCannon chainCannon;
-    Player player;
+    Player player(0,0,0);
     int value = 1;
     chainCannon.shoot(player);
 
-//    value = player.get_health();
-    if (value>=1 && value<10) return NO_ERROR;
+    value = player.get_health();
+//    if (value>=1 && value<=10) return NO_ERROR;
+    if (value>=CL::player_health-10 && value<CL::player_health) return NO_ERROR;
 
     return ERROR;
 }
 
 int static machine_gun_check_damaged() {
     MachineGun machineGun;
-    Player player;
+    Player player(0,0,0);
     int value = 1;
     machineGun.shoot(player);
 
-//    value = player.get_health();
-    if (value>=1 && value<10) return NO_ERROR;
+    value = player.get_health();
+//    if (value>=1 && value<=10) return NO_ERROR;
+    if (value>=CL::player_health-10 && value<CL::player_health) return NO_ERROR;
 
     return ERROR;
 }
 
 int static pistol_check_damaged() {
     Pistol pistol;
-    Player player;
+    Player player(0,0,0);
     int value = 1;
     pistol.shoot(player);
 
-//    value = player.get_health();
-    if (value>=1 && value<10) return NO_ERROR;
+    value = player.get_health();
+//    if (value>=1 && value<=10) return NO_ERROR;
+    if (value>=CL::player_health-10 && value<CL::player_health) return NO_ERROR;
 
     return ERROR;
 }
 int static rocket_launcher_check_damaged() {
+
     RocketLauncher rocketLauncher;
-    Player player;
+    Player player(0,0,0);
     int value = 1;
     rocketLauncher.shoot(player);
 
-//    value = player.get_health();
-    if (value>=1 && value<10) return NO_ERROR;
+    value = player.get_health();
+//    if (value>=1 && value<=10) return NO_ERROR;
+    if (value>=CL::player_health-10 && value<CL::player_health) return NO_ERROR;
 
     return ERROR;
 }

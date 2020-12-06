@@ -2,16 +2,15 @@
 
 Player::Player(Point origin, double angle) :
         angled_position(origin,angle), shot_bullets(0), points(0){
-    health = ConfigLoader::get_init_configs().player_health;
-    bullets = ConfigLoader::get_init_configs().player_bullets;
+    health = ConfigLoader::player_health;
+    bullets = ConfigLoader::player_bullets;
 }
 
 Player::Player(int x, int y, double angle) :
         angled_position(x,y,angle), shot_bullets(0), points(0){
-    health = ConfigLoader::get_init_configs().player_health;
-    bullets = ConfigLoader::get_init_configs().player_bullets;
+    health = ConfigLoader::player_health;
+    bullets = ConfigLoader::player_bullets;
 }
-
 
 void Player::move_from_current_position_if_can(int x, int y){
   Ray next_position(angled_position.get_origin().getX() + x, 
@@ -53,7 +52,7 @@ void Player::move_down_left(){
   move_from_current_position_if_can(-1, 1);
 }
 
-void Player::shoot() {
+void Player::shoot(Player& shot_player) {
 
 }
 
@@ -69,9 +68,10 @@ void Player::receive_damage(int amount) {
     health-=amount;
 }
 
-//bool Player::add_gun_if_hasnt(Gun gun) {
-  //  return false;
-//}
+bool Player::add_gun_if_hasnt(/*Gun & gun*/) {
+
+    return false;
+}
 
 void Player::add_points(int amount) {
     points+=amount;
@@ -87,5 +87,9 @@ bool Player::add_health_if_hass_less(int amount, int less_than) {
         return true;
     }
     return false;
+}
+
+int Player::get_health() {
+    return health;
 }
 
