@@ -3,7 +3,7 @@
   name: "Air"
 1:
   name: "Rock Wall"
-  image: "resources/images/IMG_RockWall.png"
+  image: "/home/santiagoczop/Taller/tps/tp4/res/walls/grey_brick_wall.bmp"
   sound: ""
 2: 
   name: "Wood Wall"
