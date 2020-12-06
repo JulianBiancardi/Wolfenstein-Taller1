@@ -43,8 +43,6 @@ class Window {
   /* Manually update the rendering. */
   void update();
 
-  SDL_Surface* get_surface();    // TODO Delete
-  void update2();                // TODO Delete
   SDL_Renderer* get_renderer();  // TODO Delete
 };
 
