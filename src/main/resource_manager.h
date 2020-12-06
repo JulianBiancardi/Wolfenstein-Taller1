@@ -5,19 +5,21 @@
 
 #include "resource.h"
 #include "sdl/image.h"
+#include "sdl/window.h"
 
 class ResourceManager {
  private:
   std::unordered_map<int, Resource> resources;
+  Window& window;
 
  public:
-  ResourceManager();
+  ResourceManager(Window& window);
   ~ResourceManager();
 
   Image* get_image(int id);
 };
 
-ResourceManager::ResourceManager() {}
+ResourceManager::ResourceManager(Window& window) : window(window) {}
 
 ResourceManager::~ResourceManager() {}
 
@@ -27,7 +29,7 @@ Image* ResourceManager::get_image(int id) {
   }
   Resource& res = resources[id];
   if (!res.is_loaded()) {
-    res.load();
+    res.load(window.get_renderer());
   }
   return res.get_image();
 }

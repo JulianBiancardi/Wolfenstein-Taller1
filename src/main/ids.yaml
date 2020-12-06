@@ -1,16 +1,12 @@
 --- 
-- id: 0
-  name: "Stone Wall"
-  image: "resources/images/IMG_StoneWall.png"
-  icon: "resources/images/IMG_StoneWall.png"
-  sound:
-- id: 1
-  name: "Wood Wall"
-  image: "resources/images/IMG_WoodWall.png"
-  icon: "resources/images/IMG_WoodWall.png"
-  sound:
-- id: 2
+0:
+  name: "Air"
+1:
   name: "Rock Wall"
   image: "resources/images/IMG_RockWall.png"
-  icon: "resources/images/IMG_RockWall.png"
-  sound:
+  sound: ""
+2: 
+  name: "Wood Wall"
+  image: "resources/images/IMG_WoodWall.png"
+  sound: ""
+...
