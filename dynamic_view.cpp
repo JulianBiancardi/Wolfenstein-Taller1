@@ -11,7 +11,7 @@
 #define SCREEN_WIDTH_HALF (SCREEN_WIDTH / 2)
 #define SCREEN_HEIGHT_HALF (SCREEN_HEIGHT / 2)
 
-#define SCALING_FACTOR 60
+#define SCALING_FACTOR 1
 #define CELL_SIZE 64
 #define WALL_SIZE (SCALING_FACTOR * SCREEN_HEIGHT)
 #define WALL 1
@@ -33,13 +33,11 @@ void fill_cell(Matrix<int>& map, int i, int j, int data);
 int main(int argc, char** argv) {
   Matrix<int> map_data(10, 10, 0);
   put_data(map_data);
-  print_map(map_data);
-  Matrix<int> map(640, 640, 0);
-  draw_map(map_data, map);
+  Map map(map_data);
 
   Window window("Hello World!", SCREEN_WIDTH, SCREEN_HEIGHT);
 
-  Ray player(100, 100, 0);
+  Ray player(1.5, 1.5, 0);
 
   SDL_Event event;
   bool run = true;
@@ -132,17 +130,17 @@ void put_data(Matrix<int>& map_data) {
     map_data(9, i) = WALL;  // RIGHT
   }
   /*
-  map_data(7, 2) = WALL;
-  map_data(6, 2) = WALL;
-  map_data(7, 3) = WALL;
+    map_data(7, 2) = WALL;
+    map_data(6, 2) = WALL;
+    map_data(7, 3) = WALL;
 
-  map_data(2, 6) = WALL;
-  map_data(3, 6) = WALL;
-  map_data(4, 6) = WALL;
-  map_data(3, 5) = WALL;
-  map_data(3, 7) = WALL;
+    map_data(2, 6) = WALL;
+    map_data(3, 6) = WALL;
+    map_data(4, 6) = WALL;
+    map_data(3, 5) = WALL;
+    map_data(3, 7) = WALL;
 
-  map_data(6, 5) = WALL;*/
+    map_data(6, 5) = WALL;*/
 
   map_data(7, 2) = GREEN_WALL;
   map_data(6, 2) = BLUE_WALL;
@@ -157,51 +155,24 @@ void put_data(Matrix<int>& map_data) {
   map_data(6, 5) = PINK_WALL;
 }
 
-void draw_map(Matrix<int>& map_data, Matrix<int>& map) {
-  for (int i = 0; i < map_data.get_columns(); i++) {
-    for (int j = 0; j < map_data.get_rows(); j++) {
-      int data = map_data(i, j);
-      fill_cell(map, i, j, data);
-    }
-  }
-}
-
-void fill_cell(Matrix<int>& map, int i, int j, int data) {
-  for (int x = CELL_SIZE * i; x < CELL_SIZE * i + CELL_SIZE; x++) {
-    for (int y = CELL_SIZE * j; y < CELL_SIZE * j + CELL_SIZE; y++) {
-      map(x, y) = data;
-    }
-  }
-}
-
-void print_map(Matrix<int>& map) {
-  for (int i = 0; i < map.get_columns(); i++) {
-    for (int j = 0; j < map.get_rows(); j++) {
-      std::cout << map(i, j);
-    }
-    std::cout << std::endl;
-  }
-  std::cout << std::endl;
-}
-
 void static handle_key_press(SDL_Keycode& key, Ray& player) {
   double angle = player.get_angle();
   double cos_angle = cos(angle);
   double sin_angle = sin(angle);
   Point position = player.get_origin();
-  int x = position.getX();
-  int y = position.getY();
+  double x = position.getX();
+  double y = position.getY();
   switch (key) {
     case SDLK_w:
       printf("W\n");
       if (cos_angle > 0.9) {
-        player.set_origin(x + 5, y);
+        player.set_origin(x + 0.1, y);
       } else if (cos_angle < -0.9) {
-        player.set_origin(x - 5, y);
+        player.set_origin(x - 0.1, y);
       } else if (sin_angle > 0.9) {
-        player.set_origin(x, y - 5);
+        player.set_origin(x, y - 0.1);
       } else if (sin_angle < -0.9) {
-        player.set_origin(x, y + 5);
+        player.set_origin(x, y + 0.1);
       }
       break;
     case SDLK_s:

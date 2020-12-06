@@ -3,17 +3,17 @@
 
 class Point {
  private:
-  int x;
-  int y;
+  double x;
+  double y;
 
  public:
-  explicit Point(int x, int y);
+  explicit Point(double x, double y);
   Point(const Point& other);
   Point& operator=(const Point& other);
   ~Point();
 
-  int getX() const;
-  int getY() const;
+  double getX() const;
+  double getY() const;
   double static distance(const Point& point2, const Point& point1);
 };
 

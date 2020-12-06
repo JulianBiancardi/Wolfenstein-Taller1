@@ -5,6 +5,8 @@
 
 #include <string>
 
+// TODO https:// github.com/Taller-de-Programacion/valgrind-supp-parser
+
 class Window {
  private:
   SDL_Window* window = nullptr;
@@ -42,6 +44,8 @@ class Window {
 
   /* Manually update the rendering. */
   void update();
+
+  SDL_Renderer* get_renderer();  // TODO Delete
 };
 
 #endif

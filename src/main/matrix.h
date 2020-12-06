@@ -2,7 +2,6 @@
 #define MATRIX_H
 
 #include <algorithm>
-#include <cstdio>  // TODO DELETE
 #include <vector>
 
 template <class T>
@@ -41,8 +40,7 @@ class Matrix {
   /* Return the element in the position x,y. */
   T& operator()(size_t x, size_t y) {
     if (x >= columns || y >= rows) {
-      // printf("(%ld, %ld) is out of range\n", x, y);
-      throw -1;
+      throw -1;  // TODO Add error
     }
     return matrix[x][y];
   }
