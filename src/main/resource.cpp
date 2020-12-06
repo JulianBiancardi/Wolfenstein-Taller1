@@ -5,6 +5,8 @@
 
 #include "yaml-cpp/yaml.h"
 
+Resource::Resource() : id(-1), loaded(false), image(NULL) {}
+
 Resource::Resource(int id) : id(id), loaded(false), image(NULL) {}
 
 Resource::~Resource() {

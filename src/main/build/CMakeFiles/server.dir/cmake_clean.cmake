@@ -14,6 +14,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/server.dir/ray.cpp.o"
   "CMakeFiles/server.dir/rectangle.cpp.o"
   "CMakeFiles/server.dir/resource.cpp.o"
+  "CMakeFiles/server.dir/resource_manager.cpp.o"
   "CMakeFiles/server.dir/sdl/image.cpp.o"
   "CMakeFiles/server.dir/sdl/sdl_error.cpp.o"
   "CMakeFiles/server.dir/sdl/surface.cpp.o"

@@ -27,6 +27,7 @@ FILE(GLOB MainFiles
 
         rectangle.cpp
         resource.cpp
+        resource_manager.cpp
         )
 FILE(GLOB SDLFiles
         sdl/*.cpp

@@ -12,6 +12,7 @@ class Resource {
   Image* image;
 
  public:
+  Resource();
   explicit Resource(int id);
   ~Resource();
 
