@@ -4,14 +4,14 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/fer/Escritorio/Wolfenstein-Taller1/src/main/common/third-party/yaml-cpp
-BuildDirectory: /home/fer/Escritorio/Wolfenstein-Taller1/src/main/build/common/third-party/yaml-cpp
+SourceDirectory: /home/santiagoczop/Taller/tps/tp4/src/main/common/third-party/yaml-cpp
+BuildDirectory: /home/santiagoczop/Taller/tps/tp4/src/main/build/common/third-party/yaml-cpp
 
 # Where to place the cost data store
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: fer-Lenovo-Y50-70
+Site: localhost.localdomain
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
 BuildName: Linux-c++
@@ -20,23 +20,13 @@ BuildName: Linux-c++
 LabelsForSubprojects: 
 
 # Submission information
-IsCDash: 
-CDashVersion: 
-QueryCDashVersion: 
-DropSite: 
-DropLocation: 
-DropSiteUser: 
-DropSitePassword: 
-DropSiteMode: 
-DropMethod: http
-TriggerSite: 
-ScpCommand: /usr/bin/scp
+SubmitURL: http://
 
 # Dashboard start time
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/fer/Escritorio/Wolfenstein-Taller1/src/main/common/third-party/yaml-cpp"
+ConfigureCommand: "/usr/bin/cmake" "/home/santiagoczop/Taller/tps/tp4/src/main/common/third-party/yaml-cpp"
 MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 
@@ -49,7 +39,7 @@ CVSCommand: CVSCOMMAND-NOTFOUND
 CVSUpdateOptions: -d -A -P
 
 # Subversion options
-SVNCommand: SVNCOMMAND-NOTFOUND
+SVNCommand: /usr/bin/svn
 SVNOptions: 
 SVNUpdateOptions: 
 
@@ -73,12 +63,14 @@ UpdateType:
 
 # Compiler info
 Compiler: /usr/bin/c++
-CompilerVersion: 7.5.0
+CompilerVersion: 10.2.1
 
 # Dynamic analysis (MemCheck)
 PurifyCommand: 
 ValgrindCommand: 
 ValgrindCommandOptions: 
+DrMemoryCommand: 
+DrMemoryCommandOptions: 
 MemoryCheckType: 
 MemoryCheckSanitizerOptions: 
 MemoryCheckCommand: /usr/bin/valgrind

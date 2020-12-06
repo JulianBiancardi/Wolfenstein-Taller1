@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/yaml-cpp-parse.dir/parse.cpp.o"
-  "parse.pdb"
   "parse"
+  "parse.pdb"
 )
 
 # Per-language clean rules from dependency scanning.
