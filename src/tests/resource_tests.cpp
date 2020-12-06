@@ -17,8 +17,8 @@ void resource_tests() {
 }
 
 int static creation_test() {
-  Resource res(0);
-  Resource res(1);
+  Resource res0(0);
+  Resource res1(1);
 
   return NO_ERROR;
 }
