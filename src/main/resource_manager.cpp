@@ -1,5 +1,7 @@
 #include "resource_manager.h"
 
+#include "yaml-cpp/yaml.h"
+
 ResourceManager::ResourceManager(Window& window) : window(window) {
   YAML::Node yaml_file = YAML::LoadFile("../ids.yaml");
 

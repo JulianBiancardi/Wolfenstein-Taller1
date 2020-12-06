@@ -6,7 +6,6 @@
 #include "resource.h"
 #include "sdl/image.h"
 #include "sdl/window.h"
-#include "yaml-cpp/yaml.h"
 
 class ResourceManager {
  private:
