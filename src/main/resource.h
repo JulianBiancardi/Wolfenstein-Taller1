@@ -8,9 +8,4 @@ class Resource {
   Resource(/* args */);
   ~Resource();
 };
-
-Resource::Resource(/* args */) {}
-
-Resource::~Resource() {}
-
 #endif
