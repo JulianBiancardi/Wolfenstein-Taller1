@@ -100,6 +100,8 @@ CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/main_tes
  /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/matrix_tests.h
  /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/point_tests.h
  /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.h
  /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
 CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/matrix_tests.cpp.o
  /home/fer/Escritorio/Wolfenstein-Taller1/src/main/matrix.h
@@ -117,6 +119,34 @@ CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_test
  /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.cpp
  /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.h
  /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.o
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/rectangle.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/rectangle.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/resource.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/resource_manager.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/sdl/image.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/sdl/surface.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/sdl/texture.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/sdl/window.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/rectangle.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/resource.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/sdl/image.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/sdl/surface.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/sdl/texture.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
 CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.cpp.o
  /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.cpp
  /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
@@ -127,6 +157,49 @@ CMakeFiles/server.dir/ray.cpp.o
  /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
  /home/fer/Escritorio/Wolfenstein-Taller1/src/main/ray.cpp
  /home/fer/Escritorio/Wolfenstein-Taller1/src/main/ray.h
+CMakeFiles/server.dir/rectangle.cpp.o
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/rectangle.cpp
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/rectangle.h
+CMakeFiles/server.dir/resource.cpp.o
+ ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/dll.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emitter.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emitterdef.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emittermanip.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emitterstyle.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/exceptions.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/mark.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/convert.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/impl.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator_fwd.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/memory.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_data.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_iterator.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_ref.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/emit.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/impl.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/iterator.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/node.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/parse.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/ptr.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/type.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/noexcept.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/null.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/ostream_wrapper.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/parser.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/traits.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/point.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/rectangle.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/resource.cpp
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/resource.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/sdl/image.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/sdl/surface.h
+ /home/fer/Escritorio/Wolfenstein-Taller1/src/main/sdl/texture.h
 CMakeFiles/server.dir/server/config_loader.cpp.o
  ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
  ../common/third-party/yaml-cpp/include/yaml-cpp/dll.h

@@ -728,6 +728,87 @@ home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.cpp.s
 .PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.cpp.s
 
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.o: home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.o
+
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.o
+
+# target to build an object file
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.o
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.o
+
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.i: home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.i
+
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.i
+
+# target to preprocess a source file
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.i
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.i
+
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.s: home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.s
+
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.s
+
+# target to generate assembly for a file
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.s
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.s
+
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.o: home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o
+
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.o
+
+# target to build an object file
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o
+
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.i: home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.i
+
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.i
+
+# target to preprocess a source file
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.i
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.i
+
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.s: home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.s
+
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.s
+
+# target to generate assembly for a file
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.s
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.s
+
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.o: home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o
+
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.o
+
+# target to build an object file
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o
+
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.i: home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.i
+
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.i
+
+# target to preprocess a source file
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.i
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.i
+
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.s: home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.s
+
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.s
+
+# target to generate assembly for a file
+home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.s
+.PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.s
+
 home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.o: home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.cpp.o
 
 .PHONY : home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.o
@@ -808,6 +889,60 @@ ray.s: ray.cpp.s
 ray.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/ray.cpp.s
 .PHONY : ray.cpp.s
+
+rectangle.o: rectangle.cpp.o
+
+.PHONY : rectangle.o
+
+# target to build an object file
+rectangle.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rectangle.cpp.o
+.PHONY : rectangle.cpp.o
+
+rectangle.i: rectangle.cpp.i
+
+.PHONY : rectangle.i
+
+# target to preprocess a source file
+rectangle.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rectangle.cpp.i
+.PHONY : rectangle.cpp.i
+
+rectangle.s: rectangle.cpp.s
+
+.PHONY : rectangle.s
+
+# target to generate assembly for a file
+rectangle.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rectangle.cpp.s
+.PHONY : rectangle.cpp.s
+
+resource.o: resource.cpp.o
+
+.PHONY : resource.o
+
+# target to build an object file
+resource.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/resource.cpp.o
+.PHONY : resource.cpp.o
+
+resource.i: resource.cpp.i
+
+.PHONY : resource.i
+
+# target to preprocess a source file
+resource.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/resource.cpp.i
+.PHONY : resource.cpp.i
+
+resource.s: resource.cpp.s
+
+.PHONY : resource.s
+
+# target to generate assembly for a file
+resource.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/resource.cpp.s
+.PHONY : resource.cpp.s
 
 server/config_loader.o: server/config_loader.cpp.o
 
@@ -1114,6 +1249,15 @@ help:
 	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.o"
 	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.i"
 	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.s"
+	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.o"
+	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.i"
+	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.s"
+	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.o"
+	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.i"
+	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.s"
+	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.o"
+	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.i"
+	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.s"
 	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.o"
 	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.i"
 	@echo "... home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.s"
@@ -1123,6 +1267,12 @@ help:
 	@echo "... ray.o"
 	@echo "... ray.i"
 	@echo "... ray.s"
+	@echo "... rectangle.o"
+	@echo "... rectangle.i"
+	@echo "... rectangle.s"
+	@echo "... resource.o"
+	@echo "... resource.i"
+	@echo "... resource.s"
 	@echo "... server/config_loader.o"
 	@echo "... server/config_loader.i"
 	@echo "... server/config_loader.s"

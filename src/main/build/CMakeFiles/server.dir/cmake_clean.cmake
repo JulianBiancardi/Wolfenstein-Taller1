@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/server.dir/point.cpp.o"
   "CMakeFiles/server.dir/ray.cpp.o"
+  "CMakeFiles/server.dir/rectangle.cpp.o"
+  "CMakeFiles/server.dir/resource.cpp.o"
   "CMakeFiles/server.dir/server/game/guns/chain_cannon.cpp.o"
   "CMakeFiles/server.dir/server/game/guns/gun.cpp.o"
   "CMakeFiles/server.dir/server/game/guns/knife.cpp.o"
@@ -17,6 +19,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/matrix_tests.cpp.o"
   "CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/point_tests.cpp.o"
   "CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.cpp.o"
+  "CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.o"
+  "CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o"
+  "CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o"
   "CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.cpp.o"
   "server.pdb"
   "server"

@@ -99,6 +99,8 @@ CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/main_tes
 CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/main_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/matrix_tests.h
 CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/main_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/point_tests.h
 CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/main_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/main_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/main_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.h
 CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/main_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
 
 CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/matrix_tests.cpp.o: ../matrix.h
@@ -117,6 +119,34 @@ CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_test
 CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.h
 CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/ray_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
 
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.o: ../point.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.o: ../rectangle.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/rectangle_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
+
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o: ../point.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o: ../rectangle.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o: ../resource.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o: ../resource_manager.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o: ../sdl/image.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o: ../sdl/surface.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o: ../sdl/texture.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o: ../sdl/window.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_manager_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
+
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o: ../point.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o: ../rectangle.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o: ../resource.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o: ../sdl/image.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o: ../sdl/surface.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o: ../sdl/texture.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.h
+CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/resource_tests.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
+
 CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.cpp
 CMakeFiles/server.dir/home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.cpp.o: /home/fer/Escritorio/Wolfenstein-Taller1/src/tests/tests_setup.h
 
@@ -126,6 +156,49 @@ CMakeFiles/server.dir/point.cpp.o: ../point.h
 CMakeFiles/server.dir/ray.cpp.o: ../point.h
 CMakeFiles/server.dir/ray.cpp.o: ../ray.cpp
 CMakeFiles/server.dir/ray.cpp.o: ../ray.h
+
+CMakeFiles/server.dir/rectangle.cpp.o: ../point.h
+CMakeFiles/server.dir/rectangle.cpp.o: ../rectangle.cpp
+CMakeFiles/server.dir/rectangle.cpp.o: ../rectangle.h
+
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/dll.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/emitter.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/emitterdef.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/emittermanip.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/emitterstyle.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/exceptions.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/mark.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/convert.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/impl.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator_fwd.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/memory.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_data.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_iterator.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_ref.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/emit.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/impl.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/iterator.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/node.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/parse.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/ptr.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/node/type.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/noexcept.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/null.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/ostream_wrapper.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/parser.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/traits.h
+CMakeFiles/server.dir/resource.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
+CMakeFiles/server.dir/resource.cpp.o: ../point.h
+CMakeFiles/server.dir/resource.cpp.o: ../rectangle.h
+CMakeFiles/server.dir/resource.cpp.o: ../resource.cpp
+CMakeFiles/server.dir/resource.cpp.o: ../resource.h
+CMakeFiles/server.dir/resource.cpp.o: ../sdl/image.h
+CMakeFiles/server.dir/resource.cpp.o: ../sdl/surface.h
+CMakeFiles/server.dir/resource.cpp.o: ../sdl/texture.h
 
 CMakeFiles/server.dir/server/config_loader.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
 CMakeFiles/server.dir/server/config_loader.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/dll.h
