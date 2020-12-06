@@ -37,7 +37,6 @@ Point RayCasting::get_intersection(Map& map, Ray& ray) {
   } else if (angle > 3 * M_PI_2 && angle <= 2 * M_PI) {
     return RayCasting::forth_quad(map, ray);
   } else {
-    printf("ANGLE: %f\n", angle);
     return Point(0, 0);  // TODO Throw Exception
   }
 }
