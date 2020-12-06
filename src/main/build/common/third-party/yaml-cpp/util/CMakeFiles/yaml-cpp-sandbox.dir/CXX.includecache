@@ -366,13 +366,13 @@ yaml-cpp/node/parse.h
 yaml-cpp/node/emit.h
 ../common/third-party/yaml-cpp/include/yaml-cpp/yaml-cpp/node/emit.h
 
-/home/fer/Escritorio/Wolfenstein-Taller1/src/main/common/third-party/yaml-cpp/util/sandbox.cpp
+/home/santiagoczop/Taller/tps/tp4/src/main/common/third-party/yaml-cpp/util/sandbox.cpp
 iostream
 -
 yaml-cpp/emitterstyle.h
-/home/fer/Escritorio/Wolfenstein-Taller1/src/main/common/third-party/yaml-cpp/util/yaml-cpp/emitterstyle.h
+/home/santiagoczop/Taller/tps/tp4/src/main/common/third-party/yaml-cpp/util/yaml-cpp/emitterstyle.h
 yaml-cpp/eventhandler.h
-/home/fer/Escritorio/Wolfenstein-Taller1/src/main/common/third-party/yaml-cpp/util/yaml-cpp/eventhandler.h
+/home/santiagoczop/Taller/tps/tp4/src/main/common/third-party/yaml-cpp/util/yaml-cpp/eventhandler.h
 yaml-cpp/yaml.h
-/home/fer/Escritorio/Wolfenstein-Taller1/src/main/common/third-party/yaml-cpp/util/yaml-cpp/yaml.h
+/home/santiagoczop/Taller/tps/tp4/src/main/common/third-party/yaml-cpp/util/yaml-cpp/yaml.h
 

@@ -51,9 +51,4 @@ int Window::draw_line(int x1, int y1, int x2, int y2) {
 
 void Window::update() { SDL_RenderPresent(renderer); }
 
-// TODO Delete
-SDL_Surface* Window::get_surface() { return SDL_GetWindowSurface(window); }
-
-void Window::update2() { SDL_UpdateWindowSurface(window); }
-
 SDL_Renderer* Window::get_renderer() { return renderer; }

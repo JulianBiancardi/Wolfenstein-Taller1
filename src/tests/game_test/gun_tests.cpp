@@ -16,7 +16,7 @@ void gun_tests() {
     print_test("Las armas se crean correctamente",
                gun_creation_test, NO_ERROR);
 
-    print_test("El arma Chain Cannon un valor entre 1 y 10",
+    print_test("El arma Chain Cannon devuelve un valor entre 1 y 10",
                chain_cannon_check_damaged, NO_ERROR);
 
     print_test("El arma Machine Gun devuelve un valor entre 1 y 10",

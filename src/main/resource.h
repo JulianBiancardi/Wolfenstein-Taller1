@@ -12,7 +12,7 @@ class Resource {
   Image* image;
 
  public:
-  Resource(int id);
+  explicit Resource(int id);
   ~Resource();
 
   bool is_loaded();
