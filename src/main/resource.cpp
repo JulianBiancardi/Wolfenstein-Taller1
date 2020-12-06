@@ -7,7 +7,11 @@
 
 Resource::Resource(int id) : id(id), loaded(false), image(NULL) {}
 
-Resource::~Resource() {}
+Resource::~Resource() {
+  if (loaded) {
+    delete image;
+  }
+}
 
 bool Resource::is_loaded() { return loaded; }
 
