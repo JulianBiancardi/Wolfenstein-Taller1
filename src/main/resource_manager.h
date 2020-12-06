@@ -6,6 +6,7 @@
 #include "resource.h"
 #include "sdl/image.h"
 #include "sdl/window.h"
+#include "yaml-cpp/yaml.h"
 
 class ResourceManager {
  private:
@@ -18,20 +19,5 @@ class ResourceManager {
 
   Image* get_image(int id);
 };
-
-ResourceManager::ResourceManager(Window& window) : window(window) {}
-
-ResourceManager::~ResourceManager() {}
-
-Image* ResourceManager::get_image(int id) {
-  if (resources.find(id) == resources.end()) {
-    throw 1;  // TODO Throw KeyError
-  }
-  Resource& res = resources[id];
-  if (!res.is_loaded()) {
-    res.load(window.get_renderer());
-  }
-  return res.get_image();
-}
 
 #endif
