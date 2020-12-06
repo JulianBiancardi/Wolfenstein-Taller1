@@ -28,6 +28,9 @@ FILE(GLOB MainFiles
         rectangle.cpp
         resource.cpp
         )
+FILE(GLOB SDLFiles
+        sdl/*.cpp
+)
 FILE(GLOB TestFiles
         ../tests/game_test/gun_tests.cpp
 
@@ -45,11 +48,13 @@ add_executable(
         ${MainFiles}
         ${ServerFiles}
         ${CommonFiles}
+        ${SDLFiles}
         ${TestFiles}
 )
 
 target_link_libraries(
         server
         PRIVATE
+        ${SDL2_LIBRARIES}
         yaml-cpp  # This is the "target" exposed by yaml-cpp's CMakeLists.txt file
 )

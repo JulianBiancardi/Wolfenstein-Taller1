@@ -272,9 +272,74 @@ CMakeFiles/server.dir/common/socket_error.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/common/socket_error.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/santiagoczop/Taller/tps/tp4/src/main/common/socket_error.cpp -o CMakeFiles/server.dir/common/socket_error.cpp.s
 
+CMakeFiles/server.dir/sdl/image.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/sdl/image.cpp.o: ../sdl/image.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/server.dir/sdl/image.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/sdl/image.cpp.o -c /home/santiagoczop/Taller/tps/tp4/src/main/sdl/image.cpp
+
+CMakeFiles/server.dir/sdl/image.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/sdl/image.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/santiagoczop/Taller/tps/tp4/src/main/sdl/image.cpp > CMakeFiles/server.dir/sdl/image.cpp.i
+
+CMakeFiles/server.dir/sdl/image.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/sdl/image.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/santiagoczop/Taller/tps/tp4/src/main/sdl/image.cpp -o CMakeFiles/server.dir/sdl/image.cpp.s
+
+CMakeFiles/server.dir/sdl/sdl_error.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/sdl/sdl_error.cpp.o: ../sdl/sdl_error.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/server.dir/sdl/sdl_error.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/sdl/sdl_error.cpp.o -c /home/santiagoczop/Taller/tps/tp4/src/main/sdl/sdl_error.cpp
+
+CMakeFiles/server.dir/sdl/sdl_error.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/sdl/sdl_error.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/santiagoczop/Taller/tps/tp4/src/main/sdl/sdl_error.cpp > CMakeFiles/server.dir/sdl/sdl_error.cpp.i
+
+CMakeFiles/server.dir/sdl/sdl_error.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/sdl/sdl_error.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/santiagoczop/Taller/tps/tp4/src/main/sdl/sdl_error.cpp -o CMakeFiles/server.dir/sdl/sdl_error.cpp.s
+
+CMakeFiles/server.dir/sdl/surface.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/sdl/surface.cpp.o: ../sdl/surface.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/server.dir/sdl/surface.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/sdl/surface.cpp.o -c /home/santiagoczop/Taller/tps/tp4/src/main/sdl/surface.cpp
+
+CMakeFiles/server.dir/sdl/surface.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/sdl/surface.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/santiagoczop/Taller/tps/tp4/src/main/sdl/surface.cpp > CMakeFiles/server.dir/sdl/surface.cpp.i
+
+CMakeFiles/server.dir/sdl/surface.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/sdl/surface.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/santiagoczop/Taller/tps/tp4/src/main/sdl/surface.cpp -o CMakeFiles/server.dir/sdl/surface.cpp.s
+
+CMakeFiles/server.dir/sdl/texture.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/sdl/texture.cpp.o: ../sdl/texture.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/server.dir/sdl/texture.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/sdl/texture.cpp.o -c /home/santiagoczop/Taller/tps/tp4/src/main/sdl/texture.cpp
+
+CMakeFiles/server.dir/sdl/texture.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/sdl/texture.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/santiagoczop/Taller/tps/tp4/src/main/sdl/texture.cpp > CMakeFiles/server.dir/sdl/texture.cpp.i
+
+CMakeFiles/server.dir/sdl/texture.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/sdl/texture.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/santiagoczop/Taller/tps/tp4/src/main/sdl/texture.cpp -o CMakeFiles/server.dir/sdl/texture.cpp.s
+
+CMakeFiles/server.dir/sdl/window.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/sdl/window.cpp.o: ../sdl/window.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/server.dir/sdl/window.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/sdl/window.cpp.o -c /home/santiagoczop/Taller/tps/tp4/src/main/sdl/window.cpp
+
+CMakeFiles/server.dir/sdl/window.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/sdl/window.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/santiagoczop/Taller/tps/tp4/src/main/sdl/window.cpp > CMakeFiles/server.dir/sdl/window.cpp.i
+
+CMakeFiles/server.dir/sdl/window.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/sdl/window.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/santiagoczop/Taller/tps/tp4/src/main/sdl/window.cpp -o CMakeFiles/server.dir/sdl/window.cpp.s
+
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/game_test/gun_tests.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/game_test/gun_tests.cpp.o: /home/santiagoczop/Taller/tps/tp4/src/tests/game_test/gun_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/game_test/gun_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/game_test/gun_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/game_test/gun_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/src/tests/game_test/gun_tests.cpp
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/game_test/gun_tests.cpp.i: cmake_force
@@ -287,7 +352,7 @@ CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/game_test/gun_t
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/main_tests.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/main_tests.cpp.o: /home/santiagoczop/Taller/tps/tp4/src/tests/main_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/main_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/main_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/main_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/src/tests/main_tests.cpp
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/main_tests.cpp.i: cmake_force
@@ -300,7 +365,7 @@ CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/main_tests.cpp.
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/matrix_tests.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/matrix_tests.cpp.o: /home/santiagoczop/Taller/tps/tp4/src/tests/matrix_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/matrix_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/matrix_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/matrix_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/src/tests/matrix_tests.cpp
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/matrix_tests.cpp.i: cmake_force
@@ -313,7 +378,7 @@ CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/matrix_tests.cp
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/point_tests.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/point_tests.cpp.o: /home/santiagoczop/Taller/tps/tp4/src/tests/point_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/point_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/point_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/point_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/src/tests/point_tests.cpp
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/point_tests.cpp.i: cmake_force
@@ -326,7 +391,7 @@ CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/point_tests.cpp
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/ray_tests.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/ray_tests.cpp.o: /home/santiagoczop/Taller/tps/tp4/src/tests/ray_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/ray_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/ray_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/ray_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/src/tests/ray_tests.cpp
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/ray_tests.cpp.i: cmake_force
@@ -339,7 +404,7 @@ CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/ray_tests.cpp.s
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/rectangle_tests.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/rectangle_tests.cpp.o: /home/santiagoczop/Taller/tps/tp4/src/tests/rectangle_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/rectangle_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/rectangle_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/rectangle_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/src/tests/rectangle_tests.cpp
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/rectangle_tests.cpp.i: cmake_force
@@ -352,7 +417,7 @@ CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/rectangle_tests
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/resource_manager_tests.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/resource_manager_tests.cpp.o: /home/santiagoczop/Taller/tps/tp4/src/tests/resource_manager_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/resource_manager_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/resource_manager_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/resource_manager_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/src/tests/resource_manager_tests.cpp
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/resource_manager_tests.cpp.i: cmake_force
@@ -365,7 +430,7 @@ CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/resource_manage
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/resource_tests.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/resource_tests.cpp.o: /home/santiagoczop/Taller/tps/tp4/src/tests/resource_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/resource_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/resource_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/resource_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/src/tests/resource_tests.cpp
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/resource_tests.cpp.i: cmake_force
@@ -378,7 +443,7 @@ CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/resource_tests.
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/tests_setup.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/tests_setup.cpp.o: /home/santiagoczop/Taller/tps/tp4/src/tests/tests_setup.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/tests_setup.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/tests_setup.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/tests_setup.cpp.o -c /home/santiagoczop/Taller/tps/tp4/src/tests/tests_setup.cpp
 
 CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/tests_setup.cpp.i: cmake_force
@@ -406,6 +471,11 @@ server_OBJECTS = \
 "CMakeFiles/server.dir/server/game/player.cpp.o" \
 "CMakeFiles/server.dir/common/socket.cpp.o" \
 "CMakeFiles/server.dir/common/socket_error.cpp.o" \
+"CMakeFiles/server.dir/sdl/image.cpp.o" \
+"CMakeFiles/server.dir/sdl/sdl_error.cpp.o" \
+"CMakeFiles/server.dir/sdl/surface.cpp.o" \
+"CMakeFiles/server.dir/sdl/texture.cpp.o" \
+"CMakeFiles/server.dir/sdl/window.cpp.o" \
 "CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/game_test/gun_tests.cpp.o" \
 "CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/main_tests.cpp.o" \
 "CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/matrix_tests.cpp.o" \
@@ -434,6 +504,11 @@ server: CMakeFiles/server.dir/server/game/map.cpp.o
 server: CMakeFiles/server.dir/server/game/player.cpp.o
 server: CMakeFiles/server.dir/common/socket.cpp.o
 server: CMakeFiles/server.dir/common/socket_error.cpp.o
+server: CMakeFiles/server.dir/sdl/image.cpp.o
+server: CMakeFiles/server.dir/sdl/sdl_error.cpp.o
+server: CMakeFiles/server.dir/sdl/surface.cpp.o
+server: CMakeFiles/server.dir/sdl/texture.cpp.o
+server: CMakeFiles/server.dir/sdl/window.cpp.o
 server: CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/game_test/gun_tests.cpp.o
 server: CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/main_tests.cpp.o
 server: CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/matrix_tests.cpp.o
@@ -446,7 +521,7 @@ server: CMakeFiles/server.dir/home/santiagoczop/Taller/tps/tp4/src/tests/tests_s
 server: CMakeFiles/server.dir/build.make
 server: common/third-party/yaml-cpp/libyaml-cpp.a
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Linking CXX executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

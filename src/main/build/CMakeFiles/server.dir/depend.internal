@@ -200,6 +200,27 @@ CMakeFiles/server.dir/resource.cpp.o
  /home/santiagoczop/Taller/tps/tp4/src/main/sdl/image.h
  /home/santiagoczop/Taller/tps/tp4/src/main/sdl/surface.h
  /home/santiagoczop/Taller/tps/tp4/src/main/sdl/texture.h
+CMakeFiles/server.dir/sdl/image.cpp.o
+ /home/santiagoczop/Taller/tps/tp4/src/main/point.h
+ /home/santiagoczop/Taller/tps/tp4/src/main/rectangle.h
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/image.cpp
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/image.h
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/surface.h
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/texture.h
+CMakeFiles/server.dir/sdl/sdl_error.cpp.o
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/sdl_error.cpp
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/sdl_error.h
+CMakeFiles/server.dir/sdl/surface.cpp.o
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/surface.cpp
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/surface.h
+CMakeFiles/server.dir/sdl/texture.cpp.o
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/surface.h
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/texture.cpp
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/texture.h
+CMakeFiles/server.dir/sdl/window.cpp.o
+ /home/santiagoczop/Taller/tps/tp4/src/main/constants.h
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/window.cpp
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/window.h
 CMakeFiles/server.dir/server/config_loader.cpp.o
  ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
  ../common/third-party/yaml-cpp/include/yaml-cpp/dll.h

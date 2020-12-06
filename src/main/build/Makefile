@@ -978,6 +978,141 @@ resource.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/resource.cpp.s
 .PHONY : resource.cpp.s
 
+sdl/image.o: sdl/image.cpp.o
+
+.PHONY : sdl/image.o
+
+# target to build an object file
+sdl/image.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/image.cpp.o
+.PHONY : sdl/image.cpp.o
+
+sdl/image.i: sdl/image.cpp.i
+
+.PHONY : sdl/image.i
+
+# target to preprocess a source file
+sdl/image.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/image.cpp.i
+.PHONY : sdl/image.cpp.i
+
+sdl/image.s: sdl/image.cpp.s
+
+.PHONY : sdl/image.s
+
+# target to generate assembly for a file
+sdl/image.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/image.cpp.s
+.PHONY : sdl/image.cpp.s
+
+sdl/sdl_error.o: sdl/sdl_error.cpp.o
+
+.PHONY : sdl/sdl_error.o
+
+# target to build an object file
+sdl/sdl_error.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/sdl_error.cpp.o
+.PHONY : sdl/sdl_error.cpp.o
+
+sdl/sdl_error.i: sdl/sdl_error.cpp.i
+
+.PHONY : sdl/sdl_error.i
+
+# target to preprocess a source file
+sdl/sdl_error.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/sdl_error.cpp.i
+.PHONY : sdl/sdl_error.cpp.i
+
+sdl/sdl_error.s: sdl/sdl_error.cpp.s
+
+.PHONY : sdl/sdl_error.s
+
+# target to generate assembly for a file
+sdl/sdl_error.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/sdl_error.cpp.s
+.PHONY : sdl/sdl_error.cpp.s
+
+sdl/surface.o: sdl/surface.cpp.o
+
+.PHONY : sdl/surface.o
+
+# target to build an object file
+sdl/surface.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/surface.cpp.o
+.PHONY : sdl/surface.cpp.o
+
+sdl/surface.i: sdl/surface.cpp.i
+
+.PHONY : sdl/surface.i
+
+# target to preprocess a source file
+sdl/surface.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/surface.cpp.i
+.PHONY : sdl/surface.cpp.i
+
+sdl/surface.s: sdl/surface.cpp.s
+
+.PHONY : sdl/surface.s
+
+# target to generate assembly for a file
+sdl/surface.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/surface.cpp.s
+.PHONY : sdl/surface.cpp.s
+
+sdl/texture.o: sdl/texture.cpp.o
+
+.PHONY : sdl/texture.o
+
+# target to build an object file
+sdl/texture.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/texture.cpp.o
+.PHONY : sdl/texture.cpp.o
+
+sdl/texture.i: sdl/texture.cpp.i
+
+.PHONY : sdl/texture.i
+
+# target to preprocess a source file
+sdl/texture.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/texture.cpp.i
+.PHONY : sdl/texture.cpp.i
+
+sdl/texture.s: sdl/texture.cpp.s
+
+.PHONY : sdl/texture.s
+
+# target to generate assembly for a file
+sdl/texture.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/texture.cpp.s
+.PHONY : sdl/texture.cpp.s
+
+sdl/window.o: sdl/window.cpp.o
+
+.PHONY : sdl/window.o
+
+# target to build an object file
+sdl/window.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/window.cpp.o
+.PHONY : sdl/window.cpp.o
+
+sdl/window.i: sdl/window.cpp.i
+
+.PHONY : sdl/window.i
+
+# target to preprocess a source file
+sdl/window.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/window.cpp.i
+.PHONY : sdl/window.cpp.i
+
+sdl/window.s: sdl/window.cpp.s
+
+.PHONY : sdl/window.s
+
+# target to generate assembly for a file
+sdl/window.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/sdl/window.cpp.s
+.PHONY : sdl/window.cpp.s
+
 server/config_loader.o: server/config_loader.cpp.o
 
 .PHONY : server/config_loader.o
@@ -1308,6 +1443,21 @@ help:
 	@echo "... resource.o"
 	@echo "... resource.i"
 	@echo "... resource.s"
+	@echo "... sdl/image.o"
+	@echo "... sdl/image.i"
+	@echo "... sdl/image.s"
+	@echo "... sdl/sdl_error.o"
+	@echo "... sdl/sdl_error.i"
+	@echo "... sdl/sdl_error.s"
+	@echo "... sdl/surface.o"
+	@echo "... sdl/surface.i"
+	@echo "... sdl/surface.s"
+	@echo "... sdl/texture.o"
+	@echo "... sdl/texture.i"
+	@echo "... sdl/texture.s"
+	@echo "... sdl/window.o"
+	@echo "... sdl/window.i"
+	@echo "... sdl/window.s"
 	@echo "... server/config_loader.o"
 	@echo "... server/config_loader.i"
 	@echo "... server/config_loader.s"

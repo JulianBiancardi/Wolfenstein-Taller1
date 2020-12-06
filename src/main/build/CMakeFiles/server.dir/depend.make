@@ -200,6 +200,27 @@ CMakeFiles/server.dir/resource.cpp.o: ../sdl/image.h
 CMakeFiles/server.dir/resource.cpp.o: ../sdl/surface.h
 CMakeFiles/server.dir/resource.cpp.o: ../sdl/texture.h
 
+CMakeFiles/server.dir/sdl/image.cpp.o: ../point.h
+CMakeFiles/server.dir/sdl/image.cpp.o: ../rectangle.h
+CMakeFiles/server.dir/sdl/image.cpp.o: ../sdl/image.cpp
+CMakeFiles/server.dir/sdl/image.cpp.o: ../sdl/image.h
+CMakeFiles/server.dir/sdl/image.cpp.o: ../sdl/surface.h
+CMakeFiles/server.dir/sdl/image.cpp.o: ../sdl/texture.h
+
+CMakeFiles/server.dir/sdl/sdl_error.cpp.o: ../sdl/sdl_error.cpp
+CMakeFiles/server.dir/sdl/sdl_error.cpp.o: ../sdl/sdl_error.h
+
+CMakeFiles/server.dir/sdl/surface.cpp.o: ../sdl/surface.cpp
+CMakeFiles/server.dir/sdl/surface.cpp.o: ../sdl/surface.h
+
+CMakeFiles/server.dir/sdl/texture.cpp.o: ../sdl/surface.h
+CMakeFiles/server.dir/sdl/texture.cpp.o: ../sdl/texture.cpp
+CMakeFiles/server.dir/sdl/texture.cpp.o: ../sdl/texture.h
+
+CMakeFiles/server.dir/sdl/window.cpp.o: ../constants.h
+CMakeFiles/server.dir/sdl/window.cpp.o: ../sdl/window.cpp
+CMakeFiles/server.dir/sdl/window.cpp.o: ../sdl/window.h
+
 CMakeFiles/server.dir/server/config_loader.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
 CMakeFiles/server.dir/server/config_loader.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/dll.h
 CMakeFiles/server.dir/server/config_loader.cpp.o: ../common/third-party/yaml-cpp/include/yaml-cpp/emitter.h
