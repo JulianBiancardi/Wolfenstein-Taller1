@@ -1,55 +1,63 @@
 #include "player.h"
+#include <cmath>
 
-Player::Player(Point origin, double angle) :
-        angled_position(origin,angle), shot_bullets(0), points(0){
-    health = ConfigLoader::player_health;
-    bullets = ConfigLoader::player_bullets;
+Player::Player(Point origin, double angle, Map& game_map) :
+        angled_position(origin,angle), shot_bullets(0), points(0), map(game_map){
+    //health = ConfigLoader::player_health;
+    health = 100;
+    //bullets = ConfigLoader::player_bullets;
+    bullets = 8;
+    pace = 1;
 }
 
-Player::Player(int x, int y, double angle) :
-        angled_position(x,y,angle), shot_bullets(0), points(0){
-    health = ConfigLoader::player_health;
-    bullets = ConfigLoader::player_bullets;
+Player::Player(int x, int y, double angle, Map& game_map) :
+        angled_position(x,y,angle), shot_bullets(0), points(0), map(game_map){
+    //health = ConfigLoader::player_health;
+    health = 100;
+    //bullets = ConfigLoader::player_bullets;
+    bullets = 8;
+    pace = 1;
 }
 
-void Player::move_from_current_position_if_can(int x, int y){
-  Ray next_position(angled_position.get_origin().getX() + x, 
-                    angled_position.get_origin().getY() + y, 
-                    angled_position.get_angle());
-  if(Map::get_map().can_move_to(next_position.get_origin()))
-    angled_position = next_position;  
+void Player::move_from_current_position_if_can(double direction_angle){
+  double next_x = angled_position.get_origin().getX() +
+                  cos(angled_position.get_angle()+direction_angle) * pace;
+  double next_y = angled_position.get_origin().getY() +
+                  sin(angled_position.get_angle()+direction_angle) * pace;
+  if(!map.is_wall(next_x, next_y))
+    angled_position.set_origin(next_x, next_y);
 }
 
 void Player::move_up(){
-  move_from_current_position_if_can(0, -1);
+  move_from_current_position_if_can(0);
 }
 
 void Player::move_down(){
-  move_from_current_position_if_can(0, 1);
+  move_from_current_position_if_can(M_PI);
 }
 
 void Player::move_right(){
-  move_from_current_position_if_can(1, 0);
+  move_from_current_position_if_can(3 * M_PI/2);
 }
 
 void Player::move_left(){
-  move_from_current_position_if_can(-1, 0);
+  move_from_current_position_if_can(M_PI/2);
 }
 
 void Player::move_up_right(){
-  move_from_current_position_if_can(1, -1);
+  move_from_current_position_if_can(7 * M_PI/4);
 }
 
 void Player::move_up_left(){
-  move_from_current_position_if_can(-1, -1);
+  move_from_current_position_if_can(M_PI/4);
 }
 
 void Player::move_down_right(){
-  move_from_current_position_if_can(1, 1);
+  move_from_current_position_if_can(5 * M_PI/4);
 }
 
 void Player::move_down_left(){
-  move_from_current_position_if_can(-1, 1);
+  move_from_current_position_if_can(3 * M_PI/4);
 }
 
 void Player::shoot(Player& shot_player) {
