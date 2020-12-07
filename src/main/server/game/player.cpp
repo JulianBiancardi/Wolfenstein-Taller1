@@ -60,20 +60,38 @@ void Player::move_down_left() {
   move_from_current_position_if_can(3 * M_PI / 4);
 }
 
+void Player::shoot_checker(double direction_angle){
+/*
+  Ray first_ray_cone(angled_position.get_origin(),
+                     angled_position.get_angle()+direction_angle-M_PI/12);
+  Ray second_ray_cone(angled_position.get_origin(),
+                      angled_position.get_angle()+direction_angle+M_PI/12);
+
+
+
+  double next_x = angled_position.get_origin().getX() +
+      cos(angled_position.get_angle() + direction_angle) * pace;
+  double next_y = angled_position.get_origin().getY() +
+      sin(angled_position.get_angle() + direction_angle) * pace;
+
+  if (!map.is_wall(next_x, next_y))
+    angled_position.set_origin(next_x, next_y);
+    */
+}
+
 void Player::shoot(Player &shot_player, Gun &gun) {
   int damage_got = gun.shoot(bullets);
   shot_player.receive_damage(damage_got);
-
 }
 
 bool Player::has_bullets(int amount) {
   return (bullets >= amount);
 }
-
+/*
 void Player::decrease_bullets(int amount) {
   bullets -= amount;
 }
-
+*/
 void Player::receive_damage(int amount) {
   health -= amount;
 }

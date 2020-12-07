@@ -44,12 +44,14 @@ class Player {
 
   void move_down_left();
 
+  void shoot_checker(double direction_angle);
+
   void shoot(Player &shot_player, Gun &gun);
 
   bool has_bullets(int amount);
-
+/*
   void decrease_bullets(int amount);
-
+*/
   void receive_damage(int amount);
 
   bool add_gun_if_hasnt(Gun gun);
