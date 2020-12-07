@@ -20,9 +20,7 @@ class Image {
   Image(SDL_Renderer* renderer, std::string& file);
   ~Image();
 
-  void draw(Point& position, Rectangle* img_slice);
-  void draw(Point& position, Rectangle* img_slice, double x_scaling,
-            double y_scaling);
+  void draw(Rectangle& position, Rectangle* img_slice);
   SDL_Texture* get_texture() { return texture.get_texture(); }
 };
 
