@@ -1,12 +1,37 @@
 --- 
-0:
-  name: "Air"
-1:
-  name: "Rock Wall"
-  image: "resources/images/IMG_RockWall.png"
-  sound: ""
-2: 
-  name: "Wood Wall"
-  image: "resources/images/IMG_WoodWall.png"
-  sound: ""
-...
+ids:
+  - id: 0
+    name: "Stone Wall"
+    image: "resources/images/walls/IMG_RockWall.png"
+    icon: "/src/editor/resources/images/walls/IMG_StoneWall.png"
+    sound: ""
+  - id: 1
+    name: "Rock Wall"
+    image: "resources/images/walls/IMG_RockWall.png"
+    icon: "../resources/images/walls/IMG_RockWall.png"
+    sound: ""
+  - id: 2 
+    name: "Wood Wall"
+    image: "resources/images/walls/IMG_WoodWall.png"
+    icon: "../resources/images/walls/IMG_WoodWall.png"
+    sound: ""
+  - id: 3 
+    name: "Maching Gun"
+    image: "resources/images/weapons/IMG_Machingun.png"
+    icon: "../resources/images/weapons/IMG_Machingun.png"
+    sound: ""
+  - id: 4
+    name: "Bazooka"
+    image: "resources/images/weapons/IMG_Bazooka.png"
+    icon: "../resources/images/weapons/IMG_Bazooka.png"
+    sound: ""
+  - id: 5
+    name: "Pistol"
+    image: "resources/images/weapons/IMG_Pistol.png"
+    icon: "../resources/images/weapons/IMG_Pistol.png"
+    sound: ""
+  - id: 6
+    name: "Guard"
+    image: "resources/images/enemies/IMG_Guard.png"
+    icon: "../resources/images/enemies/IMG_Guard.png"
+    sound: ""
