@@ -25,7 +25,7 @@ void put_data(Matrix<int> &map_data) {
 }
 
 // FIXME Only works for current map settings
-int main() {
+void player_tests() {
   begin_tests("PLAYER");
 
   print_test("El jugador se mueve correctamente", can_move_up, NO_ERROR);
@@ -49,7 +49,6 @@ int main() {
              NO_ERROR);
 
   end_tests();
-  return 0;
 }
 
 int static can_move_up() {
@@ -89,7 +88,7 @@ int static walks_and_collides_wall() {
     player.move_up();
   } while (previous_x != player.get_position().getX());
 
-  if (player.get_position().getX() == 575 && player.get_position().getY() == 64)
+  if (player.get_position().getX() == 570 && player.get_position().getY() == 64)
     return NO_ERROR;
 
   return ERROR;
@@ -155,7 +154,7 @@ int static complete_difficult_path_correctly() {
     player.move_left();
   }
 
-  if (player.get_position().getX() == 575
+  if (player.get_position().getX() == 570
       && player.get_position().getY() == 200)
     return NO_ERROR;
 

@@ -1,19 +1,25 @@
 #include "moveable.h"
+#include "../../map.h"
 #include <cmath>
 
 Moveable::Moveable(Point origin, double angle, Map &game_map, int pace) :
-    angled_position(origin, angle), map(game_map), pace(pace) {}
-
-Moveable::Moveable(int x, int y, double angle, Map &game_map, int pace) :
-    angled_position(x, y, angle), map(game_map), pace(pace) {}
+    angled_position(origin, angle),
+    map(game_map),
+    pace(pace),
+    mask(origin, 5) {}
 
 void Moveable::move_from_current_position_if_can(double direction_angle) {
+  double movement_angle = angled_position.get_angle() + direction_angle;
   double next_x = angled_position.get_origin().getX() +
-      cos(angled_position.get_angle() + direction_angle) * pace;
+      cos(movement_angle) * pace;
   double next_y = angled_position.get_origin().getY() +
-      sin(angled_position.get_angle() + direction_angle) * pace;
-  if (!map.is_wall(next_x, next_y))
+      sin(movement_angle) * pace;
+  if (map.is_free(next_x, next_y, *this, movement_angle))
     angled_position.set_origin(next_x, next_y);
+}
+
+bool Moveable::collides_wall(size_t x, size_t y, double movement_angle) {
+  return mask.collides_wall(x, y, map, movement_angle);
 }
 
 void Moveable::move_up() {
