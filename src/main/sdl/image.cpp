@@ -30,3 +30,6 @@ void Image::draw(Rectangle& position, Rectangle* img_slice) {
 
   SDL_RenderCopy(renderer, texture.get_texture(), &slice, &pos);
 }
+
+size_t Image::get_width() { return width; }
+size_t Image::get_height() { return height; }

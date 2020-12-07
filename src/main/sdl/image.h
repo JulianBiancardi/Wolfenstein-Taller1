@@ -21,7 +21,8 @@ class Image {
   ~Image();
 
   void draw(Rectangle& position, Rectangle* img_slice);
-  SDL_Texture* get_texture() { return texture.get_texture(); }
+  size_t get_width();
+  size_t get_height();
 };
 
 #endif

@@ -73,6 +73,9 @@ void Caster::draw_walls() {
     bool y_intersection = true;
     Point intersection = RayCasting::get_intersection(map, ray, y_intersection);
 
+    int id = map(intersection.getX(), intersection.getY());
+    Image* image = res_manager.get_image(id);
+
     int wall_size = (int)WALL_SIZE *
                     RayCasting::get_scaling_factor(ray, player, intersection);
 
@@ -81,46 +84,16 @@ void Caster::draw_walls() {
 
     Rectangle slice(0, 0, 0, 0);
     if (y_intersection == true) {
-      slice = Rectangle(0, 64, std::fmod(intersection.getX(), 1) * 64,
-                        (std::fmod(intersection.getX(), 1) * 64 + 1));
+      slice = Rectangle(
+          0, 64, std::fmod(intersection.getX(), 1) * image->get_width(),
+          (std::fmod(intersection.getX(), 1) * image->get_height() + 1));
     } else {
-      slice = Rectangle(0, 64, std::fmod(intersection.getY(), 1) * 64,
-                        (std::fmod(intersection.getY(), 1) * 64 + 1));
+      slice = Rectangle(
+          0, 64, std::fmod(intersection.getY(), 1) * image->get_width(),
+          (std::fmod(intersection.getY(), 1) * image->get_height() + 1));
     }
 
-    Image* wall_img = res_manager.get_image(1);
-    wall_img->draw(pos, &slice);
-    /*
-    int wall_size = (int)WALL_SIZE *
-                    RayCasting::get_scaling_factor(ray, player, intersection);
-
-    switch (map(intersection.getX(), intersection.getY())) {
-      case WALL:
-        window.set_draw_color(0, 0, 0, 255);
-        break;
-      case RED_WALL:
-        window.set_draw_color(255, 0, 0, 255);
-        break;
-      case GREEN_WALL:
-        window.set_draw_color(0, 255, 0, 255);
-        break;
-      case BLUE_WALL:
-        window.set_draw_color(0, 0, 255, 255);
-        break;
-      case YELLOW_WALL:
-        window.set_draw_color(255, 255, 0, 255);
-        break;
-      case CYAN_WALL:
-        window.set_draw_color(0, 255, 255, 255);
-        break;
-      case PINK_WALL:
-        window.set_draw_color(255, 0, 255, 255);
-        break;
-      default:
-        break;
-    }
-    window.draw_line(i, SCREEN_HEIGHT_HALF - (wall_size / 2), i,
-                     SCREEN_HEIGHT_HALF + (wall_size / 2));*/
+    image->draw(pos, &slice);
 
     i++;
     ray_angle -= angle_step;
