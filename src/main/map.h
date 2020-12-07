@@ -3,7 +3,7 @@
 
 #define WALL 1  // TODO Remove this and ask in Config
 
-#include "matrix.h"
+#include "utils/matrix.h"
 
 class Map {
  private:

@@ -2,8 +2,8 @@
 #define RAY_CASTING_H
 
 #include "map.h"
-#include "point.h"
-#include "ray.h"
+#include "utils/point.h"
+#include "utils/ray.h"
 
 class RayCasting {
  private:
