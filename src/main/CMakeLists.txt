@@ -15,8 +15,9 @@ include_directories(${SDL2_INCLUDE_DIR})
 FILE(GLOB ServerFiles
         server/game/guns/*.cpp
 
+        server/game/collisions/circle_mask.cpp
         server/game/player.cpp
-        server/game/map.cpp
+        server/game/moveable.cpp
 
         server/config_loader.cpp
         )
@@ -37,6 +38,7 @@ FILE(GLOB SDLFiles
 )
 FILE(GLOB TestFiles
         ../tests/game_test/gun_tests.cpp
+        ../tests/game_test/player_test.cpp
 
         #../tests/main_tests.cpp
         #../tests/matrix_tests.cpp
