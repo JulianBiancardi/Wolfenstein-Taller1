@@ -10,18 +10,21 @@ class Map;
 
 class Circle_mask {
  private:
-  Point &center;
   double radio;
 
  public:
-  Circle_mask(Point &center, double radio);
+  Circle_mask(double radio);
   ~Circle_mask() {};
-  bool collides(Box_mask other);
-  bool collides(Circle_mask other);
-  bool collides_wall(size_t next_x,
-                     size_t next_y,
+  bool collides(size_t where_x, size_t where_y, Box_mask &other);
+  bool collides(size_t where_x,
+                size_t where_y,
+                Circle_mask &other,
+                Point other_position);
+  bool collides_wall(size_t where_x,
+                     size_t where_y,
                      Map &map,
                      double movement_angle);
+  double get_radio() { return radio; };
 };
 
 #endif //WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_COLLISIONS_CIRCLE_MASK_H_

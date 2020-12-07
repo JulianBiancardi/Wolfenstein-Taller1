@@ -5,13 +5,18 @@
 
 #include "matrix.h"
 #include "server/game/moveable.h"
+#include "server/game/player.h"
+#include <vector>
+#include <functional>
 
 class Map {
  private:
   Matrix<int> map_matrix;
+  std::vector <std::reference_wrapper<Player>> players;
 
  public:
   Map(Matrix<int> &map_matrix);
+  void add_player(Player &player);
   bool is_wall(size_t x, size_t y);
   bool is_free(size_t x, size_t y, Moveable &for_whom, double movement_angle);
   int operator()(size_t x, size_t y);

@@ -4,7 +4,7 @@
 #include "../../ray.h"
 #include "collisions/circle_mask.h"
 
-class Map;
+class Player;
 
 class Moveable {
  private:
@@ -25,8 +25,10 @@ class Moveable {
   void move_up_left();
   void move_down_right();
   void move_down_left();
+  bool collides(size_t x, size_t y, Player &what);
   bool collides_wall(size_t x, size_t y, double movement_angle);
   Point get_position() { return angled_position.get_origin(); };
+  Circle_mask &get_mask() { return mask; };
 };
 
 #endif //WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_MOVEABLE_H_
