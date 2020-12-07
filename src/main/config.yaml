@@ -3,7 +3,7 @@ sv_port: '7777'
 
 #Player Initial Options
 player_health: 40
-player_bullets: 8
+player_bullets: 12
 
 #Guns
 knife_range: 2

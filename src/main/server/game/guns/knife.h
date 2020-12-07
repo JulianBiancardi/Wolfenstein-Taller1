@@ -5,7 +5,7 @@
 class Knife : public Gun {
     public:
         Knife();
-        void shoot(Player &shooter) override;
+        int shoot(/*Player &shooter*/int &current_bullets) override;
 
     private:
         const static int range;

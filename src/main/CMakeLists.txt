@@ -25,8 +25,12 @@ FILE(GLOB MainFiles
         point.cpp
         ray.cpp
 
+        matrix.cpp
+        map.cpp
+
         rectangle.cpp
         resource.cpp
+
         )
 FILE(GLOB SDLFiles
         sdl/*.cpp
@@ -44,7 +48,7 @@ FILE(GLOB TestFiles
         ../tests/*.cpp
         )
 add_executable(
-        server
+        main
         ${MainFiles}
         ${ServerFiles}
         ${CommonFiles}
@@ -53,8 +57,8 @@ add_executable(
 )
 
 target_link_libraries(
-        server
+        main
         PRIVATE
-        ${SDL2_LIBRARIES}
         yaml-cpp  # This is the "target" exposed by yaml-cpp's CMakeLists.txt file
+        ${SDL2_LIBRARIES}
 )

@@ -4,6 +4,6 @@ Gun::Gun() {
 
 }
 
-void Gun::shoot(Player &shooter) {
+int Gun::shoot(/*Player &shooter*/int &current_bullets) {
 
 }

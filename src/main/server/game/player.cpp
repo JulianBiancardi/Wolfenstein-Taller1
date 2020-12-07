@@ -3,19 +3,19 @@
 
 Player::Player(Point origin, double angle, Map &game_map) :
     angled_position(origin, angle), shot_bullets(0), points(0), map(game_map) {
-  //health = ConfigLoader::player_health;
-  health = 100;
-  //bullets = ConfigLoader::player_bullets;
-  bullets = 8;
+  health = ConfigLoader::player_health;
+  //health = 100;
+  bullets = ConfigLoader::player_bullets;
+  //bullets = 8;
   pace = 1;
 }
 
 Player::Player(int x, int y, double angle, Map &game_map) :
     angled_position(x, y, angle), shot_bullets(0), points(0), map(game_map) {
-  //health = ConfigLoader::player_health;
-  health = 100;
-  //bullets = ConfigLoader::player_bullets;
-  bullets = 8;
+  health = ConfigLoader::player_health;
+  //health = 100;
+  bullets = ConfigLoader::player_bullets;
+  //bullets = 8;
   pace = 1;
 }
 
@@ -60,7 +60,9 @@ void Player::move_down_left() {
   move_from_current_position_if_can(3 * M_PI / 4);
 }
 
-void Player::shoot(Player &shot_player) {
+void Player::shoot(Player &shot_player, Gun &gun) {
+  int damage_got = gun.shoot(bullets);
+  shot_player.receive_damage(damage_got);
 
 }
 
@@ -76,8 +78,13 @@ void Player::receive_damage(int amount) {
   health -= amount;
 }
 
-bool Player::add_gun_if_hasnt(/*Gun & gun*/) {
+bool Player::add_gun_if_hasnt(Gun gun) {
 
+  bool found = false;//(std::find(guns_bag.begin(), guns_bag.end(), gun) != guns_bag.end());
+  if (!found){
+    guns_bag.push_back(gun);
+    return true;
+  }
   return false;
 }
 

@@ -6,7 +6,7 @@
 class Pistol : public Gun {
     public:
         Pistol();
-        void shoot(Player &shooter) override;
+        int shoot(/*Player &shooter*/int &current_bullets) override;
 
     private:
     /*static*/ int bullet_required;

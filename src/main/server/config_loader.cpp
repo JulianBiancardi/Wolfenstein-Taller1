@@ -4,42 +4,42 @@ YAML::Node CL::yaml_file = YAML::LoadFile("../config.yaml");
 std::string sv_port = CL::yaml_file["sv_port"].as<std::string>();
 
 //Player
-int CL::player_bullets = CL::yaml_file["player_health"].as<int>();
 int CL::player_health = CL::yaml_file["player_health"].as<int>();
+int CL::player_bullets = CL::yaml_file["player_bullets"].as<int>();
 
 //Guns
-int knife_range = CL::yaml_file["knife_range"].as<int>();
+int CL::knife_range = CL::yaml_file["knife_range"].as<int>();
 
-int chain_cannon_bullet_required = CL::yaml_file
+int CL::chain_cannon_bullet_required = CL::yaml_file
 ["chain_cannon_bullet_required"].as<int>();
-int chain_cannon_base_precision = CL::yaml_file
+int CL::chain_cannon_base_precision = CL::yaml_file
 ["chain_cannon_base_precision"].as<int>();
 
-int pistol_bullet_required = CL::yaml_file["pistol_bullet_required"].as<int>();
-int pistol_base_precision = CL::yaml_file["pistol_base_precision"].as<int>();
+int CL::pistol_bullet_required = CL::yaml_file["pistol_bullet_required"].as<int>();
+int CL::pistol_base_precision = CL::yaml_file["pistol_base_precision"].as<int>();
 
-int rocket_launcher_bullet_required = CL::yaml_file
+int CL::rocket_launcher_bullet_required = CL::yaml_file
 ["rocket_launcher_bullet_required"].as<int>();
-int rocket_launcher_base_precision = CL::yaml_file
+int CL::rocket_launcher_base_precision = CL::yaml_file
 ["rocket_launcher_base_precision"].as<int>();
 
-int machine_gun_bullet_required = CL::yaml_file
+int CL::machine_gun_bullet_required = CL::yaml_file
 ["machine_gun_bullet_required"].as<int>();
-int machine_gun_base_precision = CL::yaml_file
+int CL::machine_gun_base_precision = CL::yaml_file
 ["machine_gun_base_precision"].as<int>();
 
 //Items
-int food_health_recovered = CL::yaml_file["food_health_recovered"].as<int>();
-int medic_kit_health_recovered =
+int CL::food_health_recovered = CL::yaml_file["food_health_recovered"].as<int>();
+int CL::medic_kit_health_recovered =
         CL::yaml_file["medic_kit_health_recovered"].as<int>();
-int blood_health_recovered = CL::yaml_file["blood_health_recovered"].as<int>();
-int blood_health_recovered_if_less_than =
+int CL::blood_health_recovered = CL::yaml_file["blood_health_recovered"].as<int>();
+int CL::blood_health_recovered_if_less_than =
         CL::yaml_file["blood_health_recovered_if_less_than"].as<int>();
 
-int crosses_points = CL::yaml_file["crosses_points"].as<int>();
-int cup_points = CL::yaml_file["cup_points"].as<int>();
-int chests_points = CL::yaml_file["chests_points"].as<int>();
-int crown_points = CL::yaml_file["crown_points"].as<int>();
+int CL::crosses_points = CL::yaml_file["crosses_points"].as<int>();
+int CL::cup_points = CL::yaml_file["cup_points"].as<int>();
+int CL::chests_points = CL::yaml_file["chests_points"].as<int>();
+int CL::crown_points = CL::yaml_file["crown_points"].as<int>();
 
 
 

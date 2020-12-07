@@ -1,10 +1,12 @@
 #ifndef WOLFENSTEIN_TALLER1_PLAYER_H
 #define WOLFENSTEIN_TALLER1_PLAYER_H
 
-//#include "../config_loader.h"
+#include "../config_loader.h"
 #include "../../ray.h"
 #include "../../map.h"
 #include <iostream>
+#include "guns/gun.h"
+#include <list>
 
 class Player {
  private:
@@ -15,7 +17,8 @@ class Player {
   int points;
   int pace;
   Map &map;
-
+  //std::map<std::string, Gun> guns_bag;
+  std::list<Gun> guns_bag;
   void move_from_current_position_if_can(double direction_angle);
 
  public:
@@ -41,7 +44,7 @@ class Player {
 
   void move_down_left();
 
-  void shoot(Player &shot_player);
+  void shoot(Player &shot_player, Gun &gun);
 
   bool has_bullets(int amount);
 
@@ -49,7 +52,7 @@ class Player {
 
   void receive_damage(int amount);
 
-  bool add_gun_if_hasnt(/*Gun& gun*/);
+  bool add_gun_if_hasnt(Gun gun);
 
   void add_points(int amount);
 
