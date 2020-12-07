@@ -12,6 +12,9 @@ int static walk_with_different_angle_and_direction();
 int static complete_path_correctly();
 int static walk_diagonally();
 int static complete_difficult_path_correctly();
+int static check_collisions();
+int static player_collides_against_other_player();
+int static another_player_collides_against_other_player();
 
 void put_data(Matrix<int> &map_data) {
   for (int j = 0; j < 64; j++) {
@@ -46,6 +49,15 @@ void player_tests() {
              NO_ERROR);
   print_test("El jugador completa un path complicado correctamente",
              complete_difficult_path_correctly,
+             NO_ERROR);
+  print_test("El jugador colisiona correctamente",
+             check_collisions,
+             NO_ERROR);
+  print_test("El jugador colisiona contra otro jugador",
+             player_collides_against_other_player,
+             NO_ERROR);
+  print_test("Otro jugador colisiona contra otro jugador",
+             another_player_collides_against_other_player,
              NO_ERROR);
 
   end_tests();
@@ -156,6 +168,93 @@ int static complete_difficult_path_correctly() {
 
   if (player.get_position().getX() == 570
       && player.get_position().getY() == 200)
+    return NO_ERROR;
+
+  return ERROR;
+}
+
+int static check_collisions() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  Player player(100, 100, M_PI / 2, map);
+
+  for (int i = 0; i < 700; i++) {
+    player.move_right();
+  }
+
+  if (player.get_position().getX() != 570
+      || player.get_position().getY() != 100)
+    return ERROR;
+
+  for (int i = 0; i < 700; i++) {
+    player.move_up();
+  }
+
+  if (player.get_position().getX() != 570
+      || player.get_position().getY() != 570)
+    return ERROR;
+
+  for (int i = 0; i < 700; i++) {
+    player.move_left();
+  }
+
+  if (player.get_position().getX() != 69
+      || player.get_position().getY() != 570)
+    return ERROR;
+
+  for (int i = 0; i < 700; i++) {
+    player.move_down();
+  }
+
+  if (player.get_position().getX() != 69
+      || player.get_position().getY() != 69)
+    return ERROR;
+
+  return NO_ERROR;
+}
+
+int static player_collides_against_other_player() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  Player player1(100, 100, M_PI / 2, map);
+  Player player2(100, 200, 0, map);
+
+  map.add_player(player1);
+  map.add_player(player2);
+
+  for (int i = 0; i < 200; i++) {
+    player1.move_up();
+  }
+
+  if (player1.get_position().getX() == 100
+      && player1.get_position().getY() == 190)
+    return NO_ERROR;
+
+  return ERROR;
+}
+
+int static another_player_collides_against_other_player() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  Player player1(100, 100, M_PI, map);
+  Player player2(200, 200, 3 * M_PI / 2, map);
+
+  map.add_player(player1);
+  map.add_player(player2);
+
+  for (int i = 0; i < 100; i++) {
+    player1.move_right();
+  }
+
+  for (int i = 0; i < 100; i++) {
+    player2.move_right();
+  }
+
+  if (player2.get_position().getX() == 110
+      && player2.get_position().getY() == 200)
     return NO_ERROR;
 
   return ERROR;
