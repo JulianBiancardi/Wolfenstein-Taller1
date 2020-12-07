@@ -2,24 +2,19 @@
 #define WOLFENSTEIN_TALLER1_PLAYER_H
 
 #include "../config_loader.h"
-#include "../../ray.h"
-#include "../../map.h"
 #include <iostream>
 #include "guns/gun.h"
 #include <list>
+#include "moveable.h"
 
-class Player {
+class Player : public Moveable {
  private:
-  Ray angled_position;
   int bullets;
   int shot_bullets;
   int health;
   int points;
-  int pace;
-  Map &map;
   //std::map<std::string, Gun> guns_bag;
-  std::list<Gun> guns_bag;
-  void move_from_current_position_if_can(double direction_angle);
+  std::list <Gun> guns_bag;
 
  public:
   Player(Point origin, double angle, Map &game_map);
@@ -27,22 +22,6 @@ class Player {
   Player(int x, int y, double angle, Map &game_map);
 
   ~Player() {}
-
-  void move_up();
-
-  void move_down();
-
-  void move_right();
-
-  void move_left();
-
-  void move_up_right();
-
-  void move_up_left();
-
-  void move_down_right();
-
-  void move_down_left();
 
   void shoot_checker(double direction_angle);
 
@@ -63,8 +42,6 @@ class Player {
   bool add_health_if_hass_less(int amount, int less_than);
 
   int get_health();
-
-  Point get_position() { return angled_position.get_origin(); };
 };
 
 #endif //WOLFENSTEIN_TALLER1_PLAYER_H
