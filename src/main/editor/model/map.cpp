@@ -24,12 +24,12 @@ void Map::put(size_t row, size_t column, size_t id) {
   celd.set_id(id);
 }
 
-Celd& Map::at(size_t row, size_t column) {
+Celd* Map::at(size_t row, size_t column) {
   /*
   if (!is_in_range(row, column)) {
     return nullptr;  // TODO error
   }*/
-  return matrix[row][column];
+  return &matrix[row][column];
 }
 
 void Map::clear(size_t row, size_t column) {

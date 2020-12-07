@@ -10,8 +10,8 @@
 #define INVALID_ID -1
 
 //-----------------------------------------------------------------------------
-MapGrid::MapGrid(QWidget* parent, Map& map, ItemsId& ids,
-                 OptionSelected& current_option)
+MapGrid::MapGrid(QWidget* parent, Map* map, ItemsId* ids,
+                 OptionSelected* current_option)
     : QWidget(parent), map(map), ids(ids), current_option(current_option) {
   this->ui.setupUi(this);
   generateCelds();
@@ -22,9 +22,9 @@ MapGrid::~MapGrid() {}
 void MapGrid::generateCelds() {
   QGridLayout* gridlayout = new QGridLayout();
   gridlayout->setSpacing(0);
-  for (size_t row = 0; row < this->map.row_count(); row++) {
-    for (size_t column = 0; column < this->map.column_count(); column++) {
-      CeldView* celd_view = new CeldView(this, this->map.at(row, column),
+  for (size_t row = 0; row < this->map->row_count(); row++) {
+    for (size_t column = 0; column < this->map->column_count(); column++) {
+            CeldView* celd_view = new CeldView(this, this->map->at(row, column),
                                          this->ids, this->current_option);
       gridlayout->addWidget(celd_view, row, column);
     }

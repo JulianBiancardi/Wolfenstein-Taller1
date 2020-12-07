@@ -9,29 +9,25 @@
 #include "option_selected.h"
 #include "ui_celdview.h"
 
-static Celd df_celd;
-static ItemsId df_ids;
-static OptionSelected df_option;
-
 class CeldView : public QWidget, public IObserver {
   Q_OBJECT
 
- public:
-  explicit CeldView(QWidget* parent = nullptr, Celd& celd = df_celd,
-                    ItemsId& ids = df_ids,
-                    OptionSelected& current_option = df_option);
-  ~CeldView();
-
-  void update() override;
+ private:
+  Ui::CeldView ui;
+  Celd* celd;
+  ItemsId* ids;
+  OptionSelected* current_option;
 
  private slots:
   void on_CeldButton_clicked();
 
- private:
-  Ui::CeldView ui;
-  Celd& celd;
-  ItemsId& ids;
-  OptionSelected& current_option;
+ public:
+  explicit CeldView(QWidget* parent = nullptr, Celd* celd = nullptr,
+                    ItemsId* ids = nullptr,
+                    OptionSelected* current_option = nullptr);
+  ~CeldView();
+
+  void update() override;
 };
 
 #endif  // CELDVIEW_H

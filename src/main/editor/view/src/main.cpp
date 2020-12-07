@@ -15,11 +15,11 @@ int main(int argc, char** argv) {
     MainWindow main_window;
     main_window.show();*/
 
-    ItemsId ids;
-    OptionSelected current_option;
+    ItemsId* ids = new ItemsId();
+    OptionSelected* current_option = new OptionSelected();
 
     Map map(3, 3);
-    MapGrid map_grid(nullptr, map, ids, current_option);
+    MapGrid map_grid(nullptr, &map, ids, current_option);
     map_grid.show();
 
     // Arranca el loop de la UI

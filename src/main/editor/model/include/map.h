@@ -21,7 +21,7 @@ class Map {
   size_t column_count() const;
 
   void put(size_t row, size_t column, size_t id);
-  Celd& at(size_t row, size_t column);
+  Celd* at(size_t row, size_t column);
   void clear(size_t row, size_t column);
   void clear_all();
 

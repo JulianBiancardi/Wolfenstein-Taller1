@@ -12,11 +12,6 @@ class Celd : public IObservable {
  public:
   Celd();
 
-  Celd(const Celd& other) = delete;             // No Copy constructor
-  Celd& operator=(const Celd& other) = delete;  // No copy constructor
-  Celd(Celd&& other) = delete;                  // No move constructor
-  Celd& operator=(Celd&& other) = delete;       // No move constructor
-
   size_t get_id() const;
   void set_id(size_t value);
   void clear();
