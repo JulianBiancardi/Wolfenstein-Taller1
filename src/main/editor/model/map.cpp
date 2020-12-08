@@ -19,11 +19,7 @@ void Map::put(size_t row, size_t column, size_t id) {
   if (!is_in_range(row, column)) {
     return;  // TODO error
   }
-  Celd& celd = matrix[row][column];
-  if (!celd.is_empty()) {
-    return;  // TODO celd no empty
-  }
-  celd.set_id(id);
+  matrix[row][column].set_id(id);
 }
 
 Celd* Map::at(size_t row, size_t column) {

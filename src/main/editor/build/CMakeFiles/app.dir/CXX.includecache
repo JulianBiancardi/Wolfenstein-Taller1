@@ -413,6 +413,8 @@ ui_mainwindow.h
 ../view/include/mapgrid.h
 QtWidgets/QWidget
 -
+string
+-
 ../model/include/map.h
 ../view/model/include/map.h
 itemsid.h

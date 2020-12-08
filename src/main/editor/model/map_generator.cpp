@@ -11,21 +11,20 @@
 
 MapGenerator::MapGenerator() {}
 
-void MapGenerator::generate_map(const std::string& file_path) {
+void MapGenerator::generate_map(const std::string& file_path, Map* map) {
   YAML::Node file = YAML::LoadFile(file_path);
 
   size_t width = file["width"].as<std::size_t>();
   size_t height = file["height"].as<std::size_t>();
-  Map map(height, width);
   const YAML::Node& objects = file["objects"];
   for (YAML::const_iterator it = objects.begin(); it != objects.end(); ++it) {
     const YAML::Node& object = *it;
     size_t id = object["id"].as<std::size_t>();
     size_t x_pos = object["x_position"].as<std::size_t>();
     size_t y_pos = object["y_position"].as<std::size_t>();
-    map.put(y_pos, x_pos, id);
+    map->put(y_pos, x_pos, id);
   }
-  map.print();
+  map->print();
 }
 
 void MapGenerator::generate_yamlfile(Map* map) {
