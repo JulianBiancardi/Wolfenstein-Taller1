@@ -6,7 +6,7 @@
 class ChainCannon : public Gun{
     public:
         ChainCannon();
-        void shoot(Player &shooter) override;
+        int shoot(int &available_bullets) override;
 
     private:
     const static int bullet_required;

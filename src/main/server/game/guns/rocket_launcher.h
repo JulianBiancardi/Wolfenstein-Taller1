@@ -5,7 +5,7 @@
 class RocketLauncher : public Gun {
     public:
         RocketLauncher();
-        void shoot(Player &shooter) override;
+        int shoot(/*Player &shooter*/int &current_bullets) override;
 
     private:
         const static int bullet_required;

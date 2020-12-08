@@ -7,6 +7,6 @@ Knife::Knife() {
 }
 
 
-void Knife::shoot(Player &shooter) {
+int Knife::shoot(/*Player &shooter*/int &current_bullets) {
 
 }

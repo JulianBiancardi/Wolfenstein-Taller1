@@ -15,8 +15,9 @@ include_directories(${SDL2_INCLUDE_DIR})
 FILE(GLOB ServerFiles
         server/game/guns/*.cpp
 
+        server/game/collisions/circle_mask.cpp
         server/game/player.cpp
-        server/game/map.cpp
+        server/game/moveable.cpp
 
         server/config_loader.cpp
         )
@@ -25,15 +26,23 @@ FILE(GLOB MainFiles
         point.cpp
         ray.cpp
 
+        matrix.cpp
+        map.cpp
+
         rectangle.cpp
         resource.cpp
+<<<<<<< HEAD
         resource_manager.cpp
+=======
+
+>>>>>>> d54385d950ab6e4b25f29ec915ef813a4f6cd066
         )
 FILE(GLOB SDLFiles
         sdl/*.cpp
 )
 FILE(GLOB TestFiles
         ../tests/game_test/gun_tests.cpp
+        ../tests/game_test/player_test.cpp
 
         #../tests/main_tests.cpp
         #../tests/matrix_tests.cpp
@@ -45,7 +54,7 @@ FILE(GLOB TestFiles
         ../tests/*.cpp
         )
 add_executable(
-        server
+        main
         ${MainFiles}
         ${ServerFiles}
         ${CommonFiles}
@@ -54,8 +63,8 @@ add_executable(
 )
 
 target_link_libraries(
-        server
+        main
         PRIVATE
-        ${SDL2_LIBRARIES}
         yaml-cpp  # This is the "target" exposed by yaml-cpp's CMakeLists.txt file
+        ${SDL2_LIBRARIES}
 )
