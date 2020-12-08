@@ -30,7 +30,7 @@ void MapGrid::generateCelds() {
   this->ui.scrollContent->setLayout(gridlayout);
 }
 
-void MapGrid::clear() {}
+void MapGrid::clear() { this->map->clear_all(); }
 /*
 void MapGrid::resize(size_t new_rows, size_t new_columns) {
   if (this->rows == new_rows && this->columns == new_columns) {
@@ -60,4 +60,9 @@ void MapGrid::resize(size_t new_rows, size_t new_columns) {
 void MapGrid::generate_yamlfile() {
   MapGenerator file_generator;
   file_generator.generate_yamlfile(this->map);
+}
+
+void MapGrid::open_map(const std::string& file_path) {
+  MapGenerator map_generator;
+  map_generator.generate_map(file_path, this->map);
 }

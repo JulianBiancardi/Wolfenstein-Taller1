@@ -2,41 +2,22 @@
 #include <cmath>
 
 Player::Player(Point origin, double angle, Map &game_map) :
-    shot_bullets(0), points(0), Moveable(origin, angle, game_map, 1) {
+    shot_bullets(0), points(0), Moveable(origin, angle, game_map, 1),
+    Shooter(origin, angle, game_map){
   health = ConfigLoader::player_health;
-  //health = 100;
   bullets = ConfigLoader::player_bullets;
-  //bullets = 8;
 }
+
 
 Player::Player(double x, double y, double angle, Map &game_map) :
-    shot_bullets(0), points(0), Moveable(Point(x, y), angle, game_map, 1) {
+    shot_bullets(0), points(0), Moveable(Point(x, y), angle, game_map, 1),
+    Shooter(Point(x, y), angle, game_map){
   health = ConfigLoader::player_health;
-  //health = 100;
   bullets = ConfigLoader::player_bullets;
-  //bullets = 8;
 }
 
-void Player::shoot_checker(double direction_angle) {
-/*
-  Ray first_ray_cone(angled_position.get_origin(),
-                     angled_position.get_angle()+direction_angle-M_PI/12);
-  Ray second_ray_cone(angled_position.get_origin(),
-                      angled_position.get_angle()+direction_angle+M_PI/12);
-
-
-
-  double next_x = angled_position.get_origin().getX() +
-      cos(angled_position.get_angle() + direction_angle) * pace;
-  double next_y = angled_position.get_origin().getY() +
-      sin(angled_position.get_angle() + direction_angle) * pace;
-
-  if (!map.is_wall(next_x, next_y))
-    angled_position.set_origin(next_x, next_y);
-    */
-}
-
-void Player::shoot(Player &shot_player, Gun &gun) {
+void Player::shoot_player(Player &shot_player, Gun &gun) {
+//  shoot_checker();
   int damage_got = gun.shoot(bullets);
   shot_player.receive_damage(damage_got);
 }

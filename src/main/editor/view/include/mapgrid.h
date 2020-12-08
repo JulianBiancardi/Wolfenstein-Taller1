@@ -2,6 +2,7 @@
 #define MAPGRID_H
 
 #include <QtWidgets/QWidget>
+#include <string>
 
 #include "../model/include/map.h"
 #include "itemsid.h"
@@ -21,6 +22,7 @@ class MapGrid : public QWidget {
   void resize(size_t new_rows, size_t new_columns);
 
   void generate_yamlfile();
+  void open_map(const std::string& file_path);
 
  private:
   Ui::MapGrid ui;
