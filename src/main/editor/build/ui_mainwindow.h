@@ -29,7 +29,7 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
-    QAction *actionOpen_file;
+    QAction *actionOpen_File;
     QAction *actionNew_File;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
@@ -52,8 +52,8 @@ public:
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(1820, 1090);
         MainWindow->setStyleSheet(QStringLiteral(""));
-        actionOpen_file = new QAction(MainWindow);
-        actionOpen_file->setObjectName(QStringLiteral("actionOpen_file"));
+        actionOpen_File = new QAction(MainWindow);
+        actionOpen_File->setObjectName(QStringLiteral("actionOpen_File"));
         actionNew_File = new QAction(MainWindow);
         actionNew_File->setObjectName(QStringLiteral("actionNew_File"));
         centralwidget = new QWidget(MainWindow);
@@ -120,7 +120,7 @@ public:
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuEdit->menuAction());
         menuFile->addAction(actionNew_File);
-        menuFile->addAction(actionOpen_file);
+        menuFile->addAction(actionOpen_File);
         menuFile->addSeparator();
 
         retranslateUi(MainWindow);
@@ -131,7 +131,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
-        actionOpen_file->setText(QApplication::translate("MainWindow", "Open File", Q_NULLPTR));
+        actionOpen_File->setText(QApplication::translate("MainWindow", "Open File", Q_NULLPTR));
         actionNew_File->setText(QApplication::translate("MainWindow", "New File", Q_NULLPTR));
         GenerateFileButton->setText(QApplication::translate("MainWindow", "Generate File", Q_NULLPTR));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", Q_NULLPTR));

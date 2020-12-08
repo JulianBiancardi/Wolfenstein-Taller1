@@ -7,11 +7,15 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/app_autogen/mocs_compilation.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/model/celd.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/model/celd.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/model/map.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/model/map.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/model/map_generator.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/model/map_generator.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/celd_view.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/celd_view.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/itemsid.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/itemsid.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/main.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/main.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/mainwindow.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/mainwindow.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/mapgrid.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/mapgrid.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/option.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/option.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/option_selected.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/option_selected.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/options_container.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/options_container.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

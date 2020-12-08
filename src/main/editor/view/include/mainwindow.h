@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
+#include <QtWidgets/QMainWindow>
 
 #include "mapgrid.h"
 #include "ui_mainwindow.h"
@@ -16,11 +16,11 @@ class MainWindow : public QMainWindow {
  private slots:
   void on_GenerateFileButton_clicked();
   void on_SpinBoxRows_valueChanged(int value);
+  void on_actionNew_File_triggered();
+  void on_actionOpen_File_triggered();
 
  private:
   Ui::MainWindow ui;
   MapGrid* map;
-  size_t rows = 10;
-  size_t columns = 10;
 };
 #endif  // MAINWINDOW_H

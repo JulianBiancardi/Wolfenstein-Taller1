@@ -139,7 +139,7 @@
      <string>File</string>
     </property>
     <addaction name="actionNew_File"/>
-    <addaction name="actionOpen_file"/>
+    <addaction name="actionOpen_File"/>
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
@@ -150,7 +150,7 @@
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
   </widget>
-  <action name="actionOpen_file">
+  <action name="actionOpen_File">
    <property name="text">
     <string>Open File</string>
    </property>

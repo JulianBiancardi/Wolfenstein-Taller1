@@ -26,6 +26,6 @@ Option::~Option() {}
 QPushButton* Option::getButton() { return this->ui.OptionButton; }
 
 void Option::on_OptionButton_clicked() {
-  current_option->setCurrent_id(this->id);
+  this->current_option->set_current_id(this->id);
 }
 //-----------------------------------------------------------------------------

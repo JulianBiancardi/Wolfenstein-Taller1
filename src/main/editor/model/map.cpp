@@ -2,6 +2,8 @@
 
 #include <algorithm>
 
+#include "iostream"
+
 bool Map::is_in_range(size_t row, size_t column) const {
   return (row < this->rows && column < this->columns);
 }
@@ -50,6 +52,15 @@ void Map::clear_all() {
 void Map::resize(size_t new_rows, size_t new_columns) {
   if (new_rows == this->rows && new_columns == this->columns) {
     return;
+  }
+}
+
+void Map::print() {
+  for (size_t row = 0; row < this->rows; row++) {
+    for (size_t column = 0; column < this->columns; column++) {
+      std::cout << matrix[row][column].get_id() << " ";
+    }
+    std::cout << std::endl;
   }
 }
 

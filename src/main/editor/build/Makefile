@@ -633,6 +633,33 @@ model/map.cpp.s:
 	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/model/map.cpp.s
 .PHONY : model/map.cpp.s
 
+model/map_generator.o: model/map_generator.cpp.o
+
+.PHONY : model/map_generator.o
+
+# target to build an object file
+model/map_generator.cpp.o:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/model/map_generator.cpp.o
+.PHONY : model/map_generator.cpp.o
+
+model/map_generator.i: model/map_generator.cpp.i
+
+.PHONY : model/map_generator.i
+
+# target to preprocess a source file
+model/map_generator.cpp.i:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/model/map_generator.cpp.i
+.PHONY : model/map_generator.cpp.i
+
+model/map_generator.s: model/map_generator.cpp.s
+
+.PHONY : model/map_generator.s
+
+# target to generate assembly for a file
+model/map_generator.cpp.s:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/model/map_generator.cpp.s
+.PHONY : model/map_generator.cpp.s
+
 view/src/celd_view.o: view/src/celd_view.cpp.o
 
 .PHONY : view/src/celd_view.o
@@ -714,6 +741,33 @@ view/src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/main.cpp.s
 .PHONY : view/src/main.cpp.s
 
+view/src/mainwindow.o: view/src/mainwindow.cpp.o
+
+.PHONY : view/src/mainwindow.o
+
+# target to build an object file
+view/src/mainwindow.cpp.o:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/mainwindow.cpp.o
+.PHONY : view/src/mainwindow.cpp.o
+
+view/src/mainwindow.i: view/src/mainwindow.cpp.i
+
+.PHONY : view/src/mainwindow.i
+
+# target to preprocess a source file
+view/src/mainwindow.cpp.i:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/mainwindow.cpp.i
+.PHONY : view/src/mainwindow.cpp.i
+
+view/src/mainwindow.s: view/src/mainwindow.cpp.s
+
+.PHONY : view/src/mainwindow.s
+
+# target to generate assembly for a file
+view/src/mainwindow.cpp.s:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/mainwindow.cpp.s
+.PHONY : view/src/mainwindow.cpp.s
+
 view/src/mapgrid.o: view/src/mapgrid.cpp.o
 
 .PHONY : view/src/mapgrid.o
@@ -741,6 +795,33 @@ view/src/mapgrid.cpp.s:
 	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/mapgrid.cpp.s
 .PHONY : view/src/mapgrid.cpp.s
 
+view/src/option.o: view/src/option.cpp.o
+
+.PHONY : view/src/option.o
+
+# target to build an object file
+view/src/option.cpp.o:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/option.cpp.o
+.PHONY : view/src/option.cpp.o
+
+view/src/option.i: view/src/option.cpp.i
+
+.PHONY : view/src/option.i
+
+# target to preprocess a source file
+view/src/option.cpp.i:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/option.cpp.i
+.PHONY : view/src/option.cpp.i
+
+view/src/option.s: view/src/option.cpp.s
+
+.PHONY : view/src/option.s
+
+# target to generate assembly for a file
+view/src/option.cpp.s:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/option.cpp.s
+.PHONY : view/src/option.cpp.s
+
 view/src/option_selected.o: view/src/option_selected.cpp.o
 
 .PHONY : view/src/option_selected.o
@@ -767,6 +848,33 @@ view/src/option_selected.s: view/src/option_selected.cpp.s
 view/src/option_selected.cpp.s:
 	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/option_selected.cpp.s
 .PHONY : view/src/option_selected.cpp.s
+
+view/src/options_container.o: view/src/options_container.cpp.o
+
+.PHONY : view/src/options_container.o
+
+# target to build an object file
+view/src/options_container.cpp.o:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/options_container.cpp.o
+.PHONY : view/src/options_container.cpp.o
+
+view/src/options_container.i: view/src/options_container.cpp.i
+
+.PHONY : view/src/options_container.i
+
+# target to preprocess a source file
+view/src/options_container.cpp.i:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/options_container.cpp.i
+.PHONY : view/src/options_container.cpp.i
+
+view/src/options_container.s: view/src/options_container.cpp.s
+
+.PHONY : view/src/options_container.s
+
+# target to generate assembly for a file
+view/src/options_container.cpp.s:
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/options_container.cpp.s
+.PHONY : view/src/options_container.cpp.s
 
 # Help Target
 help:
@@ -819,6 +927,9 @@ help:
 	@echo "... model/map.o"
 	@echo "... model/map.i"
 	@echo "... model/map.s"
+	@echo "... model/map_generator.o"
+	@echo "... model/map_generator.i"
+	@echo "... model/map_generator.s"
 	@echo "... view/src/celd_view.o"
 	@echo "... view/src/celd_view.i"
 	@echo "... view/src/celd_view.s"
@@ -828,12 +939,21 @@ help:
 	@echo "... view/src/main.o"
 	@echo "... view/src/main.i"
 	@echo "... view/src/main.s"
+	@echo "... view/src/mainwindow.o"
+	@echo "... view/src/mainwindow.i"
+	@echo "... view/src/mainwindow.s"
 	@echo "... view/src/mapgrid.o"
 	@echo "... view/src/mapgrid.i"
 	@echo "... view/src/mapgrid.s"
+	@echo "... view/src/option.o"
+	@echo "... view/src/option.i"
+	@echo "... view/src/option.s"
 	@echo "... view/src/option_selected.o"
 	@echo "... view/src/option_selected.i"
 	@echo "... view/src/option_selected.s"
+	@echo "... view/src/options_container.o"
+	@echo "... view/src/options_container.i"
+	@echo "... view/src/options_container.s"
 .PHONY : help
 
 

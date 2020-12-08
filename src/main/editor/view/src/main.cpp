@@ -1,27 +1,15 @@
 #include <QtWidgets/QApplication>
 
-#include "../model/include/map.h"
 #include "iostream"
-#include "itemsid.h"
-#include "mapgrid.h"
-#include "option_selected.h"
+#include "mainwindow.h"
 
 int main(int argc, char** argv) {
   // Clase que contiene el loop principal
   QApplication main_app(argc, argv);
 
   try {
-    /*
     MainWindow main_window;
-    main_window.show();*/
-
-    ItemsId* ids = new ItemsId();
-    OptionSelected* current_option = new OptionSelected();
-
-    Map map(3, 3);
-    MapGrid map_grid(nullptr, &map, ids, current_option);
-    map_grid.show();
-
+    main_window.show();
     // Arranca el loop de la UI
     main_app.exec();
 

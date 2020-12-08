@@ -1,8 +1,8 @@
 #ifndef OPTION_H
 #define OPTION_H
 
-#include <QPushButton>
-#include <QWidget>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QWidget>
 
 #include "itemsid.h"
 #include "option_selected.h"

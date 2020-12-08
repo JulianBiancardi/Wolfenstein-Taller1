@@ -2,7 +2,7 @@
 
 #define BASE_ID 0
 
-OptionSelected::OptionSelected() { this->current_id = 3; }
+OptionSelected::OptionSelected() { this->current_id = BASE_ID; }
 
 size_t OptionSelected::get_current_id() const { return current_id; }
 
