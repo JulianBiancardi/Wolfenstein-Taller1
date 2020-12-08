@@ -3,6 +3,7 @@
 
 #include "../../utils/ray.h"
 #include "collisions/circle_mask.h"
+#include "objects/object.h"
 
 class Player;
 
@@ -12,11 +13,16 @@ class Moveable {
   Map &map;
   int pace;
   Circle_mask mask;
+
   void move_from_current_position_if_can(double direction_angle);
+  bool is_map_free_in_next_position(Point next_position);
+  bool is_map_free_in_collision_mask_bounds(Point next_position,
+                                            double movement_angle);
 
  public:
   Moveable(Point origin, double angle, Map &game_map, int pace);
   ~Moveable() {}
+
   void move_up();
   void move_down();
   void move_right();
@@ -25,10 +31,9 @@ class Moveable {
   void move_up_left();
   void move_down_right();
   void move_down_left();
-  bool collides(size_t x, size_t y, Player &what);
-  bool collides_wall(size_t x, size_t y, double movement_angle);
+  bool occupies(Point where);
+  bool operator!=(const Moveable &other) const;
   Point get_position() { return angled_position.get_origin(); };
-  Circle_mask &get_mask() { return mask; };
 };
 
 #endif  // WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_MOVEABLE_H_

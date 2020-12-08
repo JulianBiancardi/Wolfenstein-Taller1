@@ -15,7 +15,8 @@ include_directories(${SDL2_INCLUDE_DIR})
 FILE(GLOB ServerFiles
         server/game/guns/*.cpp
 
-        server/game/collisions/circle_mask.cpp
+        server/game/collisions/*.cpp
+        server/game/objects/*.cpp
         server/game/player.cpp
         server/game/moveable.cpp
 
@@ -23,19 +24,11 @@ FILE(GLOB ServerFiles
         )
 FILE(GLOB CommonFiles common/*.cpp)
 FILE(GLOB MainFiles
-        point.cpp
-        ray.cpp
-
-        matrix.cpp
+	utils/*.cpp
         map.cpp
 
-        rectangle.cpp
         resource.cpp
-<<<<<<< HEAD
         resource_manager.cpp
-=======
-
->>>>>>> d54385d950ab6e4b25f29ec915ef813a4f6cd066
         )
 FILE(GLOB SDLFiles
         sdl/*.cpp

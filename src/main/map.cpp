@@ -1,10 +1,10 @@
 #include "map.h"
 
-#define WALL 1  // TODO Try to move somewhere else
-
 Map::Map(Matrix<int> &map_matrix) : map_matrix(map_matrix) {}
 
-// void Map::add_player(Player &player) { players.push_back(player); }
+void Map::add_player(Player &player) { players.push_back(player); }
+
+void Map::add_object(Object &object) { objects.push_back(object); }
 
 bool Map::is_wall(size_t x, size_t y) {
   if (map_matrix(x, y) >= WALL) {
@@ -12,25 +12,35 @@ bool Map::is_wall(size_t x, size_t y) {
   }
   return false;
 }
-/*
-bool Map::is_free(size_t x, size_t y, Moveable &for_whom,
-                  double movement_angle) {
-  if (for_whom.collides_wall(x, y, movement_angle)) {
-    return false;
-  }
 
-  for (auto &player : players) {
-    if ((for_whom.get_position().getX() !=
-         player.get().get_position().getX()) ||
-        (for_whom.get_position().getY() !=
-         player.get().get_position().getY())) {
-      if (for_whom.collides(x, y, player.get())) return false;
+bool Map::collides_player(Point where, Moveable &for_whom) {
+  for (auto player : players) {
+    if (player.get() != for_whom) {
+      if (player.get().occupies(where)) return true;
     }
   }
 
+  return false;
+}
+
+bool Map::collides_object(Point where) {
+  for (auto object : objects) {
+    if (object.get().occupies(where)) return true;
+  }
+
+  return false;
+}
+
+bool Map::is_free(Point where, Moveable &for_whom) {
+  if (is_wall(where.getX(), where.getY())) return false;
+
+  if (collides_player(where, for_whom)) return false;
+
+  if (collides_object(where)) return false;
+
   return true;
 }
-*/
+
 int Map::operator()(size_t x, size_t y) { return map_matrix(x, y); }
 
 Map::~Map() {}
