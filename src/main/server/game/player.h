@@ -1,13 +1,13 @@
 #ifndef WOLFENSTEIN_TALLER1_PLAYER_H
 #define WOLFENSTEIN_TALLER1_PLAYER_H
-
 #include "../config_loader.h"
 #include <iostream>
 #include "guns/gun.h"
 #include <list>
 #include "moveable.h"
+#include "shooter.h"
 
-class Player : public Moveable {
+class Player : public Moveable, public Shooter {
  private:
   int bullets;
   int shot_bullets;
@@ -15,7 +15,6 @@ class Player : public Moveable {
   int points;
   //std::map<std::string, Gun> guns_bag;
   std::list <Gun> guns_bag;
-
  public:
   Player(Point origin, double angle, Map &game_map);
 
@@ -23,9 +22,10 @@ class Player : public Moveable {
 
   ~Player() {}
 
-  void shoot_checker(double direction_angle);
+//  void shoot_checker(double direction_angle);
 
-  void shoot(Player &shot_player, Gun &gun);
+  void shoot_player(Player &shot_player, Gun &gun) override;
+
 
   bool has_bullets(int amount);
 /*

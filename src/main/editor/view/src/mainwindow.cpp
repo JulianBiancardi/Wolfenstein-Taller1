@@ -45,8 +45,7 @@ void MainWindow::on_actionOpen_File_triggered() {
   QString file_path = QFileDialog::getOpenFileName(this, "Open File",
                                                    QDir::homePath(), filters);
   try {
-    MapGenerator map_generator;
-    map_generator.generate_map(file_path.toStdString());
+    this->map->open_map(file_path.toStdString());
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
   }

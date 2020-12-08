@@ -1,7 +1,10 @@
 #include "caster.h"
 
+#include <algorithm>
+
 #include "ray_casting.h"
 #include "sdl/image.h"
+#include "utils/point.h"  // TODO Delete if not used in the file
 #include "utils/rectangle.h"
 
 #define UNIT 5
@@ -23,6 +26,19 @@
 #define FOV_DEG 70
 #define FOV (FOV_DEG * M_PI / 180)
 
+// =======
+bool static sprite_comp(_sprite& a, _sprite& b) {
+  return a.get_distance() < b.get_distance();
+}
+
+void static load_sprites(std::vector<_sprite>& sprites);
+
+void _sprite::update_distance(Point src) {
+  distance = Point::distance(src, pos);
+}
+double _sprite::get_distance() { return distance; }
+// =========
+
 Caster::Caster(Window& window, Ray& player, Map& map)
     : renderer(window.get_renderer()),
       player(player),
@@ -35,7 +51,7 @@ Caster::~Caster() {}
 void Caster::operator()() {
   draw_background();
   std::vector<double> wall_distances = draw_walls();
-  // draw(wall_collisions);
+  // draw_sprites(wall_distances);
   window.update();
 }
 
@@ -71,9 +87,13 @@ std::vector<double> Caster::draw_walls() {
   double angle_step = FOV / SCREEN_WIDTH;
   for (int i = 0; i < SCREEN_WIDTH;) {
     Ray ray(player.get_origin(), ray_angle);
+
     Collision wall_collision = RayCasting::get_collision(map, ray);
     draw_wall(wall_collision, i, ray_angle);
-    wall_collisions.push_back(wall_collision.get_distance_from_src());
+
+    double projectected_dist = get_projected_distance(
+        ray_angle, player.get_angle(), wall_collision.get_distance_from_src());
+    wall_collisions.push_back(projectected_dist);
 
     i++;
     ray_angle -= angle_step;
@@ -115,8 +135,40 @@ void Caster::draw_wall(Collision& collision, size_t screen_pos,
   image->draw(pos, &slice);
 }
 
+void Caster::draw_sprites(std::vector<double>& wall_distances) {
+  std::vector<_sprite> sprites;
+  load_sprites(sprites);
+  sort_sprites(sprites);
+
+  std::vector<_sprite>::iterator iter;
+  for (iter = sprites.begin(); iter != sprites.end(); iter++) {
+    double x_relative = (*iter).get_pos().getX() - player.get_origin().getX();
+    double y_relative = (*iter).get_pos().getY() - player.get_origin().getY();
+    double sprite_angle = atan2(y_relative, x_relative);
+    double sprite_projected_distance =
+        (*iter).get_distance() * cos(sprite_angle);
+  }
+
+  return;
+}
+
 double Caster::get_projected_distance(double ray_angle, double player_angle,
                                       double collision_distance) {
   double ray_offset = ray_angle - player_angle;
   return collision_distance * cos(ray_offset);
+}
+
+// TODO Delete when linked with map.
+void static load_sprites(std::vector<_sprite>& sprites) {
+  sprites.push_back(_sprite(Point(1.5, 3.5)));
+  sprites.push_back(_sprite(Point(5, 1.5)));
+  sprites.push_back(_sprite(Point(1.5, 1.5)));
+}
+
+void Caster::sort_sprites(std::vector<_sprite>& sprites) {
+  std::vector<_sprite>::iterator iter;
+  for (iter = sprites.begin(); iter != sprites.end(); iter++) {
+    (*iter).update_distance(player.get_origin());
+  }
+  std::sort(sprites.begin(), sprites.end(), sprite_comp);
 }
