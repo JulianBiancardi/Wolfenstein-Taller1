@@ -21,6 +21,7 @@ class _sprite {
   ~_sprite() {}
   void update_distance(Point src);
   double get_distance();
+  Point get_pos() { return pos; }
 };
 
 // ============================

@@ -51,7 +51,7 @@ Caster::~Caster() {}
 void Caster::operator()() {
   draw_background();
   std::vector<double> wall_distances = draw_walls();
-  draw_sprites(wall_distances);
+  // draw_sprites(wall_distances);
   window.update();
 }
 
@@ -139,6 +139,15 @@ void Caster::draw_sprites(std::vector<double>& wall_distances) {
   std::vector<_sprite> sprites;
   load_sprites(sprites);
   sort_sprites(sprites);
+
+  std::vector<_sprite>::iterator iter;
+  for (iter = sprites.begin(); iter != sprites.end(); iter++) {
+    double x_relative = (*iter).get_pos().getX() - player.get_origin().getX();
+    double y_relative = (*iter).get_pos().getY() - player.get_origin().getY();
+    double sprite_angle = atan2(y_relative, x_relative);
+    double sprite_projected_distance =
+        (*iter).get_distance() * cos(sprite_angle);
+  }
 
   return;
 }
