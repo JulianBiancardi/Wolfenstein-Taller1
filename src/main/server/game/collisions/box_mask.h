@@ -9,7 +9,7 @@ class Box_mask : public Mask {
   double height;
 
  public:
-  Box_mask(double width, double height, Point center)
+  Box_mask(double width, double height, const Point &center)
       : width(width), height(height), Mask(center) {}
 
   virtual bool occupies(Point where);

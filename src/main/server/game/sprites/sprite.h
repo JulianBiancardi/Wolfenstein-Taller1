@@ -5,9 +5,11 @@
 
 class Sprite {
  protected:
+  Point center;
   Mask *mask;
 
  public:
+  Sprite(Point center) : center(center) {};
   bool occupies(Point where);
 };
 

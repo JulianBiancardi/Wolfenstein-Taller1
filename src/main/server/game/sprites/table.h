@@ -6,8 +6,8 @@
 
 class Table : public Sprite {
  public:
-  Table(double width, double length, Point center) {
-    mask = new Box_mask(width, length, center);
+  Table(double width, double length, Point center) : Sprite(center) {
+    mask = new Box_mask(width, length, this->center);
   }
   ~Table() { delete mask; }
 };

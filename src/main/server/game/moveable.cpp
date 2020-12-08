@@ -6,7 +6,7 @@ Moveable::Moveable(Point origin, double angle, Map &game_map, int pace) :
     angled_position(origin, angle),
     map(game_map),
     pace(pace),
-    mask(5, angled_position.get_origin()) {}
+    mask(5, angled_position.get_ref_origin()) {}
 
 bool Moveable::occupies(Point where) {
   return mask.occupies(where);
@@ -35,10 +35,8 @@ void Moveable::move_from_current_position_if_can(double direction_angle) {
   Point next(next_x, next_y);
 
   if (is_map_free_in_next_position(next)
-      && is_map_free_in_collision_mask_bounds(next, movement_angle)) {
+      && is_map_free_in_collision_mask_bounds(next, movement_angle))
     angled_position.set_origin(next_x, next_y);
-    mask.update_center(next);
-  }
 }
 
 void Moveable::move_up() {

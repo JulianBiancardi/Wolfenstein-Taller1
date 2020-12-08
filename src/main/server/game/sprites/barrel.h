@@ -6,7 +6,11 @@
 
 class Barrel : public Sprite {
  public:
-  Barrel(double radio, Point center) { mask = new Circle_mask(radio, center); }
+  Barrel(double radio, Point center) : Sprite(center) {
+    mask = new Circle_mask(
+        radio,
+        this->center);
+  }
   ~Barrel() { delete mask; }
 };
 
