@@ -3,6 +3,7 @@
 
 #include "../../ray.h"
 #include "collisions/circle_mask.h"
+#include "objects/object.h"
 
 class Player;
 
@@ -26,6 +27,7 @@ class Moveable {
   void move_down_right();
   void move_down_left();
   bool collides(size_t x, size_t y, Player &what);
+  bool collides(size_t x, size_t y, Object &what);
   bool collides_wall(size_t x, size_t y, double movement_angle);
   Point get_position() { return angled_position.get_origin(); };
   Circle_mask &get_mask() { return mask; };

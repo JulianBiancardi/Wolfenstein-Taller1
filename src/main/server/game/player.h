@@ -19,7 +19,7 @@ class Player : public Moveable {
  public:
   Player(Point origin, double angle, Map &game_map);
 
-  Player(int x, int y, double angle, Map &game_map);
+  Player(double x, double y, double angle, Map &game_map);
 
   ~Player() {}
 

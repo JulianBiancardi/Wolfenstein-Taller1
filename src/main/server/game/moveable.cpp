@@ -23,6 +23,10 @@ bool Moveable::collides(size_t x, size_t y, Player &what) {
   return mask.collides(x, y, what.get_mask(), what.get_position());
 }
 
+bool Moveable::collides(size_t x, size_t y, Object &what) {
+  return mask.collides(x, y, what.get_mask(), what.get_position());
+}
+
 bool Moveable::collides_wall(size_t x, size_t y, double movement_angle) {
   return mask.collides_wall(x, y, map, movement_angle);
 }

@@ -9,7 +9,7 @@ Player::Player(Point origin, double angle, Map &game_map) :
   //bullets = 8;
 }
 
-Player::Player(int x, int y, double angle, Map &game_map) :
+Player::Player(double x, double y, double angle, Map &game_map) :
     shot_bullets(0), points(0), Moveable(Point(x, y), angle, game_map, 1) {
   health = ConfigLoader::player_health;
   //health = 100;
