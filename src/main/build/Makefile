@@ -978,6 +978,33 @@ resource.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/resource.cpp.s
 .PHONY : resource.cpp.s
 
+resource_manager.o: resource_manager.cpp.o
+
+.PHONY : resource_manager.o
+
+# target to build an object file
+resource_manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/resource_manager.cpp.o
+.PHONY : resource_manager.cpp.o
+
+resource_manager.i: resource_manager.cpp.i
+
+.PHONY : resource_manager.i
+
+# target to preprocess a source file
+resource_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/resource_manager.cpp.i
+.PHONY : resource_manager.cpp.i
+
+resource_manager.s: resource_manager.cpp.s
+
+.PHONY : resource_manager.s
+
+# target to generate assembly for a file
+resource_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/resource_manager.cpp.s
+.PHONY : resource_manager.cpp.s
+
 sdl/image.o: sdl/image.cpp.o
 
 .PHONY : sdl/image.o
@@ -1443,6 +1470,9 @@ help:
 	@echo "... resource.o"
 	@echo "... resource.i"
 	@echo "... resource.s"
+	@echo "... resource_manager.o"
+	@echo "... resource_manager.i"
+	@echo "... resource_manager.s"
 	@echo "... sdl/image.o"
 	@echo "... sdl/image.i"
 	@echo "... sdl/image.s"

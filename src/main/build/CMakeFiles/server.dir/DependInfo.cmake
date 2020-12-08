@@ -19,6 +19,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/santiagoczop/Taller/tps/tp4/src/main/ray.cpp" "/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles/server.dir/ray.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/src/main/rectangle.cpp" "/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles/server.dir/rectangle.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/src/main/resource.cpp" "/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles/server.dir/resource.cpp.o"
+  "/home/santiagoczop/Taller/tps/tp4/src/main/resource_manager.cpp" "/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles/server.dir/resource_manager.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/src/main/sdl/image.cpp" "/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles/server.dir/sdl/image.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/src/main/sdl/sdl_error.cpp" "/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles/server.dir/sdl/sdl_error.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/src/main/sdl/surface.cpp" "/home/santiagoczop/Taller/tps/tp4/src/main/build/CMakeFiles/server.dir/sdl/surface.cpp.o"

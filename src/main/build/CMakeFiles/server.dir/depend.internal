@@ -200,6 +200,47 @@ CMakeFiles/server.dir/resource.cpp.o
  /home/santiagoczop/Taller/tps/tp4/src/main/sdl/image.h
  /home/santiagoczop/Taller/tps/tp4/src/main/sdl/surface.h
  /home/santiagoczop/Taller/tps/tp4/src/main/sdl/texture.h
+CMakeFiles/server.dir/resource_manager.cpp.o
+ ../common/third-party/yaml-cpp/include/yaml-cpp/binary.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/dll.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emitter.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emitterdef.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emittermanip.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/emitterstyle.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/exceptions.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/mark.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/convert.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/impl.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator_fwd.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/memory.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_data.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_iterator.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_ref.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/emit.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/impl.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/iterator.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/node.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/parse.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/ptr.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/node/type.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/noexcept.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/null.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/ostream_wrapper.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/parser.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/traits.h
+ ../common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
+ /home/santiagoczop/Taller/tps/tp4/src/main/point.h
+ /home/santiagoczop/Taller/tps/tp4/src/main/rectangle.h
+ /home/santiagoczop/Taller/tps/tp4/src/main/resource.h
+ /home/santiagoczop/Taller/tps/tp4/src/main/resource_manager.cpp
+ /home/santiagoczop/Taller/tps/tp4/src/main/resource_manager.h
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/image.h
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/surface.h
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/texture.h
+ /home/santiagoczop/Taller/tps/tp4/src/main/sdl/window.h
 CMakeFiles/server.dir/sdl/image.cpp.o
  /home/santiagoczop/Taller/tps/tp4/src/main/point.h
  /home/santiagoczop/Taller/tps/tp4/src/main/rectangle.h

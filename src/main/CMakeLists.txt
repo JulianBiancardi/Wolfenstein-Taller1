@@ -31,7 +31,11 @@ FILE(GLOB MainFiles
 
         rectangle.cpp
         resource.cpp
+<<<<<<< HEAD
+        resource_manager.cpp
+=======
 
+>>>>>>> d54385d950ab6e4b25f29ec915ef813a4f6cd066
         )
 FILE(GLOB SDLFiles
         sdl/*.cpp

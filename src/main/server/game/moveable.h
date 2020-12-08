@@ -1,7 +1,7 @@
 #ifndef WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_MOVEABLE_H_
 #define WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_MOVEABLE_H_
 
-#include "../../ray.h"
+#include "../../utils/ray.h"
 #include "collisions/circle_mask.h"
 #include "objects/object.h"
 
@@ -33,4 +33,4 @@ class Moveable {
   Circle_mask &get_mask() { return mask; };
 };
 
-#endif //WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_MOVEABLE_H_
+#endif  // WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_MOVEABLE_H_

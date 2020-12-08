@@ -17,25 +17,29 @@ Point third_quad_y(Map& map, const Point& origin, double tg);
 Point forth_quad_x(Map& map, const Point& origin, double tg);
 Point forth_quad_y(Map& map, const Point& origin, double tg);
 
-Point RayCasting::get_intersection(Map& map, Ray& ray) {
+Point RayCasting::get_intersection(Map& map, Ray& ray, bool& y_intersection) {
   double angle = ray.get_angle();
 
   if (angle == 0) {
+    y_intersection = false;
     return RayCasting::horizontal_axis(map, ray);
   } else if (angle > 0 && angle < M_PI_2) {
-    return RayCasting::first_quad(map, ray);
+    return RayCasting::first_quad(map, ray, y_intersection);
   } else if (angle == M_PI_2) {
+    y_intersection = true;
     return RayCasting::vertical_axis(map, ray);
   } else if (angle > M_PI_2 && angle < M_PI) {
-    return RayCasting::second_quad(map, ray);
+    return RayCasting::second_quad(map, ray, y_intersection);
   } else if (angle == M_PI) {
+    y_intersection = false;
     return RayCasting::horizontal_axis(map, ray);
   } else if (angle > M_PI && angle < 3 * M_PI_2) {
-    return RayCasting::third_quad(map, ray);
+    return RayCasting::third_quad(map, ray, y_intersection);
   } else if (angle == 3 * M_PI_2) {
+    y_intersection = true;
     return vertical_axis(map, ray);
-  } else if (angle > 3 * M_PI_2 && angle <= 2 * M_PI) {
-    return RayCasting::forth_quad(map, ray);
+  } else if (angle > 3 * M_PI_2 && angle <= 2 * M_PI, y_intersection) {
+    return RayCasting::forth_quad(map, ray, y_intersection);
   } else {
     return Point(0, 0);  // TODO Throw Exception
   }
@@ -138,7 +142,7 @@ Point RayCasting::vertical_axis(Map& map, Ray& ray) {
   }
 }
 
-Point RayCasting::first_quad(Map& map, Ray& ray) {
+Point RayCasting::first_quad(Map& map, Ray& ray, bool& y_collision) {
   Point origin = ray.get_origin();
 
   // Precalculate tangent to avoid multiple calls.
@@ -149,7 +153,14 @@ Point RayCasting::first_quad(Map& map, Ray& ray) {
 
   double distance1 = Point::distance(ray.get_origin(), x_intersection);
   double distance2 = Point::distance(ray.get_origin(), y_intersection);
-  return distance1 < distance2 ? x_intersection : y_intersection;
+
+  if (distance1 < distance2) {
+    y_collision = false;
+    return x_intersection;
+  } else {
+    y_collision = true;
+    return y_intersection;
+  }
 }
 
 Point first_quad_x(Map& map, const Point& origin, double tg) {
@@ -204,7 +215,7 @@ Point first_quad_y(Map& map, const Point& origin, double tg) {
   }
 }
 
-Point RayCasting::second_quad(Map& map, Ray& ray) {
+Point RayCasting::second_quad(Map& map, Ray& ray, bool& y_collision) {
   Point origin = ray.get_origin();
 
   // Precalculate tangent to avoid multiple calls.
@@ -215,7 +226,14 @@ Point RayCasting::second_quad(Map& map, Ray& ray) {
 
   double distance1 = Point::distance(ray.get_origin(), x_intersection);
   double distance2 = Point::distance(ray.get_origin(), y_intersection);
-  return distance1 < distance2 ? x_intersection : y_intersection;
+
+  if (distance1 < distance2) {
+    y_collision = false;
+    return x_intersection;
+  } else {
+    y_collision = true;
+    return y_intersection;
+  }
 }
 
 Point second_quad_x(Map& map, const Point& origin, double tg) {
@@ -270,7 +288,7 @@ Point second_quad_y(Map& map, const Point& origin, double tg) {
   }
 }
 
-Point RayCasting::third_quad(Map& map, Ray& ray) {
+Point RayCasting::third_quad(Map& map, Ray& ray, bool& y_collision) {
   Point origin = ray.get_origin();
 
   // Precalculate tangent to avoid multiple calls.
@@ -282,7 +300,14 @@ Point RayCasting::third_quad(Map& map, Ray& ray) {
 
   double distance1 = Point::distance(ray.get_origin(), x_intersection);
   double distance2 = Point::distance(ray.get_origin(), y_intersection);
-  return distance1 < distance2 ? x_intersection : y_intersection;
+
+  if (distance1 < distance2) {
+    y_collision = false;
+    return x_intersection;
+  } else {
+    y_collision = true;
+    return y_intersection;
+  }
 }
 
 Point third_quad_x(Map& map, const Point& origin, double tg) {
@@ -337,7 +362,7 @@ Point third_quad_y(Map& map, const Point& origin, double tg) {
   }
 }
 
-Point RayCasting::forth_quad(Map& map, Ray& ray) {
+Point RayCasting::forth_quad(Map& map, Ray& ray, bool& y_collision) {
   Point origin = ray.get_origin();
 
   // Precalculate tangent to avoid multiple calls.
@@ -349,7 +374,13 @@ Point RayCasting::forth_quad(Map& map, Ray& ray) {
   double distance1 = Point::distance(ray.get_origin(), x_intersection);
   double distance2 = Point::distance(ray.get_origin(), y_intersection);
 
-  return distance1 < distance2 ? x_intersection : y_intersection;
+  if (distance1 < distance2) {
+    y_collision = false;
+    return x_intersection;
+  } else {
+    y_collision = true;
+    return y_intersection;
+  }
 }
 
 Point forth_quad_x(Map& map, const Point& origin, double tg) {

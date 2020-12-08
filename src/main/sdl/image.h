@@ -5,8 +5,8 @@
 
 #include <string>
 
-#include "../point.h"
-#include "../rectangle.h"
+#include "../utils/point.h"
+#include "../utils/rectangle.h"
 #include "texture.h"
 
 class Image {
@@ -20,10 +20,9 @@ class Image {
   Image(SDL_Renderer* renderer, std::string& file);
   ~Image();
 
-  void draw(Point& position, Rectangle* img_slice);
-  void draw(Point& position, Rectangle* img_slice, double x_scaling,
-            double y_scaling);
-  SDL_Texture* get_texture() { return texture.get_texture(); }
+  void draw(Rectangle& position, Rectangle* img_slice);
+  size_t get_width();
+  size_t get_height();
 };
 
 #endif
