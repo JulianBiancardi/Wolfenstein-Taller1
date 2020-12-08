@@ -16,7 +16,7 @@ FILE(GLOB ServerFiles
         server/game/guns/*.cpp
 
         server/game/collisions/*.cpp
-        server/game/objects/*.cpp
+        server/game/sprites/*.cpp
         server/game/player.cpp
         server/game/moveable.cpp
 
