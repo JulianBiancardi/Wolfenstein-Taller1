@@ -35,7 +35,7 @@ Caster::~Caster() {}
 void Caster::operator()() {
   draw_background();
   std::vector<Collision> wall_collisions = get_wall_collisions();
-  draw(wall_collisions);
+  // draw(wall_collisions);
   window.update();
 }
 
@@ -71,6 +71,8 @@ std::vector<Collision> Caster::get_wall_collisions() {
   double angle_step = FOV / SCREEN_WIDTH;
   for (int i = 0; i < SCREEN_WIDTH;) {
     Ray ray(player.get_origin(), ray_angle);
+    Collision wall_collision = RayCasting::get_collision(map, ray);
+    draw_wall(wall_collision, i, ray_angle);
     wall_collisions.push_back(RayCasting::get_collision(map, ray));
 
     i++;
@@ -83,16 +85,47 @@ std::vector<Collision> Caster::get_wall_collisions() {
   return std::move(wall_collisions);
 }
 
-void Caster::draw(std::vector<Collision> wall_collisions) {
+void Caster::draw_wall(Collision& collision, size_t screen_pos,
+                       double ray_angle) {
+  Image* image = res_manager.get_image(collision.get_collided_obj_id());
+
+  double projected_distance = Caster::get_projected_distance(
+      ray_angle, player.get_angle(), collision.get_distance_from_src());
+  int wall_size = WALL_SIZE / projected_distance;
+
+  Rectangle pos(SCREEN_HEIGHT_HALF - (wall_size / 2),
+                SCREEN_HEIGHT_HALF + (wall_size / 2), screen_pos,
+                screen_pos + 1);
+
+  size_t img_width = image->get_width();
+  size_t img_height = image->get_height();
+  Rectangle slice(0, 0, 0, 0);
+  if (collision.is_x_collision()) {
+    double tmp;
+    double y_offset = std::modf(collision.get_collision_point().getY(), &tmp);
+    slice = Rectangle(0, img_height, y_offset * img_width,
+                      y_offset * img_height + 1);
+  } else {
+    double tmp;
+    double x_offset = std::modf(collision.get_collision_point().getX(), &tmp);
+    slice = Rectangle(0, img_height, x_offset * img_width,
+                      x_offset * img_height + 1);
+  }
+
+  image->draw(pos, &slice);
+}
+
+void Caster::draw(std::vector<Collision>& wall_collisions) {
   double ray_angle = player.get_angle() + FOV / 2;
   if (ray_angle > 2 * M_PI) {
     ray_angle -= 2 * M_PI;
   }
 
   double angle_step = FOV / SCREEN_WIDTH;
-  for (int i = 0; i < SCREEN_WIDTH; i++) {
-    Collision collision = wall_collisions[i];
-    Image* image = res_manager.get_image(collision.get_collided_obj_id());
+  for (size_t pos = 0; pos < SCREEN_WIDTH; pos++) {
+    Collision collision = wall_collisions[pos];
+    draw_wall(collision, pos, ray_angle);
+    /*Image* image = res_manager.get_image(collision.get_collided_obj_id());
 
     double projected_distance = Caster::get_projected_distance(
         ray_angle, player.get_angle(), collision.get_distance_from_src());
@@ -120,7 +153,7 @@ void Caster::draw(std::vector<Collision> wall_collisions) {
     }
 
     image->draw(pos, &slice);
-
+*/
     ray_angle -= angle_step;
     if (ray_angle < 0) {
       ray_angle += 2 * M_PI;
