@@ -34,7 +34,8 @@ Caster::~Caster() {}
 
 void Caster::operator()() {
   draw_background();
-  draw_walls();
+  std::vector<Point> wall_collisions = get_wall_collisions();
+  draw(wall_collisions);
   window.update();
 }
 
@@ -58,15 +59,16 @@ void Caster::draw_background() {
   SDL_RenderFillRect(renderer, &bot_half);
 }
 
-void Caster::draw_walls() {
-  window.set_draw_color(0, 0, 0, 255);
+std::vector<Point> Caster::get_wall_collisions() {
+  std::vector<Point> wall_collisions;
+  wall_collisions.reserve(SCREEN_WIDTH);
 
   double ray_angle = player.get_angle() + FOV / 2;
   if (ray_angle > 2 * M_PI) {
     ray_angle -= 2 * M_PI;
   }
-  double angle_step = FOV / SCREEN_WIDTH;
 
+  double angle_step = FOV / SCREEN_WIDTH;
   for (int i = 0; i < SCREEN_WIDTH;) {
     Ray ray(player.get_origin(), ray_angle);
 
@@ -101,4 +103,8 @@ void Caster::draw_walls() {
       ray_angle += 2 * M_PI;
     }
   }
+
+  return std::move(wall_collisions);
 }
+
+void Caster::draw(std::vector<Point> wall_collisions) { return; }

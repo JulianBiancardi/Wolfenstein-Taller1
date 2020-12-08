@@ -17,7 +17,8 @@ class Caster {
   ResourceManager res_manager;
 
   void draw_background();
-  void draw_walls();
+  std::vector<Point> get_wall_collisions();
+  void draw(std::vector<Point> wall_collisions);
 
  public:
   Caster(Window& window, Ray& player, Map& map);

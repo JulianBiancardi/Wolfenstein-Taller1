@@ -4,7 +4,7 @@
 
 Map::Map(Matrix<int> &map_matrix) : map_matrix(map_matrix) {}
 
-void Map::add_player(Player &player) { players.push_back(player); }
+// void Map::add_player(Player &player) { players.push_back(player); }
 
 bool Map::is_wall(size_t x, size_t y) {
   if (map_matrix(x, y) >= WALL) {
@@ -12,7 +12,7 @@ bool Map::is_wall(size_t x, size_t y) {
   }
   return false;
 }
-
+/*
 bool Map::is_free(size_t x, size_t y, Moveable &for_whom,
                   double movement_angle) {
   if (for_whom.collides_wall(x, y, movement_angle)) {
@@ -30,7 +30,7 @@ bool Map::is_free(size_t x, size_t y, Moveable &for_whom,
 
   return true;
 }
-
+*/
 int Map::operator()(size_t x, size_t y) { return map_matrix(x, y); }
 
 Map::~Map() {}
