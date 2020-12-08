@@ -1,6 +1,5 @@
 #include "../../main/server/game/player.h"
-#include "../../main/server/game/objects/barrel.h"
-#include "../../main/server/game/objects/table.h"
+#include "../../main/server/game/sprites/table.h"
 #include "../../main/map.h"
 #include "../../main/utils/matrix.h"
 #include "../tests_setup.h"
@@ -289,7 +288,7 @@ int static player_collides_against_table_from_side() {
   Table table(5, 4, Point(100, 120));
 
   map.add_player(player);
-  map.add_object(table);
+  map.add_sprite(table);
 
   for (int i = 0; i < 100; i++) {
     player.move_up();
@@ -310,7 +309,7 @@ int static player_collides_against_table_from_another_side() {
   Table table(10, 10, Point(200, 100));
 
   map.add_player(player);
-  map.add_object(table);
+  map.add_sprite(table);
 
   for (int i = 0; i < 200; i++) {
     player.move_right();
@@ -367,7 +366,7 @@ int static diagonal_collision_with_table() {
   Table table(10, 10, Point(300, 300));
 
   map.add_player(player);
-  map.add_object(table);
+  map.add_sprite(table);
 
   for (int i = 0; i < 300; i++) {
     player.move_up();
