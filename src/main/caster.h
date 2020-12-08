@@ -18,8 +18,7 @@ class Caster {
   ResourceManager res_manager;
 
   void draw_background();
-  std::vector<Collision> get_wall_collisions();
-  void draw(std::vector<Collision>& wall_collisions);
+  std::vector<double> draw_walls();
   void draw_wall(Collision& collision, size_t screen_pos, double ray_angle);
 
   double get_projected_distance(double ray_angle, double player_angle,

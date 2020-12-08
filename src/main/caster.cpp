@@ -34,7 +34,7 @@ Caster::~Caster() {}
 
 void Caster::operator()() {
   draw_background();
-  std::vector<Collision> wall_collisions = get_wall_collisions();
+  std::vector<double> wall_distances = draw_walls();
   // draw(wall_collisions);
   window.update();
 }
@@ -59,8 +59,8 @@ void Caster::draw_background() {
   SDL_RenderFillRect(renderer, &bot_half);
 }
 
-std::vector<Collision> Caster::get_wall_collisions() {
-  std::vector<Collision> wall_collisions;
+std::vector<double> Caster::draw_walls() {
+  std::vector<double> wall_collisions;
   wall_collisions.reserve(SCREEN_WIDTH);
 
   double ray_angle = player.get_angle() + FOV / 2;
@@ -73,7 +73,7 @@ std::vector<Collision> Caster::get_wall_collisions() {
     Ray ray(player.get_origin(), ray_angle);
     Collision wall_collision = RayCasting::get_collision(map, ray);
     draw_wall(wall_collision, i, ray_angle);
-    wall_collisions.push_back(RayCasting::get_collision(map, ray));
+    wall_collisions.push_back(wall_collision.get_distance_from_src());
 
     i++;
     ray_angle -= angle_step;
@@ -113,52 +113,6 @@ void Caster::draw_wall(Collision& collision, size_t screen_pos,
   }
 
   image->draw(pos, &slice);
-}
-
-void Caster::draw(std::vector<Collision>& wall_collisions) {
-  double ray_angle = player.get_angle() + FOV / 2;
-  if (ray_angle > 2 * M_PI) {
-    ray_angle -= 2 * M_PI;
-  }
-
-  double angle_step = FOV / SCREEN_WIDTH;
-  for (size_t pos = 0; pos < SCREEN_WIDTH; pos++) {
-    Collision collision = wall_collisions[pos];
-    draw_wall(collision, pos, ray_angle);
-    /*Image* image = res_manager.get_image(collision.get_collided_obj_id());
-
-    double projected_distance = Caster::get_projected_distance(
-        ray_angle, player.get_angle(), collision.get_distance_from_src());
-    int wall_size = WALL_SIZE / projected_distance;
-
-    Rectangle pos(SCREEN_HEIGHT_HALF - (wall_size / 2),
-                  SCREEN_HEIGHT_HALF + (wall_size / 2), i, i + 1);
-
-    Rectangle slice(0, 0, 0, 0);
-    if (collision.is_x_collision()) {
-      // TODO Beautify
-      slice = Rectangle(0, image->get_height(),
-                        std::fmod(collision.get_collision_point().getY(), 1) *
-                            image->get_width(),
-                        (std::fmod(collision.get_collision_point().getY(), 1) *
-                             image->get_height() +
-                         1));
-    } else {
-      slice = Rectangle(0, image->get_height(),
-                        std::fmod(collision.get_collision_point().getX(), 1) *
-                            image->get_width(),
-                        (std::fmod(collision.get_collision_point().getX(), 1) *
-                             image->get_height() +
-                         1));
-    }
-
-    image->draw(pos, &slice);
-*/
-    ray_angle -= angle_step;
-    if (ray_angle < 0) {
-      ray_angle += 2 * M_PI;
-    }
-  }
 }
 
 double Caster::get_projected_distance(double ray_angle, double player_angle,
