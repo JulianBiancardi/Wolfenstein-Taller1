@@ -2,7 +2,7 @@
 #define WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_COLLISIONS_MASK_H_
 
 #include <cstddef>
-#include "../../../point.h"
+#include "../../../utils/point.h"
 
 class Circle_mask;
 

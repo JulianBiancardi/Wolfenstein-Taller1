@@ -3,7 +3,7 @@
 
 #define WALL 1  // TODO Remove this and ask in Config
 
-#include "matrix.h"
+#include "utils/matrix.h"
 #include "server/game/moveable.h"
 #include "server/game/player.h"
 #include "server/game/objects/object.h"

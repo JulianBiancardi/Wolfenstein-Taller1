@@ -2,7 +2,7 @@
 #include "../../main/server/game/objects/barrel.h"
 #include "../../main/server/game/objects/table.h"
 #include "../../main/map.h"
-#include "../../main/matrix.h"
+#include "../../main/utils/matrix.h"
 #include "../tests_setup.h"
 #include <iostream>
 #include <cmath>
