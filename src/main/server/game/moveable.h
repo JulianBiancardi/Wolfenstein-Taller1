@@ -5,7 +5,7 @@
 #include "collisions/circle_mask.h"
 #include "sprites/sprite.h"
 
-class Player;
+class Player;  // FIXME Creo que esto es borrable
 
 class Moveable {
  private:
