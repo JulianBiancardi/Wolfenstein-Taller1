@@ -373,10 +373,10 @@ int static diagonal_collision_with_table() {
     player.move_up();
   }
 
-  if (player.get_position().getX() > 290.9
-      && player.get_position().getY() < 292
-      && player.get_position().getX() > 290.9
-      && player.get_position().getY() < 292)
+  if (player.get_position().getX() > 290.91
+      && player.get_position().getY() < 290.92
+      && player.get_position().getX() > 290.91
+      && player.get_position().getY() < 290.92)
     return NO_ERROR;
 
   return ERROR;
