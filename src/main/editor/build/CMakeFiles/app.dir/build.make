@@ -125,9 +125,57 @@ CMakeFiles/app.dir/view/src/mapgrid.cpp.o.provides: CMakeFiles/app.dir/view/src/
 CMakeFiles/app.dir/view/src/mapgrid.cpp.o.provides.build: CMakeFiles/app.dir/view/src/mapgrid.cpp.o
 
 
+CMakeFiles/app.dir/view/src/option.cpp.o: CMakeFiles/app.dir/flags.make
+CMakeFiles/app.dir/view/src/option.cpp.o: ../view/src/option.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/app.dir/view/src/option.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/app.dir/view/src/option.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/option.cpp
+
+CMakeFiles/app.dir/view/src/option.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/app.dir/view/src/option.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/option.cpp > CMakeFiles/app.dir/view/src/option.cpp.i
+
+CMakeFiles/app.dir/view/src/option.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/app.dir/view/src/option.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/option.cpp -o CMakeFiles/app.dir/view/src/option.cpp.s
+
+CMakeFiles/app.dir/view/src/option.cpp.o.requires:
+
+.PHONY : CMakeFiles/app.dir/view/src/option.cpp.o.requires
+
+CMakeFiles/app.dir/view/src/option.cpp.o.provides: CMakeFiles/app.dir/view/src/option.cpp.o.requires
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/option.cpp.o.provides.build
+.PHONY : CMakeFiles/app.dir/view/src/option.cpp.o.provides
+
+CMakeFiles/app.dir/view/src/option.cpp.o.provides.build: CMakeFiles/app.dir/view/src/option.cpp.o
+
+
+CMakeFiles/app.dir/view/src/options_container.cpp.o: CMakeFiles/app.dir/flags.make
+CMakeFiles/app.dir/view/src/options_container.cpp.o: ../view/src/options_container.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/app.dir/view/src/options_container.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/app.dir/view/src/options_container.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/options_container.cpp
+
+CMakeFiles/app.dir/view/src/options_container.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/app.dir/view/src/options_container.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/options_container.cpp > CMakeFiles/app.dir/view/src/options_container.cpp.i
+
+CMakeFiles/app.dir/view/src/options_container.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/app.dir/view/src/options_container.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/options_container.cpp -o CMakeFiles/app.dir/view/src/options_container.cpp.s
+
+CMakeFiles/app.dir/view/src/options_container.cpp.o.requires:
+
+.PHONY : CMakeFiles/app.dir/view/src/options_container.cpp.o.requires
+
+CMakeFiles/app.dir/view/src/options_container.cpp.o.provides: CMakeFiles/app.dir/view/src/options_container.cpp.o.requires
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/options_container.cpp.o.provides.build
+.PHONY : CMakeFiles/app.dir/view/src/options_container.cpp.o.provides
+
+CMakeFiles/app.dir/view/src/options_container.cpp.o.provides.build: CMakeFiles/app.dir/view/src/options_container.cpp.o
+
+
 CMakeFiles/app.dir/view/src/option_selected.cpp.o: CMakeFiles/app.dir/flags.make
 CMakeFiles/app.dir/view/src/option_selected.cpp.o: ../view/src/option_selected.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/app.dir/view/src/option_selected.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/app.dir/view/src/option_selected.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/app.dir/view/src/option_selected.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/option_selected.cpp
 
 CMakeFiles/app.dir/view/src/option_selected.cpp.i: cmake_force
@@ -151,7 +199,7 @@ CMakeFiles/app.dir/view/src/option_selected.cpp.o.provides.build: CMakeFiles/app
 
 CMakeFiles/app.dir/view/src/itemsid.cpp.o: CMakeFiles/app.dir/flags.make
 CMakeFiles/app.dir/view/src/itemsid.cpp.o: ../view/src/itemsid.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/app.dir/view/src/itemsid.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/app.dir/view/src/itemsid.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/app.dir/view/src/itemsid.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/itemsid.cpp
 
 CMakeFiles/app.dir/view/src/itemsid.cpp.i: cmake_force
@@ -173,9 +221,33 @@ CMakeFiles/app.dir/view/src/itemsid.cpp.o.provides: CMakeFiles/app.dir/view/src/
 CMakeFiles/app.dir/view/src/itemsid.cpp.o.provides.build: CMakeFiles/app.dir/view/src/itemsid.cpp.o
 
 
+CMakeFiles/app.dir/view/src/mainwindow.cpp.o: CMakeFiles/app.dir/flags.make
+CMakeFiles/app.dir/view/src/mainwindow.cpp.o: ../view/src/mainwindow.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/app.dir/view/src/mainwindow.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/app.dir/view/src/mainwindow.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/mainwindow.cpp
+
+CMakeFiles/app.dir/view/src/mainwindow.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/app.dir/view/src/mainwindow.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/mainwindow.cpp > CMakeFiles/app.dir/view/src/mainwindow.cpp.i
+
+CMakeFiles/app.dir/view/src/mainwindow.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/app.dir/view/src/mainwindow.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/mainwindow.cpp -o CMakeFiles/app.dir/view/src/mainwindow.cpp.s
+
+CMakeFiles/app.dir/view/src/mainwindow.cpp.o.requires:
+
+.PHONY : CMakeFiles/app.dir/view/src/mainwindow.cpp.o.requires
+
+CMakeFiles/app.dir/view/src/mainwindow.cpp.o.provides: CMakeFiles/app.dir/view/src/mainwindow.cpp.o.requires
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/view/src/mainwindow.cpp.o.provides.build
+.PHONY : CMakeFiles/app.dir/view/src/mainwindow.cpp.o.provides
+
+CMakeFiles/app.dir/view/src/mainwindow.cpp.o.provides.build: CMakeFiles/app.dir/view/src/mainwindow.cpp.o
+
+
 CMakeFiles/app.dir/view/src/main.cpp.o: CMakeFiles/app.dir/flags.make
 CMakeFiles/app.dir/view/src/main.cpp.o: ../view/src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/app.dir/view/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/app.dir/view/src/main.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/app.dir/view/src/main.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/main.cpp
 
 CMakeFiles/app.dir/view/src/main.cpp.i: cmake_force
@@ -199,7 +271,7 @@ CMakeFiles/app.dir/view/src/main.cpp.o.provides.build: CMakeFiles/app.dir/view/s
 
 CMakeFiles/app.dir/model/celd.cpp.o: CMakeFiles/app.dir/flags.make
 CMakeFiles/app.dir/model/celd.cpp.o: ../model/celd.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/app.dir/model/celd.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/app.dir/model/celd.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/app.dir/model/celd.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/model/celd.cpp
 
 CMakeFiles/app.dir/model/celd.cpp.i: cmake_force
@@ -223,7 +295,7 @@ CMakeFiles/app.dir/model/celd.cpp.o.provides.build: CMakeFiles/app.dir/model/cel
 
 CMakeFiles/app.dir/model/map.cpp.o: CMakeFiles/app.dir/flags.make
 CMakeFiles/app.dir/model/map.cpp.o: ../model/map.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/app.dir/model/map.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/app.dir/model/map.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/app.dir/model/map.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/model/map.cpp
 
 CMakeFiles/app.dir/model/map.cpp.i: cmake_force
@@ -245,9 +317,33 @@ CMakeFiles/app.dir/model/map.cpp.o.provides: CMakeFiles/app.dir/model/map.cpp.o.
 CMakeFiles/app.dir/model/map.cpp.o.provides.build: CMakeFiles/app.dir/model/map.cpp.o
 
 
+CMakeFiles/app.dir/model/map_generator.cpp.o: CMakeFiles/app.dir/flags.make
+CMakeFiles/app.dir/model/map_generator.cpp.o: ../model/map_generator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/app.dir/model/map_generator.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/app.dir/model/map_generator.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/model/map_generator.cpp
+
+CMakeFiles/app.dir/model/map_generator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/app.dir/model/map_generator.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/model/map_generator.cpp > CMakeFiles/app.dir/model/map_generator.cpp.i
+
+CMakeFiles/app.dir/model/map_generator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/app.dir/model/map_generator.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/model/map_generator.cpp -o CMakeFiles/app.dir/model/map_generator.cpp.s
+
+CMakeFiles/app.dir/model/map_generator.cpp.o.requires:
+
+.PHONY : CMakeFiles/app.dir/model/map_generator.cpp.o.requires
+
+CMakeFiles/app.dir/model/map_generator.cpp.o.provides: CMakeFiles/app.dir/model/map_generator.cpp.o.requires
+	$(MAKE) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/model/map_generator.cpp.o.provides.build
+.PHONY : CMakeFiles/app.dir/model/map_generator.cpp.o.provides
+
+CMakeFiles/app.dir/model/map_generator.cpp.o.provides.build: CMakeFiles/app.dir/model/map_generator.cpp.o
+
+
 CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o: CMakeFiles/app.dir/flags.make
 CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o: app_autogen/mocs_compilation.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/app_autogen/mocs_compilation.cpp
 
 CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.i: cmake_force
@@ -273,11 +369,15 @@ CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o.provides.build: CMakeFiles
 app_OBJECTS = \
 "CMakeFiles/app.dir/view/src/celd_view.cpp.o" \
 "CMakeFiles/app.dir/view/src/mapgrid.cpp.o" \
+"CMakeFiles/app.dir/view/src/option.cpp.o" \
+"CMakeFiles/app.dir/view/src/options_container.cpp.o" \
 "CMakeFiles/app.dir/view/src/option_selected.cpp.o" \
 "CMakeFiles/app.dir/view/src/itemsid.cpp.o" \
+"CMakeFiles/app.dir/view/src/mainwindow.cpp.o" \
 "CMakeFiles/app.dir/view/src/main.cpp.o" \
 "CMakeFiles/app.dir/model/celd.cpp.o" \
 "CMakeFiles/app.dir/model/map.cpp.o" \
+"CMakeFiles/app.dir/model/map_generator.cpp.o" \
 "CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o"
 
 # External object files for target app
@@ -285,11 +385,15 @@ app_EXTERNAL_OBJECTS =
 
 app: CMakeFiles/app.dir/view/src/celd_view.cpp.o
 app: CMakeFiles/app.dir/view/src/mapgrid.cpp.o
+app: CMakeFiles/app.dir/view/src/option.cpp.o
+app: CMakeFiles/app.dir/view/src/options_container.cpp.o
 app: CMakeFiles/app.dir/view/src/option_selected.cpp.o
 app: CMakeFiles/app.dir/view/src/itemsid.cpp.o
+app: CMakeFiles/app.dir/view/src/mainwindow.cpp.o
 app: CMakeFiles/app.dir/view/src/main.cpp.o
 app: CMakeFiles/app.dir/model/celd.cpp.o
 app: CMakeFiles/app.dir/model/map.cpp.o
+app: CMakeFiles/app.dir/model/map_generator.cpp.o
 app: CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o
 app: CMakeFiles/app.dir/build.make
 app: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.9.5
@@ -297,7 +401,7 @@ app: common/third-party/yaml-cpp/libyaml-cpp.a
 app: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.9.5
 app: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.9.5
 app: CMakeFiles/app.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable app"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/app.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -307,11 +411,15 @@ CMakeFiles/app.dir/build: app
 
 CMakeFiles/app.dir/requires: CMakeFiles/app.dir/view/src/celd_view.cpp.o.requires
 CMakeFiles/app.dir/requires: CMakeFiles/app.dir/view/src/mapgrid.cpp.o.requires
+CMakeFiles/app.dir/requires: CMakeFiles/app.dir/view/src/option.cpp.o.requires
+CMakeFiles/app.dir/requires: CMakeFiles/app.dir/view/src/options_container.cpp.o.requires
 CMakeFiles/app.dir/requires: CMakeFiles/app.dir/view/src/option_selected.cpp.o.requires
 CMakeFiles/app.dir/requires: CMakeFiles/app.dir/view/src/itemsid.cpp.o.requires
+CMakeFiles/app.dir/requires: CMakeFiles/app.dir/view/src/mainwindow.cpp.o.requires
 CMakeFiles/app.dir/requires: CMakeFiles/app.dir/view/src/main.cpp.o.requires
 CMakeFiles/app.dir/requires: CMakeFiles/app.dir/model/celd.cpp.o.requires
 CMakeFiles/app.dir/requires: CMakeFiles/app.dir/model/map.cpp.o.requires
+CMakeFiles/app.dir/requires: CMakeFiles/app.dir/model/map_generator.cpp.o.requires
 CMakeFiles/app.dir/requires: CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o.requires
 
 .PHONY : CMakeFiles/app.dir/requires

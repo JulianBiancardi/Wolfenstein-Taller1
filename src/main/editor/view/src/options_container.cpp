@@ -18,7 +18,6 @@ OptionsContainer::~OptionsContainer() {}
 void OptionsContainer::addOptions(ItemsId* ids,
                                   OptionSelected* current_option) {
   QList<size_t> ids_section;
-  ids_section.append(0);
   ids_section.append(2);
   ids_section.append(5);
   ids_section.append(1);

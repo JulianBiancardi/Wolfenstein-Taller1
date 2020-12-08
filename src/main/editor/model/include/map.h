@@ -25,6 +25,7 @@ class Map {
   void clear(size_t row, size_t column);
   void clear_all();
 
+  void print();  // Debug function
   void resize(size_t new_rows, size_t new_columns);
 
   ~Map();
