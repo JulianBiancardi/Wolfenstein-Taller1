@@ -1,33 +1,34 @@
 #ifndef RAY_CASTING_H
 #define RAY_CASTING_H
 
+#include "collision.h"
 #include "map.h"
 #include "utils/point.h"
 #include "utils/ray.h"
 
 class RayCasting {
  private:
-  Point static first_quad(Map& map, Ray& ray, bool& y_intersection);
-  Point static second_quad(Map& map, Ray& ray, bool& y_intersection);
-  Point static third_quad(Map& map, Ray& ray, bool& y_intersection);
-  Point static forth_quad(Map& map, Ray& ray, bool& y_intersection);
-  Point static horizontal_axis(Map& map, Ray& ray);
-  Point static vertical_axis(Map& map, Ray& ray);
+  Collision static first_quad(Map& map, Ray& ray);
+  Collision static second_quad(Map& map, Ray& ray);
+  Collision static third_quad(Map& map, Ray& ray);
+  Collision static forth_quad(Map& map, Ray& ray);
+  Collision static horizontal_axis(Map& map, Ray& ray);
+  Collision static vertical_axis(Map& map, Ray& ray);
 
  public:
   RayCasting() = delete;
   ~RayCasting() = delete;
 
-  /* Receives a Map, a Ray and a boolean, and returns a point of collision which
-   * occurs upon casting the ray onto the map. Sets the passed boolean to True
-   * if the collision occurs with a y=K line, False if the collision occurs
-   * with a x=K line. Precondition: The ray must be able to hit a wall in
-   * its direction.
+  /* Receives a Map, a Ray the collision which occurs upon casting the ray onto
+   * the map.
+   * Preconditions:
+   *  -The ray must be able to hit a wall in its direction.
+   *  -The ray's angle must be normalized to [0, 2*PI).
    */
-  Point static get_intersection(Map& m, Ray& ray, bool& vert_intersection);
+  Collision static get_collision(Map& m, Ray& ray);
 
   double static get_scaling_factor(Ray& ray, Ray& player_direction,
-                                   Point& intersection_point);
+                                   Collision& intersection_point);
 };
 
 #endif
