@@ -5,14 +5,9 @@
 #include "object.h"
 
 class Table : public Object {
- private:
-  double width;
-  double length;
-
  public:
-  Table(double width, double length, Point center)
-      : width(width), length(length), Object(center) {
-    mask = new Box_mask(width, length);
+  Table(double width, double length, Point center) {
+    mask = new Box_mask(width, length, center);
   }
   ~Table() {
     delete mask;

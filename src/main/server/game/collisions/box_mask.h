@@ -9,12 +9,10 @@ class Box_mask : public Mask {
   double height;
 
  public:
-  Box_mask(double width, double height) : width(width), height(height) {}
-  virtual bool collides(size_t where_x,
-                        size_t where_y,
-                        Circle_mask &other,
-                        Point other_position);
+  Box_mask(double width, double height, Point center)
+      : width(width), height(height), Mask(center) {}
 
+  virtual bool occupies(Point where);
 };
 
 #endif //WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_COLLISIONS_BOX_MASK_H_

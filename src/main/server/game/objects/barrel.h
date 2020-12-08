@@ -6,9 +6,8 @@
 
 class Barrel : public Object {
  public:
-  Barrel(double radio, Point center)
-      : Object(center) {
-    mask = new Circle_mask(radio);
+  Barrel(double radio, Point center) {
+    mask = new Circle_mask(radio, center);
   }
   ~Barrel() {
     delete mask;

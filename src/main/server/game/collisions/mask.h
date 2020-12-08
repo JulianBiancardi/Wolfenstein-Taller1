@@ -7,11 +7,14 @@
 class Circle_mask;
 
 class Mask {
+ protected:
+  Point center;
+
  public:
-  virtual bool collides(size_t where_x,
-                        size_t where_y,
-                        Circle_mask &other,
-                        Point other_position) = 0;
+  Mask(Point center) : center(center) {}
+
+  virtual bool occupies(Point where) = 0;
+  void update_center(Point center) { this->center = center; }
 };
 
 #endif //WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_COLLISIONS_MASK_H_

@@ -13,20 +13,10 @@ class Circle_mask : public Mask {
   double radio;
 
  public:
-  Circle_mask(double radio);
+  Circle_mask(double radio, Point center) : radio(radio), Mask(center) {};
   ~Circle_mask() {};
-  virtual bool collides(size_t where_x,
-                        size_t where_y,
-                        Circle_mask &other,
-                        Point other_position);
-  bool collides(size_t where_x,
-                size_t where_y,
-                Mask *other,
-                Point other_position);
-  bool collides_wall(size_t where_x,
-                     size_t where_y,
-                     Map &map,
-                     double movement_angle);
+
+  virtual bool occupies(Point where);
   double get_radio() { return radio; };
 };
 
