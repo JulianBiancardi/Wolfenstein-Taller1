@@ -1,0 +1,31 @@
+--- 
+0:
+  name: "Air"
+1:
+  name: "Rock Wall"
+  image: "/home/santiagoczop/Taller/tps/tp4/res/walls/grey_brick_wall.bmp"
+  icon: "../resources/images/walls/IMG_RockWall.png"
+2:
+  name: "Wood Wall"
+  image: "resources/images/walls/IMG_WoodWall.png"
+  icon: "../resources/images/walls/IMG_WoodWall.png"
+3: 
+  name: "Maching Gun"
+  image: "resources/images/weapons/IMG_Machingun.png"
+  icon: "../resources/images/weapons/IMG_Machingun.png"
+4:
+  name: "Bazooka"
+  image: "resources/images/weapons/IMG_Bazooka.png"
+  icon: "../resources/images/weapons/IMG_Bazooka.png"
+  sound: ""
+5:
+  name: "Pistol"
+  image: "resources/images/weapons/IMG_Pistol.png"
+  icon: "../resources/images/weapons/IMG_Pistol.png"
+  sound: ""
+6:
+  name: "Guard"
+  image: "resources/images/enemies/IMG_Guard.png"
+  icon: "../resources/images/enemies/IMG_Guard.png"
+  sound: ""
+...
