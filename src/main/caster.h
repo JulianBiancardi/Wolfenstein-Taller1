@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 
+#include "collision.h"
 #include "map.h"
 #include "resource_manager.h"
 #include "sdl/window.h"
@@ -17,7 +18,11 @@ class Caster {
   ResourceManager res_manager;
 
   void draw_background();
-  void draw_walls();
+  std::vector<double> draw_walls();
+  void draw_wall(Collision& collision, size_t screen_pos, double ray_angle);
+
+  double get_projected_distance(double ray_angle, double player_angle,
+                                double collision_distance);
 
  public:
   Caster(Window& window, Ray& player, Map& map);

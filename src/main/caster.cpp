@@ -34,7 +34,8 @@ Caster::~Caster() {}
 
 void Caster::operator()() {
   draw_background();
-  draw_walls();
+  std::vector<double> wall_distances = draw_walls();
+  // draw(wall_collisions);
   window.update();
 }
 
@@ -58,42 +59,21 @@ void Caster::draw_background() {
   SDL_RenderFillRect(renderer, &bot_half);
 }
 
-void Caster::draw_walls() {
-  window.set_draw_color(0, 0, 0, 255);
+std::vector<double> Caster::draw_walls() {
+  std::vector<double> wall_collisions;
+  wall_collisions.reserve(SCREEN_WIDTH);
 
   double ray_angle = player.get_angle() + FOV / 2;
   if (ray_angle > 2 * M_PI) {
     ray_angle -= 2 * M_PI;
   }
-  double angle_step = FOV / SCREEN_WIDTH;
 
+  double angle_step = FOV / SCREEN_WIDTH;
   for (int i = 0; i < SCREEN_WIDTH;) {
     Ray ray(player.get_origin(), ray_angle);
-
-    bool y_intersection = true;
-    Point intersection = RayCasting::get_intersection(map, ray, y_intersection);
-
-    int id = map(intersection.getX(), intersection.getY());
-    Image* image = res_manager.get_image(id);
-
-    int wall_size = (int)WALL_SIZE *
-                    RayCasting::get_scaling_factor(ray, player, intersection);
-
-    Rectangle pos(SCREEN_HEIGHT_HALF - (wall_size / 2),
-                  SCREEN_HEIGHT_HALF + (wall_size / 2), i, i + 1);
-
-    Rectangle slice(0, 0, 0, 0);
-    if (y_intersection == true) {
-      slice = Rectangle(
-          0, 64, std::fmod(intersection.getX(), 1) * image->get_width(),
-          (std::fmod(intersection.getX(), 1) * image->get_height() + 1));
-    } else {
-      slice = Rectangle(
-          0, 64, std::fmod(intersection.getY(), 1) * image->get_width(),
-          (std::fmod(intersection.getY(), 1) * image->get_height() + 1));
-    }
-
-    image->draw(pos, &slice);
+    Collision wall_collision = RayCasting::get_collision(map, ray);
+    draw_wall(wall_collision, i, ray_angle);
+    wall_collisions.push_back(wall_collision.get_distance_from_src());
 
     i++;
     ray_angle -= angle_step;
@@ -101,4 +81,42 @@ void Caster::draw_walls() {
       ray_angle += 2 * M_PI;
     }
   }
+
+  return std::move(wall_collisions);
+}
+
+void Caster::draw_wall(Collision& collision, size_t screen_pos,
+                       double ray_angle) {
+  Image* image = res_manager.get_image(collision.get_collided_obj_id());
+
+  double projected_distance = Caster::get_projected_distance(
+      ray_angle, player.get_angle(), collision.get_distance_from_src());
+  int wall_size = WALL_SIZE / projected_distance;
+
+  Rectangle pos(SCREEN_HEIGHT_HALF - (wall_size / 2),
+                SCREEN_HEIGHT_HALF + (wall_size / 2), screen_pos,
+                screen_pos + 1);
+
+  size_t img_width = image->get_width();
+  size_t img_height = image->get_height();
+  Rectangle slice(0, 0, 0, 0);
+  if (collision.is_x_collision()) {
+    double tmp;
+    double y_offset = std::modf(collision.get_collision_point().getY(), &tmp);
+    slice = Rectangle(0, img_height, y_offset * img_width,
+                      y_offset * img_height + 1);
+  } else {
+    double tmp;
+    double x_offset = std::modf(collision.get_collision_point().getX(), &tmp);
+    slice = Rectangle(0, img_height, x_offset * img_width,
+                      x_offset * img_height + 1);
+  }
+
+  image->draw(pos, &slice);
+}
+
+double Caster::get_projected_distance(double ray_angle, double player_angle,
+                                      double collision_distance) {
+  double ray_offset = ray_angle - player_angle;
+  return collision_distance * cos(ray_offset);
 }
