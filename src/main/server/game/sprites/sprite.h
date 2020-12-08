@@ -3,7 +3,7 @@
 
 #include "../collisions/mask.h"
 
-class Object {
+class Sprite {
  protected:
   Mask *mask;
 
@@ -11,4 +11,4 @@ class Object {
   bool occupies(Point where);
 };
 
-#endif //WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_OBJECTS_OBJECT_H_
+#endif  // WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_OBJECTS_OBJECT_H_

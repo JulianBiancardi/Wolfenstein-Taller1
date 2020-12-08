@@ -3,7 +3,7 @@
 
 #include "../../utils/ray.h"
 #include "collisions/circle_mask.h"
-#include "objects/object.h"
+#include "sprites/sprite.h"
 
 class Player;
 
