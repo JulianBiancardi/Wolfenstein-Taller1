@@ -397,7 +397,7 @@ app: CMakeFiles/app.dir/model/map_generator.cpp.o
 app: CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o
 app: CMakeFiles/app.dir/build.make
 app: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.9.5
-app: common/third-party/yaml-cpp/libyaml-cpp.a
+app: build/libyaml-cpp.a
 app: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.9.5
 app: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.9.5
 app: CMakeFiles/app.dir/link.txt

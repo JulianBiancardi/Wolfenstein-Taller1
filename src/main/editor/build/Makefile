@@ -146,7 +146,7 @@ ContinuousSubmit: cmake_check_build_system
 
 # fast build rule for target.
 ContinuousSubmit/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ContinuousSubmit.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ContinuousSubmit.dir/build
+	$(MAKE) -f build/CMakeFiles/ContinuousSubmit.dir/build.make build/CMakeFiles/ContinuousSubmit.dir/build
 .PHONY : ContinuousSubmit/fast
 
 #=============================================================================
@@ -159,7 +159,7 @@ ContinuousMemCheck: cmake_check_build_system
 
 # fast build rule for target.
 ContinuousMemCheck/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ContinuousMemCheck.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ContinuousMemCheck.dir/build
+	$(MAKE) -f build/CMakeFiles/ContinuousMemCheck.dir/build.make build/CMakeFiles/ContinuousMemCheck.dir/build
 .PHONY : ContinuousMemCheck/fast
 
 #=============================================================================
@@ -172,7 +172,7 @@ ContinuousConfigure: cmake_check_build_system
 
 # fast build rule for target.
 ContinuousConfigure/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ContinuousConfigure.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ContinuousConfigure.dir/build
+	$(MAKE) -f build/CMakeFiles/ContinuousConfigure.dir/build.make build/CMakeFiles/ContinuousConfigure.dir/build
 .PHONY : ContinuousConfigure/fast
 
 #=============================================================================
@@ -185,7 +185,7 @@ ExperimentalSubmit: cmake_check_build_system
 
 # fast build rule for target.
 ExperimentalSubmit/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ExperimentalSubmit.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ExperimentalSubmit.dir/build
+	$(MAKE) -f build/CMakeFiles/ExperimentalSubmit.dir/build.make build/CMakeFiles/ExperimentalSubmit.dir/build
 .PHONY : ExperimentalSubmit/fast
 
 #=============================================================================
@@ -198,7 +198,7 @@ ExperimentalMemCheck: cmake_check_build_system
 
 # fast build rule for target.
 ExperimentalMemCheck/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ExperimentalMemCheck.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ExperimentalMemCheck.dir/build
+	$(MAKE) -f build/CMakeFiles/ExperimentalMemCheck.dir/build.make build/CMakeFiles/ExperimentalMemCheck.dir/build
 .PHONY : ExperimentalMemCheck/fast
 
 #=============================================================================
@@ -211,7 +211,7 @@ ExperimentalTest: cmake_check_build_system
 
 # fast build rule for target.
 ExperimentalTest/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ExperimentalTest.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ExperimentalTest.dir/build
+	$(MAKE) -f build/CMakeFiles/ExperimentalTest.dir/build.make build/CMakeFiles/ExperimentalTest.dir/build
 .PHONY : ExperimentalTest/fast
 
 #=============================================================================
@@ -224,7 +224,7 @@ NightlyUpdate: cmake_check_build_system
 
 # fast build rule for target.
 NightlyUpdate/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/NightlyUpdate.dir/build.make common/third-party/yaml-cpp/CMakeFiles/NightlyUpdate.dir/build
+	$(MAKE) -f build/CMakeFiles/NightlyUpdate.dir/build.make build/CMakeFiles/NightlyUpdate.dir/build
 .PHONY : NightlyUpdate/fast
 
 #=============================================================================
@@ -237,7 +237,7 @@ NightlyStart: cmake_check_build_system
 
 # fast build rule for target.
 NightlyStart/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/NightlyStart.dir/build.make common/third-party/yaml-cpp/CMakeFiles/NightlyStart.dir/build
+	$(MAKE) -f build/CMakeFiles/NightlyStart.dir/build.make build/CMakeFiles/NightlyStart.dir/build
 .PHONY : NightlyStart/fast
 
 #=============================================================================
@@ -250,7 +250,7 @@ NightlyMemoryCheck: cmake_check_build_system
 
 # fast build rule for target.
 NightlyMemoryCheck/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/NightlyMemoryCheck.dir/build.make common/third-party/yaml-cpp/CMakeFiles/NightlyMemoryCheck.dir/build
+	$(MAKE) -f build/CMakeFiles/NightlyMemoryCheck.dir/build.make build/CMakeFiles/NightlyMemoryCheck.dir/build
 .PHONY : NightlyMemoryCheck/fast
 
 #=============================================================================
@@ -263,7 +263,7 @@ NightlyBuild: cmake_check_build_system
 
 # fast build rule for target.
 NightlyBuild/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/NightlyBuild.dir/build.make common/third-party/yaml-cpp/CMakeFiles/NightlyBuild.dir/build
+	$(MAKE) -f build/CMakeFiles/NightlyBuild.dir/build.make build/CMakeFiles/NightlyBuild.dir/build
 .PHONY : NightlyBuild/fast
 
 #=============================================================================
@@ -276,7 +276,7 @@ ExperimentalUpdate: cmake_check_build_system
 
 # fast build rule for target.
 ExperimentalUpdate/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ExperimentalUpdate.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ExperimentalUpdate.dir/build
+	$(MAKE) -f build/CMakeFiles/ExperimentalUpdate.dir/build.make build/CMakeFiles/ExperimentalUpdate.dir/build
 .PHONY : ExperimentalUpdate/fast
 
 #=============================================================================
@@ -289,7 +289,7 @@ ContinuousBuild: cmake_check_build_system
 
 # fast build rule for target.
 ContinuousBuild/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ContinuousBuild.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ContinuousBuild.dir/build
+	$(MAKE) -f build/CMakeFiles/ContinuousBuild.dir/build.make build/CMakeFiles/ContinuousBuild.dir/build
 .PHONY : ContinuousBuild/fast
 
 #=============================================================================
@@ -302,7 +302,7 @@ Continuous: cmake_check_build_system
 
 # fast build rule for target.
 Continuous/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/Continuous.dir/build.make common/third-party/yaml-cpp/CMakeFiles/Continuous.dir/build
+	$(MAKE) -f build/CMakeFiles/Continuous.dir/build.make build/CMakeFiles/Continuous.dir/build
 .PHONY : Continuous/fast
 
 #=============================================================================
@@ -315,7 +315,7 @@ Experimental: cmake_check_build_system
 
 # fast build rule for target.
 Experimental/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/Experimental.dir/build.make common/third-party/yaml-cpp/CMakeFiles/Experimental.dir/build
+	$(MAKE) -f build/CMakeFiles/Experimental.dir/build.make build/CMakeFiles/Experimental.dir/build
 .PHONY : Experimental/fast
 
 #=============================================================================
@@ -328,7 +328,7 @@ ExperimentalConfigure: cmake_check_build_system
 
 # fast build rule for target.
 ExperimentalConfigure/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ExperimentalConfigure.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ExperimentalConfigure.dir/build
+	$(MAKE) -f build/CMakeFiles/ExperimentalConfigure.dir/build.make build/CMakeFiles/ExperimentalConfigure.dir/build
 .PHONY : ExperimentalConfigure/fast
 
 #=============================================================================
@@ -341,7 +341,7 @@ NightlyTest: cmake_check_build_system
 
 # fast build rule for target.
 NightlyTest/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/NightlyTest.dir/build.make common/third-party/yaml-cpp/CMakeFiles/NightlyTest.dir/build
+	$(MAKE) -f build/CMakeFiles/NightlyTest.dir/build.make build/CMakeFiles/NightlyTest.dir/build
 .PHONY : NightlyTest/fast
 
 #=============================================================================
@@ -354,7 +354,7 @@ NightlyCoverage: cmake_check_build_system
 
 # fast build rule for target.
 NightlyCoverage/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/NightlyCoverage.dir/build.make common/third-party/yaml-cpp/CMakeFiles/NightlyCoverage.dir/build
+	$(MAKE) -f build/CMakeFiles/NightlyCoverage.dir/build.make build/CMakeFiles/NightlyCoverage.dir/build
 .PHONY : NightlyCoverage/fast
 
 #=============================================================================
@@ -367,7 +367,7 @@ yaml-cpp: cmake_check_build_system
 
 # fast build rule for target.
 yaml-cpp/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/yaml-cpp.dir/build.make common/third-party/yaml-cpp/CMakeFiles/yaml-cpp.dir/build
+	$(MAKE) -f build/CMakeFiles/yaml-cpp.dir/build.make build/CMakeFiles/yaml-cpp.dir/build
 .PHONY : yaml-cpp/fast
 
 #=============================================================================
@@ -380,7 +380,7 @@ ExperimentalCoverage: cmake_check_build_system
 
 # fast build rule for target.
 ExperimentalCoverage/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ExperimentalCoverage.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ExperimentalCoverage.dir/build
+	$(MAKE) -f build/CMakeFiles/ExperimentalCoverage.dir/build.make build/CMakeFiles/ExperimentalCoverage.dir/build
 .PHONY : ExperimentalCoverage/fast
 
 #=============================================================================
@@ -393,7 +393,7 @@ NightlyMemCheck: cmake_check_build_system
 
 # fast build rule for target.
 NightlyMemCheck/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/NightlyMemCheck.dir/build.make common/third-party/yaml-cpp/CMakeFiles/NightlyMemCheck.dir/build
+	$(MAKE) -f build/CMakeFiles/NightlyMemCheck.dir/build.make build/CMakeFiles/NightlyMemCheck.dir/build
 .PHONY : NightlyMemCheck/fast
 
 #=============================================================================
@@ -406,7 +406,7 @@ ContinuousStart: cmake_check_build_system
 
 # fast build rule for target.
 ContinuousStart/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ContinuousStart.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ContinuousStart.dir/build
+	$(MAKE) -f build/CMakeFiles/ContinuousStart.dir/build.make build/CMakeFiles/ContinuousStart.dir/build
 .PHONY : ContinuousStart/fast
 
 #=============================================================================
@@ -419,7 +419,7 @@ NightlySubmit: cmake_check_build_system
 
 # fast build rule for target.
 NightlySubmit/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/NightlySubmit.dir/build.make common/third-party/yaml-cpp/CMakeFiles/NightlySubmit.dir/build
+	$(MAKE) -f build/CMakeFiles/NightlySubmit.dir/build.make build/CMakeFiles/NightlySubmit.dir/build
 .PHONY : NightlySubmit/fast
 
 #=============================================================================
@@ -432,7 +432,7 @@ ContinuousCoverage: cmake_check_build_system
 
 # fast build rule for target.
 ContinuousCoverage/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ContinuousCoverage.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ContinuousCoverage.dir/build
+	$(MAKE) -f build/CMakeFiles/ContinuousCoverage.dir/build.make build/CMakeFiles/ContinuousCoverage.dir/build
 .PHONY : ContinuousCoverage/fast
 
 #=============================================================================
@@ -445,7 +445,7 @@ Nightly: cmake_check_build_system
 
 # fast build rule for target.
 Nightly/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/Nightly.dir/build.make common/third-party/yaml-cpp/CMakeFiles/Nightly.dir/build
+	$(MAKE) -f build/CMakeFiles/Nightly.dir/build.make build/CMakeFiles/Nightly.dir/build
 .PHONY : Nightly/fast
 
 #=============================================================================
@@ -458,7 +458,7 @@ NightlyConfigure: cmake_check_build_system
 
 # fast build rule for target.
 NightlyConfigure/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/NightlyConfigure.dir/build.make common/third-party/yaml-cpp/CMakeFiles/NightlyConfigure.dir/build
+	$(MAKE) -f build/CMakeFiles/NightlyConfigure.dir/build.make build/CMakeFiles/NightlyConfigure.dir/build
 .PHONY : NightlyConfigure/fast
 
 #=============================================================================
@@ -471,7 +471,7 @@ ExperimentalStart: cmake_check_build_system
 
 # fast build rule for target.
 ExperimentalStart/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ExperimentalStart.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ExperimentalStart.dir/build
+	$(MAKE) -f build/CMakeFiles/ExperimentalStart.dir/build.make build/CMakeFiles/ExperimentalStart.dir/build
 .PHONY : ExperimentalStart/fast
 
 #=============================================================================
@@ -484,7 +484,7 @@ ContinuousTest: cmake_check_build_system
 
 # fast build rule for target.
 ContinuousTest/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ContinuousTest.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ContinuousTest.dir/build
+	$(MAKE) -f build/CMakeFiles/ContinuousTest.dir/build.make build/CMakeFiles/ContinuousTest.dir/build
 .PHONY : ContinuousTest/fast
 
 #=============================================================================
@@ -497,7 +497,7 @@ ContinuousUpdate: cmake_check_build_system
 
 # fast build rule for target.
 ContinuousUpdate/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ContinuousUpdate.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ContinuousUpdate.dir/build
+	$(MAKE) -f build/CMakeFiles/ContinuousUpdate.dir/build.make build/CMakeFiles/ContinuousUpdate.dir/build
 .PHONY : ContinuousUpdate/fast
 
 #=============================================================================
@@ -510,7 +510,7 @@ ExperimentalBuild: cmake_check_build_system
 
 # fast build rule for target.
 ExperimentalBuild/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/CMakeFiles/ExperimentalBuild.dir/build.make common/third-party/yaml-cpp/CMakeFiles/ExperimentalBuild.dir/build
+	$(MAKE) -f build/CMakeFiles/ExperimentalBuild.dir/build.make build/CMakeFiles/ExperimentalBuild.dir/build
 .PHONY : ExperimentalBuild/fast
 
 #=============================================================================
@@ -523,7 +523,7 @@ yaml-cpp-read: cmake_check_build_system
 
 # fast build rule for target.
 yaml-cpp-read/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/util/CMakeFiles/yaml-cpp-read.dir/build.make common/third-party/yaml-cpp/util/CMakeFiles/yaml-cpp-read.dir/build
+	$(MAKE) -f build/util/CMakeFiles/yaml-cpp-read.dir/build.make build/util/CMakeFiles/yaml-cpp-read.dir/build
 .PHONY : yaml-cpp-read/fast
 
 #=============================================================================
@@ -536,7 +536,7 @@ yaml-cpp-sandbox: cmake_check_build_system
 
 # fast build rule for target.
 yaml-cpp-sandbox/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/util/CMakeFiles/yaml-cpp-sandbox.dir/build.make common/third-party/yaml-cpp/util/CMakeFiles/yaml-cpp-sandbox.dir/build
+	$(MAKE) -f build/util/CMakeFiles/yaml-cpp-sandbox.dir/build.make build/util/CMakeFiles/yaml-cpp-sandbox.dir/build
 .PHONY : yaml-cpp-sandbox/fast
 
 #=============================================================================
@@ -549,7 +549,7 @@ yaml-cpp-parse: cmake_check_build_system
 
 # fast build rule for target.
 yaml-cpp-parse/fast:
-	$(MAKE) -f common/third-party/yaml-cpp/util/CMakeFiles/yaml-cpp-parse.dir/build.make common/third-party/yaml-cpp/util/CMakeFiles/yaml-cpp-parse.dir/build
+	$(MAKE) -f build/util/CMakeFiles/yaml-cpp-parse.dir/build.make build/util/CMakeFiles/yaml-cpp-parse.dir/build
 .PHONY : yaml-cpp-parse/fast
 
 app_autogen/mocs_compilation.o: app_autogen/mocs_compilation.cpp.o
