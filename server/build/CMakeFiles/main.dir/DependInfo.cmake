@@ -5,7 +5,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/resource.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/resource.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/resource_manager.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/resource_manager.cpp.o"
@@ -25,7 +27,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/rectangle_tests.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/rectangle_tests.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/resource_tests.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/resource_tests.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/config_loader.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles/main.dir/src/main/config_loader.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/collisions/box_mask.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles/main.dir/src/main/game/collisions/box_mask.cpp.o"
   "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/collisions/circle_mask.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles/main.dir/src/main/game/collisions/circle_mask.cpp.o"

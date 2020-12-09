@@ -34,6 +34,22 @@ resource_manager.h
 sdl/window.h
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.h
 
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp
+client.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.h
+frame_limiter.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/frame_limiter.h
+
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.h
+../../../common/src/main/utils/ray.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/ray.h
+caster.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.h
+map.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/map.h
+sdl/window.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.h
+
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.cpp
 collision.h
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.h
@@ -41,6 +57,26 @@ collision.h
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.h
 ../../../common/src/main/utils/point.h
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/point.h
+
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/frame_limiter.h
+SDL2/SDL.h
+-
+iostream
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/iostream
+
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp
+exception
+-
+../../../common/src/main/constants.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/constants.h
+client.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.h
+iostream
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/iostream
+map.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/map.h
+yaml-cpp/yaml.h
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/yaml-cpp/yaml.h
 
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/map.h
 functional
@@ -127,6 +163,8 @@ string
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/surface.cpp
 surface.h
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/surface.h
+iostream
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/iostream
 
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/surface.h
 SDL2/SDL.h
@@ -153,6 +191,8 @@ SDL2/SDL.h
 -
 string
 -
+
+/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/constants.h
 
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/matrix.h
 algorithm
@@ -633,22 +673,6 @@ yaml-cpp/node/parse.h
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/yaml-cpp/node/parse.h
 yaml-cpp/node/emit.h
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/yaml-cpp/node/emit.h
-
-/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp
-iostream
--
-client/src/main/caster.h
-/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.h
-client/src/main/ray_casting.h
-/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.h
-client/src/main/sdl/window.h
-/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.h
-common/src/main/utils/matrix.h
-/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/matrix.h
-common/src/main/utils/ray.h
-/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/ray.h
-yaml-cpp/yaml.h
-/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/yaml-cpp/yaml.h
 
 /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/config_loader.cpp
 config_loader.h

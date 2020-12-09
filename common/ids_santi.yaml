@@ -60,8 +60,8 @@
   sound: ""
 14:
   name: "Officer"
-  image: "/home/santiagoczop/Taller/tps/tp4/res/officer/officer1.bmp"
+  image: "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/res/officer/officer1.bmp"
 15:
   name: "Pillar"
-  image: "/home/santiagoczop/Taller/tps/tp4/res/ambient/pillar.bmp"
+  image: "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/res/ambient/pillar.bmp"
 ...

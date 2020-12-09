@@ -17,10 +17,75 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/ma
  /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/point.h
  /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/ray.h
  /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/rectangle.h
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/frame_limiter.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/map.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/resource.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/resource_manager.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/image.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/surface.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/texture.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/matrix.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/point.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/ray.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/rectangle.h
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.cpp.o
  /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.cpp
  /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.h
  /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/point.h
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/map.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/resource.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/resource_manager.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/image.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/surface.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/texture.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/constants.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/matrix.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/point.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/ray.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/rectangle.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/binary.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/dll.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/emitter.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/emitterdef.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/emittermanip.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/emitterstyle.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/exceptions.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/mark.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/convert.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/impl.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator_fwd.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/memory.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_data.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_iterator.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_ref.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/emit.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/impl.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/iterator.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/node.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/parse.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/ptr.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/type.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/noexcept.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/null.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/ostream_wrapper.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/parser.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/traits.h
+ /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.cpp.o
  /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.h
  /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/map.h
@@ -278,53 +343,6 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp.o
  /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp
  /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.h
-CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/map.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/resource.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/resource_manager.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/image.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/surface.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/texture.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/matrix.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/point.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/ray.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/rectangle.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/binary.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/dll.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/emitter.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/emitterdef.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/emittermanip.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/emitterstyle.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/exceptions.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/mark.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/convert.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/impl.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/iterator_fwd.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/memory.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_data.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_iterator.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/detail/node_ref.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/emit.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/impl.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/iterator.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/node.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/parse.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/ptr.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/node/type.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/noexcept.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/null.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/ostream_wrapper.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/parser.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/stlemitter.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/traits.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/yaml.h
- /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp
 CMakeFiles/main.dir/src/main/config_loader.cpp.o
  /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/binary.h
  /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include/yaml-cpp/dll.h

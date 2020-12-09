@@ -177,9 +177,33 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/ma
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.cpp.o.provides.build: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.cpp.o
 
 
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp
+
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp > CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.i
+
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.s
+
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o.requires:
+
+.PHONY : CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o.requires
+
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o.provides: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o.requires
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o.provides.build
+.PHONY : CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o.provides
+
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o.provides.build: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o
+
+
 CMakeFiles/main.dir/src/main/config_loader.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/config_loader.cpp.o: ../src/main/config_loader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/src/main/config_loader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/src/main/config_loader.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/config_loader.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/config_loader.cpp
 
 CMakeFiles/main.dir/src/main/config_loader.cpp.i: cmake_force
@@ -203,7 +227,7 @@ CMakeFiles/main.dir/src/main/config_loader.cpp.o.provides.build: CMakeFiles/main
 
 CMakeFiles/main.dir/src/main/map.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/map.cpp.o: ../src/main/map.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/src/main/map.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/src/main/map.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/map.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/map.cpp
 
 CMakeFiles/main.dir/src/main/map.cpp.i: cmake_force
@@ -227,7 +251,7 @@ CMakeFiles/main.dir/src/main/map.cpp.o.provides.build: CMakeFiles/main.dir/src/m
 
 CMakeFiles/main.dir/src/main/game/damagable.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/game/damagable.cpp.o: ../src/main/game/damagable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/src/main/game/damagable.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/src/main/game/damagable.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/game/damagable.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/damagable.cpp
 
 CMakeFiles/main.dir/src/main/game/damagable.cpp.i: cmake_force
@@ -251,7 +275,7 @@ CMakeFiles/main.dir/src/main/game/damagable.cpp.o.provides.build: CMakeFiles/mai
 
 CMakeFiles/main.dir/src/main/game/moveable.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/game/moveable.cpp.o: ../src/main/game/moveable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/src/main/game/moveable.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/src/main/game/moveable.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/game/moveable.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/moveable.cpp
 
 CMakeFiles/main.dir/src/main/game/moveable.cpp.i: cmake_force
@@ -275,7 +299,7 @@ CMakeFiles/main.dir/src/main/game/moveable.cpp.o.provides.build: CMakeFiles/main
 
 CMakeFiles/main.dir/src/main/game/player.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/game/player.cpp.o: ../src/main/game/player.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/src/main/game/player.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main.dir/src/main/game/player.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/game/player.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/player.cpp
 
 CMakeFiles/main.dir/src/main/game/player.cpp.i: cmake_force
@@ -299,7 +323,7 @@ CMakeFiles/main.dir/src/main/game/player.cpp.o.provides.build: CMakeFiles/main.d
 
 CMakeFiles/main.dir/src/main/game/shooter.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/game/shooter.cpp.o: ../src/main/game/shooter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main.dir/src/main/game/shooter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/main.dir/src/main/game/shooter.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/game/shooter.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/shooter.cpp
 
 CMakeFiles/main.dir/src/main/game/shooter.cpp.i: cmake_force
@@ -323,7 +347,7 @@ CMakeFiles/main.dir/src/main/game/shooter.cpp.o.provides.build: CMakeFiles/main.
 
 CMakeFiles/main.dir/src/main/game/collisions/box_mask.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/game/collisions/box_mask.cpp.o: ../src/main/game/collisions/box_mask.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/main.dir/src/main/game/collisions/box_mask.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/main.dir/src/main/game/collisions/box_mask.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/game/collisions/box_mask.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/collisions/box_mask.cpp
 
 CMakeFiles/main.dir/src/main/game/collisions/box_mask.cpp.i: cmake_force
@@ -347,7 +371,7 @@ CMakeFiles/main.dir/src/main/game/collisions/box_mask.cpp.o.provides.build: CMak
 
 CMakeFiles/main.dir/src/main/game/collisions/circle_mask.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/game/collisions/circle_mask.cpp.o: ../src/main/game/collisions/circle_mask.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/main.dir/src/main/game/collisions/circle_mask.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/main.dir/src/main/game/collisions/circle_mask.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/game/collisions/circle_mask.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/collisions/circle_mask.cpp
 
 CMakeFiles/main.dir/src/main/game/collisions/circle_mask.cpp.i: cmake_force
@@ -371,7 +395,7 @@ CMakeFiles/main.dir/src/main/game/collisions/circle_mask.cpp.o.provides.build: C
 
 CMakeFiles/main.dir/src/main/game/guns/chain_cannon.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/game/guns/chain_cannon.cpp.o: ../src/main/game/guns/chain_cannon.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/main.dir/src/main/game/guns/chain_cannon.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/main.dir/src/main/game/guns/chain_cannon.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/game/guns/chain_cannon.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/guns/chain_cannon.cpp
 
 CMakeFiles/main.dir/src/main/game/guns/chain_cannon.cpp.i: cmake_force
@@ -395,7 +419,7 @@ CMakeFiles/main.dir/src/main/game/guns/chain_cannon.cpp.o.provides.build: CMakeF
 
 CMakeFiles/main.dir/src/main/game/guns/gun.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/game/guns/gun.cpp.o: ../src/main/game/guns/gun.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/main.dir/src/main/game/guns/gun.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/main.dir/src/main/game/guns/gun.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/game/guns/gun.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/guns/gun.cpp
 
 CMakeFiles/main.dir/src/main/game/guns/gun.cpp.i: cmake_force
@@ -419,7 +443,7 @@ CMakeFiles/main.dir/src/main/game/guns/gun.cpp.o.provides.build: CMakeFiles/main
 
 CMakeFiles/main.dir/src/main/game/guns/knife.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/game/guns/knife.cpp.o: ../src/main/game/guns/knife.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/main.dir/src/main/game/guns/knife.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/main.dir/src/main/game/guns/knife.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/game/guns/knife.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/guns/knife.cpp
 
 CMakeFiles/main.dir/src/main/game/guns/knife.cpp.i: cmake_force
@@ -443,7 +467,7 @@ CMakeFiles/main.dir/src/main/game/guns/knife.cpp.o.provides.build: CMakeFiles/ma
 
 CMakeFiles/main.dir/src/main/game/guns/machine_gun.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/game/guns/machine_gun.cpp.o: ../src/main/game/guns/machine_gun.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/main.dir/src/main/game/guns/machine_gun.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/main.dir/src/main/game/guns/machine_gun.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/game/guns/machine_gun.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/guns/machine_gun.cpp
 
 CMakeFiles/main.dir/src/main/game/guns/machine_gun.cpp.i: cmake_force
@@ -467,7 +491,7 @@ CMakeFiles/main.dir/src/main/game/guns/machine_gun.cpp.o.provides.build: CMakeFi
 
 CMakeFiles/main.dir/src/main/game/guns/pistol.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/game/guns/pistol.cpp.o: ../src/main/game/guns/pistol.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/main.dir/src/main/game/guns/pistol.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/main.dir/src/main/game/guns/pistol.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/game/guns/pistol.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/guns/pistol.cpp
 
 CMakeFiles/main.dir/src/main/game/guns/pistol.cpp.i: cmake_force
@@ -491,7 +515,7 @@ CMakeFiles/main.dir/src/main/game/guns/pistol.cpp.o.provides.build: CMakeFiles/m
 
 CMakeFiles/main.dir/src/main/game/guns/rocket_launcher.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/game/guns/rocket_launcher.cpp.o: ../src/main/game/guns/rocket_launcher.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/main.dir/src/main/game/guns/rocket_launcher.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/main.dir/src/main/game/guns/rocket_launcher.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/game/guns/rocket_launcher.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/guns/rocket_launcher.cpp
 
 CMakeFiles/main.dir/src/main/game/guns/rocket_launcher.cpp.i: cmake_force
@@ -515,7 +539,7 @@ CMakeFiles/main.dir/src/main/game/guns/rocket_launcher.cpp.o.provides.build: CMa
 
 CMakeFiles/main.dir/src/main/game/sprites/sprite.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main/game/sprites/sprite.cpp.o: ../src/main/game/sprites/sprite.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/main.dir/src/main/game/sprites/sprite.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/main.dir/src/main/game/sprites/sprite.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/main/game/sprites/sprite.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/src/main/game/sprites/sprite.cpp
 
 CMakeFiles/main.dir/src/main/game/sprites/sprite.cpp.i: cmake_force
@@ -539,7 +563,7 @@ CMakeFiles/main.dir/src/main/game/sprites/sprite.cpp.o.provides.build: CMakeFile
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/point.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/point.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/point.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/point.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/point.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/point.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/point.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/point.cpp.i: cmake_force
@@ -563,7 +587,7 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/ma
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/ray.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/ray.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/ray.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/ray.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/ray.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/ray.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/ray.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/ray.cpp.i: cmake_force
@@ -587,7 +611,7 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/ma
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/rectangle.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/rectangle.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/rectangle.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/rectangle.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/rectangle.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/rectangle.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/rectangle.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/main/utils/rectangle.cpp.i: cmake_force
@@ -611,7 +635,7 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/src/ma
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/image.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/image.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/image.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/image.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/image.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/image.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/image.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/image.cpp.i: cmake_force
@@ -635,7 +659,7 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/ma
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/sdl_error.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/sdl_error.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/sdl_error.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/sdl_error.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/sdl_error.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/sdl_error.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/sdl_error.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/sdl_error.cpp.i: cmake_force
@@ -659,7 +683,7 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/ma
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/surface.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/surface.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/surface.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/surface.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/surface.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/surface.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/surface.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/surface.cpp.i: cmake_force
@@ -683,7 +707,7 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/ma
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/texture.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/texture.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/texture.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/texture.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/texture.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/texture.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/texture.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/texture.cpp.i: cmake_force
@@ -707,7 +731,7 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/ma
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.cpp.i: cmake_force
@@ -731,7 +755,7 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/ma
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/gun_tests.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/gun_tests.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/gun_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/gun_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/gun_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/gun_tests.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/gun_tests.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/gun_tests.cpp.i: cmake_force
@@ -755,7 +779,7 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/player_test.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/player_test.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/player_test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/player_test.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/player_test.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/player_test.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/player_test.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/player_test.cpp.i: cmake_force
@@ -777,33 +801,33 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/player_test.cpp.o.provides.build: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/player_test.cpp.o
 
 
-CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp
 
-CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp > CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.i
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp > CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.i
 
-CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.s
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.s
 
-CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o.requires:
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o.requires:
 
-.PHONY : CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o.requires
+.PHONY : CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o.requires
 
-CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o.provides: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o.requires
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o.provides.build
-.PHONY : CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o.provides
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o.provides: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o.requires
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o.provides.build
+.PHONY : CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o.provides
 
-CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o.provides.build: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o
+CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o.provides.build: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o
 
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/matrix_tests.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/matrix_tests.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/matrix_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/matrix_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/matrix_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/matrix_tests.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/matrix_tests.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/matrix_tests.cpp.i: cmake_force
@@ -827,7 +851,7 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/point_tests.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/point_tests.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/point_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/point_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/point_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/point_tests.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/point_tests.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/point_tests.cpp.i: cmake_force
@@ -851,7 +875,7 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/ray_tests.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/ray_tests.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/ray_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/ray_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/ray_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/ray_tests.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/ray_tests.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/ray_tests.cpp.i: cmake_force
@@ -875,7 +899,7 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/rectangle_tests.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/rectangle_tests.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/rectangle_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/rectangle_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/rectangle_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/rectangle_tests.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/rectangle_tests.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/rectangle_tests.cpp.i: cmake_force
@@ -899,7 +923,7 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/resource_tests.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/resource_tests.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/resource_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/resource_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/resource_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/resource_tests.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/resource_tests.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/resource_tests.cpp.i: cmake_force
@@ -923,7 +947,7 @@ CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp.o: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp.o -c /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp
 
 CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp.i: cmake_force
@@ -952,6 +976,7 @@ main_OBJECTS = \
 "CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.cpp.o" \
 "CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.cpp.o" \
 "CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.cpp.o" \
+"CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o" \
 "CMakeFiles/main.dir/src/main/config_loader.cpp.o" \
 "CMakeFiles/main.dir/src/main/map.cpp.o" \
 "CMakeFiles/main.dir/src/main/game/damagable.cpp.o" \
@@ -977,7 +1002,7 @@ main_OBJECTS = \
 "CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.cpp.o" \
 "CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/gun_tests.cpp.o" \
 "CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/player_test.cpp.o" \
-"CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o" \
+"CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o" \
 "CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/matrix_tests.cpp.o" \
 "CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/point_tests.cpp.o" \
 "CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/ray_tests.cpp.o" \
@@ -993,6 +1018,7 @@ main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/
 main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.cpp.o
 main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.cpp.o
 main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.cpp.o
+main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o
 main: CMakeFiles/main.dir/src/main/config_loader.cpp.o
 main: CMakeFiles/main.dir/src/main/map.cpp.o
 main: CMakeFiles/main.dir/src/main/game/damagable.cpp.o
@@ -1018,7 +1044,7 @@ main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/
 main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.cpp.o
 main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/gun_tests.cpp.o
 main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/player_test.cpp.o
-main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o
+main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o
 main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/matrix_tests.cpp.o
 main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/point_tests.cpp.o
 main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/ray_tests.cpp.o
@@ -1028,7 +1054,7 @@ main: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/
 main: CMakeFiles/main.dir/build.make
 main: build/libyaml-cpp.a
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Linking CXX executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -1041,6 +1067,7 @@ CMakeFiles/main.dir/requires: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wol
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.cpp.o.requires
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.cpp.o.requires
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.cpp.o.requires
+CMakeFiles/main.dir/requires: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o.requires
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/src/main/config_loader.cpp.o.requires
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/src/main/map.cpp.o.requires
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/src/main/game/damagable.cpp.o.requires
@@ -1066,7 +1093,7 @@ CMakeFiles/main.dir/requires: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wol
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/sdl/window.cpp.o.requires
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/gun_tests.cpp.o.requires
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/game_test/player_test.cpp.o.requires
-CMakeFiles/main.dir/requires: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o.requires
+CMakeFiles/main.dir/requires: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o.requires
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/matrix_tests.cpp.o.requires
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/point_tests.cpp.o.requires
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/ray_tests.cpp.o.requires

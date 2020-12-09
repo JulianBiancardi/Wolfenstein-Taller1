@@ -566,6 +566,33 @@ home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.cpp.s
 .PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.cpp.s
 
+home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.o: home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o
+
+.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.o
+
+# target to build an object file
+home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o
+.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.o
+
+home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.i: home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.i
+
+.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.i
+
+# target to preprocess a source file
+home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.i
+.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.i
+
+home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.s: home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.s
+
+.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.s
+
+# target to generate assembly for a file
+home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.s
+.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.cpp.s
+
 home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.o: home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.cpp.o
 
 .PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.o
@@ -592,6 +619,33 @@ home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.s: home
 home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.cpp.s
 .PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.cpp.s
+
+home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.o: home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o
+
+.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.o
+
+# target to build an object file
+home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o
+.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.o
+
+home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.i: home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.i
+
+.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.i
+
+# target to preprocess a source file
+home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.i
+.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.i
+
+home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.s: home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.s
+
+.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.s
+
+# target to generate assembly for a file
+home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.s
+.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp.s
 
 home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.o: home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.cpp.o
 
@@ -1106,33 +1160,6 @@ home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp.s
 .PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.cpp.s
 
-home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.o: home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o
-
-.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.o
-
-# target to build an object file
-home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o
-.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.o
-
-home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.i: home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.i
-
-.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.i
-
-# target to preprocess a source file
-home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.i
-.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.i
-
-home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.s: home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.s
-
-.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.s
-
-# target to generate assembly for a file
-home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.s
-.PHONY : home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.cpp.s
-
 src/main/config_loader.o: src/main/config_loader.cpp.o
 
 .PHONY : src/main/config_loader.o
@@ -1582,9 +1609,15 @@ help:
 	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.o"
 	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.i"
 	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/caster.s"
+	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.o"
+	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.i"
+	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/client.s"
 	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.o"
 	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.i"
 	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/collision.s"
+	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.o"
+	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.i"
+	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.s"
 	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.o"
 	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.i"
 	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/ray_casting.s"
@@ -1642,9 +1675,6 @@ help:
 	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.o"
 	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.i"
 	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/tests/tests_setup.s"
-	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.o"
-	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.i"
-	@echo "... home/julian/JULIAN/Taller1/Wolfenstein-Taller1/dynamic_view.s"
 	@echo "... src/main/config_loader.o"
 	@echo "... src/main/config_loader.i"
 	@echo "... src/main/config_loader.s"
