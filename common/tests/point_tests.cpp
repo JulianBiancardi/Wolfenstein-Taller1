@@ -1,8 +1,7 @@
 #include "point_tests.h"
 
 #include <cmath>
-
-#include "../main/point.h"
+#include "../src/main/utils/point.h"
 #include "tests_setup.h"
 
 int static point_creation_test();
@@ -79,7 +78,7 @@ int static extreme_distance_test() {
   Point a(1073741823, 0);
   Point b(-1073741823, 0);
   double distance = Point::distance(a, b);
-  unsigned long long real_norm = (unsigned long long)4611686009837453316;
+  unsigned long long real_norm = (unsigned long long) 4611686009837453316;
   double real_distance = sqrt(real_norm);
   if (distance != real_distance) {
     return ERROR;

@@ -1,9 +1,7 @@
-#include "../../main/server/game/player.h"
-#include "../../main/server/game/sprites/table.h"
-#include "../../main/map.h"
-#include "../../main/utils/matrix.h"
+#include "../../../server/src/main/game/player.h"
+#include "../../../server/src/main/game/sprites/table.h"
+#include "../../../server/src/main/map.h"
 #include "../tests_setup.h"
-#include <iostream>
 #include <cmath>
 
 int static can_move_up();

@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "../main/matrix.h"
+#include "../src/main/utils/matrix.h"
 #include "tests_setup.h"
 
 int empty_int_creation_test();
@@ -33,7 +33,7 @@ int empty_int_creation_test() {
   try {
     Matrix<int> m(5, 2);
     return NO_ERROR;
-  } catch (const std::exception& e) {
+  } catch (const std::exception &e) {
     return ERROR;
   }
 }
@@ -49,7 +49,7 @@ int default_int_creation_test() {
       }
     }
     return NO_ERROR;
-  } catch (const std::exception& e) {
+  } catch (const std::exception &e) {
     return ERROR;
   }
 }
@@ -58,7 +58,7 @@ int empty_string_creation_test() {
   try {
     Matrix<std::string> m(5, 2);
     return NO_ERROR;
-  } catch (const std::exception& e) {
+  } catch (const std::exception &e) {
     return ERROR;
   }
 }
@@ -74,7 +74,7 @@ int default_string_creation_test() {
       }
     }
     return NO_ERROR;
-  } catch (const std::exception& e) {
+  } catch (const std::exception &e) {
     return ERROR;
   }
 }

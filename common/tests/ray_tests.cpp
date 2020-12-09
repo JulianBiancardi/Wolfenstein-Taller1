@@ -1,6 +1,6 @@
 #include "ray_tests.h"
 
-#include "../main/ray.h"
+#include "../src/main/utils/ray.h"
 #include "tests_setup.h"
 
 int static ray_creation_test();
