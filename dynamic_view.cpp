@@ -44,7 +44,6 @@ int main(int argc, char** argv) {
   Ray player(1.5, 1.5, 0);
 
   Caster caster(window, player, map);
-
   SDL_Event event;
   bool run = true;
   while (run) {
@@ -56,6 +55,7 @@ int main(int argc, char** argv) {
         case SDL_KEYDOWN:
           printf("Key press\n");
           handle_key_press(event.key.keysym.sym, player);
+          caster();
           break;
         case SDL_KEYUP:
           printf("Key release\n");
@@ -70,8 +70,6 @@ int main(int argc, char** argv) {
           break;
       }
     }
-
-    caster();
   }
 }
 
