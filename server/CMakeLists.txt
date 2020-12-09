@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.1)
 project(YamlExample)
 
-add_subdirectory(common/third-party/yaml-cpp) # This is one way of referencing another
+add_subdirectory(../common/third-party/yaml-cpp build) # This is one way of referencing another
 # CMake project
 
 
@@ -10,40 +10,35 @@ find_package(SDL2 REQUIRED)
 # Add SDL2 into include directories
 include_directories(${SDL2_INCLUDE_DIR})
 
-
-
-FILE(GLOB ServerFiles
-        server/game/guns/*.cpp
-
-        server/game/collisions/*.cpp
-        server/game/sprites/*.cpp
-        server/game/*.cpp
-
-        server/config_loader.cpp
-        )
-FILE(GLOB CommonFiles common/*.cpp)
+FILE(GLOB ServerFiles 
+	src/main/config_loader.cpp
+	src/main/map.cpp
+	src/main/game/*.cpp
+	src/main/game/collisions/*.cpp
+	src/main/game/guns/*.cpp
+	#src/main/game/items/*.cpp
+	src/main/game/sprites/*.cpp
+	)
+FILE(GLOB CommonFiles 
+	../common/src/main/utils/*.cpp
+	)
 FILE(GLOB MainFiles
-	utils/*.cpp
-        map.cpp
-
-        resource.cpp
-        resource_manager.cpp
+	../client/src/main/resource.cpp
+        ../client/src/main/resource_manager.cpp
         )
 FILE(GLOB SDLFiles
-        sdl/*.cpp
+        ../client/src/main/sdl/*.cpp
 )
 FILE(GLOB TestFiles
-        ../tests/game_test/gun_tests.cpp
-        ../tests/game_test/player_test.cpp
-
-        #../tests/main_tests.cpp
-        #../tests/matrix_tests.cpp
-        #../tests/point_tests.cpp
-        #../tests/ray_tests.cpp
-        #../tests/rectangle_tests.cpp
-        #../tests/tests_setup.cpp
-
-        ../tests/*.cpp
+	#../common/tests/*.cpp Should be used
+	../common/tests/game_test/*.cpp
+	../common/tests/main_tests.cpp
+	../common/tests/matrix_tests.cpp
+	../common/tests/point_tests.cpp
+	../common/tests/ray_tests.cpp
+	../common/tests/rectangle_tests.cpp
+	../common/tests/resource_tests.cpp
+	../common/tests/tests_setup.cpp
         )
 add_executable(
         main

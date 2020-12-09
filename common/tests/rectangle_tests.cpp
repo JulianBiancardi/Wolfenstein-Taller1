@@ -1,6 +1,6 @@
 #include "rectangle_tests.h"
 
-#include "../main/rectangle.h"
+#include "../src/main/utils/rectangle.h"
 #include "tests_setup.h"
 
 int static creation_test();

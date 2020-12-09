@@ -4,18 +4,18 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/app_autogen/mocs_compilation.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/model/celd.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/model/celd.cpp.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/model/map.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/model/map.cpp.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/model/map_generator.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/model/map_generator.cpp.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/celd_view.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/celd_view.cpp.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/itemsid.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/itemsid.cpp.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/main.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/main.cpp.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/mainwindow.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/mainwindow.cpp.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/mapgrid.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/mapgrid.cpp.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/option.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/option.cpp.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/option_selected.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/option_selected.cpp.o"
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/view/src/options_container.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app.dir/view/src/options_container.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/app_autogen/mocs_compilation.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/model/celd.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles/app.dir/model/celd.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/model/map.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles/app.dir/model/map.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/model/map_generator.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles/app.dir/model/map_generator.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/view/src/celd_view.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles/app.dir/view/src/celd_view.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/view/src/itemsid.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles/app.dir/view/src/itemsid.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/view/src/main.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles/app.dir/view/src/main.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/view/src/mainwindow.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles/app.dir/view/src/mainwindow.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/view/src/mapgrid.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles/app.dir/view/src/mapgrid.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/view/src/option.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles/app.dir/view/src/option.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/view/src/option_selected.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles/app.dir/view/src/option_selected.cpp.o"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/view/src/options_container.cpp" "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles/app.dir/view/src/options_container.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -38,12 +38,12 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/x86_64-linux-gnu/qt5/QtGui"
   "/usr/include/x86_64-linux-gnu/qt5/QtCore"
   "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"
-  "../common/third-party/yaml-cpp/include"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/include"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/common/third-party/yaml-cpp/CMakeFiles/yaml-cpp.dir/DependInfo.cmake"
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/build/CMakeFiles/yaml-cpp.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

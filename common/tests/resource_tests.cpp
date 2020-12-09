@@ -1,6 +1,6 @@
 #include "resource_tests.h"
 
-#include "../main/resource.h"
+#include "../../client/src/main/resource.h"
 #include "tests_setup.h"
 
 int static creation_test();

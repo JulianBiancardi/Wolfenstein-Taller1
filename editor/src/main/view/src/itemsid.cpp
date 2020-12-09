@@ -6,7 +6,7 @@
 #include "yaml-cpp/yaml.h"
 
 ItemsId::ItemsId() {
-  YAML::Node ids_file = YAML::LoadFile("../../ids.yaml");
+  YAML::Node ids_file = YAML::LoadFile("../../../../common/ids.yaml");
 
   const YAML::Node& ids = ids_file["ids"];
   for (YAML::const_iterator iter = ids.begin(); iter != ids.end(); iter++) {

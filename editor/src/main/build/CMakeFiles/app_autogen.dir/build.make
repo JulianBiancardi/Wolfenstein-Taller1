@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor
+CMAKE_SOURCE_DIR = /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build
+CMAKE_BINARY_DIR = /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build
 
 # Utility rule file for app_autogen.
 
@@ -54,8 +54,8 @@ CMAKE_BINARY_DIR = /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/edit
 include CMakeFiles/app_autogen.dir/progress.make
 
 CMakeFiles/app_autogen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC for target app"
-	/usr/bin/cmake -E cmake_autogen /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app_autogen.dir ""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC for target app"
+	/usr/bin/cmake -E cmake_autogen /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles/app_autogen.dir ""
 
 app_autogen: CMakeFiles/app_autogen
 app_autogen: CMakeFiles/app_autogen.dir/build.make
@@ -72,6 +72,6 @@ CMakeFiles/app_autogen.dir/clean:
 .PHONY : CMakeFiles/app_autogen.dir/clean
 
 CMakeFiles/app_autogen.dir/depend:
-	cd /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/CMakeFiles/app_autogen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/CMakeFiles/app_autogen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/app_autogen.dir/depend
 

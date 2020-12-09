@@ -2,8 +2,8 @@
 #define WOLFENSTEIN_TALLER1_GUN_TESTS_H
 
 #include "../tests_setup.h"
-#include "../../main/server/game/guns/machine_gun.h"
-#include "../../main/server/game/player.h"
+#include "../../../server/src/main/game/guns/machine_gun.h"
+#include "../../../server/src/main/game/player.h"
 
 void gun_tests();
 
