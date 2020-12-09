@@ -13,9 +13,7 @@
 #define SCREEN_WIDTH_HALF (SCREEN_WIDTH / 2)
 #define SCREEN_HEIGHT_HALF (SCREEN_HEIGHT / 2)
 
-#define SCALING_FACTOR 1
-#define CELL_SIZE 64
-#define WALL_SIZE (SCALING_FACTOR * SCREEN_HEIGHT)
+#define SCALING_FACTOR (64 * SCREEN_HEIGHT)
 #define WALL 1
 #define RED_WALL 2
 #define GREEN_WALL 3
@@ -37,6 +35,7 @@ void _sprite::update_distance(Point src) {
   distance = Point::distance(src, pos);
 }
 double _sprite::get_distance() { return distance; }
+int _sprite::get_id() { return id; }
 // =========
 
 Caster::Caster(Window& window, Ray& player, Map& map)
@@ -51,7 +50,7 @@ Caster::~Caster() {}
 void Caster::operator()() {
   draw_background();
   std::vector<double> wall_distances = draw_walls();
-  // draw_sprites(wall_distances);
+  draw_sprites(wall_distances);
   window.update();
 }
 
@@ -111,7 +110,7 @@ void Caster::draw_wall(Collision& collision, size_t screen_pos,
 
   double projected_distance = Caster::get_projected_distance(
       ray_angle, player.get_angle(), collision.get_distance_from_src());
-  int wall_size = WALL_SIZE / projected_distance;
+  int wall_size = SCALING_FACTOR / (projected_distance * image->get_height());
 
   Rectangle pos(SCREEN_HEIGHT_HALF - (wall_size / 2),
                 SCREEN_HEIGHT_HALF + (wall_size / 2), screen_pos,
@@ -142,14 +141,112 @@ void Caster::draw_sprites(std::vector<double>& wall_distances) {
 
   std::vector<_sprite>::iterator iter;
   for (iter = sprites.begin(); iter != sprites.end(); iter++) {
-    double x_relative = (*iter).get_pos().getX() - player.get_origin().getX();
-    double y_relative = (*iter).get_pos().getY() - player.get_origin().getY();
-    double sprite_angle = atan2(y_relative, x_relative);
-    double sprite_projected_distance =
-        (*iter).get_distance() * cos(sprite_angle);
+    draw_sprite(*iter, wall_distances);
+  }
+}
+
+void Caster::draw_sprite(_sprite& sprite, std::vector<double>& wall_distances) {
+  Image* image = res_manager.get_image(sprite.get_id());
+  size_t img_width = image->get_width();
+  size_t img_height = image->get_height();
+
+  double x_relative = sprite.get_pos().getX() - player.get_origin().getX();
+  double y_relative = sprite.get_pos().getY() - player.get_origin().getY();
+  double sprite_angle_rel = atan2(y_relative, x_relative);
+  double sprite_angle = sprite_angle_rel - player.get_angle();
+  if (sprite_angle > 2 * M_PI) {
+    sprite_angle -= 2 * M_PI;
+  } else if (sprite_angle < 0) {
+    sprite_angle += 2 * M_PI;
+  }
+  printf("sprite_angle_rel: %f\n", sprite_angle_rel);
+  printf("sprite_angle: %f\n", sprite_angle);
+
+  double projected_distance = sprite.get_distance() * cos(sprite_angle);
+  printf("proj_dist: %f\n", projected_distance);
+  int sprite_size = SCALING_FACTOR / (projected_distance * img_height);
+  printf("sprite_size: %d\n", sprite_size);
+
+  int x = sin(sprite_angle) * projected_distance * SCREEN_WIDTH_HALF +
+          SCREEN_WIDTH_HALF;
+  printf("center: %d\n", x);
+  int x0 = x - sprite_size / 2;
+  printf("x0: %d\n", x0);
+
+  int i;
+  for (i = 0; i < sprite_size; i++) {
+    if (x0 < 0) {
+      continue;
+    }
+    if (x0 > SCREEN_WIDTH) {
+      break;
+    }
+    if (wall_distances[x0] < projected_distance) {
+      continue;
+    }
+
+    Rectangle pos(SCREEN_HEIGHT_HALF - sprite_size / 2,
+                  SCREEN_HEIGHT_HALF + sprite_size / 2, x0, x0 + 1);
+    Rectangle slice(0, sprite_size, (i * img_width) / sprite_size,
+                    ((i * img_width) / sprite_size) + 1);
+    image->draw(pos, &slice);
+    x0 = x0 + 1;
   }
 
-  return;
+  /*int y0 = SCREEN_HEIGHT_HALF - sprite_size / 2;
+  int y1 = y0 + sprite_size;
+
+  int x0 = tan(sprite_angle) * 100;
+  int x = SCREEN_WIDTH_HALF + x0 - sprite_size / 2;
+
+  int column_width = sprite_size / img_height;
+
+  for (int i = 0; i < img_width; i++) {
+    for (int j = 0; j < column_width; j++) {
+      int x1 = x + (i - 1) * column_width + j;
+      if (wall_distances[x1] > sprite.get_distance()) {
+        Rectangle slice(0, img_height, x0, x1);
+        Rectangle pos(y0, y1, x0, x1);
+        image->draw(pos, &slice);
+      }
+    }
+  }*/
+
+  /*
+
+  Image* image = res_manager.get_image(sprite.get_id());
+  size_t img_width = image->get_width();
+  size_t img_height = image->get_height();
+
+
+  int x = (y_relative / x_relative) * projected_distance;
+  int x_step = 1;
+
+  for (size_t i = 0; i < 100; i++) {
+    Rectangle pos(SCREEN_HEIGHT_HALF - (sprite_size / 2),
+                  SCREEN_HEIGHT_HALF + (sprite_size / 2), x, x + 1);
+
+    Rectangle slice(0, img_height, i, i + 1);
+
+    if (collision.is_x_collision()) {
+      double tmp;
+      double y_offset =
+          std::modf(collision.get_collision_point().getY(), &tmp);
+      slice = Rectangle(0, img_height, y_offset * img_width,
+                        y_offset * img_height + 1);
+    } else {
+      double tmp;
+      double x_offset =
+          std::modf(collision.get_collision_point().getX(), &tmp);
+      slice = Rectangle(0, img_height, x_offset * img_width,
+                        x_offset * img_height + 1);
+    }
+
+  if (wall_distances[x % SCREEN_WIDTH] > projected_distance) {
+    image->draw(pos, &slice);
+  }
+  x += x_step;
+  */
 }
 
 double Caster::get_projected_distance(double ray_angle, double player_angle,
@@ -160,9 +257,9 @@ double Caster::get_projected_distance(double ray_angle, double player_angle,
 
 // TODO Delete when linked with map.
 void static load_sprites(std::vector<_sprite>& sprites) {
-  sprites.push_back(_sprite(Point(1.5, 3.5)));
-  sprites.push_back(_sprite(Point(5, 1.5)));
-  sprites.push_back(_sprite(Point(1.5, 1.5)));
+  // sprites.push_back(_sprite(Point(1.5, 3.5), 15));
+  sprites.push_back(_sprite(Point(5, 1.5), 15));
+  // sprites.push_back(_sprite(Point(1.5, 1.5), 15));
 }
 
 void Caster::sort_sprites(std::vector<_sprite>& sprites) {

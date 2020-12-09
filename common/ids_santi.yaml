@@ -58,4 +58,10 @@
   image: ""
   icon: "../resources/images/items/IMG_Treasure_Cup.png"
   sound: ""
+14:
+  name: "Officer"
+  image: "/home/santiagoczop/Taller/tps/tp4/res/officer/officer1.bmp"
+15:
+  name: "Pillar"
+  image: "/home/santiagoczop/Taller/tps/tp4/res/ambient/pillar.bmp"
 ...

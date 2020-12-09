@@ -15,13 +15,15 @@ class _sprite {
  private:
   Point pos;
   double distance;
+  int id;
 
  public:
-  _sprite(Point pos) : pos(pos), distance(0) {}
+  _sprite(Point pos, int id) : pos(pos), distance(0), id(id) {}
   ~_sprite() {}
   void update_distance(Point src);
   double get_distance();
   Point get_pos() { return pos; }
+  int get_id();
 };
 
 // ============================
@@ -40,6 +42,7 @@ class Caster {
   void draw_wall(Collision& collision, size_t screen_pos, double ray_angle);
 
   void draw_sprites(std::vector<double>& wall_distances);
+  void draw_sprite(_sprite& sprite, std::vector<double>& wall_distances);
 
   double get_projected_distance(double ray_angle, double player_angle,
                                 double collision_distance);
