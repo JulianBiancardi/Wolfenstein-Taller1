@@ -9,6 +9,8 @@ Ray::~Ray() {}
 
 Point Ray::get_origin() { return origin; }
 
+const Point &Ray::get_ref_origin() { return origin; }
+
 // TODO Delete this method, make Ray immutable
 void Ray::set_origin(double x, double y) { origin = Point(x, y); }
 
