@@ -23,7 +23,7 @@ void Resource::load(SDL_Renderer* renderer) {
   YAML::Node yaml_file = YAML::LoadFile("../../common/ids_santi.yaml");
 
   std::map<std::string, std::string> resource_data =
-      yaml_file[1].as<std::map<std::string, std::string>>();
+      yaml_file[id].as<std::map<std::string, std::string>>();
 
   std::map<std::string, std::string>::iterator iter;
   for (iter = resource_data.begin(); iter != resource_data.end(); iter++) {
