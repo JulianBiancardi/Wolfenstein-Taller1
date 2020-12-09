@@ -1,6 +1,6 @@
 #include "config_loader.h"
 
-YAML::Node CL::yaml_file = YAML::LoadFile("../config.yaml");
+YAML::Node CL::yaml_file = YAML::LoadFile("../../common/src/main/config.yaml");
 std::string sv_port = CL::yaml_file["sv_port"].as<std::string>();
 
 // Player
