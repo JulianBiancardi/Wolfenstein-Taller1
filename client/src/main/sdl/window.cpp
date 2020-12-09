@@ -1,6 +1,7 @@
 #include "window.h"
 
-#include "../constants.h"
+#define ERROR -1
+#define NO_ERROR 0
 
 Window::Window(const std::string& title, int width, int height)
     : width(width), height(height) {
