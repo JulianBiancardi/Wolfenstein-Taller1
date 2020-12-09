@@ -16,7 +16,7 @@ FILE(GLOB ServerFiles
 	src/main/game/*.cpp
 	src/main/game/collisions/*.cpp
 	src/main/game/guns/*.cpp
-	src/main/game/items/*.cpp
+	#src/main/game/items/*.cpp
 	src/main/game/sprites/*.cpp
 	)
 FILE(GLOB CommonFiles 
@@ -30,8 +30,15 @@ FILE(GLOB SDLFiles
         ../client/src/main/sdl/*.cpp
 )
 FILE(GLOB TestFiles
-	../common/tests/*.cpp
+	#../common/tests/*.cpp Should be used
 	../common/tests/game_test/*.cpp
+	../common/tests/main_tests.cpp
+	../common/tests/matrix_tests.cpp
+	../common/tests/point_tests.cpp
+	../common/tests/ray_tests.cpp
+	../common/tests/rectangle_tests.cpp
+	../common/tests/resource_tests.cpp
+	../common/tests/tests_setup.cpp
         )
 add_executable(
         main
