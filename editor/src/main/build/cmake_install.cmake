@@ -1,4 +1,4 @@
-# Install script for directory: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor
+# Install script for directory: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/build/cmake_install.cmake")
+  include("/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/build/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/src/main/editor/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
