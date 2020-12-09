@@ -3,6 +3,7 @@
 a.out
 *.txt
 !app_info.txt
+!CMakeLists.txt
 vgcore.*
 *.exe
 testing
