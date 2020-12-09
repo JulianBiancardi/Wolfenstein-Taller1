@@ -1,10 +1,9 @@
 #ifndef RAY_CASTING_H
 #define RAY_CASTING_H
 
+#include "../../../common/src/main/utils/ray.h"
 #include "collision.h"
 #include "map.h"
-#include "utils/point.h"
-#include "utils/ray.h"
 
 class RayCasting {
  private:

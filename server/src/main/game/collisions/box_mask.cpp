@@ -1,6 +1,8 @@
 #include "box_mask.h"
-#include "circle_mask.h"
+
 #include <cmath>
+
+#include "circle_mask.h"
 
 bool Box_mask::occupies(Point where) {
   double delta_x = abs(where.getX() - center.getX());

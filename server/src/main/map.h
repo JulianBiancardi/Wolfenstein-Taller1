@@ -6,10 +6,11 @@
 #include <functional>
 #include <vector>
 
+#include "../../../../common/src/main/utils/matrix.h"
+#include "../../../../common/src/main/utils/point.h"
 #include "game/moveable.h"
 #include "game/player.h"
 #include "game/sprites/sprite.h"
-#include "utils/matrix.h"
 
 class Map {
  private:
