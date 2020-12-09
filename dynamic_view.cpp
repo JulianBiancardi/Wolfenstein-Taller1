@@ -75,6 +75,7 @@ int main(int argc, char** argv) {
   }
 }
 
+/*
 void put_data(Matrix<int>& map_data) {
   for (int i = 0; i < map_data.get_columns(); i++) {
     map_data(i, 0) = WALL;  // TOP
@@ -104,8 +105,9 @@ void put_data(Matrix<int>& map_data) {
     map_data(3, 5) = RED_WALL;
     map_data(3, 7) = CYAN_WALL;
 
-    map_data(6, 5) = PINK_WALL;*/
+    map_data(6, 5) = PINK_WALL;
 }
+*/
 
 void static handle_key_press(SDL_Keycode& key, Ray& player) {
   double angle = player.get_angle();
@@ -153,8 +155,9 @@ void static handle_key_press(SDL_Keycode& key, Ray& player) {
 
 // TODO Move to MapReader
 Map load_map() {
-  YAML::Node yaml_file =
-      YAML::LoadFile("/home/santiagoczop/Taller/tps/tp4/testing/new_map.yaml");
+  YAML::Node yaml_file = YAML::LoadFile(
+      "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/"
+      "new_map.yaml");
 
   size_t width = yaml_file["width"].as<int>();
   size_t height = yaml_file["height"].as<int>();

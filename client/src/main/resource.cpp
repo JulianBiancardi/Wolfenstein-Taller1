@@ -20,8 +20,7 @@ bool Resource::is_loaded() { return loaded; }
 // Use the YAML to find the relevant data
 // TODO Fix this
 void Resource::load(SDL_Renderer* renderer) {
-  YAML::Node yaml_file =
-      YAML::LoadFile("/home/santiagoczop/Taller/tps/tp4/common/ids_santi.yaml");
+  YAML::Node yaml_file = YAML::LoadFile("../../common/ids_santi.yaml");
 
   std::map<std::string, std::string> resource_data =
       yaml_file[1].as<std::map<std::string, std::string>>();

@@ -8,45 +8,41 @@ ids:
     name: "Stone Wall"
     image: "/home/santiagoczop/Taller/tps/tp4/res/walls/grey_brick_wall.bmp"
     icon: "../resources/images/walls/IMG_StoneWall.png"
-  - id: 1
+  - id: 2
     name: "Rock Wall"
     image: "/home/santiagoczop/Taller/tps/tp4/res/walls/grey_brick_wall.bmp"
     icon: "../resources/images/walls/IMG_RockWall.png"
-  - id: 2
+  - id: 3
     name: "Wood Wall"
     image: "resources/images/walls/IMG_WoodWall.png"
     icon: "../resources/images/walls/IMG_WoodWall.png"
-  - id: 3 
+  - id: 4 
     name: "Maching Gun"
     image: "resources/images/weapons/IMG_Machingun.png"
     icon: "../resources/images/weapons/IMG_Machingun.png"
-  - id: 4
+  - id: 5
     name: "Bazooka"
     image: "resources/images/weapons/IMG_Bazooka.png"
     icon: "../resources/images/weapons/IMG_Bazooka.png"
     sound: ""
-  - id: 5
+  - id: 6
     name: "Pistol"
     image: "resources/images/weapons/IMG_Pistol.png"
     icon: "../resources/images/weapons/IMG_Pistol.png"
     sound: ""
-  - id: 6
+  - id: 7
     name: "Guard"
     image: "resources/images/enemies/IMG_Guard.png"
     icon: "../resources/images/enemies/IMG_Guard.png"
     sound: ""
-  - id: 7
+  - id: 8
     name: "Bullets"
     image: ""
     icon: "../resources/images/items/IMG_Bullets.png"
-  - id: 8
+  - id: 9
     name: "Food"
     image: ""
     icon: "../resources/images/items/IMG_Food.png"
-  - id: 9
-    name: "Key"
-    image: ""
-    icon: "../resources/images/items/IMG_Key.png"
   - id: 10
     name: "MedKit"
     image: ""
@@ -65,4 +61,8 @@ ids:
     image: ""
     icon: "../resources/images/items/IMG_Treasure_Cup.png"
     sound: ""
+  - id: 14
+    name: "Key"
+    image: ""
+    icon: "../resources/images/items/IMG_Key.png"
 ...

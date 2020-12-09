@@ -3,8 +3,7 @@
 #include "yaml-cpp/yaml.h"
 
 ResourceManager::ResourceManager(Window& window) : window(window) {
-  YAML::Node yaml_file =
-      YAML::LoadFile("/home/santiagoczop/Taller/tps/tp4/common/ids_santi.yaml");
+  YAML::Node yaml_file = YAML::LoadFile("../../common/ids_santi.yaml");
 
   YAML::const_iterator iter;
   for (iter = yaml_file.begin(); iter != yaml_file.end(); iter++) {

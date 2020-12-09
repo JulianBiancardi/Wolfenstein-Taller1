@@ -3,7 +3,7 @@
   name: "Air"
 1:
   name: "Rock Wall"
-  image: "/home/santiagoczop/Taller/tps/tp4/res/walls/grey_brick_wall.bmp"
+  image: "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/res/walls/grey_brick_wall.bmp"
   icon: "../resources/images/walls/IMG_RockWall.png"
 2:
   name: "Wood Wall"
