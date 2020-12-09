@@ -6,9 +6,9 @@
 #include <functional>
 #include <vector>
 
-#include "../common/src/main/utils/matrix.h"
-#include "../server/src/main/game/player.h"
-#include "../server/src/main/game/sprites/sprite.h"
+#include "../../../common/src/main/utils/matrix.h"
+#include "../../../server/src/main/game/player.h"
+#include "../../../server/src/main/game/sprites/sprite.h"
 
 class Map {
  private:

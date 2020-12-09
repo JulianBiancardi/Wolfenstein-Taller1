@@ -1,11 +1,9 @@
-#ifndef WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_MOVEABLE_H_
-#define WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_MOVEABLE_H_
+#ifndef MOVEABLE_H
+#define MOVEABLE_H
 
-#include "../../utils/ray.h"
+#include "../../../../common/src/main/utils/ray.h"
 #include "collisions/circle_mask.h"
 #include "sprites/sprite.h"
-
-class Player;  // FIXME Creo que esto es borrable
 
 class Moveable {
  private:
@@ -36,4 +34,4 @@ class Moveable {
   Point get_position() { return angled_position.get_origin(); };
 };
 
-#endif  // WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_MOVEABLE_H_
+#endif
