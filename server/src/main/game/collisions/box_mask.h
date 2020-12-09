@@ -1,6 +1,7 @@
-#ifndef WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_COLLISIONS_BOX_MASK_H_
-#define WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_COLLISIONS_BOX_MASK_H_
+#ifndef BOX_MASK_H
+#define BOX_MASK_H
 
+#include "../../../../../common/src/main/utils/point.h"
 #include "mask.h"
 
 class Box_mask : public Mask {
@@ -15,4 +16,4 @@ class Box_mask : public Mask {
   virtual bool occupies(Point where);
 };
 
-#endif //WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_COLLISIONS_BOX_MASK_H_
+#endif

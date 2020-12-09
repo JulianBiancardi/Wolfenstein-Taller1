@@ -1,6 +1,6 @@
 #include "resource_manager_tests.h"
 
-#include "../main/resource_manager.h"
+#include "../../client/src/main/resource_manager.cpp"
 #include "tests_setup.h"
 
 int static creation_test();

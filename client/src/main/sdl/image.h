@@ -5,8 +5,7 @@
 
 #include <string>
 
-#include "../utils/point.h"
-#include "../utils/rectangle.h"
+#include "../../../../common/src/main/utils/rectangle.h"
 #include "texture.h"
 
 class Image {

@@ -1,10 +1,10 @@
 #include <iostream>
 
-#include "../src/main/caster.h"
-#include "../src/main/ray_casting.h"
-#include "../src/main/sdl/window.h"
-#include "../src/main/utils/matrix.h"
-#include "../src/main/utils/ray.h"
+#include "client/src/main/caster.h"
+#include "client/src/main/ray_casting.h"
+#include "client/src/main/sdl/window.h"
+#include "common/src/main/utils/matrix.h"
+#include "common/src/main/utils/ray.h"
 #include "yaml-cpp/yaml.h"
 
 #define UNIT 5
