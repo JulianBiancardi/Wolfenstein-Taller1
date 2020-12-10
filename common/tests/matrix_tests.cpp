@@ -101,3 +101,5 @@ int fill_test() {
   }
   return NO_ERROR;
 }
+
+// TODO Add test to verify RangeError being thrown

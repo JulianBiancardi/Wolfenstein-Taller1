@@ -35,8 +35,9 @@ void Moveable::move_from_current_position_if_can(double direction_angle) {
   Point next(next_x, next_y);
 
   if (is_map_free_in_next_position(next) &&
-      is_map_free_in_collision_mask_bounds(next, movement_angle))
-    angled_position.set_origin(next_x, next_y);
+      is_map_free_in_collision_mask_bounds(next, movement_angle)) {
+    angled_position = Ray(next_x, next_y, angled_position.get_angle());
+  }
 }
 
 void Moveable::move_up() { move_from_current_position_if_can(0); }

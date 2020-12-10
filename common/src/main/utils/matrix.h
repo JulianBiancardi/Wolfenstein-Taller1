@@ -2,8 +2,9 @@
 #define MATRIX_H
 
 #include <algorithm>
-#include <stdexcept>
 #include <vector>
+
+#include "range_error.h"
 
 template <class T>
 class Matrix {
@@ -41,7 +42,7 @@ class Matrix {
   /* Return the element in the position x,y. */
   T& operator()(size_t x, size_t y) {
     if (x >= columns || y >= rows) {
-      throw std::range_error(
+      throw RangeError(
           "RangeError: indexes out of matrix's range\nx: %zu\ny: %zu\n", x, y);
     }
     return matrix[x][y];

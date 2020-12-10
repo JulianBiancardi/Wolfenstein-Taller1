@@ -11,10 +11,4 @@ Point Ray::get_origin() { return origin; }
 
 const Point &Ray::get_ref_origin() { return origin; }
 
-// TODO Delete this method, make Ray immutable
-void Ray::set_origin(double x, double y) { origin = Point(x, y); }
-
 double Ray::get_angle() { return angle; }
-
-// TODO Delete this method, make Ray immutable
-void Ray::set_angle(double angle) { this->angle = angle; }
