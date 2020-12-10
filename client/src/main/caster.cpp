@@ -26,7 +26,7 @@
 
 // =======
 bool static sprite_comp(_sprite& a, _sprite& b) {
-  return a.get_distance() < b.get_distance();
+  return a.get_distance() > b.get_distance();
 }
 
 void static load_sprites(std::vector<_sprite>& sprites);
@@ -146,6 +146,7 @@ void Caster::draw_sprites(std::vector<double>& wall_distances) {
 }
 
 void Caster::draw_sprite(_sprite& sprite, std::vector<double>& wall_distances) {
+  // TODO Optimize
   Image* image = res_manager.get_image(sprite.get_id());
   size_t img_width = image->get_width();
   size_t img_height = image->get_height();
@@ -153,32 +154,35 @@ void Caster::draw_sprite(_sprite& sprite, std::vector<double>& wall_distances) {
   double x_relative = sprite.get_pos().getX() - player.get_origin().getX();
   // Y grows going down
   double y_relative = player.get_origin().getY() - sprite.get_pos().getY();
+
   double sprite_angle_rel = atan2(y_relative, x_relative);
-  if (sprite_angle_rel > 2 * M_PI) {
+  /*if (sprite_angle_rel > 2 * M_PI) {
     sprite_angle_rel -= 2 * M_PI;
   } else if (sprite_angle_rel < 0) {
     sprite_angle_rel += 2 * M_PI;
-  }
+  }*/
   double sprite_angle = sprite_angle_rel - player.get_angle();
-
   if (sprite_angle > 2 * M_PI) {
     sprite_angle -= 2 * M_PI;
   } else if (sprite_angle < 0) {
     sprite_angle += 2 * M_PI;
   }
-  printf("sprite_angle_rel: %f\n", sprite_angle_rel);
-  printf("sprite_angle: %f\n", sprite_angle);
-  printf("player_angle: %f\n", player.get_angle());
+
+  // printf("sprite_angle_rel: %f\n", sprite_angle_rel);
+  // printf("sprite_angle: %f\n", sprite_angle);
+  // printf("player_angle: %f\n", player.get_angle());
 
   double projected_distance = sprite.get_distance() * cos(sprite_angle);
-  printf("proj_dist: %f\n", projected_distance);
+  // printf("proj_dist: %f\n", projected_distance);
   int sprite_size = SCALING_FACTOR / (projected_distance * img_height);
-  printf("sprite_size: %d\n", sprite_size);
+  // printf("sprite_size: %d\n", sprite_size);
 
   int x = sin(sprite_angle) * (-SCREEN_WIDTH) + SCREEN_WIDTH_HALF;
-  printf("center: %d\n", x);
+  // TODO Move to constants
+  if (x > SCREEN_WIDTH * 1.2 || x < -0.2 * SCREEN_WIDTH) return;
+  // printf("center: %d\n", x);
   int x0 = x - sprite_size / 2 - 1;
-  printf("x0: %d\n", x0);
+  // printf("x0: %d\n", x0);
 
   for (int i = 0; i < sprite_size; i++) {
     x0 = x0 + 1;
@@ -208,9 +212,9 @@ double Caster::get_projected_distance(double ray_angle, double player_angle,
 
 // TODO Delete when linked with map.
 void static load_sprites(std::vector<_sprite>& sprites) {
-  // sprites.push_back(_sprite(Point(1.5, 3.5), 15));
-  sprites.push_back(_sprite(Point(5, 1.5), 15));
-  // sprites.push_back(_sprite(Point(1.5, 1.5), 15));
+  sprites.push_back(_sprite(Point(1.5, 3.5), 14));
+  sprites.push_back(_sprite(Point(5, 1.5), 14));
+  sprites.push_back(_sprite(Point(1.5, 1.5), 14));
 }
 
 void Caster::sort_sprites(std::vector<_sprite>& sprites) {
