@@ -11,6 +11,7 @@ int empty_string_creation_test();
 int default_string_creation_test();
 int size_test();
 int fill_test();
+int range_error_test();
 
 void matrix_tests() {
   begin_tests("MATRIX");
@@ -26,6 +27,9 @@ void matrix_tests() {
   print_test("La Matriz devuelve correctamente sus dimensiones", size_test,
              NO_ERROR);
   print_test("La Matriz se llena correctamente", fill_test, NO_ERROR);
+  print_test("La Matriz tira error de rango al exceder sus dimensiones",
+             range_error_test, NO_ERROR);
+
   end_tests();
 }
 
@@ -102,4 +106,12 @@ int fill_test() {
   return NO_ERROR;
 }
 
-// TODO Add test to verify RangeError being thrown
+int range_error_test() {
+  Matrix<int> m(10, 5);
+  try {
+    m(11, 5);
+  } catch (const RangeError e) {
+    return NO_ERROR;
+  }
+  return ERROR;
+}
