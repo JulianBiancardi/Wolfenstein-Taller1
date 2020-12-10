@@ -3,7 +3,7 @@
   name: "Air"
 1:
   name: "Rock Wall"
-  image: "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/res/walls/grey_brick_wall.bmp"
+  image: "/home/santiagoczop/Taller/tps/tp4/res/walls/grey_brick_wall.bmp"
   icon: "../resources/images/walls/IMG_RockWall.png"
 2:
   name: "Wood Wall"
@@ -60,8 +60,8 @@
   sound: ""
 14:
   name: "Officer"
-  image: "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/res/officer/officer1.bmp"
+  image: "/home/santiagoczop/Taller/tps/tp4/res/officer/officer1.bmp"
 15:
   name: "Pillar"
-  image: "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/res/ambient/pillar.bmp"
+  image: "/home/santiagoczop/Taller/tps/tp4/res/ambient/IMG_Pilar.bmp"
 ...
