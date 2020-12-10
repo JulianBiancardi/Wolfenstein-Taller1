@@ -1,6 +1,7 @@
 #include "ray_casting.h"
 
 #include <cmath>
+#include <exception>
 
 #define CELL_SIZE 64
 #define WALL 1

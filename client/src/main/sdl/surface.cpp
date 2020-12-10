@@ -1,12 +1,12 @@
 #include "surface.h"
 
-#include "iostream"
+#include "sdl_error.h"
 
 Surface::Surface(std::string& file) {
   surface = SDL_LoadBMP(file.c_str());
   if (surface == NULL) {
-    std::cout << file << std::endl;
-    throw 1;  // TODO Change to error
+    throw SDLError("SDLError: failed to load image '%s' - %s\n", file.c_str(),
+                   SDL_GetError());
   }
 }
 
