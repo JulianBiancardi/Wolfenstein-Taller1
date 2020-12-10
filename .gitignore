@@ -8,5 +8,5 @@ vgcore.*
 *.exe
 testing
 client/src/main/build/*
-server/src/main/build/*
+server/build/*
 editor/src/main/build/*
