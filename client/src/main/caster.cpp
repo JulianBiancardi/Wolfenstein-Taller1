@@ -50,7 +50,7 @@ Caster::~Caster() {}
 void Caster::operator()() {
   draw_background();
   std::vector<double> wall_distances = draw_walls();
-  // draw_sprites(wall_distances);
+  draw_sprites(wall_distances);
   window.update();
 }
 
@@ -212,9 +212,9 @@ double Caster::get_projected_distance(double ray_angle, double player_angle,
 
 // TODO Delete when linked with map.
 void static load_sprites(std::vector<_sprite>& sprites) {
-  sprites.push_back(_sprite(Point(1.5, 3.5), 14));
-  sprites.push_back(_sprite(Point(5, 1.5), 14));
-  sprites.push_back(_sprite(Point(1.5, 1.5), 14));
+  sprites.push_back(_sprite(Point(2.5, 3.5), 15));
+  sprites.push_back(_sprite(Point(5, 2.5), 15));
+  sprites.push_back(_sprite(Point(2.5, 2.5), 15));
 }
 
 void Caster::sort_sprites(std::vector<_sprite>& sprites) {
