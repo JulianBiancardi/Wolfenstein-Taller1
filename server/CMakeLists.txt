@@ -24,15 +24,20 @@ FILE(GLOB CommonFiles
 	)
 FILE(GLOB MainFiles
 	../client/src/main/resource.cpp
-        ../client/src/main/resource_manager.cpp
-        )
+    ../client/src/main/resource_manager.cpp
+	../client/src/main/caster.cpp
+	../client/src/main/collision.cpp
+	../client/src/main/ray_casting.cpp
+	../client/src/main/client.cpp
+)
 FILE(GLOB SDLFiles
         ../client/src/main/sdl/*.cpp
 )
 FILE(GLOB TestFiles
 	#../common/tests/*.cpp Should be used
 	../common/tests/game_test/*.cpp
-	../common/tests/main_tests.cpp
+	#../common/tests/main_tests.cpp
+	../client/src/main/main.cpp
 	../common/tests/matrix_tests.cpp
 	../common/tests/point_tests.cpp
 	../common/tests/ray_tests.cpp

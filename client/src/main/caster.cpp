@@ -50,7 +50,7 @@ Caster::~Caster() {}
 void Caster::operator()() {
   draw_background();
   std::vector<double> wall_distances = draw_walls();
-  draw_sprites(wall_distances);
+  // draw_sprites(wall_distances);
   window.update();
 }
 
