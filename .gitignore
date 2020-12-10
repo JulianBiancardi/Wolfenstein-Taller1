@@ -7,4 +7,6 @@ a.out
 vgcore.*
 *.exe
 testing
-src/main/build/*
+client/src/main/build/*
+server/src/main/build/*
+editor/src/main/build/*
