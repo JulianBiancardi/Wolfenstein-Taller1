@@ -37,7 +37,7 @@ FILE(GLOB TestFiles
 	#../common/tests/*.cpp Should be used
 	../common/tests/game_test/*.cpp
 	#../common/tests/main_tests.cpp
-	../client/src/main/main.cpp
+	#../client/src/main/main.cpp
 	../common/tests/matrix_tests.cpp
 	../common/tests/point_tests.cpp
 	../common/tests/ray_tests.cpp
@@ -45,18 +45,48 @@ FILE(GLOB TestFiles
 	../common/tests/resource_tests.cpp
 	../common/tests/tests_setup.cpp
         )
+
+FILE(GLOB MainTests  ../common/tests/main_tests.cpp) #Luego MainServer
+FILE(GLOB MainClient  ../client/src/main/main.cpp) #Luego MainClient
+
+
 add_executable(
-        main
+        server-main
         ${MainFiles}
         ${ServerFiles}
         ${CommonFiles}
         ${SDLFiles}
         ${TestFiles}
+		${MainTests}
+)
+# Generar el servidor
+#add_executable(micromachines-server src/server/main.cpp)
+#target_link_libraries(micromachines-server model server common)
+target_link_libraries(
+		server-main
+		PRIVATE
+		yaml-cpp
+		${SDL2_LIBRARIES}
 )
 
-target_link_libraries(
-        main
-        PRIVATE
-        yaml-cpp  # This is the "target" exposed by yaml-cpp's CMakeLists.txt file
-        ${SDL2_LIBRARIES}
+# Generar el cliente
+#add_executable(micromachines-client src/client/main.cpp)
+#target_link_libraries(micromachines-client client viewManager)
+add_executable(
+		client-main
+		${MainFiles}
+		${ServerFiles}
+		${CommonFiles}
+		${SDLFiles}
+		${TestFiles}
+		${MainClient}
 )
+target_link_libraries(
+		client-main
+		PRIVATE
+		yaml-cpp
+		${SDL2_LIBRARIES}
+)
+
+
+
