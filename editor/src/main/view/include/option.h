@@ -13,6 +13,7 @@ class Option : public QWidget {
 
  public:
   Option(QWidget* parent = nullptr, size_t id = 0,
+         const QString& tooltip = QString(),
          const QString& icon_path = QString(),
          OptionSelected* current_option = nullptr);
   ~Option();

@@ -8,10 +8,12 @@ class ItemsId {
  public:
   ItemsId();
 
+  size_t size() const;
+  const QString get_tooltip(size_t id) const;
   const QString get_icon_path(size_t id) const;
 
  private:
-  QMap<size_t, QString> ids;
+  QMap<size_t, QMap<QString, QString>> ids;
 };
 
 #endif  // ITEMSID_H

@@ -17,27 +17,13 @@ OptionsContainer::~OptionsContainer() {}
 
 void OptionsContainer::addOptions(ItemsId* ids,
                                   OptionSelected* current_option) {
-  QList<size_t> ids_section;
-  ids_section.append(2);
-  ids_section.append(5);
-  ids_section.append(1);
-  ids_section.append(8);
-  ids_section.append(6);
-  ids_section.append(4);
-  ids_section.append(7);
-  ids_section.append(10);
-  ids_section.append(11);
-  ids_section.append(9);
-  ids_section.append(12);
-
   QGridLayout* gridlayout = new QGridLayout();
   gridlayout->setSpacing(5);
-  for (int i = 0; i < ids_section.size(); i++) {
-    size_t current_id = ids_section.at(i);
-    Option* option = new Option(this, current_id,
-                                ids->get_icon_path(current_id), current_option);
-    int row = i / this->columns;
-    int column = i % this->columns;
+  for (size_t i = 0; i < ids->size(); i++) {
+    Option* option = new Option(this, i, ids->get_tooltip(i),
+                                ids->get_icon_path(i), current_option);
+    size_t row = i / this->columns;
+    size_t column = i % this->columns;
     gridlayout->addWidget(option, row, column);
     this->buttongroup.addButton(option->getButton());
   }

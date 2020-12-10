@@ -8,13 +8,22 @@
 ItemsId::ItemsId() {
   YAML::Node ids_file = YAML::LoadFile("../../../../common/ids.yaml");
 
-  const YAML::Node& ids = ids_file["ids"];
-  for (YAML::const_iterator iter = ids.begin(); iter != ids.end(); iter++) {
-    const YAML::Node& id = *iter;
-
-    this->ids.insert(id["id"].as<std::size_t>(),
-                     id["icon"].as<std::string>().c_str());
+  YAML::const_iterator iter;
+  for (iter = ids_file.begin(); iter != ids_file.end(); iter++) {
+    size_t id = iter->first.as<size_t>();
+    QMap<QString, QString> resources;
+    resources.insert("name", iter->second["name"].as<std::string>().c_str());
+    resources.insert("icon", iter->second["icon"].as<std::string>().c_str());
+    this->ids.insert(id, resources);
   }
 }
 
-const QString ItemsId::get_icon_path(size_t id) const { return ids.value(id); }
+size_t ItemsId::size() const { return this->ids.size(); }
+
+const QString ItemsId::get_tooltip(size_t id) const {
+  return ids.value(id).value("name");
+}
+
+const QString ItemsId::get_icon_path(size_t id) const {
+  return ids.value(id).value("icon");
+}

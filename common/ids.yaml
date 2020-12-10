@@ -1,68 +1,74 @@
 --- 
-ids:
-  - id: 0
-    name: "Air"
-    image: ""
-    icon: ""
-  - id: 1
-    name: "Stone Wall"
-    image: "/home/santiagoczop/Taller/tps/tp4/res/walls/grey_brick_wall.bmp"
-    icon: "../resources/images/walls/IMG_StoneWall.png"
-  - id: 2
-    name: "Rock Wall"
-    image: "/home/santiagoczop/Taller/tps/tp4/res/walls/grey_brick_wall.bmp"
-    icon: "../resources/images/walls/IMG_RockWall.png"
-  - id: 3
-    name: "Wood Wall"
-    image: "resources/images/walls/IMG_WoodWall.png"
-    icon: "../resources/images/walls/IMG_WoodWall.png"
-  - id: 4 
-    name: "Maching Gun"
-    image: "resources/images/weapons/IMG_Machingun.png"
-    icon: "../resources/images/weapons/IMG_Machingun.png"
-  - id: 5
-    name: "Bazooka"
-    image: "resources/images/weapons/IMG_Bazooka.png"
-    icon: "../resources/images/weapons/IMG_Bazooka.png"
-    sound: ""
-  - id: 6
-    name: "Pistol"
-    image: "resources/images/weapons/IMG_Pistol.png"
-    icon: "../resources/images/weapons/IMG_Pistol.png"
-    sound: ""
-  - id: 7
-    name: "Guard"
-    image: "resources/images/enemies/IMG_Guard.png"
-    icon: "../resources/images/enemies/IMG_Guard.png"
-    sound: ""
-  - id: 8
-    name: "Bullets"
-    image: ""
-    icon: "../resources/images/items/IMG_Bullets.png"
-  - id: 9
-    name: "Food"
-    image: ""
-    icon: "../resources/images/items/IMG_Food.png"
-  - id: 10
-    name: "MedKit"
-    image: ""
-    icon: "../resources/images/items/IMG_MedKit.png"
-  - id: 11 
-    name: "Chest"
-    image: ""
-    icon: "../resources/images/items/IMG_Treasure_Chest.png"
-  - id: 12
-    name: "Crown"
-    image: ""
-    icon: "../resources/images/items/IMG_Treasure_Crown.png"
-    sound: ""
-  - id: 13
-    name: "Cup"
-    image: ""
-    icon: "../resources/images/items/IMG_Treasure_Cup.png"
-    sound: ""
-  - id: 14
-    name: "Key"
-    image: ""
-    icon: "../resources/images/items/IMG_Key.png"
+0:
+  name: "Air"
+  icon: ""
+1:
+  name: "Rock Wall"
+  image: "/home/santiagoczop/Taller/tps/tp4/res/walls/grey_brick_wall.bmp"
+  icon: "../resources/images/walls/IMG_RockWall.png"
+2:
+  name: "Wood Wall"
+  image: "resources/images/walls/IMG_WoodWall.png"
+  icon: "../resources/images/walls/IMG_WoodWall.png"
+3: 
+  name: "Maching Gun"
+  image: "resources/images/weapons/IMG_Machingun.png"
+  icon: "../resources/images/weapons/IMG_Machingun.png"
+4:
+  name: "Bazooka"
+  image: "resources/images/weapons/IMG_Bazooka.png"
+  icon: "../resources/images/weapons/IMG_Bazooka.png"
+  sound: ""
+5:
+  name: "Pistol"
+  image: "resources/images/weapons/IMG_Pistol.png"
+  icon: "../resources/images/weapons/IMG_Pistol.png"
+  sound: ""
+6:
+  name: "Guard"
+  image: "resources/images/enemies/IMG_Guard.png"
+  icon: "../resources/images/enemies/IMG_Guard.png"
+  sound: ""
+7:
+  name: "Bullets"
+  image: ""
+  icon: "../resources/images/items/IMG_Bullets.png"
+8:
+  name: "Food"
+  image: ""
+  icon: "../resources/images/items/IMG_Food.png"
+9:
+  name: "Key"
+  image: ""
+  icon: "../resources/images/items/IMG_Key.png"
+10:
+  name: "MedKit"
+  image: ""
+  icon: "../resources/images/items/IMG_MedKit.png"
+11 :
+  name: "Chest"
+  image: ""
+  icon: "../resources/images/items/IMG_Treasure_Chest.png"
+12:
+  name: "Crown"
+  image: ""
+  icon: "../resources/images/items/IMG_Treasure_Crown.png"
+  sound: ""
+13:
+  name: "Cup"
+  image: ""
+  icon: "../resources/images/items/IMG_Treasure_Cup.png"
+  sound: ""
+14:
+  name: "Officer"
+  image: "/home/santiagoczop/Taller/tps/tp4/res/officer/officer1.bmp"
+  icon: ""
+15:
+  name: "Pillar"
+  image: "/home/santiagoczop/Taller/tps/tp4/res/ambient/IMG_Pilar.bmp"
+  icon: ""
+16:
+  name: "Nuevo objecto"
+  image: "..."
+  icon: "..."
 ...
