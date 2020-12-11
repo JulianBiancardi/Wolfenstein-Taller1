@@ -1,9 +1,11 @@
 #include "mainwindow.h"
 
+#include <QtCore/QDir>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QMessageBox>
+
 #include "../model/include/map.h"
 #include "../model/include/map_generator.h"
-#include "QtCore/QDir"
-#include "QtWidgets/QFileDialog"
 #include "iostream"
 #include "itemsid.h"
 #include "moc_mainwindow.cpp"
@@ -26,10 +28,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
 MainWindow::~MainWindow() {}
 
-void MainWindow::on_GenerateFileButton_clicked() {
-  this->map->generate_yamlfile();
-}
-
 void MainWindow::on_SpinBoxRows_valueChanged(int value) {
   // this->map->resize(value, this->columns);
 }
@@ -48,5 +46,27 @@ void MainWindow::on_actionOpen_File_triggered() {
     this->map->open_map(file_path.toStdString());
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
+    QMessageBox::critical(this, "Unknow file", "The file is not recognized.");
   }
+}
+
+void MainWindow::on_actionSave_triggered() {
+  std::cout << "saving file" << std::endl;
+}
+
+void MainWindow::on_actionSave_As_triggered() {
+  std::cout << "saving file as..." << std::endl;
+  // Create the FileDialog
+  QString filters = "All files (*.*) ;; Yaml files (*.yaml)";
+  QString file_path = QFileDialog::getSaveFileName(this, "Savel File",
+                                                   QDir::homePath(), filters);
+
+  this->map->generate_yamlfile(file_path.toStdString());
+  /*
+try {
+this->map->open_map(file_path.toStdString());
+} catch (const std::exception& e) {
+std::cerr << e.what() << '\n';
+QMessageBox::critical(this, "Unknow file", "The file is not recognized.");
+}*/
 }

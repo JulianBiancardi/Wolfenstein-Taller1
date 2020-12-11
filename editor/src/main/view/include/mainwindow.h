@@ -14,10 +14,11 @@ class MainWindow : public QMainWindow {
   ~MainWindow();
 
  private slots:
-  void on_GenerateFileButton_clicked();
   void on_SpinBoxRows_valueChanged(int value);
   void on_actionNew_File_triggered();
   void on_actionOpen_File_triggered();
+  void on_actionSave_triggered();
+  void on_actionSave_As_triggered();
 
  private:
   Ui::MainWindow ui;

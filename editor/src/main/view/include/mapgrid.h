@@ -30,8 +30,8 @@ class MapGrid : public QWidget {
   // this event is called when the drop operation is initiated at the widget
   void dropEvent(QDropEvent* event);
 
-  void generate_yamlfile();
   void open_map(const std::string& file_path);
+  void generate_yamlfile(const std::string& file_path);
 
  private:
   Ui::MapGrid ui;
