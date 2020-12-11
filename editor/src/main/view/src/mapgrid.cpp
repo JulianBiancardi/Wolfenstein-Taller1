@@ -1,5 +1,9 @@
 #include "mapgrid.h"
 
+#include <QtCore/QDebug>     //TODO delete
+#include <QtCore/QMimeData>  //Data for drag and drop system
+#include <QtWidgets/QMessageBox>
+
 #include "../../model/include/map_generator.h"
 #include "celd_view.h"
 #include "iostream"
@@ -12,6 +16,7 @@ MapGrid::MapGrid(QWidget* parent, Map* map, ItemsId* ids,
                  OptionSelected* current_option)
     : QWidget(parent), map(map), ids(ids), current_option(current_option) {
   this->ui.setupUi(this);
+  this->setAcceptDrops(true);
   generateCelds();
 }
 
@@ -63,6 +68,44 @@ void MapGrid::generate_yamlfile() {
 }
 
 void MapGrid::open_map(const std::string& file_path) {
-  MapGenerator map_generator;
-  map_generator.generate_map(file_path, this->map);
+  if (file_path.empty()) {
+    return;
+  }
+  try {
+    MapGenerator map_generator;
+    map_generator.generate_map(file_path, this->map);
+  } catch (const std::exception& e) {
+    std::cerr << e.what() << '\n';
+    QMessageBox::critical(this, "Unknow file", "The file is not recognized.");
+  }
+}
+
+void MapGrid::dragEnterEvent(QDragEnterEvent* event) {
+  std::cout << "Drag enter event" << std::endl;
+  event->acceptProposedAction();
+}
+
+void MapGrid::dropEvent(QDropEvent* event) {
+  qDebug() << "dropEvent" << event;
+
+  const QMimeData* mimeData = event->mimeData();
+
+  // check for our needed mime type, here a file or a list of files
+  if (mimeData->hasUrls()) {
+    // QStringList pathList;
+    QList<QUrl> urlList = mimeData->urls();
+
+    /*
+        // extract the local paths of the files
+        for (int i = 0; i < urlList.size() && i < 32; + i) {
+          pathList.append(urlList.at(i).toLocalFile());
+        }*/
+
+    // extract only the first file
+    QString file_path = urlList.first().toLocalFile();
+
+    // call a function to open the files
+    // openFiles(pathList);
+    this->open_map(file_path.toStdString());
+  }
 }

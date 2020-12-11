@@ -1,6 +1,8 @@
 #ifndef MAPGRID_H
 #define MAPGRID_H
 
+#include <QtGui/QDragEnterEvent>
+#include <QtGui/QDropEvent>
 #include <QtWidgets/QWidget>
 #include <string>
 
@@ -20,6 +22,13 @@ class MapGrid : public QWidget {
   void clear();
   // Resize the map size
   void resize(size_t new_rows, size_t new_columns);
+
+  // this event is called when the mouse enters the widgets area during a
+  // drag/drop operation
+  void dragEnterEvent(QDragEnterEvent* event);
+
+  // this event is called when the drop operation is initiated at the widget
+  void dropEvent(QDropEvent* event);
 
   void generate_yamlfile();
   void open_map(const std::string& file_path);
