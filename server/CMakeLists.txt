@@ -37,7 +37,6 @@ FILE(GLOB TestFiles
 	#../common/tests/*.cpp Should be used
 	../common/tests/game_test/*.cpp
 	#../common/tests/main_tests.cpp
-	#../client/src/main/main.cpp
 	../common/tests/matrix_tests.cpp
 	../common/tests/point_tests.cpp
 	../common/tests/ray_tests.cpp
@@ -60,8 +59,6 @@ add_executable(
 		${MainTests}
 )
 # Generar el servidor
-#add_executable(micromachines-server src/server/main.cpp)
-#target_link_libraries(micromachines-server model server common)
 target_link_libraries(
 		server-main
 		PRIVATE
@@ -70,8 +67,6 @@ target_link_libraries(
 )
 
 # Generar el cliente
-#add_executable(micromachines-client src/client/main.cpp)
-#target_link_libraries(micromachines-client client viewManager)
 add_executable(
 		client-main
 		${MainFiles}
