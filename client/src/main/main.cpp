@@ -1,6 +1,5 @@
 #include <exception>
 
-#include "../../../common/src/main/constants.h"
 #include "client.h"
 #include "iostream"
 #include "map.h"
@@ -16,9 +15,9 @@ int main() {
     client.launch();
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
-    return ERROR;
+    return EXIT_FAILURE;
   }
-  return NO_ERROR;  // TODO Change name to SUCCED
+  return EXIT_SUCCESS;
 }
 
 // TODO Move to MapReader
