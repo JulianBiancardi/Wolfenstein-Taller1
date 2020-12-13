@@ -74,5 +74,5 @@ bool Moveable::operator!=(const Moveable &other) const {
 }
 
 void Moveable::set_position(const Point &new_origin) {
-  angled_position.set_origin(new_origin);
+  angled_position = Ray(new_origin, angled_position.get_angle());
 }

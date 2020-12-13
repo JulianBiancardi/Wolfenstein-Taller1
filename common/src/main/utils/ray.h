@@ -14,7 +14,6 @@ class Ray {
   ~Ray();
 
   Point get_origin();
-  void set_origin(const Point &origin);
   const Point &get_ref_origin();
   double get_angle();
 };
