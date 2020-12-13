@@ -37,13 +37,23 @@ void MainWindow::on_actionNew_File_triggered() {
 }
 
 void MainWindow::on_actionOpen_File_triggered() {
-  std::cout << "open file" << std::endl;
+  if (!this->map->saved()) {
+    QMessageBox::critical(this, "Not saved file", "The file is not saved.");
+    return;
+  }
+
   // Create the FileDialog
   QString filters = "All files (*.*) ;; Yaml files (*.yaml)";
   QString file_path = QFileDialog::getOpenFileName(this, "Open File",
                                                    QDir::homePath(), filters);
+  if (file_path.isEmpty()) {
+    return;
+  }
   try {
-    this->map->open_map(file_path.toStdString());
+    this->current_file_path = file_path;
+    std::cout << "opening file:" << this->current_file_path.toStdString()
+              << std::endl;
+    this->map->open_map(this->current_file_path.toStdString());
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
     QMessageBox::critical(this, "Unknow file", "The file is not recognized.");
@@ -51,22 +61,35 @@ void MainWindow::on_actionOpen_File_triggered() {
 }
 
 void MainWindow::on_actionSave_triggered() {
-  std::cout << "saving file" << std::endl;
+  try {
+    std::cout << "saving file in:" << std::endl;
+    std::cout << this->current_file_path.toStdString() << std::endl;
+    this->map->generate_yamlfile(this->current_file_path.toStdString());
+  } catch (const std::exception& e) {
+    std::cerr << e.what() << '\n';
+    QMessageBox::critical(this, "Error", "Cannot save the file.");
+  }
 }
 
 void MainWindow::on_actionSave_As_triggered() {
-  std::cout << "saving file as..." << std::endl;
   // Create the FileDialog
   QString filters = "All files (*.*) ;; Yaml files (*.yaml)";
   QString file_path = QFileDialog::getSaveFileName(this, "Savel File",
                                                    QDir::homePath(), filters);
 
-  this->map->generate_yamlfile(file_path.toStdString());
-  /*
-try {
-this->map->open_map(file_path.toStdString());
-} catch (const std::exception& e) {
-std::cerr << e.what() << '\n';
-QMessageBox::critical(this, "Unknow file", "The file is not recognized.");
-}*/
+  if (file_path.isEmpty()) {
+    return;
+  }
+  // Add the extension
+  if (!file_path.endsWith(".yaml")) {
+    file_path += ".yaml";
+  }
+
+  try {
+    this->current_file_path = file_path;
+    this->map->generate_yamlfile(this->current_file_path.toStdString());
+  } catch (const std::exception& e) {
+    std::cerr << e.what() << '\n';
+    QMessageBox::critical(this, "Error", "Cannot save the file.");
+  }
 }
