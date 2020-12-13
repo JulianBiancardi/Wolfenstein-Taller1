@@ -14,11 +14,11 @@ class Shooter {
  protected:
   Ray angled_position;
   double angle;
-  Map &map;
+  // Map &map;
   // Circle_mask mask;
 
  public:
-  Shooter(Point origin, double angle, Map &game_map);
+  Shooter(Point origin, double angle);
   ~Shooter() {}
   //  void shoot_checker();
   void shoot(Gun &gun);

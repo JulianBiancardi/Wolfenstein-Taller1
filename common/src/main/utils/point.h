@@ -16,6 +16,7 @@ class Point {
   double getY() const;
   double static distance(const Point &point2, const Point &point1);
   double distance_from(const Point &other);
+  double angle_to(const Point &other);
 };
 
 #endif
