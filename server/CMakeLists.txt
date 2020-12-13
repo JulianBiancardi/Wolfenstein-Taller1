@@ -26,6 +26,7 @@ FILE(GLOB MainFiles
 	../client/src/main/resource.cpp
     ../client/src/main/resource_manager.cpp
 	../client/src/main/caster.cpp
+	#../client/src/main/player.cpp
 	../client/src/main/collision.cpp
 	../client/src/main/ray_casting.cpp
 	../client/src/main/client.cpp
