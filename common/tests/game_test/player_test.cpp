@@ -1,5 +1,6 @@
 #include "../../../server/src/main/game/player.h"
 #include "../../../server/src/main/game/sprites/table.h"
+#include "../../../server/src/main/game/collision_checker.h"
 #include "../../../server/src/main/map.h"
 #include "../tests_setup.h"
 #include <cmath>
@@ -67,67 +68,67 @@ Point next_position_down_left(Ray angled_position) {
 // CLIENTS STUFF ENDS
 
 // SERVER STUFF STARTS
-void move_up(Player &who, Map &map) {
+void move_up(Player &who, CollisionChecker &checker) {
   Point next_position = next_position_up(who.get_angled_position());
   Point next_mask_position = who.collision_mask_bound(next_position);
-  if (map.is_free(next_position, who)
-      && map.is_free(next_mask_position, who))
+  if (checker.can_move(next_position, who)
+      && checker.can_move(next_mask_position, who))
     who.set_position(next_position);
 }
 
-void move_down(Player &who, Map &map) {
+void move_down(Player &who, CollisionChecker &checker) {
   Point next_position = next_position_down(who.get_angled_position());
   Point next_mask_position = who.collision_mask_bound(next_position);
-  if (map.is_free(next_position, who)
-      && map.is_free(next_mask_position, who))
+  if (checker.can_move(next_position, who)
+      && checker.can_move(next_mask_position, who))
     who.set_position(next_position);
 }
 
-void move_right(Player &who, Map &map) {
+void move_right(Player &who, CollisionChecker &checker) {
   Point next_position = next_position_right(who.get_angled_position());
   Point next_mask_position = who.collision_mask_bound(next_position);
-  if (map.is_free(next_position, who)
-      && map.is_free(next_mask_position, who))
+  if (checker.can_move(next_position, who)
+      && checker.can_move(next_mask_position, who))
     who.set_position(next_position);
 }
 
-void move_left(Player &who, Map &map) {
+void move_left(Player &who, CollisionChecker &checker) {
   Point next_position = next_position_left(who.get_angled_position());
   Point next_mask_position = who.collision_mask_bound(next_position);
-  if (map.is_free(next_position, who)
-      && map.is_free(next_mask_position, who))
+  if (checker.can_move(next_position, who)
+      && checker.can_move(next_mask_position, who))
     who.set_position(next_position);
 }
 
-void move_up_right(Player &who, Map &map) {
+void move_up_right(Player &who, CollisionChecker &checker) {
   Point next_position = next_position_up_right(who.get_angled_position());
   Point next_mask_position = who.collision_mask_bound(next_position);
-  if (map.is_free(next_position, who)
-      && map.is_free(next_mask_position, who))
+  if (checker.can_move(next_position, who)
+      && checker.can_move(next_mask_position, who))
     who.set_position(next_position);
 }
 
-void move_up_left(Player &who, Map &map) {
+void move_up_left(Player &who, CollisionChecker &checker) {
   Point next_position = next_position_up_left(who.get_angled_position());
   Point next_mask_position = who.collision_mask_bound(next_position);
-  if (map.is_free(next_position, who)
-      && map.is_free(next_mask_position, who))
+  if (checker.can_move(next_position, who)
+      && checker.can_move(next_mask_position, who))
     who.set_position(next_position);
 }
 
-void move_down_right(Player &who, Map &map) {
+void move_down_right(Player &who, CollisionChecker &checker) {
   Point next_position = next_position_down_right(who.get_angled_position());
   Point next_mask_position = who.collision_mask_bound(next_position);
-  if (map.is_free(next_position, who)
-      && map.is_free(next_mask_position, who))
+  if (checker.can_move(next_position, who)
+      && checker.can_move(next_mask_position, who))
     who.set_position(next_position);
 }
 
-void move_down_left(Player &who, Map &map) {
+void move_down_left(Player &who, CollisionChecker &checker) {
   Point next_position = next_position_down_left(who.get_angled_position());
   Point next_mask_position = who.collision_mask_bound(next_position);
-  if (map.is_free(next_position, who)
-      && map.is_free(next_mask_position, who))
+  if (checker.can_move(next_position, who)
+      && checker.can_move(next_mask_position, who))
     who.set_position(next_position);
 }
 // SERVER STUFF ENDS
@@ -198,12 +199,15 @@ int static can_move_up() {
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, M_PI / 2);
-  map.add_player(player);
+  std::vector<Player> players;
+  players.push_back(player);
+  std::vector<Sprite> sprites;
+  CollisionChecker checker(map, players, sprites);
 
-  move_up(player, map);
+  move_up(players[0], checker);
 
-  if (player.get_position().getX() == 100
-      && player.get_position().getY() == 101)
+  if (players[0].get_position().getX() == 100
+      && players[0].get_position().getY() == 101)
     return NO_ERROR;
 
   return ERROR;
@@ -214,11 +218,15 @@ int static collides_wall() {
   put_data(map_data);
   Map map(map_data);
   Player player(64, 64, 3 * M_PI / 2);
-  map.add_player(player);
+  std::vector<Player> players;
+  players.push_back(player);
+  std::vector<Sprite> sprites;
+  CollisionChecker checker(map, players, sprites);
 
-  move_up(player, map);
+  move_up(players[0], checker);
 
-  if (player.get_position().getX() == 64 && player.get_position().getY() == 64)
+  if (players[0].get_position().getX() == 64
+      && players[0].get_position().getY() == 64)
     return NO_ERROR;
 
   return ERROR;
@@ -229,15 +237,19 @@ int static walks_and_collides_wall() {
   put_data(map_data);
   Map map(map_data);
   Player player(64, 64, 0);
-  map.add_player(player);
+  std::vector<Player> players;
+  players.push_back(player);
+  std::vector<Sprite> sprites;
+  CollisionChecker checker(map, players, sprites);
 
   int previous_x;
   do {
-    previous_x = player.get_position().getX();
-    move_up(player, map);
-  } while (previous_x != player.get_position().getX());
+    previous_x = players[0].get_position().getX();
+    move_up(players[0], checker);
+  } while (previous_x != players[0].get_position().getX());
 
-  if (player.get_position().getX() == 570 && player.get_position().getY() == 64)
+  if (players[0].get_position().getX() == 570
+      && players[0].get_position().getY() == 64)
     return NO_ERROR;
 
   return ERROR;
@@ -248,11 +260,15 @@ int static walk_with_different_angle_and_direction() {
   put_data(map_data);
   Map map(map_data);
   Player player(64, 64, 3 * M_PI / 2);
-  map.add_player(player);
+  std::vector<Player> players;
+  players.push_back(player);
+  std::vector<Sprite> sprites;
+  CollisionChecker checker(map, players, sprites);
 
-  move_down(player, map);
+  move_down(players[0], checker);
 
-  if (player.get_position().getX() == 64 && player.get_position().getY() == 65)
+  if (players[0].get_position().getX() == 64
+      && players[0].get_position().getY() == 65)
     return NO_ERROR;
 
   return ERROR;
@@ -263,17 +279,20 @@ int static complete_path_correctly() {
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, 0);
-  map.add_player(player);
+  std::vector<Player> players;
+  players.push_back(player);
+  std::vector<Sprite> sprites;
+  CollisionChecker checker(map, players, sprites);
 
   for (int i = 0; i < 100; i++) {
-    move_up(player, map);
+    move_up(players[0], checker);
   }
   for (int i = 0; i < 100; i++) {
-    move_left(player, map);
+    move_left(players[0], checker);
   }
 
-  if (player.get_position().getX() == 200
-      && player.get_position().getY() == 200)
+  if (players[0].get_position().getX() == 200
+      && players[0].get_position().getY() == 200)
     return NO_ERROR;
 
   return ERROR;
@@ -284,14 +303,17 @@ int static walk_diagonally() {
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, 0);
-  map.add_player(player);
+  std::vector<Player> players;
+  players.push_back(player);
+  std::vector<Sprite> sprites;
+  CollisionChecker checker(map, players, sprites);
 
-  move_up_left(player, map);
+  move_up_left(players[0], checker);
 
-  if (player.get_position().getX() > 100.5
-      && player.get_position().getX() < 101
-      && player.get_position().getY() > 100.5
-      && player.get_position().getY() < 101)
+  if (players[0].get_position().getX() > 100.5
+      && players[0].get_position().getX() < 101
+      && players[0].get_position().getY() > 100.5
+      && players[0].get_position().getY() < 101)
     return NO_ERROR;
 
   return ERROR;
@@ -302,17 +324,20 @@ int static complete_difficult_path_correctly() {
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, 0);
-  map.add_player(player);
+  std::vector<Player> players;
+  players.push_back(player);
+  std::vector<Sprite> sprites;
+  CollisionChecker checker(map, players, sprites);
 
   for (int i = 0; i < 700; i++) {
-    move_up(player, map);
+    move_up(players[0], checker);
   }
   for (int i = 0; i < 100; i++) {
-    move_left(player, map);
+    move_left(players[0], checker);
   }
 
-  if (player.get_position().getX() == 570
-      && player.get_position().getY() == 200)
+  if (players[0].get_position().getX() == 570
+      && players[0].get_position().getY() == 200)
     return NO_ERROR;
 
   return ERROR;
@@ -323,38 +348,41 @@ int static check_collisions() {
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, M_PI / 2);
-  map.add_player(player);
+  std::vector<Player> players;
+  players.push_back(player);
+  std::vector<Sprite> sprites;
+  CollisionChecker checker(map, players, sprites);
 
   for (int i = 0; i < 700; i++) {
-    move_right(player, map);
+    move_right(players[0], checker);
   }
 
-  if (player.get_position().getX() != 570
-      || player.get_position().getY() != 100)
+  if (players[0].get_position().getX() != 570
+      || players[0].get_position().getY() != 100)
     return ERROR;
 
   for (int i = 0; i < 700; i++) {
-    move_up(player, map);
+    move_up(players[0], checker);
   }
 
-  if (player.get_position().getX() != 570
-      || player.get_position().getY() != 570)
+  if (players[0].get_position().getX() != 570
+      || players[0].get_position().getY() != 570)
     return ERROR;
 
   for (int i = 0; i < 700; i++) {
-    move_left(player, map);
+    move_left(players[0], checker);
   }
 
-  if (player.get_position().getX() != 69
-      || player.get_position().getY() != 570)
+  if (players[0].get_position().getX() != 69
+      || players[0].get_position().getY() != 570)
     return ERROR;
 
   for (int i = 0; i < 700; i++) {
-    move_down(player, map);
+    move_down(players[0], checker);
   }
 
-  if (player.get_position().getX() != 69
-      || player.get_position().getY() != 69)
+  if (players[0].get_position().getX() != 69
+      || players[0].get_position().getY() != 69)
     return ERROR;
 
   return NO_ERROR;
@@ -367,15 +395,18 @@ int static player_collides_against_other_player() {
   Player player1(100, 100, M_PI / 2);
   Player player2(100, 200, 0);
 
-  map.add_player(player1);
-  map.add_player(player2);
+  std::vector<Player> players;
+  players.push_back(player1);
+  players.push_back(player2);
+  std::vector<Sprite> sprites;
+  CollisionChecker checker(map, players, sprites);
 
   for (int i = 0; i < 200; i++) {
-    move_up(player1, map);
+    move_up(players[0], checker);
   }
 
-  if (player1.get_position().getX() == 100
-      && player1.get_position().getY() == 190)
+  if (players[0].get_position().getX() == 100
+      && players[0].get_position().getY() == 190)
     return NO_ERROR;
 
   return ERROR;
@@ -388,19 +419,22 @@ int static another_player_collides_against_other_player() {
   Player player1(100, 100, M_PI);
   Player player2(200, 200, 3 * M_PI / 2);
 
-  map.add_player(player1);
-  map.add_player(player2);
+  std::vector<Player> players;
+  players.push_back(player1);
+  players.push_back(player2);
+  std::vector<Sprite> sprites;
+  CollisionChecker checker(map, players, sprites);
 
   for (int i = 0; i < 100; i++) {
-    move_right(player1, map);
+    move_right(players[0], checker);
   }
 
   for (int i = 0; i < 100; i++) {
-    move_right(player2, map);
+    move_right(players[1], checker);
   }
 
-  if (player2.get_position().getX() == 110
-      && player2.get_position().getY() == 200)
+  if (players[1].get_position().getX() == 110
+      && players[1].get_position().getY() == 200)
     return NO_ERROR;
 
   return ERROR;
@@ -413,15 +447,18 @@ int static player_collides_against_table_from_side() {
   Player player(100, 100, M_PI / 2);
   Table table(5, 4, Point(100, 120));
 
-  map.add_player(player);
-  map.add_sprite(table);
+  std::vector<Player> players;
+  players.push_back(player);
+  std::vector<Sprite> sprites;
+  sprites.push_back(table);
+  CollisionChecker checker(map, players, sprites);
 
   for (int i = 0; i < 100; i++) {
-    move_up(player, map);
+    move_up(players[0], checker);
   }
 
-  if (player.get_position().getX() == 100
-      && player.get_position().getY() == 113)
+  if (players[0].get_position().getX() == 100
+      && players[0].get_position().getY() == 113)
     return NO_ERROR;
 
   return ERROR;
@@ -434,15 +471,18 @@ int static player_collides_against_table_from_another_side() {
   Player player(100, 100, M_PI / 2);
   Table table(10, 10, Point(200, 100));
 
-  map.add_player(player);
-  map.add_sprite(table);
+  std::vector<Player> players;
+  players.push_back(player);
+  std::vector<Sprite> sprites;
+  sprites.push_back(table);
+  CollisionChecker checker(map, players, sprites);
 
   for (int i = 0; i < 200; i++) {
-    move_right(player, map);
+    move_right(players[0], checker);
   }
 
-  if (player.get_position().getX() == 190
-      && player.get_position().getY() == 100)
+  if (players[0].get_position().getX() == 190
+      && players[0].get_position().getY() == 100)
     return NO_ERROR;
 
   return ERROR;
@@ -455,14 +495,17 @@ int static simplest_collision() {
   Map map(map_data);
   Player player(0.5, 0.5, 0);
 
-  map.add_player(player);
+  std::vector<Player> players;
+  players.push_back(player);
+  std::vector<Sprite> sprites;
+  CollisionChecker checker(map, players, sprites);
 
   for (int i = 0; i < 100; i++) {
-    move_up(player, map);
+    move_up(players[0], checker);
   }
 
-  if (player.get_position().getX() == 3.5
-      && player.get_position().getY() == 0.5)
+  if (players[0].get_position().getX() == 3.5
+      && players[0].get_position().getY() == 0.5)
     return NO_ERROR;
 
   return ERROR;
@@ -475,14 +518,17 @@ int static second_simplest_collision() {
   Map map(map_data);
   Player player(1, 1, 0);
 
-  map.add_player(player);
+  std::vector<Player> players;
+  players.push_back(player);
+  std::vector<Sprite> sprites;
+  CollisionChecker checker(map, players, sprites);
 
   for (int i = 0; i < 3; i++) {
-    move_up(player, map);
+    move_up(players[0], checker);
   }
 
-  if (player.get_position().getX() == 4
-      && player.get_position().getY() == 1)
+  if (players[0].get_position().getX() == 4
+      && players[0].get_position().getY() == 1)
     return NO_ERROR;
 
   return ERROR;
@@ -495,17 +541,20 @@ int static diagonal_collision_with_table() {
   Player player(100, 100, M_PI / 4);
   Table table(10, 10, Point(300, 300));
 
-  map.add_player(player);
-  map.add_sprite(table);
+  std::vector<Player> players;
+  players.push_back(player);
+  std::vector<Sprite> sprites;
+  sprites.push_back(table);
+  CollisionChecker checker(map, players, sprites);
 
   for (int i = 0; i < 300; i++) {
-    move_up(player, map);
+    move_up(players[0], checker);
   }
 
-  if (player.get_position().getX() > 290.91
-      && player.get_position().getY() < 290.92
-      && player.get_position().getX() > 290.91
-      && player.get_position().getY() < 290.92)
+  if (players[0].get_position().getX() > 290.91
+      && players[0].get_position().getY() < 290.92
+      && players[0].get_position().getX() > 290.91
+      && players[0].get_position().getY() < 290.92)
     return NO_ERROR;
 
   return ERROR;

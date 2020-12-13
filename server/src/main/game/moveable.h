@@ -19,6 +19,7 @@ class Moveable {
  public:
   Moveable(Point origin, double angle);
   Moveable(double x, double y, double angle);
+  Moveable(const Moveable &other);
   ~Moveable() {}
 
   Point collision_mask_bound(const Point &next_position);
@@ -32,8 +33,8 @@ class Moveable {
   void move_down_left();*/
   bool occupies(Point where);
   bool operator!=(const Moveable &other) const;
-  Point get_position() { return angled_position.get_origin(); };
-  Ray get_angled_position() { return angled_position; };
+  Point get_position() const { return angled_position.get_origin(); };
+  Ray get_angled_position() const { return angled_position; };
   void set_position(const Point &new_origin);
 };
 

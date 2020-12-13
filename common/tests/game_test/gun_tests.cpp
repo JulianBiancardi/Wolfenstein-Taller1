@@ -4,6 +4,7 @@
 #include "../../../server/src/main/game/guns/rocket_launcher.h"
 #include "../../../server/src/main/game/guns/chain_cannon.h"
 #include "../../../server/src/main/map.h"
+#include "../../../server/src/main/game/collision_checker.h"
 #include <iostream>
 int static gun_creation_test();
 int static chain_cannon_check_damaged();
@@ -134,8 +135,12 @@ int static chain_cannon_shoot_player2_get_shot() {
   Map game_map(map_data);
   Player player1(320, 639, 0);
   Player player2(320, 50, 0);
-  game_map.add_player(player1);
-  game_map.add_player(player2);
+
+  std::vector<Player> players;
+  players.push_back(player1);
+  players.push_back(player2);
+  std::vector<Sprite> sprites;
+  CollisionChecker checker(game_map, players, sprites);
 
   //player1.shoot_player(player2, chain_cannon);
 

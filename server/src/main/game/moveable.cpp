@@ -8,6 +8,10 @@ Moveable::Moveable(double x, double y, double angle)
     : angled_position(x, y, angle),
       mask(5, angled_position.get_ref_origin()) {} // TODO Use config file
 
+Moveable::Moveable(const Moveable &other)
+    : angled_position(other.angled_position),
+      mask(other.mask.get_radio(), angled_position.get_ref_origin()) {}
+
 Point Moveable::collision_mask_bound(const Point &next_position) {
   double angle = angled_position.get_origin().angle_to(next_position);
 

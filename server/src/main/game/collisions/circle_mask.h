@@ -14,11 +14,12 @@ class Circle_mask : public Mask {
   double radio;
 
  public:
-  Circle_mask(double radio, const Point &center) : radio(radio), Mask(center){};
-  ~Circle_mask(){};
+  Circle_mask(double radio, const Point &center)
+      : radio(radio), Mask(center) {};
+  ~Circle_mask() {};
 
   virtual bool occupies(Point where);
-  double get_radio() { return radio; };
+  double get_radio() const { return radio; };
 };
 
 #endif  // WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_GAME_COLLISIONS_CIRCLE_MASK_H_
