@@ -28,8 +28,6 @@ void MapGenerator::generate_map(const std::string& file_path, Map* map) {
 }
 
 void MapGenerator::generate_yamlfile(const std::string& file_path, Map* map) {
-  std::cout << "generating file"
-            << " " << file_path << std::endl;  // TODO Delete
   YAML::Emitter out;
   out << YAML::BeginMap;
   out << YAML::Key << "width";

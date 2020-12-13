@@ -71,7 +71,7 @@ void CeldView::update() {
   this->ui.CeldButton->setIcon(CeldIcon);
   this->ui.CeldButton->setIconSize(pixmap.rect().size());
   // When change a celd the file is not more saved
-  ((MapGrid*)this->parent()->parent()->parent())->set_saved(false);
+  //((MapGrid*)this->parent()->parent()->parent())->set_saved(false);
 }
 
 void CeldView::dragEnterEvent(QDragEnterEvent* event) {

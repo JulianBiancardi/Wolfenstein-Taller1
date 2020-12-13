@@ -1,8 +1,5 @@
 #include "mapgrid.h"
 
-#include <QtCore/QDebug>     //TODO delete
-#include <QtCore/QMimeData>  //Data for drag and drop system
-
 #include "../../model/include/map_generator.h"
 #include "celd_view.h"
 #include "iostream"
@@ -13,13 +10,8 @@
 //-----------------------------------------------------------------------------
 MapGrid::MapGrid(QWidget* parent, Map* map, ItemsId* ids,
                  OptionSelected* current_option)
-    : QWidget(parent),
-      map(map),
-      ids(ids),
-      current_option(current_option),
-      is_saved(true) {
+    : QWidget(parent), map(map), ids(ids), current_option(current_option) {
   this->ui.setupUi(this);
-  this->setAcceptDrops(true);
   generateCelds();
 }
 
@@ -78,44 +70,4 @@ void MapGrid::open_map(const std::string& file_path) {
 void MapGrid::generate_yamlfile(const std::string& file_path) {
   MapGenerator file_generator;
   file_generator.generate_yamlfile(file_path, this->map);
-}
-
-void MapGrid::dragEnterEvent(QDragEnterEvent* event) {
-  std::cout << "Drag enter event" << std::endl;
-  event->acceptProposedAction();
-}
-
-void MapGrid::dropEvent(QDropEvent* event) {
-  qDebug() << "dropEvent" << event;
-
-  const QMimeData* mimeData = event->mimeData();
-
-  // check for our needed mime type, here a file or a list of files
-  if (mimeData->hasUrls()) {
-    // QStringList pathList;
-    QList<QUrl> urlList = mimeData->urls();
-
-    /*
-        // extract the local paths of the files
-        for (int i = 0; i < urlList.size() && i < 32; + i) {
-          pathList.append(urlList.at(i).toLocalFile());
-        }*/
-
-    // extract only the first file
-    QString file_path = urlList.first().toLocalFile();
-
-    // call a function to open the files
-    // openFiles(pathList);
-    this->open_map(file_path.toStdString());
-  }
-}
-
-void MapGrid::set_saved(bool status) {
-  this->is_saved = status;
-  std::cout << this->is_saved << std::endl;
-}
-
-bool MapGrid::saved() const {
-  std::cout << this->is_saved << std::endl;
-  return this->is_saved;
 }
