@@ -20,6 +20,118 @@ int static simplest_collision();
 int static second_simplest_collision();
 int static diagonal_collision_with_table();
 
+// TODO try to use server and client code
+// CLIENTS STUFF STARTS
+Point next_position(double direction_angle, Ray angled_position) {
+  double movement_angle = angled_position.get_angle() + direction_angle;
+
+  double next_x = angled_position.get_origin().getX() +
+      cos(movement_angle) * 1;
+  double next_y = angled_position.get_origin().getY() +
+      sin(movement_angle) * 1;
+
+  return Point(next_x, next_y);
+}
+
+Point next_position_up(Ray angled_position) {
+  return next_position(0, angled_position);
+}
+
+Point next_position_down(Ray angled_position) {
+  return next_position(M_PI, angled_position);
+}
+
+Point next_position_right(Ray angled_position) {
+  return next_position(3 * M_PI / 2, angled_position);
+}
+
+Point next_position_left(Ray angled_position) {
+  return next_position(M_PI / 2, angled_position);
+}
+
+Point next_position_up_right(Ray angled_position) {
+  return next_position(7 * M_PI / 4, angled_position);
+}
+
+Point next_position_up_left(Ray angled_position) {
+  return next_position(M_PI / 4, angled_position);
+}
+
+Point next_position_down_right(Ray angled_position) {
+  return next_position(5 * M_PI / 4, angled_position);
+}
+
+Point next_position_down_left(Ray angled_position) {
+  return next_position(3 * M_PI / 4, angled_position);
+}
+// CLIENTS STUFF ENDS
+
+// SERVER STUFF STARTS
+void move_up(Player &who, Map &map) {
+  Point next_position = next_position_up(who.get_angled_position());
+  Point next_mask_position = who.collision_mask_bound(next_position);
+  if (map.is_free(next_position, who)
+      && map.is_free(next_mask_position, who))
+    who.set_position(next_position);
+}
+
+void move_down(Player &who, Map &map) {
+  Point next_position = next_position_down(who.get_angled_position());
+  Point next_mask_position = who.collision_mask_bound(next_position);
+  if (map.is_free(next_position, who)
+      && map.is_free(next_mask_position, who))
+    who.set_position(next_position);
+}
+
+void move_right(Player &who, Map &map) {
+  Point next_position = next_position_right(who.get_angled_position());
+  Point next_mask_position = who.collision_mask_bound(next_position);
+  if (map.is_free(next_position, who)
+      && map.is_free(next_mask_position, who))
+    who.set_position(next_position);
+}
+
+void move_left(Player &who, Map &map) {
+  Point next_position = next_position_left(who.get_angled_position());
+  Point next_mask_position = who.collision_mask_bound(next_position);
+  if (map.is_free(next_position, who)
+      && map.is_free(next_mask_position, who))
+    who.set_position(next_position);
+}
+
+void move_up_right(Player &who, Map &map) {
+  Point next_position = next_position_up_right(who.get_angled_position());
+  Point next_mask_position = who.collision_mask_bound(next_position);
+  if (map.is_free(next_position, who)
+      && map.is_free(next_mask_position, who))
+    who.set_position(next_position);
+}
+
+void move_up_left(Player &who, Map &map) {
+  Point next_position = next_position_up_left(who.get_angled_position());
+  Point next_mask_position = who.collision_mask_bound(next_position);
+  if (map.is_free(next_position, who)
+      && map.is_free(next_mask_position, who))
+    who.set_position(next_position);
+}
+
+void move_down_right(Player &who, Map &map) {
+  Point next_position = next_position_down_right(who.get_angled_position());
+  Point next_mask_position = who.collision_mask_bound(next_position);
+  if (map.is_free(next_position, who)
+      && map.is_free(next_mask_position, who))
+    who.set_position(next_position);
+}
+
+void move_down_left(Player &who, Map &map) {
+  Point next_position = next_position_down_left(who.get_angled_position());
+  Point next_mask_position = who.collision_mask_bound(next_position);
+  if (map.is_free(next_position, who)
+      && map.is_free(next_mask_position, who))
+    who.set_position(next_position);
+}
+// SERVER STUFF ENDS
+
 void put_data(Matrix<int> &map_data) {
   for (int j = 0; j < 64; j++) {
     for (int i = 0; i < map_data.get_columns(); i++) {
@@ -85,8 +197,11 @@ int static can_move_up() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, M_PI / 2, map);
-  player.move_up();
+  Player player(100, 100, M_PI / 2);
+  map.add_player(player);
+
+  move_up(player, map);
+
   if (player.get_position().getX() == 100
       && player.get_position().getY() == 101)
     return NO_ERROR;
@@ -98,8 +213,11 @@ int static collides_wall() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(64, 64, 3 * M_PI / 2, map);
-  player.move_up();
+  Player player(64, 64, 3 * M_PI / 2);
+  map.add_player(player);
+
+  move_up(player, map);
+
   if (player.get_position().getX() == 64 && player.get_position().getY() == 64)
     return NO_ERROR;
 
@@ -110,12 +228,13 @@ int static walks_and_collides_wall() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(64, 64, 0, map);
-  int previous_x, previous_y;
+  Player player(64, 64, 0);
+  map.add_player(player);
+
+  int previous_x;
   do {
     previous_x = player.get_position().getX();
-    previous_y = player.get_position().getY();
-    player.move_up();
+    move_up(player, map);
   } while (previous_x != player.get_position().getX());
 
   if (player.get_position().getX() == 570 && player.get_position().getY() == 64)
@@ -128,8 +247,10 @@ int static walk_with_different_angle_and_direction() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(64, 64, 3 * M_PI / 2, map);
-  player.move_down();
+  Player player(64, 64, 3 * M_PI / 2);
+  map.add_player(player);
+
+  move_down(player, map);
 
   if (player.get_position().getX() == 64 && player.get_position().getY() == 65)
     return NO_ERROR;
@@ -141,12 +262,14 @@ int static complete_path_correctly() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, 0, map);
+  Player player(100, 100, 0);
+  map.add_player(player);
+
   for (int i = 0; i < 100; i++) {
-    player.move_up();
+    move_up(player, map);
   }
   for (int i = 0; i < 100; i++) {
-    player.move_left();
+    move_left(player, map);
   }
 
   if (player.get_position().getX() == 200
@@ -160,8 +283,10 @@ int static walk_diagonally() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, 0, map);
-  player.move_up_left();
+  Player player(100, 100, 0);
+  map.add_player(player);
+
+  move_up_left(player, map);
 
   if (player.get_position().getX() > 100.5
       && player.get_position().getX() < 101
@@ -176,12 +301,14 @@ int static complete_difficult_path_correctly() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, 0, map);
+  Player player(100, 100, 0);
+  map.add_player(player);
+
   for (int i = 0; i < 700; i++) {
-    player.move_up();
+    move_up(player, map);
   }
   for (int i = 0; i < 100; i++) {
-    player.move_left();
+    move_left(player, map);
   }
 
   if (player.get_position().getX() == 570
@@ -195,10 +322,11 @@ int static check_collisions() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, M_PI / 2, map);
+  Player player(100, 100, M_PI / 2);
+  map.add_player(player);
 
   for (int i = 0; i < 700; i++) {
-    player.move_right();
+    move_right(player, map);
   }
 
   if (player.get_position().getX() != 570
@@ -206,7 +334,7 @@ int static check_collisions() {
     return ERROR;
 
   for (int i = 0; i < 700; i++) {
-    player.move_up();
+    move_up(player, map);
   }
 
   if (player.get_position().getX() != 570
@@ -214,7 +342,7 @@ int static check_collisions() {
     return ERROR;
 
   for (int i = 0; i < 700; i++) {
-    player.move_left();
+    move_left(player, map);
   }
 
   if (player.get_position().getX() != 69
@@ -222,7 +350,7 @@ int static check_collisions() {
     return ERROR;
 
   for (int i = 0; i < 700; i++) {
-    player.move_down();
+    move_down(player, map);
   }
 
   if (player.get_position().getX() != 69
@@ -236,14 +364,14 @@ int static player_collides_against_other_player() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player1(100, 100, M_PI / 2, map);
-  Player player2(100, 200, 0, map);
+  Player player1(100, 100, M_PI / 2);
+  Player player2(100, 200, 0);
 
   map.add_player(player1);
   map.add_player(player2);
 
   for (int i = 0; i < 200; i++) {
-    player1.move_up();
+    move_up(player1, map);
   }
 
   if (player1.get_position().getX() == 100
@@ -257,18 +385,18 @@ int static another_player_collides_against_other_player() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player1(100, 100, M_PI, map);
-  Player player2(200, 200, 3 * M_PI / 2, map);
+  Player player1(100, 100, M_PI);
+  Player player2(200, 200, 3 * M_PI / 2);
 
   map.add_player(player1);
   map.add_player(player2);
 
   for (int i = 0; i < 100; i++) {
-    player1.move_right();
+    move_right(player1, map);
   }
 
   for (int i = 0; i < 100; i++) {
-    player2.move_right();
+    move_right(player2, map);
   }
 
   if (player2.get_position().getX() == 110
@@ -282,14 +410,14 @@ int static player_collides_against_table_from_side() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, M_PI / 2, map);
+  Player player(100, 100, M_PI / 2);
   Table table(5, 4, Point(100, 120));
 
   map.add_player(player);
   map.add_sprite(table);
 
   for (int i = 0; i < 100; i++) {
-    player.move_up();
+    move_up(player, map);
   }
 
   if (player.get_position().getX() == 100
@@ -303,14 +431,14 @@ int static player_collides_against_table_from_another_side() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, M_PI / 2, map);
+  Player player(100, 100, M_PI / 2);
   Table table(10, 10, Point(200, 100));
 
   map.add_player(player);
   map.add_sprite(table);
 
   for (int i = 0; i < 200; i++) {
-    player.move_right();
+    move_right(player, map);
   }
 
   if (player.get_position().getX() == 190
@@ -325,10 +453,12 @@ int static simplest_collision() {
   map_data(0, 9) = WALL; //TODO Decide what to use
   map_data(9, 0) = WALL;
   Map map(map_data);
-  Player player(0.5, 0.5, 0, map);
+  Player player(0.5, 0.5, 0);
+
+  map.add_player(player);
 
   for (int i = 0; i < 100; i++) {
-    player.move_up();
+    move_up(player, map);
   }
 
   if (player.get_position().getX() == 3.5
@@ -343,10 +473,12 @@ int static second_simplest_collision() {
   map_data(0, 9) = WALL; //TODO Decide what to use
   map_data(9, 0) = WALL;
   Map map(map_data);
-  Player player(1, 1, 0, map);
+  Player player(1, 1, 0);
+
+  map.add_player(player);
 
   for (int i = 0; i < 3; i++) {
-    player.move_up();
+    move_up(player, map);
   }
 
   if (player.get_position().getX() == 4
@@ -360,14 +492,14 @@ int static diagonal_collision_with_table() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, M_PI / 4, map);
+  Player player(100, 100, M_PI / 4);
   Table table(10, 10, Point(300, 300));
 
   map.add_player(player);
   map.add_sprite(table);
 
   for (int i = 0; i < 300; i++) {
-    player.move_up();
+    move_up(player, map);
   }
 
   if (player.get_position().getX() > 290.91
