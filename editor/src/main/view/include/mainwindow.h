@@ -9,6 +9,11 @@
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
+ private:
+  Ui::MainWindow ui;
+  MapGrid* map;
+  QString current_file_path;
+
  public:
   MainWindow(QWidget* parent = nullptr);
   ~MainWindow();
@@ -19,9 +24,5 @@ class MainWindow : public QMainWindow {
   void on_actionOpen_File_triggered();
   void on_actionSave_triggered();
   void on_actionSave_As_triggered();
-
- private:
-  Ui::MainWindow ui;
-  MapGrid* map;
 };
 #endif  // MAINWINDOW_H

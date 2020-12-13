@@ -14,6 +14,13 @@
 class MapGrid : public QWidget {
   Q_OBJECT
 
+ private:
+  Ui::MapGrid ui;
+  Map* map;
+  ItemsId* ids;
+  OptionSelected* current_option;
+  bool is_saved;
+
  public:
   MapGrid(QWidget* parent = nullptr, Map* map = nullptr, ItemsId* ids = nullptr,
           OptionSelected* current_option = nullptr);
@@ -33,11 +40,8 @@ class MapGrid : public QWidget {
   void open_map(const std::string& file_path);
   void generate_yamlfile(const std::string& file_path);
 
- private:
-  Ui::MapGrid ui;
-  Map* map;
-  ItemsId* ids;
-  OptionSelected* current_option;
+  void set_saved(bool status);
+  bool saved() const;
 
   void generateCelds();
 };

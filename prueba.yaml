@@ -1,0 +1,303 @@
+width: 10
+height: 10
+objects:
+  - id: 2
+    x_position: 0
+    y_position: 0
+  - id: 0
+    x_position: 1
+    y_position: 0
+  - id: 0
+    x_position: 2
+    y_position: 0
+  - id: 4
+    x_position: 3
+    y_position: 0
+  - id: 4
+    x_position: 4
+    y_position: 0
+  - id: 0
+    x_position: 5
+    y_position: 0
+  - id: 0
+    x_position: 6
+    y_position: 0
+  - id: 2
+    x_position: 7
+    y_position: 0
+  - id: 0
+    x_position: 8
+    y_position: 0
+  - id: 0
+    x_position: 9
+    y_position: 0
+  - id: 0
+    x_position: 0
+    y_position: 1
+  - id: 0
+    x_position: 1
+    y_position: 1
+  - id: 0
+    x_position: 2
+    y_position: 1
+  - id: 2
+    x_position: 3
+    y_position: 1
+  - id: 2
+    x_position: 4
+    y_position: 1
+  - id: 0
+    x_position: 5
+    y_position: 1
+  - id: 0
+    x_position: 6
+    y_position: 1
+  - id: 0
+    x_position: 7
+    y_position: 1
+  - id: 0
+    x_position: 8
+    y_position: 1
+  - id: 0
+    x_position: 9
+    y_position: 1
+  - id: 0
+    x_position: 0
+    y_position: 2
+  - id: 4
+    x_position: 1
+    y_position: 2
+  - id: 2
+    x_position: 2
+    y_position: 2
+  - id: 2
+    x_position: 3
+    y_position: 2
+  - id: 2
+    x_position: 4
+    y_position: 2
+  - id: 2
+    x_position: 5
+    y_position: 2
+  - id: 4
+    x_position: 6
+    y_position: 2
+  - id: 0
+    x_position: 7
+    y_position: 2
+  - id: 0
+    x_position: 8
+    y_position: 2
+  - id: 0
+    x_position: 9
+    y_position: 2
+  - id: 0
+    x_position: 0
+    y_position: 3
+  - id: 0
+    x_position: 1
+    y_position: 3
+  - id: 0
+    x_position: 2
+    y_position: 3
+  - id: 2
+    x_position: 3
+    y_position: 3
+  - id: 2
+    x_position: 4
+    y_position: 3
+  - id: 0
+    x_position: 5
+    y_position: 3
+  - id: 0
+    x_position: 6
+    y_position: 3
+  - id: 0
+    x_position: 7
+    y_position: 3
+  - id: 0
+    x_position: 8
+    y_position: 3
+  - id: 0
+    x_position: 9
+    y_position: 3
+  - id: 2
+    x_position: 0
+    y_position: 4
+  - id: 0
+    x_position: 1
+    y_position: 4
+  - id: 0
+    x_position: 2
+    y_position: 4
+  - id: 4
+    x_position: 3
+    y_position: 4
+  - id: 4
+    x_position: 4
+    y_position: 4
+  - id: 0
+    x_position: 5
+    y_position: 4
+  - id: 0
+    x_position: 6
+    y_position: 4
+  - id: 2
+    x_position: 7
+    y_position: 4
+  - id: 0
+    x_position: 8
+    y_position: 4
+  - id: 0
+    x_position: 9
+    y_position: 4
+  - id: 0
+    x_position: 0
+    y_position: 5
+  - id: 0
+    x_position: 1
+    y_position: 5
+  - id: 0
+    x_position: 2
+    y_position: 5
+  - id: 0
+    x_position: 3
+    y_position: 5
+  - id: 0
+    x_position: 4
+    y_position: 5
+  - id: 0
+    x_position: 5
+    y_position: 5
+  - id: 0
+    x_position: 6
+    y_position: 5
+  - id: 0
+    x_position: 7
+    y_position: 5
+  - id: 0
+    x_position: 8
+    y_position: 5
+  - id: 0
+    x_position: 9
+    y_position: 5
+  - id: 0
+    x_position: 0
+    y_position: 6
+  - id: 0
+    x_position: 1
+    y_position: 6
+  - id: 0
+    x_position: 2
+    y_position: 6
+  - id: 0
+    x_position: 3
+    y_position: 6
+  - id: 0
+    x_position: 4
+    y_position: 6
+  - id: 0
+    x_position: 5
+    y_position: 6
+  - id: 0
+    x_position: 6
+    y_position: 6
+  - id: 0
+    x_position: 7
+    y_position: 6
+  - id: 0
+    x_position: 8
+    y_position: 6
+  - id: 0
+    x_position: 9
+    y_position: 6
+  - id: 0
+    x_position: 0
+    y_position: 7
+  - id: 0
+    x_position: 1
+    y_position: 7
+  - id: 0
+    x_position: 2
+    y_position: 7
+  - id: 0
+    x_position: 3
+    y_position: 7
+  - id: 0
+    x_position: 4
+    y_position: 7
+  - id: 0
+    x_position: 5
+    y_position: 7
+  - id: 0
+    x_position: 6
+    y_position: 7
+  - id: 0
+    x_position: 7
+    y_position: 7
+  - id: 0
+    x_position: 8
+    y_position: 7
+  - id: 0
+    x_position: 9
+    y_position: 7
+  - id: 0
+    x_position: 0
+    y_position: 8
+  - id: 0
+    x_position: 1
+    y_position: 8
+  - id: 0
+    x_position: 2
+    y_position: 8
+  - id: 0
+    x_position: 3
+    y_position: 8
+  - id: 0
+    x_position: 4
+    y_position: 8
+  - id: 0
+    x_position: 5
+    y_position: 8
+  - id: 0
+    x_position: 6
+    y_position: 8
+  - id: 0
+    x_position: 7
+    y_position: 8
+  - id: 0
+    x_position: 8
+    y_position: 8
+  - id: 0
+    x_position: 9
+    y_position: 8
+  - id: 0
+    x_position: 0
+    y_position: 9
+  - id: 0
+    x_position: 1
+    y_position: 9
+  - id: 0
+    x_position: 2
+    y_position: 9
+  - id: 0
+    x_position: 3
+    y_position: 9
+  - id: 0
+    x_position: 4
+    y_position: 9
+  - id: 0
+    x_position: 5
+    y_position: 9
+  - id: 0
+    x_position: 6
+    y_position: 9
+  - id: 0
+    x_position: 7
+    y_position: 9
+  - id: 0
+    x_position: 8
+    y_position: 9
+  - id: 0
+    x_position: 9
+    y_position: 9

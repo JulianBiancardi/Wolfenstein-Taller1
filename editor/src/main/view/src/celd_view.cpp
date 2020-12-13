@@ -4,7 +4,8 @@
 #include <QtCore/QString>
 #include <QtGui/QDrag>  //Drag system
 
-#include "iostream"
+#include "iostream"  //TODO delete
+#include "mapgrid.h"
 #include "moc_celd_view.cpp"
 
 CeldView::CeldView(QWidget* parent, Celd* celd, ItemsId* ids,
@@ -65,12 +66,12 @@ void CeldView::mousePressEvent(QMouseEvent* event) {
 }
 
 void CeldView::update() {
-  std::cout << "Updating celd" << std::endl;
-
   QPixmap pixmap(ids->get_icon_path(this->celd->get_id()));
   QIcon CeldIcon(pixmap);
   this->ui.CeldButton->setIcon(CeldIcon);
   this->ui.CeldButton->setIconSize(pixmap.rect().size());
+  // When change a celd the file is not more saved
+  ((MapGrid*)this->parent()->parent()->parent())->set_saved(false);
 }
 
 void CeldView::dragEnterEvent(QDragEnterEvent* event) {

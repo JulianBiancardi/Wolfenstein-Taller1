@@ -2,7 +2,6 @@
 
 #include <QtCore/QDebug>     //TODO delete
 #include <QtCore/QMimeData>  //Data for drag and drop system
-#include <QtWidgets/QMessageBox>
 
 #include "../../model/include/map_generator.h"
 #include "celd_view.h"
@@ -14,7 +13,11 @@
 //-----------------------------------------------------------------------------
 MapGrid::MapGrid(QWidget* parent, Map* map, ItemsId* ids,
                  OptionSelected* current_option)
-    : QWidget(parent), map(map), ids(ids), current_option(current_option) {
+    : QWidget(parent),
+      map(map),
+      ids(ids),
+      current_option(current_option),
+      is_saved(true) {
   this->ui.setupUi(this);
   this->setAcceptDrops(true);
   generateCelds();
@@ -67,13 +70,9 @@ void MapGrid::open_map(const std::string& file_path) {
   if (file_path.empty()) {
     return;
   }
-  try {
-    MapGenerator map_generator;
-    map_generator.generate_map(file_path, this->map);
-  } catch (const std::exception& e) {
-    std::cerr << e.what() << '\n';
-    QMessageBox::critical(this, "Unknow file", "The file is not recognized.");
-  }
+
+  MapGenerator map_generator;
+  map_generator.generate_map(file_path, this->map);
 }
 
 void MapGrid::generate_yamlfile(const std::string& file_path) {
@@ -109,4 +108,14 @@ void MapGrid::dropEvent(QDropEvent* event) {
     // openFiles(pathList);
     this->open_map(file_path.toStdString());
   }
+}
+
+void MapGrid::set_saved(bool status) {
+  this->is_saved = status;
+  std::cout << this->is_saved << std::endl;
+}
+
+bool MapGrid::saved() const {
+  std::cout << this->is_saved << std::endl;
+  return this->is_saved;
 }
