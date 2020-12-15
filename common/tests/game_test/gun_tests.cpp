@@ -136,7 +136,7 @@ int static chain_cannon_shoot_player2_get_shot() {
   Player player1(320, 639, 0);
   Player player2(320, 50, 0);
 
-  std::vector<Player> players;
+  std::vector<std::reference_wrapper<Player>> players;
   players.push_back(player1);
   players.push_back(player2);
   std::vector<Sprite> sprites;
