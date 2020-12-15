@@ -1,17 +1,28 @@
 #include "moveable.h"
 
-#include <cmath>
-
-#include "../map.h"
-
-Moveable::Moveable(Point origin, double angle, Map &game_map, int pace)
+Moveable::Moveable(Point origin, double angle)
     : angled_position(origin, angle),
-      map(game_map),
-      pace(pace),
-      mask(5, angled_position.get_ref_origin()) {}
+      mask(5, angled_position.get_ref_origin()) {} // TODO Use config file
+
+Moveable::Moveable(double x, double y, double angle)
+    : angled_position(x, y, angle),
+      mask(5, angled_position.get_ref_origin()) {} // TODO Use config file
+
+Moveable::Moveable(const Moveable &other)
+    : angled_position(other.angled_position),
+      mask(other.mask.get_radio(), angled_position.get_ref_origin()) {}
+
+Point Moveable::collision_mask_bound(const Point &next_position) {
+  double angle = angled_position.get_origin().angle_to(next_position);
+
+  double front_x = next_position.getX() + cos(angle) * mask.get_radio();
+  double front_y = next_position.getY() + sin(angle) * mask.get_radio();
+
+  return Point(front_x, front_y);
+}
 
 bool Moveable::occupies(Point where) { return mask.occupies(where); }
-
+/*
 bool Moveable::is_map_free_in_next_position(Point next_position) {
   return map.is_free(next_position, *this);
 }
@@ -62,8 +73,12 @@ void Moveable::move_down_right() {
 
 void Moveable::move_down_left() {
   move_from_current_position_if_can(3 * M_PI / 4);
-}
+}*/
 
 bool Moveable::operator!=(const Moveable &other) const {
   return (this != &other);
+}
+
+void Moveable::set_position(const Point &new_origin) {
+  angled_position = Ray(new_origin, angled_position.get_angle());
 }

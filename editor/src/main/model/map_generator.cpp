@@ -24,11 +24,10 @@ void MapGenerator::generate_map(const std::string& file_path, Map* map) {
     size_t y_pos = object["y_position"].as<std::size_t>();
     map->put(y_pos, x_pos, id);
   }
-  map->print();
+  map->print();  // TODO delete
 }
 
-void MapGenerator::generate_yamlfile(Map* map) {
-  std::cout << "generating file" << std::endl;
+void MapGenerator::generate_yamlfile(const std::string& file_path, Map* map) {
   YAML::Emitter out;
   out << YAML::BeginMap;
   out << YAML::Key << "width";
@@ -55,8 +54,10 @@ void MapGenerator::generate_yamlfile(Map* map) {
   }
   out << YAML::EndSeq;
   out << YAML::EndMap;
-  std::ofstream fout("new_map.yaml");
+
+  std::ofstream fout(file_path);
   fout << out.c_str();
+  fout.close();
 }
 
 MapGenerator::~MapGenerator() {}

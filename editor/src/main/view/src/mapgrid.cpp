@@ -57,12 +57,17 @@ void MapGrid::resize(size_t new_rows, size_t new_columns) {
   this->columns = new_columns;
 }
 */
-void MapGrid::generate_yamlfile() {
-  MapGenerator file_generator;
-  file_generator.generate_yamlfile(this->map);
-}
 
 void MapGrid::open_map(const std::string& file_path) {
+  if (file_path.empty()) {
+    return;
+  }
+
   MapGenerator map_generator;
   map_generator.generate_map(file_path, this->map);
+}
+
+void MapGrid::generate_yamlfile(const std::string& file_path) {
+  MapGenerator file_generator;
+  file_generator.generate_yamlfile(file_path, this->map);
 }

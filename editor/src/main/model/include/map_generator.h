@@ -11,7 +11,7 @@ class MapGenerator {
   MapGenerator();
 
   void generate_map(const std::string& file_path, Map* map);
-  void generate_yamlfile(Map* map);
+  void generate_yamlfile(const std::string& file_path, Map* map);
 
   ~MapGenerator();
 };

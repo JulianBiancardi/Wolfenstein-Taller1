@@ -4,6 +4,7 @@
 #include "../../../server/src/main/game/guns/rocket_launcher.h"
 #include "../../../server/src/main/game/guns/chain_cannon.h"
 #include "../../../server/src/main/map.h"
+#include "../../../server/src/main/game/collision_checker.h"
 #include <iostream>
 int static gun_creation_test();
 int static chain_cannon_check_damaged();
@@ -64,8 +65,8 @@ int static chain_cannon_check_damaged() {
   Matrix<int> map_data(640, 640, 0);
   fill_data(map_data);
   Map game_map(map_data);
-  Player player1(0, 0, 0, game_map);
-  Player player2(5, 0, 0, game_map);
+  Player player1(0, 0, 0);
+  Player player2(5, 0, 0);
   player1.shoot_player(player2, chain_cannon);
   int value = player2.get_health();
   if (value >= CL::player_health - 10 && value < CL::player_health)
@@ -78,8 +79,8 @@ int static machine_gun_check_damaged() {
   Matrix<int> map_data(640, 640, 0);
   fill_data(map_data);
   Map game_map(map_data);
-  Player player1(0, 0, 0, game_map);
-  Player player2(5, 0, 0, game_map);
+  Player player1(0, 0, 0);
+  Player player2(5, 0, 0);
   player1.shoot_player(player2, machine_gun);
   int value = player2.get_health();
   if (value >= CL::player_health - 10 && value < CL::player_health)
@@ -92,8 +93,8 @@ int static pistol_check_damaged() {
   Matrix<int> map_data(640, 640, 0);
   fill_data(map_data);
   Map game_map(map_data);
-  Player player1(0, 0, 0, game_map);
-  Player player2(5, 0, 0, game_map);
+  Player player1(0, 0, 0);
+  Player player2(5, 0, 0);
   player1.shoot_player(player2, pistol);
   int value = player2.get_health();
   if (value >= CL::player_health - 10 && value < CL::player_health)
@@ -105,8 +106,8 @@ int static rocket_launcher_check_damaged() {
   Matrix<int> map_data(640, 640, 0);
   fill_data(map_data);
   Map game_map(map_data);
-  Player player1(0, 0, 0, game_map);
-  Player player2(5, 0, 0, game_map);
+  Player player1(0, 0, 0);
+  Player player2(5, 0, 0);
   player1.shoot_player(player2, rocket_launcher);
   int value = player2.get_health();
   if (value >= CL::player_health - 10 && value < CL::player_health)
@@ -119,8 +120,8 @@ int static chain_cannon_shoot_get_player_bullets_amount() {
   Matrix<int> map_data(640, 640, 0);
   fill_data(map_data);
   Map game_map(map_data);
-  Player player1(0, 0, 0, game_map);
-  Player player2(5, 0, 0, game_map);
+  Player player1(0, 0, 0);
+  Player player2(5, 0, 0);
   player1.shoot_player(player2, chain_cannon);
   if (player1.has_bullets(CL::player_bullets -
       CL::chain_cannon_bullet_required))
@@ -132,10 +133,14 @@ int static chain_cannon_shoot_player2_get_shot() {
   Matrix<int> map_data(640, 640, 0);
   fill_data(map_data);
   Map game_map(map_data);
-  Player player1(320, 639, 0, game_map);
-  Player player2(320, 50, 0, game_map);
-  game_map.add_player(player1);
-  game_map.add_player(player2);
+  Player player1(320, 639, 0);
+  Player player2(320, 50, 0);
+
+  std::vector<std::reference_wrapper<Player>> players;
+  players.push_back(player1);
+  players.push_back(player2);
+  std::vector<Sprite> sprites;
+  CollisionChecker checker(game_map, players, sprites);
 
   //player1.shoot_player(player2, chain_cannon);
 

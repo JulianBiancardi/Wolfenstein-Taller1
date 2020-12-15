@@ -1,17 +1,16 @@
 #include "player.h"
 #include <cmath>
 
-Player::Player(Point origin, double angle, Map &game_map) :
-    shot_bullets(0), points(0), Moveable(origin, angle, game_map, 1),
-    Shooter(origin, angle, game_map){
+Player::Player(Point origin, double angle) :
+    shot_bullets(0), points(0), Moveable(origin, angle),
+    Shooter(origin, angle) {
   health = ConfigLoader::player_health;
   bullets = ConfigLoader::player_bullets;
 }
 
-
-Player::Player(double x, double y, double angle, Map &game_map) :
-    shot_bullets(0), points(0), Moveable(Point(x, y), angle, game_map, 1),
-    Shooter(Point(x, y), angle, game_map){
+Player::Player(double x, double y, double angle) :
+    shot_bullets(0), points(0), Moveable(x, y, angle),
+    Shooter(Point(x, y), angle) {
   health = ConfigLoader::player_health;
   bullets = ConfigLoader::player_bullets;
 }

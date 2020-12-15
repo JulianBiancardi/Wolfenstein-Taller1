@@ -16,6 +16,7 @@ FILE(GLOB ServerFiles
 	src/main/game/*.cpp
 	src/main/game/collisions/*.cpp
 	src/main/game/guns/*.cpp
+	src/main/events/*.cpp
 	#src/main/game/items/*.cpp
 	src/main/game/sprites/*.cpp
 	)
@@ -26,6 +27,7 @@ FILE(GLOB MainFiles
 	../client/src/main/resource.cpp
     ../client/src/main/resource_manager.cpp
 	../client/src/main/caster.cpp
+	#../client/src/main/player.cpp
 	../client/src/main/collision.cpp
 	../client/src/main/ray_casting.cpp
 	../client/src/main/client.cpp
@@ -35,9 +37,12 @@ FILE(GLOB SDLFiles
 )
 FILE(GLOB TestFiles
 	#../common/tests/*.cpp Should be used
-	../common/tests/game_test/*.cpp
+	#../common/tests/game_test/*.cpp
+	../common/tests/game_test/gun_tests.cpp
+	../common/tests/game_test/match_tests.cpp
+	../common/tests/game_test/player_test.cpp
+	../common/tests/game_test/client_mock.cpp
 	#../common/tests/main_tests.cpp
-	#../client/src/main/main.cpp
 	../common/tests/matrix_tests.cpp
 	../common/tests/point_tests.cpp
 	../common/tests/ray_tests.cpp
@@ -60,8 +65,6 @@ add_executable(
 		${MainTests}
 )
 # Generar el servidor
-#add_executable(micromachines-server src/server/main.cpp)
-#target_link_libraries(micromachines-server model server common)
 target_link_libraries(
 		server-main
 		PRIVATE
@@ -70,8 +73,6 @@ target_link_libraries(
 )
 
 # Generar el cliente
-#add_executable(micromachines-client src/client/main.cpp)
-#target_link_libraries(micromachines-client client viewManager)
 add_executable(
 		client-main
 		${MainFiles}

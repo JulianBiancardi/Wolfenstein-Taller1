@@ -28,3 +28,8 @@ double Point::distance(const Point &point1, const Point &point2) {
 double Point::distance_from(const Point &other) {
   return Point::distance(*this, other);
 }
+
+// Calculates the angle of the vector formed by the two points
+double Point::angle_to(const Point &other) {
+  return atan2(other.y - y, other.x - x);
+}
