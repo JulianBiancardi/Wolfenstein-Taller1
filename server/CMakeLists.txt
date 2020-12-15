@@ -16,6 +16,7 @@ FILE(GLOB ServerFiles
 	src/main/game/*.cpp
 	src/main/game/collisions/*.cpp
 	src/main/game/guns/*.cpp
+	src/main/events/*.cpp
 	#src/main/game/items/*.cpp
 	src/main/game/sprites/*.cpp
 	)
@@ -36,7 +37,11 @@ FILE(GLOB SDLFiles
 )
 FILE(GLOB TestFiles
 	#../common/tests/*.cpp Should be used
-	../common/tests/game_test/*.cpp
+	#../common/tests/game_test/*.cpp
+	../common/tests/game_test/gun_tests.cpp
+	../common/tests/game_test/match_tests.cpp
+	../common/tests/game_test/player_test.cpp
+	../common/tests/game_test/client_mock.cpp
 	#../common/tests/main_tests.cpp
 	../common/tests/matrix_tests.cpp
 	../common/tests/point_tests.cpp
