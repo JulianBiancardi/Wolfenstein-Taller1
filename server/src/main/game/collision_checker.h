@@ -8,15 +8,17 @@
 class CollisionChecker {
  private:
   Map &map;
-  std::vector<Player> &players;
+  std::vector<std::reference_wrapper<Player>> players;
   std::vector<Sprite> &sprites;
+  Moveable *ignored;
 
-  bool collides_players(Point where, Moveable &for_whom);
+  bool collides_players(Point where);
   bool collides_sprites(Point where);
+  bool is_free(Point where);
 
  public:
   CollisionChecker(Map &map,
-                   std::vector<Player> &players,
+                   const std::vector<std::reference_wrapper<Player>> &players,
                    std::vector<Sprite> &sprites);
   ~CollisionChecker() {}
 
