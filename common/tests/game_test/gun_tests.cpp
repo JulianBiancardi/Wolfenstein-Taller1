@@ -140,7 +140,8 @@ int static chain_cannon_shoot_player2_get_shot() {
   players.push_back(player1);
   players.push_back(player2);
   std::vector<Sprite> sprites;
-  CollisionChecker checker(game_map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(game_map, players, sprites, items);
 
   //player1.shoot_player(player2, chain_cannon);
 

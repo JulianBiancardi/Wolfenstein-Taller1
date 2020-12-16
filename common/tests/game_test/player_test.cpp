@@ -126,7 +126,8 @@ int static can_move_up() {
   std::vector<std::reference_wrapper<Player>> players;
   players.push_back(player);
   std::vector<Sprite> sprites;
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   move_up(players[0], checker);
 
@@ -145,7 +146,8 @@ int static collides_wall() {
   std::vector<std::reference_wrapper<Player>> players;
   players.push_back(player);
   std::vector<Sprite> sprites;
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   move_up(players[0], checker);
 
@@ -164,7 +166,8 @@ int static walks_and_collides_wall() {
   std::vector<std::reference_wrapper<Player>> players;
   players.push_back(player);
   std::vector<Sprite> sprites;
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   int previous_x;
   do {
@@ -187,7 +190,8 @@ int static walk_with_different_angle_and_direction() {
   std::vector<std::reference_wrapper<Player>> players;
   players.push_back(player);
   std::vector<Sprite> sprites;
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   move_down(players[0], checker);
 
@@ -206,7 +210,8 @@ int static complete_path_correctly() {
   std::vector<std::reference_wrapper<Player>> players;
   players.push_back(player);
   std::vector<Sprite> sprites;
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   for (int i = 0; i < 100; i++) {
     move_up(players[0], checker);
@@ -230,7 +235,8 @@ int static walk_diagonally() {
   std::vector<std::reference_wrapper<Player>> players;
   players.push_back(player);
   std::vector<Sprite> sprites;
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   move_up_left(players[0], checker);
 
@@ -251,7 +257,8 @@ int static complete_difficult_path_correctly() {
   std::vector<std::reference_wrapper<Player>> players;
   players.push_back(player);
   std::vector<Sprite> sprites;
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   for (int i = 0; i < 700; i++) {
     move_up(players[0], checker);
@@ -275,7 +282,8 @@ int static check_collisions() {
   std::vector<std::reference_wrapper<Player>> players;
   players.push_back(player);
   std::vector<Sprite> sprites;
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   for (int i = 0; i < 700; i++) {
     move_right(players[0], checker);
@@ -323,7 +331,8 @@ int static player_collides_against_other_player() {
   players.push_back(player1);
   players.push_back(player2);
   std::vector<Sprite> sprites;
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   for (int i = 0; i < 200; i++) {
     move_up(players[0], checker);
@@ -347,7 +356,8 @@ int static another_player_collides_against_other_player() {
   players.push_back(player1);
   players.push_back(player2);
   std::vector<Sprite> sprites;
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   for (int i = 0; i < 100; i++) {
     move_right(players[0], checker);
@@ -375,7 +385,8 @@ int static player_collides_against_table_from_side() {
   players.push_back(player);
   std::vector<Sprite> sprites;
   sprites.push_back(table);
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   for (int i = 0; i < 100; i++) {
     move_up(players[0], checker);
@@ -399,7 +410,8 @@ int static player_collides_against_table_from_another_side() {
   players.push_back(player);
   std::vector<Sprite> sprites;
   sprites.push_back(table);
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   for (int i = 0; i < 200; i++) {
     move_right(players[0], checker);
@@ -422,7 +434,8 @@ int static simplest_collision() {
   std::vector<std::reference_wrapper<Player>> players;
   players.push_back(player);
   std::vector<Sprite> sprites;
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   for (int i = 0; i < 100; i++) {
     move_up(players[0], checker);
@@ -445,7 +458,8 @@ int static second_simplest_collision() {
   std::vector<std::reference_wrapper<Player>> players;
   players.push_back(player);
   std::vector<Sprite> sprites;
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   for (int i = 0; i < 3; i++) {
     move_up(players[0], checker);
@@ -469,7 +483,8 @@ int static diagonal_collision_with_table() {
   players.push_back(player);
   std::vector<Sprite> sprites;
   sprites.push_back(table);
-  CollisionChecker checker(map, players, sprites);
+  std::vector<Items *> items;
+  CollisionChecker checker(map, players, sprites, items);
 
   for (int i = 0; i < 300; i++) {
     move_up(players[0], checker);
