@@ -17,7 +17,7 @@ FILE(GLOB ServerFiles
 	src/main/game/collisions/*.cpp
 	src/main/game/guns/*.cpp
 	src/main/events/*.cpp
-	#src/main/game/items/*.cpp
+	src/main/game/sprites/items/*.cpp
 	src/main/game/sprites/*.cpp
 	)
 FILE(GLOB CommonFiles 
