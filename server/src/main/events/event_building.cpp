@@ -6,3 +6,9 @@ Event build_move_event(int player_id, Point where) {
 
   return event;
 }
+
+Event build_grab_event(int player_id, int what) {
+  Event event = {.type = 2, .player_id = player_id, .data={.item = what}};
+
+  return event;
+}

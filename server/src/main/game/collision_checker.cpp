@@ -3,8 +3,13 @@
 CollisionChecker::CollisionChecker(Map &map,
                                    const std::vector<std::reference_wrapper
                                                          <Player>> &players,
-                                   std::vector<Sprite> &sprites)
-    : map(map), players(players), sprites(sprites), ignored(nullptr) {}
+                                   std::vector<Sprite> &sprites,
+                                   const std::vector<Items *> &items)
+    : map(map),
+      players(players),
+      sprites(sprites),
+      ignored(nullptr),
+      items(items) {}
 
 bool CollisionChecker::collides_players(Point where) {
   for (auto player : players) {
@@ -46,4 +51,14 @@ bool CollisionChecker::can_move(Point where, Moveable &who) {
   ignored = nullptr;
 
   return can_move;
+}
+
+Items *CollisionChecker::grabbed_item(Player &by_whom) {
+  for (auto &item : items) {
+    if (item->occupies(by_whom.get_position())
+        && item->can_be_used_by(by_whom)) {
+      return item;
+    }
+  }
+  throw -1; // Couldn't find
 }

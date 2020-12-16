@@ -8,10 +8,11 @@ typedef struct PointData {
 } PointData;
 
 typedef struct Event {
-  int type; // 1 MOVE
+  int type; // 1 MOVE, 2 GRAB
   int player_id;
   union data {
-    PointData point;
+    PointData point; // MOVE
+    int item; // GRAB
   } data;
 } Event;
 

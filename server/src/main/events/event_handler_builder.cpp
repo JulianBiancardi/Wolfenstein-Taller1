@@ -7,8 +7,10 @@ Player &EventHandlerBuilder::get_doer(const Event &event,
   return players.at(event.player_id);
 }
 
-EventHandler *EventHandlerBuilder::move_event(Player &doer, Point where) {
-  return new MoveHandler(doer, where);
+EventHandler *EventHandlerBuilder::move_event(Player &doer,
+                                              double x,
+                                              double y) {
+  return new MoveHandler(doer, Point(x, y));
 }
 
 EventHandler *EventHandlerBuilder::build(const Event &event,
@@ -18,9 +20,9 @@ EventHandler *EventHandlerBuilder::build(const Event &event,
 
   switch (event.type) {
     case 1: //TODO Use constants
-      return move_event(doer, Point(event.data.point.x, event.data.point.y));
+      return move_event(doer, event.data.point.x, event.data.point.y);
       break;
 
-    default: throw -1; //TODO Throw exception
+    default: throw -1; //TODO Throw ours exception
   }
 }
