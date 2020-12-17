@@ -8,8 +8,8 @@ void MoveHandler::handle(Match &match, CollisionChecker &checker) {
   if (checker.can_move(where, who)) {
     who.set_position(where);
     consequence_grab_event(match, checker, who);
-  }
+  } // Grab event is enqueued before move event!
 
-  match.enqueue_result(build_move_event(match.get_player_id(who),
+  match.enqueue_result(build_move_event(who.get_id(),
                                         who.get_position()));
 }

@@ -9,9 +9,9 @@
 class CollisionChecker {
  private:
   Map &map;
-  std::vector<std::reference_wrapper<Player>> players;
+  std::unordered_map<int, Player> &players;
+  std::unordered_map<int, Items *> &items;
   std::vector<Sprite> &sprites;
-  const std::vector<Items *> items;
   Moveable *ignored;
 
   bool collides_players(Point where);
@@ -20,9 +20,9 @@ class CollisionChecker {
 
  public:
   CollisionChecker(Map &map,
-                   const std::vector<std::reference_wrapper<Player>> &players,
-                   std::vector<Sprite> &sprites,
-                   const std::vector<Items *> &items);
+                   std::unordered_map<int, Player> &players,
+                   std::unordered_map<int, Items *> &items,
+                   std::vector<Sprite> &sprites);
   ~CollisionChecker() {}
 
   bool can_move(Point where, Moveable &who);

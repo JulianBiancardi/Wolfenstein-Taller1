@@ -5,8 +5,9 @@
 
 class Key : public Items {
  public:
-  Key(Point center);
+  Key(Point center, int id);
   void use(Player &user) override;
+  Items *copy() override;
   bool can_be_used_by(Player &whom) override;
   void remove() override;
 

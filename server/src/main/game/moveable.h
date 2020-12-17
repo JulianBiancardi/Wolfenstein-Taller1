@@ -3,8 +3,9 @@
 
 #include "../../../../common/src/main/utils/ray.h"
 #include "collisions/circle_mask.h"
+#include "identifiable.h"
 
-class Moveable {
+class Moveable : public Identifiable {
  private:
   Ray angled_position;
 /*  Map &map;
@@ -17,8 +18,8 @@ class Moveable {
                                             double movement_angle);*/
 
  public:
-  Moveable(Point origin, double angle);
-  Moveable(double x, double y, double angle);
+  Moveable(Point origin, double angle, int id);
+  Moveable(double x, double y, double angle, int id);
   Moveable(const Moveable &other);
   ~Moveable() {}
 

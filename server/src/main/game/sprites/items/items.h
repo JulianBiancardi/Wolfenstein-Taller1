@@ -4,13 +4,14 @@
 #include "../sprite.h"
 #include "../../player.h"
 
-class Items : public Sprite {
+class Items : public Sprite, public Identifiable {
  public:
-  Items(Point center);
+  Items(Point center, int id);
   ~Items();
 
   virtual void use(Player &user) = 0;
   virtual bool can_be_used_by(Player &whom) = 0;
+  virtual Items *copy() = 0; // Deep copying
   virtual void remove() = 0;
 };
 

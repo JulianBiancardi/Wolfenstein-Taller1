@@ -5,8 +5,9 @@
 
 class Food : public Items {
  public:
-  Food(Point center);
+  Food(Point center, int id);
   void use(Player &user) override;
+  Items *copy() override;
   bool can_be_used_by(Player &whom) override;
   void remove() override;
 

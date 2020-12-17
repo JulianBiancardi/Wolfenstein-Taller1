@@ -5,8 +5,9 @@
 
 class Blood : public Items {
  public:
-  Blood(Point center);
+  Blood(Point center, int id);
   void use(Player &user) override;
+  Items *copy() override;
   bool can_be_used_by(Player &whom) override;
   void remove() override;
 

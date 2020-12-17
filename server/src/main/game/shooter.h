@@ -10,6 +10,7 @@
 
 class Player;
 
+// TODO Possible inheritance from identifiable
 class Shooter {
  protected:
   Ray angled_position;

@@ -5,8 +5,9 @@
 
 class ChainCannon : public Items {
  public:
-  ChainCannon(Point center);
+  ChainCannon(Point center, int id);
   void use(Player &user) override;
+  Items *copy() override;
   bool can_be_used_by(Player &whom) override;
   void remove() override;
 

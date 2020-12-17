@@ -1,16 +1,19 @@
 #include "moveable.h"
 
-Moveable::Moveable(Point origin, double angle)
+Moveable::Moveable(Point origin, double angle, int id)
     : angled_position(origin, angle),
-      mask(5, angled_position.get_ref_origin()) {} // TODO Use config file
+      mask(5, angled_position.get_ref_origin()),
+      Identifiable(id) {} // TODO Use config file
 
-Moveable::Moveable(double x, double y, double angle)
+Moveable::Moveable(double x, double y, double angle, int id)
     : angled_position(x, y, angle),
-      mask(5, angled_position.get_ref_origin()) {} // TODO Use config file
+      mask(5, angled_position.get_ref_origin()),
+      Identifiable(id) {} // TODO Use config file
 
 Moveable::Moveable(const Moveable &other)
     : angled_position(other.angled_position),
-      mask(other.mask.get_radio(), angled_position.get_ref_origin()) {}
+      mask(other.mask.get_radio(), angled_position.get_ref_origin()),
+      Identifiable(other.id) {} // Probably should not copy id
 
 Point Moveable::collision_mask_bound(const Point &next_position) {
   double angle = angled_position.get_origin().angle_to(next_position);

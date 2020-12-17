@@ -1,20 +1,13 @@
 #include "match.h"
 
-Match::Match(Map &map) : map(map), players_id_count(1), items_id_count(1) {}
+Match::Match(Map &map) : map(map), players_id_count(1) {}
 
-Match::~Match() {
-  for (auto item : items)
-    delete item.second;
-}
+Match::~Match() {}
 
 void Match::add_player(Point where, double initial_angle) {
-  players.insert({players_id_count, Player(where, initial_angle)});
+  players.insert({players_id_count,
+                  Player(where, initial_angle, players_id_count)});
   players_id_count++;
-}
-
-void Match::add_item(Items *what) {
-  items.insert({items_id_count, what});
-  items_id_count++;
 }
 
 void Match::enqueue_event(const Event &event) {
@@ -25,30 +18,13 @@ const Event Match::dequeue_result() {
   return result_events.dequeue();
 }
 
-std::vector<std::reference_wrapper<Player>>
-Match::get_players_as_vector() {
-  std::vector<std::reference_wrapper<Player>> vector;
-  for (auto &player : players)
-    vector.push_back(player.second);
-  return vector;
-}
-
-std::vector<Items *>
-Match::get_items_as_vector() {
-  std::vector<Items *> vector;
-  for (auto &item : items) {
-    vector.push_back(item.second);
-  }
-  return vector;
-}
-
 void Match::start() {
   bool keep_running = true;
   EventHandlerBuilder builder;
   CollisionChecker checker(map,
-                           get_players_as_vector(),
-                           sprites,
-                           get_items_as_vector());
+                           players,
+                           map.get_items(),
+                           map.get_sprites());
 
   while (keep_running) {
     const Event next_event = events_to_process.dequeue();
@@ -65,22 +41,8 @@ void Match::enqueue_result(const Event &event) {
   result_events.enqueue(event);
 }
 
-int Match::get_player_id(Player &player) {
-  int id = -1;
-  for (auto const &element : players) {
-    if (&element.second == &player)
-      id = element.first;
-  }
-  return id;
-}
-
-int Match::get_item_id(Items *item) {
-  int id = -1;
-  for (auto const &element : items) {
-    if (element.second == item)
-      id = element.first;
-  }
-  return id;
+Map &Match::get_map() {
+  return map;
 }
 
 Player &Match::get_player(int id) {

@@ -1,8 +1,8 @@
 #include "player.h"
 #include <cmath>
 
-Player::Player(Point origin, double angle) :
-    shot_bullets(0), points(0), Moveable(origin, angle),
+Player::Player(Point origin, double angle, int id) :
+    shot_bullets(0), points(0), Moveable(origin, angle, id),
     Shooter(origin, angle) {
   max_health = ConfigLoader::player_health;
   health = max_health;
@@ -10,8 +10,8 @@ Player::Player(Point origin, double angle) :
   bullets = ConfigLoader::player_bullets;
 }
 
-Player::Player(double x, double y, double angle) :
-    shot_bullets(0), points(0), Moveable(x, y, angle),
+Player::Player(double x, double y, double angle, int id) :
+    shot_bullets(0), points(0), Moveable(x, y, angle, id),
     Shooter(Point(x, y), angle) {
   max_health = ConfigLoader::player_health;
   health = max_health;
@@ -90,6 +90,10 @@ void Player::decrease_health(int amount) {
   } else {
     health -= amount;
   }
+}
+
+bool Player::is_full_health() {
+  return health == max_health;
 }
 
 int Player::get_health() {

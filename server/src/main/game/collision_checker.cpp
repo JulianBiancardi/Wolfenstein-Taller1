@@ -1,20 +1,19 @@
 #include "collision_checker.h"
 
 CollisionChecker::CollisionChecker(Map &map,
-                                   const std::vector<std::reference_wrapper
-                                                         <Player>> &players,
-                                   std::vector<Sprite> &sprites,
-                                   const std::vector<Items *> &items)
+                                   std::unordered_map<int, Player> &players,
+                                   std::unordered_map<int, Items *> &items,
+                                   std::vector<Sprite> &sprites)
     : map(map),
       players(players),
+      items(items),
       sprites(sprites),
-      ignored(nullptr),
-      items(items) {}
+      ignored(nullptr) {}
 
 bool CollisionChecker::collides_players(Point where) {
-  for (auto player : players) {
-    if (player.get() != *ignored) {
-      if (player.get().occupies(where)) return true;
+  for (auto &player : players) {
+    if (player.second != *ignored) {
+      if (player.second.occupies(where)) return true;
     }
   }
 
@@ -55,9 +54,9 @@ bool CollisionChecker::can_move(Point where, Moveable &who) {
 
 Items *CollisionChecker::grabbed_item(Player &by_whom) {
   for (auto &item : items) {
-    if (item->occupies(by_whom.get_position())
-        && item->can_be_used_by(by_whom)) {
-      return item;
+    if (item.second->occupies(by_whom.get_position())
+        && item.second->can_be_used_by(by_whom)) {
+      return item.second;
     }
   }
   throw -1; // Couldn't find
