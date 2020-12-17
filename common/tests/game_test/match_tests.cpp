@@ -13,6 +13,7 @@ int static grabs_medic_kit_and_restores_all_health();
 int static grabs_medic_kit_and_restores_health_correctly();
 int static walks_two_times_and_grabs_medic_kit();
 int static grabs_blood_only_when_health_is_less_than_eleven();
+int static medic_kit_disappears_after_grabbing_it();
 
 void match_tests() {
   begin_tests("MATCH");
@@ -37,6 +38,9 @@ void match_tests() {
              NO_ERROR);
   print_test("Jugador agarra la sangre solo cuando tiene menos de 11 de vida",
              grabs_blood_only_when_health_is_less_than_eleven,
+             NO_ERROR);
+  print_test("El kit medico desaparece al agarrarse",
+             medic_kit_disappears_after_grabbing_it,
              NO_ERROR);
 
   end_tests();
@@ -158,6 +162,8 @@ int static grabs_medic_kit_and_restores_all_health() {
   put_data(map_data);
   Map map(map_data);
 
+  map.add_medic_kit(Point(100, 101));
+
   Match match(map);
   Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
   match.add_player(angled_player_position.get_origin(),
@@ -168,10 +174,10 @@ int static grabs_medic_kit_and_restores_all_health() {
   PointData point = {.x = next_position.getX(), .y = next_position.getY()};
   Event event = {.type = 1, .player_id = 1, .data = {.point = point}};
 
-  MedicKit *kit = new MedicKit(Point(100, 101));
-  match.add_item(kit);
-
   match.enqueue_event(event);
+
+  match.get_player(1).decrease_health(5);
+
   match.start();
 
   Event result = match.dequeue_result();
@@ -192,6 +198,8 @@ int static grabs_medic_kit_and_restores_health_correctly() {
   put_data(map_data);
   Map map(map_data);
 
+  map.add_medic_kit(Point(100, 101));
+
   Match match(map);
   Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
   match.add_player(angled_player_position.get_origin(),
@@ -201,9 +209,6 @@ int static grabs_medic_kit_and_restores_health_correctly() {
   Point next_position = next_position_up(angled_player_position);
   PointData point = {.x = next_position.getX(), .y = next_position.getY()};
   Event event = {.type = 1, .player_id = 1, .data = {.point = point}};
-
-  MedicKit *kit = new MedicKit(Point(100, 101));
-  match.add_item(kit);
 
   match.get_player(1).decrease_health(30);
 
@@ -229,6 +234,8 @@ int static walks_two_times_and_grabs_medic_kit() {
   put_data(map_data);
   Map map(map_data);
 
+  map.add_medic_kit(Point(100, 102));
+
   Match match(map);
   Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
   match.add_player(angled_player_position.get_origin(),
@@ -246,9 +253,6 @@ int static walks_two_times_and_grabs_medic_kit() {
   Event event_2 = {.type = 1, .player_id = 1, .data = {.point = point_2}};
 
   match.enqueue_event(event_2);
-
-  MedicKit *kit = new MedicKit(Point(100, 102));
-  match.add_item(kit);
 
   match.get_player(1).decrease_health(30);
 
@@ -274,6 +278,8 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
   put_data(map_data);
   Map map(map_data);
 
+  map.add_blood(Point(100, 102));
+
   Match match(map);
   Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
   match.add_player(angled_player_position.get_origin(),
@@ -291,9 +297,6 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
 
     match.enqueue_event(event);
   }
-
-  Blood *kit = new Blood(Point(100, 102));
-  match.add_item(kit);
 
   match.start();
 
@@ -325,6 +328,66 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
 
   if (match.get_player(result.player_id).get_health()
       != 11) // TODO Use config loader
+    return ERROR;
+
+  return NO_ERROR;
+}
+
+int static medic_kit_disappears_after_grabbing_it() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+
+  map.add_medic_kit(Point(100, 101));
+
+  Match match(map);
+  Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
+  match.add_player(angled_player_position.get_origin(),
+                   angled_player_position.get_angle());
+
+  // CLIENT MOCK
+  Point position = angled_player_position.get_origin();
+  PointData point = {.x = position.getX(), .y = position.getY()};
+  Event event = {.type = 1, .player_id = 1, .data = {.point = point}};
+
+  for (int i = 0; i < 2; i++) {
+    position = next_position_up(Ray(position, M_PI / 2));
+    point = {.x = position.getX(), .y = position.getY()};
+    event = {.type = 1, .player_id = 1, .data = {.point = point}};
+
+    match.enqueue_event(event);
+  }
+
+  position = next_position_down(Ray(position, M_PI / 2));
+  point = {.x = position.getX(), .y = position.getY()};
+  event = {.type = 1, .player_id = 1, .data = {.point = point}};
+
+  match.enqueue_event(event);
+
+  match.get_player(1).decrease_health(30);
+
+  match.start();
+
+  Event result = match.dequeue_result();
+
+  if (result.type != 2 || result.player_id != 1
+      || result.data.item != 1) {
+    return ERROR;
+  }
+
+  for (int i = 0; i < 2; i++) {
+    match.dequeue_result();
+  }
+
+  result = match.dequeue_result();
+
+  if (result.type != 1 || result.player_id != 1
+      || result.data.point.x != 100 || result.data.point.y != 101) {
+    return ERROR;
+  }
+
+  if (match.get_player(result.player_id).get_health()
+      != 30) // TODO Use config loader
     return ERROR;
 
   return NO_ERROR;

@@ -122,17 +122,17 @@ int static can_move_up() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, M_PI / 2);
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player);
+  Player player(100, 100, M_PI / 2, 1);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
   std::vector<Sprite> sprites;
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
-  move_up(players[0], checker);
+  move_up(players.at(1), checker);
 
-  if (players[0].get().get_position().getX() == 100
-      && players[0].get().get_position().getY() == 101)
+  if (players.at(1).get_position().getX() == 100
+      && players.at(1).get_position().getY() == 101)
     return NO_ERROR;
 
   return ERROR;
@@ -142,17 +142,17 @@ int static collides_wall() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(64, 64, 3 * M_PI / 2);
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player);
+  Player player(64, 64, 3 * M_PI / 2, 1);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
   std::vector<Sprite> sprites;
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
-  move_up(players[0], checker);
+  move_up(players.at(1), checker);
 
-  if (players[0].get().get_position().getX() == 64
-      && players[0].get().get_position().getY() == 64)
+  if (players.at(1).get_position().getX() == 64
+      && players.at(1).get_position().getY() == 64)
     return NO_ERROR;
 
   return ERROR;
@@ -162,21 +162,21 @@ int static walks_and_collides_wall() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(64, 64, 0);
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player);
+  Player player(64, 64, 0, 1);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
   std::vector<Sprite> sprites;
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
   int previous_x;
   do {
-    previous_x = players[0].get().get_position().getX();
-    move_up(players[0], checker);
-  } while (previous_x != players[0].get().get_position().getX());
+    previous_x = players.at(1).get_position().getX();
+    move_up(players.at(1), checker);
+  } while (previous_x != players.at(1).get_position().getX());
 
-  if (players[0].get().get_position().getX() == 570
-      && players[0].get().get_position().getY() == 64)
+  if (players.at(1).get_position().getX() == 570
+      && players.at(1).get_position().getY() == 64)
     return NO_ERROR;
 
   return ERROR;
@@ -186,17 +186,17 @@ int static walk_with_different_angle_and_direction() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(64, 64, 3 * M_PI / 2);
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player);
+  Player player(64, 64, 3 * M_PI / 2, 1);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
   std::vector<Sprite> sprites;
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
-  move_down(players[0], checker);
+  move_down(players.at(1), checker);
 
-  if (players[0].get().get_position().getX() == 64
-      && players[0].get().get_position().getY() == 65)
+  if (players.at(1).get_position().getX() == 64
+      && players.at(1).get_position().getY() == 65)
     return NO_ERROR;
 
   return ERROR;
@@ -206,22 +206,22 @@ int static complete_path_correctly() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, 0);
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player);
+  Player player(100, 100, 0, 1);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
   std::vector<Sprite> sprites;
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 100; i++) {
-    move_up(players[0], checker);
+    move_up(players.at(1), checker);
   }
   for (int i = 0; i < 100; i++) {
-    move_left(players[0], checker);
+    move_left(players.at(1), checker);
   }
 
-  if (players[0].get().get_position().getX() == 200
-      && players[0].get().get_position().getY() == 200)
+  if (players.at(1).get_position().getX() == 200
+      && players.at(1).get_position().getY() == 200)
     return NO_ERROR;
 
   return ERROR;
@@ -231,19 +231,19 @@ int static walk_diagonally() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, 0);
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player);
+  Player player(100, 100, 0, 1);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
   std::vector<Sprite> sprites;
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
-  move_up_left(players[0], checker);
+  move_up_left(players.at(1), checker);
 
-  if (players[0].get().get_position().getX() > 100.5
-      && players[0].get().get_position().getX() < 101
-      && players[0].get().get_position().getY() > 100.5
-      && players[0].get().get_position().getY() < 101)
+  if (players.at(1).get_position().getX() > 100.5
+      && players.at(1).get_position().getX() < 101
+      && players.at(1).get_position().getY() > 100.5
+      && players.at(1).get_position().getY() < 101)
     return NO_ERROR;
 
   return ERROR;
@@ -253,22 +253,22 @@ int static complete_difficult_path_correctly() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, 0);
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player);
+  Player player(100, 100, 0, 1);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
   std::vector<Sprite> sprites;
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 700; i++) {
-    move_up(players[0], checker);
+    move_up(players.at(1), checker);
   }
   for (int i = 0; i < 100; i++) {
-    move_left(players[0], checker);
+    move_left(players.at(1), checker);
   }
 
-  if (players[0].get().get_position().getX() == 570
-      && players[0].get().get_position().getY() == 200)
+  if (players.at(1).get_position().getX() == 570
+      && players.at(1).get_position().getY() == 200)
     return NO_ERROR;
 
   return ERROR;
@@ -278,43 +278,43 @@ int static check_collisions() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, M_PI / 2);
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player);
+  Player player(100, 100, M_PI / 2, 1);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
   std::vector<Sprite> sprites;
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 700; i++) {
-    move_right(players[0], checker);
+    move_right(players.at(1), checker);
   }
 
-  if (players[0].get().get_position().getX() != 570
-      || players[0].get().get_position().getY() != 100)
+  if (players.at(1).get_position().getX() != 570
+      || players.at(1).get_position().getY() != 100)
     return ERROR;
 
   for (int i = 0; i < 700; i++) {
-    move_up(players[0], checker);
+    move_up(players.at(1), checker);
   }
 
-  if (players[0].get().get_position().getX() != 570
-      || players[0].get().get_position().getY() != 570)
+  if (players.at(1).get_position().getX() != 570
+      || players.at(1).get_position().getY() != 570)
     return ERROR;
 
   for (int i = 0; i < 700; i++) {
-    move_left(players[0], checker);
+    move_left(players.at(1), checker);
   }
 
-  if (players[0].get().get_position().getX() != 69
-      || players[0].get().get_position().getY() != 570)
+  if (players.at(1).get_position().getX() != 69
+      || players.at(1).get_position().getY() != 570)
     return ERROR;
 
   for (int i = 0; i < 700; i++) {
-    move_down(players[0], checker);
+    move_down(players.at(1), checker);
   }
 
-  if (players[0].get().get_position().getX() != 69
-      || players[0].get().get_position().getY() != 69)
+  if (players.at(1).get_position().getX() != 69
+      || players.at(1).get_position().getY() != 69)
     return ERROR;
 
   return NO_ERROR;
@@ -324,22 +324,22 @@ int static player_collides_against_other_player() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player1(100, 100, M_PI / 2);
-  Player player2(100, 200, 0);
+  Player player1(100, 100, M_PI / 2, 1);
+  Player player2(100, 200, 0, 2);
 
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player1);
-  players.push_back(player2);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player1});
+  players.insert({2, player2});
   std::vector<Sprite> sprites;
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 200; i++) {
-    move_up(players[0], checker);
+    move_up(players.at(1), checker);
   }
 
-  if (players[0].get().get_position().getX() == 100
-      && players[0].get().get_position().getY() == 190)
+  if (players.at(1).get_position().getX() == 100
+      && players.at(1).get_position().getY() == 190)
     return NO_ERROR;
 
   return ERROR;
@@ -349,26 +349,26 @@ int static another_player_collides_against_other_player() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player1(100, 100, M_PI);
-  Player player2(200, 200, 3 * M_PI / 2);
+  Player player1(100, 100, M_PI, 1);
+  Player player2(200, 200, 3 * M_PI / 2, 2);
 
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player1);
-  players.push_back(player2);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player1});
+  players.insert({2, player2});
   std::vector<Sprite> sprites;
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 100; i++) {
-    move_right(players[0], checker);
+    move_right(players.at(1), checker);
   }
 
   for (int i = 0; i < 100; i++) {
-    move_right(players[1], checker);
+    move_right(players.at(2), checker);
   }
 
-  if (players[1].get().get_position().getX() == 110
-      && players[1].get().get_position().getY() == 200)
+  if (players.at(2).get_position().getX() == 110
+      && players.at(2).get_position().getY() == 200)
     return NO_ERROR;
 
   return ERROR;
@@ -378,22 +378,22 @@ int static player_collides_against_table_from_side() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, M_PI / 2);
+  Player player(100, 100, M_PI / 2, 1);
   Table table(5, 4, Point(100, 120));
 
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
   std::vector<Sprite> sprites;
   sprites.push_back(table);
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 100; i++) {
-    move_up(players[0], checker);
+    move_up(players.at(1), checker);
   }
 
-  if (players[0].get().get_position().getX() == 100
-      && players[0].get().get_position().getY() == 113)
+  if (players.at(1).get_position().getX() == 100
+      && players.at(1).get_position().getY() == 113)
     return NO_ERROR;
 
   return ERROR;
@@ -403,22 +403,22 @@ int static player_collides_against_table_from_another_side() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, M_PI / 2);
+  Player player(100, 100, M_PI / 2, 1);
   Table table(10, 10, Point(200, 100));
 
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
   std::vector<Sprite> sprites;
   sprites.push_back(table);
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 200; i++) {
-    move_right(players[0], checker);
+    move_right(players.at(1), checker);
   }
 
-  if (players[0].get().get_position().getX() == 190
-      && players[0].get().get_position().getY() == 100)
+  if (players.at(1).get_position().getX() == 190
+      && players.at(1).get_position().getY() == 100)
     return NO_ERROR;
 
   return ERROR;
@@ -429,20 +429,20 @@ int static simplest_collision() {
   map_data(0, 9) = WALL; //TODO Decide what to use
   map_data(9, 0) = WALL;
   Map map(map_data);
-  Player player(0.5, 0.5, 0);
+  Player player(0.5, 0.5, 0, 1);
 
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
   std::vector<Sprite> sprites;
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 100; i++) {
-    move_up(players[0], checker);
+    move_up(players.at(1), checker);
   }
 
-  if (players[0].get().get_position().getX() == 3.5
-      && players[0].get().get_position().getY() == 0.5)
+  if (players.at(1).get_position().getX() == 3.5
+      && players.at(1).get_position().getY() == 0.5)
     return NO_ERROR;
 
   return ERROR;
@@ -453,20 +453,20 @@ int static second_simplest_collision() {
   map_data(0, 9) = WALL; //TODO Decide what to use
   map_data(9, 0) = WALL;
   Map map(map_data);
-  Player player(1, 1, 0);
+  Player player(1, 1, 0, 1);
 
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
   std::vector<Sprite> sprites;
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 3; i++) {
-    move_up(players[0], checker);
+    move_up(players.at(1), checker);
   }
 
-  if (players[0].get().get_position().getX() == 4
-      && players[0].get().get_position().getY() == 1)
+  if (players.at(1).get_position().getX() == 4
+      && players.at(1).get_position().getY() == 1)
     return NO_ERROR;
 
   return ERROR;
@@ -476,24 +476,24 @@ int static diagonal_collision_with_table() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
-  Player player(100, 100, M_PI / 4);
+  Player player(100, 100, M_PI / 4, 1);
   Table table(10, 10, Point(300, 300));
 
-  std::vector<std::reference_wrapper<Player>> players;
-  players.push_back(player);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
   std::vector<Sprite> sprites;
   sprites.push_back(table);
-  std::vector<Items *> items;
-  CollisionChecker checker(map, players, sprites, items);
+  std::unordered_map<int, Items *> items;
+  CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 300; i++) {
-    move_up(players[0], checker);
+    move_up(players.at(1), checker);
   }
 
-  if (players[0].get().get_position().getX() > 290.91
-      && players[0].get().get_position().getY() < 290.92
-      && players[0].get().get_position().getX() > 290.91
-      && players[0].get().get_position().getY() < 290.92)
+  if (players.at(1).get_position().getX() > 290.91
+      && players.at(1).get_position().getY() < 290.92
+      && players.at(1).get_position().getX() > 290.91
+      && players.at(1).get_position().getY() < 290.92)
     return NO_ERROR;
 
   return ERROR;
