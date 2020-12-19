@@ -1,5 +1,6 @@
 #include <QtWidgets/QApplication>
 
+#include "../model/include/map.h"
 #include "iostream"
 #include "mainwindow.h"
 
@@ -8,7 +9,9 @@ int main(int argc, char** argv) {
   QApplication main_app(argc, argv);
 
   try {
-    MainWindow main_window;
+    // Generate the initial map
+    Map* map = new Map(10, 10);
+    MainWindow main_window(nullptr, map);
     main_window.show();
     // Arranca el loop de la UI
     main_app.exec();

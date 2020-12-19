@@ -34,6 +34,7 @@ include_directories(${PROJECT_BINARY_DIR})
 set(CMAKE_AUTOMOC on)
 
 add_executable(app
+  view/src/file_manager.cpp
   view/src/celd_view.cpp
   view/src/mapgrid.cpp  
   view/src/option.cpp

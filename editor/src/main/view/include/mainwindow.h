@@ -5,6 +5,7 @@
 #include <QtGui/QDropEvent>
 #include <QtWidgets/QMainWindow>
 
+#include "file_manager.h"
 #include "mapgrid.h"
 #include "ui_mainwindow.h"
 
@@ -13,16 +14,11 @@ class MainWindow : public QMainWindow {
 
  private:
   Ui::MainWindow ui;
-  MapGrid* map;
-  QString current_file_path;
-  bool is_saved;
-
-  void save_file(QString& file_path);
-  void open_file(QString& file_path);
-  void no_saved_message();
+  MapGrid* map_grid;
+  FileManager* file_manager;
 
  public:
-  MainWindow(QWidget* parent = nullptr);
+  MainWindow(QWidget* parent = nullptr, Map* map = nullptr);
 
   // this event is called when the mouse enters the widgets area during a
   // drag/drop operation
