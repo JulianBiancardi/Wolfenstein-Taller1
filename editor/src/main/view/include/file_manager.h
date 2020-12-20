@@ -22,9 +22,7 @@ class FileManager {
   void save_as();
   void open();
   void open_file(const QString& file_path);
-
-  // Close aplication signal
-  void closeEvent(QCloseEvent* event);
+  void close();
 
   ~FileManager();
 };

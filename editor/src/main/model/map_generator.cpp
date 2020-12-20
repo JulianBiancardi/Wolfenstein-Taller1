@@ -1,4 +1,4 @@
-#include "map_generator.h"
+#include "include/map_generator.h"
 
 #include <sys/types.h>
 
@@ -24,7 +24,6 @@ void MapGenerator::generate_map(const std::string& file_path, Map* map) {
     size_t y_pos = object["y_position"].as<std::size_t>();
     map->put(y_pos, x_pos, id);
   }
-  map->print();  // TODO delete
 }
 
 void MapGenerator::generate_yamlfile(const std::string& file_path, Map* map) {

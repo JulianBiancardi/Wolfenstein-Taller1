@@ -6,8 +6,6 @@
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMessageBox>
 
-#include "iostream"  //TODO DELETE
-
 #define WINDOW_TITLE "Wolfenstein Editor"
 
 //----------------------------------------------
@@ -101,14 +99,10 @@ void FileManager::open() {
   open_file(file_path);
 }
 
-void FileManager::closeEvent(QCloseEvent* event) {
-  //! Ignore the event by default.. otherwise the window will be closed always.
-  event->ignore();
-
+void FileManager::close() {
   if (!this->is_saved) {
     no_saved_message();
   }
-  event->accept();
 }
 
 FileManager::~FileManager() {}

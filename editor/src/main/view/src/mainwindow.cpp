@@ -44,7 +44,10 @@ void MainWindow::on_actionSave_triggered() { this->file_manager->save(); }
 void MainWindow::on_actionSave_As_triggered() { this->file_manager->save_as(); }
 
 void MainWindow::closeEvent(QCloseEvent* event) {
-  this->file_manager->closeEvent(event);
+  //! Ignore the event by default.. otherwise the window will be closed always.
+  // event->ignore();
+  this->file_manager->close();
+  event->accept();
 }
 
 void MainWindow::dragEnterEvent(QDragEnterEvent* event) {

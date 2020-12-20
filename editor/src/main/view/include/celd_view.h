@@ -1,6 +1,7 @@
 #ifndef CELDVIEW_H
 #define CELDVIEW_H
 
+#include <QtCore/QDataStream>
 #include <QtGui/QDragEnterEvent>
 #include <QtGui/QDropEvent>
 #include <QtWidgets/QWidget>
@@ -22,7 +23,6 @@ class CeldView : public QWidget, public IObserver {
 
  private slots:
   void on_CeldButton_clicked();
-  void on_CeldButton_pressed();
 
  public:
   explicit CeldView(QWidget* parent = nullptr, Celd* celd = nullptr,
@@ -30,12 +30,13 @@ class CeldView : public QWidget, public IObserver {
                     OptionSelected* current_option = nullptr);
 
   void mousePressEvent(QMouseEvent* event);
+  void mouseMoveEvent(QMouseEvent* event);
 
   // Evento cuando el drag entra en el widget
   void dragEnterEvent(QDragEnterEvent* event);
 
   // Evento cuando el drop se realiza en el widget
-  void dropEvent(QDragEnterEvent* event);
+  void dropEvent(QDropEvent* event);
 
   ~CeldView();
 
