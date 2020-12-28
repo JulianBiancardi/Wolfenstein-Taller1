@@ -44,7 +44,7 @@ add_executable(app
   view/src/mainwindow.cpp
   view/src/main.cpp
 
-  model/celd.cpp
+  model/cell.cpp
   model/map.cpp
   model/map_generator.cpp
   ${UIS_HEADERS})

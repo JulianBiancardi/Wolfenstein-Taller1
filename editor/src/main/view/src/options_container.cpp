@@ -9,7 +9,7 @@
 OptionsContainer::OptionsContainer(QWidget* parent, const int columns,
                                    ItemsId* ids, OptionSelected* current_option)
     : QWidget(parent), columns(columns), buttongroup(this) {
-  this->ui.setupUi(this);
+  ui.setupUi(this);
   addOptions(ids, current_option);
 }
 

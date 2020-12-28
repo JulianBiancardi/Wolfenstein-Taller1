@@ -1,23 +1,23 @@
-#ifndef CELD_H
-#define CELD_H
+#ifndef CELL_H
+#define CELL_H
 
 #include <sys/types.h>
 
 #include "Iobservable.h"
 
-class Celd : public IObservable {
+class Cell : public IObservable {
  private:
   size_t id;
 
  public:
-  Celd();
+  Cell();
 
   size_t get_id() const;
   void set_id(size_t value);
   void clear();
   bool is_empty() const;
 
-  ~Celd();
+  ~Cell();
 };
 
-#endif  // CELD_H
+#endif  // CELL_H

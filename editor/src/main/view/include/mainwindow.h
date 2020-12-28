@@ -18,7 +18,7 @@ class MainWindow : public QMainWindow {
   FileManager* file_manager;
 
  public:
-  MainWindow(QWidget* parent = nullptr, Map* map = nullptr);
+  MainWindow(QWidget* parent = nullptr);
 
   // this event is called when the mouse enters the widgets area during a
   // drag/drop operation
@@ -30,11 +30,20 @@ class MainWindow : public QMainWindow {
   ~MainWindow();
 
  private slots:
-  void on_SpinBoxRows_valueChanged(int value);
   void on_actionNew_File_triggered();
   void on_actionOpen_File_triggered();
   void on_actionSave_triggered();
   void on_actionSave_As_triggered();
+  void on_actionExit_triggered();
+
+  void on_actionInsertRowsAbove_triggered();
+  void on_actionInsertRowsBelow_triggered();
+  void on_actionInsertColumnsLeft_triggered();
+  void on_actionInsertColumnsRight_triggered();
+  void on_actionRemoveRowsAbove_triggered();
+  void on_actionRemoveRowsBelow_triggered();
+  void on_actionRemoveColumnsLeft_triggered();
+  void on_actionRemoveColumnsRight_triggered();
 
   // Close aplication signal
   void closeEvent(QCloseEvent* event) override;

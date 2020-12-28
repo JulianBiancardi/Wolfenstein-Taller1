@@ -9,9 +9,7 @@ int main(int argc, char** argv) {
   QApplication main_app(argc, argv);
 
   try {
-    // Generate the initial map
-    Map* map = new Map(10, 10);
-    MainWindow main_window(nullptr, map);
+    MainWindow main_window(nullptr);
     main_window.show();
     // Arranca el loop de la UI
     main_app.exec();
@@ -19,6 +17,5 @@ int main(int argc, char** argv) {
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
   }
-
   return 0;
 }

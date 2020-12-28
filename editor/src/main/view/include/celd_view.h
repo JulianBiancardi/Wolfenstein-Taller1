@@ -7,7 +7,7 @@
 #include <QtWidgets/QWidget>
 
 #include "../model/include/Iobserver.h"
-#include "../model/include/celd.h"
+#include "../model/include/cell.h"
 #include "itemsid.h"
 #include "option_selected.h"
 #include "ui_celdview.h"
@@ -17,7 +17,7 @@ class CeldView : public QWidget, public IObserver {
 
  private:
   Ui::CeldView ui;
-  Celd* celd;
+  Cell* celd;
   ItemsId* ids;
   OptionSelected* current_option;
 
@@ -25,7 +25,7 @@ class CeldView : public QWidget, public IObserver {
   void on_CeldButton_clicked();
 
  public:
-  explicit CeldView(QWidget* parent = nullptr, Celd* celd = nullptr,
+  explicit CeldView(QWidget* parent = nullptr, Cell* celd = nullptr,
                     ItemsId* ids = nullptr,
                     OptionSelected* current_option = nullptr);
 

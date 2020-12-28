@@ -15,38 +15,35 @@
 
 #define WINDOW_TITLE "Wolfenstein Editor"
 
-MainWindow::MainWindow(QWidget* parent, Map* map) : QMainWindow(parent) {
+MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
   ItemsId* ids = new ItemsId();
   OptionSelected* current_option = new OptionSelected();
 
-  this->ui.setupUi(this);
-  this->setWindowTitle(WINDOW_TITLE);
-  this->map_grid = new MapGrid(this, map, ids, current_option);
-  this->file_manager = new FileManager(this->map_grid);
-  this->ui.horizontalLayout_2->addWidget(this->map_grid);
-  this->ui.horizontalLayout_2->addWidget(
+  ui.setupUi(this);
+  setWindowTitle(WINDOW_TITLE);
+  map_grid = new MapGrid(this, ids, current_option);
+  file_manager = new FileManager(map_grid);
+  ui.horizontalLayout_2->addWidget(map_grid);
+  ui.horizontalLayout_2->addWidget(
       new OptionsContainer(this, 2, ids, current_option));
-  this->setAcceptDrops(true);  // For drag and drop
+  setAcceptDrops(true);  // For drag and drop
 }
 
-void MainWindow::on_SpinBoxRows_valueChanged(int value) {
-  // this->map->resize(value, this->columns);
+void MainWindow::on_actionNew_File_triggered() { file_manager->new_file(); }
+
+void MainWindow::on_actionOpen_File_triggered() { file_manager->open(); }
+
+void MainWindow::on_actionSave_triggered() { file_manager->save(); }
+
+void MainWindow::on_actionSave_As_triggered() { file_manager->save_as(); }
+
+void MainWindow::on_actionExit_triggered() {
+  file_manager->close();
+  QApplication::quit();
 }
-
-void MainWindow::on_actionNew_File_triggered() {
-  this->file_manager->new_file();
-}
-
-void MainWindow::on_actionOpen_File_triggered() { this->file_manager->open(); }
-
-void MainWindow::on_actionSave_triggered() { this->file_manager->save(); }
-
-void MainWindow::on_actionSave_As_triggered() { this->file_manager->save_as(); }
 
 void MainWindow::closeEvent(QCloseEvent* event) {
-  //! Ignore the event by default.. otherwise the window will be closed always.
-  // event->ignore();
-  this->file_manager->close();
+  file_manager->close();
   event->accept();
 }
 
@@ -63,9 +60,33 @@ void MainWindow::dropEvent(QDropEvent* event) {
     QList<QUrl> urlList = mimeData->urls();
     // extract only the first file
     QString file_path = urlList.first().toLocalFile();
-
-    this->file_manager->open_file(file_path);
+    file_manager->open_file(file_path);
   }
+}
+
+void MainWindow::on_actionInsertRowsAbove_triggered() {
+  map_grid->insert_rowabove();
+}
+void MainWindow::on_actionInsertRowsBelow_triggered() {
+  map_grid->insert_rowbelow();
+}
+void MainWindow::on_actionInsertColumnsLeft_triggered() {
+  map_grid->insert_columnleft();
+}
+void MainWindow::on_actionInsertColumnsRight_triggered() {
+  map_grid->insert_columnright();
+}
+void MainWindow::on_actionRemoveRowsAbove_triggered() {
+  map_grid->remove_rowabove();
+}
+void MainWindow::on_actionRemoveRowsBelow_triggered() {
+  map_grid->remove_rowbelow();
+}
+void MainWindow::on_actionRemoveColumnsLeft_triggered() {
+  map_grid->remove_columnleft();
+}
+void MainWindow::on_actionRemoveColumnsRight_triggered() {
+  map_grid->remove_columnright();
 }
 
 MainWindow::~MainWindow() {}

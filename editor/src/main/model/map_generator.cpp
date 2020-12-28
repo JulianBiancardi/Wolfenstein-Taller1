@@ -4,18 +4,21 @@
 
 #include <fstream>
 
-#include "celd.h"
+#include "cell.h"
 #include "iostream"
 #include "map.h"
 #include "yaml-cpp/yaml.h"
 
 MapGenerator::MapGenerator() {}
 
-void MapGenerator::generate_map(const std::string& file_path, Map* map) {
+Map* MapGenerator::generate_map(const std::string& file_path) {
   YAML::Node file = YAML::LoadFile(file_path);
 
-  size_t width = file["width"].as<std::size_t>();
-  size_t height = file["height"].as<std::size_t>();
+  // TODO fix the problem with other map sizes
+  size_t rows = file["height"].as<std::size_t>();
+  size_t columns = file["width"].as<std::size_t>();
+
+  Map* map = new Map(rows, columns);
   const YAML::Node& objects = file["objects"];
   for (YAML::const_iterator it = objects.begin(); it != objects.end(); ++it) {
     const YAML::Node& object = *it;
@@ -24,6 +27,7 @@ void MapGenerator::generate_map(const std::string& file_path, Map* map) {
     size_t y_pos = object["y_position"].as<std::size_t>();
     map->put(y_pos, x_pos, id);
   }
+  return map;
 }
 
 void MapGenerator::generate_yamlfile(const std::string& file_path, Map* map) {
@@ -38,7 +42,7 @@ void MapGenerator::generate_yamlfile(const std::string& file_path, Map* map) {
 
   for (size_t row = 0; row < map->row_count(); row++) {
     for (size_t column = 0; column < map->column_count(); column++) {
-      Celd* celd = map->at(row, column);
+      Cell* celd = map->at(row, column);
       if (celd != NULL) {
         out << YAML::BeginMap;
         out << YAML::Key << "id";

@@ -3,24 +3,24 @@
 
 #include <QtCore/QMimeData>
 
-#include "../model/include/celd.h"
+#include "../model/include/cell.h"
 #include "celd_view.h"
 
 class CellMimeData : public QMimeData {
  private:
-  Celd* cell_source;
+  Cell* cell_source;
 
  public:
-  CellMimeData(Celd* cell_source);
+  CellMimeData(Cell* cell_source);
 
-  Celd* getcell_source() const;
+  Cell* getcell_source() const;
 
   ~CellMimeData();
 };
 
-CellMimeData::CellMimeData(Celd* cell_source) : cell_source(cell_source) {}
+CellMimeData::CellMimeData(Cell* cell_source) : cell_source(cell_source) {}
 
-Celd* CellMimeData::getcell_source() const { return this->cell_source; }
+Cell* CellMimeData::getcell_source() const { return this->cell_source; }
 
 CellMimeData::~CellMimeData() {}
 

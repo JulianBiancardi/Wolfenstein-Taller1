@@ -15,7 +15,7 @@ class OptionsContainer : public QWidget {
   Q_OBJECT
 
  public:
-  OptionsContainer(QWidget* parent = nullptr, const int columns = 2,
+  OptionsContainer(QWidget* parent = nullptr, int columns = 2,
                    ItemsId* ids = nullptr,
                    OptionSelected* current_option = nullptr);
   ~OptionsContainer();

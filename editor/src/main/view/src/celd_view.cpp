@@ -5,16 +5,16 @@
 #include <QtGui/QDrag>
 
 #include "cell_mimedata.h"
-#include "iostream"  //TODO delete
 #include "mapgrid.h"
 #include "moc_celd_view.cpp"
 
-CeldView::CeldView(QWidget* parent, Celd* celd, ItemsId* ids,
+CeldView::CeldView(QWidget* parent, Cell* celd, ItemsId* ids,
                    OptionSelected* current_option)
     : QWidget(parent), celd(celd), ids(ids), current_option(current_option) {
   this->ui.setupUi(this);
   this->celd->add_observer(this);
   this->setAcceptDrops(true);  // For drag and drop
+  update();
 }
 
 CeldView::~CeldView() {}
@@ -43,7 +43,6 @@ void CeldView::mouseMoveEvent(QMouseEvent* event) {
     return;
   }
   // Preparate drag and drop system
-  std::cout << "Star drag and drop" << std::endl;
   QPixmap pixmap(ids->get_icon_path(this->celd->get_id()));
   QDrag* drag = new QDrag(this);
 
@@ -72,7 +71,7 @@ void CeldView::dragEnterEvent(QDragEnterEvent* event) {
 }
 
 void CeldView::dropEvent(QDropEvent* event) {
-  Celd* cell_source = ((CellMimeData*)event->mimeData())->getcell_source();
+  Cell* cell_source = ((CellMimeData*)event->mimeData())->getcell_source();
   size_t id_source = cell_source->get_id();
   cell_source->clear();
   this->celd->set_id(id_source);
