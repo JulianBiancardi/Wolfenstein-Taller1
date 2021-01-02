@@ -23,10 +23,7 @@ int main() {
 
 // TODO Move to MapReader
 Map load_map() {
-  YAML::Node yaml_file = YAML::LoadFile(
-      "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/editor/src/main/build/"
-      "new_map.yaml");
-
+  YAML::Node yaml_file = YAML::LoadFile("../../editor/src/main/build/new_map.yaml");
   size_t width = yaml_file["width"].as<int>();
   size_t height = yaml_file["height"].as<int>();
   Matrix<int> map_data(height, width, 0);
