@@ -5,8 +5,8 @@
 //#include "../../ray_casting.h"
 #include "collisions/circle_mask.h"
 #include "guns/gun.h"
+#include "objects/object.h"
 #include "randomizer.h"
-#include "sprites/sprite.h"
 
 class Player;
 
