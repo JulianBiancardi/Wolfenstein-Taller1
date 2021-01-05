@@ -3,7 +3,7 @@
 
 #include "../../../common/src/main/utils/ray.h"
 #include "caster.h"
-#include "events/*.h"
+#include "events/event.h"
 #include "map.h"
 #include "sdl/window.h"
 

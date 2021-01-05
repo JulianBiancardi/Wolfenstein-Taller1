@@ -5,7 +5,7 @@
 
 class MovementEvent : private Event {
  private:
-  public:
+ public:
   MovementEvent();
   ~MovementEvent();
 
@@ -16,6 +16,6 @@ MovementEvent::MovementEvent(/* args */) {}
 
 MovementEvent::~MovementEvent() {}
 
-void operator()();
+void MovementEvent::operator()() {}
 
 #endif

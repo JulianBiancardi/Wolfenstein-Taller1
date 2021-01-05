@@ -32,7 +32,7 @@ class Player : public Moveable, public Shooter {
   void receive_damage(int amount);
   void add_gun(const Gun gun);
   bool has_gun(const Gun gun);
-  //bool add_gun_if_hasnt(Gun gun);
+  // bool add_gun_if_hasnt(Gun gun);
   void add_bullets(int amount);
   void add_points(int amount);
   void add_health(int amount);

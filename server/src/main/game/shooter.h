@@ -22,8 +22,8 @@ class Shooter {
   Shooter(Point origin, double angle);
   ~Shooter() {}
   //  void shoot_checker();
-  void shoot(Gun &gun);
-  virtual void shoot_player(Player &shot_player, Gun &gun);
+  void shoot(Gun& gun, int& bullets, Map& map);
+  virtual void shoot_player(Player& shot_player, Gun& gun);
 };
 
 #endif  // WOLFENSTEIN_TALLER1_SRC_MAIN_SERVER_SHOOTER_H_
