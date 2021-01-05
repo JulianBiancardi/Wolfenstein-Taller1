@@ -4,11 +4,13 @@
 #include "../map.h"
 #include "player.h"
 #include "sprites/sprite.h"
+#include "sprites/items/items.h"
 
 class CollisionChecker {
  private:
   Map &map;
-  std::vector<std::reference_wrapper<Player>> players;
+  std::unordered_map<int, Player> &players;
+  std::unordered_map<int, Items *> &items;
   std::vector<Sprite> &sprites;
   Moveable *ignored;
 
@@ -18,11 +20,13 @@ class CollisionChecker {
 
  public:
   CollisionChecker(Map &map,
-                   const std::vector<std::reference_wrapper<Player>> &players,
+                   std::unordered_map<int, Player> &players,
+                   std::unordered_map<int, Items *> &items,
                    std::vector<Sprite> &sprites);
   ~CollisionChecker() {}
 
   bool can_move(Point where, Moveable &who);
+  Items *grabbed_item(Player &by_whom);
 };
 
 #endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_COLLISION_CHECKER_H_

@@ -2,7 +2,6 @@
 
 #include <stdexcept>  //Runtime error
 
-#include "iostream"  //TODO Delete
 // Incluyo el archivo creado por el moc para que cmake lo detecte y compile
 #include "moc_option.cpp"
 
@@ -14,19 +13,17 @@ Option::Option(QWidget* parent, size_t id, const QString& tooltip,
     // TODO exception
     throw std::runtime_error("Error to create Option");
   } else {
-    this->ui.setupUi(this);
+    ui.setupUi(this);
     QPixmap pixmap(icon_path);
     QIcon ButtonIcon(pixmap);
-    this->ui.OptionButton->setIcon(ButtonIcon);
-    this->ui.OptionButton->setToolTip(tooltip);
+    ui.OptionButton->setIcon(ButtonIcon);
+    ui.OptionButton->setToolTip(tooltip);
   }
 }
 
 Option::~Option() {}
 
-QPushButton* Option::getButton() { return this->ui.OptionButton; }
+QPushButton* Option::getButton() { return ui.OptionButton; }
 
-void Option::on_OptionButton_clicked() {
-  this->current_option->set_current_id(this->id);
-}
+void Option::on_OptionButton_clicked() { current_option->set_current_id(id); }
 //-----------------------------------------------------------------------------

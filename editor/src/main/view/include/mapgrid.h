@@ -18,14 +18,24 @@ class MapGrid : public QWidget {
   ItemsId* ids;
   OptionSelected* current_option;
 
+  void _remove_cells();
+  void resize();
+
  public:
-  MapGrid(QWidget* parent = nullptr, Map* map = nullptr, ItemsId* ids = nullptr,
+  MapGrid(QWidget* parent = nullptr, ItemsId* ids = nullptr,
           OptionSelected* current_option = nullptr);
   ~MapGrid();
 
   void clear();
   // Resize the map size
-  void resize(size_t new_rows, size_t new_columns);
+  void insert_rowabove();
+  void insert_rowbelow();
+  void insert_columnright();
+  void insert_columnleft();
+  void remove_rowabove();
+  void remove_rowbelow();
+  void remove_columnright();
+  void remove_columnleft();
 
   void open_map(const std::string& file_path);
   void generate_yamlfile(const std::string& file_path);

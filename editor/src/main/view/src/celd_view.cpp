@@ -1,68 +1,56 @@
 #include "celd_view.h"
 
-#include <QtCore/QMimeData>  //Data for drag and drop system
+#include <QtCore/QMimeData>
 #include <QtCore/QString>
-#include <QtGui/QDrag>  //Drag system
+#include <QtGui/QDrag>
 
-#include "iostream"  //TODO delete
+#include "cell_mimedata.h"
 #include "mapgrid.h"
 #include "moc_celd_view.cpp"
 
-CeldView::CeldView(QWidget* parent, Celd* celd, ItemsId* ids,
+CeldView::CeldView(QWidget* parent, Cell* celd, ItemsId* ids,
                    OptionSelected* current_option)
     : QWidget(parent), celd(celd), ids(ids), current_option(current_option) {
   this->ui.setupUi(this);
   this->celd->add_observer(this);
+  this->setAcceptDrops(true);  // For drag and drop
+  update();
 }
 
 CeldView::~CeldView() {}
 
 // Controller
 void CeldView::on_CeldButton_clicked() {
-  // Update celd info
   this->celd->set_id(this->current_option->get_current_id());
 }
 
-// Controller
-void CeldView::on_CeldButton_pressed() {
-  /*
-  if (this->celd->get_id() == 0) {
+void CeldView::mousePressEvent(QMouseEvent* event) {
+  if (this->celd->is_empty()) {
+    return;
+  }
+  if (event->button() == Qt::LeftButton) {
+    this->celd->set_id(this->current_option->get_current_id());
+  } else if (event->button() == Qt::RightButton) {
+    this->celd->clear();
+  }
+}
+
+void CeldView::mouseMoveEvent(QMouseEvent* event) {
+  if (this->celd->is_empty()) {
+    return;
+  }
+  if (!(event->buttons() & Qt::LeftButton)) {
     return;
   }
   // Preparate drag and drop system
-  std::cout << "Star drag and drop" << std::endl;
   QPixmap pixmap(ids->get_icon_path(this->celd->get_id()));
   QDrag* drag = new QDrag(this);
-  QMimeData* mimeData = new QMimeData;
 
+  CellMimeData* mimeData = new CellMimeData(this->celd);
   drag->setMimeData(mimeData);
   drag->setPixmap(pixmap);
-
-  mimeData->setText("1");
+  drag->setHotSpot(QPoint(this->width() / 2, this->height() / 2));
   Qt::DropAction dropAction = drag->exec();
-  // Qt::DropAction dropAction = drag->exec();
-  // drag->setHotSpot(event->pos() - this->pos());*/
-}
-
-void CeldView::mousePressEvent(QMouseEvent* event) {
-  /*
-  if (this->celd->get_id() == 0) {
-    return;
-  }
-  /*
-    if (event->button() == Qt::LeftButton) {
-    }
-
-  std::cout << "Star drag and drop" << std::endl;
-  QPixmap pixmap(ids->get_icon_path(this->celd->get_id()));
-  QDrag* drag = new QDrag(this);
-  QMimeData* mimeData = new QMimeData;
-
-  drag->setMimeData(mimeData);
-  drag->setPixmap(pixmap);
-
-  mimeData->setText("1");
-  Qt::DropAction dropAction = drag->exec();*/
 }
 
 void CeldView::update() {
@@ -75,16 +63,16 @@ void CeldView::update() {
 }
 
 void CeldView::dragEnterEvent(QDragEnterEvent* event) {
-  if (event->mimeData()->hasText()) {
-    event->acceptProposedAction();
+  // Not accept the drag if the celd is not empty
+  if (!this->celd->is_empty()) {
+    return;
   }
   event->acceptProposedAction();
 }
 
-void CeldView::dropEvent(QDragEnterEvent* event) {
-  std::cout << "Drop event" << std::endl;
-
-  this->celd->set_id(event->mimeData()->text().toInt());
-
-  // event->acceptProposedAction();
+void CeldView::dropEvent(QDropEvent* event) {
+  Cell* cell_source = ((CellMimeData*)event->mimeData())->getcell_source();
+  size_t id_source = cell_source->get_id();
+  cell_source->clear();
+  this->celd->set_id(id_source);
 }

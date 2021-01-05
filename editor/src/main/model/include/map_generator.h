@@ -10,7 +10,7 @@ class MapGenerator {
  public:
   MapGenerator();
 
-  void generate_map(const std::string& file_path, Map* map);
+  Map* generate_map(const std::string& file_path);
   void generate_yamlfile(const std::string& file_path, Map* map);
 
   ~MapGenerator();

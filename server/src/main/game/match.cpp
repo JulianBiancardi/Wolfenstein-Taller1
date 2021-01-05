@@ -1,10 +1,13 @@
 #include "match.h"
 
-Match::Match(Map &map) : map(map), id_count(1) {}
+Match::Match(Map &map) : map(map), players_id_count(1) {}
+
+Match::~Match() {}
 
 void Match::add_player(Point where, double initial_angle) {
-  players.insert({id_count, Player(where, initial_angle)});
-  id_count++;
+  players.insert({players_id_count,
+                  Player(where, initial_angle, players_id_count)});
+  players_id_count++;
 }
 
 void Match::enqueue_event(const Event &event) {
@@ -15,18 +18,13 @@ const Event Match::dequeue_result() {
   return result_events.dequeue();
 }
 
-std::vector<std::reference_wrapper<Player>>
-Match::get_players_as_vector() {
-  std::vector<std::reference_wrapper<Player>> vector;
-  for (auto &player : players)
-    vector.push_back(player.second);
-  return vector;
-}
-
 void Match::start() {
   bool keep_running = true;
   EventHandlerBuilder builder;
-  CollisionChecker checker(map, get_players_as_vector(), sprites);
+  CollisionChecker checker(map,
+                           players,
+                           map.get_items(),
+                           map.get_sprites());
 
   while (keep_running) {
     const Event next_event = events_to_process.dequeue();
@@ -43,11 +41,10 @@ void Match::enqueue_result(const Event &event) {
   result_events.enqueue(event);
 }
 
-int Match::get_player_id(Player &player) {
-  int id = -1;
-  for (auto const &element : players) {
-    if (&element.second == &player)
-      id = element.first;
-  }
-  return id;
+Map &Match::get_map() {
+  return map;
+}
+
+Player &Match::get_player(int id) {
+  return players.at(id);
 }

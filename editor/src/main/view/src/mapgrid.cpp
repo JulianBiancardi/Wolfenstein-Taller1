@@ -8,55 +8,79 @@
 #define INVALID_ID -1
 
 //-----------------------------------------------------------------------------
-MapGrid::MapGrid(QWidget* parent, Map* map, ItemsId* ids,
-                 OptionSelected* current_option)
-    : QWidget(parent), map(map), ids(ids), current_option(current_option) {
+MapGrid::MapGrid(QWidget* parent, ItemsId* ids, OptionSelected* current_option)
+    : QWidget(parent), ids(ids), current_option(current_option) {
   this->ui.setupUi(this);
+  map = new Map();
+  this->ui.scrollContent->setLayout(new QGridLayout());
   generateCelds();
 }
 
-MapGrid::~MapGrid() {}
-
 void MapGrid::generateCelds() {
-  QGridLayout* gridlayout = new QGridLayout();
-  gridlayout->setSpacing(0);
-  for (size_t row = 0; row < this->map->row_count(); row++) {
-    for (size_t column = 0; column < this->map->column_count(); column++) {
-      CeldView* celd_view = new CeldView(this, this->map->at(row, column),
-                                         this->ids, this->current_option);
+  QGridLayout* gridlayout = (QGridLayout*)ui.scrollContent->layout();
+  for (size_t row = 0; row < map->row_count(); row++) {
+    for (size_t column = 0; column < map->column_count(); column++) {
+      CeldView* celd_view = new CeldView(this, map->at(row, column), this->ids,
+                                         this->current_option);
       gridlayout->addWidget(celd_view, row, column);
     }
   }
-  this->ui.scrollContent->setLayout(gridlayout);
 }
 
-void MapGrid::clear() { this->map->clear_all(); }
-/*
-void MapGrid::resize(size_t new_rows, size_t new_columns) {
-  if (this->rows == new_rows && this->columns == new_columns) {
-    return;
-  }
+void MapGrid::clear() { map->clear_all(); }
 
-  QGridLayout* gridlayout = ((QGridLayout*)this->ui.scrollContent->layout());
-  QGridLayout* newgridlayout = new QGridLayout();
-  newgridlayout->setSpacing(0);
-  for (size_t row = 0; row < new_rows; row++) {
-    for (size_t column = 0; column < new_columns; column++) {
-      QWidget* widget = gridlayout->itemAtPosition(row, column)->widget();
-      if (widget != nullptr) {
-        newgridlayout->addWidget(widget, row, column);
-      } else {
-        CeldView* celd = new CeldView(this, this->ids, this->current_option);
-        newgridlayout->addWidget(celd, row, column);
-      }
+void MapGrid::insert_rowabove() {
+  map->insert_rowabove();
+  resize();
+}
+void MapGrid::insert_rowbelow() {
+  map->insert_rowbelow();
+  resize();
+}
+void MapGrid::insert_columnright() {
+  map->insert_columnright();
+  resize();
+}
+void MapGrid::insert_columnleft() {
+  map->insert_columnleft();
+  resize();
+}
+void MapGrid::remove_rowabove() {
+  map->remove_rowabove();
+  resize();
+}
+void MapGrid::remove_rowbelow() {
+  map->remove_rowbelow();
+  resize();
+}
+void MapGrid::remove_columnleft() {
+  map->remove_columnleft();
+  resize();
+}
+void MapGrid::remove_columnright() {
+  map->remove_columnright();
+  resize();
+}
+
+void MapGrid::_remove_cells() {
+  QGridLayout* gridlayout = (QGridLayout*)ui.scrollContent->layout();
+  for (size_t row = 0; row < map->row_count(); row++) {
+    for (size_t column = 0; column < map->column_count(); column++) {
+      delete gridlayout->itemAtPosition(row, column);
     }
   }
-  delete (this->ui.scrollContent->layout());
-  this->ui.scrollContent->setLayout(newgridlayout);
-  this->rows = new_rows;
-  this->columns = new_columns;
 }
-*/
+
+void MapGrid::resize() {
+  QGridLayout* gridlayout = (QGridLayout*)this->ui.scrollContent->layout();
+  for (size_t row = 0; row < map->row_count(); row++) {
+    for (size_t column = 0; column < map->column_count(); column++) {
+      CeldView* celd_view = new CeldView(this, map->at(row, column), this->ids,
+                                         this->current_option);
+      gridlayout->addWidget(celd_view, row, column);
+    }
+  }
+}
 
 void MapGrid::open_map(const std::string& file_path) {
   if (file_path.empty()) {
@@ -64,10 +88,14 @@ void MapGrid::open_map(const std::string& file_path) {
   }
 
   MapGenerator map_generator;
-  map_generator.generate_map(file_path, this->map);
+  map = map_generator.generate_map(file_path);
+  map->print();
+  generateCelds();
 }
 
 void MapGrid::generate_yamlfile(const std::string& file_path) {
   MapGenerator file_generator;
-  file_generator.generate_yamlfile(file_path, this->map);
+  file_generator.generate_yamlfile(file_path, map);
 }
+
+MapGrid::~MapGrid() { _remove_cells(); }

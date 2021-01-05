@@ -9,7 +9,7 @@ class EventHandlerBuilder {
  private:
   Player &get_doer(const Event &event,
                    std::unordered_map<int, Player> &players);
-  EventHandler *move_event(Player &doer, Point where);
+  EventHandler *move_event(Player &doer, double x, double y);
 
  public:
   EventHandler *build(const Event &event,
