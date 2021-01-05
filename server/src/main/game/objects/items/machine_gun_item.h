@@ -1,18 +1,18 @@
-#ifndef MEDIC_KIT_H
-#define MEDIC_KIT_H
+#ifndef MACHINE_GUN_ITEM_H
+#define MACHINE_GUN_ITEM_H
 
 #include "item.h"
 
-class MedicKit : public Item {
+class MachineGunItem : public Item {
  public:
-  MedicKit(Point center, int id);
+  MachineGunItem(Point center, int id);
   void use(Player& user) override;
   Item* copy() override;
   bool can_be_used_by(Player& whom) override;
   void remove() override;
 
  private:
-  int health_recovered;
+  static int health_recovered;
 };
 
 #endif
