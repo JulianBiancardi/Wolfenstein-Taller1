@@ -53,3 +53,8 @@ Point Player::next_position_down_left() {
 void Player::set_position(const Point &new_origin) {
   angled_position = Ray(new_origin, angled_position.get_angle());
 }
+
+//
+void Player::set_health(int health) {
+  this->health=health;
+}
