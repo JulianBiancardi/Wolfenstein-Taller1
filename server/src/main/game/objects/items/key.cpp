@@ -1,21 +1,11 @@
 #include "key.h"
 
-Key::Key(Point center, int id) : Items(center, id) {
+Key::Key(Point center, int id) : Item(center, id) {}
 
-}
+void Key::use(Player &user) {}
 
-void Key::use(Player &user) {
+Item *Key::copy() { return new Key(position.get_origin(), id); }
 
-}
+bool Key::can_be_used_by(Player &whom) { return true; }
 
-Items *Key::copy() {
-  return new Key(center, id);
-}
-
-bool Key::can_be_used_by(Player &whom) {
-  return true;
-}
-
-void Key::remove() {
-
-}
+void Key::remove() {}
