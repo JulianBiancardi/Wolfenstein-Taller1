@@ -3,12 +3,11 @@
 #include <sys/types.h>
 
 #include <map>
-#include <vector>
 
 #include "Iobservable.h"
 #include "cell.h"
 
-class Map {
+class Map : public IObservable {
  private:
   size_t rows;
   size_t columns;

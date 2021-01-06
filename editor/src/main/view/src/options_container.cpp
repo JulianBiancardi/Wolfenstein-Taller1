@@ -13,8 +13,6 @@ OptionsContainer::OptionsContainer(QWidget* parent, const int columns,
   addOptions(ids, current_option);
 }
 
-OptionsContainer::~OptionsContainer() {}
-
 void OptionsContainer::addOptions(ItemsId* ids,
                                   OptionSelected* current_option) {
   QGridLayout* gridlayout = new QGridLayout();
@@ -25,7 +23,9 @@ void OptionsContainer::addOptions(ItemsId* ids,
     size_t row = (i - 1) / this->columns;
     size_t column = (i - 1) % this->columns;
     gridlayout->addWidget(option, row, column);
-    this->buttongroup.addButton(option->getButton());
+    buttongroup.addButton(option->getButton());
   }
-  this->ui.scrollAreaWidgetContents->setLayout(gridlayout);
+  ui.scrollAreaWidgetContents->setLayout(gridlayout);
 }
+
+OptionsContainer::~OptionsContainer() {}

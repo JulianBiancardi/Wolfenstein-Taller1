@@ -1,32 +1,21 @@
 #include "mainwindow.h"
 
-#include <QtCore/QDebug>  //TODO Delete
-#include <QtCore/QDir>
-#include <QtCore/QMimeData>  //Data for drag and drop system
-#include <QtWidgets/QFileDialog>
-#include <QtWidgets/QMessageBox>
-
 #include "../model/include/map_generator.h"
 #include "iostream"
-#include "itemsid.h"
 #include "moc_mainwindow.cpp"
-#include "option_selected.h"
-#include "options_container.h"
 
 #define WINDOW_TITLE "Wolfenstein Editor"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
-  ItemsId* ids = new ItemsId();
-  OptionSelected* current_option = new OptionSelected();
-
   ui.setupUi(this);
   setWindowTitle(WINDOW_TITLE);
+  ids = new ItemsId();
+  current_option = new OptionSelected();
   map_grid = new MapGrid(this, ids, current_option);
+  options_container = new OptionsContainer(this, 2, ids, current_option);
   file_manager = new FileManager(map_grid);
   ui.horizontalLayout_2->addWidget(map_grid);
-  ui.horizontalLayout_2->addWidget(
-      new OptionsContainer(this, 2, ids, current_option));
-  setAcceptDrops(true);  // For drag and drop
+  ui.horizontalLayout_2->addWidget(options_container);
 }
 
 void MainWindow::on_actionNew_File_triggered() { file_manager->new_file(); }
@@ -45,23 +34,6 @@ void MainWindow::on_actionExit_triggered() {
 void MainWindow::closeEvent(QCloseEvent* event) {
   file_manager->close();
   event->accept();
-}
-
-void MainWindow::dragEnterEvent(QDragEnterEvent* event) {
-  std::cout << "Drag enter event" << std::endl;
-  event->acceptProposedAction();
-}
-
-void MainWindow::dropEvent(QDropEvent* event) {
-  qDebug() << "dropEvent" << event;
-  const QMimeData* mimeData = event->mimeData();
-
-  if (mimeData->hasUrls()) {
-    QList<QUrl> urlList = mimeData->urls();
-    // extract only the first file
-    QString file_path = urlList.first().toLocalFile();
-    file_manager->open_file(file_path);
-  }
 }
 
 void MainWindow::on_actionInsertRowsAbove_triggered() {
@@ -89,4 +61,10 @@ void MainWindow::on_actionRemoveColumnsRight_triggered() {
   map_grid->remove_columnright();
 }
 
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow() {
+  delete ids;
+  delete current_option;
+  delete map_grid;
+  delete options_container;
+  delete file_manager;
+}

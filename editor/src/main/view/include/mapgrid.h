@@ -4,12 +4,13 @@
 #include <QtWidgets/QWidget>
 #include <string>
 
+#include "../model/include/Iobserver.h"
 #include "../model/include/map.h"
 #include "itemsid.h"
 #include "option_selected.h"
 #include "ui_mapgrid.h"
 
-class MapGrid : public QWidget {
+class MapGrid : public QWidget, public IObserver {
   Q_OBJECT
 
  private:
@@ -26,7 +27,11 @@ class MapGrid : public QWidget {
           OptionSelected* current_option = nullptr);
   ~MapGrid();
 
+  void generateCelds();
   void clear();
+
+  void update() override;
+
   // Resize the map size
   void insert_rowabove();
   void insert_rowbelow();
@@ -39,8 +44,6 @@ class MapGrid : public QWidget {
 
   void open_map(const std::string& file_path);
   void generate_yamlfile(const std::string& file_path);
-
-  void generateCelds();
 };
 
 #endif  // MAPGRID_H

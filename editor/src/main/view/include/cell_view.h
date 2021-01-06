@@ -1,7 +1,6 @@
-#ifndef CELDVIEW_H
-#define CELDVIEW_H
+#ifndef CELLVIEW_H
+#define CELLVIEW_H
 
-#include <QtCore/QDataStream>
 #include <QtGui/QDragEnterEvent>
 #include <QtGui/QDropEvent>
 #include <QtWidgets/QWidget>
@@ -10,14 +9,14 @@
 #include "../model/include/cell.h"
 #include "itemsid.h"
 #include "option_selected.h"
-#include "ui_celdview.h"
+#include "ui_cellview.h"
 
-class CeldView : public QWidget, public IObserver {
+class CellView : public QWidget, public IObserver {
   Q_OBJECT
 
  private:
-  Ui::CeldView ui;
-  Cell* celd;
+  Ui::CellView ui;
+  Cell* cell;
   ItemsId* ids;
   OptionSelected* current_option;
 
@@ -25,9 +24,8 @@ class CeldView : public QWidget, public IObserver {
   void on_CeldButton_clicked();
 
  public:
-  explicit CeldView(QWidget* parent = nullptr, Cell* celd = nullptr,
-                    ItemsId* ids = nullptr,
-                    OptionSelected* current_option = nullptr);
+  CellView(QWidget* parent = nullptr, Cell* cell = nullptr,
+           ItemsId* ids = nullptr, OptionSelected* current_option = nullptr);
 
   void mousePressEvent(QMouseEvent* event);
   void mouseMoveEvent(QMouseEvent* event);
@@ -38,9 +36,9 @@ class CeldView : public QWidget, public IObserver {
   // Evento cuando el drop se realiza en el widget
   void dropEvent(QDropEvent* event);
 
-  ~CeldView();
+  ~CellView();
 
   void update() override;
 };
 
-#endif  // CELDVIEW_H
+#endif  // CELLVIEW_H
