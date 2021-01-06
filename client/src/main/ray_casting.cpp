@@ -72,7 +72,7 @@ Collision RayCasting::horizontal_axis(Map& map, Ray& ray) {
           double distance = Point::distance(origin, collision_point);
           return Collision(map(x, y), collision_point, distance, true);
         }
-      } catch (int FIXME) {
+      } catch (const RangeError e) {
         // TODO Check whether necessary by eliminating and running testing.exe
         Point collision_point(x, y);
         double distance = Point::distance(origin, collision_point);
@@ -93,7 +93,7 @@ Collision RayCasting::horizontal_axis(Map& map, Ray& ray) {
           double distance = Point::distance(origin, collision_point);
           return Collision(map(x, y), collision_point, distance, true);
         }
-      } catch (int FIXME) {
+      } catch (const RangeError e) {
         // TODO Check whether necessary by eliminating and running testing.exe
         Point collision_point(x, y);
         double distance = Point::distance(origin, collision_point);
@@ -122,7 +122,7 @@ Collision RayCasting::vertical_axis(Map& map, Ray& ray) {
           double distance = Point::distance(origin, collision_point);
           return Collision(map(x, y), collision_point, distance, true);
         }
-      } catch (int FIXME) {
+      } catch (const RangeError e) {
         // TODO Check whether necessary by eliminating and running testing.exe
         Point collision_point(x, y);
         double distance = Point::distance(origin, collision_point);
@@ -143,7 +143,7 @@ Collision RayCasting::vertical_axis(Map& map, Ray& ray) {
           double distance = Point::distance(origin, collision_point);
           return Collision(map(x, y), collision_point, distance, true);
         }
-      } catch (int FIXME) {
+      } catch (const RangeError e) {
         // TODO Check whether necessary by eliminating and running testing.exe
         Point collision_point(x, y);
         double distance = Point::distance(origin, collision_point);
@@ -193,7 +193,7 @@ Point first_quad_x(Map& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return x_intersection;
       }
-    } catch (int a) {
+    } catch (const RangeError e) {
       return x_intersection;
     }
 
@@ -219,7 +219,7 @@ Point first_quad_y(Map& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return y_intersection;
       }
-    } catch (int a) {
+    } catch (const RangeError e) {
       return y_intersection;
     }
 
@@ -266,7 +266,7 @@ Point second_quad_x(Map& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return x_intersection;
       }
-    } catch (int FIXME) {
+    } catch (const RangeError e) {
       return x_intersection;
     }
 
@@ -292,7 +292,7 @@ Point second_quad_y(Map& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return y_intersection;
       }
-    } catch (int FIXME) {
+    } catch (const RangeError e) {
       return y_intersection;
     }
 
@@ -340,7 +340,7 @@ Point third_quad_x(Map& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return x_intersection;
       }
-    } catch (int FIXME) {
+    } catch (const RangeError e) {
       return x_intersection;
     }
 
@@ -366,7 +366,7 @@ Point third_quad_y(Map& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return y_intersection;
       }
-    } catch (int FIXME) {
+    } catch (const RangeError e) {
       return y_intersection;
     }
 
@@ -413,7 +413,7 @@ Point forth_quad_x(Map& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return x_intersection;
       }
-    } catch (int FIXME) {
+    } catch (const RangeError e) {
       return x_intersection;
     }
 
@@ -439,7 +439,7 @@ Point forth_quad_y(Map& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return y_intersection;
       }
-    } catch (int FIXME) {
+    } catch (const RangeError e) {
       return y_intersection;
     }
 

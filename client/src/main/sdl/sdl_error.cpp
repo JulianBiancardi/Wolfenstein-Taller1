@@ -12,7 +12,7 @@ SDLError::SDLError(const char* format, ...) noexcept {
 
   ssize_t msg_len = vsnprintf(nullptr, 0, format, args);
   error_msg.resize(msg_len);
-  vsnprintf(&error_msg[0], msg_len, format, args);
+  vsnprintf(&error_msg[0], msg_len, format, args_copy);
 
   va_end(args_copy);
   va_end(args);

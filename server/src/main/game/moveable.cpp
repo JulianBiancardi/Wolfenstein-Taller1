@@ -54,6 +54,8 @@ void Moveable::move_from_current_position_if_can(double direction_angle) {
   }
 }
 
+// TODO return bool if successful, or point of result, to confirm to client his
+// new position or decline it
 void Moveable::move_up() { move_from_current_position_if_can(0); }
 
 void Moveable::move_down() { move_from_current_position_if_can(M_PI); }

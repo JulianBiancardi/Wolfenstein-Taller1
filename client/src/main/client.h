@@ -3,6 +3,7 @@
 
 #include "../../../common/src/main/utils/ray.h"
 #include "caster.h"
+#include "events/event.h"
 #include "map.h"
 #include "sdl/window.h"
 
@@ -12,6 +13,7 @@ class Client {
   Window window;
   Ray player_ray;
   Caster caster;
+  std::vector<Event> events;
   bool is_running;
 
   void handle_events();  // handle any user events
