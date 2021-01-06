@@ -5,6 +5,9 @@
 #include "../../config_loader.h"
 #include "../player.h"
 
+class Shooter;
+class Map; //borrar
+
 class Gun {
  public:
   Gun();
