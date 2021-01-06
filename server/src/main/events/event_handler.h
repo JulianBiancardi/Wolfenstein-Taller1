@@ -2,7 +2,7 @@
 #define WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_EVENTS_EVENT_HANDLER_H_
 
 #include "../game/collision_checker.h"
-#include "../../../../common/src/main/events/event.h"
+#include "../../../../common/src/main/events/event_info.h"
 
 class Match;
 
