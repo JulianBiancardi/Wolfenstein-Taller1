@@ -21,7 +21,7 @@ include_directories(${PROJECT_SOURCE_DIR}/model/include)
 qt5_wrap_ui(UIS_HEADERS
         view/ui/option.ui
         view/ui/options_container.ui
-        view/ui/celdview.ui
+        view/ui/cellview.ui
         view/ui/mapgrid.ui
         view/ui/mainwindow.ui
 )
@@ -35,7 +35,7 @@ set(CMAKE_AUTOMOC on)
 
 add_executable(app
   view/src/file_manager.cpp
-  view/src/celd_view.cpp
+  view/src/cell_view.cpp
   view/src/mapgrid.cpp  
   view/src/option.cpp
   view/src/options_container.cpp

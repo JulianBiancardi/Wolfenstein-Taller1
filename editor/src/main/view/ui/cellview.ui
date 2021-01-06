@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CeldView</class>
- <widget class="QWidget" name="CeldView">
+ <class>CellView</class>
+ <widget class="QWidget" name="CellView">
   <property name="geometry">
    <rect>
     <x>0</x>

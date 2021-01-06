@@ -4,7 +4,6 @@
 #include <QtCore/QMimeData>
 
 #include "../model/include/cell.h"
-#include "celd_view.h"
 
 class CellMimeData : public QMimeData {
  private:

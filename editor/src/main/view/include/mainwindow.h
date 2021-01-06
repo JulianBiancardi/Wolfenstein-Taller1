@@ -1,12 +1,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QtGui/QDragEnterEvent>
-#include <QtGui/QDropEvent>
+#include <QtGui/QCloseEvent>
 #include <QtWidgets/QMainWindow>
 
 #include "file_manager.h"
+#include "itemsid.h"
 #include "mapgrid.h"
+#include "option_selected.h"
+#include "options_container.h"
 #include "ui_mainwindow.h"
 
 class MainWindow : public QMainWindow {
@@ -14,18 +16,14 @@ class MainWindow : public QMainWindow {
 
  private:
   Ui::MainWindow ui;
+  ItemsId* ids;
+  OptionSelected* current_option;
   MapGrid* map_grid;
+  OptionsContainer* options_container;
   FileManager* file_manager;
 
  public:
   MainWindow(QWidget* parent = nullptr);
-
-  // this event is called when the mouse enters the widgets area during a
-  // drag/drop operation
-  void dragEnterEvent(QDragEnterEvent* event);
-
-  // this event is called when the drop operation is initiated at the widget
-  void dropEvent(QDropEvent* event);
 
   ~MainWindow();
 

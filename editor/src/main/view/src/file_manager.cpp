@@ -102,6 +102,8 @@ void FileManager::open() {
 void FileManager::close() {
   if (!this->is_saved) {
     no_saved_message();
+  } else {
+    save();
   }
 }
 

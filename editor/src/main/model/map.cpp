@@ -64,6 +64,7 @@ void Map::insert_rowabove() {
     matrix[offset_row][column] = new Cell();
   }
   rows++;
+  notify();
 }
 
 void Map::insert_rowbelow() {
@@ -73,6 +74,7 @@ void Map::insert_rowbelow() {
     matrix[new_row][column] = new Cell();
   }
   rows++;
+  notify();
 }
 
 void Map::insert_columnleft() {
@@ -82,6 +84,7 @@ void Map::insert_columnleft() {
     it->second[offset_column] = new Cell();
   }
   columns++;
+  notify();
 }
 
 void Map::insert_columnright() {
@@ -92,6 +95,7 @@ void Map::insert_columnright() {
     it->second[new_column] = new Cell();
   }
   columns++;
+  notify();
 }
 
 void Map::remove_rowabove() {
@@ -105,6 +109,7 @@ void Map::remove_rowabove() {
   matrix.erase(offset_row);
   offset_row++;
   rows--;
+  notify();
 }
 
 void Map::remove_rowbelow() {
@@ -118,6 +123,7 @@ void Map::remove_rowbelow() {
   }
   matrix.erase(last_row);
   rows--;
+  notify();
 }
 
 void Map::remove_columnright() {
@@ -130,6 +136,7 @@ void Map::remove_columnright() {
   }
   offset_column++;
   columns--;
+  notify();
 }
 
 void Map::remove_columnleft() {
@@ -142,6 +149,7 @@ void Map::remove_columnleft() {
     delete it->second[last_column];
   }
   columns--;
+  notify();
 }
 
 void Map::print() {
