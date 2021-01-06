@@ -1,11 +1,9 @@
-#ifndef WOLFENSTEIN_TALLER1_DAMAGABLE_H
-#define WOLFENSTEIN_TALLER1_DAMAGABLE_H
-
+#ifndef DAMAGABLE_H
+#define DAMAGABLE_H
 
 class Damagable {
-    public:
-        virtual void receive_damage(int amount) = 0;
+ public:
+  virtual void receive_damage(int amount) = 0;
 };
 
-
-#endif //WOLFENSTEIN_TALLER1_DAMAGABLE_H
+#endif
