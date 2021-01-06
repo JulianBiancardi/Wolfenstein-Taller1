@@ -1,5 +1,5 @@
-#ifndef WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_IDENTIFIABLE_H_
-#define WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_IDENTIFIABLE_H_
+#ifndef IDENTIFIABLE_H
+#define IDENTIFIABLE_H
 
 class Identifiable {
  protected:
@@ -11,4 +11,4 @@ class Identifiable {
   int get_id() { return id; }
 };
 
-#endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_IDENTIFIABLE_H_
+#endif
