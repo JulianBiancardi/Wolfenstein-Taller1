@@ -4,36 +4,36 @@
 #define WALL 1  // TODO Remove this and ask in Config
 
 #include <functional>
+#include <unordered_map>
 #include <vector>
 
 #include "../../../../common/src/main/utils/matrix.h"
 #include "../../../../common/src/main/utils/point.h"
 #include "game/moveable.h"
+#include "game/objects/items/blood.h"
+#include "game/objects/items/item.h"
+#include "game/objects/items/medic_kit.h"
+#include "game/objects/object.h"
 #include "game/player.h"
-#include "game/sprites/sprite.h"
-#include "game/sprites/items/items.h"
-#include "game/sprites/items/medic_kit.h"
-#include "game/sprites/items/blood.h"
-#include <unordered_map>
 
 class Map {
  private:
   Matrix<int> map_matrix;
-  std::unordered_map<int, Items *> items;
+  std::unordered_map<int, Item*> items;
   int items_id_count;
-  std::vector<Sprite> sprites;
+  std::vector<Object> objects;
 
  public:
-  Map(Matrix<int> &map_matrix);
-  Map(Map &other);
+  Map(Matrix<int>& map_matrix);
+  Map(Map& other);
   ~Map();
 
   // TODO One method for each item
-  void add_medic_kit(const Point &where);
-  void add_blood(const Point &where);
+  void add_medic_kit(const Point& where);
+  void add_blood(const Point& where);
 
-  std::unordered_map<int, Items *> &get_items();
-  std::vector<Sprite> &get_sprites();
+  std::unordered_map<int, Item*>& get_items();
+  std::vector<Object>& get_objects();
   bool is_wall(size_t x, size_t y);
   int operator()(size_t x, size_t y);
 };
