@@ -29,7 +29,10 @@ double Point::distance_from(const Point &other) {
   return Point::distance(*this, other);
 }
 
-// Calculates the angle of the vector formed by the two points
 double Point::angle_to(const Point &other) {
-  return atan2(other.y - y, other.x - x);
+  double angle = atan2(other.y - y, other.x - x);
+  if (angle < 0) {
+    return angle + 2 * M_PI;
+  }
+  return angle;
 }
