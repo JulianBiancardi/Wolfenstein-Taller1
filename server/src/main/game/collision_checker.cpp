@@ -52,8 +52,9 @@ bool CollisionChecker::can_move(Point& where, Moveable& who) {
 }
 
 Item* CollisionChecker::grabbed_item(Player& by_whom) {
+  Point player_position(by_whom.get_position());
   for (auto& item : items) {
-    if (item.second->occupies(by_whom.get_position()) &&
+    if (item.second->occupies(player_position) &&
         item.second->can_be_used_by(by_whom)) {
       return item.second;
     }
