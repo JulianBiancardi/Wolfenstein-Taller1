@@ -8,10 +8,8 @@
 
 class Moveable : public Object, public Identifiable {
  private:
-  Ray angled_position;
   /*  Map &map;
     int pace;*/
-  Circle_mask mask;
 
   /*  void move_from_current_position_if_can(double direction_angle);
     bool is_map_free_in_next_position(Point next_position);
@@ -20,8 +18,9 @@ class Moveable : public Object, public Identifiable {
 
  public:
   Moveable(Point origin, double angle, int id);
+  Moveable(Ray position, int id);
   Moveable(double x, double y, double angle, int id);
-  Moveable(const Moveable &other);
+  Moveable(const Moveable &other) = delete;
   ~Moveable() {}
 
   Point collision_mask_bound(const Point &next_position);
@@ -33,10 +32,7 @@ class Moveable : public Object, public Identifiable {
     void move_up_left();
     void move_down_right();
     void move_down_left();*/
-  bool occupies(Point where);
   bool operator!=(const Moveable &other) const;
-  Point get_position() { return angled_position.get_origin(); };
-  Ray get_angled_position() const { return angled_position; };
   void set_position(const Point &new_origin);
 };
 

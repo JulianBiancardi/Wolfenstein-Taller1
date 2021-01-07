@@ -18,6 +18,8 @@ Player::Player(double x, double y, double angle, int id)
   bullets = ConfigLoader::player_bullets;
 }
 
+void Player::shoot(Map& map) {}
+
 /*void Player::shoot_player(Player &shot_player, Gun &gun) {
 //  shoot_checker();
   int damage_got = gun.shoot(bullets);

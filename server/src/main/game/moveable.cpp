@@ -1,30 +1,34 @@
 #include "moveable.h"
 
 Moveable::Moveable(Point origin, double angle, int id)
-    : angled_position(origin, angle),
-      mask(5, angled_position.get_ref_origin()),
-      Identifiable(id) {} // TODO Use config file
+    : Identifiable(id),
+      Object(origin, angle, new Circle_mask(1, position.get_ref_origin())) {}
+// FIXME This will break since I'm passing a reference to something not yet
+// created: position.get_ref_origin(). Position is from Object.
+// TODO Use config file*/
 
-Moveable::Moveable(double x, double y, double angle, int id)
-    : angled_position(x, y, angle),
-      mask(5, angled_position.get_ref_origin()),
-      Identifiable(id) {} // TODO Use config file
+Moveable::Moveable(Ray position, int id)
+    : Identifiable(id),
+      Object(position, new Circle_mask(1, position.get_ref_origin())) {}
 
+/*
 Moveable::Moveable(const Moveable &other)
-    : angled_position(other.angled_position),
+    : position(other.angled_position),
       mask(other.mask.get_radio(), angled_position.get_ref_origin()),
-      Identifiable(other.id) {} // Probably should not copy id
+      Identifiable(other.id) {}  // Probably should not copy id
+*/
 
 Point Moveable::collision_mask_bound(const Point &next_position) {
-  double angle = angled_position.get_origin().angle_to(next_position);
+  double angle = position.get_origin().angle_to(next_position);
 
-  double front_x = next_position.getX() + cos(angle) * mask.get_radio();
-  double front_y = next_position.getY() + sin(angle) * mask.get_radio();
+  double front_x =
+      next_position.getX() + cos(angle) * ((Circle_mask *)mask)->get_radio();
+  double front_y =
+      next_position.getY() + sin(angle) * ((Circle_mask *)mask)->get_radio();
 
   return Point(front_x, front_y);
 }
 
-bool Moveable::occupies(Point where) { return mask.occupies(where); }
 /*
 bool Moveable::is_map_free_in_next_position(Point next_position) {
   return map.is_free(next_position, *this);
@@ -76,12 +80,13 @@ void Moveable::move_down_right() {
 
 void Moveable::move_down_left() {
   move_from_current_position_if_can(3 * M_PI / 4);
+}
+
+// Change position in Object, not from Moveable.
+void Moveable::set_position(const Point &new_origin) {
+  angled_position = Ray(new_origin, angled_position.get_angle());
 }*/
 
 bool Moveable::operator!=(const Moveable &other) const {
   return (this != &other);
-}
-
-void Moveable::set_position(const Point &new_origin) {
-  angled_position = Ray(new_origin, angled_position.get_angle());
 }

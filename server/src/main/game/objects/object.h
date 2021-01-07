@@ -9,10 +9,13 @@ class Object {
   Ray position;
   Mask* mask;
   Object(Point position, double angle, Mask* mask);
+  Object(Ray position, Mask* mask);
 
  public:
   ~Object();
-  bool occupies(Point where);
+  bool occupies(Point& where);
+  Point get_position();
+  double get_angle();
 };
 
 #endif

@@ -26,7 +26,7 @@ class Player : public Moveable {
   Player(double x, double y, double angle, int id);
   ~Player() {}
 
-  void shoot(Gun& gun, Map& map);
+  void shoot(Map& map);
   // void shoot_checker(double direction_angle);
   // void shoot_player(Player& shot_player, Gun& gun) override;
   bool has_bullets(int amount);
