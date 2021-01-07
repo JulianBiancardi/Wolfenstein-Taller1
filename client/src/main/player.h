@@ -2,6 +2,7 @@
 #define WOLFENSTEIN_TALLER1_PLAYER_H
 
 #include "../../../common/src/main/utils/ray.h"
+
 class Player {
  private:
   Ray angled_position;
@@ -35,4 +36,4 @@ class Player {
   void set_position(const Point &new_origin);
 };
 
-#endif //WOLFENSTEIN_TALLER1_PLAYER_H
+#endif  // WOLFENSTEIN_TALLER1_PLAYER_H

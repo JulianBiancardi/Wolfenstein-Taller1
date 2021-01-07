@@ -2,9 +2,9 @@
 
 #include <algorithm>
 
+#include "../../../common/src/main/casting/ray_casting.h"
 #include "../../../common/src/main/utils/point.h"  // TODO Delete if not used in the file
 #include "../../../common/src/main/utils/rectangle.h"
-#include "ray_casting.h"
 #include "sdl/image.h"
 
 #define UNIT 5
