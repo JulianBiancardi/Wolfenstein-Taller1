@@ -1,12 +1,11 @@
 #ifndef MAP_H
 #define MAP_H
 
-#define WALL 1  // TODO Remove this and ask in Config
-
 #include <functional>
 #include <unordered_map>
 #include <vector>
 
+#include "../../../../common/src/main/utils/base_map.h"
 #include "../../../../common/src/main/utils/matrix.h"
 #include "../../../../common/src/main/utils/point.h"
 #include "game/moveable.h"
@@ -16,16 +15,15 @@
 #include "game/objects/object.h"
 #include "game/player.h"
 
-class Map {
+class Map : public BaseMap {
  private:
-  Matrix<int> map_matrix;
   std::unordered_map<int, Item*> items;
   int items_id_count;
   std::vector<Object> objects;
 
  public:
   Map(Matrix<int>& map_matrix);
-  Map(Map& other);
+  Map(Map& other) = delete;
   ~Map();
 
   // TODO One method for each item
@@ -34,8 +32,6 @@ class Map {
 
   std::unordered_map<int, Item*>& get_items();
   std::vector<Object>& get_objects();
-  bool is_wall(size_t x, size_t y);
-  int operator()(size_t x, size_t y);
 };
 
 #endif

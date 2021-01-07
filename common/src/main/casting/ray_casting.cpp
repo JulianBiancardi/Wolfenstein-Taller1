@@ -6,19 +6,19 @@
 #define CELL_SIZE 64
 #define WALL 1
 
-Point first_quad_x(Map& map, const Point& origin, double tg);
-Point first_quad_y(Map& map, const Point& origin, double tg);
+Point first_quad_x(BaseMap& map, const Point& origin, double tg);
+Point first_quad_y(BaseMap& map, const Point& origin, double tg);
 
-Point second_quad_x(Map& map, const Point& origin, double tg);
-Point second_quad_y(Map& map, const Point& origin, double tg);
+Point second_quad_x(BaseMap& map, const Point& origin, double tg);
+Point second_quad_y(BaseMap& map, const Point& origin, double tg);
 
-Point third_quad_x(Map& map, const Point& origin, double tg);
-Point third_quad_y(Map& map, const Point& origin, double tg);
+Point third_quad_x(BaseMap& map, const Point& origin, double tg);
+Point third_quad_y(BaseMap& map, const Point& origin, double tg);
 
-Point forth_quad_x(Map& map, const Point& origin, double tg);
-Point forth_quad_y(Map& map, const Point& origin, double tg);
+Point forth_quad_x(BaseMap& map, const Point& origin, double tg);
+Point forth_quad_y(BaseMap& map, const Point& origin, double tg);
 
-Collision RayCasting::get_collision(Map& map, Ray& ray) {
+Collision RayCasting::get_collision(BaseMap& map, Ray& ray) {
   double angle = ray.get_angle();
 
   if (angle == 0) {
@@ -55,7 +55,7 @@ double RayCasting::get_scaling_factor(Ray& ray, Ray& player_direction,
   return 1 / distance_to_player_sight;
 }
 
-Collision RayCasting::horizontal_axis(Map& map, Ray& ray) {
+Collision RayCasting::horizontal_axis(BaseMap& map, Ray& ray) {
   Point origin = ray.get_origin();
 
   double dx = std::fmod(origin.getX(), 1);
@@ -105,7 +105,7 @@ Collision RayCasting::horizontal_axis(Map& map, Ray& ray) {
   }
 }
 
-Collision RayCasting::vertical_axis(Map& map, Ray& ray) {
+Collision RayCasting::vertical_axis(BaseMap& map, Ray& ray) {
   Point origin = ray.get_origin();
 
   double dy = std::fmod(origin.getY(), 1);
@@ -155,7 +155,7 @@ Collision RayCasting::vertical_axis(Map& map, Ray& ray) {
   }
 }
 
-Collision RayCasting::first_quad(Map& map, Ray& ray) {
+Collision RayCasting::first_quad(BaseMap& map, Ray& ray) {
   Point origin = ray.get_origin();
 
   // Precalculate tangent to avoid multiple calls.
@@ -176,7 +176,7 @@ Collision RayCasting::first_quad(Map& map, Ray& ray) {
   }
 }
 
-Point first_quad_x(Map& map, const Point& origin, double tg) {
+Point first_quad_x(BaseMap& map, const Point& origin, double tg) {
   // Point coord for first X intersection
   double x;
   double y;
@@ -202,7 +202,7 @@ Point first_quad_x(Map& map, const Point& origin, double tg) {
   }
 }
 
-Point first_quad_y(Map& map, const Point& origin, double tg) {
+Point first_quad_y(BaseMap& map, const Point& origin, double tg) {
   // Point coord for first Y intersection
   double x;
   double y;
@@ -228,7 +228,7 @@ Point first_quad_y(Map& map, const Point& origin, double tg) {
   }
 }
 
-Collision RayCasting::second_quad(Map& map, Ray& ray) {
+Collision RayCasting::second_quad(BaseMap& map, Ray& ray) {
   Point origin = ray.get_origin();
 
   // Precalculate tangent to avoid multiple calls.
@@ -249,7 +249,7 @@ Collision RayCasting::second_quad(Map& map, Ray& ray) {
   }
 }
 
-Point second_quad_x(Map& map, const Point& origin, double tg) {
+Point second_quad_x(BaseMap& map, const Point& origin, double tg) {
   // Point coord for first X intersection
   double x;
   double y;
@@ -275,7 +275,7 @@ Point second_quad_x(Map& map, const Point& origin, double tg) {
   }
 }
 
-Point second_quad_y(Map& map, const Point& origin, double tg) {
+Point second_quad_y(BaseMap& map, const Point& origin, double tg) {
   // Point coord for first Y intersection
   double x;
   double y;
@@ -301,7 +301,7 @@ Point second_quad_y(Map& map, const Point& origin, double tg) {
   }
 }
 
-Collision RayCasting::third_quad(Map& map, Ray& ray) {
+Collision RayCasting::third_quad(BaseMap& map, Ray& ray) {
   Point origin = ray.get_origin();
 
   // Precalculate tangent to avoid multiple calls.
@@ -323,7 +323,7 @@ Collision RayCasting::third_quad(Map& map, Ray& ray) {
   }
 }
 
-Point third_quad_x(Map& map, const Point& origin, double tg) {
+Point third_quad_x(BaseMap& map, const Point& origin, double tg) {
   // Point coord for first X intersection
   double x;
   double y;
@@ -349,7 +349,7 @@ Point third_quad_x(Map& map, const Point& origin, double tg) {
   }
 }
 
-Point third_quad_y(Map& map, const Point& origin, double tg) {
+Point third_quad_y(BaseMap& map, const Point& origin, double tg) {
   // Point coord for first Y intersection
   double x;
   double y;
@@ -375,7 +375,7 @@ Point third_quad_y(Map& map, const Point& origin, double tg) {
   }
 }
 
-Collision RayCasting::forth_quad(Map& map, Ray& ray) {
+Collision RayCasting::forth_quad(BaseMap& map, Ray& ray) {
   Point origin = ray.get_origin();
 
   // Precalculate tangent to avoid multiple calls.
@@ -396,7 +396,7 @@ Collision RayCasting::forth_quad(Map& map, Ray& ray) {
   }
 }
 
-Point forth_quad_x(Map& map, const Point& origin, double tg) {
+Point forth_quad_x(BaseMap& map, const Point& origin, double tg) {
   // Point coord for first X intersection
   double x;
   double y;
@@ -422,7 +422,7 @@ Point forth_quad_x(Map& map, const Point& origin, double tg) {
   }
 }
 
-Point forth_quad_y(Map& map, const Point& origin, double tg) {
+Point forth_quad_y(BaseMap& map, const Point& origin, double tg) {
   // Point coord for first Y intersection
   double x;
   double y;
