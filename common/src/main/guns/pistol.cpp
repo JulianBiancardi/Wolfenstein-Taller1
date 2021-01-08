@@ -1,5 +1,7 @@
 #include "pistol.h"
 
+#include <limits>
+
 Pistol::Pistol() {
   //    bullet_required =
   //    ConfigLoader::get_init_configs().pistol_bullet_required; base_precision
@@ -20,8 +22,10 @@ int Gun::shoot(Player& player, int& current_bullets, Map& map) {
   double wall_distance =
       RayCasting::get_collision(map, bullet).get_distance_from_src();
 
+  Object* closest_obj = nullptr;
+  double closest_obj_dist = std::numeric_limits<double>::infinity();
+
   std::vector<Object> objects = map.get_objects();
-  // TODO Sort objects from closest to farthest, to only hit closest.
   std::vector<Object>::iterator iter;
   for (iter = objects.begin(); iter != objects.end(); iter++) {
     Object& object = *iter;
@@ -29,7 +33,8 @@ int Gun::shoot(Player& player, int& current_bullets, Map& map) {
     double object_distance =
         object.get_position().distance_from(bullet.get_origin());
     // This can be used to limit weapon range
-    if (object_distance >= wall_distance) {
+    if (object_distance >= wall_distance ||
+        object_distance >= closest_obj_dist) {
       continue;
     }
 
@@ -63,6 +68,11 @@ int Gun::shoot(Player& player, int& current_bullets, Map& map) {
     } else {
       hit = bullet_angle >= right_angle || bullet_angle <= left_angle;
     }
-    // TODO We know we hit the object. Proceed with whatever is necessary.
+
+    if (hit) {
+      closest_obj = &object;
+      closest_obj_dist = object_distance;
+    }
   }
+  // TODO closest_obj has the object we hit. Do whatever is necessary.
 }
