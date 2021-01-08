@@ -6,11 +6,12 @@
 #include "../player.h"
 
 class Shooter;
-class Map; //borrar
+class Map;  // borrar
 
 class Gun {
  public:
   Gun();
-  virtual int shoot(Shooter& player_shooting, int& current_bullets, Map& map);
+  virtual int shoot(Player& player_shooting, int& current_bullets,
+                    Map& map) = 0;
 };
 #endif  // WOLFENSTEIN_TALLER1_GUN_H

@@ -4,10 +4,9 @@
 #include <iostream>
 #include <vector>
 
+#include "../../../../common/src/main/guns/gun.h"
 #include "../config_loader.h"
-#include "guns/gun.h"
 #include "moveable.h"
-#include "shooter.h"
 
 class Player : public Moveable {
  private:
@@ -18,7 +17,8 @@ class Player : public Moveable {
   int health;
   int points;
   // std::map<std::string, Gun> guns_bag;
-  std::vector<Gun> guns_bag;
+  // TODO Double check if pointers are needed
+  std::vector<Gun*> guns_bag;
   Gun* active_gun;
 
  public:
@@ -26,14 +26,11 @@ class Player : public Moveable {
   Player(double x, double y, double angle, int id);
   ~Player() {}
 
-  void shoot(Map& map);
-  // void shoot_checker(double direction_angle);
-  // void shoot_player(Player& shot_player, Gun& gun) override;
   bool has_bullets(int amount);
   // void decrease_bullets(int amount);
   void receive_damage(int amount);
-  void add_gun(const Gun gun);
-  bool has_gun(const Gun gun);
+  void add_gun(Gun* gun);
+  bool has_gun(Gun* gun);
   // bool add_gun_if_hasnt(Gun gun);
   void add_bullets(int amount);
   void add_points(int amount);

@@ -2,8 +2,6 @@
 
 #include <cmath>
 
-// Move to Gun if shoot gets delegated
-#include "../../../../common/src/main/casting/ray_casting.h"
 #include "../../../../common/src/main/utils/ray.h"  // TODO Check if not already included
 
 Player::Player(Point origin, double angle, int id)
@@ -22,23 +20,20 @@ Player::Player(double x, double y, double angle, int id)
   bullets = ConfigLoader::player_bullets;
 }
 
-/*void Player::shoot_player(Player &shot_player, Gun &gun) {
-//  shoot_checker();
-  int damage_got = gun.shoot(bullets);
-  shot_player.receive_damage(damage_got);
-}*/
-
 bool Player::has_bullets(int amount) { return (bullets >= amount); }
+
 /*
 void Player::decrease_bullets(int amount) {
   bullets -= amount;
 }
 */
+
 void Player::receive_damage(int amount) { health -= amount; }
 
-void Player::add_gun(const Gun gun) { guns_bag.push_back(gun); }
+void Player::add_gun(Gun* gun) { guns_bag.push_back(gun); }
 
-bool Player::has_gun(const Gun gun) { return false; }
+bool Player::has_gun(Gun* gun) { return false; }
+
 /*
 bool Player::add_gun_if_hasnt(Gun gun) {
   bool found =
@@ -48,6 +43,7 @@ guns_bag.end()); if (!found) { guns_bag.push_back(gun); return true;
   return false;
 }
 */
+
 void Player::add_points(int amount) { points += amount; }
 
 void Player::add_bullets(int amount) {
@@ -65,6 +61,7 @@ void Player::add_health(int amount) {
     health = max_health;
   }
 }
+
 /*
 bool Player::add_health_if_hass_less(int amount, int less_than) {
   if (health < less_than) {
