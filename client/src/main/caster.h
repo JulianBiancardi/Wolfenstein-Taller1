@@ -3,8 +3,8 @@
 
 #include <SDL2/SDL.h>
 
-#include "../../../common/src/main/casting/collision.h"
 #include "../../../common/src/main/utils/ray.h"
+#include "casting/collision.h"
 #include "map.h"
 #include "resource_manager.h"
 #include "sdl/window.h"

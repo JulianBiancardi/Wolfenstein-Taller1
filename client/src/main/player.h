@@ -2,10 +2,11 @@
 #define WOLFENSTEIN_TALLER1_PLAYER_H
 
 #include "../../../common/src/main/utils/ray.h"
+#include "map.h"
 
 class Player {
  private:
-  Ray angled_position;
+  Ray position;
   int pace;
 
   //
@@ -32,8 +33,9 @@ class Player {
   Point next_position_down_right();
   Point next_position_down_left();
 
-  Point get_position() { return angled_position.get_origin(); };
-  void set_position(const Point &new_origin);
+  Point get_position() { return position.get_origin(); };
+  void set_position(const Point& new_origin);
+  void Player::shoot(Map& map);
 };
 
 #endif  // WOLFENSTEIN_TALLER1_PLAYER_H
