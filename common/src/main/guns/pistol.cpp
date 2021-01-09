@@ -1,6 +1,7 @@
 #include "pistol.h"
 
 #include <limits>
+#include <random>
 
 Pistol::Pistol() {
   //    bullet_required =
@@ -17,8 +18,25 @@ int Gun::shoot(Player& player, int& current_bullets, Map& map) {
   return damage_dist(mt);
   // shooter.receive_damage(damage_dist(mt));*/
 
-  double angle = player.get_position().get_angle();
-  Ray bullet = player.get_position();  // TODO Make some probabilistic shot
+  Point bullet_origin = player.get_position().get_origin();
+  double player_angle = player.get_position().get_angle();
+  // TODO Read standard deviation from ConfigLoader or select it here.
+  std::default_random_engine generator;
+  std::normal_distribution<double> bloom(0, 1);
+
+  double bullet_angle;
+  do {
+    bullet_angle = bloom(generator);
+  } while (0.174533 < fabs(bullet_angle));  // Truncate to 20° Spread
+
+  if (bullet_angle > 2 * M_PI) {
+    bullet_angle -= 2 * M_PI;
+  } else if (bullet_angle < 0) {
+    bullet_angle += 2 * M_PI;
+  }
+
+  Ray bullet(player.get_position().get_origin(), bullet_angle);
+
   double wall_distance =
       RayCasting::get_collision(map, bullet).get_distance_from_src();
 
