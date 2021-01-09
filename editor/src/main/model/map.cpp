@@ -21,8 +21,6 @@ Map::Map(size_t rows, size_t columns) : rows(rows), columns(columns) {
   offset_column = 0;
 }
 
-Map& Map::operator=(Map&& other) { return other; }
-
 size_t Map::row_count() const { return rows; }
 
 size_t Map::column_count() const { return columns; }
@@ -126,20 +124,21 @@ void Map::remove_rowbelow() {
   notify();
 }
 
-void Map::remove_columnright() {
+void Map::remove_columnleft() {
   if (columns == 0) {
     return;
   }
   std::map<int, std::map<int, Cell*>>::iterator it;
   for (it = matrix.begin(); it != matrix.end(); it++) {
     delete it->second[offset_column];
+    it->second.erase(offset_column);
   }
   offset_column++;
   columns--;
   notify();
 }
 
-void Map::remove_columnleft() {
+void Map::remove_columnright() {
   if (columns == 0) {
     return;
   }
@@ -147,6 +146,7 @@ void Map::remove_columnleft() {
   std::map<int, std::map<int, Cell*>>::iterator it;
   for (it = matrix.begin(); it != matrix.end(); it++) {
     delete it->second[last_column];
+    it->second.erase(last_column);
   }
   columns--;
   notify();

@@ -5,6 +5,7 @@
 #include <QtGui/QDrag>
 
 #include "cell_mimedata.h"
+#include "iostream"
 #include "mapgrid.h"
 #include "moc_cell_view.cpp"
 
@@ -16,11 +17,11 @@ CellView::CellView(QWidget* parent, Cell* cell, ItemsId* ids,
   }
   ui.setupUi(this);
   cell->add_observer(this);
-  setAcceptDrops(true);  // For drag and drop
+  setAcceptDrops(true);
   update();
 }
 
-void CellView::on_CeldButton_clicked() {
+void CellView::on_CellButton_clicked() {
   cell->set_id(current_option->get_current_id());
 }
 
@@ -56,8 +57,8 @@ void CellView::mouseMoveEvent(QMouseEvent* event) {
 void CellView::update() {
   QPixmap pixmap(ids->get_icon_path(cell->get_id()));
   QIcon CellIcon(pixmap);
-  ui.CeldButton->setIcon(CellIcon);
-  ui.CeldButton->setIconSize(pixmap.rect().size());
+  ui.CellButton->setIcon(CellIcon);
+  ui.CellButton->setIconSize(pixmap.rect().size());
 }
 
 void CellView::dragEnterEvent(QDragEnterEvent* event) {
@@ -75,4 +76,8 @@ void CellView::dropEvent(QDropEvent* event) {
   cell->set_id(id_source);
 }
 
-CellView::~CellView() {}
+CellView::~CellView() {
+  if (cell != nullptr) {
+    cell->remove_observer(this);
+  }
+}
