@@ -1,15 +1,14 @@
 #include "pistol.h"
 
 #include <limits>
-#include <random>
 
-Pistol::Pistol() {
+Pistol::Pistol() : generator(), bloom(0, 1) {
   //    bullet_required =
   //    ConfigLoader::get_init_configs().pistol_bullet_required; base_precision
   //    = ConfigLoader::get_init_configs().pistol_base_precision;
 }
 
-int Gun::shoot(Player& player, int& current_bullets, Map& map) {
+int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
   /*// Randomizo el daño con random
   std::random_device rd;     // Creo la semilla (toma info aleatoria del SO)
   std::mt19937_64 mt(rd());  // Genero un valor pseudo-aleatorio de 64 bits.
@@ -20,9 +19,6 @@ int Gun::shoot(Player& player, int& current_bullets, Map& map) {
 
   Point bullet_origin = player.get_position().get_origin();
   double player_angle = player.get_position().get_angle();
-  // TODO Read standard deviation from ConfigLoader or select it here.
-  std::default_random_engine generator;
-  std::normal_distribution<double> bloom(0, 1);
 
   double bullet_angle;
   do {

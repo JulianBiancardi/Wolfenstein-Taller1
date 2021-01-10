@@ -1,5 +1,5 @@
-#ifndef WOLFENSTEIN_TALLER1_GUN_H
-#define WOLFENSTEIN_TALLER1_GUN_H
+#ifndef GUN_H
+#define GUN_H
 #include <random>
 
 #include "../../config_loader.h"
@@ -14,4 +14,4 @@ class Gun {
   virtual int shoot(Player& player_shooting, int& current_bullets,
                     Map& map) = 0;
 };
-#endif  // WOLFENSTEIN_TALLER1_GUN_H
+#endif
