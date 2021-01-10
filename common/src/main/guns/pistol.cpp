@@ -2,7 +2,7 @@
 
 #include <limits>
 
-Pistol::Pistol() : generator(), bloom(0, 1) {
+Pistol::Pistol() : spray(0.17453, 0.1) {
   //    bullet_required =
   //    ConfigLoader::get_init_configs().pistol_bullet_required; base_precision
   //    = ConfigLoader::get_init_configs().pistol_base_precision;
@@ -20,10 +20,7 @@ int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
   Point bullet_origin = player.get_position().get_origin();
   double player_angle = player.get_position().get_angle();
 
-  double bullet_angle;
-  do {
-    bullet_angle = bloom(generator);
-  } while (0.174533 < fabs(bullet_angle));  // Truncate to 20° Spread
+  double bullet_angle = player_angle + spray();
 
   if (bullet_angle > 2 * M_PI) {
     bullet_angle -= 2 * M_PI;
