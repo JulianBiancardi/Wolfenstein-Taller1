@@ -12,9 +12,9 @@ class IObservable {
  public:
   IObservable() {}
 
-  void add_observer(IObserver* observer) {
-    this->observers.push_back(observer);
-  }
+  void add_observer(IObserver* observer) { observers.push_back(observer); }
+
+  void remove_observer(IObserver* observer) { observers.remove(observer); }
 
   void notify() {
     for (auto& observer : observers) {

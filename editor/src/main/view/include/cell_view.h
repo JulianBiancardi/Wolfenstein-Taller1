@@ -21,7 +21,7 @@ class CellView : public QWidget, public IObserver {
   OptionSelected* current_option;
 
  private slots:
-  void on_CeldButton_clicked();
+  void on_CellButton_clicked();
 
  public:
   CellView(QWidget* parent = nullptr, Cell* cell = nullptr,

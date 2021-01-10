@@ -11,12 +11,12 @@ int main(int args, char** argv) {
 
   // map_editor.insert_rowup();
   // map_editor.remove_rowup();
-  map_editor.remove_rowdown();
-  map_editor.remove_rowdown();
-  map_editor.remove_rowdown();
-  map_editor.remove_rowdown();
-  map_editor.remove_rowdown();
-  map_editor.remove_rowdown();
+  map_editor.remove_columnleft();
+  map_editor.remove_rowabove();
+  std::cout << std::endl;
+  std::cout << std::endl;
+  map_editor.print();
+
   map_editor.put(0, 0, 1);  // Put the id = 1 in the (0,0)
   std::cout << std::endl;
   std::cout << std::endl;

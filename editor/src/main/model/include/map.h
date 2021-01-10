@@ -18,12 +18,12 @@ class Map : public IObservable {
   bool is_in_range(size_t row, size_t column) const;
 
  public:
-  Map(size_t rows = 5, size_t columns = 5);
+  Map(size_t rows = 10, size_t columns = 10);
 
-  Map(const Map&) = delete;             // No copy constructor
-  Map& operator=(const Map&) = delete;  // No copy constructor
-  Map(Map&& other);                     // Move constructor
-  Map& operator=(Map&& other);          // Move constructor
+  Map(const Map&) = delete;              // No copy constructor
+  Map& operator=(const Map&) = delete;   // No copy constructor
+  Map(Map&& other) = delete;             // Move constructor
+  Map& operator=(Map&& other) = delete;  // Move constructor
 
   size_t row_count() const;
   size_t column_count() const;
