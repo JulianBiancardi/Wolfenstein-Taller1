@@ -9,8 +9,12 @@ class Shooter;
 class Map;  // borrar
 
 class Gun {
+ protected:
+  double max_range;
+  double min_range;
+
  public:
-  Gun();
+  Gun(double min_range, double max_range);
   virtual int shoot(Player& player_shooting, int& current_bullets,
                     Map& map) = 0;
 };

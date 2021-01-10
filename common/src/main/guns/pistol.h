@@ -11,6 +11,10 @@ class Pistol : public Gun {
   int base_precision;*/
   Spray spray;
 
+  double linear_func(double x);
+  double slope;
+  double intercept;
+
  public:
   Pistol();
   ~Pistol();

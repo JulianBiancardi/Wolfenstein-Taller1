@@ -1,22 +1,18 @@
 #include "pistol.h"
 
+#include <algorithm>
+#include <cmath>
 #include <limits>
 
-Pistol::Pistol() : spray(0.17453, 0.1) {
+Pistol::Pistol() : spray(0.17453, 0.1), Gun(2, 20) {
+  slope = 1 / (min_range - max_range);
+  intercept = -slope * max_range;
   //    bullet_required =
   //    ConfigLoader::get_init_configs().pistol_bullet_required; base_precision
   //    = ConfigLoader::get_init_configs().pistol_base_precision;
 }
 
 int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
-  /*// Randomizo el daño con random
-  std::random_device rd;     // Creo la semilla (toma info aleatoria del SO)
-  std::mt19937_64 mt(rd());  // Genero un valor pseudo-aleatorio de 64 bits.
-  std::uniform_int_distribution<int> damage_dist(1, 10);
-
-  return damage_dist(mt);
-  // shooter.receive_damage(damage_dist(mt));*/
-
   Ray bullet(player.get_position().get_origin(),
              player.get_position().get_angle() + spray());
 
@@ -25,6 +21,7 @@ int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
 
   Object* closest_obj = nullptr;
   double closest_obj_dist = std::numeric_limits<double>::infinity();
+  double closest_obj_angle = std::numeric_limits<double>::quiet_NaN();
 
   std::vector<Object> objects = map.get_objects();
   std::vector<Object>::iterator iter;
@@ -33,9 +30,8 @@ int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
     // TODO Consider: if (!object.is_solid()) {continue;}
     double object_distance =
         object.get_position().distance_from(bullet.get_origin());
-    // This can be used to limit weapon range
     if (object_distance >= wall_distance ||
-        object_distance >= closest_obj_dist) {
+        object_distance >= closest_obj_dist || object_distance >= max_range) {
       continue;
     }
 
@@ -67,7 +63,20 @@ int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
     if (hit) {
       closest_obj = &object;
       closest_obj_dist = object_distance;
+      closest_obj_angle = object_angle;
     }
   }
-  // TODO closest_obj has the object we hit. Do whatever is necessary.
+
+  if (closest_obj_dist != std::numeric_limits<double>::infinity()) {
+    std::default_random_engine generator;
+    std::uniform_real_distribution<double> distribution(1, 10);
+    double base_damage = distribution(generator);
+    double dist_modifier =
+        std::max(0.0, std::min(1.0, linear_func(closest_obj_dist)));
+    double angle_modifier = std::cos(closest_obj_angle);
+    double damage = base_damage * dist_modifier * angle_modifier;
+    // TODO Create event for the damage
+  }
 }
+
+double Pistol::linear_func(double x) {}
