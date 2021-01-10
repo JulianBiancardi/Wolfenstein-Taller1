@@ -35,7 +35,7 @@ class Player {
 
   Ray get_position() { return position; };
   void set_position(const Point& new_origin);
-  void Player::shoot(Map& map);
+  void /*Player::*/shoot(Map& map);
 };
 
 #endif  // WOLFENSTEIN_TALLER1_PLAYER_H

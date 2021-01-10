@@ -2,10 +2,14 @@
 #define GUN_H
 #include <random>
 
-#include "../../config_loader.h"
-#include "../player.h"
+#include "../../../../server/src/main/config_loader.h"
+#include "../../../../server/src/main/game/player.h"
 
-class Shooter;
+//#include "../player.h"
+
+class Player;
+//class Shooter;
+
 class Map;  // borrar
 
 class Gun {

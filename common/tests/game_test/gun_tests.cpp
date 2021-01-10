@@ -1,3 +1,4 @@
+/*
 #include "gun_tests.h"
 #include "../../../server/src/main/game/guns/knife.h"
 #include "../../../server/src/main/game/guns/pistol.h"
@@ -6,6 +7,17 @@
 #include "../../../server/src/main/map.h"
 #include "../../../server/src/main/game/collision_checker.h"
 #include <iostream>
+ */
+#include "gun_tests.h"
+#include "../../../common/src/main/guns/knife.h"
+#include "../../../common/src/main/guns/pistol.h"
+#include "../../../common/src/main/guns/rocket_launcher.h"
+#include "../../../common/src/main/guns/chain_cannon.h"
+#include "../../../server/src/main/map.h"
+#include "../../../server/src/main/game/collision_checker.h"
+#include <iostream>
+
+
 int static gun_creation_test();
 int static chain_cannon_check_damaged();
 int static machine_gun_check_damaged();

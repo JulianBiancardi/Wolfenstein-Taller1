@@ -1,7 +1,7 @@
 #ifndef COLLISION_H
 #define COLLISION_H
 
-#include "../../../common/src/main/utils/point.h"
+#include "../../../../common/src/main/utils/point.h"
 
 class Collision {
  private:

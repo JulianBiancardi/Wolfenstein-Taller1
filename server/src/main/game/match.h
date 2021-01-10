@@ -12,7 +12,8 @@
 
 class Match {
  private:
-  Map map;
+  Map& map;
+  std::unordered_map<int, int> test;
   std::unordered_map<int, Player> players;
   int players_id_count;
   EventQueue<Event> events_to_process;

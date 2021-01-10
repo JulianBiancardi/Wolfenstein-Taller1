@@ -1,13 +1,13 @@
 #include "event_handler.h"
 #include "event_building.h"
 #include "../game/match.h"
-#include "../game/sprites/items/items.h"
+#include "../game/objects/items/item.h"
 
 void EventHandler::consequence_grab_event(Match &match,
                                           CollisionChecker &checker,
                                           Player &who) {
   try { //IS USING EXCEPTION OK?
-    Items *grabbed = checker.grabbed_item(who);
+    Item *grabbed = checker.grabbed_item(who);
     grabbed->use(who);
     int item_id = grabbed->get_id();
     int player_id = who.get_id();

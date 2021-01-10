@@ -1,8 +1,8 @@
 #ifndef RAY_CASTING_H
 #define RAY_CASTING_H
 
-#include "../utils/base_map.h"
-#include "../utils/ray.h"
+#include "../../../../common/src/main/utils/base_map.h"
+#include "../../../../common/src/main/utils/ray.h"
 #include "collision.h"
 
 class RayCasting {

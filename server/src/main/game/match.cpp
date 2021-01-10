@@ -5,8 +5,16 @@ Match::Match(Map &map) : map(map), players_id_count(1) {}
 Match::~Match() {}
 
 void Match::add_player(Point where, double initial_angle) {
-  players.insert(
-      {players_id_count, Player(where, initial_angle, players_id_count)});
+//  players.insert({players_id_count, Player(where, initial_angle, players_id_count)});
+
+  //players.insert(std::make_pair(players_id_count, Player(where, initial_angle, players_id_count)));
+
+
+//test.insert({1,2});
+  //players.insert(std::make_pair<int,Player>({players_id_count,Player(where, initial_angle, players_id_count)}));
+//  players.insert ( {{players_id_count,Player(where, initial_angle, players_id_count)}} );    // initializer list insertion
+
+
   players_id_count++;
 }
 

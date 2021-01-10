@@ -15,12 +15,21 @@ Client::Client(Map& map)
 
 void Client::launch() {
   FrameLimiter frame_limiter;
-
+  //Added 13/12
+  //EventQueue<Event *> event_queue;
+  //EventHandler event_handler;
+  //event_handler.setCaster(Caster);
+  //
   while (is_running) {
     handle_events();  // handle any user events
+    //
+    //Receive events
+    //MovementEvent movement_event;
+    //movement_event.setCaster(caster);
+    //movement_event.process();
+    //
     update();         // update all objects of the game
     render();         // render thats changes
-
     frame_limiter.sleep();
   }
 }
@@ -54,6 +63,7 @@ void Client::handle_events() {
 void Client::update() {
   // Pensar en tener un update por cada objecto que necesite ser actualizado y
   // llamar a esos metodos, en vez de actualizar todo aca
+
 }
 
 void Client::render() {  // this->caster();
