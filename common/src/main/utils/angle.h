@@ -10,8 +10,21 @@ class Angle {
   Angle(double angle);
   ~Angle();
 
-  /* Returns the value of the angle */
+  /* Returns the value of the angle between 0 and 2PI */
+  static double normalize(double angle);
+
+  /* Returns the value of the angle as a double */
   double to_double();
+
+  Angle operator+(Angle& other);
+  Angle operator-(Angle& other);
+  void operator+=(Angle& other);
+  void operator-=(Angle& other);
+
+  Angle operator+(double angle);
+  Angle operator-(double angle);
+  void operator+=(double angle);
+  void operator-=(double angle);
 };
 
 #endif

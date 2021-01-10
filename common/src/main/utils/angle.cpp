@@ -2,19 +2,47 @@
 
 #include <cmath>
 
-Angle::Angle(double value) {
-  if (value >= 2 * M_PI) {
-    do {
-      value -= 2 * M_PI;
-    } while (value > 2 * M_PI);
-  } else if (value < 0) {
-    do {
-      value += 2 * M_PI;
-    } while (value < 0);
-  }
-  angle = value;
-}
+Angle::Angle(double angle) : angle(normalize(angle)) {}
 
 Angle::~Angle() {}
 
+double Angle::normalize(double angle) {
+  if (angle >= 2 * M_PI) {
+    do {
+      angle -= 2 * M_PI;
+    } while (angle > 2 * M_PI);
+  }
+  if (angle < 0) {
+    do {
+      angle += 2 * M_PI;
+    } while (angle < 0);
+  }
+  return angle;
+}
+
 double Angle::to_double() { return angle; }
+
+Angle Angle::operator+(Angle& other) {
+  return Angle(this->angle + other.angle);
+}
+Angle Angle::operator-(Angle& other) {
+  return Angle(this->angle - other.angle);
+}
+void Angle::operator+=(Angle& other) {
+  this->angle = normalize(this->angle + other.angle);
+}
+void Angle::operator-=(Angle& other) {
+  this->angle = normalize(this->angle - other.angle);
+}
+
+Angle Angle::operator+(double angle) { return Angle(this->angle + angle); }
+
+Angle Angle::operator-(double angle) { return Angle(this->angle - angle); }
+
+void Angle::operator+=(double angle) {
+  this->angle = normalize(this->angle + angle);
+}
+
+void Angle::operator-=(double angle) {
+  this->angle = normalize(this->angle - angle);
+}

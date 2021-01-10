@@ -11,4 +11,4 @@ Point Ray::get_origin() { return origin; }
 
 const Point &Ray::get_ref_origin() { return origin; }
 
-double Ray::get_angle() { return angle; }
+double Ray::get_angle() { return angle.to_double(); }

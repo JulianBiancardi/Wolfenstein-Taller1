@@ -1,12 +1,13 @@
 #ifndef RAY_H
 #define RAY_H
 
+#include "angle.h"
 #include "point.h"
 
 class Ray {
  private:
   Point origin;
-  double angle;
+  Angle angle;
 
  public:
   Ray(Point origin, double angle);

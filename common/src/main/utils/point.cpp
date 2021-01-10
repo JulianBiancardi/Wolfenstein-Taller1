@@ -2,6 +2,8 @@
 
 #include <cmath>
 
+#include "angle.h"
+
 Point::Point(double x, double y) : x(x), y(y) {}
 
 Point::Point(const Point &other) : x(other.x), y(other.y) {}
@@ -30,9 +32,5 @@ double Point::distance_from(const Point &other) {
 }
 
 double Point::angle_to(const Point &other) {
-  double angle = atan2(other.y - y, other.x - x);
-  if (angle < 0) {
-    return angle + 2 * M_PI;
-  }
-  return angle;
+  return Angle::normalize(atan2(other.y - y, other.x - x));
 }

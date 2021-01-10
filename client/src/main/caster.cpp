@@ -2,6 +2,7 @@
 
 #include <algorithm>
 
+#include "../../../common/src/main/utils/angle.h"
 #include "../../../common/src/main/utils/point.h"  // TODO Delete if not used in the file
 #include "../../../common/src/main/utils/rectangle.h"
 #include "casting/ray_casting.h"
@@ -79,9 +80,6 @@ std::vector<double> Caster::draw_walls() {
   wall_collisions.reserve(SCREEN_WIDTH);
 
   double ray_angle = player.get_angle() + FOV / 2;
-  if (ray_angle > 2 * M_PI) {
-    ray_angle -= 2 * M_PI;
-  }
 
   double angle_step = FOV / SCREEN_WIDTH;
   for (int i = 0; i < SCREEN_WIDTH;) {
@@ -96,9 +94,6 @@ std::vector<double> Caster::draw_walls() {
 
     i++;
     ray_angle -= angle_step;
-    if (ray_angle < 0) {
-      ray_angle += 2 * M_PI;
-    }
   }
 
   return std::move(wall_collisions);
@@ -161,12 +156,12 @@ void Caster::draw_sprite(_sprite& sprite, std::vector<double>& wall_distances) {
   } else if (sprite_angle_rel < 0) {
     sprite_angle_rel += 2 * M_PI;
   }*/
-  double sprite_angle = sprite_angle_rel - player.get_angle();
-  if (sprite_angle > 2 * M_PI) {
+  double sprite_angle = Angle::normalize(sprite_angle_rel - player.get_angle());
+  /*if (sprite_angle > 2 * M_PI) {
     sprite_angle -= 2 * M_PI;
   } else if (sprite_angle < 0) {
     sprite_angle += 2 * M_PI;
-  }
+  }*/
 
   // printf("sprite_angle_rel: %f\n", sprite_angle_rel);
   // printf("sprite_angle: %f\n", sprite_angle);

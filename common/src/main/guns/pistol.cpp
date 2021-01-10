@@ -17,18 +17,8 @@ int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
   return damage_dist(mt);
   // shooter.receive_damage(damage_dist(mt));*/
 
-  Point bullet_origin = player.get_position().get_origin();
-  double player_angle = player.get_position().get_angle();
-
-  double bullet_angle = player_angle + spray();
-
-  if (bullet_angle > 2 * M_PI) {
-    bullet_angle -= 2 * M_PI;
-  } else if (bullet_angle < 0) {
-    bullet_angle += 2 * M_PI;
-  }
-
-  Ray bullet(player.get_position().get_origin(), bullet_angle);
+  Ray bullet(player.get_position().get_origin(),
+             player.get_position().get_angle() + spray());
 
   double wall_distance =
       RayCasting::get_collision(map, bullet).get_distance_from_src();
@@ -55,20 +45,14 @@ int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
     double half_angular_diameter = atan(1 / object_distance);
     double object_angle = object.get_position().angle_to(bullet.get_origin());
 
-    double left_angle = object_angle + half_angular_diameter;
-    if (left_angle > 2 * M_PI) {
-      left_angle -= 2 * M_PI;
-    }
+    double left_angle = Angle::normalize(object_angle + half_angular_diameter);
 
-    double right_angle = object_angle - half_angular_diameter;
-    if (right_angle < 0) {
-      right_angle += 2 * M_PI;
-    }
+    double right_angle = Angle::normalize(object_angle - half_angular_diameter);
 
     // Check if bullet angle is between object angular diameter
-    double rel_angle =
-        std::fmod(std::fmod(left_angle - right_angle, 360) + 360, 360);
-    if (rel_angle >= 180) {
+    double rel_angle = std::fmod(
+        std::fmod(left_angle - right_angle, 2 * M_PI) + 2 * M_PI, 2 * M_PI);
+    if (rel_angle >= M_PI) {
       std::swap(left_angle, right_angle);
     }
 
