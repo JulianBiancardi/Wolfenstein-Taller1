@@ -3,7 +3,7 @@
 CollisionChecker::CollisionChecker(Map& map,
                                    std::unordered_map<int, Player>& players,
                                    std::unordered_map<int, Item*>& items,
-                                   std::vector<Object>& objects)
+                                   std::vector<Object*>& objects)
     : map(map),
       players(players),
       items(items),
@@ -21,8 +21,8 @@ bool CollisionChecker::collides_players(Point& where) {
 }
 
 bool CollisionChecker::collides_sprites(Point& where) {
-  for (auto& sprite : objects) {
-    if (sprite.occupies(where)) return true;
+  for (auto& object : objects) {
+    if (object->occupies(where)) return true;
   }
 
   return false;

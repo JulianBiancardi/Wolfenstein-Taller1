@@ -4,11 +4,11 @@
 #include "matrix.h"
 
 class BaseMap {
- private:
+ protected:
   Matrix<int> map_matrix;
 
  public:
-  BaseMap(Matrix<int> &map_matrix);
+  BaseMap(Matrix<int>& map_matrix);
   ~BaseMap();
 
   bool is_wall(size_t x, size_t y);

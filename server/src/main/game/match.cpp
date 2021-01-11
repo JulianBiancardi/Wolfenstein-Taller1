@@ -1,24 +1,16 @@
 #include "match.h"
 
-Match::Match(Map &map) : map(map), players_id_count(1) {}
+Match::Match(Map& map) : map(map), players_id_count(1) {}
 
 Match::~Match() {}
 
 void Match::add_player(Point where, double initial_angle) {
-//  players.insert({players_id_count, Player(where, initial_angle, players_id_count)});
-
-  //players.insert(std::make_pair(players_id_count, Player(where, initial_angle, players_id_count)));
-
-
-//test.insert({1,2});
-  //players.insert(std::make_pair<int,Player>({players_id_count,Player(where, initial_angle, players_id_count)}));
-//  players.insert ( {{players_id_count,Player(where, initial_angle, players_id_count)}} );    // initializer list insertion
-
-
+  players.insert({players_id_count,
+                  Player(where, initial_angle, players_id_count)});
   players_id_count++;
 }
 
-void Match::enqueue_event(const Event &event) {
+void Match::enqueue_event(const Event& event) {
   events_to_process.enqueue(event);
 }
 
@@ -31,7 +23,7 @@ void Match::start() {
 
   while (keep_running) {
     const Event next_event = events_to_process.dequeue();
-    EventHandler *handler = builder.build(next_event, players);
+    EventHandler* handler = builder.build(next_event, players);
     handler->handle(*this, checker);
     delete handler;
 
@@ -40,8 +32,8 @@ void Match::start() {
   }
 }
 
-void Match::enqueue_result(const Event &event) { result_events.enqueue(event); }
+void Match::enqueue_result(const Event& event) { result_events.enqueue(event); }
 
-Map &Match::get_map() { return map; }
+Map& Match::get_map() { return map; }
 
-Player &Match::get_player(int id) { return players.at(id); }
+Player& Match::get_player(int id) { return players.at(id); }
