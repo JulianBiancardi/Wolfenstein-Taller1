@@ -11,7 +11,7 @@ class CollisionChecker {
   Map& map;
   std::unordered_map<int, Player>& players;
   std::unordered_map<int, Item*>& items;
-  std::vector<Object>& objects;
+  std::vector<Object*>& objects;
   Moveable* ignored;
 
   bool collides_players(Point& where);
@@ -21,7 +21,7 @@ class CollisionChecker {
  public:
   CollisionChecker(Map& map, std::unordered_map<int, Player>& players,
                    std::unordered_map<int, Item*>& items,
-                   std::vector<Object>& objects);
+                   std::vector<Object*>& objects);
   ~CollisionChecker() {}
 
   bool can_move(Point& where, Moveable& who);

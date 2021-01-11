@@ -7,7 +7,9 @@
 class Barrel : public Object {
  public:
   Barrel(double radio, Point& center)
-      : Object(center, 0, new Circle_mask(radio, center)) {}
+      : Object(center,
+               0,
+               new Circle_mask(radio, this->position.get_ref_origin())) {}
 };
 
 #endif

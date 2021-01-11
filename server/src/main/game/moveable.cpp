@@ -2,31 +2,24 @@
 
 Moveable::Moveable(Point origin, double angle, int id)
     : Identifiable(id),
-      Object(origin, angle, new Circle_mask(1, position.get_ref_origin())) {}
+      Object(origin, angle, new Circle_mask(5, position.get_ref_origin())) {}
 // FIXME This will break since I'm passing a reference to something not yet
 // created: position.get_ref_origin(). Position is from Object.
 // TODO Use config file*/
 
 Moveable::Moveable(Ray position, int id)
     : Identifiable(id),
-      Object(position, new Circle_mask(1, position.get_ref_origin())) {}
+      Object(position, new Circle_mask(5, position.get_ref_origin())) {}
 
 Moveable::Moveable(double x, double y, double angle, int id)
     : Identifiable(id),
       Object(Point(x, y),
              angle,
-             new Circle_mask(1, position.get_ref_origin())) {}
+             new Circle_mask(5, position.get_ref_origin())) {}
 
 Moveable::Moveable(const Moveable& other)
     : Identifiable(other.id),
-      Object(other.position, new Circle_mask(1, position.get_ref_origin())) {}
-
-/*
-Moveable::Moveable(const Moveable& other)
-    : position(other.angled_position),
-      mask(other.mask.get_radio(), angled_position.get_ref_origin()),
-      Identifiable(other.id) {}  // Probably should not copy id
-*/
+      Object(other.position, new Circle_mask(5, position.get_ref_origin())) {}
 
 Point Moveable::collision_mask_bound(const Point& next_position) {
   double angle = position.get_origin().angle_to(next_position);

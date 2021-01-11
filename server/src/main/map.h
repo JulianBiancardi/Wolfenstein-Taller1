@@ -19,11 +19,11 @@ class Map : public BaseMap {
  private:
   std::unordered_map<int, Item*> items;
   int items_id_count;
-  std::vector<Object> objects;
+  std::vector<Object*> objects;
 
  public:
   Map(Matrix<int>& map_matrix);
-  Map(Map& other) = delete;
+  Map(Map& other); // Used for testing, TODO decide where to get the map from
   ~Map();
 
   // TODO One method for each item
@@ -31,7 +31,7 @@ class Map : public BaseMap {
   void add_blood(const Point& where);
 
   std::unordered_map<int, Item*>& get_items();
-  std::vector<Object>& get_objects();
+  std::vector<Object*>& get_objects();
 };
 
 #endif
