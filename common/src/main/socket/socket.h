@@ -2,52 +2,70 @@
 #define SOCKET_H
 
 #include <sys/socket.h>
-#include <sys/types.h>
-#include <netdb.h>
-#include <cstring>
-#include <unistd.h>
 
-#define CLIENT 0
-#define SERVER 1
+#include <string>
 
-class Socket{
-public:
-    Socket();
-    Socket(const Socket& copy) = delete;
-    Socket& operator=(const Socket &copy) = delete;
-    Socket(Socket &&other) noexcept;
-    Socket& operator=(Socket &&other);
-    ~Socket();
+#include "../client_src/command.h"
+#include "socket_error.h"
 
-    //Acepto un cliente y devuelvo un socket por movimiento.
-    Socket accept();
-    //Relaciona el socket con la dirección y un puerto determinado.
-    //Se escuchan las conexiones mediante el socket.
-    void bind_and_listen(const char *service);
+typedef unsigned long size_t;
 
-    //Permite a un cliente conectarse al servidor.
-    void connect(const char *host_name, const char *service);
+class Socket : public Command {
+ private:
+  int socket_file_descriptor;
+  explicit Socket(int sfd) : socket_file_descriptor(sfd) {}
 
-    //Facilita el envio de mensaje mediante el socket.
-    int send(const char *buffer, size_t length) const;
+ public:
+  Socket();
+  explicit Socket(std::string& host, std::string& port);
+  Socket(Socket&& other);
 
-    //Permite la recepción de mensaje mediante el socket.
-    int receive(char *buffer, size_t buf_length) const;
+  /* Send a stream using the socket.
+   * Returns the amount of bytes sent.
+   */
+  ssize_t send(const char* stream, size_t stream_len) const;
 
-    // Se hace un shutdown del canal.
-    // Si kind vale 2, se cierra la escritura y lectura, sino solo escritura.
-    void shutdown(int kind) const;
+  /* Receives a stream using the socket.
+   * Returns the amount of bytes received.
+   */
+  ssize_t receive(char* buffer, size_t buffer_len) const;
 
-    //Se cierra el canal de comunicación.
-    void close() const;
+  /* Binds it to a service and marks it as awaiting incoming connections.
 
-private:
-    int fd;
-    explicit Socket(int fd);
+   * Throws SocketError in the event of an error.
+   */
+  void bind_and_listen(const char* service);
 
-    //Facilita la modularización.
-    //Además, según el tipo, se determina el hint servidor/cliente.
-    void set_hints(addrinfo *hints, int kind);
+  /* Accept the first connection queued in the pending connections
+   * Returns a peer Socket used for the connection.
+   */
+  Socket accept() const;
+
+  /* Attempts to connect the _socket to the host:service. Returns 0 on
+   * success, -1 otherwise.
+   */
+  void connect_to(const char* host, const char* service);
+
+  /* Shutdown all or part of the connection associated to the socket.
+   * Values for mode:
+   * SHUT_RD - Disables further receive operations.
+   * SHUT_WR - Disables further send oeprations.
+   * SHUT_RDWR - Disables further send and receive operations.
+   */
+  int shutdown(int how);
+
+  /* Closes the socket.
+   * Returns 0 on success, otherwise -1 shall be returned
+   * and errno set to indicate the error.
+   */
+  int close();
+
+  /* Send the string passed as an argument */
+  void operator()(std::string& str) override;
+
+  Socket& operator=(Socket&& other);
+
+  ~Socket();
 };
 
-#endif //TP3_COMMON_SOCKET_H
+#endif

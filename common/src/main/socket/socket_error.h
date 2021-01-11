@@ -1,17 +1,21 @@
-#ifndef TP3_SOCKET_ERROR_H
-#define TP3_SOCKET_ERROR_H
+#ifndef SOCKET_ERROR_H
+#define SOCKET_ERROR_H
 
-#include <typeinfo>
-#include <string>
+#include <exception>
+
+#define BUF_SIZE 256
 
 class SocketError : public std::exception {
-private:
-    std::string error_msg;
-public:
-    explicit SocketError(const std::string &msg) noexcept;
-    //Devuelve el mensaje de error.
-    virtual const char * what() const noexcept;
-    virtual ~SocketError() noexcept;
+ private:
+  char error_msg[BUF_SIZE];
+
+ public:
+  SocketError(const char* format, ...) noexcept;
+
+  /* Returns the message error */
+  virtual const char* what() const noexcept;
+
+  virtual ~SocketError() noexcept;
 };
 
-#endif //TP3_SOCKET_ERROR_H
+#endif

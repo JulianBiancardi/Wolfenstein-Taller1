@@ -1,10 +1,25 @@
-#include <string>
 #include "socket_error.h"
 
-SocketError::SocketError(const std::string &msg) noexcept:error_msg(msg) {}
+#include <errno.h>
+#include <string.h>
 
-const char* SocketError::what() const noexcept{
-    return error_msg.c_str();
+#include <cstdarg>
+#include <cstdio>
+
+SocketError::SocketError(const char* format, ...) noexcept {
+  int _errno = errno;
+
+  // Compose the message into the error_msg
+  va_list args;
+  va_start(args, format);
+  ssize_t msg_len = vsnprintf(error_msg, BUF_SIZE, format, args);
+  va_end(args);
+
+  // Add error number description to the error message.
+  strncpy(error_msg + msg_len, strerror(_errno), BUF_SIZE - msg_len);
+  error_msg[BUF_SIZE - 1] = '\0';
 }
 
-SocketError::~SocketError() noexcept{}
+const char* SocketError::what() const noexcept { return error_msg; }
+
+SocketError::~SocketError() {}

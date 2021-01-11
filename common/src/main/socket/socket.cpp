@@ -1,134 +1,168 @@
 #include "socket.h"
-#include <cerrno>
-#include <utility>
-#include <iostream>
-#include "socket_error.h"
 
-#define INVALID_FD -1
-#define SHUTDOWN_RDWR 2
+#include <netdb.h>
+#include <string.h>
+#include <unistd.h>
 
-Socket::Socket() : fd(INVALID_FD) {}
+#define ERROR -1
+#define NO_ERROR 0
+#define WAITING_QUEUE_MAX_LEN 5
 
-Socket::~Socket(){
-    if (this->fd != INVALID_FD) ::close(this->fd);
-    this->fd = INVALID_FD;
+int static get_socket_file_descriptor(
+    const char* host, const char* service,
+    int (*func)(int socket_file_descriptor,
+                const struct sockaddr* socket_address,
+                socklen_t socket_address_len));
+
+Socket::Socket() {}
+Socket::Socket(std::string& host, std::string& port) {
+  connect_to(host.c_str(), port.c_str());
+}
+Socket::Socket(Socket&& other) {
+  this->socket_file_descriptor = other.socket_file_descriptor;
+  other.socket_file_descriptor = -1;
 }
 
-Socket::Socket(Socket &&other) noexcept: fd(other.fd){
-    other.fd = INVALID_FD;
+ssize_t Socket::send(const char* stream, size_t stream_len) const {
+  ssize_t tot_bytes_sent = 0;
+  while (tot_bytes_sent != (ssize_t)stream_len) {
+    ssize_t bytes_sent = ::send(socket_file_descriptor, &stream[tot_bytes_sent],
+                                stream_len - tot_bytes_sent, MSG_NOSIGNAL);
+    if (bytes_sent == ERROR) {
+      break;
+    }
+    tot_bytes_sent += bytes_sent;
+  }
+  return tot_bytes_sent;
 }
 
-Socket::Socket(int fd) : fd(fd) {}
-
-Socket Socket::accept() {
-    int fd = ::accept(this->fd, nullptr, nullptr);
-    if (fd == INVALID_FD)
-        throw SocketError("Se ha producido un error en la función 'accept'.");
-    return Socket(fd);
+ssize_t Socket::receive(char* buffer, size_t buffer_len) const {
+  ssize_t tot_bytes_read = 0;
+  while (tot_bytes_read != (ssize_t)buffer_len) {
+    ssize_t bytes_read = recv(socket_file_descriptor, &buffer[tot_bytes_read],
+                              buffer_len - tot_bytes_read, 0);
+    if (bytes_read <= 0) {
+      break;
+    }
+    tot_bytes_read += bytes_read;
+  }
+  return tot_bytes_read;
 }
-Socket &Socket::operator=(Socket &&other) {
-    this->fd = other.fd;
-    other.fd = INVALID_FD;
+
+void Socket::bind_and_listen(const char* service) {
+  int sfd = get_socket_file_descriptor(0, service, bind);
+  if (sfd == ERROR) {
+    throw SocketError("Failed to bind");
+  }
+
+  if (listen(sfd, WAITING_QUEUE_MAX_LEN) == ERROR) {
+    throw SocketError("Failed to listen");
+  }
+
+  socket_file_descriptor = sfd;
+}
+
+Socket Socket::accept() const {
+  int peer_file_descriptor = ::accept(socket_file_descriptor, NULL, NULL);
+  if (peer_file_descriptor == ERROR) {
+    throw SocketError("Failed to accept a connection");
+  }
+
+  Socket peer_socket(peer_file_descriptor);
+  return peer_socket;
+}
+
+void Socket::connect_to(const char* host, const char* service) {
+  int sfd = get_socket_file_descriptor(host, service, connect);
+  if (sfd == ERROR) {
+    throw SocketError("Failed to connect");
+  }
+
+  socket_file_descriptor = sfd;
+}
+
+int Socket::shutdown(int how) {
+  return ::shutdown(socket_file_descriptor, how);
+}
+
+int Socket::close() {
+  int result = ::close(socket_file_descriptor);
+  if (result != ERROR) {
+    socket_file_descriptor = -1;  // -1 for null socket
+  }
+  return result;
+}
+
+void Socket::operator()(std::string& str) { send(str.c_str(), str.length()); }
+
+Socket::~Socket() {
+  ::shutdown(socket_file_descriptor, SHUT_RDWR);
+  if (socket_file_descriptor != -1) {
+    ::close(socket_file_descriptor);
+  }
+}
+
+Socket& Socket::operator=(Socket&& other) {
+  if (this == &other) {
     return *this;
+  }
+  socket_file_descriptor = other.socket_file_descriptor;
+  other.socket_file_descriptor = -1;
+
+  return *this;
 }
 
-void Socket::bind_and_listen(const char *service){
-    int status, val = 1;
-    struct addrinfo hints, *results, *aux;
-    set_hints(&hints, SERVER);
-    status = getaddrinfo(nullptr, service, &hints, &results);
-    if (status != 0) throw SocketError
-         ("Se ha producido un error en la función 'getaddrinfo'.");
-    for (aux = results; aux != nullptr; aux = aux->ai_next) {
-        this->fd = ::socket(aux->ai_family, aux->ai_socktype, aux->ai_protocol);
-        if (this->fd == INVALID_FD)
-            continue;
-        status = setsockopt(this->fd, SOL_SOCKET, SO_REUSEADDR,
-                            &val, sizeof(val));
-        if (status == INVALID_FD){
-            ::close(this->fd);
-            this->fd = INVALID_FD;
-        }
-        if (bind(this->fd, aux->ai_addr, aux->ai_addrlen) == 0){
-            break;
-        }
-        ::close(this->fd);
-        this->fd = INVALID_FD;
+/* Given a server-host and a pointer to either the function bind or connect,
+ * returns the file descriptor of a socket which has been binded or connected to
+ * an obtained address. In case of failure, it returns -1.
+ */
+int static get_socket_file_descriptor(
+    const char* host, const char* service,
+    int (*func)(int socket_file_descriptor,
+                const struct sockaddr* socket_address,
+                socklen_t socket_address_len)) {
+  int sfd;
+
+  struct addrinfo hints;
+  memset(&hints, 0, sizeof(struct addrinfo));
+  hints.ai_family = AF_INET;
+  hints.ai_socktype = SOCK_STREAM;
+  hints.ai_flags = AI_PASSIVE;
+
+  struct addrinfo* results;
+  int status = getaddrinfo(host, service, &hints, &results);
+  if (status != 0) {
+    return ERROR;
+  }
+
+  struct addrinfo* rp;
+  for (rp = results; rp != NULL; rp = rp->ai_next) {
+    int domain = rp->ai_family;
+    int type = rp->ai_socktype;
+    int protocol = rp->ai_protocol;
+    sfd = socket(domain, type, protocol);
+
+    if (sfd == ERROR) {
+      continue;
     }
-    if (this->fd == INVALID_FD)
-        throw SocketError("Se ha producido un error en la función 'bind'.");
-    freeaddrinfo(results);
-    status = listen(this->fd, 10);
-    if (status == INVALID_FD)
-        throw SocketError("Se ha producido un error en la función 'listen'.");
-}
 
-void Socket::set_hints(addrinfo *hints, int kind){
-    hints->ai_family = AF_INET;
-    hints->ai_socktype = SOCK_STREAM;
-    hints->ai_protocol = 0;
-    if (kind == SERVER){
-        hints->ai_flags = AI_PASSIVE;
-    }else{
-        hints->ai_flags = 0;
+    bool reuseable = true;
+    setsockopt(sfd, SOL_SOCKET, SO_REUSEADDR, &reuseable, sizeof(reuseable));
+
+    struct sockaddr* socket_address = rp->ai_addr;
+    socklen_t socket_address_len = rp->ai_addrlen;
+    if (func(sfd, socket_address, socket_address_len) == NO_ERROR) {
+      break;
     }
-}
 
-void Socket::connect(const char *host_name, const char *service){
-    int status;
-    struct addrinfo hints, *results, *ptr;
-    set_hints(&hints, CLIENT);
-    status = getaddrinfo(host_name, service, &hints, &results);
-    if (status != 0)
-        throw SocketError("Error en el connect del socket.");
+    close(sfd);
+  }
 
-    for (ptr = results; ptr != nullptr; ptr = ptr->ai_next) {
-        this->fd = ::socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
-        if (this->fd == INVALID_FD)
-            continue;
-        if (::connect(this->fd, ptr->ai_addr, ptr->ai_addrlen) == 0)
-            break;
-        ::close(this->fd);
-        this->fd = INVALID_FD;
-    }
-    freeaddrinfo(results);
-    if (this->fd == INVALID_FD)
-        throw SocketError("Se ha producido un error en la función 'connect'.");
-}
+  freeaddrinfo(results);
 
-int Socket::send(const char *buffer, size_t buf_length) const{
-     size_t size_send = 0;
-    while (size_send < buf_length){
-        int aux = ::send(this->fd, &buffer[size_send],
-                            buf_length - size_send,MSG_NOSIGNAL);
-        if (aux < 0)
-            throw SocketError("Se ha producido un error en la función 'send'.");
-        size_send += aux;
-    }
-    return size_send;
-}
+  if (rp == NULL) {
+    return ERROR;
+  }
 
-int Socket::receive(char *buffer, size_t buf_length) const{
-    size_t size_recv = 0;
-    while (size_recv < buf_length){
-        int aux = ::recv(this->fd, &buffer[size_recv],
-                            buf_length - size_recv, 0);
-        if (aux < 0)
-            throw SocketError("Se ha producido un error en la función 'recv'.");
-        else if (aux==0)
-            return size_recv;
-        size_recv += aux;
-    }
-    return size_recv;
-}
-
-void Socket::close() const{
-    ::close(this->fd);
-}
-
-void Socket::shutdown(int kind) const{
-    if (kind==SHUTDOWN_RDWR)
-        ::shutdown(this->fd, SHUT_RDWR);
-    else
-        ::shutdown(this->fd, SHUT_WR);
+  return sfd;
 }
