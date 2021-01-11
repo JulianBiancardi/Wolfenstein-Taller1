@@ -7,7 +7,7 @@ BlockingQueue<T>::~BlockingQueue() {}
 template <class T>
 void BlockingQueue<T>::dequeue(T& buffer) {
   std::unique_lock<std::mutex> lock(mtx);
-  while (!prot_q.empty()) {
+  if (prot_q.empty()) {
     cv.wait(lock);
   }
   buffer = prot_q.front();

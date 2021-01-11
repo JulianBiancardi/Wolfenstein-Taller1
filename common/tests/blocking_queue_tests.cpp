@@ -9,13 +9,15 @@
 int static empty_creation_test();
 int static vector_creation_test();
 int static enqueue_test();
+int static dequeue_test();
 
 void blocking_queue_tests() {
   begin_tests("BLOCKING QUEUE");
 
   print_test("La cola bloqueante se crea vacía correctamente",
              empty_creation_test, NO_ERROR);
-  print_test("La cola bloqueante permite agregar elementos", enqueue_test,
+  print_test("La cola bloqueante encola correctamente", enqueue_test, NO_ERROR);
+  print_test("La cola bloqueante desencola correctamente", dequeue_test,
              NO_ERROR);
 
   end_tests();
