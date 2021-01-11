@@ -4,6 +4,7 @@
 #include "game_test/player_test.h"
 #include "matrix_tests.h"
 #include "point_tests.h"
+#include "protected_queue_tests.h"
 #include "ray_tests.h"
 #include "rectangle_tests.h"
 #include "resource_tests.h"
@@ -17,5 +18,6 @@ int main(int argc, char **argv) {
   player_tests();
   match_tests();
   blocking_queue_tests();
+  protected_queue_tests();
   return 0;
 }

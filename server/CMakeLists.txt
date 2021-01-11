@@ -56,6 +56,7 @@ FILE(GLOB TestFiles
 	../common/tests/resource_tests.cpp
 	../common/tests/tests_setup.cpp
 	../common/tests/blocking_queue_tests.cpp
+	../common/tests/protected_queue_tests.cpp
         )
 
 FILE(GLOB MainTests  ../common/tests/main_tests.cpp) #Luego MainServer

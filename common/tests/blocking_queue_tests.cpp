@@ -1,13 +1,11 @@
 #include "blocking_queue_tests.h"
 
 #include <utility>
-#include <vector>
 
 #include "../src/main/data_structures/blocking_queue.h"
 #include "tests_setup.h"
 
 int static empty_creation_test();
-int static vector_creation_test();
 int static enqueue_test();
 int static dequeue_test();
 
