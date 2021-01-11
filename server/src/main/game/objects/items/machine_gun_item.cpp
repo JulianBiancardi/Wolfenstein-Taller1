@@ -1,6 +1,6 @@
 #include "machine_gun_item.h"
 
-#include "../../../../common/src/main/guns/machine_gun.h"
+#include "../../../../client/src/main/guns/machine_gun.h"
 
 MachineGunItem::MachineGunItem(Point center, int id) : Item(center, id) {}
 

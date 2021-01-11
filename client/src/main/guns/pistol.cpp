@@ -82,3 +82,7 @@ int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
 }
 
 double Pistol::linear_func(double x) {}
+
+Pistol::~Pistol() {
+
+}

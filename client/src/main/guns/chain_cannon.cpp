@@ -9,9 +9,15 @@ ChainCannon::ChainCannon() {
 int ChainCannon::shoot(Player& player_shooting,
                        int& current_bullets,
                        Map& map) {
-  if (available_bullets < ConfigLoader::chain_cannon_bullet_required)
+  /* TODO decrease bullets
+  if (player_shooting.has_bullets(ConfigLoader::chain_cannon_bullet_required))
     return 0;
-  available_bullets -= ConfigLoader::chain_cannon_bullet_required;
+  player_shooting.decrease_bullets(ConfigLoader::chain_cannon_bullet_required);
+  */
+
+  //if (available_bullets < ConfigLoader::chain_cannon_bullet_required)
+  //available_bullets -= ConfigLoader::chain_cannon_bullet_required;
+
 
   //Randomizo el daño
   std::random_device rd; //Creo la semilla (toma info aleatoria del SO)
