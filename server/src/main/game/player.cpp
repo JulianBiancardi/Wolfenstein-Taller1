@@ -30,10 +30,14 @@ void Player::decrease_bullets(int amount) {
 
 void Player::receive_damage(int amount) { health -= amount; }
 
-void Player::add_gun(Gun* gun) { guns_bag.push_back(gun); }
+void Player::add_gun(int gun_id) { guns_bag.insert(gun_id); }
 
-bool Player::has_gun(Gun* gun) { return false; }
+bool Player::has_gun(int gun_id) {
+  return guns_bag.find(gun_id) != guns_bag.end();
+}
 
+// TODO This shouldn't be necessary. unordered_map.insert already checks if it
+// is included
 /*
 bool Player::add_gun_if_hasnt(Gun gun) {
   bool found =

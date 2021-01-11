@@ -20,9 +20,12 @@ FILE(GLOB ServerFiles
 	src/main/game/objects/items/*.cpp
 	src/main/game/objects/*.cpp
 	)
+	
 FILE(GLOB CommonFiles 
+	../common/src/main/data_structures/*.cpp
 	../common/src/main/utils/*.cpp
-	)
+)
+
 FILE(GLOB MainFiles
 	../client/src/main/resource.cpp
     ../client/src/main/resource_manager.cpp
@@ -52,6 +55,7 @@ FILE(GLOB TestFiles
 	../common/tests/rectangle_tests.cpp
 	../common/tests/resource_tests.cpp
 	../common/tests/tests_setup.cpp
+	../common/tests/blocking_queue_tests.cpp
         )
 
 FILE(GLOB MainTests  ../common/tests/main_tests.cpp) #Luego MainServer

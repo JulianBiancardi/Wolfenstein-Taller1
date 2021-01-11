@@ -1,6 +1,7 @@
 #include "machine_gun_item.h"
 
-#include "../../../../common/src/main/guns/machine_gun.h"
+// TODO No need to use the actual object, a number is enough on server-side
+//#include "../../../../common/src/main/guns/machine_gun.h"
 
 MachineGunItem::MachineGunItem(Point center, int id) : Item(center, id) {}
 

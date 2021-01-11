@@ -2,9 +2,8 @@
 #define WOLFENSTEIN_TALLER1_PLAYER_H
 
 #include <iostream>
-#include <vector>
+#include <unordered_set>
 
-#include "../../../../common/src/main/guns/gun.h"
 #include "../config_loader.h"
 #include "moveable.h"
 
@@ -18,8 +17,8 @@ class Player : public Moveable {
   int points;
   // std::map<std::string, Gun> guns_bag;
   // TODO Double check if pointers are needed
-  std::vector<Gun*> guns_bag;
-  Gun* active_gun;
+  std::unordered_set<int> guns_bag;
+  int active_gun;
 
  public:
   Player(Point origin, double angle, int id);
@@ -29,8 +28,8 @@ class Player : public Moveable {
   bool has_bullets(int amount);
   // void decrease_bullets(int amount);
   void receive_damage(int amount);
-  void add_gun(Gun* gun);
-  bool has_gun(Gun* gun);
+  void add_gun(int gun_id);
+  bool has_gun(int gun_id);
   // bool add_gun_if_hasnt(Gun gun);
   void add_bullets(int amount);
   void add_points(int amount);

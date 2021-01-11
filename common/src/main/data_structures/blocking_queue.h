@@ -1,27 +1,26 @@
-#ifndef PROTECTED_Q_CPP
-#define PROTECTED_Q_CPP
+#ifndef BLOCKING_QUEUE_H
+#define BLOCKING_QUEUE_H
 
+#include <condition_variable>
 #include <deque>
 #include <mutex>
 #include <queue>
 #include <vector>
 
 template <class T>
-class ProtectedQueue {
+class BlockingQueue {
  private:
   std::mutex mtx;
   std::queue<T, std::deque<T>> prot_q;
+  std::condition_variable cv;
 
  public:
-  ProtectedQueue();
-  explicit ProtectedQueue(std::vector<T>& vector);
-  bool empty();
+  BlockingQueue();
   void dequeue(T& buffer);
   void enqueue(const T& value);
-  T& front();
-  ~ProtectedQueue();
+  ~BlockingQueue();
 };
 
-#include "protected_queue.tpp"
+#include "blocking_queue.tpp"
 
 #endif

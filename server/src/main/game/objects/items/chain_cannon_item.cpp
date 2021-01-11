@@ -1,6 +1,7 @@
 #include "chain_cannon_item.h"
 
-#include "../../../../common/src/main/guns/chain_cannon.h"
+// TODO No need to use the actual object, a number is enough on server-side
+//#include "../../../../common/src/main/guns/chain_cannon.h"
 
 ChainCannonItem::ChainCannonItem(Point center, int id) : Item(center, id) {}
 

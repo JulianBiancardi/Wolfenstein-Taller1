@@ -1,6 +1,7 @@
 //#include "game_test/gun_tests.h" TODO Solve bugs and include
-#include "game_test/player_test.h"
+#include "blocking_queue_tests.h"
 #include "game_test/match_tests.h"
+#include "game_test/player_test.h"
 #include "matrix_tests.h"
 #include "point_tests.h"
 #include "ray_tests.h"
@@ -13,8 +14,8 @@ int main(int argc, char **argv) {
   ray_tests();
   rectangle_tests();
   resource_tests();
-  //gun_tests();
   player_tests();
   match_tests();
+  blocking_queue_tests();
   return 0;
 }

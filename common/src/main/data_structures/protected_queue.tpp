@@ -18,7 +18,7 @@ void ProtectedQueue<T>::dequeue(T& buffer) {
 }
 
 template <class T>
-void ProtectedQueue<T>::enqueue(T& value) {
+void ProtectedQueue<T>::enqueue(const T& value) {
   std::lock_guard<std::mutex> lock(mtx);
   prot_q.push(value);
 }
