@@ -4,6 +4,8 @@
 #include <cmath>
 #include <limits>
 
+#include "../casting/ray_casting.h"
+
 Pistol::Pistol() : spray(0.17453, 0.1), Gun(2, 20) {
   slope = 1 / (min_range - max_range);
   intercept = -slope * max_range;

@@ -1,5 +1,5 @@
-#ifndef WOLFENSTEIN_TALLER1_KNIFE_H
-#define WOLFENSTEIN_TALLER1_KNIFE_H
+#ifndef KNIFE_H
+#define KNIFE_H
 #include "gun.h"
 
 class Knife : public Gun {
@@ -12,4 +12,4 @@ class Knife : public Gun {
   const static int bullet_required = 0;
 };
 
-#endif //WOLFENSTEIN_TALLER1_KNIFE_H
+#endif

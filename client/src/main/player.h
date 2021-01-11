@@ -1,8 +1,9 @@
 #ifndef WOLFENSTEIN_TALLER1_PLAYER_H
 #define WOLFENSTEIN_TALLER1_PLAYER_H
 
-#include "../../../common/src/main/guns/gun.h"
+#include "../../../common/src/main/utils/point.h"
 #include "../../../common/src/main/utils/ray.h"
+#include "guns/gun.h"
 #include "map.h"
 
 class Player {
@@ -16,6 +17,7 @@ class Player {
   Point next_position(double direction_angle);
 
  public:
+  Player(Ray position);
   Player(Point origin, double angle);
   Player(double x, double y, double angle);
   ~Player() {}
@@ -35,7 +37,7 @@ class Player {
 
   Ray get_position() { return position; };
   void set_position(const Point& new_origin);
-  void /*Player::*/shoot(Map& map);
+  void /*Player::*/ shoot(Map& map);
 };
 
 #endif  // WOLFENSTEIN_TALLER1_PLAYER_H

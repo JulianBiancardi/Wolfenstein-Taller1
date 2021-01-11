@@ -1,8 +1,9 @@
 #ifndef WOLFENSTEIN_TALLER1_CLIENT_SRC_MAIN_EVENTS_MOVEMENT_EVENT_H_
 #define WOLFENSTEIN_TALLER1_CLIENT_SRC_MAIN_EVENTS_MOVEMENT_EVENT_H_
 
-#include "event.h"
+#include "../../../../common/src/main/utils/point.h"
 #include "../caster.h"
+#include "event.h"
 
 class MovementEvent : public Event {
  private:
@@ -11,8 +12,7 @@ class MovementEvent : public Event {
 
  public:
   MovementEvent(const int &id, const Point &new_origin);
- void process();
-
+  void process();
 };
 
-#endif //WOLFENSTEIN_TALLER1_CLIENT_SRC_MAIN_EVENTS_MOVEMENT_EVENT_H_
+#endif  // WOLFENSTEIN_TALLER1_CLIENT_SRC_MAIN_EVENTS_MOVEMENT_EVENT_H_
