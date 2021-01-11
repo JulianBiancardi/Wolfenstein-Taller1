@@ -6,7 +6,9 @@
 ChainCannon::ChainCannon() {
 }
 
-int ChainCannon::shoot(int &available_bullets) {
+int ChainCannon::shoot(Player& player_shooting,
+                       int& current_bullets,
+                       Map& map) {
   if (available_bullets < ConfigLoader::chain_cannon_bullet_required)
     return 0;
   available_bullets -= ConfigLoader::chain_cannon_bullet_required;

@@ -1,6 +1,6 @@
 #include "chain_cannon_item.h"
 
-#include "../../guns/chain_cannon.h"
+#include "../../../../common/src/main/guns/chain_cannon.h"
 
 ChainCannonItem::ChainCannonItem(Point center, int id) : Item(center, id) {}
 

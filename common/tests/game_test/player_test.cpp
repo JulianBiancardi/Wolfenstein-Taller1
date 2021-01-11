@@ -1,5 +1,5 @@
 #include "../../../server/src/main/game/player.h"
-#include "../../../server/src/main/game/sprites/table.h"
+#include "../../../server/src/main/game/objects/table.h"
 #include "../../../server/src/main/map.h"
 #include "../tests_setup.h"
 #include "client_mock.h"
@@ -20,50 +20,58 @@ int static simplest_collision();
 int static second_simplest_collision();
 int static diagonal_collision_with_table();
 
-void move_up(Player &who, CollisionChecker &checker) {
-  Point next_position = next_position_up(who.get_angled_position());
+void move_up(Player& who, CollisionChecker& checker) {
+  Point next_position =
+      next_position_up(who.get_position(), Angle(who.get_angle()));
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
 
-void move_down(Player &who, CollisionChecker &checker) {
-  Point next_position = next_position_down(who.get_angled_position());
+void move_down(Player& who, CollisionChecker& checker) {
+  Point next_position =
+      next_position_down(who.get_position(), Angle(who.get_angle()));
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
 
-void move_right(Player &who, CollisionChecker &checker) {
-  Point next_position = next_position_right(who.get_angled_position());
+void move_right(Player& who, CollisionChecker& checker) {
+  Point next_position =
+      next_position_right(who.get_position(), Angle(who.get_angle()));
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
 
-void move_left(Player &who, CollisionChecker &checker) {
-  Point next_position = next_position_left(who.get_angled_position());
+void move_left(Player& who, CollisionChecker& checker) {
+  Point next_position =
+      next_position_left(who.get_position(), Angle(who.get_angle()));
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
 
-void move_up_right(Player &who, CollisionChecker &checker) {
-  Point next_position = next_position_up_right(who.get_angled_position());
+void move_up_right(Player& who, CollisionChecker& checker) {
+  Point next_position =
+      next_position_up_right(who.get_position(), Angle(who.get_angle()));
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
 
-void move_up_left(Player &who, CollisionChecker &checker) {
-  Point next_position = next_position_up_left(who.get_angled_position());
+void move_up_left(Player& who, CollisionChecker& checker) {
+  Point next_position =
+      next_position_up_left(who.get_position(), Angle(who.get_angle()));
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
 
-void move_down_right(Player &who, CollisionChecker &checker) {
-  Point next_position = next_position_down_right(who.get_angled_position());
+void move_down_right(Player& who, CollisionChecker& checker) {
+  Point next_position =
+      next_position_down_right(who.get_position(), Angle(who.get_angle()));
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
 
-void move_down_left(Player &who, CollisionChecker &checker) {
-  Point next_position = next_position_down_left(who.get_angled_position());
+void move_down_left(Player& who, CollisionChecker& checker) {
+  Point next_position =
+      next_position_down_left(who.get_position(), Angle(who.get_angle()));
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
@@ -125,8 +133,8 @@ int static can_move_up() {
   Player player(100, 100, M_PI / 2, 1);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
-  std::vector<Sprite> sprites;
-  std::unordered_map<int, Items *> items;
+  std::vector<Object> sprites;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   move_up(players.at(1), checker);
@@ -145,8 +153,8 @@ int static collides_wall() {
   Player player(64, 64, 3 * M_PI / 2, 1);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
-  std::vector<Sprite> sprites;
-  std::unordered_map<int, Items *> items;
+  std::vector<Object> sprites;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   move_up(players.at(1), checker);
@@ -165,8 +173,8 @@ int static walks_and_collides_wall() {
   Player player(64, 64, 0, 1);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
-  std::vector<Sprite> sprites;
-  std::unordered_map<int, Items *> items;
+  std::vector<Object> sprites;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   int previous_x;
@@ -189,8 +197,8 @@ int static walk_with_different_angle_and_direction() {
   Player player(64, 64, 3 * M_PI / 2, 1);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
-  std::vector<Sprite> sprites;
-  std::unordered_map<int, Items *> items;
+  std::vector<Object> sprites;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   move_down(players.at(1), checker);
@@ -209,8 +217,8 @@ int static complete_path_correctly() {
   Player player(100, 100, 0, 1);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
-  std::vector<Sprite> sprites;
-  std::unordered_map<int, Items *> items;
+  std::vector<Object> sprites;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 100; i++) {
@@ -234,8 +242,8 @@ int static walk_diagonally() {
   Player player(100, 100, 0, 1);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
-  std::vector<Sprite> sprites;
-  std::unordered_map<int, Items *> items;
+  std::vector<Object> sprites;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   move_up_left(players.at(1), checker);
@@ -256,8 +264,8 @@ int static complete_difficult_path_correctly() {
   Player player(100, 100, 0, 1);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
-  std::vector<Sprite> sprites;
-  std::unordered_map<int, Items *> items;
+  std::vector<Object> sprites;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 700; i++) {
@@ -281,8 +289,8 @@ int static check_collisions() {
   Player player(100, 100, M_PI / 2, 1);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
-  std::vector<Sprite> sprites;
-  std::unordered_map<int, Items *> items;
+  std::vector<Object> sprites;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 700; i++) {
@@ -330,8 +338,8 @@ int static player_collides_against_other_player() {
   std::unordered_map<int, Player> players;
   players.insert({1, player1});
   players.insert({2, player2});
-  std::vector<Sprite> sprites;
-  std::unordered_map<int, Items *> items;
+  std::vector<Object> sprites;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 200; i++) {
@@ -355,8 +363,8 @@ int static another_player_collides_against_other_player() {
   std::unordered_map<int, Player> players;
   players.insert({1, player1});
   players.insert({2, player2});
-  std::vector<Sprite> sprites;
-  std::unordered_map<int, Items *> items;
+  std::vector<Object> sprites;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 100; i++) {
@@ -383,9 +391,9 @@ int static player_collides_against_table_from_side() {
 
   std::unordered_map<int, Player> players;
   players.insert({1, player});
-  std::vector<Sprite> sprites;
+  std::vector<Object> sprites;
   sprites.push_back(table);
-  std::unordered_map<int, Items *> items;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 100; i++) {
@@ -408,9 +416,9 @@ int static player_collides_against_table_from_another_side() {
 
   std::unordered_map<int, Player> players;
   players.insert({1, player});
-  std::vector<Sprite> sprites;
+  std::vector<Object> sprites;
   sprites.push_back(table);
-  std::unordered_map<int, Items *> items;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 200; i++) {
@@ -433,8 +441,8 @@ int static simplest_collision() {
 
   std::unordered_map<int, Player> players;
   players.insert({1, player});
-  std::vector<Sprite> sprites;
-  std::unordered_map<int, Items *> items;
+  std::vector<Object> sprites;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 100; i++) {
@@ -457,8 +465,8 @@ int static second_simplest_collision() {
 
   std::unordered_map<int, Player> players;
   players.insert({1, player});
-  std::vector<Sprite> sprites;
-  std::unordered_map<int, Items *> items;
+  std::vector<Object> sprites;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 3; i++) {
@@ -481,9 +489,9 @@ int static diagonal_collision_with_table() {
 
   std::unordered_map<int, Player> players;
   players.insert({1, player});
-  std::vector<Sprite> sprites;
+  std::vector<Object> sprites;
   sprites.push_back(table);
-  std::unordered_map<int, Items *> items;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
   for (int i = 0; i < 300; i++) {

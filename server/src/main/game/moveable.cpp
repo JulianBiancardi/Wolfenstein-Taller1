@@ -11,20 +11,30 @@ Moveable::Moveable(Ray position, int id)
     : Identifiable(id),
       Object(position, new Circle_mask(1, position.get_ref_origin())) {}
 
+Moveable::Moveable(double x, double y, double angle, int id)
+    : Identifiable(id),
+      Object(Point(x, y),
+             angle,
+             new Circle_mask(1, position.get_ref_origin())) {}
+
+Moveable::Moveable(const Moveable& other)
+    : Identifiable(other.id),
+      Object(other.position, new Circle_mask(1, position.get_ref_origin())) {}
+
 /*
-Moveable::Moveable(const Moveable &other)
+Moveable::Moveable(const Moveable& other)
     : position(other.angled_position),
       mask(other.mask.get_radio(), angled_position.get_ref_origin()),
       Identifiable(other.id) {}  // Probably should not copy id
 */
 
-Point Moveable::collision_mask_bound(const Point &next_position) {
+Point Moveable::collision_mask_bound(const Point& next_position) {
   double angle = position.get_origin().angle_to(next_position);
 
   double front_x =
-      next_position.getX() + cos(angle) * ((Circle_mask *)mask)->get_radio();
+      next_position.getX() + cos(angle) * ((Circle_mask*) mask)->get_radio();
   double front_y =
-      next_position.getY() + sin(angle) * ((Circle_mask *)mask)->get_radio();
+      next_position.getY() + sin(angle) * ((Circle_mask*) mask)->get_radio();
 
   return Point(front_x, front_y);
 }
@@ -81,12 +91,12 @@ void Moveable::move_down_right() {
 void Moveable::move_down_left() {
   move_from_current_position_if_can(3 * M_PI / 4);
 }
-
+*/
 // Change position in Object, not from Moveable.
-void Moveable::set_position(const Point &new_origin) {
-  angled_position = Ray(new_origin, angled_position.get_angle());
-}*/
+void Moveable::set_position(const Point& new_origin) {
+  position = Ray(new_origin, position.get_angle());
+}
 
-bool Moveable::operator!=(const Moveable &other) const {
+bool Moveable::operator!=(const Moveable& other) const {
   return (this != &other);
 }

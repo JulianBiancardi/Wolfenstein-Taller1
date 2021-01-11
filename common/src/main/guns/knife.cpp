@@ -6,7 +6,6 @@ Knife::Knife() {
 
 }
 
-
-int Knife::shoot(/*Player &shooter*/int &current_bullets) {
+int Knife::shoot(Player& player_shooting, int& current_bullets, Map& map) {
 
 }

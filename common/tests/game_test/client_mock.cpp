@@ -2,51 +2,51 @@
 #include <cmath>
 
 // TODO try to use server and client code
-Point next_position(double direction_angle, Ray angled_position) {
-  double movement_angle = angled_position.get_angle() + direction_angle;
+Point next_position(double direction_angle,
+                    const Point& position,
+                    const Angle& angle) {
+  double movement_angle = angle.to_double() + direction_angle;
 
-  double next_x = angled_position.get_origin().getX() +
-      cos(movement_angle) * 1;
-  double next_y = angled_position.get_origin().getY() +
-      sin(movement_angle) * 1;
+  double next_x = position.getX() + cos(movement_angle) * 1;
+  double next_y = position.getY() + sin(movement_angle) * 1;
 
   return Point(next_x, next_y);
 }
 
-Point next_position_up(Ray angled_position) {
-  return next_position(0, angled_position);
+Point next_position_up(const Point& position, const Angle& angle) {
+  return next_position(0, position, angle);
 }
 
-Point next_position_down(Ray angled_position) {
-  return next_position(M_PI, angled_position);
+Point next_position_down(const Point& position, const Angle& angle) {
+  return next_position(M_PI, position, angle);
 }
 
-Point next_position_right(Ray angled_position) {
-  return next_position(3 * M_PI / 2, angled_position);
+Point next_position_right(const Point& position, const Angle& angle) {
+  return next_position(3 * M_PI / 2, position, angle);
 }
 
-Point next_position_left(Ray angled_position) {
-  return next_position(M_PI / 2, angled_position);
+Point next_position_left(const Point& position, const Angle& angle) {
+  return next_position(M_PI / 2, position, angle);
 }
 
-Point next_position_up_right(Ray angled_position) {
-  return next_position(7 * M_PI / 4, angled_position);
+Point next_position_up_right(const Point& position, const Angle& angle) {
+  return next_position(7 * M_PI / 4, position, angle);
 }
 
-Point next_position_up_left(Ray angled_position) {
-  return next_position(M_PI / 4, angled_position);
+Point next_position_up_left(const Point& position, const Angle& angle) {
+  return next_position(M_PI / 4, position, angle);
 }
 
-Point next_position_down_right(Ray angled_position) {
-  return next_position(5 * M_PI / 4, angled_position);
+Point next_position_down_right(const Point& position, const Angle& angle) {
+  return next_position(5 * M_PI / 4, position, angle);
 }
 
-Point next_position_down_left(Ray angled_position) {
-  return next_position(3 * M_PI / 4, angled_position);
+Point next_position_down_left(const Point& position, const Angle& angle) {
+  return next_position(3 * M_PI / 4, position, angle);
 }
 
 // TODO Should not be here
-void put_data(Matrix<int> &map_data) {
+void put_data(Matrix<int>& map_data) {
   for (int j = 0; j < 64; j++) {
     for (int i = 0; i < map_data.get_columns(); i++) {
       map_data(i, j) = WALL;  // TOP

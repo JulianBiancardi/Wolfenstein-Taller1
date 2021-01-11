@@ -20,7 +20,7 @@ double Angle::normalize(double angle) {
   return angle;
 }
 
-double Angle::to_double() { return angle; }
+double Angle::to_double() const { return angle; }
 
 Angle Angle::operator+(Angle& other) {
   return Angle(this->angle + other.angle);

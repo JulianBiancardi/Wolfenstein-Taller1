@@ -14,7 +14,7 @@ class Angle {
   static double normalize(double angle);
 
   /* Returns the value of the angle as a double */
-  double to_double();
+  double to_double() const;
 
   Angle operator+(Angle& other);
   Angle operator-(Angle& other);

@@ -20,10 +20,10 @@ class Moveable : public Object, public Identifiable {
   Moveable(Point origin, double angle, int id);
   Moveable(Ray position, int id);
   Moveable(double x, double y, double angle, int id);
-  Moveable(const Moveable &other) = delete;
+  Moveable(const Moveable& other);
   ~Moveable() {}
 
-  Point collision_mask_bound(const Point &next_position);
+  Point collision_mask_bound(const Point& next_position);
   /*  void move_up();
     void move_down();
     void move_right();
@@ -32,8 +32,8 @@ class Moveable : public Object, public Identifiable {
     void move_up_left();
     void move_down_right();
     void move_down_left();*/
-  bool operator!=(const Moveable &other) const;
-  void set_position(const Point &new_origin);
+  bool operator!=(const Moveable& other) const;
+  void set_position(const Point& new_origin);
 };
 
 #endif
