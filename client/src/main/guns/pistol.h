@@ -1,8 +1,7 @@
 #ifndef WOLFENSTEIN_TALLER1_PISTOL_H
 #define WOLFENSTEIN_TALLER1_PISTOL_H
 
-#include "../../../../server/src/main/game/player.h"
-//#include "../player.h"
+#include "../player.h"
 #include "gun.h"
 #include "spray.h"
 

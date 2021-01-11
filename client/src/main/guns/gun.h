@@ -3,12 +3,12 @@
 #include <random>
 
 #include "../../../../server/src/main/config_loader.h"
-#include "../../../../server/src/main/game/player.h"
+#include "../player.h"
 
 //#include "../player.h"
 
 class Player;
-//class Shooter;
+// class Shooter;
 
 class Map;  // borrar
 

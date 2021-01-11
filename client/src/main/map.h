@@ -11,7 +11,6 @@
 //#include "object.h"
 #include "../../../server/src/main/game/objects/object.h"
 
-
 class Map : public BaseMap {
  private:
   // std::vector<std::reference_wrapper<Player>> players;

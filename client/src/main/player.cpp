@@ -4,6 +4,10 @@
 
 #include "casting/ray_casting.h"
 
+Player::Player(Ray position) : position(position) {
+  pace = 1;  // TODO Use config file
+}
+
 Player::Player(Point origin, double angle) : position(origin, angle) {
   pace = 1;  // TODO Use config file
 }
