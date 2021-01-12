@@ -1,14 +1,12 @@
 #include "player.h"
-
 #include <cmath>
-
 #include "../../../../common/src/main/utils/ray.h"  // TODO Check if not already included
 
 Player::Player(Point origin, double angle, int id)
     : shot_bullets(0), points(0), Moveable(origin, angle, id) {
   max_health = ConfigLoader::player_health;
   health = max_health;
-  max_bullets = 100;  // TODO Use config loader
+  max_bullets = ConfigLoader::player_max_bullets;
   bullets = ConfigLoader::player_bullets;
 }
 
@@ -16,7 +14,7 @@ Player::Player(double x, double y, double angle, int id)
     : shot_bullets(0), points(0), Moveable(x, y, angle, id) {
   max_health = ConfigLoader::player_health;
   health = max_health;
-  max_bullets = 100;  // TODO Use config loader
+  max_bullets = ConfigLoader::player_max_bullets;
   bullets = ConfigLoader::player_bullets;
 }
 /*
@@ -85,4 +83,4 @@ void Player::decrease_health(int amount) {
 
 bool Player::is_full_health() { return health == max_health; }
 
-int Player::get_current_health() { return health; } //todo change to get_health
+int Player::get_current_health() { return health; } // TODO Change to get_health()

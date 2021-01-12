@@ -45,7 +45,7 @@ FILE(GLOB SDLFiles
 FILE(GLOB TestFiles
 	#../common/tests/*.cpp Should be used
 	#../common/tests/game_test/*.cpp
-	../common/tests/game_test/gun_tests.cpp #Should be included
+	../common/tests/game_test/gun_tests.cpp
 	../common/tests/game_test/match_tests.cpp
 	../common/tests/game_test/player_test.cpp
 	../common/tests/game_test/client_mock.cpp
