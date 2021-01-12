@@ -13,11 +13,11 @@ void Match::add_player(Point where, double initial_angle) {
   players_id_count++;
 }
 
-void Match::enqueue_event(const Event& event) {
+void Match::enqueue_event(const packet_t& event) {
   events_to_process.enqueue(event);
 }
 
-const Event Match::dequeue_result(int for_whom) {
+const packet_t Match::dequeue_result(int for_whom) {
   return result_events.at(for_whom).dequeue(); // Throws out_of_range if not found
 }
 
@@ -27,7 +27,7 @@ void Match::start() {
   CollisionChecker checker(map, players, map.get_items(), map.get_objects());
 
   while (keep_running) {
-    const Event next_event = events_to_process.dequeue();
+    const packet_t next_event = events_to_process.dequeue();
     EventHandler* handler = builder.build(next_event, players);
     handler->handle(*this, checker);
     delete handler;
@@ -37,17 +37,18 @@ void Match::start() {
   }
 }
 
-void Match::enqueue_result(const Event& event, int for_whom) {
+void Match::enqueue_result(const packet_t& event, int for_whom) {
   result_events.at(for_whom).enqueue(event); // Throws out_of_range if not found
 }
 
-void Match::enqueue_result_for_all(const Event& event) {
+void Match::enqueue_result_for_all(const packet_t& event) {
   for (auto& queue : result_events)
     queue.second.enqueue(event);
 }
 
 // Check if it is used (now is NOT being used)
-void Match::enqueue_result_for_all_others(const Event& event, int others_than) {
+void Match::enqueue_result_for_all_others(const packet_t& event,
+                                          int others_than) {
   for (auto& queue : result_events) {
     if (queue.first != others_than)
       queue.second.enqueue(event);

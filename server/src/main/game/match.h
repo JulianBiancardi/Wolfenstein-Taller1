@@ -16,23 +16,23 @@ class Match {
   std::unordered_map<int, int> test;
   std::unordered_map<int, Player> players;
   int players_id_count;
-  EventQueue<Event> events_to_process;
-  std::unordered_map<int, EventQueue<Event>> result_events; // <id, EventQueue>
+  EventQueue<packet_t> events_to_process;
+  std::unordered_map<int, EventQueue<packet_t>> result_events; // <id, Queue>
 
  public:
   Match(Map& map);
   ~Match();
 
   void add_player(Point where, double initial_angle);  // Revise parameters, map
-  void enqueue_event(const Event& event);              // has spawn points
-  const Event dequeue_result(int for_whom);
+  void enqueue_event(const packet_t& event);              // has spawn points
+  const packet_t dequeue_result(int for_whom);
   void start();
 
   Map& get_map();
   // Enqueuing results
-  void enqueue_result(const Event& event, int for_whom);
-  void enqueue_result_for_all(const Event& event);
-  void enqueue_result_for_all_others(const Event& event, int others_than);
+  void enqueue_result(const packet_t& event, int for_whom);
+  void enqueue_result_for_all(const packet_t& event);
+  void enqueue_result_for_all_others(const packet_t& event, int others_than);
   Player& get_player(int id);  // Only used for testing
 };
 
