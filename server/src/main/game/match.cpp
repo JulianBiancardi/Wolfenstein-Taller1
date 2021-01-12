@@ -7,6 +7,9 @@ Match::~Match() {}
 void Match::add_player(Point where, double initial_angle) {
   players.insert({players_id_count,
                   Player(where, initial_angle, players_id_count)});
+  result_events.emplace(std::piecewise_construct,
+                        std::forward_as_tuple(players_id_count),
+                        std::forward_as_tuple()); // In-place construction
   players_id_count++;
 }
 
@@ -14,7 +17,9 @@ void Match::enqueue_event(const Event& event) {
   events_to_process.enqueue(event);
 }
 
-const Event Match::dequeue_result() { return result_events.dequeue(); }
+const Event Match::dequeue_result(int for_whom) {
+  return result_events.at(for_whom).dequeue(); // Throws out_of_range if not found
+}
 
 void Match::start() {
   bool keep_running = true;
@@ -32,7 +37,22 @@ void Match::start() {
   }
 }
 
-void Match::enqueue_result(const Event& event) { result_events.enqueue(event); }
+void Match::enqueue_result(const Event& event, int for_whom) {
+  result_events.at(for_whom).enqueue(event); // Throws out_of_range if not found
+}
+
+void Match::enqueue_result_for_all(const Event& event) {
+  for (auto& queue : result_events)
+    queue.second.enqueue(event);
+}
+
+// Check if it is used (now is NOT being used)
+void Match::enqueue_result_for_all_others(const Event& event, int others_than) {
+  for (auto& queue : result_events) {
+    if (queue.first != others_than)
+      queue.second.enqueue(event);
+  }
+}
 
 Map& Match::get_map() { return map; }
 

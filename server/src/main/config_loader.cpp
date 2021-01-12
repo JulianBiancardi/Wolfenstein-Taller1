@@ -1,11 +1,13 @@
 #include "config_loader.h"
 
-YAML::Node CL::yaml_file = YAML::LoadFile("../../common/src/main/config.yaml");
+YAML::Node CL::yaml_file = YAML::LoadFile("../common/src/main/config.yaml");
 std::string sv_port = CL::yaml_file["sv_port"].as<std::string>();
 
 // Player
 int CL::player_health = CL::yaml_file["player_health"].as<int>();
 int CL::player_bullets = CL::yaml_file["player_bullets"].as<int>();
+int CL::player_max_bullets = CL::yaml_file["player_max_bullets"].as<int>();
+int CL::player_mask_radio = CL::yaml_file["player_mask_radio"].as<int>();
 
 // Guns
 int CL::knife_range = CL::yaml_file["knife_range"].as<int>();

@@ -1,7 +1,7 @@
 #include "medic_kit.h"
 
 MedicKit::MedicKit(Point center, int id) : Item(center, id) {
-  health_recovered = 20;  // TODO Use config loader
+  health_recovered = ConfigLoader::medic_kit_health_recovered;
 }
 
 void MedicKit::use(Player& user) { user.add_health(health_recovered); }
