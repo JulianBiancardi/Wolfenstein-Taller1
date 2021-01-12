@@ -18,6 +18,8 @@ class Gun {
   double min_range;
 
  public:
+  Gun(); //TODO delete?
+  ~Gun();
   Gun(double min_range, double max_range);
   virtual int shoot(Player& player_shooting, int& current_bullets,
                     Map& map) = 0;

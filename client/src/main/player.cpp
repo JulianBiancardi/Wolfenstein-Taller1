@@ -45,7 +45,18 @@ void Player::set_position(const Point& new_origin) {
   position = Ray(new_origin, position.get_angle());
 }
 
-void Player::shoot(Map& map) { active_gun->shoot(*this, bullets, map); }
+void Player::shoot(Map& map) {
+  active_gun->shoot(*this, bullets, map);
+}
 
 //
 void Player::set_health(int health) { this->health = health; }
+int Player::get_health() { return this->health; }
+
+
+bool Player::has_bullets(int amount) { return (bullets >= amount); }
+
+/*WHY NOT?*/
+void Player::decrease_bullets(int amount) {
+  bullets -= amount;
+}

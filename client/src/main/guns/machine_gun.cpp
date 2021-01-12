@@ -1,7 +1,5 @@
 #include "machine_gun.h"
 
-#include "../../config_loader.h"
-
 // const int MachineGun::bullet_required =
 // ConfigLoader::get_init_configs().machine_gun_bullet_required; const int
 // MachineGun::base_precision =

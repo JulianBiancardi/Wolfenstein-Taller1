@@ -15,7 +15,7 @@ FILE(GLOB ServerFiles
 	src/main/map.cpp
 	src/main/game/*.cpp
 	src/main/game/collisions/*.cpp
-	src/main/game/guns/*.cpp
+	#src/main/game/guns/*.cpp
 	src/main/events/*.cpp
 	src/main/game/objects/items/*.cpp
 	src/main/game/objects/*.cpp
@@ -30,8 +30,9 @@ FILE(GLOB MainFiles
 	../client/src/main/resource.cpp
     ../client/src/main/resource_manager.cpp
 	../client/src/main/caster.cpp
-	#../client/src/main/player.cpp
+	../client/src/main/player.cpp
 
+	../client/src/main/guns/*.cpp
 
 	../client/src/main/casting/*.cpp
 	#../client/src/main/collision.cpp
@@ -44,7 +45,7 @@ FILE(GLOB SDLFiles
 FILE(GLOB TestFiles
 	#../common/tests/*.cpp Should be used
 	#../common/tests/game_test/*.cpp
-	#../common/tests/game_test/gun_tests.cpp Should be included
+	../common/tests/game_test/gun_tests.cpp #Should be included
 	../common/tests/game_test/match_tests.cpp
 	../common/tests/game_test/player_test.cpp
 	../common/tests/game_test/client_mock.cpp

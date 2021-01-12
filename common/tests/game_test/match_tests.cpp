@@ -189,7 +189,7 @@ int static grabs_medic_kit_and_restores_all_health() {
       || result.data.item != 1)
     return ERROR;
 
-  if (match.get_player(result.player_id).get_health()
+  if (match.get_player(result.player_id).get_current_health()
       != 40) // TODO Use config loader
     return ERROR;
 
@@ -226,7 +226,7 @@ int static grabs_medic_kit_and_restores_health_correctly() {
     return ERROR;
   }
 
-  if (match.get_player(result.player_id).get_health()
+  if (match.get_player(result.player_id).get_current_health()
       != 30) // TODO Use config loader
     return ERROR;
 
@@ -271,7 +271,7 @@ int static walks_two_times_and_grabs_medic_kit() {
     return ERROR;
   }
 
-  if (match.get_player(result.player_id).get_health()
+  if (match.get_player(result.player_id).get_current_health()
       != 30) // TODO Use config loader
     return ERROR;
 
@@ -331,7 +331,7 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
     return ERROR;
   }
 
-  if (match.get_player(result.player_id).get_health()
+  if (match.get_player(result.player_id).get_current_health()
       != 11) // TODO Use config loader
     return ERROR;
 
@@ -391,7 +391,7 @@ int static medic_kit_disappears_after_grabbing_it() {
     return ERROR;
   }
 
-  if (match.get_player(result.player_id).get_health()
+  if (match.get_player(result.player_id).get_current_health()
       != 30) // TODO Use config loader
     return ERROR;
 

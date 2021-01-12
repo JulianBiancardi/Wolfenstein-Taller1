@@ -6,6 +6,8 @@
 #include "guns/gun.h"
 #include "map.h"
 
+class Gun;
+
 class Player {
  private:
   Ray position;
@@ -23,7 +25,10 @@ class Player {
   ~Player() {}
 
   //
+  int get_health();
   void set_health(int health);
+  bool has_bullets(int bullets);
+  void decrease_bullets(int amount);
   //
 
   Point next_position_up();
