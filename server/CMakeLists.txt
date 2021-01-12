@@ -4,6 +4,9 @@ project(YamlExample)
 add_subdirectory(../common/third-party/yaml-cpp build) # This is one way of referencing another
 # CMake project
 
+set(CMAKE_CXX_FLAGS "-DDEBUG -ggdb3 -O0 -g")
+add_definitions("-DDEBUG -ggdb3 -O0 -g")
+
 
 # Find the SDL2 library
 find_package(SDL2 REQUIRED)
@@ -12,7 +15,6 @@ include_directories(${SDL2_INCLUDE_DIR})
 
 FILE(GLOB ServerFiles 
 	src/main/config_loader.cpp
-	src/main/map.cpp
 	src/main/game/*.cpp
 	src/main/game/collisions/*.cpp
 	#src/main/game/guns/*.cpp
@@ -45,7 +47,7 @@ FILE(GLOB SDLFiles
 FILE(GLOB TestFiles
 	#../common/tests/*.cpp Should be used
 	#../common/tests/game_test/*.cpp
-	../common/tests/game_test/gun_tests.cpp #Should be included
+	../common/tests/game_test/gun_tests.cpp
 	../common/tests/game_test/match_tests.cpp
 	../common/tests/game_test/player_test.cpp
 	../common/tests/game_test/client_mock.cpp
@@ -64,6 +66,13 @@ FILE(GLOB MainTests  ../common/tests/main_tests.cpp) #Luego MainServer
 FILE(GLOB MainClient  ../client/src/main/main.cpp) #Luego MainClient
 
 
+
+
+FILE(GLOB MapServer  src/main/map.cpp) #todo Shouldnt be here
+FILE(GLOB MapClient  ../client/src/main/map.cpp) #todo Shouldnt be here
+
+
+
 add_executable(
         server-main
         ${MainFiles}
@@ -72,6 +81,8 @@ add_executable(
         ${SDLFiles}
         ${TestFiles}
 		${MainTests}
+		${MapServer}
+
 )
 # Generar el servidor
 target_link_libraries(
@@ -90,6 +101,9 @@ add_executable(
 		${SDLFiles}
 		${TestFiles}
 		${MainClient}
+
+		${MapServer}#todo should not be here.
+		#		${MapClient}
 )
 target_link_libraries(
 		client-main
