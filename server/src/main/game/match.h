@@ -17,7 +17,7 @@ class Match {
   std::unordered_map<int, Player> players;
   int players_id_count;
   EventQueue<Event> events_to_process;
-  EventQueue<Event> result_events;
+  std::unordered_map<int, EventQueue<Event>> result_events; // <id, EventQueue>
 
  public:
   Match(Map& map);
@@ -25,11 +25,14 @@ class Match {
 
   void add_player(Point where, double initial_angle);  // Revise parameters, map
   void enqueue_event(const Event& event);              // has spawn points
-  const Event dequeue_result();
+  const Event dequeue_result(int for_whom);
   void start();
 
   Map& get_map();
-  void enqueue_result(const Event& event);
+  // Enqueuing results
+  void enqueue_result(const Event& event, int for_whom);
+  void enqueue_result_for_all(const Event& event);
+  void enqueue_result_for_all_others(const Event& event, int others_than);
   Player& get_player(int id);  // Only used for testing
 };
 
