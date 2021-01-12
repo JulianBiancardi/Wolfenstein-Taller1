@@ -14,6 +14,7 @@ int static grabs_medic_kit_and_restores_health_correctly();
 int static walks_two_times_and_grabs_medic_kit();
 int static grabs_blood_only_when_health_is_less_than_eleven();
 int static medic_kit_disappears_after_grabbing_it();
+int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified();
 
 void match_tests() {
   begin_tests("MATCH");
@@ -42,6 +43,10 @@ void match_tests() {
   print_test("El kit medico desaparece al agarrarse",
              medic_kit_disappears_after_grabbing_it,
              NO_ERROR);
+  print_test(
+      "Se notifican a todos los jugadores que uno se movio y agarro un kit medico",
+      one_player_moves_and_grabs_medic_kit_and_all_players_are_notified,
+      NO_ERROR);
 
   end_tests();
 }
@@ -64,7 +69,7 @@ int static can_move_up_player() {
 
   match.enqueue_event(event);
   match.start();
-  Event result = match.dequeue_result();
+  Event result = match.dequeue_result(1);
 
   if (result.type == 1 && result.player_id == 1
       && result.data.point.x == 100
@@ -98,14 +103,14 @@ int static can_move_up_player_two_times() {
 
   match.enqueue_event(event_2);
   match.start();
-  Event result = match.dequeue_result();
+  Event result = match.dequeue_result(1);
 
   if (result.type != 1 || result.player_id != 1
       || result.data.point.x != 100
       || result.data.point.y != 101)
     return ERROR;
 
-  result = match.dequeue_result();
+  result = match.dequeue_result(1);
 
   if (result.type != 1 || result.player_id != 1
       || result.data.point.x != 100
@@ -145,13 +150,13 @@ int static can_move_up_until_wall() {
   Event result;
 
   for (int i = 101; i < 571; i++) {
-    result = match.dequeue_result();
+    result = match.dequeue_result(1);
     if (result.data.point.y != i)
       return ERROR;
   }
 
   for (int i = 0; i < 100; i++) {
-    result = match.dequeue_result();
+    result = match.dequeue_result(1);
     if (result.data.point.y != 570)
       return ERROR;
   }
@@ -183,7 +188,7 @@ int static grabs_medic_kit_and_restores_all_health() {
 
   match.start();
 
-  Event result = match.dequeue_result();
+  Event result = match.dequeue_result(1);
 
   if (result.type != 2 || result.player_id != 1
       || result.data.item != 1)
@@ -219,7 +224,7 @@ int static grabs_medic_kit_and_restores_health_correctly() {
   match.enqueue_event(event);
   match.start();
 
-  Event result = match.dequeue_result();
+  Event result = match.dequeue_result(1);
 
   if (result.type != 2 || result.player_id != 1
       || result.data.item != 1) {
@@ -263,8 +268,8 @@ int static walks_two_times_and_grabs_medic_kit() {
 
   match.start();
 
-  match.dequeue_result();
-  Event result = match.dequeue_result();
+  match.dequeue_result(1);
+  Event result = match.dequeue_result(1);
 
   if (result.type != 2 || result.player_id != 1
       || result.data.item != 1) {
@@ -315,16 +320,16 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
 
   match.start();
 
-  match.dequeue_result();
-  Event result = match.dequeue_result();
+  match.dequeue_result(1);
+  Event result = match.dequeue_result(1);
 
   if (result.type != 1 || result.player_id != 1
       || result.data.point.x != 100 || result.data.point.y != 102) {
     return ERROR;
   }
 
-  match.dequeue_result();
-  result = match.dequeue_result();
+  match.dequeue_result(1);
+  result = match.dequeue_result(1);
 
   if (result.type != 2 || result.player_id != 1
       || result.data.item != 1) {
@@ -373,7 +378,7 @@ int static medic_kit_disappears_after_grabbing_it() {
 
   match.start();
 
-  Event result = match.dequeue_result();
+  Event result = match.dequeue_result(1);
 
   if (result.type != 2 || result.player_id != 1
       || result.data.item != 1) {
@@ -381,10 +386,10 @@ int static medic_kit_disappears_after_grabbing_it() {
   }
 
   for (int i = 0; i < 2; i++) {
-    match.dequeue_result();
+    match.dequeue_result(1);
   }
 
-  result = match.dequeue_result();
+  result = match.dequeue_result(1);
 
   if (result.type != 1 || result.player_id != 1
       || result.data.point.x != 100 || result.data.point.y != 101) {
@@ -392,6 +397,64 @@ int static medic_kit_disappears_after_grabbing_it() {
   }
 
   if (match.get_player(result.player_id).get_current_health()
+      != 30) // TODO Use config loader
+    return ERROR;
+
+  return NO_ERROR;
+}
+
+int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+
+  map.add_medic_kit(Point(100, 101));
+
+  Match match(map);
+  Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
+  match.add_player(angled_player_position.get_origin(),
+                   angled_player_position.get_angle());
+  match.add_player(Point(300, 300), M_PI / 2);
+
+  // CLIENT MOCK
+  Point next_position = next_position_up(angled_player_position.get_origin(),
+                                         Angle(angled_player_position.get_angle()));
+  PointData point = {.x = next_position.getX(), .y = next_position.getY()};
+  Event event = {.type = 1, .player_id = 1, .data = {.point = point}};
+
+  match.enqueue_event(event);
+
+  match.get_player(1).decrease_health(30);
+
+  match.start();
+
+  Event result_1 = match.dequeue_result(1);
+  Event result_2 = match.dequeue_result(2);
+
+  if (result_1.type != 2 || result_1.player_id != 1
+      || result_1.data.item != 1) {
+    return ERROR;
+  }
+
+  if (result_2.type != 2 || result_2.player_id != 1
+      || result_2.data.item != 1) {
+    return ERROR;
+  }
+
+  result_1 = match.dequeue_result(1);
+  result_2 = match.dequeue_result(2);
+
+  if (result_1.type != 1 || result_1.player_id != 1
+      || result_1.data.point.x != 100 || result_1.data.point.y != 101) {
+    return ERROR;
+  }
+
+  if (result_2.type != 1 || result_2.player_id != 1
+      || result_2.data.point.x != 100 || result_2.data.point.y != 101) {
+    return ERROR;
+  }
+
+  if (match.get_player(result_1.player_id).get_current_health()
       != 30) // TODO Use config loader
     return ERROR;
 
