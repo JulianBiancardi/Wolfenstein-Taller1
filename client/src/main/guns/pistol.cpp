@@ -81,8 +81,6 @@ int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
   }
 }
 
-double Pistol::linear_func(double x) {}
+double Pistol::linear_func(double x) { return slope * x + intercept; }
 
-Pistol::~Pistol() {
-
-}
+Pistol::~Pistol() {}

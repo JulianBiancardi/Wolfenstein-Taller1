@@ -11,5 +11,6 @@ double Spray::operator()() {
   double angle;
   do {
     angle = normal_distribution(generator);
-  } while (spray_angle < fabs(angle));  // Truncate to 20° Spread
+  } while (spray_angle < fabs(angle));  // Truncate to certain angle
+  return angle;
 }
