@@ -5,12 +5,11 @@
 
 #include <string>
 
-#include "../client_src/command.h"
 #include "socket_error.h"
 
 typedef unsigned long size_t;
 
-class Socket : public Command {
+class Socket {
  private:
   int socket_file_descriptor;
   explicit Socket(int sfd) : socket_file_descriptor(sfd) {}
@@ -19,6 +18,8 @@ class Socket : public Command {
   Socket();
   explicit Socket(std::string& host, std::string& port);
   Socket(Socket&& other);
+  Socket& operator=(Socket&& other);
+  ~Socket();
 
   /* Send a stream using the socket.
    * Returns the amount of bytes sent.
@@ -59,13 +60,6 @@ class Socket : public Command {
    * and errno set to indicate the error.
    */
   int close();
-
-  /* Send the string passed as an argument */
-  void operator()(std::string& str) override;
-
-  Socket& operator=(Socket&& other);
-
-  ~Socket();
 };
 
 #endif
