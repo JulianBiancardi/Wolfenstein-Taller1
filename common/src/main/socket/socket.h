@@ -18,6 +18,8 @@ class Socket {
   Socket();
   explicit Socket(std::string& host, std::string& port);
   Socket(Socket&& other);
+  Socket& operator=(Socket&& other);
+  ~Socket();
 
   /* Send a stream using the socket.
    * Returns the amount of bytes sent.
@@ -58,10 +60,6 @@ class Socket {
    * and errno set to indicate the error.
    */
   int close();
-
-  Socket& operator=(Socket&& other);
-
-  ~Socket();
 };
 
 #endif
