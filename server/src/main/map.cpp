@@ -1,4 +1,7 @@
 #include "map.h"
+#include "game/objects/items/blood.h"
+#include "game/objects/items/medic_kit.h"
+#include "game/objects/items/bullets.h"
 
 Map::Map(Matrix<int>& map_matrix) : BaseMap(map_matrix), items_id_count(1) {}
 
@@ -18,6 +21,11 @@ void Map::add_medic_kit(const Point& where) {
 
 void Map::add_blood(const Point& where) {
   items.insert({items_id_count, new Blood(where, items_id_count)});
+  items_id_count++;
+}
+
+void Map::add_bullets(const Point& where) {
+  items.insert({items_id_count, new Bullets(where, items_id_count)});
   items_id_count++;
 }
 
