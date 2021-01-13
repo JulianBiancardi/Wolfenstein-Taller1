@@ -1,6 +1,8 @@
 #ifndef OPTION_H
 #define OPTION_H
 
+#include <QtCore/QString>
+#include <QtGui/QPixmap>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
@@ -10,11 +12,16 @@
 
 class Option : public QWidget {
   Q_OBJECT
+ private:
+  Ui::Option ui;
+  size_t id;
+  QString name;
+  QPixmap icon;
+  OptionSelected* current_option;
 
  public:
   Option(QWidget* parent = nullptr, size_t id = 0,
-         const QString& tooltip = QString(),
-         const QString& icon_path = QString(),
+         const QString& name = QString(), const QString& icon_path = QString(),
          OptionSelected* current_option = nullptr);
   ~Option();
 
@@ -28,11 +35,6 @@ class Option : public QWidget {
  private slots:
 
   void on_OptionButton_clicked();
-
- private:
-  Ui::Option ui;
-  size_t id;
-  OptionSelected* current_option;
 };
 
 #endif  // OPTION_H

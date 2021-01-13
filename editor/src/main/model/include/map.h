@@ -34,14 +34,14 @@ class Map : public IObservable {
   void clear_all();
 
   /*Functions for resize the map*/
-  void insert_rowabove();
-  void insert_rowbelow();
-  void insert_columnright();
-  void insert_columnleft();
-  void remove_rowabove();
-  void remove_rowbelow();
-  void remove_columnright();
-  void remove_columnleft();
+  void insert_rowabove(size_t count);
+  void insert_rowbelow(size_t count);
+  void insert_columnright(size_t count);
+  void insert_columnleft(size_t count);
+  void remove_rowabove(size_t count);
+  void remove_rowbelow(size_t count);
+  void remove_columnright(size_t count);
+  void remove_columnleft(size_t count);
 
   void print();  // Debug function
 
