@@ -9,7 +9,7 @@
 //#include "../../../server/src/main/game/player.h"
 //#include "../../../server/src/main/game/sprites/sprite.h"
 //#include "object.h"
-#include "../../../server/src/main/game/objects/object.h"
+#include "../../../common/src/main/object.h"
 
 class Map : public BaseMap {
  private:

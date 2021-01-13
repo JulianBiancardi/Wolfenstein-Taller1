@@ -2,7 +2,7 @@
 #define TABLE_H
 
 #include "../collisions/box_mask.h"
-#include "object.h"
+#include "../../../../../common/src/main/object.h"
 
 class Table : public Object {
  public:

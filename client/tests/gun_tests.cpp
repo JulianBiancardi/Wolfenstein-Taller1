@@ -10,15 +10,19 @@
  */
 
 #include "gun_tests.h"
-#include "../../../client/src/main/guns/knife.h"
-#include "../../../client/src/main/guns/pistol.h"
-#include "../../../client/src/main/guns/rocket_launcher.h"
-#include "../../../client/src/main/guns/chain_cannon.h"
+#include "../src/main/guns/knife.h"
+#include "../src/main/guns/pistol.h"
+#include "../src/main/guns/rocket_launcher.h"
+#include "../src/main/guns/chain_cannon.h"
 #include <unordered_map>
+
+
+#include "../../common/src/main/config_loader.h"
 /*
 #include "../../../server/src/main/game/collision_checker.h"
 #include "../../../server/src/main/game/player.h"
 */
+
 
  #include <iostream>
 
@@ -51,7 +55,7 @@ void gun_tests() {
 
   print_test("El arma Chain Cannon devuelve un valor entre 1 y 10",
              chain_cannon_check_damaged, NO_ERROR);
-/*
+
   print_test("El arma Machine Gun devuelve un valor entre 1 y 10",
              machine_gun_check_damaged, NO_ERROR);
 
@@ -68,7 +72,6 @@ void gun_tests() {
 
   print_test("El jugador1 dispara con Chain Cannon y jugador2 recibe el impacto",
              chain_cannon_shoot_player2_get_shot, NO_ERROR);
-*/
   end_tests();
 }
 
@@ -84,21 +87,18 @@ int static chain_cannon_check_damaged() {
   ChainCannon chain_cannon;
   Matrix<int> map_data(640, 640, 0);
   fill_data(map_data);
-  //BaseMap game_map(map_data); //todo should be map
-//  Map game_map(map_data);
+  Map game_map(map_data);
 
-  Player player1(0, 0, 0/*, 1*/, chain_cannon);
-  Player player2(5, 0, 0/*, 2*/, chain_cannon);
+  Player player1(0, 0, 0, chain_cannon);
+  Player player2(5, 0, 0, chain_cannon);
 
-  //player1.shoot_player(player2, chain_cannon);
-  //player1.shoot((Map&)game_map);
-
-/*
+  player1.shoot(game_map);
   int value = player2.get_health();
+
   if (value >= CL::player_health - 10 && value < CL::player_health)
     return NO_ERROR;
   return ERROR;
-*/
+
 }
 
 int static machine_gun_check_damaged() {
@@ -106,8 +106,8 @@ int static machine_gun_check_damaged() {
   Matrix<int> map_data(640, 640, 0);
   fill_data(map_data);
   Map game_map(map_data);
-  Player player1(0, 0, 0/*, 1*/, machine_gun);
-  Player player2(5, 0, 0/*, 2*/, machine_gun);
+  Player player1(0, 0, 0, machine_gun);
+  Player player2(5, 0, 0, machine_gun);
   //player1.shoot_player(player2, machine_gun);
   int value = player2.get_health();
   if (value >= CL::player_health - 10 && value < CL::player_health)

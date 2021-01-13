@@ -4,7 +4,7 @@
 #include "../../../../common/src/main/utils/ray.h"
 #include "collisions/circle_mask.h"
 #include "identifiable.h"
-#include "objects/object.h"
+#include "../../../../common/src/main/object.h"
 
 class Moveable : public Object, public Identifiable {
  public:

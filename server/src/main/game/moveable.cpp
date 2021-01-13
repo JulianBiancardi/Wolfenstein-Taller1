@@ -1,5 +1,5 @@
 #include "moveable.h"
-#include "../config_loader.h"
+#include "../../../../common/src/main/config_loader.h"
 
 Moveable::Moveable(Point origin, double angle, int id)
     : Identifiable(id),

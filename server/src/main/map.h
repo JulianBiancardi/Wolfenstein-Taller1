@@ -12,7 +12,7 @@
 #include "game/objects/items/blood.h"
 #include "game/objects/items/item.h"
 #include "game/objects/items/medic_kit.h"
-#include "game/objects/object.h"
+#include "../../../common/src/main/object.h"
 #include "game/player.h"
 
 class Map : public BaseMap {

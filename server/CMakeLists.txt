@@ -13,8 +13,9 @@ find_package(SDL2 REQUIRED)
 # Add SDL2 into include directories
 include_directories(${SDL2_INCLUDE_DIR})
 
-FILE(GLOB ServerFiles 
-	src/main/config_loader.cpp
+FILE(GLOB ServerFiles
+		../common/src/main/config_loader.cpp
+	src/main/map.cpp #why not?
 	src/main/game/*.cpp
 	src/main/game/collisions/*.cpp
 	#src/main/game/guns/*.cpp
@@ -26,7 +27,9 @@ FILE(GLOB ServerFiles
 FILE(GLOB CommonFiles 
 	../common/src/main/data_structures/*.cpp
 	../common/src/main/utils/*.cpp
-)
+	../common/src/main/object.cpp
+	../common/src/main/config_loader.cpp
+		)
 
 FILE(GLOB MainFiles
 	../client/src/main/resource.cpp
@@ -44,10 +47,14 @@ FILE(GLOB MainFiles
 FILE(GLOB SDLFiles
         ../client/src/main/sdl/*.cpp
 )
+FILE(GLOB ClientTestFiles
+		../client/tests/*.cpp
+)
+
 FILE(GLOB TestFiles
 	#../common/tests/*.cpp Should be used
 	#../common/tests/game_test/*.cpp
-	../common/tests/game_test/gun_tests.cpp
+	#../common/tests/game_test/gun_tests.cpp
 	../common/tests/game_test/match_tests.cpp
 	../common/tests/game_test/player_test.cpp
 	../common/tests/game_test/client_mock.cpp
@@ -96,14 +103,16 @@ target_link_libraries(
 add_executable(
 		client-main
 		${MainFiles}
-		${ServerFiles}
+		#${ServerFiles}
 		${CommonFiles}
 		${SDLFiles}
-		${TestFiles}
-		${MainClient}
+		#${TestFiles}
+		${ClientTestFiles}
 
-		${MapServer}#todo should not be here.
-		#		${MapClient}
+		#${MainClient}
+
+		#${MapServer}#todo should not be here.
+		${MapClient}
 )
 target_link_libraries(
 		client-main

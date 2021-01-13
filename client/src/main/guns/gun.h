@@ -2,7 +2,7 @@
 #define GUN_H
 #include <random>
 
-#include "../../../../server/src/main/config_loader.h"
+#include "../../../../common/src/main/config_loader.h"
 #include "../player.h"
 
 //#include "../player.h"
