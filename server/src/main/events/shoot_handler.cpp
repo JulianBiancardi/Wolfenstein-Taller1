@@ -6,4 +6,6 @@ ShootHandler::ShootHandler(Player& who, int bullets)
 
 void ShootHandler::handle(Match& match, CollisionChecker& checker) {
   who.decrease_bullets_2(bullets_shot);
+
+  consequence_grab_event(match, checker, who);
 }
