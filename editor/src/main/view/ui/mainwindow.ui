@@ -7,58 +7,192 @@
     <x>0</x>
     <y>0</y>
     <width>1820</width>
-    <height>1090</height>
+    <height>1100</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">/*background-color: rgba(233, 233, 233, 135);*/
+
+QMainWindow{
+	background-color: rgba(233, 233, 233, 135);
+}
+
+QMenuBar {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 lightgray, stop:1 darkgray);
+}
+
+QMenuBar::item {
+    background-color: transparent;
+    color: rgb(255,255,255);  
+}
+/*
+QMenuBar::item:selected {    
+    background-color: rgb(244,164,96);
+}
+QMenuBar::item:pressed {
+    background: rgb(128,0,0);
+}*/
+
+QScrollArea { background: transparent; }
+
+/*Vertical scrollbar*/
+QScrollBar:vertical{
+	border: none;
+	width: 10px;
+	height:10px;
+	background-color: transparent;
+	border-radius: 0px;
+}
+QScrollBar::handle:vertical{
+	background-color: rgb(85, 87, 83);
+	width: 14px;
+}
+QScrollBar::handle:vertical:hover{
+	background-color: rgb(85, 87, 83);
+}
+QScrollBar::handle:vertical:pressed{
+	background-color: rgb(136, 138, 133);
+}
+
+QScrollBar::up-arrow:vertical,QScrollBar::down-arrow:vertical{
+	background: none;
+}
+QScrollBar::ad-page:vertical,QScrollBar::sub-page:vertical{
+	background: none;
+}
+/*Horizontal scrollbar*/
+QScrollBar:horizontal{
+	border: none;
+	width: 10px;
+	height:10px;
+	background-color: transparent;
+	border-radius: 0px;
+}
+QScrollBar::handle:horizontal{
+	background-color: rgb(85, 87, 83);
+	width: 14px;
+}
+QScrollBar::handle:horizontal:hover{
+	background-color: rgb(85, 87, 83);
+}
+QScrollBar::handle:horizontal:pressed{
+	background-color: rgb(136, 138, 133);
+}
+
+QScrollBar::up-arrow:horizontal,QScrollBar::down-arrow:horizontal{
+	background: none;
+}
+QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
+	background: none;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <spacer name="verticalSpacer_3">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Preferred</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <property name="spacing">
-       <number>0</number>
+       <number>10</number>
       </property>
       <property name="sizeConstraint">
-       <enum>QLayout::SetFixedSize</enum>
+       <enum>QLayout::SetDefaultConstraint</enum>
       </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>20</number>
+        </property>
+        <property name="topMargin">
+         <number>20</number>
+        </property>
+        <property name="rightMargin">
+         <number>20</number>
+        </property>
+        <property name="bottomMargin">
+         <number>20</number>
+        </property>
+        <item>
+         <widget class="QScrollArea" name="scrollArea">
+          <property name="styleSheet">
+           <string notr="true">background-color: transparent;</string>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollContent">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>1766</width>
+             <height>994</height>
+            </rect>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>3</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="MapGrid" name="MapGridWidget" native="true"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Tools" name="ToolsWidget" native="true"/>
+      </item>
      </layout>
-    </item>
-    <item>
-     <spacer name="verticalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Preferred</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
     </item>
    </layout>
   </widget>
@@ -71,7 +205,30 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(53, 57, 69);</string>
+   </property>
    <widget class="QMenu" name="menuFile">
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="locale">
+     <locale language="Spanish" country="Argentina"/>
+    </property>
     <property name="title">
      <string>File</string>
     </property>
@@ -87,46 +244,39 @@
     <property name="title">
      <string>Edit</string>
     </property>
-    <widget class="QMenu" name="menuInsert_row">
-     <property name="title">
-      <string>Insert row</string>
-     </property>
-     <addaction name="actionInsertRowsAbove"/>
-     <addaction name="actionInsertRowsBelow"/>
-    </widget>
-    <widget class="QMenu" name="menuInsert_column">
-     <property name="title">
-      <string>Insert column</string>
-     </property>
-     <addaction name="actionInsertColumnsLeft"/>
-     <addaction name="actionInsertColumnsRight"/>
-    </widget>
-    <widget class="QMenu" name="menuRemove_row">
-     <property name="title">
-      <string>Remove row</string>
-     </property>
-     <addaction name="actionRemoveRowsAbove"/>
-     <addaction name="actionRemoveRowsBelow"/>
-    </widget>
-    <widget class="QMenu" name="menuRemove_column">
-     <property name="title">
-      <string>Remove column</string>
-     </property>
-     <addaction name="actionRemoveColumnsLeft"/>
-     <addaction name="actionRemoveColumnsRight"/>
-    </widget>
-    <addaction name="menuInsert_row"/>
-    <addaction name="menuInsert_column"/>
     <addaction name="separator"/>
-    <addaction name="menuRemove_row"/>
-    <addaction name="menuRemove_column"/>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
     <string>toolBar</string>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(53, 57, 69);
+</string>
+   </property>
+   <property name="movable">
+    <bool>true</bool>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>25</width>
+     <height>25</height>
+    </size>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -134,24 +284,60 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionNew_File"/>
+   <addaction name="actionOpen_File"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionSave_As"/>
+   <addaction name="actionExit"/>
+   <addaction name="separator"/>
+   <addaction name="actionUndo"/>
+   <addaction name="actionRedo"/>
+   <addaction name="separator"/>
+   <addaction name="actionAbout"/>
   </widget>
   <action name="actionOpen_File">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/images/images/IMG_OpenFile.png</normaloff>:/images/images/IMG_OpenFile.png</iconset>
+   </property>
    <property name="text">
     <string>Open File...</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; color:#ffffff;&quot;&gt;Open File&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionNew_File">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/images/images/IMG_NewFile.png</normaloff>:/images/images/IMG_NewFile.png</iconset>
+   </property>
    <property name="text">
     <string>New File</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;New File&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu</family>
+     <pointsize>14</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
   </action>
   <action name="actionSave">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/images/images/IMG_Save.png</normaloff>:/images/images/IMG_Save.png</iconset>
+   </property>
    <property name="text">
     <string>Save</string>
    </property>
@@ -160,6 +346,10 @@
    </property>
   </action>
   <action name="actionSave_As">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/images/images/IMG_SaveAs.png</normaloff>:/images/images/IMG_SaveAs.png</iconset>
+   </property>
    <property name="text">
     <string>Save As...</string>
    </property>
@@ -168,6 +358,10 @@
    </property>
   </action>
   <action name="actionExit">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/images/images/IMG_Exit.png</normaloff>:/images/images/IMG_Exit.png</iconset>
+   </property>
    <property name="text">
     <string>Exit</string>
    </property>
@@ -215,7 +409,56 @@
     <string>Columns right</string>
    </property>
   </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/images/images/IMG_Help.png</normaloff>:/images/images/IMG_Help.png</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/images/images/IMG_Undo.png</normaloff>:/images/images/IMG_Undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Undo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/images/images/IMG_Redo.png</normaloff>:/images/images/IMG_Redo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Redo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <customwidgets>
+  <customwidget>
+   <class>MapGrid</class>
+   <extends>QWidget</extends>
+   <header>mapgrid.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Tools</class>
+   <extends>QWidget</extends>
+   <header>tools.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
   ray_tests();
   rectangle_tests();
   resource_tests();
-  gun_tests();
+//  gun_tests();
   player_tests();
   match_tests();
   blocking_queue_tests();

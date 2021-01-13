@@ -10,10 +10,11 @@ int ChainCannon::shoot(Player& player_shooting,
                        int& current_bullets,
                        Map& map) {
   /* TODO decrease bullets
-  if (player_shooting.has_bullets(ConfigLoader::chain_cannon_bullet_required))
+  */
+   if (player_shooting.has_bullets(ConfigLoader::chain_cannon_bullet_required))
     return 0;
   player_shooting.decrease_bullets(ConfigLoader::chain_cannon_bullet_required);
-  */
+
 
   //if (available_bullets < ConfigLoader::chain_cannon_bullet_required)
   //available_bullets -= ConfigLoader::chain_cannon_bullet_required;

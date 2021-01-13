@@ -3,6 +3,7 @@
 
 #include <QtGui/QDragEnterEvent>
 #include <QtGui/QDropEvent>
+#include <QtWidgets/QUndoStack>
 #include <QtWidgets/QWidget>
 
 #include "../model/include/Iobserver.h"
@@ -19,13 +20,15 @@ class CellView : public QWidget, public IObserver {
   Cell* cell;
   ItemsId* ids;
   OptionSelected* current_option;
+  QUndoStack* undostack;
 
  private slots:
   void on_CellButton_clicked();
 
  public:
   CellView(QWidget* parent = nullptr, Cell* cell = nullptr,
-           ItemsId* ids = nullptr, OptionSelected* current_option = nullptr);
+           ItemsId* ids = nullptr, OptionSelected* current_option = nullptr,
+           QUndoStack* undostack = nullptr);
 
   void mousePressEvent(QMouseEvent* event);
   void mouseMoveEvent(QMouseEvent* event);

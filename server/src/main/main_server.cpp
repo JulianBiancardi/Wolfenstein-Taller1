@@ -1,5 +1,5 @@
 #include <iostream>
-#include "config_loader.h"
+#include "../../../common/src/main/config_loader.h"
 #include "game/guns/chain_cannon.h"
 
 int main(int argc, char const *argv[]){

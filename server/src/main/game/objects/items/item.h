@@ -2,7 +2,7 @@
 #define ITEMS_H
 
 #include "../../player.h"
-#include "../object.h"
+#include "../../../../../../common/src/main/object.h"
 
 class Item : public Object, public Identifiable {
  public:

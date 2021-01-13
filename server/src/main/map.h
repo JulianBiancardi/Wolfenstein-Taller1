@@ -9,8 +9,10 @@
 #include "../../../../common/src/main/utils/matrix.h"
 #include "../../../../common/src/main/utils/point.h"
 #include "game/moveable.h"
+#include "game/objects/items/blood.h"
 #include "game/objects/items/item.h"
-#include "game/objects/object.h"
+#include "game/objects/items/medic_kit.h"
+#include "../../../common/src/main/object.h"
 #include "game/player.h"
 
 class Map : public BaseMap {
@@ -27,7 +29,6 @@ class Map : public BaseMap {
   // TODO One method for each item
   void add_medic_kit(const Point& where);
   void add_blood(const Point& where);
-  void add_bullets(const Point& where);
 
   std::unordered_map<int, Item*>& get_items();
   std::vector<Object*>& get_objects();

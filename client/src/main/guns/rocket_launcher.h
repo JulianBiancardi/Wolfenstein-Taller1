@@ -2,7 +2,7 @@
 #define WOLFENSTEIN_TALLER1_ROCKET_LAUNCHER_H
 #include "gun.h"
 
-class RocketLauncher {
+class RocketLauncher : public Gun { //todo check hierarchy
  private:
   const static int bullet_required;
   const static int base_precision;

@@ -14,17 +14,18 @@ class Player {
   int pace;
   int health;
   int bullets;
-  Gun* active_gun;
+  Gun& active_gun;
 
   Point next_position(double direction_angle);
 
  public:
-  Player(Ray position);
-  Player(Point origin, double angle);
-  Player(double x, double y, double angle);
-  ~Player() {}
+  Player(Ray position, Gun& gun);
+  Player(Point origin, double angle, Gun& gun);
+  Player(double x, double y, double angle, Gun& gun);
+  ~Player();
 
   //
+  void set_gun(Gun& gun);
   int get_health();
   void set_health(int health);
   bool has_bullets(int bullets);

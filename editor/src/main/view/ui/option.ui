@@ -81,11 +81,9 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton#OptionButton{
-	background-color: rgb(170, 170, 170);
-	border-style: outset;
-	border-width: 2px;
-	border-radius: 10px;
-	border-color: rgb(255, 255, 255);
+background-color: rgb(136, 138, 133);
+	border: none;
+	padding: 5px;
 }
 
 QPushButton#OptionButton:hover {
@@ -132,6 +130,8 @@ QPushButton#QToolTip {
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

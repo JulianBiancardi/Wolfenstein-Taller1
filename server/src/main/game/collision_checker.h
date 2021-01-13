@@ -3,7 +3,7 @@
 
 #include "../map.h"
 #include "objects/items/item.h"
-#include "objects/object.h"
+#include "../../../../common/src/main/object.h"
 #include "player.h"
 
 class CollisionChecker {

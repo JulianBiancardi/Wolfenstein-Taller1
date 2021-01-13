@@ -15,11 +15,11 @@
 #include "../../../client/src/main/guns/rocket_launcher.h"
 #include "../../../client/src/main/guns/chain_cannon.h"
 #include <unordered_map>
-
 /*
 #include "../../../server/src/main/game/collision_checker.h"
 #include "../../../server/src/main/game/player.h"
 */
+
  #include <iostream>
 
 #define WALL 1 //todo shouldn't be here
@@ -31,6 +31,8 @@ int static pistol_check_damaged();
 int static rocket_launcher_check_damaged();
 int static chain_cannon_shoot_get_player_bullets_amount();
 int static chain_cannon_shoot_player2_get_shot();
+
+// TODO Wrong place?
 void fill_data(Matrix<int> &map_data) {
   for (int j = 0; j < map_data.get_rows(); j++) {
     for (int i = 0; i < map_data.get_columns(); i++) {
@@ -46,10 +48,10 @@ void gun_tests() {
 
   print_test("Las armas se crean correctamente",
              gun_creation_test, NO_ERROR);
-/*
+
   print_test("El arma Chain Cannon devuelve un valor entre 1 y 10",
              chain_cannon_check_damaged, NO_ERROR);
-
+/*
   print_test("El arma Machine Gun devuelve un valor entre 1 y 10",
              machine_gun_check_damaged, NO_ERROR);
 
@@ -82,14 +84,21 @@ int static chain_cannon_check_damaged() {
   ChainCannon chain_cannon;
   Matrix<int> map_data(640, 640, 0);
   fill_data(map_data);
-  Map game_map(map_data);
-  Player player1(0, 0, 0/*, 1*/);
-  Player player2(5, 0, 0/*, 2*/);
+  //BaseMap game_map(map_data); //todo should be map
+//  Map game_map(map_data);
+
+  Player player1(0, 0, 0/*, 1*/, chain_cannon);
+  Player player2(5, 0, 0/*, 2*/, chain_cannon);
+
   //player1.shoot_player(player2, chain_cannon);
+  //player1.shoot((Map&)game_map);
+
+/*
   int value = player2.get_health();
   if (value >= CL::player_health - 10 && value < CL::player_health)
     return NO_ERROR;
   return ERROR;
+*/
 }
 
 int static machine_gun_check_damaged() {
@@ -97,8 +106,8 @@ int static machine_gun_check_damaged() {
   Matrix<int> map_data(640, 640, 0);
   fill_data(map_data);
   Map game_map(map_data);
-  Player player1(0, 0, 0/*, 1*/);
-  Player player2(5, 0, 0/*, 2*/);
+  Player player1(0, 0, 0/*, 1*/, machine_gun);
+  Player player2(5, 0, 0/*, 2*/, machine_gun);
   //player1.shoot_player(player2, machine_gun);
   int value = player2.get_health();
   if (value >= CL::player_health - 10 && value < CL::player_health)
@@ -111,8 +120,8 @@ int static pistol_check_damaged() {
   Matrix<int> map_data(640, 640, 0);
   fill_data(map_data);
   Map game_map(map_data);
-  Player player1(0, 0, 0/*, 1*/);
-  Player player2(5, 0, 0/*, 2*/);
+  Player player1(0, 0, 0/*, 1*/, pistol);
+  Player player2(5, 0, 0/*, 2*/, pistol);
   //player1.shoot_player(player2, pistol);
   int value = player2.get_health();
   if (value >= CL::player_health - 10 && value < CL::player_health)
@@ -124,8 +133,8 @@ int static rocket_launcher_check_damaged() {
   Matrix<int> map_data(640, 640, 0);
   fill_data(map_data);
   Map game_map(map_data);
-  Player player1(0, 0, 0/*, 1*/);
-  Player player2(5, 0, 0/*, 2*/);
+  Player player1(0, 0, 0/*, 1*/, rocket_launcher);
+  Player player2(5, 0, 0/*, 2*/, rocket_launcher);
   //player1.shoot_player(player2, rocket_launcher);
   int value = player2.get_health();
   if (value >= CL::player_health - 10 && value < CL::player_health)
@@ -138,8 +147,8 @@ int static chain_cannon_shoot_get_player_bullets_amount() {
   Matrix<int> map_data(640, 640, 0);
   fill_data(map_data);
   Map game_map(map_data);
-  Player player1(0, 0, 0/*, 1*/);
-  Player player2(5, 0, 0/*, 2*/);
+  Player player1(0, 0, 0/*, 1*/, chain_cannon);
+  Player player2(5, 0, 0/*, 2*/, chain_cannon);
   //player1.shoot_player(player2, chain_cannon);
   if (player1.has_bullets(CL::player_bullets -
       CL::chain_cannon_bullet_required))
@@ -151,8 +160,8 @@ int static chain_cannon_shoot_player2_get_shot() {
   Matrix<int> map_data(640, 640, 0);
   fill_data(map_data);
   Map game_map(map_data);
-  Player player1(320, 639, 0/*, 1*/);
-  Player player2(320, 50, 0/*, 2*/);
+  Player player1(320, 639, 0/*, 1*/, chain_cannon);
+  Player player2(320, 50, 0/*, 2*/, chain_cannon);
 
   std::unordered_map<int, Player> players;
   players.insert({1, player1});

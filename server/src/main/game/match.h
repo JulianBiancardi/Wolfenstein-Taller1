@@ -7,7 +7,7 @@
 #include "../events/event_handler_builder.h"
 #include "../map.h"
 #include "collision_checker.h"
-#include "objects/object.h"
+#include "../../../../common/src/main/object.h"
 #include "player.h"
 
 class Match {

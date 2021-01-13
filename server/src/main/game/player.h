@@ -4,7 +4,7 @@
 #include <iostream>
 #include <unordered_set>
 
-#include "../config_loader.h"
+#include "../../../../common/src/main/config_loader.h"
 #include "moveable.h"
 class Gun;
 class Player : public Moveable {
@@ -23,7 +23,7 @@ class Player : public Moveable {
  public:
   Player(Point origin, double angle, int id);
   Player(double x, double y, double angle, int id);
-  ~Player() {}
+  ~Player();
 
   // bool has_bullets(int amount);
   // void decrease_bullets(int amount); //why not?

@@ -1,0 +1,27 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/IMG_RemoveColumn.png</file>
+    <file>images/IMG_RemoveRow.png</file>
+    <file>images/IMG_AddColumnLeft.png</file>
+    <file>images/IMG_AddColumnRight.png</file>
+    <file>images/IMG_AddRowAbove.png</file>
+    <file>images/IMG_AddRowBelow.png</file>
+    <file>images/IMG_Grid.png</file>
+    <file>images/IMG_Redo.png</file>
+    <file>images/IMG_Undo.png</file>
+    <file>images/IMG_EditWhite.png</file>
+    <file>images/IMG_ResizeWhite.png</file>
+    <file>images/IMG_Edit.png</file>
+    <file>images/IMG_Delete.png</file>
+    <file>images/IMG_ClearAllRed.png</file>
+    <file>images/IMG_ClearAllWhite.png</file>
+    <file>images/IMG_DragDrop.png</file>
+    <file>images/IMG_Help.png</file>
+    <file>images/IMG_Exit.png</file>
+    <file>images/IMG_NewFile.png</file>
+    <file>images/IMG_OpenFile.png</file>
+    <file>images/IMG_Resize.png</file>
+    <file>images/IMG_Save.png</file>
+    <file>images/IMG_SaveAs.png</file>
+  </qresource>
+</RCC>

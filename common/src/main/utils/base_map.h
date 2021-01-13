@@ -2,6 +2,7 @@
 #define BASE_MAP_H
 
 #include "matrix.h"
+//#include <iostream>
 
 class BaseMap {
  protected:

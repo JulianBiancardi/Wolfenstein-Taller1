@@ -55,100 +55,105 @@ void Map::clear_all() {
   }
 }
 
-void Map::insert_rowabove() {
-  offset_row--;
-  int last_column = columns + offset_column;  // TODO see this
-  for (int column = offset_column; column < last_column; column++) {
-    matrix[offset_row][column] = new Cell();
+void Map::insert_rowabove(size_t count) {
+  for (size_t i = 0; i < count; i++) {
+    offset_row--;
+    int last_column = columns + offset_column;  // TODO see this
+    for (int column = offset_column; column < last_column; column++) {
+      matrix[offset_row][column] = new Cell();
+    }
   }
-  rows++;
+  rows += count;
   notify();
 }
 
-void Map::insert_rowbelow() {
-  int new_row = rows + offset_row;
-  int last_column = columns + offset_column;
-  for (int column = offset_column; column < last_column; column++) {
-    matrix[new_row][column] = new Cell();
+void Map::insert_rowbelow(size_t count) {
+  for (size_t i = 0; i < count; i++) {
+    int new_row = rows + offset_row;
+    int last_column = columns + offset_column;
+    for (int column = offset_column; column < last_column; column++) {
+      matrix[new_row][column] = new Cell();
+    }
+    rows++;
   }
-  rows++;
   notify();
 }
 
-void Map::insert_columnleft() {
-  offset_column--;
-  std::map<int, std::map<int, Cell*>>::iterator it;
-  for (it = matrix.begin(); it != matrix.end(); it++) {
-    it->second[offset_column] = new Cell();
+void Map::insert_columnleft(size_t count) {
+  for (size_t i = 0; i < count; i++) {
+    offset_column--;
+    std::map<int, std::map<int, Cell*>>::iterator it;
+    for (it = matrix.begin(); it != matrix.end(); it++) {
+      it->second[offset_column] = new Cell();
+    }
   }
-  columns++;
+  columns += count;
   notify();
 }
 
-void Map::insert_columnright() {
-  int new_column = columns + offset_column;
+void Map::insert_columnright(size_t count) {
+  for (size_t i = 0; i < count; i++) {
+    int new_column = columns + offset_column;
 
-  std::map<int, std::map<int, Cell*>>::iterator it;
-  for (it = matrix.begin(); it != matrix.end(); it++) {
-    it->second[new_column] = new Cell();
+    std::map<int, std::map<int, Cell*>>::iterator it;
+    for (it = matrix.begin(); it != matrix.end(); it++) {
+      it->second[new_column] = new Cell();
+    }
+    columns++;
   }
-  columns++;
   notify();
 }
 
-void Map::remove_rowabove() {
-  if (rows == 0) {
-    return;
+void Map::remove_rowabove(size_t count) {
+  for (size_t i = 0; (i < count) && (rows > 0); i++) {
+    std::map<int, Cell*>::iterator it;
+    for (it = matrix[offset_row].begin(); it != matrix[offset_row].end();
+         it++) {
+      delete it->second;
+    }
+    matrix.erase(offset_row);
+    offset_row++;
+    rows--;
   }
-  std::map<int, Cell*>::iterator it;
-  for (it = matrix[offset_row].begin(); it != matrix[offset_row].end(); it++) {
-    delete it->second;
-  }
-  matrix.erase(offset_row);
-  offset_row++;
-  rows--;
   notify();
 }
 
-void Map::remove_rowbelow() {
-  if (rows == 0) {
-    return;
+void Map::remove_rowbelow(size_t count) {
+  for (size_t i = 0; (i < count) && (rows > 0); i++) {
+    int last_row = (rows + offset_row) - 1;
+    std::map<int, Cell*>::iterator it;
+    for (it = matrix[last_row].begin(); it != matrix[last_row].end(); it++) {
+      delete it->second;
+    }
+    matrix.erase(last_row);
+    rows--;
   }
-  int last_row = (rows + offset_row) - 1;
-  std::map<int, Cell*>::iterator it;
-  for (it = matrix[last_row].begin(); it != matrix[last_row].end(); it++) {
-    delete it->second;
-  }
-  matrix.erase(last_row);
-  rows--;
   notify();
 }
 
-void Map::remove_columnleft() {
-  if (columns == 0) {
-    return;
+void Map::remove_columnleft(size_t count) {
+  for (size_t i = 0; (i < count) && (columns > 0); i++) {
+    std::map<int, std::map<int, Cell*>>::iterator it;
+    for (it = matrix.begin(); it != matrix.end(); it++) {
+      delete it->second[offset_column];
+      it->second.erase(offset_column);
+    }
+    offset_column++;
+    columns--;
   }
-  std::map<int, std::map<int, Cell*>>::iterator it;
-  for (it = matrix.begin(); it != matrix.end(); it++) {
-    delete it->second[offset_column];
-    it->second.erase(offset_column);
-  }
-  offset_column++;
-  columns--;
   notify();
 }
 
-void Map::remove_columnright() {
-  if (columns == 0) {
-    return;
+void Map::remove_columnright(size_t count) {
+  for (size_t i = 0; (i < count) && (columns > 0); i++) {
+    int last_column = (columns + offset_column) - 1;
+    std::map<int, std::map<int, Cell*>>::iterator it;
+    for (it = matrix.begin(); it != matrix.end(); it++) {
+      delete it->second[last_column];
+      it->second.erase(last_column);
+    }
+    columns--;
   }
-  int last_column = (columns + offset_column) - 1;
-  std::map<int, std::map<int, Cell*>>::iterator it;
-  for (it = matrix.begin(); it != matrix.end(); it++) {
-    delete it->second[last_column];
-    it->second.erase(last_column);
-  }
-  columns--;
   notify();
 }
 
