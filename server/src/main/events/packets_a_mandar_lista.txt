@@ -1,0 +1,73 @@
+Lista de Packets que se envían
+
+/* Para anunciar fin de la conexión
+ * Client<->Server
+ */
+DISCONNECTION PACKET
+
+int type: 0
+
+
+/* Para anunciar una nueva conexión y solicitar un id
+ * Client->Server
+ * Server->Client
+ */
+CONNECTION PACKET
+
+int type: 1
+=====
+int player_id: 0 // Al pedir al server
+int player_id: X // Al recibir del server
+=====
+
+
+/* Para comunicar movimientos
+ * El cliente lo usa para pedir moverse
+ * El servidor lo usa para notificarte a donde te moviste (puede ser tu mismo lugar)
+ * El servidor lo usa para notificar a todos si alguien se movio
+ * Client->Server
+ * Server->Client
+ */
+MOVE PACKET
+
+int type: 2
+int player_id: I
+=====
+sPoint point: X // El cliente pide moverse a X
+sPoint point: Y // El server le avisa al cliente donde se encuentra
+=====
+
+
+/* Para comunicar levantado de cosas.
+ * Si el player_id es el de uno mismo, se aplica. 
+ * Siempre se borra del mapa el item.
+ * Server->Client
+ */
+GRAB PACKET
+
+int type: 3
+int player_id: I
+int item_id: X
+
+
+/* Para comunicar daños a un jugador
+ * El cliente lo usa para notificar tiros acertados.
+ * El servidor lo usa para notificar que le quitaron vida.
+ * Client<->Server
+ */
+DAMAGE PACKET
+
+int type: 4
+int player_id: I
+int damage: X
+
+
+/* Para comunicar puertas abiertas/cerradas
+ * El cliente lo usa para avisar que interactuó con una puerta
+ * El servidor lo usa para avisar que interactuaron con una puerta
+ * Client<->Server
+ */ 
+MAP PACKET
+
+int type: 5
+sPoint door_pos: X 

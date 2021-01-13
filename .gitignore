@@ -4,6 +4,7 @@ a.out
 *.txt
 !app_info.txt
 !CMakeLists.txt
+!packets_a_mandar_lista.txt
 vgcore.*
 *.exe
 testing

@@ -7,12 +7,9 @@
 class ShootHandler : public EventHandler {
  private:
   Player& who; // TODO Should not be player, bots also shoot
-  // It's a pointer, it can be NULL
-  Player* enemy_shot; // TODO Should not be player, bots also get shot
-  double damage_done; // Could be float
 
  public:
-  ShootHandler(Player& who, Player* enemy_shot, double damage_done);
+  ShootHandler(Player& who);
 
   void handle(Match& match, CollisionChecker& checker);
 };
