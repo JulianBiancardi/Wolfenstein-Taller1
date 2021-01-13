@@ -25,12 +25,13 @@ EventHandler* EventHandlerBuilder::build(const packet_t& event,
     case 1: //TODO Use constants
       return move_event(doer, event.data.point.x, event.data.point.y);
     case 3: { //TODO Use constants
+      int bullets_shot = event.data.shot.bullets_shot;
       if (event.data.shot.enemy_shot != -1) { // TODO Use constant
         Player& enemy_hit = players.at(event.data.shot.enemy_shot); // HIT
         double damage_done = event.data.shot.damage_done;
-        return new ShootHitHandler(doer, enemy_hit, damage_done);
+        return new ShootHitHandler(doer, enemy_hit, damage_done, bullets_shot);
       } else {
-        return new ShootHandler(doer); // Miss
+        return new ShootHandler(doer, bullets_shot); // Miss
       }
     }
     default: throw -1; //TODO Throw ours exception

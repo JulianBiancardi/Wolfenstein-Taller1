@@ -27,10 +27,21 @@ void Player::decrease_bullets(int amount) {
 
 void Player::receive_damage(int amount) { health -= amount; }
 
+// TODO Change name to decrease_bullets()
+void Player::decrease_bullets_2(int amount) {
+  bullets -= amount;
+  shot_bullets += amount;
+}
+
 void Player::add_gun(int gun_id) { guns_bag.insert(gun_id); }
 
 bool Player::has_gun(int gun_id) {
   return guns_bag.find(gun_id) != guns_bag.end();
+}
+
+void Player::shoot(Player& enemy_shot, double damage_done, int bullets_shot) {
+  enemy_shot.receive_damage(damage_done);
+  this->decrease_bullets_2(bullets_shot);
 }
 
 // TODO This shouldn't be necessary. unordered_map.insert already checks if it

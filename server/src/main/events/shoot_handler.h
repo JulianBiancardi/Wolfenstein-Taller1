@@ -7,9 +7,10 @@
 class ShootHandler : public EventHandler {
  private:
   Player& who; // TODO Should not be player, bots also shoot
+  int bullets_shot;
 
  public:
-  ShootHandler(Player& who);
+  ShootHandler(Player& who, int bullets);
 
   void handle(Match& match, CollisionChecker& checker);
 };

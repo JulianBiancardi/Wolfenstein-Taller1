@@ -9,9 +9,10 @@ class ShootHitHandler : public EventHandler {
   Player& who; // TODO Should not be player, bots also shoot
   Player& enemy_shot; // TODO Should not be player, bots also get shot
   double damage_done; // Could be float
+  int bullets_shot;
 
  public:
-  ShootHitHandler(Player& who, Player& enemy, double damage);
+  ShootHitHandler(Player& who, Player& enemy, double damage, int bullets);
 
   void handle(Match& match, CollisionChecker& checker);
 };
