@@ -9,29 +9,38 @@
 MapGrid::MapGrid(QWidget* parent, ItemsId* ids, OptionSelected* current_option)
     : QWidget(parent), ids(ids), current_option(current_option) {
   ui.setupUi(this);
+  undostack = new QUndoStack(this);
   map = new Map();
   map->add_observer(this);
-  QGridLayout* gridlayout = new QGridLayout();
-  gridlayout->setSpacing(0);
-  ui.scrollContent->setLayout(gridlayout);
+  // generateCelds();
+}
+
+void MapGrid::init(ItemsId* ids,
+                   OptionSelected* current_option) {  // TODO DELETE
+  this->ids = ids;
+  this->current_option = current_option;
   generateCelds();
 }
 
-void MapGrid::update() { generateCelds(); }
+void MapGrid::update() {
+  // Clear the undo stack
+  undostack->clear();
+  generateCelds();
+}
 
 void MapGrid::generateCelds() {
-  QGridLayout* gridlayout = (QGridLayout*)ui.scrollContent->layout();
+  QGridLayout* gridlayout = ui.CellGrid;
   for (size_t row = 0; row < map->row_count(); row++) {
     for (size_t column = 0; column < map->column_count(); column++) {
-      CellView* cell_view =
-          new CellView(this, map->at(row, column), ids, current_option);
+      CellView* cell_view = new CellView(this, map->at(row, column), ids,
+                                         current_option, undostack);
       gridlayout->addWidget(cell_view, row, column);
     }
   }
 }
 
 void MapGrid::_remove_cells() {
-  QGridLayout* gridlayout = (QGridLayout*)ui.scrollContent->layout();
+  QGridLayout* gridlayout = ui.CellGrid;
   while (gridlayout->count()) {
     QWidget* widget = gridlayout->itemAt(0)->widget();
     if (widget) {
@@ -39,42 +48,46 @@ void MapGrid::_remove_cells() {
       delete widget;
     }
   }
-  // delete gridlayout;
-  // TODO see to replace the gridlayout
 }
 
+size_t MapGrid::rowscount() const { return map->row_count(); }
+size_t MapGrid::columnscount() const { return map->column_count(); }
+
+void MapGrid::undo() { undostack->undo(); }
+void MapGrid::redo() { undostack->redo(); }
+
 void MapGrid::clear() { map->clear_all(); }
-void MapGrid::insert_rowabove() {
+void MapGrid::insert_rowabove(size_t count) {
   _remove_cells();
-  map->insert_rowabove();
+  map->insert_rowabove(count);
 }
-void MapGrid::insert_rowbelow() {
+void MapGrid::insert_rowbelow(size_t count) {
   _remove_cells();
-  map->insert_rowbelow();
+  map->insert_rowbelow(count);
 }
-void MapGrid::insert_columnright() {
+void MapGrid::insert_columnright(size_t count) {
   _remove_cells();
-  map->insert_columnright();
+  map->insert_columnright(count);
 }
-void MapGrid::insert_columnleft() {
+void MapGrid::insert_columnleft(size_t count) {
   _remove_cells();
-  map->insert_columnleft();
+  map->insert_columnleft(count);
 }
-void MapGrid::remove_rowabove() {
+void MapGrid::remove_rowabove(size_t count) {
   _remove_cells();
-  map->remove_rowabove();
+  map->remove_rowabove(count);
 }
-void MapGrid::remove_rowbelow() {
+void MapGrid::remove_rowbelow(size_t count) {
   _remove_cells();
-  map->remove_rowbelow();
+  map->remove_rowbelow(count);
 }
-void MapGrid::remove_columnleft() {
+void MapGrid::remove_columnleft(size_t count) {
   _remove_cells();
-  map->remove_columnleft();
+  map->remove_columnleft(count);
 }
-void MapGrid::remove_columnright() {
+void MapGrid::remove_columnright(size_t count) {
   _remove_cells();
-  map->remove_columnright();
+  map->remove_columnright(count);
 }
 
 void MapGrid::open_map(const std::string& file_path) {
@@ -82,11 +95,12 @@ void MapGrid::open_map(const std::string& file_path) {
     return;
   }
   _remove_cells();
+  undostack->clear();
   delete map;
+
   MapGenerator map_generator;
   map = map_generator.generate_map(file_path);
   map->add_observer(this);
-
   generateCelds();
 }
 

@@ -18,14 +18,15 @@ class OptionsContainer : public QWidget {
   OptionsContainer(QWidget* parent = nullptr, int columns = 2,
                    ItemsId* ids = nullptr,
                    OptionSelected* current_option = nullptr);
+
+  void addOptions(ItemsId* ids, OptionSelected* current_option);
+
   ~OptionsContainer();
 
  private:
   Ui::OptionContainer ui;
   int columns;
   QButtonGroup buttongroup;
-
-  void addOptions(ItemsId* ids, OptionSelected* current_option);
 };
 
 #endif  // OPTIONS_CONTAINER_H

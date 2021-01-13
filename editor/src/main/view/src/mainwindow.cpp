@@ -9,13 +9,15 @@
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
   ui.setupUi(this);
   setWindowTitle(WINDOW_TITLE);
-  ids = new ItemsId();
-  current_option = new OptionSelected();
-  map_grid = new MapGrid(this, ids, current_option);
-  options_container = new OptionsContainer(this, 2, ids, current_option);
-  file_manager = new FileManager(map_grid);
-  ui.horizontalLayout_2->addWidget(map_grid);
-  ui.horizontalLayout_2->addWidget(options_container);
+
+  ItemsId* ids = new ItemsId();
+  OptionSelected* current_option = new OptionSelected();
+
+  // ui.OptionsContainerWidget->addOptions(ids, current_option);
+
+  ui.MapGridWidget->init(ids, current_option);
+  ui.ToolsWidget->init(ids, current_option, ui.MapGridWidget);
+  file_manager = new FileManager(ui.MapGridWidget);
 }
 
 void MainWindow::on_actionNew_File_triggered() { file_manager->new_file(); }
@@ -36,35 +38,7 @@ void MainWindow::closeEvent(QCloseEvent* event) {
   event->accept();
 }
 
-void MainWindow::on_actionInsertRowsAbove_triggered() {
-  map_grid->insert_rowabove();
-}
-void MainWindow::on_actionInsertRowsBelow_triggered() {
-  map_grid->insert_rowbelow();
-}
-void MainWindow::on_actionInsertColumnsLeft_triggered() {
-  map_grid->insert_columnleft();
-}
-void MainWindow::on_actionInsertColumnsRight_triggered() {
-  map_grid->insert_columnright();
-}
-void MainWindow::on_actionRemoveRowsAbove_triggered() {
-  map_grid->remove_rowabove();
-}
-void MainWindow::on_actionRemoveRowsBelow_triggered() {
-  map_grid->remove_rowbelow();
-}
-void MainWindow::on_actionRemoveColumnsLeft_triggered() {
-  map_grid->remove_columnleft();
-}
-void MainWindow::on_actionRemoveColumnsRight_triggered() {
-  map_grid->remove_columnright();
-}
+void MainWindow::on_actionUndo_triggered() { ui.MapGridWidget->undo(); }
+void MainWindow::on_actionRedo_triggered() { ui.MapGridWidget->redo(); }
 
-MainWindow::~MainWindow() {
-  delete ids;
-  delete current_option;
-  delete map_grid;
-  delete options_container;
-  delete file_manager;
-}
+MainWindow::~MainWindow() { delete file_manager; }

@@ -1,6 +1,7 @@
 #ifndef MAPGRID_H
 #define MAPGRID_H
 
+#include <QtWidgets/QUndoStack>
 #include <QtWidgets/QWidget>
 #include <string>
 
@@ -18,32 +19,40 @@ class MapGrid : public QWidget, public IObserver {
   Map* map;
   ItemsId* ids;
   OptionSelected* current_option;
+  QUndoStack* undostack;
 
   void _remove_cells();
-  void resize();
+  void generateCelds();
 
  public:
   MapGrid(QWidget* parent = nullptr, ItemsId* ids = nullptr,
           OptionSelected* current_option = nullptr);
-  ~MapGrid();
-
-  void generateCelds();
-  void clear();
 
   void update() override;
+  void clear();
+  void undo();
+  void redo();
+
+  size_t rowscount() const;
+  size_t columnscount() const;
 
   // Resize the map size
-  void insert_rowabove();
-  void insert_rowbelow();
-  void insert_columnright();
-  void insert_columnleft();
-  void remove_rowabove();
-  void remove_rowbelow();
-  void remove_columnright();
-  void remove_columnleft();
+  void insert_rowabove(size_t count);
+  void insert_rowbelow(size_t count);
+  void insert_columnright(size_t count);
+  void insert_columnleft(size_t count);
+  void remove_rowabove(size_t count);
+  void remove_rowbelow(size_t count);
+  void remove_columnright(size_t count);
+  void remove_columnleft(size_t count);
 
   void open_map(const std::string& file_path);
   void generate_yamlfile(const std::string& file_path);
+
+  // TODO DELETE
+  void init(ItemsId* ids, OptionSelected* current_option);
+
+  ~MapGrid();
 };
 
 #endif  // MAPGRID_H

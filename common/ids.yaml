@@ -60,14 +60,37 @@
   icon: "../resources/images/items/IMG_Treasure_Cup.png"
   sound: ""
 14:
+  name: "Blood"
+  icon: "../resources/images/items/IMG_Blood.png"
+15:
   name: "Officer"
   image: "/home/santiagoczop/Taller/tps/tp4/res/officer/officer1.bmp"
   icon: ""
-15:
+16:
   name: "Pillar"
   image: "/home/santiagoczop/Taller/tps/tp4/res/ambient/IMG_Pilar.bmp"
   icon: ""
-16:
+17:
+  name: "Nuevo objecto"
+  image: "..."
+  icon: "..."
+18:
+  name: "Nuevo objecto"
+  image: "..."
+  icon: "..."
+19:
+  name: "Nuevo objecto"
+  image: "..."
+  icon: "..."
+20:
+  name: "Nuevo objecto"
+  image: "..."
+  icon: "..."
+21:
+  name: "Nuevo objecto"
+  image: "..."
+  icon: "..."
+22:
   name: "Nuevo objecto"
   image: "..."
   icon: "..."
