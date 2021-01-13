@@ -15,7 +15,11 @@ int static walks_two_times_and_grabs_medic_kit();
 int static grabs_blood_only_when_health_is_less_than_eleven();
 int static medic_kit_disappears_after_grabbing_it();
 int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified();
+int static player_shoots_enemy();
+int static player_shoots_nobody();
+int static player_shoots_enemy_over_blood_and_grabs_it();
 
+// TODO Use configloder for generic tests
 void match_tests() {
   begin_tests("MATCH");
 
@@ -47,6 +51,15 @@ void match_tests() {
       "Se notifican a todos los jugadores que uno se movio y agarro un kit medico",
       one_player_moves_and_grabs_medic_kit_and_all_players_are_notified,
       NO_ERROR);
+  print_test("Jugador dispara correctamente a otro",
+             player_shoots_enemy,
+             NO_ERROR);
+  print_test("Jugador dispara pero no acierta",
+             player_shoots_nobody,
+             NO_ERROR);
+  print_test("Jugador recibe disparo y agarra sangre",
+             player_shoots_enemy_over_blood_and_grabs_it,
+             NO_ERROR);
 
   end_tests();
 }
@@ -456,6 +469,103 @@ int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified() {
 
   if (match.get_player(result_1.player_id).get_current_health()
       != 30) // TODO Use config loader
+    return ERROR;
+
+  return NO_ERROR;
+}
+
+int static player_shoots_enemy() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+
+  Match match(map);
+  match.add_player(Point(100, 100), M_PI / 2);
+  match.add_player(Point(200, 200), M_PI / 3);
+
+  // CLIENT MOCK
+  ShootData shot = {.damage_done = 10, .enemy_shot = 2, .bullets_shot = 2};
+  packet_t event = {.type = 3, .player_id = 1, .data = {.shot = shot}};
+
+  match.enqueue_event(event);
+
+  match.start();
+
+  packet_t result = match.dequeue_result(2);
+
+  if (result.type != 4 || result.player_id != 2 || result.data.damage != 10)
+    return ERROR;
+
+  if (match.get_player(1).get_current_bullets() != CL::player_bullets - 2)
+    return ERROR;
+
+  if (match.get_player(2).get_current_health() != CL::player_health - 10)
+    return ERROR;
+
+  return NO_ERROR;
+}
+
+int static player_shoots_nobody() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+
+  Match match(map);
+  match.add_player(Point(100, 100), M_PI / 2);
+
+  // CLIENT MOCK
+  ShootData shot = {.damage_done = 10, .enemy_shot = -1, .bullets_shot = 2};
+  packet_t event = {.type = 3, .player_id = 1, .data = {.shot = shot}};
+
+  match.enqueue_event(event);
+
+  match.start();
+
+  if (match.get_player(1).get_current_bullets() != CL::player_bullets - 2)
+    return ERROR;
+
+  return NO_ERROR;
+}
+
+int static player_shoots_enemy_over_blood_and_grabs_it() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+
+  map.add_blood(Point(200, 200));
+
+  Match match(map);
+  match.add_player(Point(100, 100), M_PI / 2);
+  match.add_player(Point(200, 200), M_PI / 3);
+
+  // CLIENT MOCK
+  ShootData shot = {.damage_done = 30, .enemy_shot = 2, .bullets_shot = 2};
+  packet_t event = {.type = 3, .player_id = 1, .data = {.shot = shot}};
+
+  match.enqueue_event(event);
+
+  match.start();
+
+  packet_t result = match.dequeue_result(2);
+
+  if (result.type != 4 || result.player_id != 2 || result.data.damage != 30)
+    return ERROR;
+
+  result = match.dequeue_result(2);
+
+  if (result.type != 2 || result.player_id != 2 || result.data.item != 1)
+    return ERROR;
+
+  result = match.dequeue_result(1);
+
+  if (result.type != 2 || result.player_id != 2 || result.data.item != 1)
+    return ERROR;
+
+  if (match.get_player(1).get_current_bullets() != CL::player_bullets - 2)
+    return ERROR;
+
+  if (match.get_player(2).get_current_health()
+      != CL::player_health - 30 + CL::blood_health_recovered)
     return ERROR;
 
   return NO_ERROR;

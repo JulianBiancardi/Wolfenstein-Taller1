@@ -95,3 +95,5 @@ void Player::decrease_health(int amount) {
 bool Player::is_full_health() { return health == max_health; }
 
 int Player::get_current_health() { return health; } // TODO Change to get_health()
+
+int Player::get_current_bullets() { return bullets; } // TODO Change to get_bullets()
