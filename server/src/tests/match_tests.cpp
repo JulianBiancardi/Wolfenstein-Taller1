@@ -215,7 +215,7 @@ int static grabs_medic_kit_and_restores_all_health() {
       || result.data.item != 1)
     return ERROR;
 
-  if (match.get_player(result.player_id).get_current_health()
+  if (match.get_player(result.player_id).get_health()
       != 40) // TODO Use config loader
     return ERROR;
 
@@ -252,7 +252,7 @@ int static grabs_medic_kit_and_restores_health_correctly() {
     return ERROR;
   }
 
-  if (match.get_player(result.player_id).get_current_health()
+  if (match.get_player(result.player_id).get_health()
       != 30) // TODO Use config loader
     return ERROR;
 
@@ -297,7 +297,7 @@ int static walks_two_times_and_grabs_medic_kit() {
     return ERROR;
   }
 
-  if (match.get_player(result.player_id).get_current_health()
+  if (match.get_player(result.player_id).get_health()
       != 30) // TODO Use config loader
     return ERROR;
 
@@ -357,7 +357,7 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
     return ERROR;
   }
 
-  if (match.get_player(result.player_id).get_current_health()
+  if (match.get_player(result.player_id).get_health()
       != 11) // TODO Use config loader
     return ERROR;
 
@@ -417,7 +417,7 @@ int static medic_kit_disappears_after_grabbing_it() {
     return ERROR;
   }
 
-  if (match.get_player(result.player_id).get_current_health()
+  if (match.get_player(result.player_id).get_health()
       != 30) // TODO Use config loader
     return ERROR;
 
@@ -475,7 +475,7 @@ int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified() {
     return ERROR;
   }
 
-  if (match.get_player(result_1.player_id).get_current_health()
+  if (match.get_player(result_1.player_id).get_health()
       != 30) // TODO Use config loader
     return ERROR;
 
@@ -504,10 +504,10 @@ int static player_shoots_enemy() {
   if (result.type != 4 || result.player_id != 2 || result.data.damage != 10)
     return ERROR;
 
-  if (match.get_player(1).get_current_bullets() != CL::player_bullets - 2)
+  if (match.get_player(1).get_bullets() != CL::player_bullets - 2)
     return ERROR;
 
-  if (match.get_player(2).get_current_health() != CL::player_health - 10)
+  if (match.get_player(2).get_health() != CL::player_health - 10)
     return ERROR;
 
   return NO_ERROR;
@@ -529,7 +529,7 @@ int static player_shoots_nobody() {
 
   match.start();
 
-  if (match.get_player(1).get_current_bullets() != CL::player_bullets - 2)
+  if (match.get_player(1).get_bullets() != CL::player_bullets - 2)
     return ERROR;
 
   return NO_ERROR;
@@ -569,10 +569,10 @@ int static player_shoots_enemy_over_blood_and_grabs_it() {
   if (result.type != 2 || result.player_id != 2 || result.data.item != 1)
     return ERROR;
 
-  if (match.get_player(1).get_current_bullets() != CL::player_bullets - 2)
+  if (match.get_player(1).get_bullets() != CL::player_bullets - 2)
     return ERROR;
 
-  if (match.get_player(2).get_current_health()
+  if (match.get_player(2).get_health()
       != CL::player_health - 30 + CL::blood_health_recovered)
     return ERROR;
 
@@ -613,7 +613,7 @@ int static player_with_max_bullets_shoots_and_grabs_bullets() {
   if (result.type != 2 || result.player_id != 1 || result.data.item != 1)
     return ERROR;
 
-  if (match.get_player(1).get_current_bullets()
+  if (match.get_player(1).get_bullets()
       != CL::player_max_bullets - shot.bullets_shot + 5) //TODO Use configloader
     return ERROR;
 
