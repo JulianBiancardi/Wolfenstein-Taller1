@@ -30,6 +30,7 @@ class Player : public Moveable {
   void receive_damage(int amount);
   void add_gun(int gun_id);
   bool has_gun(int gun_id);
+  void change_gun(int gun_id);
   void shoot(Player& enemy_shot, double damage_done, int bullets_shot);
   // bool add_gun_if_hasnt(Gun gun);
   void add_bullets(int amount);

@@ -13,13 +13,14 @@ typedef struct ShootData {
 } ShootData;
 
 typedef struct packet {
-  int type;  // 1 MOVE, 2 GRAB, 3 SHOOT, 4 DAMAGE
+  int type;  // 1 MOVE, 2 GRAB, 3 SHOOT, 4 DAMAGE, 5 CHANGE GUN
   int player_id;
   union data {
     PointData point;  // MOVE
     int item;         // GRAB
     ShootData shot;   // SHOOT
     double damage;    // DAMAGE
+    int gun;    // CHANGE GUN
   } data;
 } __attribute__((packed)) packet_t;
 

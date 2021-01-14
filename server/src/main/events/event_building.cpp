@@ -22,3 +22,9 @@ packet_t build_damage_event(int player_id, double damage) {
 
   return event;
 }
+
+packet_t build_change_gun_event(int player_id, int gun) {
+  packet_t event = {.type = 5, .player_id = player_id, .data = {.gun = gun}};
+
+  return event;
+}
