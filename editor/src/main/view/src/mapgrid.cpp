@@ -56,7 +56,10 @@ size_t MapGrid::columnscount() const { return map->column_count(); }
 void MapGrid::undo() { undostack->undo(); }
 void MapGrid::redo() { undostack->redo(); }
 
-void MapGrid::clear() { map->clear_all(); }
+void MapGrid::clear() {
+  map->clear_all();
+  undostack->clear();
+}
 void MapGrid::insert_rowabove(size_t count) {
   _remove_cells();
   map->insert_rowabove(count);

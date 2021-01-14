@@ -148,10 +148,10 @@ QPushButton:checked {
         </property>
         <property name="icon">
          <iconset resource="../../resources/resources.qrc">
-          <normaloff>:/images/images/IMG_Edit.png</normaloff>
+          <normaloff>:/images/images/IMG_EditBlack.png</normaloff>
           <normalon>:/images/images/IMG_EditWhite.png</normalon>
           <activeoff>:/images/images/IMG_EditWhite.png</activeoff>
-          <selectedoff>:/images/images/IMG_EditWhite.png</selectedoff>:/images/images/IMG_Edit.png</iconset>
+          <selectedoff>:/images/images/IMG_EditWhite.png</selectedoff>:/images/images/IMG_EditBlack.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -283,7 +283,7 @@ QPushButton:checked {
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>10</height>
+             <height>13</height>
             </size>
            </property>
           </spacer>
@@ -291,7 +291,7 @@ QPushButton:checked {
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <property name="spacing">
-            <number>0</number>
+            <number>5</number>
            </property>
            <property name="rightMargin">
             <number>5</number>
@@ -310,6 +310,105 @@ QPushButton:checked {
             </spacer>
            </item>
            <item>
+            <widget class="QPushButton" name="PaintButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+	color: #fff;
+	border: none;
+	padding: 5px;
+	background-color: rgb(186, 189, 182);
+}
+
+QPushButton:pressed{
+	background-color: rgb(136, 138, 133);
+}
+
+QPushButton:checked {
+background-color: rgb(136, 138, 133);
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../../resources/resources.qrc">
+               <normaloff>:/images/images/IMG_PaintWhite.png</normaloff>:/images/images/IMG_PaintWhite.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>32</width>
+               <height>32</height>
+              </size>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="DragButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+	color: #fff;
+	border: none;
+	padding: 5px;
+	background-color: rgb(186, 189, 182);
+}
+
+QPushButton:pressed{
+	background-color: rgb(136, 138, 133);
+}
+
+QPushButton:checked {
+	background-color: rgb(136, 138, 133);
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../../resources/resources.qrc">
+               <normaloff>:/images/images/IMG_DragDropWhite.png</normaloff>:/images/images/IMG_DragDropWhite.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>32</width>
+               <height>32</height>
+              </size>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QPushButton" name="ClearAllButton">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -319,7 +418,7 @@ QPushButton:checked {
              </property>
              <property name="minimumSize">
               <size>
-               <width>60</width>
+               <width>50</width>
                <height>40</height>
               </size>
              </property>
@@ -328,15 +427,10 @@ QPushButton:checked {
 	color: #fff;
 	border: none;
 	padding: 5px;
+	background-color: rgb(186, 189, 182);
 }
-
 
 QPushButton:pressed{
-	background-color: qlineargradient(spread:pad, x1:0, y1:0.511, x2:1, y2:0.511, stop:0 rgba(204, 0, 0, 255),stop:1 rgba(204, 0, 0, 255));
-
-}
-
-QPushButton:checked {
 	background-color: qlineargradient(spread:pad, x1:0, y1:0.511, x2:1, y2:0.511, stop:0 rgba(204, 0, 0, 255),stop:1 rgba(204, 0, 0, 255));
 }</string>
              </property>
@@ -345,8 +439,9 @@ QPushButton:checked {
              </property>
              <property name="icon">
               <iconset resource="../../resources/resources.qrc">
-               <normaloff>:/images/images/IMG_ClearAllRed.png</normaloff>
-               <activeoff>:/images/images/IMG_ClearAllWhite.png</activeoff>:/images/images/IMG_ClearAllRed.png</iconset>
+               <normaloff>:/images/images/IMG_ClearAllWhite.png</normaloff>
+               <normalon>:/images/images/IMG_ClearAllRed.png</normalon>
+               <activeoff>:/images/images/IMG_ClearAllWhite.png</activeoff>:/images/images/IMG_ClearAllWhite.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -365,6 +460,22 @@ QPushButton:checked {
           </layout>
          </item>
          <item>
+          <spacer name="verticalSpacer_11">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>13</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QScrollArea" name="scrollArea">
            <property name="widgetResizable">
             <bool>true</bool>
@@ -375,7 +486,7 @@ QPushButton:checked {
               <x>0</x>
               <y>0</y>
               <width>396</width>
-              <height>610</height>
+              <height>591</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -435,7 +546,7 @@ QPushButton:checked {
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>10</height>
+             <height>13</height>
             </size>
            </property>
           </spacer>

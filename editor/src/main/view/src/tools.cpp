@@ -9,6 +9,8 @@
 
 #define OPTION_CONTAINER_PAGE 0
 #define RESIZE_PAGE 1
+#define PAINT_STATE 1
+#define DRAG_STATE 2
 
 Tools::Tools(QWidget* parent) : QWidget(parent) {
   ui.setupUi(this);
@@ -21,16 +23,20 @@ Tools::Tools(QWidget* parent) : QWidget(parent) {
   shadowEffect->setBlurRadius(12);
   setGraphicsEffect(shadowEffect);
 
-  buttongroup.addButton(ui.EditButton);
-  buttongroup.addButton(ui.ResizeButton);
+  tools_buttongroup.addButton(ui.EditButton);
+  tools_buttongroup.addButton(ui.ResizeButton);
+
+  edit_buttongroup.addButton(ui.PaintButton);
+  edit_buttongroup.addButton(ui.DragButton);
 }
 
 void Tools::init(ItemsId* ids, OptionSelected* current_option,
                  MapGrid* mapgrid) {
-  if (mapgrid == nullptr) {
+  if (mapgrid == nullptr || current_option == nullptr) {
     throw std::runtime_error("Error to create ToolsWidget");
   }
   this->mapgrid = mapgrid;
+  this->current_option = current_option;
   rows = mapgrid->rowscount();
   columns = mapgrid->columnscount();
 
@@ -48,6 +54,12 @@ void Tools::on_ResizeButton_clicked() {
   ui.stackedWidget->setCurrentIndex(RESIZE_PAGE);
 }
 
+void Tools::on_PaintButton_clicked() {
+  current_option->change_state(PAINT_STATE);
+}
+void Tools::on_DragButton_clicked() {
+  current_option->change_state(DRAG_STATE);
+}
 void Tools::on_ClearAllButton_clicked() { mapgrid->clear(); }
 
 void Tools::on_spinBoxHeight_valueChanged(int value) { rows = value; }

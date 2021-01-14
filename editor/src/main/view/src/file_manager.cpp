@@ -22,8 +22,32 @@ void FileManager::no_saved_message() {
 
   switch (msgBox.exec()) {
     case QMessageBox::Save: {
-      qDebug() << "Save changes";
       save();
+      break;
+    }
+    case QMessageBox::Cancel:
+    default:
+      // should never be reached
+      break;
+  }
+}
+
+void FileManager::close_message() {
+  QMessageBox msgBox;
+  msgBox.setWindowTitle(WINDOW_TITLE);
+  msgBox.setText("Some files has been created or modified...");
+  msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Cancel |
+                            QMessageBox::Discard);
+  msgBox.setInformativeText("Do you want to save your changes?");
+  msgBox.setDefaultButton(QMessageBox::Save);
+
+  switch (msgBox.exec()) {
+    case QMessageBox::Save: {
+      save();
+      break;
+    }
+    case QMessageBox::Discard: {
+      QApplication::quit();
       break;
     }
     case QMessageBox::Cancel:
@@ -101,9 +125,9 @@ void FileManager::open() {
 
 void FileManager::close() {
   if (!this->is_saved) {
-    no_saved_message();
+    close_message();
   } else {
-    save();
+    QApplication::quit();
   }
 }
 

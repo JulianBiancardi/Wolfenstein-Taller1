@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1820</width>
-    <height>1100</height>
+    <width>1804</width>
+    <height>826</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,6 +28,10 @@ QMenuBar {
 QMenuBar::item {
     background-color: transparent;
     color: rgb(255,255,255);  
+}
+
+QMenu::item {
+ color: rgb(255,255,255);  
 }
 /*
 QMenuBar::item:selected {    
@@ -151,8 +155,8 @@ QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1766</width>
-             <height>994</height>
+             <width>1750</width>
+             <height>720</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -201,7 +205,7 @@ QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1820</width>
+     <width>1804</width>
      <height>22</height>
     </rect>
    </property>
@@ -223,7 +227,7 @@ QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
    <widget class="QMenu" name="menuFile">
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="locale">
@@ -241,6 +245,11 @@ QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>Edit</string>
     </property>
@@ -249,6 +258,11 @@ QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
     <addaction name="actionRedo"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>Help</string>
     </property>
@@ -304,7 +318,12 @@ QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
     <string>Open File...</string>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; color:#ffffff;&quot;&gt;Open File&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;Open File&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -319,12 +338,12 @@ QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
     <string>New File</string>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;New File&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;New File&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="font">
     <font>
      <family>Ubuntu</family>
-     <pointsize>14</pointsize>
+     <pointsize>12</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -341,6 +360,14 @@ QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
    <property name="text">
     <string>Save</string>
    </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;Save&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
    </property>
@@ -353,6 +380,14 @@ QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
    <property name="text">
     <string>Save As...</string>
    </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;Save As&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
    </property>
@@ -364,6 +399,14 @@ QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
    </property>
    <property name="text">
     <string>Exit</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;Exit&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -417,6 +460,11 @@ QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
    <property name="text">
     <string>About</string>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionUndo">
    <property name="icon">
@@ -425,6 +473,14 @@ QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
    </property>
    <property name="text">
     <string>Undo</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;Undo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Z</string>
@@ -437,6 +493,14 @@ QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
    </property>
    <property name="text">
     <string>Redo</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;Redo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Y</string>

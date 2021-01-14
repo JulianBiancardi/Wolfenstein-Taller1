@@ -21,21 +21,15 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 }
 
 void MainWindow::on_actionNew_File_triggered() { file_manager->new_file(); }
-
 void MainWindow::on_actionOpen_File_triggered() { file_manager->open(); }
-
 void MainWindow::on_actionSave_triggered() { file_manager->save(); }
-
 void MainWindow::on_actionSave_As_triggered() { file_manager->save_as(); }
-
-void MainWindow::on_actionExit_triggered() {
-  file_manager->close();
-  QApplication::quit();
-}
+void MainWindow::on_actionExit_triggered() { file_manager->close(); }
 
 void MainWindow::closeEvent(QCloseEvent* event) {
+  event->ignore();
   file_manager->close();
-  event->accept();
+  // event->accept();
 }
 
 void MainWindow::on_actionUndo_triggered() { ui.MapGridWidget->undo(); }
