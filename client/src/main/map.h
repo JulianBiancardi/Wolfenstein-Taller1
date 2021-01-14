@@ -13,7 +13,7 @@
 
 class Map : public BaseMap {
  private:
-  // std::vector<std::reference_wrapper<Player>> players;
+  //std::vector<std::reference_wrapper<Player>> players;
   // std::vector<std::reference_wrapper<Sprite>> sprites;
   std::vector<Object> objects;
 

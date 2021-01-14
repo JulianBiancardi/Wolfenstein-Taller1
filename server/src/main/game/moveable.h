@@ -2,7 +2,7 @@
 #define MOVEABLE_H
 
 #include "../../../../common/src/main/utils/ray.h"
-#include "collisions/circle_mask.h"
+#include "../../../../common/src/main/collisions/circle_mask.h"
 #include "identifiable.h"
 #include "../../../../common/src/main/object.h"
 

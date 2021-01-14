@@ -13,7 +13,7 @@
 
 #include <unordered_map>
 
-#include "../../common/src/main/config_loader.h"
+#include "../../../common/src/main/config_loader.h"
 #include "../main/guns/chain_cannon.h"
 #include "../main/guns/knife.h"
 #include "../main/guns/pistol.h"
@@ -120,7 +120,7 @@ int static pistol_check_damaged() {
   Map game_map(map_data);
   Player player1(0, 0, 0 /*, 1*/, pistol);
   Player player2(5, 0, 0 /*, 2*/, pistol);
-  // player1.shoot_player(player2, pistol);
+//  player1.shoot_player(player2, pistol);
   int value = player2.get_health();
   if (value >= CL::player_health - 10 && value < CL::player_health)
     return NO_ERROR;
@@ -133,7 +133,7 @@ int static rocket_launcher_check_damaged() {
   Map game_map(map_data);
   Player player1(0, 0, 0 /*, 1*/, rocket_launcher);
   Player player2(5, 0, 0 /*, 2*/, rocket_launcher);
-  // player1.shoot_player(player2, rocket_launcher);
+//   player1.shoot_player(player2, rocket_launcher);
   int value = player2.get_health();
   if (value >= CL::player_health - 10 && value < CL::player_health)
     return NO_ERROR;

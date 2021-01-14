@@ -5,21 +5,30 @@
 #include "casting/ray_casting.h"
 
 Player::Player(Ray position, Gun& gun) :
-    position(position), active_gun(gun) {
+    position(position), active_gun(gun),
+    Object(position/*, position.get_angle()*/,
+           new Circle_mask
+           (ConfigLoader::player_mask_radio, position.get_ref_origin())) {
   pace = 1;  // TODO Use config file
   health = CL::player_health;
   bullets = CL::player_health;
 }
 
 Player::Player(Point origin, double angle, Gun& gun) :
-    position(origin, angle), active_gun(gun) {
+    position(origin, angle), active_gun(gun) ,
+    Object(origin, angle,
+           new Circle_mask
+               (ConfigLoader::player_mask_radio, origin)) {
   pace = 1;  // TODO Use config file
   health = CL::player_health;
   bullets = CL::player_health;
 }
 
 Player::Player(double x, double y, double angle, Gun& gun) :
-    position(x, y, angle), active_gun(gun) {
+    position(x, y, angle), active_gun(gun) ,
+    Object(Point(x,y), angle,
+           new Circle_mask
+               (ConfigLoader::player_mask_radio, Point(x,y))) {
   pace = 1;  // TODO Use config file
   health = CL::player_health;
   bullets = CL::player_health;

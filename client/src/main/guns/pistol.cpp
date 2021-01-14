@@ -78,6 +78,10 @@ int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
     double angle_modifier = std::cos(closest_obj_angle);
     double damage = base_damage * dist_modifier * angle_modifier;
     // TODO Create event for the damage
+
+
+    //added 13/01
+
   }
 }
 
