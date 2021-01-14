@@ -1,7 +1,7 @@
 #ifndef BARREL_H
 #define BARREL_H
 
-#include "../collisions/circle_mask.h"
+#include "../../../../../common/src/main/collisions/circle_mask.h"
 #include "../../../../../common/src/main/object.h"
 
 class Barrel : public Object {

@@ -1,7 +1,7 @@
 #ifndef TABLE_H
 #define TABLE_H
 
-#include "../collisions/box_mask.h"
+#include "../../../../../common/src/main/collisions/box_mask.h"
 #include "../../../../../common/src/main/object.h"
 
 class Table : public Object {

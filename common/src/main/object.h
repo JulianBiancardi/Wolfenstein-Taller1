@@ -2,7 +2,7 @@
 #define OBJECT_H
 
 #include "utils/ray.h"
-#include "../../../server/src/main/game/collisions/mask.h"
+#include "collisions/mask.h"
 
 class Object {
  protected:

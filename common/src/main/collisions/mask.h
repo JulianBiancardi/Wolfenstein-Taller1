@@ -3,7 +3,7 @@
 
 #include <cstddef>
 
-#include "../../../../../common/src/main/utils/point.h"
+#include "../utils/point.h"
 
 class Circle_mask;
 
