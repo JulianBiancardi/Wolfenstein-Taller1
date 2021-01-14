@@ -1,5 +1,7 @@
 #include "player.h"
+
 #include <cmath>
+
 #include "../../../../common/src/main/utils/ray.h"  // TODO Check if not already included
 
 Player::Player(Point origin, double angle, int id)
@@ -17,6 +19,9 @@ Player::Player(double x, double y, double angle, int id)
   max_bullets = ConfigLoader::player_max_bullets;
   bullets = ConfigLoader::player_bullets;
 }
+
+Player::~Player() {}
+
 /*
 bool Player::has_bullets(int amount) { return (bullets >= amount); }
 
@@ -94,6 +99,10 @@ void Player::decrease_health(int amount) {
 
 bool Player::is_full_health() { return health == max_health; }
 
-int Player::get_current_health() { return health; } // TODO Change to get_health()
+int Player::get_current_health() {
+  return health;
+}  // TODO Change to get_health()
 
-int Player::get_current_bullets() { return bullets; } // TODO Change to get_bullets()
+int Player::get_current_bullets() {
+  return bullets;
+}  // TODO Change to get_bullets()

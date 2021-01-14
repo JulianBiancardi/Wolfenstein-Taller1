@@ -20,4 +20,5 @@ class Resource {
   void load(SDL_Renderer* renderer);
   Image* get_image();
 };
+
 #endif

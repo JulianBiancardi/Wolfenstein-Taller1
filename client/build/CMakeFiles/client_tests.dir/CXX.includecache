@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/santiagoczop/Taller/tps/tp4/client/src/tests/main_tests.cpp
+resource_manager_tests.h
+/home/santiagoczop/Taller/tps/tp4/client/src/tests/resource_manager_tests.h
+resource_tests.h
+/home/santiagoczop/Taller/tps/tp4/client/src/tests/resource_tests.h
+
+/home/santiagoczop/Taller/tps/tp4/client/src/tests/resource_manager_tests.h
+
+/home/santiagoczop/Taller/tps/tp4/client/src/tests/resource_tests.h
+

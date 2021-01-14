@@ -2,7 +2,8 @@
 Stage::Stage() {}
 
 void Stage::setPlayerPosition(int id, PointData point_data) {
-  players.at(id).set_position(point_data);
+  Point point(point_data.x, point_data.y);
+  players.at(id).set_position(point);
 }
 
 void Stage::setPlayerHealth(int id, int health) {}

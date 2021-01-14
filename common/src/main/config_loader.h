@@ -1,7 +1,9 @@
 #ifndef WOLFENSTEIN_TALLER1_CONFIG_LOADER_H
 #define WOLFENSTEIN_TALLER1_CONFIG_LOADER_H
-#include <iostream>
+
 #include <fstream>
+#include <iostream>
+
 #include "yaml-cpp/yaml.h"
 
 class ConfigLoader;
@@ -10,7 +12,7 @@ typedef ConfigLoader CL;
 class ConfigLoader {
  public:
   ConfigLoader();
-  //static ConfigLoader& get_init_configs();
+  // static ConfigLoader& get_init_configs();
 
   static YAML::Node yaml_file;
 
@@ -41,4 +43,4 @@ class ConfigLoader {
   static int crown_points;
 };
 
-#endif //WOLFENSTEIN_TALLER1_CONFIG_LOADER_H
+#endif  // WOLFENSTEIN_TALLER1_CONFIG_LOADER_H

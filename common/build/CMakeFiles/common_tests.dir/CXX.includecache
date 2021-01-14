@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/santiagoczop/Taller/tps/tp4/common/src/tests/data_structures_tests/blocking_queue_tests.h
+
+/home/santiagoczop/Taller/tps/tp4/common/src/tests/data_structures_tests/protected_queue_tests.h
+
+/home/santiagoczop/Taller/tps/tp4/common/src/tests/main_tests.cpp
+data_structures_tests/blocking_queue_tests.h
+/home/santiagoczop/Taller/tps/tp4/common/src/tests/data_structures_tests/blocking_queue_tests.h
+data_structures_tests/protected_queue_tests.h
+/home/santiagoczop/Taller/tps/tp4/common/src/tests/data_structures_tests/protected_queue_tests.h
+utils_tests/matrix_tests.h
+/home/santiagoczop/Taller/tps/tp4/common/src/tests/utils_tests/matrix_tests.h
+utils_tests/point_tests.h
+/home/santiagoczop/Taller/tps/tp4/common/src/tests/utils_tests/point_tests.h
+utils_tests/ray_tests.h
+/home/santiagoczop/Taller/tps/tp4/common/src/tests/utils_tests/ray_tests.h
+utils_tests/rectangle_tests.h
+/home/santiagoczop/Taller/tps/tp4/common/src/tests/utils_tests/rectangle_tests.h
+
+/home/santiagoczop/Taller/tps/tp4/common/src/tests/utils_tests/matrix_tests.h
+
+/home/santiagoczop/Taller/tps/tp4/common/src/tests/utils_tests/point_tests.h
+
+/home/santiagoczop/Taller/tps/tp4/common/src/tests/utils_tests/ray_tests.h
+
+/home/santiagoczop/Taller/tps/tp4/common/src/tests/utils_tests/rectangle_tests.h
+

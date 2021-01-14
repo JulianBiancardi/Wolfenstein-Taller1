@@ -93,8 +93,6 @@ int Socket::close() {
   return result;
 }
 
-void Socket::operator()(std::string& str) { send(str.c_str(), str.length()); }
-
 Socket::~Socket() {
   ::shutdown(socket_file_descriptor, SHUT_RDWR);
   if (socket_file_descriptor != -1) {
