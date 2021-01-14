@@ -1,7 +1,7 @@
 #ifndef WOLFENSTEIN_TALLER1_COMMON_TESTS_GAME_TEST_CLIENT_MOCK_H_
 #define WOLFENSTEIN_TALLER1_COMMON_TESTS_GAME_TEST_CLIENT_MOCK_H_
 
-#include "../../../server/src/main/game/collision_checker.h"
+#include "../main/game/collision_checker.h"
 
 #define WALL 1  // TODO Remove this and ask in Config
 
