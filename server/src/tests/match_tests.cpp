@@ -18,7 +18,8 @@ int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified();
 int static player_shoots_enemy();
 int static player_shoots_nobody();
 int static player_shoots_enemy_over_blood_and_grabs_it();
-int static player_shoots_and_grabs_bullets();
+int static player_with_max_bullets_shoots_and_grabs_bullets();
+int static player_changes_gun();
 
 // TODO Use configloder for generic tests
 void match_tests() {
@@ -62,10 +63,13 @@ void match_tests() {
              player_shoots_enemy_over_blood_and_grabs_it,
              NO_ERROR);
   print_test("Jugador agarra balas solo luego de disparar",
-             player_shoots_and_grabs_bullets,
+             player_with_max_bullets_shoots_and_grabs_bullets,
              NO_ERROR);
+    print_test("Jugador cambia de arma correctamente",
+               player_changes_gun,
+               NO_ERROR);
 
-  end_tests();
+    end_tests();
 }
 
 int static can_move_up_player() {
@@ -575,7 +579,7 @@ int static player_shoots_enemy_over_blood_and_grabs_it() {
   return NO_ERROR;
 }
 
-int static player_shoots_and_grabs_bullets() {
+int static player_with_max_bullets_shoots_and_grabs_bullets() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
@@ -584,6 +588,7 @@ int static player_shoots_and_grabs_bullets() {
 
   Match match(map);
   match.add_player(Point(100, 100), M_PI / 2);
+  match.get_player(1).add_bullets(CL::player_max_bullets);
 
   // CLIENT MOCK
   ShootData shot = {.damage_done = 10, .enemy_shot = -1, .bullets_shot = 0};
@@ -609,8 +614,40 @@ int static player_shoots_and_grabs_bullets() {
     return ERROR;
 
   if (match.get_player(1).get_current_bullets()
-      != CL::player_bullets - 5 + 5) // TODO Use config loader
+      != CL::player_max_bullets - shot.bullets_shot + 5) //TODO Use configloader
     return ERROR;
 
   return NO_ERROR;
+}
+
+int static player_changes_gun(){
+    Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+    put_data(map_data);
+    Map map(map_data);
+
+    Match match(map);
+    match.add_player(Point(100, 100), M_PI / 2);
+    match.add_player(Point(200, 200), M_PI / 3);
+
+    match.get_player(1).add_gun(3);
+
+    // CLIENT MOCK
+    packet_t event = {.type = 5, .player_id = 1, .data = {.gun = 3}};
+
+    match.enqueue_event(event);
+
+    match.start();
+
+    packet_t result = match.dequeue_result(2);
+
+    if (result.type != 5 || result.player_id != 1 || result.data.gun != 3)
+        return ERROR;
+
+    if (match.has_result_events_left(1))
+        return ERROR;
+
+    if (match.get_player(1).get_active_gun() != 3)
+        return ERROR;
+
+    return NO_ERROR;
 }

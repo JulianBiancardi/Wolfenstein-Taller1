@@ -46,7 +46,6 @@ void Match::enqueue_result_for_all(const packet_t& event) {
     queue.second.enqueue(event);
 }
 
-// Check if it is used (now is NOT being used)
 void Match::enqueue_result_for_all_others(const packet_t& event,
                                           int others_than) {
   for (auto& queue : result_events) {
@@ -60,5 +59,5 @@ Map& Match::get_map() { return map; }
 Player& Match::get_player(int id) { return players.at(id); }
 
 bool Match::has_result_events_left(int id) {
-  return result_events.at(id).is_empty();
+  return !result_events.at(id).is_empty();
 }

@@ -39,8 +39,10 @@ class Player : public Moveable {
   void decrease_health(int amount);
   void decrease_bullets_2(int amount);
   bool is_full_health();
+  bool is_full_bullets();
   int get_current_health();
   int get_current_bullets();
+  int get_active_gun();
 };
 
 #endif  // WOLFENSTEIN_TALLER1_PLAYER_H

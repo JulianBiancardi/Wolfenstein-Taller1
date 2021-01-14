@@ -104,6 +104,8 @@ void Player::decrease_health(int amount) {
 
 bool Player::is_full_health() { return health == max_health; }
 
+bool Player::is_full_bullets() { return bullets == max_bullets; }
+
 int Player::get_current_health() {
   return health;
 }  // TODO Change to get_health()
@@ -111,3 +113,7 @@ int Player::get_current_health() {
 int Player::get_current_bullets() {
   return bullets;
 }  // TODO Change to get_bullets()
+
+int Player::get_active_gun() {
+    return active_gun;
+}
