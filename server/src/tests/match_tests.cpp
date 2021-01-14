@@ -1,8 +1,8 @@
 #include "match_tests.h"
-#include "../tests_setup.h"
-#include "../../../server/src/main/game/match.h"
-#include "../../../server/src/main/game/objects/items/medic_kit.h"
-#include "../../../server/src/main/game/objects/items/blood.h"
+#include "../../../common/src/tests/tests_setup.h"
+#include "../main/game/match.h"
+#include "../main/game/objects/items/medic_kit.h"
+#include "../main/game/objects/items/blood.h"
 #include <cmath>
 #include "client_mock.h"
 

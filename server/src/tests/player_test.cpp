@@ -1,7 +1,7 @@
-#include "../../../server/src/main/game/player.h"
-#include "../../../server/src/main/game/objects/table.h"
-#include "../../../server/src/main/map.h"
-#include "../tests_setup.h"
+#include "../main/game/player.h"
+#include "../main/game/objects/table.h"
+#include "../main/map.h"
+#include "../../../common/src/tests/tests_setup.h"
 #include "client_mock.h"
 #include <utility>
 
