@@ -4,7 +4,7 @@
 #include "event_handler.h"
 #include "../game/collision_checker.h"
 
-class ShootHitHandler : public EventHandler {
+class ShotHitHandler : public EventHandler {
  private:
   Player& who; // TODO Should not be player, bots also shoot
   Player& enemy_shot; // TODO Should not be player, bots also get shot
@@ -12,7 +12,7 @@ class ShootHitHandler : public EventHandler {
   int bullets_shot;
 
  public:
-  ShootHitHandler(Player& who, Player& enemy, double damage, int bullets);
+  ShotHitHandler(Player& who, Player& enemy, double damage, int bullets);
 
   void handle(Match& match, CollisionChecker& checker);
 };

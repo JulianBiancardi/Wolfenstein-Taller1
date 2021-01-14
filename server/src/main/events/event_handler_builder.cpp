@@ -1,7 +1,7 @@
 #include "event_handler_builder.h"
 #include "move_handler.h"
-#include "shoot_handler.h"
-#include "shoot_hit_handler.h"
+#include "shot_miss_handler.h"
+#include "shot_hit_handler.h"
 #include "change_gun_handler.h"
 
 Player& EventHandlerBuilder::get_doer(const packet_t& event,
@@ -27,15 +27,12 @@ EventHandler* EventHandlerBuilder::build(const packet_t& event,
     case 1: return move_event(doer, event.data.point.x, event.data.point.y);
     case 3: {
       int bullets_shot = event.data.shot.bullets_shot;
-      if (event.data.shot.enemy_shot != -1) {
-        Player& enemy_hit = players.at(event.data.shot.enemy_shot); // HIT
-        double damage_done = event.data.shot.damage_done;
-        return new ShootHitHandler(doer, enemy_hit, damage_done, bullets_shot);
-      } else {
-        return new ShootHandler(doer, bullets_shot); // Miss
-      }
+      Player& enemy_hit = players.at(event.data.shot.enemy_shot);
+      double damage_done = event.data.shot.damage_done;
+      return new ShotHitHandler(doer, enemy_hit, damage_done, bullets_shot);
     }
     case 5: return new ChangeGunHandler(doer, event.data.gun);
+    case 6: return new ShotMissHandler(doer, event.data.bullets_shot);
     default: throw -1; //TODO Throw ours exception
   }
 }

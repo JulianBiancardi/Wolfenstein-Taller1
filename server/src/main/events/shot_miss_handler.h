@@ -4,13 +4,13 @@
 #include "event_handler.h"
 #include "../game/collision_checker.h"
 
-class ShootHandler : public EventHandler {
+class ShotMissHandler : public EventHandler {
  private:
   Player& who; // TODO Should not be player, bots also shoot
   int bullets_shot;
 
  public:
-  ShootHandler(Player& who, int bullets);
+  ShotMissHandler(Player& who, int bullets);
 
   void handle(Match& match, CollisionChecker& checker);
 };
