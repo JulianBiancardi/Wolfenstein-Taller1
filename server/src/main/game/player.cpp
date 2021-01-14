@@ -44,6 +44,11 @@ bool Player::has_gun(int gun_id) {
   return guns_bag.find(gun_id) != guns_bag.end();
 }
 
+void Player::change_gun(int gun_id) {
+  if (this->has_gun(gun_id))
+    active_gun = gun_id;
+}
+
 void Player::shoot(Player& enemy_shot, double damage_done, int bullets_shot) {
   enemy_shot.receive_damage(damage_done);
   this->decrease_bullets_2(bullets_shot);
