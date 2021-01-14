@@ -14,9 +14,8 @@ class Circle_mask : public Mask {
   double radio;
 
  public:
-  Circle_mask(double radio, const Point &center)
-      : radio(radio), Mask(center) {};
-  ~Circle_mask() {};
+  Circle_mask(double radio, const Point &center);
+  ~Circle_mask();
 
   virtual bool occupies(Point where);
   double get_radio() const { return radio; };
