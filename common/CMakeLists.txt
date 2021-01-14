@@ -12,29 +12,22 @@ set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 
 FILE(GLOB CommonFiles
-	src/main/data_structures/*.cpp
-  src/main/socket/*.cpp
-  src/main/threads/*.cpp
-	src/main/utils/*.cpp
-
-  src/main/object.cpp
-	src/main/config_loader.cpp
-)
+	src/main/*/*.cpp
+  	src/main/*.cpp)
 
 FILE(GLOB CommonTestsFiles
-  src/tests/*.cpp
-  src/tests/*/*.cpp
-)
+  	src/tests/*.cpp
+  	src/tests/*/*.cpp)
 
 add_executable(
-  common_tests
-  ${CommonFiles}
-  ${CommonTestsFiles}
+		common_tests
+		${CommonFiles}
+		${CommonTestsFiles}
 )
 
 target_link_libraries(
-  common_tests
-  PRIVATE
-  Threads::Threads
-  yaml-cpp
+		common_tests
+		PRIVATE
+		Threads::Threads
+		yaml-cpp
 )
