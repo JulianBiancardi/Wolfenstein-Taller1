@@ -348,7 +348,7 @@ int static player_collides_against_other_player() {
   }
 
   if (players.at(1).get_position().getX() == 100
-      && players.at(1).get_position().getY() == 190)
+      && players.at(1).get_position().getY() == 189)
     return NO_ERROR;
 
   return ERROR;
@@ -376,7 +376,7 @@ int static another_player_collides_against_other_player() {
     move_right(players.at(2), checker);
   }
 
-  if (players.at(2).get_position().getX() == 110
+  if (players.at(2).get_position().getX() == 111
       && players.at(2).get_position().getY() == 200)
     return NO_ERROR;
 
@@ -403,7 +403,7 @@ int static player_collides_against_table_from_side() {
   delete sprites[0];
 
   if (players.at(1).get_position().getX() == 100
-      && players.at(1).get_position().getY() == 113)
+      && players.at(1).get_position().getY() == 112)
     return NO_ERROR;
 
   return ERROR;
@@ -428,7 +428,7 @@ int static player_collides_against_table_from_another_side() {
 
   delete sprites[0];
 
-  if (players.at(1).get_position().getX() == 190
+  if (players.at(1).get_position().getX() == 189
       && players.at(1).get_position().getY() == 100)
     return NO_ERROR;
 
