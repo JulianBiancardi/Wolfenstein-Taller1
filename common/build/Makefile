@@ -573,6 +573,60 @@ yaml-cpp-sandbox/fast:
 	$(MAKE) $(MAKESILENT) -f build/util/CMakeFiles/yaml-cpp-sandbox.dir/build.make build/util/CMakeFiles/yaml-cpp-sandbox.dir/build
 .PHONY : yaml-cpp-sandbox/fast
 
+src/main/collisions/box_mask.o: src/main/collisions/box_mask.cpp.o
+
+.PHONY : src/main/collisions/box_mask.o
+
+# target to build an object file
+src/main/collisions/box_mask.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.o
+.PHONY : src/main/collisions/box_mask.cpp.o
+
+src/main/collisions/box_mask.i: src/main/collisions/box_mask.cpp.i
+
+.PHONY : src/main/collisions/box_mask.i
+
+# target to preprocess a source file
+src/main/collisions/box_mask.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.i
+.PHONY : src/main/collisions/box_mask.cpp.i
+
+src/main/collisions/box_mask.s: src/main/collisions/box_mask.cpp.s
+
+.PHONY : src/main/collisions/box_mask.s
+
+# target to generate assembly for a file
+src/main/collisions/box_mask.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.s
+.PHONY : src/main/collisions/box_mask.cpp.s
+
+src/main/collisions/circle_mask.o: src/main/collisions/circle_mask.cpp.o
+
+.PHONY : src/main/collisions/circle_mask.o
+
+# target to build an object file
+src/main/collisions/circle_mask.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.o
+.PHONY : src/main/collisions/circle_mask.cpp.o
+
+src/main/collisions/circle_mask.i: src/main/collisions/circle_mask.cpp.i
+
+.PHONY : src/main/collisions/circle_mask.i
+
+# target to preprocess a source file
+src/main/collisions/circle_mask.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.i
+.PHONY : src/main/collisions/circle_mask.cpp.i
+
+src/main/collisions/circle_mask.s: src/main/collisions/circle_mask.cpp.s
+
+.PHONY : src/main/collisions/circle_mask.s
+
+# target to generate assembly for a file
+src/main/collisions/circle_mask.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.s
+.PHONY : src/main/collisions/circle_mask.cpp.s
+
 src/main/config_loader.o: src/main/config_loader.cpp.o
 
 .PHONY : src/main/config_loader.o
@@ -951,6 +1005,60 @@ src/tests/main_tests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.s
 .PHONY : src/tests/main_tests.cpp.s
 
+src/tests/mask_tests/box_mask_tests.o: src/tests/mask_tests/box_mask_tests.cpp.o
+
+.PHONY : src/tests/mask_tests/box_mask_tests.o
+
+# target to build an object file
+src/tests/mask_tests/box_mask_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.o
+.PHONY : src/tests/mask_tests/box_mask_tests.cpp.o
+
+src/tests/mask_tests/box_mask_tests.i: src/tests/mask_tests/box_mask_tests.cpp.i
+
+.PHONY : src/tests/mask_tests/box_mask_tests.i
+
+# target to preprocess a source file
+src/tests/mask_tests/box_mask_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.i
+.PHONY : src/tests/mask_tests/box_mask_tests.cpp.i
+
+src/tests/mask_tests/box_mask_tests.s: src/tests/mask_tests/box_mask_tests.cpp.s
+
+.PHONY : src/tests/mask_tests/box_mask_tests.s
+
+# target to generate assembly for a file
+src/tests/mask_tests/box_mask_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.s
+.PHONY : src/tests/mask_tests/box_mask_tests.cpp.s
+
+src/tests/mask_tests/circle_mask_tests.o: src/tests/mask_tests/circle_mask_tests.cpp.o
+
+.PHONY : src/tests/mask_tests/circle_mask_tests.o
+
+# target to build an object file
+src/tests/mask_tests/circle_mask_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.o
+.PHONY : src/tests/mask_tests/circle_mask_tests.cpp.o
+
+src/tests/mask_tests/circle_mask_tests.i: src/tests/mask_tests/circle_mask_tests.cpp.i
+
+.PHONY : src/tests/mask_tests/circle_mask_tests.i
+
+# target to preprocess a source file
+src/tests/mask_tests/circle_mask_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.i
+.PHONY : src/tests/mask_tests/circle_mask_tests.cpp.i
+
+src/tests/mask_tests/circle_mask_tests.s: src/tests/mask_tests/circle_mask_tests.cpp.s
+
+.PHONY : src/tests/mask_tests/circle_mask_tests.s
+
+# target to generate assembly for a file
+src/tests/mask_tests/circle_mask_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.s
+.PHONY : src/tests/mask_tests/circle_mask_tests.cpp.s
+
 src/tests/tests_setup.o: src/tests/tests_setup.cpp.o
 
 .PHONY : src/tests/tests_setup.o
@@ -1128,6 +1236,12 @@ help:
 	@echo "... yaml-cpp-parse"
 	@echo "... yaml-cpp-read"
 	@echo "... yaml-cpp-sandbox"
+	@echo "... src/main/collisions/box_mask.o"
+	@echo "... src/main/collisions/box_mask.i"
+	@echo "... src/main/collisions/box_mask.s"
+	@echo "... src/main/collisions/circle_mask.o"
+	@echo "... src/main/collisions/circle_mask.i"
+	@echo "... src/main/collisions/circle_mask.s"
 	@echo "... src/main/config_loader.o"
 	@echo "... src/main/config_loader.i"
 	@echo "... src/main/config_loader.s"
@@ -1170,6 +1284,12 @@ help:
 	@echo "... src/tests/main_tests.o"
 	@echo "... src/tests/main_tests.i"
 	@echo "... src/tests/main_tests.s"
+	@echo "... src/tests/mask_tests/box_mask_tests.o"
+	@echo "... src/tests/mask_tests/box_mask_tests.i"
+	@echo "... src/tests/mask_tests/box_mask_tests.s"
+	@echo "... src/tests/mask_tests/circle_mask_tests.o"
+	@echo "... src/tests/mask_tests/circle_mask_tests.i"
+	@echo "... src/tests/mask_tests/circle_mask_tests.s"
 	@echo "... src/tests/tests_setup.o"
 	@echo "... src/tests/tests_setup.i"
 	@echo "... src/tests/tests_setup.s"

@@ -77,9 +77,35 @@ include CMakeFiles/common_tests.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/common_tests.dir/flags.make
 
+CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.o: CMakeFiles/common_tests.dir/flags.make
+CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.o: ../src/main/collisions/box_mask.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp
+
+CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp > CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.i
+
+CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp -o CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.s
+
+CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.o: CMakeFiles/common_tests.dir/flags.make
+CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.o: ../src/main/collisions/circle_mask.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp
+
+CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp > CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.i
+
+CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp -o CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.s
+
 CMakeFiles/common_tests.dir/src/main/config_loader.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/main/config_loader.cpp.o: ../src/main/config_loader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/common_tests.dir/src/main/config_loader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/common_tests.dir/src/main/config_loader.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/main/config_loader.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/main/config_loader.cpp
 
 CMakeFiles/common_tests.dir/src/main/config_loader.cpp.i: cmake_force
@@ -92,7 +118,7 @@ CMakeFiles/common_tests.dir/src/main/config_loader.cpp.s: cmake_force
 
 CMakeFiles/common_tests.dir/src/main/object.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/main/object.cpp.o: ../src/main/object.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/common_tests.dir/src/main/object.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/common_tests.dir/src/main/object.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/main/object.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/main/object.cpp
 
 CMakeFiles/common_tests.dir/src/main/object.cpp.i: cmake_force
@@ -105,7 +131,7 @@ CMakeFiles/common_tests.dir/src/main/object.cpp.s: cmake_force
 
 CMakeFiles/common_tests.dir/src/main/socket/socket.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/main/socket/socket.cpp.o: ../src/main/socket/socket.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/common_tests.dir/src/main/socket/socket.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/common_tests.dir/src/main/socket/socket.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/main/socket/socket.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/main/socket/socket.cpp
 
 CMakeFiles/common_tests.dir/src/main/socket/socket.cpp.i: cmake_force
@@ -118,7 +144,7 @@ CMakeFiles/common_tests.dir/src/main/socket/socket.cpp.s: cmake_force
 
 CMakeFiles/common_tests.dir/src/main/socket/socket_error.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/main/socket/socket_error.cpp.o: ../src/main/socket/socket_error.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/common_tests.dir/src/main/socket/socket_error.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/common_tests.dir/src/main/socket/socket_error.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/main/socket/socket_error.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/main/socket/socket_error.cpp
 
 CMakeFiles/common_tests.dir/src/main/socket/socket_error.cpp.i: cmake_force
@@ -131,7 +157,7 @@ CMakeFiles/common_tests.dir/src/main/socket/socket_error.cpp.s: cmake_force
 
 CMakeFiles/common_tests.dir/src/main/threads/thread.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/main/threads/thread.cpp.o: ../src/main/threads/thread.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/common_tests.dir/src/main/threads/thread.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/common_tests.dir/src/main/threads/thread.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/main/threads/thread.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/main/threads/thread.cpp
 
 CMakeFiles/common_tests.dir/src/main/threads/thread.cpp.i: cmake_force
@@ -144,7 +170,7 @@ CMakeFiles/common_tests.dir/src/main/threads/thread.cpp.s: cmake_force
 
 CMakeFiles/common_tests.dir/src/main/utils/angle.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/main/utils/angle.cpp.o: ../src/main/utils/angle.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/common_tests.dir/src/main/utils/angle.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/common_tests.dir/src/main/utils/angle.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/main/utils/angle.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/main/utils/angle.cpp
 
 CMakeFiles/common_tests.dir/src/main/utils/angle.cpp.i: cmake_force
@@ -157,7 +183,7 @@ CMakeFiles/common_tests.dir/src/main/utils/angle.cpp.s: cmake_force
 
 CMakeFiles/common_tests.dir/src/main/utils/base_map.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/main/utils/base_map.cpp.o: ../src/main/utils/base_map.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/common_tests.dir/src/main/utils/base_map.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/common_tests.dir/src/main/utils/base_map.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/main/utils/base_map.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/main/utils/base_map.cpp
 
 CMakeFiles/common_tests.dir/src/main/utils/base_map.cpp.i: cmake_force
@@ -170,7 +196,7 @@ CMakeFiles/common_tests.dir/src/main/utils/base_map.cpp.s: cmake_force
 
 CMakeFiles/common_tests.dir/src/main/utils/point.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/main/utils/point.cpp.o: ../src/main/utils/point.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/common_tests.dir/src/main/utils/point.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/common_tests.dir/src/main/utils/point.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/main/utils/point.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/main/utils/point.cpp
 
 CMakeFiles/common_tests.dir/src/main/utils/point.cpp.i: cmake_force
@@ -183,7 +209,7 @@ CMakeFiles/common_tests.dir/src/main/utils/point.cpp.s: cmake_force
 
 CMakeFiles/common_tests.dir/src/main/utils/range_error.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/main/utils/range_error.cpp.o: ../src/main/utils/range_error.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/common_tests.dir/src/main/utils/range_error.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/common_tests.dir/src/main/utils/range_error.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/main/utils/range_error.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/main/utils/range_error.cpp
 
 CMakeFiles/common_tests.dir/src/main/utils/range_error.cpp.i: cmake_force
@@ -196,7 +222,7 @@ CMakeFiles/common_tests.dir/src/main/utils/range_error.cpp.s: cmake_force
 
 CMakeFiles/common_tests.dir/src/main/utils/ray.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/main/utils/ray.cpp.o: ../src/main/utils/ray.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/common_tests.dir/src/main/utils/ray.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/common_tests.dir/src/main/utils/ray.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/main/utils/ray.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/main/utils/ray.cpp
 
 CMakeFiles/common_tests.dir/src/main/utils/ray.cpp.i: cmake_force
@@ -209,7 +235,7 @@ CMakeFiles/common_tests.dir/src/main/utils/ray.cpp.s: cmake_force
 
 CMakeFiles/common_tests.dir/src/main/utils/rectangle.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/main/utils/rectangle.cpp.o: ../src/main/utils/rectangle.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/common_tests.dir/src/main/utils/rectangle.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/common_tests.dir/src/main/utils/rectangle.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/main/utils/rectangle.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/main/utils/rectangle.cpp
 
 CMakeFiles/common_tests.dir/src/main/utils/rectangle.cpp.i: cmake_force
@@ -222,7 +248,7 @@ CMakeFiles/common_tests.dir/src/main/utils/rectangle.cpp.s: cmake_force
 
 CMakeFiles/common_tests.dir/src/tests/data_structures_tests/blocking_queue_tests.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/tests/data_structures_tests/blocking_queue_tests.cpp.o: ../src/tests/data_structures_tests/blocking_queue_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/common_tests.dir/src/tests/data_structures_tests/blocking_queue_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/common_tests.dir/src/tests/data_structures_tests/blocking_queue_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/tests/data_structures_tests/blocking_queue_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/tests/data_structures_tests/blocking_queue_tests.cpp
 
 CMakeFiles/common_tests.dir/src/tests/data_structures_tests/blocking_queue_tests.cpp.i: cmake_force
@@ -235,7 +261,7 @@ CMakeFiles/common_tests.dir/src/tests/data_structures_tests/blocking_queue_tests
 
 CMakeFiles/common_tests.dir/src/tests/data_structures_tests/protected_queue_tests.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/tests/data_structures_tests/protected_queue_tests.cpp.o: ../src/tests/data_structures_tests/protected_queue_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/common_tests.dir/src/tests/data_structures_tests/protected_queue_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/common_tests.dir/src/tests/data_structures_tests/protected_queue_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/tests/data_structures_tests/protected_queue_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/tests/data_structures_tests/protected_queue_tests.cpp
 
 CMakeFiles/common_tests.dir/src/tests/data_structures_tests/protected_queue_tests.cpp.i: cmake_force
@@ -248,7 +274,7 @@ CMakeFiles/common_tests.dir/src/tests/data_structures_tests/protected_queue_test
 
 CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o: ../src/tests/main_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/tests/main_tests.cpp
 
 CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.i: cmake_force
@@ -259,9 +285,35 @@ CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/santiagoczop/Taller/tps/tp4/common/src/tests/main_tests.cpp -o CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.s
 
+CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.o: CMakeFiles/common_tests.dir/flags.make
+CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.o: ../src/tests/mask_tests/box_mask_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/tests/mask_tests/box_mask_tests.cpp
+
+CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/santiagoczop/Taller/tps/tp4/common/src/tests/mask_tests/box_mask_tests.cpp > CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.i
+
+CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/santiagoczop/Taller/tps/tp4/common/src/tests/mask_tests/box_mask_tests.cpp -o CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.s
+
+CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.o: CMakeFiles/common_tests.dir/flags.make
+CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.o: ../src/tests/mask_tests/circle_mask_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/tests/mask_tests/circle_mask_tests.cpp
+
+CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/santiagoczop/Taller/tps/tp4/common/src/tests/mask_tests/circle_mask_tests.cpp > CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.i
+
+CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/santiagoczop/Taller/tps/tp4/common/src/tests/mask_tests/circle_mask_tests.cpp -o CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.s
+
 CMakeFiles/common_tests.dir/src/tests/tests_setup.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/tests/tests_setup.cpp.o: ../src/tests/tests_setup.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/common_tests.dir/src/tests/tests_setup.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/common_tests.dir/src/tests/tests_setup.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/tests/tests_setup.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/tests/tests_setup.cpp
 
 CMakeFiles/common_tests.dir/src/tests/tests_setup.cpp.i: cmake_force
@@ -274,7 +326,7 @@ CMakeFiles/common_tests.dir/src/tests/tests_setup.cpp.s: cmake_force
 
 CMakeFiles/common_tests.dir/src/tests/utils_tests/matrix_tests.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/tests/utils_tests/matrix_tests.cpp.o: ../src/tests/utils_tests/matrix_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/common_tests.dir/src/tests/utils_tests/matrix_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/common_tests.dir/src/tests/utils_tests/matrix_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/tests/utils_tests/matrix_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/tests/utils_tests/matrix_tests.cpp
 
 CMakeFiles/common_tests.dir/src/tests/utils_tests/matrix_tests.cpp.i: cmake_force
@@ -287,7 +339,7 @@ CMakeFiles/common_tests.dir/src/tests/utils_tests/matrix_tests.cpp.s: cmake_forc
 
 CMakeFiles/common_tests.dir/src/tests/utils_tests/point_tests.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/tests/utils_tests/point_tests.cpp.o: ../src/tests/utils_tests/point_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/common_tests.dir/src/tests/utils_tests/point_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/common_tests.dir/src/tests/utils_tests/point_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/tests/utils_tests/point_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/tests/utils_tests/point_tests.cpp
 
 CMakeFiles/common_tests.dir/src/tests/utils_tests/point_tests.cpp.i: cmake_force
@@ -300,7 +352,7 @@ CMakeFiles/common_tests.dir/src/tests/utils_tests/point_tests.cpp.s: cmake_force
 
 CMakeFiles/common_tests.dir/src/tests/utils_tests/ray_tests.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/tests/utils_tests/ray_tests.cpp.o: ../src/tests/utils_tests/ray_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/common_tests.dir/src/tests/utils_tests/ray_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/common_tests.dir/src/tests/utils_tests/ray_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/tests/utils_tests/ray_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/tests/utils_tests/ray_tests.cpp
 
 CMakeFiles/common_tests.dir/src/tests/utils_tests/ray_tests.cpp.i: cmake_force
@@ -313,7 +365,7 @@ CMakeFiles/common_tests.dir/src/tests/utils_tests/ray_tests.cpp.s: cmake_force
 
 CMakeFiles/common_tests.dir/src/tests/utils_tests/rectangle_tests.cpp.o: CMakeFiles/common_tests.dir/flags.make
 CMakeFiles/common_tests.dir/src/tests/utils_tests/rectangle_tests.cpp.o: ../src/tests/utils_tests/rectangle_tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/common_tests.dir/src/tests/utils_tests/rectangle_tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/common_tests.dir/src/tests/utils_tests/rectangle_tests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common_tests.dir/src/tests/utils_tests/rectangle_tests.cpp.o -c /home/santiagoczop/Taller/tps/tp4/common/src/tests/utils_tests/rectangle_tests.cpp
 
 CMakeFiles/common_tests.dir/src/tests/utils_tests/rectangle_tests.cpp.i: cmake_force
@@ -326,6 +378,8 @@ CMakeFiles/common_tests.dir/src/tests/utils_tests/rectangle_tests.cpp.s: cmake_f
 
 # Object files for target common_tests
 common_tests_OBJECTS = \
+"CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.o" \
+"CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.o" \
 "CMakeFiles/common_tests.dir/src/main/config_loader.cpp.o" \
 "CMakeFiles/common_tests.dir/src/main/object.cpp.o" \
 "CMakeFiles/common_tests.dir/src/main/socket/socket.cpp.o" \
@@ -340,6 +394,8 @@ common_tests_OBJECTS = \
 "CMakeFiles/common_tests.dir/src/tests/data_structures_tests/blocking_queue_tests.cpp.o" \
 "CMakeFiles/common_tests.dir/src/tests/data_structures_tests/protected_queue_tests.cpp.o" \
 "CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o" \
+"CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.o" \
+"CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.o" \
 "CMakeFiles/common_tests.dir/src/tests/tests_setup.cpp.o" \
 "CMakeFiles/common_tests.dir/src/tests/utils_tests/matrix_tests.cpp.o" \
 "CMakeFiles/common_tests.dir/src/tests/utils_tests/point_tests.cpp.o" \
@@ -349,6 +405,8 @@ common_tests_OBJECTS = \
 # External object files for target common_tests
 common_tests_EXTERNAL_OBJECTS =
 
+common_tests: CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.o
+common_tests: CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.o
 common_tests: CMakeFiles/common_tests.dir/src/main/config_loader.cpp.o
 common_tests: CMakeFiles/common_tests.dir/src/main/object.cpp.o
 common_tests: CMakeFiles/common_tests.dir/src/main/socket/socket.cpp.o
@@ -363,6 +421,8 @@ common_tests: CMakeFiles/common_tests.dir/src/main/utils/rectangle.cpp.o
 common_tests: CMakeFiles/common_tests.dir/src/tests/data_structures_tests/blocking_queue_tests.cpp.o
 common_tests: CMakeFiles/common_tests.dir/src/tests/data_structures_tests/protected_queue_tests.cpp.o
 common_tests: CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o
+common_tests: CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.o
+common_tests: CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.o
 common_tests: CMakeFiles/common_tests.dir/src/tests/tests_setup.cpp.o
 common_tests: CMakeFiles/common_tests.dir/src/tests/utils_tests/matrix_tests.cpp.o
 common_tests: CMakeFiles/common_tests.dir/src/tests/utils_tests/point_tests.cpp.o
@@ -371,7 +431,7 @@ common_tests: CMakeFiles/common_tests.dir/src/tests/utils_tests/rectangle_tests.
 common_tests: CMakeFiles/common_tests.dir/build.make
 common_tests: build/libyaml-cpp.a
 common_tests: CMakeFiles/common_tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable common_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking CXX executable common_tests"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/common_tests.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -1,8 +1,8 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#include "collisions/mask.h"
 #include "utils/ray.h"
-#include "../../../server/src/main/game/collisions/mask.h"
 
 class Object {
  protected:

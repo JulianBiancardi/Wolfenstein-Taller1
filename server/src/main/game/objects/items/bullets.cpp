@@ -1,7 +1,7 @@
 #include "bullets.h"
 
-Bullets::Bullets(Point center, int id) : Item(center, id),
-                                         amount(5) {} //TODO Use config loader
+Bullets::Bullets(Point center, int id)
+    : Item(center, id), amount(5) {}  // TODO Use config loader
 
 void Bullets::use(Player& user) { user.add_bullets(amount); }
 

@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.o"
+  "CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.o"
   "CMakeFiles/common_tests.dir/src/main/config_loader.cpp.o"
   "CMakeFiles/common_tests.dir/src/main/object.cpp.o"
   "CMakeFiles/common_tests.dir/src/main/socket/socket.cpp.o"
@@ -13,6 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/common_tests.dir/src/tests/data_structures_tests/blocking_queue_tests.cpp.o"
   "CMakeFiles/common_tests.dir/src/tests/data_structures_tests/protected_queue_tests.cpp.o"
   "CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o"
+  "CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.o"
+  "CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.o"
   "CMakeFiles/common_tests.dir/src/tests/tests_setup.cpp.o"
   "CMakeFiles/common_tests.dir/src/tests/utils_tests/matrix_tests.cpp.o"
   "CMakeFiles/common_tests.dir/src/tests/utils_tests/point_tests.cpp.o"

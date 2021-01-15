@@ -4,6 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp" "/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles/common_tests.dir/src/main/collisions/box_mask.cpp.o"
+  "/home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp" "/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/common/src/main/config_loader.cpp" "/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles/common_tests.dir/src/main/config_loader.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/common/src/main/object.cpp" "/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles/common_tests.dir/src/main/object.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/common/src/main/socket/socket.cpp" "/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles/common_tests.dir/src/main/socket/socket.cpp.o"
@@ -18,6 +20,8 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/santiagoczop/Taller/tps/tp4/common/src/tests/data_structures_tests/blocking_queue_tests.cpp" "/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles/common_tests.dir/src/tests/data_structures_tests/blocking_queue_tests.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/common/src/tests/data_structures_tests/protected_queue_tests.cpp" "/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles/common_tests.dir/src/tests/data_structures_tests/protected_queue_tests.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/common/src/tests/main_tests.cpp" "/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o"
+  "/home/santiagoczop/Taller/tps/tp4/common/src/tests/mask_tests/box_mask_tests.cpp" "/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles/common_tests.dir/src/tests/mask_tests/box_mask_tests.cpp.o"
+  "/home/santiagoczop/Taller/tps/tp4/common/src/tests/mask_tests/circle_mask_tests.cpp" "/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/common/src/tests/tests_setup.cpp" "/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles/common_tests.dir/src/tests/tests_setup.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/common/src/tests/utils_tests/matrix_tests.cpp" "/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles/common_tests.dir/src/tests/utils_tests/matrix_tests.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/common/src/tests/utils_tests/point_tests.cpp" "/home/santiagoczop/Taller/tps/tp4/common/build/CMakeFiles/common_tests.dir/src/tests/utils_tests/point_tests.cpp.o"
