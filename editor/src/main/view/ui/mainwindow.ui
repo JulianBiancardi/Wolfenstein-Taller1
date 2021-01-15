@@ -306,8 +306,6 @@ QScrollBar::ad-page:horizontal,QScrollBar::sub-page:horizontal{
    <addaction name="separator"/>
    <addaction name="actionUndo"/>
    <addaction name="actionRedo"/>
-   <addaction name="separator"/>
-   <addaction name="actionAbout"/>
   </widget>
   <action name="actionOpen_File">
    <property name="icon">

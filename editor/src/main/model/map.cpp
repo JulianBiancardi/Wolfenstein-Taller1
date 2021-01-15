@@ -50,7 +50,10 @@ void Map::clear(size_t row, size_t column) {
 void Map::clear_all() {
   for (size_t row = 0; row < rows; row++) {
     for (size_t column = 0; column < columns; column++) {
-      put(row, column, BASE_ID);
+      Cell* cell = at(row, column);
+      if (!cell->is_empty()) {
+        cell->clear();
+      }
     }
   }
 }
