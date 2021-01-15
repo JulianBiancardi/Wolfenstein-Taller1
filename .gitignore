@@ -11,3 +11,4 @@ testing
 client/src/main/build/*
 server/build/*
 editor/src/main/build/*
+client/build/*

@@ -3,12 +3,14 @@
 
 #include "../../../common/src/main/utils/point.h"
 #include "../../../common/src/main/utils/ray.h"
+#include "../../../common/src/main/collisions/circle_mask.h"
+
 #include "guns/gun.h"
 #include "map.h"
 
 class Gun;
 
-class Player {
+class Player : public Object{
  private:
   Ray position;
   int pace;

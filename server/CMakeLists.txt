@@ -12,40 +12,48 @@ set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 
 FILE(GLOB ServerFiles
-	src/main/*.cpp
+	src/main/map.cpp # Should be everything different from main_server.cpp
 	src/main/events/*.cpp
 	src/main/game/*.cpp
 	src/main/game/*/*.cpp
 	src/main/game/*/*/*.cpp
-	src/main/threads/*.cpp
-	)
-	
+	src/main/threads/*.cpp)
+
+FILE(GLOB ServerTestsFiles
+	src/tests/client_mock.cpp
+	src/tests/player_test.cpp
+	src/tests/match_tests.cpp
+	../common/src/tests/tests_setup.cpp)
+
 FILE(GLOB CommonFiles 
 	../common/src/main/*/*.cpp
-	../common/src/main/*.cpp
-		)
+	../common/src/main/*.cpp)
 
-# Esto para que esta?
-FILE(GLOB MainTests  ../common/tests/main_tests.cpp) #Luego MainServer
-FILE(GLOB MainClient  ../client/src/main/main.cpp) #Luego MainClient
+FILE(GLOB ServerMain  src/main/main_server.cpp)
+FILE(GLOB ServerTests  src/tests/main_tests.cpp)
 
 add_executable(
-	server_tests
+	server_main
+	${ServerMain}
 	${ServerFiles}
 	${CommonFiles}
 )
 
-#add_executable(
+target_link_libraries(
+		server_main
+		PRIVATE
+		Threads::Threads
+		yaml-cpp
+)
 
-        #server-main
-        #${MainFiles}
-        #${ServerFiles}
-        #${CommonFiles}
-        #${TestFiles}
-		#${MainTests}
-#)
+add_executable(
+		server_tests
+		${ServerTests}
+		${ServerTestsFiles}
+		${ServerFiles}
+		${CommonFiles}
+)
 
-# Generar el servidor
 target_link_libraries(
 		server_tests
 		PRIVATE

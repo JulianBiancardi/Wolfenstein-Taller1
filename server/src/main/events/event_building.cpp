@@ -2,7 +2,7 @@
 
 packet_t build_move_event(int player_id, Point where) {
   PointData point = {.x = where.getX(), .y = where.getY()};
-  packet_t event = {.type = 1,
+  packet_t event = {.type = MOVE_PACKET,
       .player_id = player_id,
       .data = {.point = point}};
 
@@ -10,15 +10,25 @@ packet_t build_move_event(int player_id, Point where) {
 }
 
 packet_t build_grab_event(int player_id, int what) {
-  packet_t event = {.type = 2, .player_id = player_id, .data = {.item = what}};
+  packet_t event = {.type = GRAB_PACKET,
+      .player_id = player_id,
+      .data = {.item = what}};
 
   return event;
 }
 
 packet_t build_damage_event(int player_id, double damage) {
-  packet_t event = {.type = 4,
+  packet_t event = {.type = DAMAGE_PACKET,
       .player_id = player_id,
       .data = {.damage = damage}};
+
+  return event;
+}
+
+packet_t build_change_gun_event(int player_id, int gun) {
+  packet_t event = {.type = CHANGE_GUN_PACKET,
+      .player_id = player_id,
+      .data = {.gun = gun}};
 
   return event;
 }

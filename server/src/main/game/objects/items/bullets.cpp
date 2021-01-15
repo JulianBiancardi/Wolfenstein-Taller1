@@ -8,7 +8,7 @@ void Bullets::use(Player& user) { user.add_bullets(amount); }
 Item* Bullets::copy() { return new Bullets(position.get_origin(), id); }
 
 bool Bullets::can_be_used_by(Player& whom) {
-  return true;  // TODO Change
+  return !whom.is_full_bullets();
 }
 
 void Bullets::remove() {}

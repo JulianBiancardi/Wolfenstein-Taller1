@@ -1,7 +1,11 @@
 #ifndef MASK_H
 #define MASK_H
 
+#include <cstddef>
+
 #include "../utils/point.h"
+
+class Circle_mask;
 
 class Mask {
  protected:

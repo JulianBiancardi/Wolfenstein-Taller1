@@ -1,7 +1,8 @@
 #include "event_handler_builder.h"
 #include "move_handler.h"
-#include "shoot_handler.h"
-#include "shoot_hit_handler.h"
+#include "shot_miss_handler.h"
+#include "shot_hit_handler.h"
+#include "change_gun_handler.h"
 
 Player& EventHandlerBuilder::get_doer(const packet_t& event,
                                       std::unordered_map
@@ -9,11 +10,24 @@ Player& EventHandlerBuilder::get_doer(const packet_t& event,
   return players.at(event.player_id);
 }
 
-// TODO Remake
-EventHandler* EventHandlerBuilder::move_event(Player& doer,
-                                              double x,
-                                              double y) {
-  return new MoveHandler(doer, Point(x, y));
+EventHandler* move_event(Player& who, const packet_t& event) {
+  return new MoveHandler(who, Point(event.data.point.x, event.data.point.y));
+}
+
+EventHandler* shot_hit_event(Player& who,
+                             Player& enemy_hit,
+                             const packet_t& event) {
+  int bullets_shot = event.data.shot.bullets_shot;
+  double damage_done = event.data.shot.damage_done;
+  return new ShotHitHandler(who, enemy_hit, damage_done, bullets_shot);
+}
+
+EventHandler* shot_miss_event(Player& who, const packet_t& event) {
+  return new ShotMissHandler(who, event.data.bullets_shot);
+}
+
+EventHandler* change_gun_event(Player& who, const packet_t& event) {
+  return new ChangeGunHandler(who, event.data.gun);
 }
 
 EventHandler* EventHandlerBuilder::build(const packet_t& event,
@@ -22,18 +36,13 @@ EventHandler* EventHandlerBuilder::build(const packet_t& event,
   Player& doer = get_doer(event, players);
 
   switch (event.type) {
-    case 1: //TODO Use constants
-      return move_event(doer, event.data.point.x, event.data.point.y);
-    case 3: { //TODO Use constants
-      int bullets_shot = event.data.shot.bullets_shot;
-      if (event.data.shot.enemy_shot != -1) { // TODO Use constant
-        Player& enemy_hit = players.at(event.data.shot.enemy_shot); // HIT
-        double damage_done = event.data.shot.damage_done;
-        return new ShootHitHandler(doer, enemy_hit, damage_done, bullets_shot);
-      } else {
-        return new ShootHandler(doer, bullets_shot); // Miss
-      }
-    }
+    case MOVE_PACKET: return move_event(doer, event);
+    case SHOT_HIT_PACKET:
+      return shot_hit_event(doer,
+                            players.at(event.data.shot.enemy_shot),
+                            event);
+    case CHANGE_GUN_PACKET: return change_gun_event(doer, event);
+    case SHOT_MISS_PACKET: return shot_miss_event(doer, event);
     default: throw -1; //TODO Throw ours exception
   }
 }

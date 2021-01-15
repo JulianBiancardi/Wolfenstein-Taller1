@@ -22,26 +22,24 @@ class CellView : public QWidget, public IObserver {
   OptionSelected* current_option;
   QUndoStack* undostack;
 
- private slots:
-  void on_CellButton_clicked();
-
  public:
   CellView(QWidget* parent = nullptr, Cell* cell = nullptr,
            ItemsId* ids = nullptr, OptionSelected* current_option = nullptr,
            QUndoStack* undostack = nullptr);
 
-  void mousePressEvent(QMouseEvent* event);
-  void mouseMoveEvent(QMouseEvent* event);
+  void update() override;
 
   // Evento cuando el drag entra en el widget
   void dragEnterEvent(QDragEnterEvent* event);
-
   // Evento cuando el drop se realiza en el widget
   void dropEvent(QDropEvent* event);
 
-  ~CellView();
+  void handleMousePressEvent(QMouseEvent* event);
+  void handleMouseMoveEventInsidePaint(QMouseEvent* event);
+  void handleMouseMoveEventInsideClear(QMouseEvent* event);
+  void handleMouseMoveEventInsideDrag(QMouseEvent* event);
 
-  void update() override;
+  ~CellView();
 };
 
 #endif  // CELLVIEW_H

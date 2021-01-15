@@ -25,13 +25,14 @@ int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
   double closest_obj_dist = std::numeric_limits<double>::infinity();
   double closest_obj_angle = std::numeric_limits<double>::quiet_NaN();
 
-  std::vector<Object> objects = map.get_objects();
-  std::vector<Object>::iterator iter;
+  std::vector<Object *> objects = map.get_objects();
+  std::vector<Object *>::iterator iter;
   for (iter = objects.begin(); iter != objects.end(); iter++) {
-    Object& object = *iter;
+    std::cout<<"cc";
+    Object * object = *iter;
     // TODO Consider: if (!object.is_solid()) {continue;}
     double object_distance =
-        object.get_position().distance_from(bullet.get_origin());
+        object->get_position().distance_from(bullet.get_origin());
     if (object_distance >= wall_distance ||
         object_distance >= closest_obj_dist || object_distance >= max_range) {
       continue;
@@ -41,7 +42,7 @@ int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
     // TODO Change number 1 to use ConfigLoader and use the actual size of
     // things.
     double half_angular_diameter = atan(1 / object_distance);
-    double object_angle = object.get_position().angle_to(bullet.get_origin());
+    double object_angle = object->get_position().angle_to(bullet.get_origin());
 
     double left_angle = Angle::normalize(object_angle + half_angular_diameter);
 
@@ -63,13 +64,18 @@ int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
     }
 
     if (hit) {
-      closest_obj = &object;
+      std::cout<<"HAY HIT  "; //todo remove me
+      closest_obj = object;
       closest_obj_dist = object_distance;
       closest_obj_angle = object_angle;
+    }else{
+      std::cout<<"NO HAY HIT  "; //todo remove me with else
     }
+
   }
 
   if (closest_obj_dist != std::numeric_limits<double>::infinity()) {
+    std::cout<<"bbbbbb";
     std::default_random_engine generator;
     std::uniform_real_distribution<double> distribution(1, 10);
     double base_damage = distribution(generator);
@@ -78,6 +84,10 @@ int Pistol::shoot(Player& player, int& current_bullets, Map& map) {
     double angle_modifier = std::cos(closest_obj_angle);
     double damage = base_damage * dist_modifier * angle_modifier;
     // TODO Create event for the damage
+
+
+    //added 13/01
+
   }
 }
 
