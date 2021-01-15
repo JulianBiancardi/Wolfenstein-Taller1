@@ -17,6 +17,9 @@ class FileManager {
   /*Show the no saved message to the user*/
   void no_saved_message();
 
+  /*Show the close message to the user*/
+  void close_message();
+
  public:
   explicit FileManager(MapGrid* map_grid);
 

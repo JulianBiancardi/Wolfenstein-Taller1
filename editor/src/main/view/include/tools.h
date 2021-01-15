@@ -1,6 +1,8 @@
 #ifndef TOOLS_H
 #define TOOLS_H
 
+#include <option_selected.h>
+
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QWidget>
 
@@ -13,8 +15,10 @@ class Tools : public QWidget {
 
  private:
   Ui::Tools ui;
-  QButtonGroup buttongroup;
+  QButtonGroup tools_buttongroup;
+  QButtonGroup edit_buttongroup;
   MapGrid* mapgrid;
+  OptionSelected* current_option;
   size_t rows;
   size_t columns;
 
@@ -28,7 +32,11 @@ class Tools : public QWidget {
  private slots:
   void on_EditButton_clicked();
   void on_ResizeButton_clicked();
+
+  void on_PaintButton_clicked();
+  void on_DragButton_clicked();
   void on_ClearAllButton_clicked();
+
   void on_spinBoxHeight_valueChanged(int value);
   void on_spinBoxHeight_editingFinished();
   void on_spinBoxWidth_valueChanged(int value);

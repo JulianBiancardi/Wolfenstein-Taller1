@@ -3,13 +3,15 @@
 #include <clear_command.h>
 #include <drop_command.h>
 #include <edit_command.h>
+#include <event_filter.h>
 
+#include <QtCore/QDebug>
 #include <QtCore/QMimeData>
 #include <QtCore/QString>
 #include <QtGui/QDrag>
+#include <iostream>
 
 #include "cell_mimedata.h"
-#include "iostream"
 #include "mapgrid.h"
 #include "moc_cell_view.cpp"
 
@@ -24,42 +26,52 @@ CellView::CellView(QWidget* parent, Cell* cell, ItemsId* ids,
     return;  // TODO ERROR
   }
   ui.setupUi(this);
+  this->setMaximumWidth(50);
   cell->add_observer(this);
   setAcceptDrops(true);
+  this->installEventFilter(new EventFilter(current_option));
   update();
 }
 
-void CellView::on_CellButton_clicked() {
-  size_t id = current_option->get_current_id();
-  EditCommand* cmd = new EditCommand(cell, id);
-  undostack->push(cmd);
-  cell->set_id(id);
-}
-
-void CellView::mousePressEvent(QMouseEvent* event) {
-  if (cell->is_empty()) {
-    return;
-  }
+void CellView::handleMousePressEvent(QMouseEvent* event) {
   if (event->button() == Qt::LeftButton) {
-    cell->set_id(current_option->get_current_id());
-  } else if (event->button() == Qt::RightButton) {
+    size_t new_id = current_option->get_current_id();
+    if (cell->get_id() != new_id) {
+      EditCommand* cmd = new EditCommand(cell, new_id);
+      undostack->push(cmd);
+      cell->set_id(new_id);
+    }
+  } else if (event->button() == Qt::RightButton && !cell->is_empty()) {
     ClearCommand* cmd = new ClearCommand(cell);
     undostack->push(cmd);
     cell->clear();
   }
 }
 
-void CellView::mouseMoveEvent(QMouseEvent* event) {
-  if (cell->is_empty()) {
-    return;
+void CellView::handleMouseMoveEventInsidePaint(QMouseEvent* event) {
+  size_t new_id = current_option->get_current_id();
+  if (cell->get_id() != new_id) {
+    EditCommand* cmd = new EditCommand(cell, new_id);
+    undostack->push(cmd);
+    cell->set_id(new_id);
   }
-  if (!(event->buttons() & Qt::LeftButton)) {
+}
+
+void CellView::handleMouseMoveEventInsideClear(QMouseEvent* event) {
+  if (!cell->is_empty()) {
+    ClearCommand* cmd = new ClearCommand(cell);
+    undostack->push(cmd);
+    cell->clear();
+  }
+}
+
+void CellView::handleMouseMoveEventInsideDrag(QMouseEvent* event) {
+  if (cell->is_empty()) {
     return;
   }
   // Preparate drag and drop system
   QPixmap pixmap(ids->get_icon_path(cell->get_id()));
-  pixmap =
-      pixmap.scaled(QSize(ui.CellButton->width(), ui.CellButton->height()));
+  pixmap = pixmap.scaled(QSize(this->width(), this->height()));
 
   QDrag* drag = new QDrag(this);
   CellMimeData* mimeData = new CellMimeData(cell);
@@ -71,10 +83,8 @@ void CellView::mouseMoveEvent(QMouseEvent* event) {
 
 void CellView::update() {
   QPixmap pixmap(ids->get_icon_path(cell->get_id()));
-  QIcon CellIcon(pixmap);
-  ui.CellButton->setIcon(CellIcon);
-  ui.CellButton->setIconSize(
-      QSize(ui.CellButton->width(), ui.CellButton->height()));
+  ui.CellIcon->setPixmap(pixmap);
+  ui.CellIcon->setScaledContents(true);
 }
 
 void CellView::dragEnterEvent(QDragEnterEvent* event) {
