@@ -4,13 +4,12 @@
 #include "../../../../common/src/main/object.h"
 #include "../../../../common/src/main/utils/point.h"
 #include "../../../../common/src/main/utils/ray.h"
-#include "identifiable.h"
 
-class Moveable : public Object, public Identifiable {
+class Moveable : public Object {
  public:
-  Moveable(Point origin, double angle, int id);
-  Moveable(Ray position, int id);
-  Moveable(double x, double y, double angle, int id);
+  Moveable(Point origin, double angle);
+  Moveable(Ray position);
+  Moveable(double x, double y, double angle);
   Moveable(const Moveable& other);
   ~Moveable() {}
 

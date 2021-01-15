@@ -2,9 +2,10 @@
 #define OBJECT_H
 
 #include "collisions/mask.h"
+#include "identifiable.h"
 #include "utils/ray.h"
 
-class Object {
+class Object : public Identifiable {
  protected:
   Ray position;
   Mask* mask;

@@ -1,10 +1,10 @@
 #ifndef ITEMS_H
 #define ITEMS_H
 
-#include "../../player.h"
 #include "../../../../../../common/src/main/object.h"
+#include "../../player.h"
 
-class Item : public Object, public Identifiable {
+class Item : public Object {
  public:
   Item(Point center, int id);
   ~Item();
@@ -15,4 +15,4 @@ class Item : public Object, public Identifiable {
   virtual void remove() = 0;
 };
 
-#endif  // WOLFENSTEIN_TALLER1_ITEMS_H
+#endif

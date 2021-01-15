@@ -1,7 +1,7 @@
 #include "object.h"
 
 Object::Object(Point center, double angle, Mask* mask)
-    : position(center, angle), mask(mask) {}
+    : position(center, angle), mask(mask), Identifiable() {}
 
 Object::Object(Ray position, Mask* mask) : position(position), mask(mask) {}
 

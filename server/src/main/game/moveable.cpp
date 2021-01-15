@@ -3,26 +3,22 @@
 #include "../../../../common/src/main/collisions/circle_mask.h"
 #include "../../../../common/src/main/config_loader.h"
 
-Moveable::Moveable(Point origin, double angle, int id)
-    : Identifiable(id),
-      Object(origin, angle,
+Moveable::Moveable(Point origin, double angle)
+    : Object(origin, angle,
              new CircleMask(ConfigLoader::player_mask_radio,
                             position.get_ref_origin())) {}
 
-Moveable::Moveable(Ray position, int id)
-    : Identifiable(id),
-      Object(position, new CircleMask(ConfigLoader::player_mask_radio,
+Moveable::Moveable(Ray position)
+    : Object(position, new CircleMask(ConfigLoader::player_mask_radio,
                                       position.get_ref_origin())) {}
 
-Moveable::Moveable(double x, double y, double angle, int id)
-    : Identifiable(id),
-      Object(Point(x, y), angle,
+Moveable::Moveable(double x, double y, double angle)
+    : Object(Point(x, y), angle,
              new CircleMask(ConfigLoader::player_mask_radio,
                             position.get_ref_origin())) {}
 
 Moveable::Moveable(const Moveable& other)
-    : Identifiable(other.id),
-      Object(other.position, new CircleMask(ConfigLoader::player_mask_radio,
+    : Object(other.position, new CircleMask(ConfigLoader::player_mask_radio,
                                             position.get_ref_origin())) {}
 
 Point Moveable::collision_mask_bound(const Point& next_position) {
