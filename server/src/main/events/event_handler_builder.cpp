@@ -35,14 +35,14 @@ EventHandler* EventHandlerBuilder::build(const packet_t& event,
                                              <int, Player>& players) {
   Player& doer = get_doer(event, players);
 
-  //TODO Use constants
   switch (event.type) {
-    case 1: return move_event(doer, event);
-    case 3:
+    case MOVE_PACKET: return move_event(doer, event);
+    case SHOT_HIT_PACKET:
       return shot_hit_event(doer,
-                            players.at(event.data.shot.enemy_shot).event);
-    case 5: return change_gun_event(doer, event);
-    case 6: return shot_miss_event(doer, event);
+                            players.at(event.data.shot.enemy_shot),
+                            event);
+    case CHANGE_GUN_PACKET: return change_gun_event(doer, event);
+    case SHOT_MISS_PACKET: return shot_miss_event(doer, event);
     default: throw -1; //TODO Throw ours exception
   }
 }

@@ -86,13 +86,15 @@ int static can_move_up_player() {
   Point next_position = next_position_up(angled_player_position.get_origin(),
                                          Angle(angled_player_position.get_angle()));
   PointData point = {.x = next_position.getX(), .y = next_position.getY()};
-  packet_t event = {.type = 1, .player_id = 1, .data = {.point = point}};
+  packet_t event = {.type = MOVE_PACKET,
+      .player_id = 1,
+      .data = {.point = point}};
 
   match.enqueue_event(event);
   match.start();
   packet_t result = match.dequeue_result(1);
 
-  if (result.type == 1 && result.player_id == 1
+  if (result.type == MOVE_PACKET && result.player_id == 1
       && result.data.point.x == 100
       && result.data.point.y == 101)
     return NO_ERROR;
@@ -114,26 +116,30 @@ int static can_move_up_player_two_times() {
   Point position_1 = next_position_up(angled_player_position.get_origin(),
                                       Angle(angled_player_position.get_angle()));
   PointData point_1 = {.x = position_1.getX(), .y = position_1.getY()};
-  packet_t event_1 = {.type = 1, .player_id = 1, .data = {.point = point_1}};
+  packet_t event_1 = {.type = MOVE_PACKET,
+      .player_id = 1,
+      .data = {.point = point_1}};
 
   match.enqueue_event(event_1);
 
   Point position_2 = next_position_up(position_1, Angle(M_PI / 2));
   PointData point_2 = {.x = position_2.getX(), .y = position_2.getY()};
-  packet_t event_2 = {.type = 1, .player_id = 1, .data = {.point = point_2}};
+  packet_t event_2 = {.type = MOVE_PACKET,
+      .player_id = 1,
+      .data = {.point = point_2}};
 
   match.enqueue_event(event_2);
   match.start();
   packet_t result = match.dequeue_result(1);
 
-  if (result.type != 1 || result.player_id != 1
+  if (result.type != MOVE_PACKET || result.player_id != 1
       || result.data.point.x != 100
       || result.data.point.y != 101)
     return ERROR;
 
   result = match.dequeue_result(1);
 
-  if (result.type != 1 || result.player_id != 1
+  if (result.type != MOVE_PACKET || result.player_id != 1
       || result.data.point.x != 100
       || result.data.point.y != 102)
     return ERROR;
@@ -153,12 +159,14 @@ int static can_move_up_until_wall() {
 
   Point position = angled_player_position.get_origin();
   PointData point = {.x = position.getX(), .y = position.getY()};
-  packet_t event = {.type = 1, .player_id = 1, .data = {.point = point}};
+  packet_t event = {.type = MOVE_PACKET,
+      .player_id = 1,
+      .data = {.point = point}};
 
   for (int i = 0; i < 471; i++) {
     position = next_position_up(position, Angle(M_PI / 2));
     point = {.x = position.getX(), .y = position.getY()};
-    event = {.type = 1, .player_id = 1, .data = {.point = point}};
+    event = {.type = MOVE_PACKET, .player_id = 1, .data = {.point = point}};
 
     match.enqueue_event(event);
   }
@@ -201,7 +209,9 @@ int static grabs_medic_kit_and_restores_all_health() {
   Point next_position = next_position_up(angled_player_position.get_origin(),
                                          Angle(angled_player_position.get_angle()));
   PointData point = {.x = next_position.getX(), .y = next_position.getY()};
-  packet_t event = {.type = 1, .player_id = 1, .data = {.point = point}};
+  packet_t event = {.type = MOVE_PACKET,
+      .player_id = 1,
+      .data = {.point = point}};
 
   match.enqueue_event(event);
 
@@ -211,7 +221,7 @@ int static grabs_medic_kit_and_restores_all_health() {
 
   packet_t result = match.dequeue_result(1);
 
-  if (result.type != 2 || result.player_id != 1
+  if (result.type != GRAB_PACKET || result.player_id != 1
       || result.data.item != 1)
     return ERROR;
 
@@ -238,7 +248,9 @@ int static grabs_medic_kit_and_restores_health_correctly() {
   Point next_position = next_position_up(angled_player_position.get_origin(),
                                          Angle(angled_player_position.get_angle()));
   PointData point = {.x = next_position.getX(), .y = next_position.getY()};
-  packet_t event = {.type = 1, .player_id = 1, .data = {.point = point}};
+  packet_t event = {.type = MOVE_PACKET,
+      .player_id = 1,
+      .data = {.point = point}};
 
   match.get_player(1).decrease_health(30);
 
@@ -247,7 +259,7 @@ int static grabs_medic_kit_and_restores_health_correctly() {
 
   packet_t result = match.dequeue_result(1);
 
-  if (result.type != 2 || result.player_id != 1
+  if (result.type != GRAB_PACKET || result.player_id != 1
       || result.data.item != 1) {
     return ERROR;
   }
@@ -275,13 +287,17 @@ int static walks_two_times_and_grabs_medic_kit() {
   Point position_1 = next_position_up(angled_player_position.get_origin(),
                                       Angle(angled_player_position.get_angle()));
   PointData point_1 = {.x = position_1.getX(), .y = position_1.getY()};
-  packet_t event_1 = {.type = 1, .player_id = 1, .data = {.point = point_1}};
+  packet_t event_1 = {.type = MOVE_PACKET,
+      .player_id = 1,
+      .data = {.point = point_1}};
 
   match.enqueue_event(event_1);
 
   Point position_2 = next_position_up(position_1, Angle(M_PI / 2));
   PointData point_2 = {.x = position_2.getX(), .y = position_2.getY()};
-  packet_t event_2 = {.type = 1, .player_id = 1, .data = {.point = point_2}};
+  packet_t event_2 = {.type = MOVE_PACKET,
+      .player_id = 1,
+      .data = {.point = point_2}};
 
   match.enqueue_event(event_2);
 
@@ -292,7 +308,7 @@ int static walks_two_times_and_grabs_medic_kit() {
   match.dequeue_result(1);
   packet_t result = match.dequeue_result(1);
 
-  if (result.type != 2 || result.player_id != 1
+  if (result.type != GRAB_PACKET || result.player_id != 1
       || result.data.item != 1) {
     return ERROR;
   }
@@ -319,12 +335,14 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
   // CLIENT MOCK
   Point position = angled_player_position.get_origin();
   PointData point = {.x = position.getX(), .y = position.getY()};
-  packet_t event = {.type = 1, .player_id = 1, .data = {.point = point}};
+  packet_t event = {.type = MOVE_PACKET,
+      .player_id = 1,
+      .data = {.point = point}};
 
   for (int i = 0; i < 3; i++) {
     position = next_position_up(position, Angle(M_PI / 2));
     point = {.x = position.getX(), .y = position.getY()};
-    event = {.type = 1, .player_id = 1, .data = {.point = point}};
+    event = {.type = MOVE_PACKET, .player_id = 1, .data = {.point = point}};
 
     match.enqueue_event(event);
   }
@@ -333,7 +351,7 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
 
   position = next_position_down(position, Angle(M_PI / 2));
   point = {.x = position.getX(), .y = position.getY()};
-  event = {.type = 1, .player_id = 1, .data = {.point = point}};
+  event = {.type = MOVE_PACKET, .player_id = 1, .data = {.point = point}};
 
   match.enqueue_event(event);
 
@@ -344,7 +362,7 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
   match.dequeue_result(1);
   packet_t result = match.dequeue_result(1);
 
-  if (result.type != 1 || result.player_id != 1
+  if (result.type != MOVE_PACKET || result.player_id != 1
       || result.data.point.x != 100 || result.data.point.y != 102) {
     return ERROR;
   }
@@ -352,7 +370,7 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
   match.dequeue_result(1);
   result = match.dequeue_result(1);
 
-  if (result.type != 2 || result.player_id != 1
+  if (result.type != GRAB_PACKET || result.player_id != 1
       || result.data.item != 1) {
     return ERROR;
   }
@@ -379,19 +397,23 @@ int static medic_kit_disappears_after_grabbing_it() {
   // CLIENT MOCK
   Point position = angled_player_position.get_origin();
   PointData point = {.x = position.getX(), .y = position.getY()};
-  packet_t event = {.type = 1, .player_id = 1, .data = {.point = point}};
+  packet_t event = {.type = MOVE_PACKET,
+      .player_id = 1,
+      .data = {.point = point}};
 
   for (int i = 0; i < 2; i++) {
     position = next_position_up(position, Angle(M_PI / 2));
     point = {.x = position.getX(), .y = position.getY()};
-    event = {.type = 1, .player_id = 1, .data = {.point = point}};
+    event = {.type = MOVE_PACKET,
+        .player_id = 1,
+        .data = {.point = point}};
 
     match.enqueue_event(event);
   }
 
   position = next_position_down(position, Angle(M_PI / 2));
   point = {.x = position.getX(), .y = position.getY()};
-  event = {.type = 1, .player_id = 1, .data = {.point = point}};
+  event = {.type = MOVE_PACKET, .player_id = 1, .data = {.point = point}};
 
   match.enqueue_event(event);
 
@@ -401,7 +423,7 @@ int static medic_kit_disappears_after_grabbing_it() {
 
   packet_t result = match.dequeue_result(1);
 
-  if (result.type != 2 || result.player_id != 1
+  if (result.type != GRAB_PACKET || result.player_id != 1
       || result.data.item != 1) {
     return ERROR;
   }
@@ -412,7 +434,7 @@ int static medic_kit_disappears_after_grabbing_it() {
 
   result = match.dequeue_result(1);
 
-  if (result.type != 1 || result.player_id != 1
+  if (result.type != MOVE_PACKET || result.player_id != 1
       || result.data.point.x != 100 || result.data.point.y != 101) {
     return ERROR;
   }
@@ -441,7 +463,9 @@ int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified() {
   Point next_position = next_position_up(angled_player_position.get_origin(),
                                          Angle(angled_player_position.get_angle()));
   PointData point = {.x = next_position.getX(), .y = next_position.getY()};
-  packet_t event = {.type = 1, .player_id = 1, .data = {.point = point}};
+  packet_t event = {.type = MOVE_PACKET,
+      .player_id = 1,
+      .data = {.point = point}};
 
   match.enqueue_event(event);
 
@@ -452,12 +476,12 @@ int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified() {
   packet_t result_1 = match.dequeue_result(1);
   packet_t result_2 = match.dequeue_result(2);
 
-  if (result_1.type != 2 || result_1.player_id != 1
+  if (result_1.type != GRAB_PACKET || result_1.player_id != 1
       || result_1.data.item != 1) {
     return ERROR;
   }
 
-  if (result_2.type != 2 || result_2.player_id != 1
+  if (result_2.type != GRAB_PACKET || result_2.player_id != 1
       || result_2.data.item != 1) {
     return ERROR;
   }
@@ -465,12 +489,12 @@ int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified() {
   result_1 = match.dequeue_result(1);
   result_2 = match.dequeue_result(2);
 
-  if (result_1.type != 1 || result_1.player_id != 1
+  if (result_1.type != MOVE_PACKET || result_1.player_id != 1
       || result_1.data.point.x != 100 || result_1.data.point.y != 101) {
     return ERROR;
   }
 
-  if (result_2.type != 1 || result_2.player_id != 1
+  if (result_2.type != MOVE_PACKET || result_2.player_id != 1
       || result_2.data.point.x != 100 || result_2.data.point.y != 101) {
     return ERROR;
   }
@@ -493,7 +517,9 @@ int static player_shoots_enemy() {
 
   // CLIENT MOCK
   ShootData shot = {.damage_done = 10, .enemy_shot = 2, .bullets_shot = 2};
-  packet_t event = {.type = 3, .player_id = 1, .data = {.shot = shot}};
+  packet_t event = {.type = SHOT_HIT_PACKET,
+      .player_id = 1,
+      .data = {.shot = shot}};
 
   match.enqueue_event(event);
 
@@ -501,7 +527,8 @@ int static player_shoots_enemy() {
 
   packet_t result = match.dequeue_result(2);
 
-  if (result.type != 4 || result.player_id != 2 || result.data.damage != 10)
+  if (result.type != DAMAGE_PACKET || result.player_id != 2
+      || result.data.damage != 10)
     return ERROR;
 
   if (match.get_player(1).get_bullets() != CL::player_bullets - 2)
@@ -522,7 +549,9 @@ int static player_shoots_nobody() {
   match.add_player(Point(100, 100), M_PI / 2);
 
   // CLIENT MOCK
-  packet_t event = {.type = 6, .player_id = 1, .data = {.bullets_shot = 2}};
+  packet_t event = {.type = SHOT_MISS_PACKET,
+      .player_id = 1,
+      .data = {.bullets_shot = 2}};
 
   match.enqueue_event(event);
 
@@ -547,7 +576,9 @@ int static player_shoots_enemy_over_blood_and_grabs_it() {
 
   // CLIENT MOCK
   ShootData shot = {.damage_done = 30, .enemy_shot = 2, .bullets_shot = 2};
-  packet_t event = {.type = 3, .player_id = 1, .data = {.shot = shot}};
+  packet_t event = {.type = SHOT_HIT_PACKET,
+      .player_id = 1,
+      .data = {.shot = shot}};
 
   match.enqueue_event(event);
 
@@ -555,17 +586,20 @@ int static player_shoots_enemy_over_blood_and_grabs_it() {
 
   packet_t result = match.dequeue_result(2);
 
-  if (result.type != 4 || result.player_id != 2 || result.data.damage != 30)
+  if (result.type != DAMAGE_PACKET || result.player_id != 2
+      || result.data.damage != 30)
     return ERROR;
 
   result = match.dequeue_result(2);
 
-  if (result.type != 2 || result.player_id != 2 || result.data.item != 1)
+  if (result.type != GRAB_PACKET || result.player_id != 2
+      || result.data.item != 1)
     return ERROR;
 
   result = match.dequeue_result(1);
 
-  if (result.type != 2 || result.player_id != 2 || result.data.item != 1)
+  if (result.type != GRAB_PACKET || result.player_id != 2
+      || result.data.item != 1)
     return ERROR;
 
   if (match.get_player(1).get_bullets() != CL::player_bullets - 2)
@@ -590,7 +624,9 @@ int static player_with_max_bullets_shoots_and_grabs_bullets() {
   match.get_player(1).add_bullets(CL::player_max_bullets);
 
   // CLIENT MOCK
-  packet_t event = {.type = 6, .player_id = 1, .data = {.bullets_shot = 0}};
+  packet_t event = {.type = SHOT_MISS_PACKET,
+      .player_id = 1,
+      .data = {.bullets_shot = 0}};
 
   match.enqueue_event(event);
 
@@ -599,7 +635,9 @@ int static player_with_max_bullets_shoots_and_grabs_bullets() {
   if (match.has_result_events_left(1))
     return ERROR;
 
-  event = {.type = 6, .player_id = 1, .data = {.bullets_shot = 5}};
+  event = {.type = SHOT_MISS_PACKET,
+      .player_id = 1,
+      .data = {.bullets_shot = 5}};
 
   match.enqueue_event(event);
 
@@ -607,7 +645,8 @@ int static player_with_max_bullets_shoots_and_grabs_bullets() {
 
   packet_t result = match.dequeue_result(1);
 
-  if (result.type != 2 || result.player_id != 1 || result.data.item != 1)
+  if (result.type != GRAB_PACKET || result.player_id != 1
+      || result.data.item != 1)
     return ERROR;
 
   if (match.get_player(1).get_bullets()
@@ -630,7 +669,9 @@ int static player_changes_gun() {
   match.get_player(1).add_gun(3);
 
   // CLIENT MOCK
-  packet_t event = {.type = 5, .player_id = 1, .data = {.gun = 3}};
+  packet_t event = {.type = CHANGE_GUN_PACKET,
+      .player_id = 1,
+      .data = {.gun = 3}};
 
   match.enqueue_event(event);
 
@@ -638,7 +679,8 @@ int static player_changes_gun() {
 
   packet_t result = match.dequeue_result(2);
 
-  if (result.type != 5 || result.player_id != 1 || result.data.gun != 3)
+  if (result.type != CHANGE_GUN_PACKET || result.player_id != 1
+      || result.data.gun != 3)
     return ERROR;
 
   if (match.has_result_events_left(1))

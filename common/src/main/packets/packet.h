@@ -1,6 +1,14 @@
 #ifndef PACKET_H
 #define PACKET_H
 
+// Packets type:
+#define MOVE_PACKET 1
+#define GRAB_PACKET 2
+#define SHOT_HIT_PACKET 3
+#define SHOT_MISS_PACKET 4
+#define DAMAGE_PACKET 5
+#define CHANGE_GUN_PACKET 6
+
 typedef struct PointData {
   double x;
   double y;
@@ -13,7 +21,7 @@ typedef struct ShootData {
 } ShootData;
 
 typedef struct packet {
-  int type;  // 1 MOVE, 2 GRAB, 3 SHOT HIT, 4 DAMAGE, 5 CHANGE GUN, 6 SHOT MISS
+  int type;
   int player_id;
   union data {
     PointData point;  // MOVE
