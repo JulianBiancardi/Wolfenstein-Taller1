@@ -20,6 +20,7 @@ int static player_shoots_nobody();
 int static player_shoots_enemy_over_blood_and_grabs_it();
 int static player_with_max_bullets_shoots_and_grabs_bullets();
 int static player_changes_gun();
+int static players_spawn_where_it_should();
 
 // TODO Use configloder for generic tests
 void match_tests() {
@@ -68,7 +69,9 @@ void match_tests() {
   print_test("Jugador cambia de arma correctamente",
              player_changes_gun,
              NO_ERROR);
-
+  print_test("Los jugadores spawnean donde deberian",
+             players_spawn_where_it_should,
+             NO_ERROR);
   end_tests();
 }
 
@@ -696,6 +699,37 @@ int static player_changes_gun() {
     return ERROR;
 
   if (match.get_player(1).get_active_gun() != 3)
+    return ERROR;
+
+  return NO_ERROR;
+}
+
+int static players_spawn_where_it_should() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
+  map.add_spawn_point(Point(200, 200));
+  map.add_spawn_point(Point(300, 300));
+
+  Match match(map);
+  match.add_player(M_PI / 2);
+  match.add_player(M_PI / 2);
+  match.add_player(M_PI / 2);
+
+  for (int i = 1; i <= 3; i++) {
+    if (match.get_player(i).get_position().getX() != 100 * i
+        || match.get_player(i).get_position().getY() != 100 * i)
+      return ERROR;
+  }
+
+  if (match.get_player(1).get_position() == match.get_player(2).get_position())
+    return ERROR;
+
+  if (match.get_player(1).get_position() == match.get_player(3).get_position())
+    return ERROR;
+
+  if (match.get_player(2).get_position() == match.get_player(3).get_position())
     return ERROR;
 
   return NO_ERROR;
