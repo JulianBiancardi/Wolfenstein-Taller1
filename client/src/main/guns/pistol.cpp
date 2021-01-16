@@ -85,9 +85,6 @@ Hit Pistol::shoot(Player& player, int& current_bullets, Map& map) {
     double damage = base_damage * dist_modifier * angle_modifier;
 
     return std::move(Hit(closest_obj->get_id(), damage));
-    // TODO Create event for the damage
-
-    // added 13/01
   }
 }
 

@@ -5,6 +5,6 @@ Identifiable::Identifiable(int id) : id(id) {}
 
 Identifiable::Identifiable() : id(next_id) { ++next_id; }
 
-int Identifiable::next_id = 0;
+int Identifiable::next_id = 1;
 
 int Identifiable::get_id() { return id; }

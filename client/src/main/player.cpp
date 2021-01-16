@@ -4,31 +4,32 @@
 
 #include "casting/ray_casting.h"
 
-Player::Player(Ray position, Gun& gun) :
-    position(position), active_gun(gun),
-    Object(position/*, position.get_angle()*/,
-           new Circle_mask
-           (ConfigLoader::player_mask_radio, position.get_ref_origin())) {
+Player::Player(Ray position, Gun& gun)
+    : position(position),
+      active_gun(gun),
+      Object(position /*, position.get_angle()*/,
+             new CircleMask(ConfigLoader::player_mask_radio,
+                            position.get_ref_origin())) {
   pace = 1;  // TODO Use config file
   health = CL::player_health;
   bullets = CL::player_health;
 }
 
-Player::Player(Point origin, double angle, Gun& gun) :
-    position(origin, angle), active_gun(gun) ,
-    Object(origin, angle,
-           new Circle_mask
-               (ConfigLoader::player_mask_radio, origin)) {
+Player::Player(Point origin, double angle, Gun& gun)
+    : position(origin, angle),
+      active_gun(gun),
+      Object(origin, angle,
+             new CircleMask(ConfigLoader::player_mask_radio, origin)) {
   pace = 1;  // TODO Use config file
   health = CL::player_health;
   bullets = CL::player_health;
 }
 
-Player::Player(double x, double y, double angle, Gun& gun) :
-    position(x, y, angle), active_gun(gun) ,
-    Object(Point(x,y), angle,
-           new Circle_mask
-               (ConfigLoader::player_mask_radio, Point(x,y))) {
+Player::Player(double x, double y, double angle, Gun& gun)
+    : position(x, y, angle),
+      active_gun(gun),
+      Object(Point(x, y), angle,
+             new CircleMask(ConfigLoader::player_mask_radio, Point(x, y))) {
   pace = 1;  // TODO Use config file
   health = CL::player_health;
   bullets = CL::player_health;
@@ -63,14 +64,9 @@ void Player::set_position(const Point& new_origin) {
   position = Ray(new_origin, position.get_angle());
 }
 
+void Player::shoot(Map& map) { active_gun.shoot(*this, bullets, map); }
 
-void Player::shoot(Map& map) {
-  active_gun.shoot(*this, bullets, map);
-}
-
-void Player::set_gun(Gun& gun) {
-  active_gun = gun;
-}
+void Player::set_gun(Gun& gun) { active_gun = gun; }
 
 //
 void Player::set_health(int health) { this->health = health; }
@@ -78,7 +74,5 @@ int Player::get_health() { return this->health; }
 
 bool Player::has_bullets(int amount) { return (bullets >= amount); }
 
-void Player::decrease_bullets(int amount) {
-  bullets -= amount;
-}
+void Player::decrease_bullets(int amount) { bullets -= amount; }
 Player::~Player() {}
