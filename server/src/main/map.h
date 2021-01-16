@@ -18,11 +18,17 @@ class Map : public BaseMap {
   std::unordered_map<int, Item*> items;
   int items_id_count;
   std::vector<Object*> objects;
+  // Used for spawning logic:
+  int spawn_points_occupied;
+  std::vector<Point> spawn_points;
 
  public:
   Map(Matrix<int>& map_matrix);
   Map(Map& other); // Used for testing, TODO decide where to get the map from
   ~Map();
+
+  void add_spawn_point(const Point& spawn_point);
+  const Point next_spawn_point();
 
   // TODO One method for each item
   void add_medic_kit(const Point& where);

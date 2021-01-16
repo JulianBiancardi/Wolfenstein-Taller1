@@ -23,8 +23,8 @@ class Match {
   Match(Map& map);
   ~Match();
 
-  void add_player(Point where, double initial_angle);  // Revise parameters, map
-  void enqueue_event(const packet_t& event);              // has spawn points
+  void add_player(double initial_angle);  // Could be spawn rays
+  void enqueue_event(const packet_t& event);
   const packet_t dequeue_result(int for_whom);
   void start();
 

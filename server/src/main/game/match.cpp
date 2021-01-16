@@ -4,9 +4,11 @@ Match::Match(Map& map) : map(map), players_id_count(1) {}
 
 Match::~Match() {}
 
-void Match::add_player(Point where, double initial_angle) {
+void Match::add_player(double initial_angle) {
   players.insert({players_id_count,
-                  Player(where, initial_angle, players_id_count)});
+                  Player(map.next_spawn_point(),
+                         initial_angle,
+                         players_id_count)});
   result_events.emplace(std::piecewise_construct,
                         std::forward_as_tuple(players_id_count),
                         std::forward_as_tuple()); // In-place construction

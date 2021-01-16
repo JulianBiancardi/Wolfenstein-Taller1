@@ -3,15 +3,26 @@
 #include "game/objects/items/medic_kit.h"
 #include "game/objects/items/bullets.h"
 
-Map::Map(Matrix<int>& map_matrix) : BaseMap(map_matrix), items_id_count(1) {}
+Map::Map(Matrix<int>& map_matrix)
+    : BaseMap(map_matrix), items_id_count(1), spawn_points_occupied(0) {}
 
 Map::Map(Map& other)
     : BaseMap(other.map_matrix),
       items_id_count(other.items_id_count),
-      objects(other.objects) {
+      objects(other.objects),
+      spawn_points_occupied(other.spawn_points_occupied),
+      spawn_points(other.spawn_points) {
   for (auto elements : other.items) {  // Deep copies every element
     items.insert({elements.first, elements.second->copy()});
   }
+}
+
+void Map::add_spawn_point(const Point& spawn_point) {
+  spawn_points.push_back(spawn_point);
+}
+
+const Point Map::next_spawn_point() {
+  return spawn_points.at(spawn_points_occupied++);
 }
 
 void Map::add_medic_kit(const Point& where) {

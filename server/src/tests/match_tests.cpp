@@ -76,11 +76,11 @@ int static can_move_up_player() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
 
   Match match(map);
   Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
-  match.add_player(angled_player_position.get_origin(),
-                   angled_player_position.get_angle());
+  match.add_player(angled_player_position.get_angle());
 
   // CLIENT MOCK
   Point next_position = next_position_up(angled_player_position.get_origin(),
@@ -106,11 +106,11 @@ int static can_move_up_player_two_times() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
 
   Match match(map);
   Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
-  match.add_player(angled_player_position.get_origin(),
-                   angled_player_position.get_angle());
+  match.add_player(angled_player_position.get_angle());
 
   // CLIENT MOCK
   Point position_1 = next_position_up(angled_player_position.get_origin(),
@@ -151,11 +151,11 @@ int static can_move_up_until_wall() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
 
   Match match(map);
   Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
-  match.add_player(angled_player_position.get_origin(),
-                   angled_player_position.get_angle());
+  match.add_player(angled_player_position.get_angle());
 
   Point position = angled_player_position.get_origin();
   PointData point = {.x = position.getX(), .y = position.getY()};
@@ -197,13 +197,13 @@ int static grabs_medic_kit_and_restores_all_health() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
 
   map.add_medic_kit(Point(100, 101));
 
   Match match(map);
   Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
-  match.add_player(angled_player_position.get_origin(),
-                   angled_player_position.get_angle());
+  match.add_player(angled_player_position.get_angle());
 
   // CLIENT MOCK
   Point next_position = next_position_up(angled_player_position.get_origin(),
@@ -236,13 +236,13 @@ int static grabs_medic_kit_and_restores_health_correctly() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
 
   map.add_medic_kit(Point(100, 101));
 
   Match match(map);
   Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
-  match.add_player(angled_player_position.get_origin(),
-                   angled_player_position.get_angle());
+  match.add_player(angled_player_position.get_angle());
 
   // CLIENT MOCK
   Point next_position = next_position_up(angled_player_position.get_origin(),
@@ -275,13 +275,13 @@ int static walks_two_times_and_grabs_medic_kit() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
 
   map.add_medic_kit(Point(100, 102));
 
   Match match(map);
   Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
-  match.add_player(angled_player_position.get_origin(),
-                   angled_player_position.get_angle());
+  match.add_player(angled_player_position.get_angle());
 
   // CLIENT MOCK
   Point position_1 = next_position_up(angled_player_position.get_origin(),
@@ -324,13 +324,13 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
 
   map.add_blood(Point(100, 102));
 
   Match match(map);
   Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
-  match.add_player(angled_player_position.get_origin(),
-                   angled_player_position.get_angle());
+  match.add_player(angled_player_position.get_angle());
 
   // CLIENT MOCK
   Point position = angled_player_position.get_origin();
@@ -386,13 +386,13 @@ int static medic_kit_disappears_after_grabbing_it() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
 
   map.add_medic_kit(Point(100, 101));
 
   Match match(map);
   Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
-  match.add_player(angled_player_position.get_origin(),
-                   angled_player_position.get_angle());
+  match.add_player(angled_player_position.get_angle());
 
   // CLIENT MOCK
   Point position = angled_player_position.get_origin();
@@ -450,14 +450,15 @@ int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
+  map.add_spawn_point(Point(300, 300));
 
   map.add_medic_kit(Point(100, 101));
 
   Match match(map);
   Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
-  match.add_player(angled_player_position.get_origin(),
-                   angled_player_position.get_angle());
-  match.add_player(Point(300, 300), M_PI / 2);
+  match.add_player(angled_player_position.get_angle());
+  match.add_player(M_PI / 2);
 
   // CLIENT MOCK
   Point next_position = next_position_up(angled_player_position.get_origin(),
@@ -510,10 +511,12 @@ int static player_shoots_enemy() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
+  map.add_spawn_point(Point(200, 200));
 
   Match match(map);
-  match.add_player(Point(100, 100), M_PI / 2);
-  match.add_player(Point(200, 200), M_PI / 3);
+  match.add_player(M_PI / 2);
+  match.add_player(M_PI / 3);
 
   // CLIENT MOCK
   ShootData shot = {.damage_done = 10, .enemy_shot = 2, .bullets_shot = 2};
@@ -544,9 +547,10 @@ int static player_shoots_nobody() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
 
   Match match(map);
-  match.add_player(Point(100, 100), M_PI / 2);
+  match.add_player(M_PI / 2);
 
   // CLIENT MOCK
   packet_t event = {.type = SHOT_MISS_PACKET,
@@ -567,12 +571,14 @@ int static player_shoots_enemy_over_blood_and_grabs_it() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
+  map.add_spawn_point(Point(200, 200));
 
   map.add_blood(Point(200, 200));
 
   Match match(map);
-  match.add_player(Point(100, 100), M_PI / 2);
-  match.add_player(Point(200, 200), M_PI / 3);
+  match.add_player(M_PI / 2);
+  match.add_player(M_PI / 3);
 
   // CLIENT MOCK
   ShootData shot = {.damage_done = 30, .enemy_shot = 2, .bullets_shot = 2};
@@ -616,11 +622,12 @@ int static player_with_max_bullets_shoots_and_grabs_bullets() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
 
   map.add_bullets(Point(100, 100));
 
   Match match(map);
-  match.add_player(Point(100, 100), M_PI / 2);
+  match.add_player(M_PI / 2);
   match.get_player(1).add_bullets(CL::player_max_bullets);
 
   // CLIENT MOCK
@@ -661,10 +668,12 @@ int static player_changes_gun() {
   Matrix<int> map_data(640, 640, 0); // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
+  map.add_spawn_point(Point(200, 200));
 
   Match match(map);
-  match.add_player(Point(100, 100), M_PI / 2);
-  match.add_player(Point(200, 200), M_PI / 3);
+  match.add_player(M_PI / 2);
+  match.add_player(M_PI / 3);
 
   match.get_player(1).add_gun(3);
 

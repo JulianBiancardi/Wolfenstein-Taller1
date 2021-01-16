@@ -1,7 +1,10 @@
 #include "player.h"
 
 Player::Player(Point origin, double angle, int id)
-    : shot_bullets(0), points(0), Moveable(origin, angle, id) {
+    : shot_bullets(0),
+      points(0),
+      spawn_point(origin),
+      Moveable(origin, angle, id) {
   max_health = ConfigLoader::player_health;
   health = max_health;
   max_bullets = ConfigLoader::player_max_bullets;
@@ -9,7 +12,7 @@ Player::Player(Point origin, double angle, int id)
 }
 
 Player::Player(double x, double y, double angle, int id)
-    : shot_bullets(0), points(0), Moveable(x, y, angle, id) {
+    : shot_bullets(0), points(0), spawn_point(x, y), Moveable(x, y, angle, id) {
   max_health = ConfigLoader::player_health;
   health = max_health;
   max_bullets = ConfigLoader::player_max_bullets;
@@ -63,8 +66,8 @@ void Player::decrease_health(int amount) {
 // PRECONDITION: Keeping the amount of bullets a valid amount is responsibility
 // of the client (shooting logic is in the client).
 void Player::decrease_bullets(int amount) {
-    bullets -= amount;
-    shot_bullets += amount;
+  bullets -= amount;
+  shot_bullets += amount;
 }
 
 bool Player::is_full_health() { return health == max_health; }

@@ -17,6 +17,7 @@ class Player : public Moveable {
   int points;
   std::unordered_set<int> guns_bag;
   int active_gun;
+  const Point spawn_point;
 
  public:
   Player(Point origin, double angle, int id);
