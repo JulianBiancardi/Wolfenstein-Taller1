@@ -21,6 +21,8 @@ int static player_shoots_enemy_over_blood_and_grabs_it();
 int static player_with_max_bullets_shoots_and_grabs_bullets();
 int static player_changes_gun();
 int static players_spawn_where_it_should();
+int static player_kills_enemy_and_it_respawns();
+int static player_kills_enemy_and_it_is_no_longer_in_the_map();
 
 // TODO Use configloder for generic tests
 void match_tests() {
@@ -72,6 +74,13 @@ void match_tests() {
   print_test("Los jugadores spawnean donde deberian",
              players_spawn_where_it_should,
              NO_ERROR);
+  print_test("Jugador mata enemigo y respawnea",
+             player_kills_enemy_and_it_respawns,
+             NO_ERROR);
+  print_test("Enemigo muere definitivamente y desaparece",
+             player_kills_enemy_and_it_is_no_longer_in_the_map,
+             NO_ERROR);
+
   end_tests();
 }
 
@@ -218,7 +227,7 @@ int static grabs_medic_kit_and_restores_all_health() {
 
   match.enqueue_event(event);
 
-  match.get_player(1).decrease_health(5);
+  match.get_player(1).receive_damage(5);
 
   match.start();
 
@@ -255,7 +264,7 @@ int static grabs_medic_kit_and_restores_health_correctly() {
       .player_id = 1,
       .data = {.point = point}};
 
-  match.get_player(1).decrease_health(30);
+  match.get_player(1).receive_damage(30);
 
   match.enqueue_event(event);
   match.start();
@@ -304,7 +313,7 @@ int static walks_two_times_and_grabs_medic_kit() {
 
   match.enqueue_event(event_2);
 
-  match.get_player(1).decrease_health(30);
+  match.get_player(1).receive_damage(30);
 
   match.start();
 
@@ -358,7 +367,7 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
 
   match.enqueue_event(event);
 
-  match.get_player(1).decrease_health(30);
+  match.get_player(1).receive_damage(30);
 
   match.start();
 
@@ -420,7 +429,7 @@ int static medic_kit_disappears_after_grabbing_it() {
 
   match.enqueue_event(event);
 
-  match.get_player(1).decrease_health(30);
+  match.get_player(1).receive_damage(30);
 
   match.start();
 
@@ -473,7 +482,7 @@ int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified() {
 
   match.enqueue_event(event);
 
-  match.get_player(1).decrease_health(30);
+  match.get_player(1).receive_damage(30);
 
   match.start();
 
@@ -730,6 +739,97 @@ int static players_spawn_where_it_should() {
     return ERROR;
 
   if (match.get_player(2).get_position() == match.get_player(3).get_position())
+    return ERROR;
+
+  return NO_ERROR;
+}
+
+int static player_kills_enemy_and_it_respawns() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
+  map.add_spawn_point(Point(200, 200));
+
+  Match match(map);
+  match.add_player(M_PI / 2);
+  match.add_player(M_PI / 3);
+
+  // CLIENT MOCK
+  ShootData shot = {.damage_done = CL::player_health + 10.0,
+      .enemy_shot = 2,
+      .bullets_shot = 1};
+  packet_t event = {.type = SHOT_HIT_PACKET,
+      .player_id = 1,
+      .data = {.shot = shot}};
+
+  match.enqueue_event(event);
+
+  match.start();
+
+  packet_t result = match.dequeue_result(2);
+
+  if (result.type != DAMAGE_PACKET || result.player_id != 2
+      || result.data.damage != shot.damage_done)
+    return ERROR;
+
+  result = match.dequeue_result(2);
+
+  if (result.type != KILL_PACKET || result.player_id != 2
+      || result.data.killer != 1)
+    return ERROR;
+
+  result = match.dequeue_result(1);
+
+  if (result.type != KILL_PACKET || result.player_id != 2
+      || result.data.killer != 1)
+    return ERROR;
+
+  if (match.get_player(2).get_position() != Point(200, 200))
+    return ERROR;
+
+  return NO_ERROR;
+}
+
+int static player_kills_enemy_and_it_is_no_longer_in_the_map() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
+  map.add_spawn_point(Point(100, 110));
+
+  Match match(map);
+  match.add_player(M_PI / 2);
+  match.add_player(M_PI / 3);
+
+  // CLIENT MOCK
+
+  ShootData shot;
+  packet_t event;
+  for (int i = 0; i < CL::player_lives; i++) {
+    shot = {.damage_done = CL::player_health
+        + 10.0, .enemy_shot = 2,
+        .bullets_shot = 1};
+    event = {.type = SHOT_HIT_PACKET, .player_id = 1, .data = {.shot = shot}};
+
+    match.enqueue_event(event);
+  }
+
+  Ray angled_player_position = Ray(Point(100, 100), M_PI / 2);
+  Point position = angled_player_position.get_origin();
+
+  PointData point;
+  for (int i = 0; i < 20; i++) {
+    position = next_position_up(position, Angle(M_PI / 2));
+    point = {.x = position.getX(), .y = position.getY()};
+    event = {.type = MOVE_PACKET, .player_id = 1, .data = {.point = point}};
+
+    match.enqueue_event(event);
+  }
+
+  match.start();
+
+  if (match.get_player(1).get_position() != Point(100, 120))
     return ERROR;
 
   return NO_ERROR;
