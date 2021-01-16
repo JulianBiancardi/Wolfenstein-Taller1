@@ -35,6 +35,7 @@ class Match {
   void enqueue_result_for_all_others(const packet_t& event, int others_than);
   Player& get_player(int id);  // Only used for testing
   bool has_result_events_left(int id); // Only used for testing
+  void eliminate_player(int id);
 };
 
 #endif  // WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_MATCH_H_

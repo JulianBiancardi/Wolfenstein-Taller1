@@ -8,6 +8,8 @@
 #define SHOT_MISS_PACKET 4
 #define DAMAGE_PACKET 5
 #define CHANGE_GUN_PACKET 6
+#define KILL_PACKET 7
+#define RESPAWNED_PACKET 8 // Used to solve bug (ask me which)
 
 typedef struct PointData {
   double x;
@@ -30,6 +32,7 @@ typedef struct packet {
     double damage;    // DAMAGE
     int gun;    // CHANGE GUN
     int bullets_shot; // SHOT MISS
+    int killer; // KILL
   } data;
 } __attribute__((packed)) packet_t;
 

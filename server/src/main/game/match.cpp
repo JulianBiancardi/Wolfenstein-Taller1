@@ -63,3 +63,8 @@ Player& Match::get_player(int id) { return players.at(id); }
 bool Match::has_result_events_left(int id) {
   return !result_events.at(id).is_empty();
 }
+
+void Match::eliminate_player(int id) {
+  players.erase(id);
+  result_events.erase(id); // TODO CHECK THIS! Should problably enqueue kill socket event to notify thread
+}
