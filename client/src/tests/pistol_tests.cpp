@@ -1,5 +1,6 @@
 #include "pistol_tests.h"
 
+#include "../../../common/src/main/utils/matrix.h"
 #include "../main/guns/hit.h"
 #include "../main/guns/pistol.h"
 #include "../map.h"
@@ -36,7 +37,26 @@ int static creation_test() {
 }
 
 int static angle_zero_test() {
-  Map map();
+  Matrix<int> m(5, 5, 0);
+  Map map(m);
 
-  map.add_player()
+  Ray pos1(0, 0, 0);
+  Player shooter(pos1);
+
+  Ray pos2(1, 0, 0);
+  Player objective(pos2);
+
+  Pistol* pistol = new Pistol();
+  shooter.add_gun(1, pistol);
+  shooter.set_gun(1);
+
+  map.add_player(&shooter);
+  map.add_player(&objective);
+
+  Hit hit = shooter.shoot(map);
+
+  if (hit.get_object_id() == objective.get_id()) {
+    return ERROR;
+  }
+  return NO_ERROR;
 }

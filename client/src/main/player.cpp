@@ -1,38 +1,55 @@
 #include "player.h"
 
 #include <cmath>
+#include <utility>
 
-#include "casting/ray_casting.h"
+#include "guns/knife.h"
 
-Player::Player(Ray position, Gun& gun)
+Player::Player(Ray position)
     : position(position),
-      active_gun(gun),
+      guns_bag(),
       Object(position /*, position.get_angle()*/,
              new CircleMask(ConfigLoader::player_mask_radio,
                             position.get_ref_origin())) {
   pace = 1;  // TODO Use config file
   health = CL::player_health;
   bullets = CL::player_health;
+  Knife* knife = new Knife();
+  guns_bag.insert(std::pair<int, Gun*>(0, knife));
+  active_gun = 0;
 }
 
-Player::Player(Point origin, double angle, Gun& gun)
+Player::~Player() {
+  std::unordered_map<int, Gun*>::iterator iter;
+  for (iter = guns_bag.begin(); iter != guns_bag.end(); iter++) {
+    delete iter->second;
+  }
+}
+
+Player::Player(Point origin, double angle)
     : position(origin, angle),
-      active_gun(gun),
+      guns_bag(),
       Object(origin, angle,
              new CircleMask(ConfigLoader::player_mask_radio, origin)) {
   pace = 1;  // TODO Use config file
   health = CL::player_health;
   bullets = CL::player_health;
+  Knife* knife = new Knife();
+  guns_bag.insert(std::pair<int, Gun*>(0, knife));
+  active_gun = 0;
 }
 
-Player::Player(double x, double y, double angle, Gun& gun)
+Player::Player(double x, double y, double angle)
     : position(x, y, angle),
-      active_gun(gun),
+      guns_bag(),
       Object(Point(x, y), angle,
              new CircleMask(ConfigLoader::player_mask_radio, Point(x, y))) {
   pace = 1;  // TODO Use config file
   health = CL::player_health;
   bullets = CL::player_health;
+  Knife* knife = new Knife();
+  guns_bag.insert(std::pair<int, Gun*>(0, knife));
+  active_gun = 0;
 }
 
 Point Player::next_position(double direction_angle) {
@@ -64,15 +81,24 @@ void Player::set_position(const Point& new_origin) {
   position = Ray(new_origin, position.get_angle());
 }
 
-void Player::shoot(Map& map) { active_gun.shoot(*this, bullets, map); }
+Hit Player::shoot(Map& map) {
+  return std::move(guns_bag[active_gun]->shoot(*this, bullets, map));
+}
 
-void Player::set_gun(Gun& gun) { active_gun = gun; }
+void Player::add_gun(int gun_num, Gun* gun) {
+  guns_bag.insert(std::pair<int, Gun*>(gun_num, gun));
+}
 
-//
+void Player::set_gun(int gun_num) {
+  if (guns_bag.find(gun_num) != guns_bag.end()) {
+    active_gun = gun_num;
+  }
+}
+
 void Player::set_health(int health) { this->health = health; }
+
 int Player::get_health() { return this->health; }
 
 bool Player::has_bullets(int amount) { return (bullets >= amount); }
 
 void Player::decrease_bullets(int amount) { bullets -= amount; }
-Player::~Player() {}

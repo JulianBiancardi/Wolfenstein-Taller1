@@ -6,13 +6,6 @@
 #include "../player.h"
 #include "hit.h"
 
-//#include "../player.h"
-
-class Player;
-// class Shooter;
-
-class Map;  // borrar
-
 class Gun {
  protected:
   double max_range;

@@ -1,33 +1,37 @@
 #ifndef WOLFENSTEIN_TALLER1_PLAYER_H
 #define WOLFENSTEIN_TALLER1_PLAYER_H
 
+#include <unordered_map>
+
+#include "../../../common/src/main/collisions/circle_mask.h"
 #include "../../../common/src/main/utils/point.h"
 #include "../../../common/src/main/utils/ray.h"
-#include "../../../common/src/main/collisions/circle_mask.h"
-
 #include "guns/gun.h"
+#include "guns/hit.h"
 #include "map.h"
 
 class Gun;
 
-class Player : public Object{
+class Player : public Object {
  private:
   Ray position;
   int pace;
   int health;
   int bullets;
-  Gun& active_gun;
+  std::unordered_map<int, Gun*> guns_bag;
+  int active_gun;
 
   Point next_position(double direction_angle);
 
  public:
-  Player(Ray position, Gun& gun);
-  Player(Point origin, double angle, Gun& gun);
-  Player(double x, double y, double angle, Gun& gun);
+  Player(Ray position);
+  Player(Point origin, double angle);
+  Player(double x, double y, double angle);
   ~Player();
 
   //
-  void set_gun(Gun& gun);
+  void add_gun(int gun_num, Gun* gun);
+  void set_gun(int gun_num);
   int get_health();
   void set_health(int health);
   bool has_bullets(int bullets);
@@ -45,7 +49,7 @@ class Player : public Object{
 
   Ray get_position() { return position; };
   void set_position(const Point& new_origin);
-  void /*Player::*/ shoot(Map& map);
+  Hit shoot(Map& map);
 };
 
 #endif  // WOLFENSTEIN_TALLER1_PLAYER_H
