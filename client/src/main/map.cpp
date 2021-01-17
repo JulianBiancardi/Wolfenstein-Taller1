@@ -2,7 +2,7 @@
 
 Map::Map(Matrix<int>& map_matrix) : BaseMap(map_matrix) {}
 
-void Map::add_player(Player* player) {
+void Map::add_player(Object* player) {
   // players.push_back(player);
   // objects.push_back(player);
   objects.push_back((Object*)player);

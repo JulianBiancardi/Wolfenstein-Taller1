@@ -4,4 +4,4 @@
 
 Knife::Knife() : Gun(0, 2) {}
 
-int Knife::shoot(Player& player_shooting, int& current_bullets, Map& map) {}
+Hit Knife::shoot(Object& player, int& current_bullets, Map& map) {}

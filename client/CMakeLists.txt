@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
+project(Client)
 
 add_subdirectory(../common/third-party/yaml-cpp build) 
 # This is one way of referencing another CMake project 
@@ -29,12 +30,14 @@ FILE(GLOB ClientTestsFiles
 )
 
 FILE(GLOB CommonFiles
+  ../common/src/main/collisions/*.cpp
 	../common/src/main/data_structures/*.cpp
   ../common/src/main/socket/*.cpp
   ../common/src/main/threads/*.cpp
 	../common/src/main/utils/*.cpp
 
   ../common/src/main/object.cpp
+  ../common/src/main/identifiable.cpp
 	../common/src/main/config_loader.cpp
 )
 

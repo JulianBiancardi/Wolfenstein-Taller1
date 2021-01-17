@@ -9,7 +9,7 @@ class RocketLauncher {
 
  public:
   RocketLauncher();
-  void shoot(Player& player_shooting, int& current_bullets, Map& map);
+  // void shoot(Player& player_shooting, int& current_bullets, Map& map);
 };
 
 #endif

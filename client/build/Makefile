@@ -573,6 +573,60 @@ yaml-cpp-sandbox/fast:
 	$(MAKE) $(MAKESILENT) -f build/util/CMakeFiles/yaml-cpp-sandbox.dir/build.make build/util/CMakeFiles/yaml-cpp-sandbox.dir/build
 .PHONY : yaml-cpp-sandbox/fast
 
+home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.o: home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp.o
+
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.o
+
+# target to build an object file
+home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp.o
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp.o
+
+home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.i: home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp.i
+
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.i
+
+# target to preprocess a source file
+home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp.i
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp.i
+
+home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.s: home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp.s
+
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.s
+
+# target to generate assembly for a file
+home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp.s
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp.s
+
+home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.o: home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp.o
+
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.o
+
+# target to build an object file
+home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp.o
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp.o
+
+home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.i: home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp.i
+
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.i
+
+# target to preprocess a source file
+home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp.i
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp.i
+
+home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.s: home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp.s
+
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.s
+
+# target to generate assembly for a file
+home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp.s
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp.s
+
 home/santiagoczop/Taller/tps/tp4/common/src/main/config_loader.o: home/santiagoczop/Taller/tps/tp4/common/src/main/config_loader.cpp.o
 
 .PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/config_loader.o
@@ -599,6 +653,33 @@ home/santiagoczop/Taller/tps/tp4/common/src/main/config_loader.s: home/santiagoc
 home/santiagoczop/Taller/tps/tp4/common/src/main/config_loader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/config_loader.cpp.s
 .PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/config_loader.cpp.s
+
+home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.o: home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.cpp.o
+
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.o
+
+# target to build an object file
+home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.cpp.o
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.cpp.o
+
+home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.i: home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.cpp.i
+
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.i
+
+# target to preprocess a source file
+home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.cpp.i
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.cpp.i
+
+home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.s: home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.cpp.s
+
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.s
+
+# target to generate assembly for a file
+home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.cpp.s
+.PHONY : home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.cpp.s
 
 home/santiagoczop/Taller/tps/tp4/common/src/main/object.o: home/santiagoczop/Taller/tps/tp4/common/src/main/object.cpp.o
 
@@ -1031,6 +1112,33 @@ src/main/guns/gun.s: src/main/guns/gun.cpp.s
 src/main/guns/gun.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/src/main/guns/gun.cpp.s
 .PHONY : src/main/guns/gun.cpp.s
+
+src/main/guns/hit.o: src/main/guns/hit.cpp.o
+
+.PHONY : src/main/guns/hit.o
+
+# target to build an object file
+src/main/guns/hit.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/src/main/guns/hit.cpp.o
+.PHONY : src/main/guns/hit.cpp.o
+
+src/main/guns/hit.i: src/main/guns/hit.cpp.i
+
+.PHONY : src/main/guns/hit.i
+
+# target to preprocess a source file
+src/main/guns/hit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/src/main/guns/hit.cpp.i
+.PHONY : src/main/guns/hit.cpp.i
+
+src/main/guns/hit.s: src/main/guns/hit.cpp.s
+
+.PHONY : src/main/guns/hit.s
+
+# target to generate assembly for a file
+src/main/guns/hit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/src/main/guns/hit.cpp.s
+.PHONY : src/main/guns/hit.cpp.s
 
 src/main/guns/knife.o: src/main/guns/knife.cpp.o
 
@@ -1491,6 +1599,33 @@ src/tests/main_tests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/src/tests/main_tests.cpp.s
 .PHONY : src/tests/main_tests.cpp.s
 
+src/tests/pistol_tests.o: src/tests/pistol_tests.cpp.o
+
+.PHONY : src/tests/pistol_tests.o
+
+# target to build an object file
+src/tests/pistol_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/src/tests/pistol_tests.cpp.o
+.PHONY : src/tests/pistol_tests.cpp.o
+
+src/tests/pistol_tests.i: src/tests/pistol_tests.cpp.i
+
+.PHONY : src/tests/pistol_tests.i
+
+# target to preprocess a source file
+src/tests/pistol_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/src/tests/pistol_tests.cpp.i
+.PHONY : src/tests/pistol_tests.cpp.i
+
+src/tests/pistol_tests.s: src/tests/pistol_tests.cpp.s
+
+.PHONY : src/tests/pistol_tests.s
+
+# target to generate assembly for a file
+src/tests/pistol_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/src/tests/pistol_tests.cpp.s
+.PHONY : src/tests/pistol_tests.cpp.s
+
 src/tests/resource_tests.o: src/tests/resource_tests.cpp.o
 
 .PHONY : src/tests/resource_tests.o
@@ -1587,9 +1722,18 @@ help:
 	@echo "... yaml-cpp-parse"
 	@echo "... yaml-cpp-read"
 	@echo "... yaml-cpp-sandbox"
+	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.o"
+	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.i"
+	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.s"
+	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.o"
+	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.i"
+	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.s"
 	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/config_loader.o"
 	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/config_loader.i"
 	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/config_loader.s"
+	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.o"
+	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.i"
+	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.s"
 	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/object.o"
 	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/object.i"
 	@echo "... home/santiagoczop/Taller/tps/tp4/common/src/main/object.s"
@@ -1638,6 +1782,9 @@ help:
 	@echo "... src/main/guns/gun.o"
 	@echo "... src/main/guns/gun.i"
 	@echo "... src/main/guns/gun.s"
+	@echo "... src/main/guns/hit.o"
+	@echo "... src/main/guns/hit.i"
+	@echo "... src/main/guns/hit.s"
 	@echo "... src/main/guns/knife.o"
 	@echo "... src/main/guns/knife.i"
 	@echo "... src/main/guns/knife.s"
@@ -1689,6 +1836,9 @@ help:
 	@echo "... src/tests/main_tests.o"
 	@echo "... src/tests/main_tests.i"
 	@echo "... src/tests/main_tests.s"
+	@echo "... src/tests/pistol_tests.o"
+	@echo "... src/tests/pistol_tests.i"
+	@echo "... src/tests/pistol_tests.s"
 	@echo "... src/tests/resource_tests.o"
 	@echo "... src/tests/resource_tests.i"
 	@echo "... src/tests/resource_tests.s"

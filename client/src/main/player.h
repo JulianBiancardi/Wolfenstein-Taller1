@@ -1,5 +1,5 @@
-#ifndef WOLFENSTEIN_TALLER1_PLAYER_H
-#define WOLFENSTEIN_TALLER1_PLAYER_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include <unordered_map>
 
@@ -47,9 +47,8 @@ class Player : public Object {
   Point next_position_down_right();
   Point next_position_down_left();
 
-  Ray get_position() { return position; };
   void set_position(const Point& new_origin);
   Hit shoot(Map& map);
 };
 
-#endif  // WOLFENSTEIN_TALLER1_PLAYER_H
+#endif

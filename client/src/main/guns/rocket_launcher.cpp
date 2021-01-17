@@ -7,7 +7,7 @@
 
 RocketLauncher::RocketLauncher() {}
 
-void RocketLauncher::shoot(Player& player_shooting, int& current_bullets,
+/*void RocketLauncher::shoot(Player& player_shooting, int& current_bullets,
                            Map& map) {
   // Randomizo el daño con random
   std::random_device rd;     // Creo la semilla (toma info aleatoria del SO)
@@ -17,3 +17,5 @@ void RocketLauncher::shoot(Player& player_shooting, int& current_bullets,
   return;
   // shooter.receive_damage(damage_dist(mt));
 }
+
+*/

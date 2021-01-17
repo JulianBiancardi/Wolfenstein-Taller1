@@ -7,7 +7,6 @@
 #include "../../../common/src/main/object.h"
 #include "../../../common/src/main/utils/base_map.h"
 #include "../../../common/src/main/utils/matrix.h"
-#include "player.h"
 
 class Map : public BaseMap {
  private:
@@ -21,7 +20,7 @@ class Map : public BaseMap {
 
   std::vector<Object*>& get_objects();
 
-  void add_player(Player* player);
+  void add_player(Object* player);
   // void add_sprite(Sprite &sprite);
 };
 

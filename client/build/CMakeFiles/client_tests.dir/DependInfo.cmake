@@ -4,7 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/box_mask.cpp.o"
+  "/home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/collisions/circle_mask.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/common/src/main/config_loader.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/config_loader.cpp.o"
+  "/home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/identifiable.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/common/src/main/object.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/object.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/common/src/main/socket/socket.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/socket/socket.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/common/src/main/socket/socket_error.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/home/santiagoczop/Taller/tps/tp4/common/src/main/socket/socket_error.cpp.o"
@@ -21,6 +24,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/santiagoczop/Taller/tps/tp4/client/src/main/client.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/main/client.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/client/src/main/guns/chain_cannon.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/main/guns/chain_cannon.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/client/src/main/guns/gun.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/main/guns/gun.cpp.o"
+  "/home/santiagoczop/Taller/tps/tp4/client/src/main/guns/hit.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/main/guns/hit.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/client/src/main/guns/knife.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/main/guns/knife.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/client/src/main/guns/machine_gun.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/main/guns/machine_gun.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/client/src/main/guns/pistol.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/main/guns/pistol.cpp.o"
@@ -38,6 +42,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/santiagoczop/Taller/tps/tp4/client/src/main/threads/receive_from_server_thread.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/main/threads/receive_from_server_thread.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/client/src/main/threads/send_to_server_thread.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/main/threads/send_to_server_thread.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/client/src/tests/main_tests.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/tests/main_tests.cpp.o"
+  "/home/santiagoczop/Taller/tps/tp4/client/src/tests/pistol_tests.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/tests/pistol_tests.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/client/src/tests/resource_tests.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/tests/resource_tests.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/client/src/tests/tests_setup.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/tests/tests_setup.cpp.o"
   )

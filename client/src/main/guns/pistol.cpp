@@ -15,9 +15,8 @@ Pistol::Pistol() : spray(0.17453, 0.1), Gun(2, 20) {
   //    = ConfigLoader::get_init_configs().pistol_base_precision;
 }
 
-Hit Pistol::shoot(Player& player, int& current_bullets, Map& map) {
-  Ray bullet(player.get_position().get_origin(),
-             player.get_position().get_angle() + spray());
+Hit Pistol::shoot(Object& player, int& current_bullets, Map& map) {
+  Ray bullet(player.get_position(), player.get_angle() + spray());
 
   double wall_distance =
       RayCasting::get_collision(map, bullet).get_distance_from_src();

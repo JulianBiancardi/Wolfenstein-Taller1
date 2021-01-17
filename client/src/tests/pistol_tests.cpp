@@ -1,9 +1,11 @@
 #include "pistol_tests.h"
 
+#include <stdio.h>  // TODO DELETE
+
 #include "../../../common/src/main/utils/matrix.h"
 #include "../main/guns/hit.h"
 #include "../main/guns/pistol.h"
-#include "../map.h"
+#include "../main/map.h"
 #include "tests_setup.h"
 
 int static creation_test();
@@ -31,6 +33,21 @@ void pistol_tests() {
   end_tests();
 }
 
+void static load_basic_matrix(Matrix<int> m) {
+  for (int i = 0; i < 5; i++) {
+    m(i, 0) = 1;
+    m(i, 4) = 1;
+    m(0, i) = 1;
+    m(4, i) = 1;
+  }
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+      printf("%d", m(i, j));
+    }
+    printf("\n");
+  }
+}
+
 int static creation_test() {
   Pistol pistol();
   return NO_ERROR;
@@ -38,12 +55,13 @@ int static creation_test() {
 
 int static angle_zero_test() {
   Matrix<int> m(5, 5, 0);
+  load_basic_matrix(m);
   Map map(m);
 
-  Ray pos1(0, 0, 0);
+  Ray pos1(1.5, 1.5, 0);
   Player shooter(pos1);
 
-  Ray pos2(1, 0, 0);
+  Ray pos2(2.5, 1.5, 0);
   Player objective(pos2);
 
   Pistol* pistol = new Pistol();
@@ -60,3 +78,7 @@ int static angle_zero_test() {
   }
   return NO_ERROR;
 }
+
+int static small_angle_test() { return ERROR; }
+int static close_test() { return ERROR; }
+int static far_test() { return ERROR; }
