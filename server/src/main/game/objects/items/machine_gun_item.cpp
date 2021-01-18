@@ -3,6 +3,8 @@
 // TODO No need to use the actual object, a number is enough on server-side
 //#include "../../../../common/src/main/guns/machine_gun.h"
 
+MachineGunItem::MachineGunItem(Point center) : Item(center) {}
+
 MachineGunItem::MachineGunItem(Point center, int id) : Item(center, id) {}
 
 void MachineGunItem::use(Player& user) {

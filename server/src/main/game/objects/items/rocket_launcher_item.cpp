@@ -3,6 +3,9 @@
 // TODO No need to use the actual object, a number is enough on server-side
 //#include "../../../../common/src/main/guns/rocket_launcher.h"
 
+RocketLauncherItem::RocketLauncherItem(Point center)
+    : Item(center) {}
+
 RocketLauncherItem::RocketLauncherItem(Point center, int id)
     : Item(center, id) {}
 

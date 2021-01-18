@@ -1,5 +1,9 @@
 #include "medic_kit.h"
 
+MedicKit::MedicKit(Point center) : Item(center) {
+  health_recovered = ConfigLoader::medic_kit_health_recovered;
+}
+
 MedicKit::MedicKit(Point center, int id) : Item(center, id) {
   health_recovered = ConfigLoader::medic_kit_health_recovered;
 }

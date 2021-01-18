@@ -5,13 +5,14 @@
 
 class MedicKit : public Item {
  public:
-  MedicKit(Point center, int id);
+  MedicKit(Point center);
   void use(Player& user) override;
   Item* copy() override;
   bool can_be_used_by(Player& whom) override;
   void remove() override;
 
  private:
+  MedicKit(Point center, int id);
   int health_recovered;
 };
 

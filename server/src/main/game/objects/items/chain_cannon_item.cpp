@@ -3,6 +3,8 @@
 // TODO No need to use the actual object, a number is enough on server-side
 //#include "../../../../common/src/main/guns/chain_cannon.h"
 
+ChainCannonItem::ChainCannonItem(Point center) : Item(center) {}
+
 ChainCannonItem::ChainCannonItem(Point center, int id) : Item(center, id) {}
 
 void ChainCannonItem::use(Player& user) {

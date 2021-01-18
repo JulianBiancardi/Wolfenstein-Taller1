@@ -5,8 +5,11 @@
 #include "../../player.h"
 
 class Item : public Object {
- public:
+ protected:
   Item(Point center, int id);
+
+ public:
+  Item(Point center);
   ~Item();
 
   virtual void use(Player& user) = 0;

@@ -1,5 +1,8 @@
 #include "bullets.h"
 
+Bullets::Bullets(Point center)
+    : Item(center), amount(5) {}  // TODO Use config loader
+
 Bullets::Bullets(Point center, int id)
     : Item(center, id), amount(5) {}  // TODO Use config loader
 
