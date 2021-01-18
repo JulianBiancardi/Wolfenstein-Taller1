@@ -18,16 +18,18 @@ Moveable::Moveable(double x, double y, double angle)
                             position.get_ref_origin())) {}
 
 Moveable::Moveable(const Moveable& other)
-    : Object(other.position, new CircleMask(ConfigLoader::player_mask_radio,
-                                            position.get_ref_origin())) {}
+    : Object(other.position,
+             new CircleMask(ConfigLoader::player_mask_radio,
+                            position.get_ref_origin()),
+             other.id) {}
 
 Point Moveable::collision_mask_bound(const Point& next_position) {
   double angle = position.get_origin().angle_to(next_position);
 
   double front_x =
-      next_position.getX() + cos(angle) * ((CircleMask*)mask)->get_radius();
+      next_position.getX() + cos(angle) * ((CircleMask*) mask)->get_radius();
   double front_y =
-      next_position.getY() + sin(angle) * ((CircleMask*)mask)->get_radius();
+      next_position.getY() - sin(angle) * ((CircleMask*) mask)->get_radius();
 
   return Point(front_x, front_y);
 }
