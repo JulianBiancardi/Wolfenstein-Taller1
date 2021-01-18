@@ -1,10 +1,10 @@
 #include "player.h"
 
-Player::Player(Point origin, double angle, int id)
+Player::Player(Point origin, double angle)
     : shot_bullets(0),
       points(0),
       spawn_point(origin),
-      Moveable(origin, angle, id) {
+      Moveable(origin, angle) {
   max_health = ConfigLoader::player_health;
   health = max_health;
   max_bullets = ConfigLoader::player_max_bullets;
@@ -12,8 +12,8 @@ Player::Player(Point origin, double angle, int id)
   lives = ConfigLoader::player_lives;
 }
 
-Player::Player(double x, double y, double angle, int id)
-    : shot_bullets(0), points(0), spawn_point(x, y), Moveable(x, y, angle, id) {
+Player::Player(double x, double y, double angle)
+    : shot_bullets(0), points(0), spawn_point(x, y), Moveable(x, y, angle) {
   max_health = ConfigLoader::player_health;
   health = max_health;
   max_bullets = ConfigLoader::player_max_bullets;

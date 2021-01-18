@@ -10,6 +10,8 @@ class Object : public Identifiable {
   Ray position;
   Mask* mask;
   Object(Point position, double angle, Mask* mask);
+  Object(Point position, double angle, Mask* mask, int id);
+  Object(Ray position, Mask* mask, int id);
   Object(Ray position, Mask* mask);
 
  public:

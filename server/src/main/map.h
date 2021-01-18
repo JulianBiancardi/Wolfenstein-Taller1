@@ -16,7 +16,6 @@
 class Map : public BaseMap {
  private:
   std::unordered_map<int, Item*> items;
-  int items_id_count;
   std::vector<Object*> objects;
   // Used for spawning logic:
   int spawn_points_occupied;

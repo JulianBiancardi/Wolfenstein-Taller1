@@ -21,8 +21,8 @@ class Player : public Moveable {
   int lives;
 
  public:
-  Player(Point origin, double angle, int id);
-  Player(double x, double y, double angle, int id);
+  Player(Point origin, double angle);
+  Player(double x, double y, double angle);
   ~Player() {}
 
   void receive_damage(int amount);

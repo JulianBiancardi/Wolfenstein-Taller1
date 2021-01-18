@@ -4,11 +4,10 @@
 #include "game/objects/items/bullets.h"
 
 Map::Map(Matrix<int>& map_matrix)
-    : BaseMap(map_matrix), items_id_count(1), spawn_points_occupied(0) {}
+    : BaseMap(map_matrix), spawn_points_occupied(0) {}
 
 Map::Map(Map& other)
     : BaseMap(other.map_matrix),
-      items_id_count(other.items_id_count),
       objects(other.objects),
       spawn_points_occupied(other.spawn_points_occupied),
       spawn_points(other.spawn_points) {
@@ -26,18 +25,18 @@ const Point Map::next_spawn_point() {
 }
 
 void Map::add_medic_kit(const Point& where) {
-  items.insert({items_id_count, new MedicKit(where, items_id_count)});
-  items_id_count++;
+  MedicKit* new_medic_kit = new MedicKit(where);
+  items.insert({new_medic_kit->get_id(), new_medic_kit});
 }
 
 void Map::add_blood(const Point& where) {
-  items.insert({items_id_count, new Blood(where, items_id_count)});
-  items_id_count++;
+  Blood* new_blood = new Blood(where);
+  items.insert({new_blood->get_id(), new_blood});
 }
 
 void Map::add_bullets(const Point& where) {
-  items.insert({items_id_count, new Bullets(where, items_id_count)});
-  items_id_count++;
+  Bullets* new_bullets = new Bullets(where);
+  items.insert({new_bullets->get_id(), new_bullets});
 }
 
 std::unordered_map<int, Item*>& Map::get_items() { return items; }

@@ -8,7 +8,7 @@ Point next_position(double direction_angle,
   double movement_angle = angle.to_double() + direction_angle;
 
   double next_x = position.getX() + cos(movement_angle) * 1;
-  double next_y = position.getY() + sin(movement_angle) * 1;
+  double next_y = position.getY() - sin(movement_angle) * 1;
 
   return Point(next_x, next_y);
 }
