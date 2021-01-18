@@ -57,10 +57,9 @@ double RayCasting::get_scaling_factor(Ray& ray, Ray& player_direction,
 
 Collision RayCasting::horizontal_axis(BaseMap& map, Ray& ray) {
   Point origin = ray.get_origin();
-
   double dx = std::fmod(origin.getX(), 1);
 
-  if (ray.get_angle() == 0) {
+  if (ray.get_angle() == 0.0) {
     // Point coords for first intersection
     double x = origin.getX() + (1 - dx);
     double y = origin.getY();
@@ -72,7 +71,7 @@ Collision RayCasting::horizontal_axis(BaseMap& map, Ray& ray) {
           double distance = Point::distance(origin, collision_point);
           return Collision(map(x, y), collision_point, distance, true);
         }
-      } catch (const RangeError e) {
+      } catch (const RangeError& e) {
         // TODO Check whether necessary by eliminating and running testing.exe
         Point collision_point(x, y);
         double distance = Point::distance(origin, collision_point);
@@ -93,7 +92,7 @@ Collision RayCasting::horizontal_axis(BaseMap& map, Ray& ray) {
           double distance = Point::distance(origin, collision_point);
           return Collision(map(x, y), collision_point, distance, true);
         }
-      } catch (const RangeError e) {
+      } catch (const RangeError& e) {
         // TODO Check whether necessary by eliminating and running testing.exe
         Point collision_point(x, y);
         double distance = Point::distance(origin, collision_point);
@@ -122,7 +121,7 @@ Collision RayCasting::vertical_axis(BaseMap& map, Ray& ray) {
           double distance = Point::distance(origin, collision_point);
           return Collision(map(x, y), collision_point, distance, true);
         }
-      } catch (const RangeError e) {
+      } catch (const RangeError& e) {
         // TODO Check whether necessary by eliminating and running testing.exe
         Point collision_point(x, y);
         double distance = Point::distance(origin, collision_point);
@@ -143,7 +142,7 @@ Collision RayCasting::vertical_axis(BaseMap& map, Ray& ray) {
           double distance = Point::distance(origin, collision_point);
           return Collision(map(x, y), collision_point, distance, true);
         }
-      } catch (const RangeError e) {
+      } catch (const RangeError& e) {
         // TODO Check whether necessary by eliminating and running testing.exe
         Point collision_point(x, y);
         double distance = Point::distance(origin, collision_point);
@@ -193,7 +192,7 @@ Point first_quad_x(BaseMap& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return x_intersection;
       }
-    } catch (const RangeError e) {
+    } catch (const RangeError& e) {
       return x_intersection;
     }
 
@@ -219,7 +218,7 @@ Point first_quad_y(BaseMap& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return y_intersection;
       }
-    } catch (const RangeError e) {
+    } catch (const RangeError& e) {
       return y_intersection;
     }
 
@@ -266,7 +265,7 @@ Point second_quad_x(BaseMap& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return x_intersection;
       }
-    } catch (const RangeError e) {
+    } catch (const RangeError& e) {
       return x_intersection;
     }
 
@@ -292,7 +291,7 @@ Point second_quad_y(BaseMap& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return y_intersection;
       }
-    } catch (const RangeError e) {
+    } catch (const RangeError& e) {
       return y_intersection;
     }
 
@@ -340,7 +339,7 @@ Point third_quad_x(BaseMap& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return x_intersection;
       }
-    } catch (const RangeError e) {
+    } catch (const RangeError& e) {
       return x_intersection;
     }
 
@@ -366,7 +365,7 @@ Point third_quad_y(BaseMap& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return y_intersection;
       }
-    } catch (const RangeError e) {
+    } catch (const RangeError& e) {
       return y_intersection;
     }
 
@@ -413,7 +412,7 @@ Point forth_quad_x(BaseMap& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return x_intersection;
       }
-    } catch (const RangeError e) {
+    } catch (const RangeError& e) {
       return x_intersection;
     }
 
@@ -439,7 +438,7 @@ Point forth_quad_y(BaseMap& map, const Point& origin, double tg) {
       if (map.is_wall(x, y)) {
         return y_intersection;
       }
-    } catch (const RangeError e) {
+    } catch (const RangeError& e) {
       return y_intersection;
     }
 

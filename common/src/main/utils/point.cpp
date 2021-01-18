@@ -32,5 +32,6 @@ double Point::distance_from(const Point &other) {
 }
 
 double Point::angle_to(const Point &other) {
-  return Angle::normalize(atan2(other.y - y, other.x - x));
+  // Y grows going down
+  return Angle::normalize(atan2(y - other.y, other.x - x));
 }

@@ -28,20 +28,20 @@ Hit Pistol::shoot(Object& player, int& current_bullets, Map& map) {
   std::vector<Object*> objects = map.get_objects();
   std::vector<Object*>::iterator iter;
   for (iter = objects.begin(); iter != objects.end(); iter++) {
-    std::cout << "cc";
     Object* object = *iter;
     // TODO Consider: if (!object.is_solid()) {continue;}
     double object_distance =
         object->get_position().distance_from(bullet.get_origin());
     if (object_distance >= wall_distance ||
-        object_distance >= closest_obj_dist || object_distance >= max_range) {
+        object_distance >= closest_obj_dist || object_distance >= max_range ||
+        object_distance == 0) {
       continue;
     }
 
     // As a decision of implementation design, solid objects have same radius
-    // TODO Change number 1 to use ConfigLoader and use the actual size of
-    // things.
-    double half_angular_diameter = atan(1 / object_distance);
+    // TODO Change number 0.5 to use ConfigLoader and use the actual size of
+    // things, or pick a better number later.
+    double half_angular_diameter = atan(0.5 / object_distance);
     double object_angle = bullet.get_origin().angle_to(object->get_position());
 
     double left_angle = Angle::normalize(object_angle + half_angular_diameter);
@@ -64,17 +64,13 @@ Hit Pistol::shoot(Object& player, int& current_bullets, Map& map) {
     }
 
     if (hit) {
-      std::cout << "HAY HIT  ";  // todo remove me
       closest_obj = object;
       closest_obj_dist = object_distance;
       closest_obj_angle = object_angle;
-    } else {
-      std::cout << "NO HAY HIT  ";  // todo remove me with else
     }
   }
 
   if (closest_obj_dist != std::numeric_limits<double>::infinity()) {
-    std::cout << "bbbbbb";
     std::default_random_engine generator;
     std::uniform_real_distribution<double> distribution(1, 10);
     double base_damage = distribution(generator);
@@ -85,6 +81,7 @@ Hit Pistol::shoot(Object& player, int& current_bullets, Map& map) {
 
     return std::move(Hit(closest_obj->get_id(), damage));
   }
+  return std::move(Hit(-1, 0));
 }
 
 double Pistol::linear_func(double x) { return slope * x + intercept; }
