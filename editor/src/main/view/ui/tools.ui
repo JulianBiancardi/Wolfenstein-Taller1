@@ -332,11 +332,11 @@ QPushButton:checked {
 }
 
 QPushButton:pressed{
-	background-color: rgb(136, 138, 133);
+background-color: rgb(80,80, 80);
 }
 
 QPushButton:checked {
-background-color: rgb(136, 138, 133);
+background-color: rgb(80,80, 80);
 }</string>
              </property>
              <property name="text">
@@ -383,11 +383,11 @@ background-color: rgb(136, 138, 133);
 }
 
 QPushButton:pressed{
-	background-color: rgb(136, 138, 133);
+background-color: rgb(80,80, 80);
 }
 
 QPushButton:checked {
-	background-color: rgb(136, 138, 133);
+background-color: rgb(80,80, 80);
 }</string>
              </property>
              <property name="text">
@@ -796,6 +796,18 @@ QPushButton:pressed{
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+	color: #fff;
+	border: none;
+	padding: 5px;
+	background-color: rgb(186, 189, 182);
+}
+
+QPushButton:pressed{
+	background-color: rgb(136, 138, 133);
+}</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -824,6 +836,18 @@ QPushButton:pressed{
                </property>
                <property name="autoFillBackground">
                 <bool>false</bool>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+	color: #fff;
+	border: none;
+	padding: 5px;
+	background-color: rgb(186, 189, 182);
+}
+
+QPushButton:pressed{
+	background-color: rgb(136, 138, 133);
+}</string>
                </property>
                <property name="text">
                 <string/>
@@ -856,7 +880,16 @@ QPushButton:pressed{
                 </sizepolicy>
                </property>
                <property name="styleSheet">
-                <string notr="true"/>
+                <string notr="true">QPushButton{
+	color: #fff;
+	border: none;
+	padding: 5px;
+	background-color: rgb(186, 189, 182);
+}
+
+QPushButton:pressed{
+	background-color: rgb(136, 138, 133);
+}</string>
                </property>
                <property name="text">
                 <string/>
@@ -881,6 +914,18 @@ QPushButton:pressed{
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+	color: #fff;
+	border: none;
+	padding: 5px;
+	background-color: rgb(186, 189, 182);
+}
+
+QPushButton:pressed{
+	background-color: rgb(136, 138, 133);
+}</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -901,7 +946,7 @@ QPushButton:pressed{
            <item row="2" column="2">
             <widget class="QLabel" name="Grid">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="MinimumExpanding">
+              <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
@@ -914,14 +959,17 @@ QPushButton:pressed{
              </property>
              <property name="maximumSize">
               <size>
-               <width>40</width>
-               <height>40</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="font">
               <font>
                <pointsize>11</pointsize>
               </font>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
              </property>
              <property name="text">
               <string/>
@@ -944,6 +992,18 @@ QPushButton:pressed{
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <item>
               <widget class="QPushButton" name="InsertRowBelow">
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+	color: #fff;
+	border: none;
+	padding: 5px;
+	background-color: rgb(186, 189, 182);
+}
+
+QPushButton:pressed{
+	background-color: rgb(136, 138, 133);
+}</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -961,6 +1021,18 @@ QPushButton:pressed{
              </item>
              <item>
               <widget class="QPushButton" name="RemoveRowBelow">
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+	color: #fff;
+	border: none;
+	padding: 5px;
+	background-color: rgb(186, 189, 182);
+}
+
+QPushButton:pressed{
+	background-color: rgb(136, 138, 133);
+}</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -982,6 +1054,22 @@ QPushButton:pressed{
             <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
               <widget class="QPushButton" name="RemoveRowAbove">
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+	color: #fff;
+	border: none;
+	padding: 5px;
+	background-color: rgb(186, 189, 182);
+}
+
+QPushButton:pressed{
+	background-color: rgb(136, 138, 133);
+}
+
+QPushButton:checked {
+	background-color: rgb(136, 138, 133);
+}</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -999,6 +1087,19 @@ QPushButton:pressed{
              </item>
              <item>
               <widget class="QPushButton" name="InsertRowAbove">
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+	color: #fff;
+	border: none;
+	padding: 5px;
+	background-color: rgb(186, 189, 182);
+}
+
+QPushButton:pressed{
+	background-color: rgb(136, 138, 133);
+}
+</string>
+               </property>
                <property name="text">
                 <string/>
                </property>

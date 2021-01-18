@@ -17,6 +17,8 @@ class Player : public Moveable {
   int points;
   std::unordered_set<int> guns_bag;
   int active_gun;
+  const Point spawn_point;
+  int lives;
 
  public:
   Player(Point origin, double angle, int id);
@@ -31,10 +33,12 @@ class Player : public Moveable {
   void add_bullets(int amount);
   void add_points(int amount);
   void add_health(int amount);
-  void decrease_health(int amount);
   void decrease_bullets(int amount);
   bool is_full_health();
   bool is_full_bullets();
+  bool is_dead();
+  bool has_lives_left();
+  void respawn();
   int get_health();
   int get_bullets();
   int get_active_gun();

@@ -32,3 +32,11 @@ packet_t build_change_gun_event(int player_id, int gun) {
 
   return event;
 }
+
+packet_t build_kill_event(int killed, int killer) {
+  packet_t event = {.type = KILL_PACKET,
+      .player_id = killed,
+      .data = {.killer = killer}};
+
+  return event;
+}

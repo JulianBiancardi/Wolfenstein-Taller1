@@ -87,13 +87,37 @@ void Tools::on_spinBoxWidth_editingFinished() {
   }
 }
 
-void Tools::on_InsertRowAbove_clicked() { mapgrid->insert_rowabove(1); }
-void Tools::on_InsertRowBelow_clicked() { mapgrid->insert_rowbelow(1); }
-void Tools::on_InsertColumnLeft_clicked() { mapgrid->insert_columnleft(1); }
-void Tools::on_InsertColumnRight_clicked() { mapgrid->insert_columnright(1); }
-void Tools::on_RemoveRowAbove_clicked() { mapgrid->remove_rowabove(1); }
-void Tools::on_RemoveRowBelow_clicked() { mapgrid->remove_rowbelow(1); }
-void Tools::on_RemoveColumnLeft_clicked() { mapgrid->remove_columnleft(1); }
-void Tools::on_RemoveColumnRight_clicked() { mapgrid->remove_columnright(1); }
+void Tools::on_InsertRowAbove_clicked() {
+  mapgrid->insert_rowabove(1);
+  ui.spinBoxHeight->setValue(ui.spinBoxHeight->value() + 1);
+}
+void Tools::on_InsertRowBelow_clicked() {
+  mapgrid->insert_rowbelow(1);
+  ui.spinBoxHeight->setValue(ui.spinBoxHeight->value() + 1);
+}
+void Tools::on_InsertColumnLeft_clicked() {
+  mapgrid->insert_columnleft(1);
+  ui.spinBoxWidth->setValue(ui.spinBoxWidth->value() + 1);
+}
+void Tools::on_InsertColumnRight_clicked() {
+  mapgrid->insert_columnright(1);
+  ui.spinBoxWidth->setValue(ui.spinBoxWidth->value() + 1);
+}
+void Tools::on_RemoveRowAbove_clicked() {
+  mapgrid->remove_rowabove(1);
+  ui.spinBoxHeight->setValue(ui.spinBoxHeight->value() - 1);
+}
+void Tools::on_RemoveRowBelow_clicked() {
+  mapgrid->remove_rowbelow(1);
+  ui.spinBoxHeight->setValue(ui.spinBoxHeight->value() - 1);
+}
+void Tools::on_RemoveColumnLeft_clicked() {
+  mapgrid->remove_columnleft(1);
+  ui.spinBoxWidth->setValue(ui.spinBoxWidth->value() - 1);
+}
+void Tools::on_RemoveColumnRight_clicked() {
+  mapgrid->remove_columnright(1);
+  ui.spinBoxWidth->setValue(ui.spinBoxWidth->value() - 1);
+}
 
 Tools::~Tools() {}

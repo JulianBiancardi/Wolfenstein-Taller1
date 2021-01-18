@@ -1,5 +1,9 @@
 #include "mapgrid.h"
 
+#include <clearall_command.h>
+
+#include <QtWidgets/QGraphicsDropShadowEffect>
+
 #include "../../model/include/map_generator.h"
 #include "cell_view.h"
 #include "iostream"
@@ -9,6 +13,13 @@
 MapGrid::MapGrid(QWidget* parent, ItemsId* ids, OptionSelected* current_option)
     : QWidget(parent), ids(ids), current_option(current_option) {
   ui.setupUi(this);
+  QGraphicsDropShadowEffect* shadowEffect = new QGraphicsDropShadowEffect(this);
+  shadowEffect->setColor(QColor(0, 0, 0, 255 * 0.3));
+  shadowEffect->setXOffset(-4);
+  shadowEffect->setYOffset(4);
+  shadowEffect->setBlurRadius(12);
+  setGraphicsEffect(shadowEffect);
+
   undostack = new QUndoStack(this);
   map = new Map();
   map->add_observer(this);
@@ -57,8 +68,9 @@ void MapGrid::undo() { undostack->undo(); }
 void MapGrid::redo() { undostack->redo(); }
 
 void MapGrid::clear() {
+  ClearAllCommand* cmd = new ClearAllCommand(map);
+  undostack->push(cmd);
   map->clear_all();
-  undostack->clear();
 }
 void MapGrid::insert_rowabove(size_t count) {
   _remove_cells();

@@ -22,6 +22,8 @@ class ConfigLoader {
   static int player_bullets;
   static int player_max_bullets;
   static int player_mask_radio;
+  static int player_lives;
+  static int player_respawn_bullets;
 
   static int knife_range;
   static int chain_cannon_bullet_required;

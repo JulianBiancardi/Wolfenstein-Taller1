@@ -1,22 +1,33 @@
 #include "player.h"
 
 Player::Player(Point origin, double angle, int id)
-    : shot_bullets(0), points(0), Moveable(origin, angle, id) {
+    : shot_bullets(0),
+      points(0),
+      spawn_point(origin),
+      Moveable(origin, angle, id) {
   max_health = ConfigLoader::player_health;
   health = max_health;
   max_bullets = ConfigLoader::player_max_bullets;
   bullets = ConfigLoader::player_bullets;
+  lives = ConfigLoader::player_lives;
 }
 
 Player::Player(double x, double y, double angle, int id)
-    : shot_bullets(0), points(0), Moveable(x, y, angle, id) {
+    : shot_bullets(0), points(0), spawn_point(x, y), Moveable(x, y, angle, id) {
   max_health = ConfigLoader::player_health;
   health = max_health;
   max_bullets = ConfigLoader::player_max_bullets;
   bullets = ConfigLoader::player_bullets;
+  lives = ConfigLoader::player_lives;
 }
 
-void Player::receive_damage(int amount) { health -= amount; }
+void Player::receive_damage(int amount) {
+  if (health - amount <= 0) {
+    health = 0;
+  } else {
+    health -= amount;
+  }
+}
 
 void Player::add_gun(int gun_id) { guns_bag.insert(gun_id); }
 
@@ -52,24 +63,29 @@ void Player::add_health(int amount) {
   }
 }
 
-void Player::decrease_health(int amount) {
-  if (health - amount <= 0) {
-    health = 0;  // Is_dead
-  } else {
-    health -= amount;
-  }
-}
-
 // PRECONDITION: Keeping the amount of bullets a valid amount is responsibility
 // of the client (shooting logic is in the client).
 void Player::decrease_bullets(int amount) {
-    bullets -= amount;
-    shot_bullets += amount;
+  bullets -= amount;
+  shot_bullets += amount;
 }
 
 bool Player::is_full_health() { return health == max_health; }
 
 bool Player::is_full_bullets() { return bullets == max_bullets; }
+
+bool Player::is_dead() { return health == 0; }
+
+bool Player::has_lives_left() {
+  return lives != 0;
+}
+
+void Player::respawn() {
+  lives--;
+  // TODO Add gun removal
+  bullets = ConfigLoader::player_respawn_bullets;
+  position.get_origin() = spawn_point;
+}
 
 int Player::get_health() { return health; }
 

@@ -4,9 +4,11 @@ Match::Match(Map& map) : map(map), players_id_count(1) {}
 
 Match::~Match() {}
 
-void Match::add_player(Point where, double initial_angle) {
+void Match::add_player(double initial_angle) {
   players.insert({players_id_count,
-                  Player(where, initial_angle, players_id_count)});
+                  Player(map.next_spawn_point(),
+                         initial_angle,
+                         players_id_count)});
   result_events.emplace(std::piecewise_construct,
                         std::forward_as_tuple(players_id_count),
                         std::forward_as_tuple()); // In-place construction
@@ -60,4 +62,9 @@ Player& Match::get_player(int id) { return players.at(id); }
 
 bool Match::has_result_events_left(int id) {
   return !result_events.at(id).is_empty();
+}
+
+void Match::eliminate_player(int id) {
+  players.erase(id);
+  result_events.erase(id); // TODO CHECK THIS! Should problably enqueue kill socket event to notify thread
 }
