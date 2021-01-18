@@ -44,6 +44,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/santiagoczop/Taller/tps/tp4/client/src/tests/main_tests.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/tests/main_tests.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/client/src/tests/pistol_tests.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/tests/pistol_tests.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/client/src/tests/resource_tests.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/tests/resource_tests.cpp.o"
+  "/home/santiagoczop/Taller/tps/tp4/client/src/tests/spray_tests.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/tests/spray_tests.cpp.o"
   "/home/santiagoczop/Taller/tps/tp4/client/src/tests/tests_setup.cpp" "/home/santiagoczop/Taller/tps/tp4/client/build/CMakeFiles/client_tests.dir/src/tests/tests_setup.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

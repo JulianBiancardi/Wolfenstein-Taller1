@@ -654,6 +654,33 @@ src/main/config_loader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/main/config_loader.cpp.s
 .PHONY : src/main/config_loader.cpp.s
 
+src/main/identifiable.o: src/main/identifiable.cpp.o
+
+.PHONY : src/main/identifiable.o
+
+# target to build an object file
+src/main/identifiable.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/main/identifiable.cpp.o
+.PHONY : src/main/identifiable.cpp.o
+
+src/main/identifiable.i: src/main/identifiable.cpp.i
+
+.PHONY : src/main/identifiable.i
+
+# target to preprocess a source file
+src/main/identifiable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/main/identifiable.cpp.i
+.PHONY : src/main/identifiable.cpp.i
+
+src/main/identifiable.s: src/main/identifiable.cpp.s
+
+.PHONY : src/main/identifiable.s
+
+# target to generate assembly for a file
+src/main/identifiable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/main/identifiable.cpp.s
+.PHONY : src/main/identifiable.cpp.s
+
 src/main/object.o: src/main/object.cpp.o
 
 .PHONY : src/main/object.o
@@ -1086,6 +1113,33 @@ src/tests/tests_setup.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/tests/tests_setup.cpp.s
 .PHONY : src/tests/tests_setup.cpp.s
 
+src/tests/utils_tests/angle_tests.o: src/tests/utils_tests/angle_tests.cpp.o
+
+.PHONY : src/tests/utils_tests/angle_tests.o
+
+# target to build an object file
+src/tests/utils_tests/angle_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/tests/utils_tests/angle_tests.cpp.o
+.PHONY : src/tests/utils_tests/angle_tests.cpp.o
+
+src/tests/utils_tests/angle_tests.i: src/tests/utils_tests/angle_tests.cpp.i
+
+.PHONY : src/tests/utils_tests/angle_tests.i
+
+# target to preprocess a source file
+src/tests/utils_tests/angle_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/tests/utils_tests/angle_tests.cpp.i
+.PHONY : src/tests/utils_tests/angle_tests.cpp.i
+
+src/tests/utils_tests/angle_tests.s: src/tests/utils_tests/angle_tests.cpp.s
+
+.PHONY : src/tests/utils_tests/angle_tests.s
+
+# target to generate assembly for a file
+src/tests/utils_tests/angle_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common_tests.dir/build.make CMakeFiles/common_tests.dir/src/tests/utils_tests/angle_tests.cpp.s
+.PHONY : src/tests/utils_tests/angle_tests.cpp.s
+
 src/tests/utils_tests/matrix_tests.o: src/tests/utils_tests/matrix_tests.cpp.o
 
 .PHONY : src/tests/utils_tests/matrix_tests.o
@@ -1245,6 +1299,9 @@ help:
 	@echo "... src/main/config_loader.o"
 	@echo "... src/main/config_loader.i"
 	@echo "... src/main/config_loader.s"
+	@echo "... src/main/identifiable.o"
+	@echo "... src/main/identifiable.i"
+	@echo "... src/main/identifiable.s"
 	@echo "... src/main/object.o"
 	@echo "... src/main/object.i"
 	@echo "... src/main/object.s"
@@ -1293,6 +1350,9 @@ help:
 	@echo "... src/tests/tests_setup.o"
 	@echo "... src/tests/tests_setup.i"
 	@echo "... src/tests/tests_setup.s"
+	@echo "... src/tests/utils_tests/angle_tests.o"
+	@echo "... src/tests/utils_tests/angle_tests.i"
+	@echo "... src/tests/utils_tests/angle_tests.s"
 	@echo "... src/tests/utils_tests/matrix_tests.o"
 	@echo "... src/tests/utils_tests/matrix_tests.i"
 	@echo "... src/tests/utils_tests/matrix_tests.s"

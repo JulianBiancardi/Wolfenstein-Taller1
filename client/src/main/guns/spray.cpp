@@ -9,8 +9,9 @@ Spray::~Spray() {}
 
 double Spray::operator()() {
   double angle;
+  // Truncate to certain angle
   do {
     angle = normal_distribution(generator);
-  } while (spray_angle < fabs(angle));  // Truncate to certain angle
+  } while (spray_angle < fabs(angle));
   return angle;
 }

@@ -39,6 +39,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/client_tests.dir/src/tests/main_tests.cpp.o"
   "CMakeFiles/client_tests.dir/src/tests/pistol_tests.cpp.o"
   "CMakeFiles/client_tests.dir/src/tests/resource_tests.cpp.o"
+  "CMakeFiles/client_tests.dir/src/tests/spray_tests.cpp.o"
   "CMakeFiles/client_tests.dir/src/tests/tests_setup.cpp.o"
   "client_tests"
   "client_tests.pdb"

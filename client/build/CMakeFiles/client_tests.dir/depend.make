@@ -666,6 +666,7 @@ CMakeFiles/client_tests.dir/src/tests/main_tests.cpp.o: ../src/tests/main_tests.
 CMakeFiles/client_tests.dir/src/tests/main_tests.cpp.o: ../src/tests/pistol_tests.h
 CMakeFiles/client_tests.dir/src/tests/main_tests.cpp.o: ../src/tests/resource_manager_tests.h
 CMakeFiles/client_tests.dir/src/tests/main_tests.cpp.o: ../src/tests/resource_tests.h
+CMakeFiles/client_tests.dir/src/tests/main_tests.cpp.o: ../src/tests/spray_tests.h
 
 CMakeFiles/client_tests.dir/src/tests/pistol_tests.cpp.o: ../src/main/guns/gun.h
 CMakeFiles/client_tests.dir/src/tests/pistol_tests.cpp.o: ../src/main/guns/hit.h
@@ -728,6 +729,11 @@ CMakeFiles/client_tests.dir/src/tests/resource_tests.cpp.o: ../src/tests/resourc
 CMakeFiles/client_tests.dir/src/tests/resource_tests.cpp.o: ../src/tests/tests_setup.h
 CMakeFiles/client_tests.dir/src/tests/resource_tests.cpp.o: /home/santiagoczop/Taller/tps/tp4/common/src/main/utils/point.h
 CMakeFiles/client_tests.dir/src/tests/resource_tests.cpp.o: /home/santiagoczop/Taller/tps/tp4/common/src/main/utils/rectangle.h
+
+CMakeFiles/client_tests.dir/src/tests/spray_tests.cpp.o: ../src/main/guns/spray.h
+CMakeFiles/client_tests.dir/src/tests/spray_tests.cpp.o: ../src/tests/spray_tests.cpp
+CMakeFiles/client_tests.dir/src/tests/spray_tests.cpp.o: ../src/tests/spray_tests.h
+CMakeFiles/client_tests.dir/src/tests/spray_tests.cpp.o: ../src/tests/tests_setup.h
 
 CMakeFiles/client_tests.dir/src/tests/tests_setup.cpp.o: ../src/tests/tests_setup.cpp
 CMakeFiles/client_tests.dir/src/tests/tests_setup.cpp.o: ../src/tests/tests_setup.h

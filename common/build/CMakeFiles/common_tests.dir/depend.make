@@ -14,7 +14,11 @@ CMakeFiles/common_tests.dir/src/main/collisions/circle_mask.cpp.o: ../src/main/u
 CMakeFiles/common_tests.dir/src/main/config_loader.cpp.o: ../src/main/config_loader.cpp
 CMakeFiles/common_tests.dir/src/main/config_loader.cpp.o: ../src/main/config_loader.h
 
+CMakeFiles/common_tests.dir/src/main/identifiable.cpp.o: ../src/main/identifiable.cpp
+CMakeFiles/common_tests.dir/src/main/identifiable.cpp.o: ../src/main/identifiable.h
+
 CMakeFiles/common_tests.dir/src/main/object.cpp.o: ../src/main/collisions/mask.h
+CMakeFiles/common_tests.dir/src/main/object.cpp.o: ../src/main/identifiable.h
 CMakeFiles/common_tests.dir/src/main/object.cpp.o: ../src/main/object.cpp
 CMakeFiles/common_tests.dir/src/main/object.cpp.o: ../src/main/object.h
 CMakeFiles/common_tests.dir/src/main/object.cpp.o: ../src/main/utils/angle.h
@@ -72,6 +76,7 @@ CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o: ../src/tests/data_struct
 CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o: ../src/tests/main_tests.cpp
 CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o: ../src/tests/mask_tests/box_mask_tests.h
 CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o: ../src/tests/mask_tests/circle_mask_tests.h
+CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o: ../src/tests/utils_tests/angle_tests.h
 CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o: ../src/tests/utils_tests/matrix_tests.h
 CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o: ../src/tests/utils_tests/point_tests.h
 CMakeFiles/common_tests.dir/src/tests/main_tests.cpp.o: ../src/tests/utils_tests/ray_tests.h
@@ -93,6 +98,11 @@ CMakeFiles/common_tests.dir/src/tests/mask_tests/circle_mask_tests.cpp.o: ../src
 
 CMakeFiles/common_tests.dir/src/tests/tests_setup.cpp.o: ../src/tests/tests_setup.cpp
 CMakeFiles/common_tests.dir/src/tests/tests_setup.cpp.o: ../src/tests/tests_setup.h
+
+CMakeFiles/common_tests.dir/src/tests/utils_tests/angle_tests.cpp.o: ../src/main/utils/angle.h
+CMakeFiles/common_tests.dir/src/tests/utils_tests/angle_tests.cpp.o: ../src/tests/tests_setup.h
+CMakeFiles/common_tests.dir/src/tests/utils_tests/angle_tests.cpp.o: ../src/tests/utils_tests/angle_tests.cpp
+CMakeFiles/common_tests.dir/src/tests/utils_tests/angle_tests.cpp.o: ../src/tests/utils_tests/angle_tests.h
 
 CMakeFiles/common_tests.dir/src/tests/utils_tests/matrix_tests.cpp.o: ../src/main/utils/matrix.h
 CMakeFiles/common_tests.dir/src/tests/utils_tests/matrix_tests.cpp.o: ../src/main/utils/range_error.h

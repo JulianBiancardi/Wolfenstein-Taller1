@@ -1653,6 +1653,33 @@ src/tests/resource_tests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/src/tests/resource_tests.cpp.s
 .PHONY : src/tests/resource_tests.cpp.s
 
+src/tests/spray_tests.o: src/tests/spray_tests.cpp.o
+
+.PHONY : src/tests/spray_tests.o
+
+# target to build an object file
+src/tests/spray_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/src/tests/spray_tests.cpp.o
+.PHONY : src/tests/spray_tests.cpp.o
+
+src/tests/spray_tests.i: src/tests/spray_tests.cpp.i
+
+.PHONY : src/tests/spray_tests.i
+
+# target to preprocess a source file
+src/tests/spray_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/src/tests/spray_tests.cpp.i
+.PHONY : src/tests/spray_tests.cpp.i
+
+src/tests/spray_tests.s: src/tests/spray_tests.cpp.s
+
+.PHONY : src/tests/spray_tests.s
+
+# target to generate assembly for a file
+src/tests/spray_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client_tests.dir/build.make CMakeFiles/client_tests.dir/src/tests/spray_tests.cpp.s
+.PHONY : src/tests/spray_tests.cpp.s
+
 src/tests/tests_setup.o: src/tests/tests_setup.cpp.o
 
 .PHONY : src/tests/tests_setup.o
@@ -1842,6 +1869,9 @@ help:
 	@echo "... src/tests/resource_tests.o"
 	@echo "... src/tests/resource_tests.i"
 	@echo "... src/tests/resource_tests.s"
+	@echo "... src/tests/spray_tests.o"
+	@echo "... src/tests/spray_tests.i"
+	@echo "... src/tests/spray_tests.s"
 	@echo "... src/tests/tests_setup.o"
 	@echo "... src/tests/tests_setup.i"
 	@echo "... src/tests/tests_setup.s"
