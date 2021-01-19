@@ -7,6 +7,7 @@
 #include "game/objects/items/machine_gun_item.h"
 #include "game/objects/items/medic_kit.h"
 #include "game/objects/items/rocket_launcher_item.h"
+#include "../../../common/src/main/packets/packet.h"
 
 Map::Map(Matrix<int>& map_matrix)
     : BaseMap(map_matrix), spawn_points_occupied(0) {}
@@ -19,6 +20,11 @@ Map::Map(Map& other)
   for (auto elements : other.items) {  // Deep copies every element
     items.insert({elements.first, elements.second->copy()});
   }
+}
+
+void Map::add_bullets(const Point& where, int amount) {
+  Bullets* new_bullets = new Bullets(where, amount);
+  items.insert({new_bullets->get_id(), new_bullets});
 }
 
 void Map::add_spawn_point(const Point& spawn_point) {
@@ -35,8 +41,7 @@ void Map::add_blood(const Point& where) {
 }
 
 void Map::add_bullets(const Point& where) {
-  Bullets* new_bullets = new Bullets(where);
-  items.insert({new_bullets->get_id(), new_bullets});
+  add_bullets(where, CL::bullets_amount);
 }
 
 void Map::add_chain_cannon(const Point& where) {
@@ -67,6 +72,47 @@ void Map::add_medic_kit(const Point& where) {
 void Map::add_rocket_launcher(const Point& where) {
   RocketLauncherItem* new_rocket_launcher = new RocketLauncherItem(where);
   items.insert({new_rocket_launcher->get_id(), new_rocket_launcher});
+}
+
+// Where is dropped was arbitrary chosen
+void Map::add_bullets_drop(Player& dead_player) {
+  Point where(dead_player.get_position().getX(),
+              dead_player.get_position().getY());
+  add_bullets(where, CL::bullets_respawn_amount);
+}
+
+// Where is dropped was arbitrary chosen
+void Map::add_gun_drop(Player& dead_player) {
+  if (dead_player.has_droppable_gun()) {
+    Point where(dead_player.get_position().getX()
+                    + CL::drop_distance_from_dead_player * CL::items_mask_radio,
+                dead_player.get_position().getY());
+    switch (dead_player.get_active_gun()) {
+      case MACHINE_GUN_ID: add_machine_gun(where);
+        break;
+      case CHAIN_CANNON_ID: add_chain_cannon(where);
+        break;
+      case ROCKET_LAUNCHER_ID: add_rocket_launcher(where);
+        break;
+    }
+  }
+}
+
+// Where is dropped was arbitrary chosen
+void Map::add_key_drop(Player& dead_player) {
+  if (dead_player.has_keys()) {
+    Point where(dead_player.get_position().getX()
+                    - CL::drop_distance_from_dead_player * CL::items_mask_radio,
+                dead_player.get_position().getY());
+    add_key(where);
+  }
+}
+
+// Possible bug: items can spawn inside walls depending on YAML values
+void Map::add_drop(Player& dead_player) {
+  add_bullets_drop(dead_player);
+  add_gun_drop(dead_player);
+  add_key_drop(dead_player);
 }
 
 std::unordered_map<int, Item*>& Map::get_items() { return items; }

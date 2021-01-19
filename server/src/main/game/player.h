@@ -29,9 +29,11 @@ class Player : public Moveable {
   Player(double x, double y, double angle);
   ~Player() {}
 
+  // Player has too much responsibilities
   void receive_damage(int amount);
   void add_gun(int gun_id);
   bool has_gun(int gun_id);
+  bool has_droppable_gun();
   void change_gun(int gun_id);
   void shoot(Player& enemy_shot, double damage_done, int bullets_shot);
   void add_bullets(int amount);
@@ -43,6 +45,7 @@ class Player : public Moveable {
   bool is_full_bullets();
   bool is_dead();
   bool has_lives_left();
+  bool has_keys();
   void respawn();
   int get_health();
   int get_bullets();

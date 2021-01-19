@@ -14,10 +14,8 @@ void ShotHitHandler::handle(Match& match, CollisionChecker& checker) {
   match.enqueue_result(build_damage_event(enemy_shot.get_id(), damage_done),
                        enemy_shot.get_id());
 
-  consequence_grab_event(match, checker, who);
-
   if (enemy_shot.is_dead()) {
-    // TODO Add drop after dead
+    match.get_map().add_drop(enemy_shot);
     who.add_kill();
     if (enemy_shot.has_lives_left())
       enemy_shot.respawn();
@@ -28,5 +26,7 @@ void ShotHitHandler::handle(Match& match, CollisionChecker& checker) {
   } else {
     consequence_grab_event(match, checker, enemy_shot);
   } // If a player gets killed over a kit int won't grab it.
+
+  consequence_grab_event(match, checker, who);
 }
 

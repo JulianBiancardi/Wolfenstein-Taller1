@@ -8,6 +8,7 @@ Player::Player(Point origin, double angle)
       spawn_point(origin),
       players_killed(0),
       keys(0),
+      active_gun(PISTOL_ID),
       Moveable(origin, angle) {
   max_health = ConfigLoader::player_health;
   health = max_health;
@@ -23,6 +24,7 @@ Player::Player(double x, double y, double angle)
       spawn_point(x, y),
       players_killed(0),
       keys(0),
+      active_gun(PISTOL_ID),
       Moveable(x, y, angle) {
   max_health = ConfigLoader::player_health;
   health = max_health;
@@ -43,6 +45,16 @@ void Player::add_gun(int gun_id) { guns_bag.insert(gun_id); }
 
 bool Player::has_gun(int gun_id) {
   return guns_bag.find(gun_id) != guns_bag.end();
+}
+
+bool Player::has_droppable_gun() {
+  bool has_droppable_gun = false;
+  for (auto it = guns_bag.begin(); it != guns_bag.end() && !has_droppable_gun;
+       it++) {
+    if (*it != KNIFE_ID && *it != PISTOL_ID)
+      has_droppable_gun = true;
+  }
+  return has_droppable_gun;
 }
 
 void Player::change_gun(int gun_id) {
@@ -88,17 +100,18 @@ bool Player::is_full_bullets() { return bullets == max_bullets; }
 
 bool Player::is_dead() { return health == 0; }
 
-bool Player::has_lives_left() {
-  return lives != 0;
-}
+bool Player::has_lives_left() { return lives != 0; }
+
+bool Player::has_keys() { return keys != 0; }
 
 void Player::respawn() {
   lives--;
   remove_guns_to_respawn();
   active_gun = PISTOL_ID;
+  keys = 0;
   bullets = ConfigLoader::player_respawn_bullets;
   health = ConfigLoader::player_health;
-  position.get_origin() = spawn_point;
+  position = Ray(spawn_point, 0); // TODO Angle is not 0
 }
 
 int Player::get_health() { return health; }

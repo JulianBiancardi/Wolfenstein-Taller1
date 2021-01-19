@@ -5,13 +5,13 @@
 
 class Bullets : public Item {
  public:
-  Bullets(Point center);
+  Bullets(Point center, int amount);
   void use(Player& user) override;
   Item* copy() override;
   bool can_be_used_by(Player& whom) override;
 
  private:
-  Bullets(Point center, int id);
+  Bullets(Point center, int amount, int id);
   int amount;
 };
 
