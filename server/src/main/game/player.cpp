@@ -4,6 +4,7 @@ Player::Player(Point origin, double angle)
     : shot_bullets(0),
       points(0),
       spawn_point(origin),
+      players_killed(0),
       Moveable(origin, angle) {
   max_health = ConfigLoader::player_health;
   health = max_health;
@@ -13,7 +14,11 @@ Player::Player(Point origin, double angle)
 }
 
 Player::Player(double x, double y, double angle)
-    : shot_bullets(0), points(0), spawn_point(x, y), Moveable(x, y, angle) {
+    : shot_bullets(0),
+      points(0),
+      spawn_point(x, y),
+      players_killed(0),
+      Moveable(x, y, angle) {
   max_health = ConfigLoader::player_health;
   health = max_health;
   max_bullets = ConfigLoader::player_max_bullets;
@@ -92,3 +97,7 @@ int Player::get_health() { return health; }
 int Player::get_bullets() { return bullets; }
 
 int Player::get_active_gun() { return active_gun; }
+
+int Player::get_kills() { return players_killed; }
+
+void Player::add_kill() { players_killed++; }

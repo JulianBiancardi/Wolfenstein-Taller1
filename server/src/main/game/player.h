@@ -19,6 +19,7 @@ class Player : public Moveable {
   int active_gun;
   const Point spawn_point;
   int lives;
+  int players_killed;
 
  public:
   Player(Point origin, double angle);
@@ -42,6 +43,8 @@ class Player : public Moveable {
   int get_health();
   int get_bullets();
   int get_active_gun();
+  int get_kills();
+  void add_kill();
 };
 
 #endif  // WOLFENSTEIN_TALLER1_PLAYER_H

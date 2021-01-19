@@ -18,7 +18,7 @@ void ShotHitHandler::handle(Match& match, CollisionChecker& checker) {
 
   if (enemy_shot.is_dead()) {
     // TODO Add drop after dead
-    // TODO Add who.killed_players += 1;
+    who.add_kill();
     if (enemy_shot.has_lives_left())
       enemy_shot.respawn();
     else

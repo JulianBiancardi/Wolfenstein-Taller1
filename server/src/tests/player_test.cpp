@@ -19,6 +19,7 @@ int static player_collides_against_table_from_another_side();
 int static simplest_collision();
 int static second_simplest_collision();
 int static diagonal_collision_with_table();
+int static player_kills_are_correct();
 
 void move_up(Player& who, CollisionChecker& checker) {
   Point next_position =
@@ -123,6 +124,10 @@ void player_tests() {
   print_test("Colision diagonal con mesa",
              diagonal_collision_with_table,
              NO_ERROR);
+  print_test("La cantidad de kills de un jugador es correcta",
+             player_kills_are_correct,
+             NO_ERROR);
+
   end_tests();
 }
 
@@ -505,6 +510,17 @@ int static diagonal_collision_with_table() {
       && players.at(1).get_position().getY() < 290.92
       && players.at(1).get_position().getX() > 290.91
       && players.at(1).get_position().getY() < 290.92)
+    return NO_ERROR;
+
+  return ERROR;
+}
+
+int static player_kills_are_correct() {
+  Player player(5, 5, 0);
+
+  player.add_kill();
+
+  if (player.get_kills() == 1)
     return NO_ERROR;
 
   return ERROR;
