@@ -4,7 +4,7 @@ Key::Key(Point center) : Item(center) {}
 
 Key::Key(Point center, int id) : Item(center, id) {}
 
-void Key::use(Player& user) {}
+void Key::use(Player& user) { user.add_key(); }
 
 Item* Key::copy() { return new Key(position.get_origin(), id); }
 

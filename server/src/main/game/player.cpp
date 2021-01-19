@@ -7,6 +7,7 @@ Player::Player(Point origin, double angle)
       guns_bag{KNIFE_ID, PISTOL_ID},
       spawn_point(origin),
       players_killed(0),
+      keys(0),
       Moveable(origin, angle) {
   max_health = ConfigLoader::player_health;
   health = max_health;
@@ -21,6 +22,7 @@ Player::Player(double x, double y, double angle)
       guns_bag{KNIFE_ID, PISTOL_ID},
       spawn_point(x, y),
       players_killed(0),
+      keys(0),
       Moveable(x, y, angle) {
   max_health = ConfigLoader::player_health;
   health = max_health;
@@ -70,6 +72,8 @@ void Player::add_health(int amount) {
     health = max_health;
   }
 }
+
+void Player::add_key() { keys++; }
 
 // PRECONDITION: Keeping the amount of bullets a valid amount is responsibility
 // of the client (shooting logic is in the client).

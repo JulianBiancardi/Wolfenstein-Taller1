@@ -20,6 +20,7 @@ class Player : public Moveable {
   const Point spawn_point;
   int lives;
   int players_killed;
+  int keys;
 
   void remove_guns_to_respawn();
 
@@ -36,6 +37,7 @@ class Player : public Moveable {
   void add_bullets(int amount);
   void add_points(int amount);
   void add_health(int amount);
+  void add_key();
   void decrease_bullets(int amount);
   bool is_full_health();
   bool is_full_bullets();
