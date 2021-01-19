@@ -30,9 +30,14 @@ class Map : public BaseMap {
   const Point next_spawn_point();
 
   // TODO One method for each item
-  void add_medic_kit(const Point& where);
   void add_blood(const Point& where);
   void add_bullets(const Point& where);
+  void add_chain_cannon(const Point& where);
+  void add_food(const Point& where);
+  void add_key(const Point& where);
+  void add_machine_gun(const Point& where);
+  void add_medic_kit(const Point& where);
+  void add_rocket_launcher(const Point& where);
 
   std::unordered_map<int, Item*>& get_items();
   std::vector<Object*>& get_objects();
