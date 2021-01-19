@@ -23,6 +23,8 @@ int static player_changes_gun();
 int static players_spawn_where_it_should();
 int static player_kills_enemy_and_it_respawns();
 int static player_kills_enemy_and_it_is_no_longer_in_the_map();
+int static player_grabs_gun_correctly();
+int static player_cannot_grab_gun();
 
 // TODO Use configloder for generic tests
 void match_tests() {
@@ -79,6 +81,12 @@ void match_tests() {
              NO_ERROR);
   print_test("Enemigo muere definitivamente y desaparece",
              player_kills_enemy_and_it_is_no_longer_in_the_map,
+             NO_ERROR);
+  print_test("Jugador agarra arma",
+             player_grabs_gun_correctly,
+             NO_ERROR);
+  print_test("Jugador no puede agarrar arma",
+             player_cannot_grab_gun,
              NO_ERROR);
 
   end_tests();
@@ -837,7 +845,6 @@ int static player_kills_enemy_and_it_is_no_longer_in_the_map() {
   match.add_player(M_PI / 3);
 
   // CLIENT MOCK
-
   ShootData shot;
   packet_t event;
   for (int i = 0; i < CL::player_lives; i++) {
@@ -864,6 +871,80 @@ int static player_kills_enemy_and_it_is_no_longer_in_the_map() {
   match.start();
 
   if (match.get_player(1).get_position() != Point(100, 120))
+    return ERROR;
+
+  return NO_ERROR;
+}
+
+int static player_grabs_gun_correctly() {
+  Identifiable::reset_id();
+
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
+  map.add_machine_gun(Point(100, 99));
+
+  Match match(map);
+  match.add_player(M_PI / 2);
+
+  // CLIENT MOCK;
+  Point next_position = next_position_up(Point(100, 100), Angle(M_PI / 2));
+  PointData point = {.x = next_position.getX(), .y = next_position.getY()};
+  packet_t event = {.type = MOVE_PACKET,
+      .player_id = 2,
+      .data = {.point = point}};
+
+  match.enqueue_event(event);
+
+  match.start();
+
+  packet_t result = match.dequeue_result(2);
+
+  if (result.type != GRAB_PACKET || result.player_id != 2
+      || result.data.item != 1)
+    return ERROR;
+
+  if (!match.get_player(2).has_gun(MACHINE_GUN_ID))
+    return ERROR;
+
+  return NO_ERROR;
+}
+
+int static player_cannot_grab_gun() {
+  Identifiable::reset_id();
+
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
+  map.add_machine_gun(Point(100, 99));
+
+  Match match(map);
+  match.add_player(M_PI / 2);
+  match.get_player(2).add_gun(MACHINE_GUN_ID);
+
+  // CLIENT MOCK;
+  Point next_position = next_position_up(Point(100, 100), Angle(M_PI / 2));
+  PointData point = {.x = next_position.getX(), .y = next_position.getY()};
+  packet_t event = {.type = MOVE_PACKET,
+      .player_id = 2,
+      .data = {.point = point}};
+
+  match.enqueue_event(event);
+
+  match.start();
+
+  packet_t result = match.dequeue_result(2);
+
+  if (result.type != MOVE_PACKET || result.player_id != 2
+      || result.data.point.x != 100 || result.data.point.y != 99)
+    return ERROR;
+
+  if (match.has_result_events_left(2))
+    return ERROR;
+
+  if (!match.get_player(2).has_gun(MACHINE_GUN_ID))
     return ERROR;
 
   return NO_ERROR;
