@@ -39,6 +39,7 @@ class ConfigLoader {
   static int medic_kit_health_recovered;
   static int blood_health_recovered;
   static int blood_health_recovered_if_less_than;
+  static int bullets_amount;
   static int crosses_points;
   static int cup_points;
   static int chests_points;

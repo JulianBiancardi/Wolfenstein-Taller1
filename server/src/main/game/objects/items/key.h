@@ -12,7 +12,6 @@ class Key : public Item {
   void use(Player& user) override;
   Item* copy() override;
   bool can_be_used_by(Player& whom) override;
-  void remove() override;
 };
 
 #endif

@@ -9,7 +9,6 @@ class MedicKit : public Item {
   void use(Player& user) override;
   Item* copy() override;
   bool can_be_used_by(Player& whom) override;
-  void remove() override;
 
  private:
   MedicKit(Point center, int id);

@@ -29,6 +29,7 @@ food_health_recovered: 10
 medic_kit_health_recovered: 20
 blood_health_recovered: 1
 blood_health_recovered_if_less_than: 11
+bullets_amount: 5
 
 crosses_points: 10
 cup_points: 50

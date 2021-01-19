@@ -9,7 +9,6 @@ class Food : public Item {
   void use(Player& user) override;
   Item* copy() override;
   bool can_be_used_by(Player& whom) override;
-  void remove() override;
 
  private:
   Food(Point center, int id);

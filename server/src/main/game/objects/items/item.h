@@ -15,7 +15,6 @@ class Item : public Object {
   virtual void use(Player& user) = 0;
   virtual bool can_be_used_by(Player& whom) = 0;
   virtual Item* copy() = 0;  // Deep copying
-  virtual void remove() = 0;
 };
 
 #endif

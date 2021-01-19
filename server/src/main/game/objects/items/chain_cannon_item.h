@@ -9,11 +9,9 @@ class ChainCannonItem : public Item {
   void use(Player& user) override;
   Item* copy() override;
   bool can_be_used_by(Player& whom) override;
-  void remove() override;
 
  private:
   ChainCannonItem(Point center, int id);
-  static int health_recovered;
 };
 
 #endif

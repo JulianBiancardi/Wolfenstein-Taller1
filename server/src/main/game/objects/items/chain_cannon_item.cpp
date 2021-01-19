@@ -1,14 +1,12 @@
 #include "chain_cannon_item.h"
-
-// TODO No need to use the actual object, a number is enough on server-side
-//#include "../../../../common/src/main/guns/chain_cannon.h"
+#include "../../../../common/src/main/packets/packet.h"
 
 ChainCannonItem::ChainCannonItem(Point center) : Item(center) {}
 
 ChainCannonItem::ChainCannonItem(Point center, int id) : Item(center, id) {}
 
 void ChainCannonItem::use(Player& user) {
-  // user.add_gun(gun);
+  user.add_gun(CHAIN_CANNON_ID);
 }
 
 Item* ChainCannonItem::copy() {
@@ -16,8 +14,5 @@ Item* ChainCannonItem::copy() {
 }
 
 bool ChainCannonItem::can_be_used_by(Player& whom) {
-  // return !whom.has_gun(gun);
-  return false;
+  return !whom.has_gun(CHAIN_CANNON_ID);
 }
-
-void ChainCannonItem::remove() {}

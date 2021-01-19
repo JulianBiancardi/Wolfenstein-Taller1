@@ -44,6 +44,7 @@ int CL::blood_health_recovered =
     CL::yaml_file["blood_health_recovered"].as<int>();
 int CL::blood_health_recovered_if_less_than =
     CL::yaml_file["blood_health_recovered_if_less_than"].as<int>();
+int CL::bullets_amount = CL::yaml_file["bullets_amount"].as<int>();
 
 int CL::crosses_points = CL::yaml_file["crosses_points"].as<int>();
 int CL::cup_points = CL::yaml_file["cup_points"].as<int>();
