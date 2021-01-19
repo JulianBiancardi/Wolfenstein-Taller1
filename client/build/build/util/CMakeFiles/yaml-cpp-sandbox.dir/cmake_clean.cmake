@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/yaml-cpp-sandbox.dir/sandbox.cpp.o"
-  "sandbox"
   "sandbox.pdb"
+  "sandbox"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -1,7 +1,7 @@
 #include "client.h"
 
-#include <event_building.h>
-
+#include "../../../common/src/main/utils/point.h"  //TODO MOVE THIS TO OTHER CLASSES
+#include "../../../server/src/main/events/event_building.h"
 #include "frame_limiter.h"
 
 #define UNIT 5

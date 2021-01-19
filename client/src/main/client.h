@@ -1,19 +1,18 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-#include <blocking_queue.h>
-#include <protected_queue.h>
-#include <receive_from_server_thread.h>
-#include <send_to_server_thread.h>
-#include <socket.h>
-
 #include <string>
 
+#include "../../../common/src/main/data_structures/blocking_queue.h"
+#include "../../../common/src/main/data_structures/protected_queue.h"
+#include "../../../common/src/main/socket/socket.h"
 #include "../../../common/src/main/utils/ray.h"
 #include "caster.h"
 #include "events/event.h"
 #include "map.h"
 #include "sdl/window.h"
+#include "threads/receive_from_server_thread.h"
+#include "threads/send_to_server_thread.h"
 
 //-------------------------------------
 class Client {

@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/yaml-cpp-read.dir/read.cpp.o"
-  "read"
   "read.pdb"
+  "read"
 )
 
 # Per-language clean rules from dependency scanning.
