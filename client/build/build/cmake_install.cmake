@@ -1,4 +1,4 @@
-# Install script for directory: /home/santiagoczop/Taller/tps/tp4/common/third-party/yaml-cpp
+# Install script for directory: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,7 +29,7 @@ endif()
 
 # Install shared libraries without execute permission?
 if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "0")
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
 # Is this installation the result of a crosscompile?
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/santiagoczop/Taller/tps/tp4/client/build/build/util/cmake_install.cmake")
+  include("/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/build/build/util/cmake_install.cmake")
 
 endif()
 

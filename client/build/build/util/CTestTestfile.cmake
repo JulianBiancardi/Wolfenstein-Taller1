@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/santiagoczop/Taller/tps/tp4/common/third-party/yaml-cpp/util
-# Build directory: /home/santiagoczop/Taller/tps/tp4/client/build/build/util
+# Source directory: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/common/third-party/yaml-cpp/util
+# Build directory: /home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/build/build/util
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

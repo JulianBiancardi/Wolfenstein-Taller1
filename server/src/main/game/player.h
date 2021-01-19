@@ -27,7 +27,7 @@ class Player : public Moveable {
  public:
   Player(Point origin, double angle);
   Player(double x, double y, double angle);
-  ~Player() {}
+  ~Player();
 
   // Player has too much responsibilities
   void receive_damage(int amount);
