@@ -93,6 +93,7 @@ void Player::respawn() {
   remove_guns_to_respawn();
   active_gun = PISTOL_ID;
   bullets = ConfigLoader::player_respawn_bullets;
+  health = ConfigLoader::player_health;
   position.get_origin() = spawn_point;
 }
 

@@ -550,6 +550,9 @@ int static player_respawns_correctly() {
   if (player.get_active_gun() != PISTOL_ID)
     return ERROR;
 
+  if (player.get_health() != CL::player_health)
+    return ERROR;
+
   if (player.has_gun(PISTOL_ID) && player.has_gun(KNIFE_ID)
       && !player.has_gun(ROCKET_LAUNCHER_ID) && !player.has_gun(MACHINE_GUN_ID))
     return NO_ERROR;
