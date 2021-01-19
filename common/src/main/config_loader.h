@@ -35,6 +35,7 @@ class ConfigLoader {
   static int machine_gun_bullet_required;
   static int machine_gun_base_precision;
 
+  static double items_mask_radio;
   static int food_health_recovered;
   static int medic_kit_health_recovered;
   static int blood_health_recovered;

@@ -25,6 +25,7 @@ machine_gun_bullet_required: 10
 machine_gun_base_precision: 10
 
 #Items
+items_mask_radio: 0.5
 food_health_recovered: 10
 medic_kit_health_recovered: 20
 blood_health_recovered: 1

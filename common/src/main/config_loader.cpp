@@ -36,6 +36,7 @@ int CL::machine_gun_base_precision =
     CL::yaml_file["machine_gun_base_precision"].as<int>();
 
 // Items
+double CL::items_mask_radio = CL::yaml_file["items_mask_radio"].as<double>();
 int CL::food_health_recovered =
     CL::yaml_file["food_health_recovered"].as<int>();
 int CL::medic_kit_health_recovered =
