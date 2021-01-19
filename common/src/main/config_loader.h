@@ -35,10 +35,15 @@ class ConfigLoader {
   static int machine_gun_bullet_required;
   static int machine_gun_base_precision;
 
+  static double items_mask_radio;
   static int food_health_recovered;
   static int medic_kit_health_recovered;
   static int blood_health_recovered;
   static int blood_health_recovered_if_less_than;
+  static int bullets_amount;
+  static int bullets_respawn_amount;
+  static double drop_distance_from_dead_player;
+
   static int crosses_points;
   static int cup_points;
   static int chests_points;

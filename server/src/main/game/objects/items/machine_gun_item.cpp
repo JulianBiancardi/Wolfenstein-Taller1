@@ -1,12 +1,12 @@
 #include "machine_gun_item.h"
+#include "../../../../common/src/main/packets/packet.h"
 
-// TODO No need to use the actual object, a number is enough on server-side
-//#include "../../../../common/src/main/guns/machine_gun.h"
+MachineGunItem::MachineGunItem(Point center) : Item(center) {}
 
 MachineGunItem::MachineGunItem(Point center, int id) : Item(center, id) {}
 
 void MachineGunItem::use(Player& user) {
-  // user.add_gun(gun);
+  user.add_gun(MACHINE_GUN_ID);
 }
 
 Item* MachineGunItem::copy() {
@@ -14,8 +14,5 @@ Item* MachineGunItem::copy() {
 }
 
 bool MachineGunItem::can_be_used_by(Player& whom) {
-  // return !whom.has_gun(gun);
-  return false;
+  return !whom.has_gun(MACHINE_GUN_ID);
 }
-
-void MachineGunItem::remove() {}

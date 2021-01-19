@@ -19,29 +19,40 @@ class Player : public Moveable {
   int active_gun;
   const Point spawn_point;
   int lives;
+  int players_killed;
+  int keys;
+
+  void remove_guns_to_respawn();
 
  public:
-  Player(Point origin, double angle, int id);
-  Player(double x, double y, double angle, int id);
-  ~Player() {}
+  Player(Point origin, double angle);
+  Player(double x, double y, double angle);
+  ~Player();
 
+  // Player has too much responsibilities
   void receive_damage(int amount);
   void add_gun(int gun_id);
   bool has_gun(int gun_id);
+  bool has_droppable_gun();
   void change_gun(int gun_id);
   void shoot(Player& enemy_shot, double damage_done, int bullets_shot);
   void add_bullets(int amount);
   void add_points(int amount);
   void add_health(int amount);
+  void add_key();
   void decrease_bullets(int amount);
   bool is_full_health();
   bool is_full_bullets();
   bool is_dead();
   bool has_lives_left();
+  bool has_keys();
   void respawn();
   int get_health();
   int get_bullets();
   int get_active_gun();
+  int get_kills();
+  int get_lives();
+  void add_kill();
 };
 
 #endif  // WOLFENSTEIN_TALLER1_PLAYER_H

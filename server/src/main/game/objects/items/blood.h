@@ -5,13 +5,13 @@
 
 class Blood : public Item {
  public:
-  Blood(Point center, int id);
+  Blood(Point center);
   void use(Player& user) override;
   Item* copy() override;
   bool can_be_used_by(Player& whom) override;
-  void remove() override;
 
  private:
+  Blood(Point center, int id);
   int health_recovered;
   int less_than;
 };

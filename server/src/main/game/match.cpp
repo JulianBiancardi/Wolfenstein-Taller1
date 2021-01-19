@@ -1,18 +1,15 @@
 #include "match.h"
 
-Match::Match(Map& map) : map(map), players_id_count(1) {}
+Match::Match(Map& map) : map(map) {}
 
 Match::~Match() {}
 
 void Match::add_player(double initial_angle) {
-  players.insert({players_id_count,
-                  Player(map.next_spawn_point(),
-                         initial_angle,
-                         players_id_count)});
+  Player new_player(map.next_spawn_point(), initial_angle);
+  players.insert({new_player.get_id(), new_player});
   result_events.emplace(std::piecewise_construct,
-                        std::forward_as_tuple(players_id_count),
+                        std::forward_as_tuple(new_player.get_id()),
                         std::forward_as_tuple()); // In-place construction
-  players_id_count++;
 }
 
 void Match::enqueue_event(const packet_t& event) {

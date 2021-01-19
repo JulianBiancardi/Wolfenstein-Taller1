@@ -16,11 +16,15 @@
 class Map : public BaseMap {
  private:
   std::unordered_map<int, Item*> items;
-  int items_id_count;
   std::vector<Object*> objects;
   // Used for spawning logic:
   int spawn_points_occupied;
   std::vector<Point> spawn_points;
+
+  void add_bullets(const Point& where, int amount);
+  void add_bullets_drop(Player& dead_player);
+  void add_gun_drop(Player& dead_player);
+  void add_key_drop(Player& dead_player);
 
  public:
   Map(Matrix<int>& map_matrix);
@@ -31,9 +35,17 @@ class Map : public BaseMap {
   const Point next_spawn_point();
 
   // TODO One method for each item
-  void add_medic_kit(const Point& where);
   void add_blood(const Point& where);
   void add_bullets(const Point& where);
+  void add_chain_cannon(const Point& where);
+  void add_food(const Point& where);
+  void add_key(const Point& where);
+  void add_machine_gun(const Point& where);
+  void add_medic_kit(const Point& where);
+  void add_rocket_launcher(const Point& where);
+
+  // The drop added depends on dead_player items
+  void add_drop(Player& dead_player);
 
   std::unordered_map<int, Item*>& get_items();
   std::vector<Object*>& get_objects();

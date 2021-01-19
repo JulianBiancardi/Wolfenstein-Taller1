@@ -36,6 +36,7 @@ int CL::machine_gun_base_precision =
     CL::yaml_file["machine_gun_base_precision"].as<int>();
 
 // Items
+double CL::items_mask_radio = CL::yaml_file["items_mask_radio"].as<double>();
 int CL::food_health_recovered =
     CL::yaml_file["food_health_recovered"].as<int>();
 int CL::medic_kit_health_recovered =
@@ -44,6 +45,11 @@ int CL::blood_health_recovered =
     CL::yaml_file["blood_health_recovered"].as<int>();
 int CL::blood_health_recovered_if_less_than =
     CL::yaml_file["blood_health_recovered_if_less_than"].as<int>();
+int CL::bullets_amount = CL::yaml_file["bullets_amount"].as<int>();
+int CL::bullets_respawn_amount =
+    CL::yaml_file["bullets_respawn_amount"].as<int>();
+double CL::drop_distance_from_dead_player =
+    CL::yaml_file["drop_distance_from_dead_player"].as<double>();
 
 int CL::crosses_points = CL::yaml_file["crosses_points"].as<int>();
 int CL::cup_points = CL::yaml_file["cup_points"].as<int>();

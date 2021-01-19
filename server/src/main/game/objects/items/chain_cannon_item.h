@@ -5,14 +5,13 @@
 
 class ChainCannonItem : public Item {
  public:
-  ChainCannonItem(Point center, int id);
+  ChainCannonItem(Point center);
   void use(Player& user) override;
   Item* copy() override;
   bool can_be_used_by(Player& whom) override;
-  void remove() override;
 
  private:
-  static int health_recovered;
+  ChainCannonItem(Point center, int id);
 };
 
 #endif
