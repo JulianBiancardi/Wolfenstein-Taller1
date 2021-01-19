@@ -33,6 +33,8 @@ Player::Player(double x, double y, double angle)
   lives = ConfigLoader::player_lives;
 }
 
+Player::~Player() {}
+
 void Player::receive_damage(int amount) {
   if (health - amount <= 0) {
     health = 0;
