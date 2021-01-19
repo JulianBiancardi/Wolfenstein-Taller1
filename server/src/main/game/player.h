@@ -26,7 +26,7 @@ class Player : public Moveable {
  public:
   Player(Point origin, double angle);
   Player(double x, double y, double angle);
-  ~Player() {}
+  ~Player();
 
   void receive_damage(int amount);
   void add_gun(int gun_id);

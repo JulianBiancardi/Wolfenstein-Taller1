@@ -1,10 +1,12 @@
 #include "player.h"
+
 #include "../../../../common/src/main/packets/packet.h"
 
 Player::Player(Point origin, double angle)
     : shot_bullets(0),
       points(0),
       guns_bag{KNIFE_ID, PISTOL_ID},
+      active_gun(PISTOL_ID),
       spawn_point(origin),
       players_killed(0),
       Moveable(origin, angle) {
@@ -19,6 +21,7 @@ Player::Player(double x, double y, double angle)
     : shot_bullets(0),
       points(0),
       guns_bag{KNIFE_ID, PISTOL_ID},
+      active_gun(PISTOL_ID),
       spawn_point(x, y),
       players_killed(0),
       Moveable(x, y, angle) {
@@ -44,8 +47,7 @@ bool Player::has_gun(int gun_id) {
 }
 
 void Player::change_gun(int gun_id) {
-  if (this->has_gun(gun_id))
-    active_gun = gun_id;
+  if (this->has_gun(gun_id)) active_gun = gun_id;
 }
 
 void Player::shoot(Player& enemy_shot, double damage_done, int bullets_shot) {
@@ -84,9 +86,7 @@ bool Player::is_full_bullets() { return bullets == max_bullets; }
 
 bool Player::is_dead() { return health == 0; }
 
-bool Player::has_lives_left() {
-  return lives != 0;
-}
+bool Player::has_lives_left() { return lives != 0; }
 
 void Player::respawn() {
   lives--;
@@ -118,3 +118,5 @@ void Player::remove_guns_to_respawn() {
       it++;
   }
 }
+
+Player::~Player() {}
