@@ -17,6 +17,7 @@ void ReceiveFromClientThread::run() {
     while (allowed_to_run) {
       packet_t packet;
       connected_socket.receive((char*)&packet, sizeof(packet_t));
+      // TODO Check packet and see if client ended connection
       reception_queue->enqueue(packet);
     }
     running = false;
@@ -25,4 +26,10 @@ void ReceiveFromClientThread::run() {
   } catch (...) {
     syslog(LOG_ERR, "[Error] ReceiveFromServerThread - Unknown error");
   }
+}
+
+bool ReceiveFromClientThread::is_running() { return is_running; }
+void ReceiveFromClientThread::force_stop() {
+  allowed_to_run = false;
+  // TODO Check if I need to shutdown here or what
 }

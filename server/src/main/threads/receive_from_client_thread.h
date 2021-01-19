@@ -19,6 +19,8 @@ class ReceiveFromClientThread : public Thread {
   ~ReceiveFromClientThread();
 
   void run() override;
+  bool is_running();
+  void force_stop();
 };
 
 #endif
