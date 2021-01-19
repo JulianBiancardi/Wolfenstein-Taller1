@@ -25,6 +25,7 @@ int static player_kills_enemy_and_it_respawns();
 int static player_kills_enemy_and_it_is_no_longer_in_the_map();
 int static player_grabs_gun_correctly();
 int static player_cannot_grab_gun();
+int static player_kills_enemy_and_grabs_drop();
 
 // TODO Use configloder for generic tests
 void match_tests() {
@@ -87,6 +88,9 @@ void match_tests() {
              NO_ERROR);
   print_test("Jugador no puede agarrar arma",
              player_cannot_grab_gun,
+             NO_ERROR);
+  print_test("Jugador agarra drop de muerte de otro",
+             player_kills_enemy_and_grabs_drop,
              NO_ERROR);
 
   end_tests();
@@ -948,4 +952,81 @@ int static player_cannot_grab_gun() {
     return ERROR;
 
   return NO_ERROR;
+}
+
+int static player_kills_enemy_and_grabs_drop() {
+  Identifiable::reset_id();
+
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
+  map.add_spawn_point(Point(200, 200));
+
+  Match match(map);
+  match.add_player(3 * M_PI / 2);
+  match.add_player(M_PI / 3);
+
+  match.get_player(2).set_position(Point(100, 110));
+  match.get_player(2).add_key();
+  match.get_player(2).add_gun(MACHINE_GUN_ID);
+  match.get_player(2).change_gun(MACHINE_GUN_ID);
+
+  // CLIENT MOCK
+  ShootData shot = {.damage_done = CL::player_health + 10.0,
+      .enemy_shot = 2,
+      .bullets_shot = 5};
+  packet_t event = {.type = SHOT_HIT_PACKET,
+      .player_id = 1,
+      .data = {.shot = shot}};
+
+  match.enqueue_event(event);
+
+  Ray angled_player_position = Ray(Point(100, 100), 3 * M_PI / 2);
+  Point position = angled_player_position.get_origin();
+
+  PointData point;
+  for (int i = 0; i < 10; i++) {
+    position = next_position_up(position, Angle(3 * M_PI / 2));
+    point = {.x = position.getX(), .y = position.getY()};
+    event = {.type = MOVE_PACKET, .player_id = 1, .data = {.point = point}};
+
+    match.enqueue_event(event);
+  }
+
+  for (int i = 0; i < 5; i++) {
+    position = next_position_left(position, Angle(3 * M_PI / 2));
+    point = {.x = position.getX(), .y = position.getY()};
+    event = {.type = MOVE_PACKET, .player_id = 1, .data = {.point = point}};
+
+    match.enqueue_event(event);
+  }
+
+  for (int i = 0; i < 10; i++) {
+    position = next_position_right(position, Angle(3 * M_PI / 2));
+    point = {.x = position.getX(), .y = position.getY()};
+    event = {.type = MOVE_PACKET, .player_id = 1, .data = {.point = point}};
+
+    match.enqueue_event(event);
+  }
+
+  match.start();
+
+  int grab_events_found = 0;
+  packet_t result;
+  while (match.has_result_events_left(1)) {
+    result = match.dequeue_result(1);
+    if (result.type == GRAB_PACKET)
+      grab_events_found++;
+  }
+
+  if (grab_events_found != 3)
+    return ERROR;
+
+  if (match.get_player(1).has_keys() && match.get_player(1).get_bullets()
+      == CL::player_bullets - 5 + CL::bullets_respawn_amount
+      && match.get_player(1).has_gun(MACHINE_GUN_ID))
+    return NO_ERROR;
+
+  return ERROR;
 }
