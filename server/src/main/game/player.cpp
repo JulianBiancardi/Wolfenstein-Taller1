@@ -1,8 +1,10 @@
 #include "player.h"
+#include "../../../../common/src/main/packets/packet.h"
 
 Player::Player(Point origin, double angle)
     : shot_bullets(0),
       points(0),
+      guns_bag{KNIFE_ID, PISTOL_ID},
       spawn_point(origin),
       players_killed(0),
       Moveable(origin, angle) {
@@ -16,6 +18,7 @@ Player::Player(Point origin, double angle)
 Player::Player(double x, double y, double angle)
     : shot_bullets(0),
       points(0),
+      guns_bag{KNIFE_ID, PISTOL_ID},
       spawn_point(x, y),
       players_killed(0),
       Moveable(x, y, angle) {
@@ -87,7 +90,8 @@ bool Player::has_lives_left() {
 
 void Player::respawn() {
   lives--;
-  // TODO Add gun removal
+  remove_guns_to_respawn();
+  active_gun = PISTOL_ID;
   bullets = ConfigLoader::player_respawn_bullets;
   position.get_origin() = spawn_point;
 }
@@ -100,4 +104,16 @@ int Player::get_active_gun() { return active_gun; }
 
 int Player::get_kills() { return players_killed; }
 
+int Player::get_lives() { return lives; }
+
 void Player::add_kill() { players_killed++; }
+
+void Player::remove_guns_to_respawn() {
+  auto it = guns_bag.begin();
+  while (it != guns_bag.end()) {
+    if (*it != KNIFE_ID && *it != PISTOL_ID)
+      it = guns_bag.erase(it);
+    else
+      it++;
+  }
+}

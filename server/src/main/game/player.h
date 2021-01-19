@@ -21,6 +21,8 @@ class Player : public Moveable {
   int lives;
   int players_killed;
 
+  void remove_guns_to_respawn();
+
  public:
   Player(Point origin, double angle);
   Player(double x, double y, double angle);
@@ -44,6 +46,7 @@ class Player : public Moveable {
   int get_bullets();
   int get_active_gun();
   int get_kills();
+  int get_lives();
   void add_kill();
 };
 

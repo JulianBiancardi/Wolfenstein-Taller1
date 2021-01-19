@@ -11,6 +11,13 @@
 #define KILL_PACKET 7
 #define RESPAWNED_PACKET 8 // Used to solve bug (ask me which)
 
+// Gun type:
+#define KNIFE_ID 1
+#define PISTOL_ID 2
+#define MACHINE_GUN_ID 3
+#define CHAIN_CANNON_ID 4
+#define ROCKET_LAUNCHER_ID 5
+
 typedef struct PointData {
   double x;
   double y;
