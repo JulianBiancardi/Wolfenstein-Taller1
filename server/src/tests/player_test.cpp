@@ -3,6 +3,7 @@
 #include "../main/map.h"
 #include "../../../common/src/tests/tests_setup.h"
 #include "client_mock.h"
+#include "../../../common/src/main/packets/packet.h"
 
 int static can_move_up();
 int static collides_wall();
@@ -20,6 +21,7 @@ int static simplest_collision();
 int static second_simplest_collision();
 int static diagonal_collision_with_table();
 int static player_kills_are_correct();
+int static player_respawns_correctly();
 
 void move_up(Player& who, CollisionChecker& checker) {
   Point next_position =
@@ -126,6 +128,9 @@ void player_tests() {
              NO_ERROR);
   print_test("La cantidad de kills de un jugador es correcta",
              player_kills_are_correct,
+             NO_ERROR);
+  print_test("El jugador respawnea correctamente",
+             player_respawns_correctly,
              NO_ERROR);
 
   end_tests();
@@ -521,6 +526,32 @@ int static player_kills_are_correct() {
   player.add_kill();
 
   if (player.get_kills() == 1)
+    return NO_ERROR;
+
+  return ERROR;
+}
+
+int static player_respawns_correctly() {
+  Player player(5, 5, 0);
+
+  player.add_gun(MACHINE_GUN_ID);
+  player.add_gun(ROCKET_LAUNCHER_ID);
+
+  player.receive_damage(CL::player_health / 2);
+
+  player.respawn();
+
+  if (player.get_bullets() != CL::player_respawn_bullets)
+    return ERROR;
+
+  if (player.get_lives() != CL::player_lives - 1)
+    return ERROR;
+
+  if (player.get_active_gun() != PISTOL_ID)
+    return ERROR;
+
+  if (player.has_gun(PISTOL_ID) && player.has_gun(KNIFE_ID)
+      && !player.has_gun(ROCKET_LAUNCHER_ID) && !player.has_gun(MACHINE_GUN_ID))
     return NO_ERROR;
 
   return ERROR;
