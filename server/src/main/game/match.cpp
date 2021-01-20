@@ -1,6 +1,6 @@
 #include "match.h"
 
-Match::Match(Map& map) : map(map) {}
+Match::Match(Map& map) : map(map), keep_running(true) {}
 
 Match::~Match() {}
 
@@ -21,7 +21,7 @@ const packet_t Match::dequeue_result(int for_whom) {
 }
 
 void Match::start() {
-  bool keep_running = true;
+  keep_running = true; // TODO Remove (Fix tests)
   EventHandlerBuilder builder;
   CollisionChecker checker(map, players, map.get_items(), map.get_objects());
 
@@ -65,3 +65,7 @@ void Match::eliminate_player(int id) {
   players.erase(id);
   result_events.erase(id); // TODO CHECK THIS! Should problably enqueue kill socket event to notify thread
 }
+
+void Match::end() { keep_running = false; }
+
+bool Match::has_one_player_left() { return players.size() == 1; }

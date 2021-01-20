@@ -40,3 +40,9 @@ packet_t build_kill_event(int killed, int killer) {
 
   return event;
 }
+
+packet_t build_game_over_event() {
+  packet_t event = {.type = GAME_OVER_PACKET};
+
+  return event;
+}
