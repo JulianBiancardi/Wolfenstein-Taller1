@@ -3,20 +3,19 @@
 
 #include <atomic>
 
-#include "../../../../common/src/main/data_structures/blocking_queue.h"
 #include "../../../../common/src/main/socket/socket.h"
 #include "../../../../common/src/main/threads/thread.h"
+#include "../client_manager.h"
 
 class AcceptClientsThread : public Thread {
  private:
   Socket acceptor_socket;
-  BlockingQueue<packet_t>* reception_queue;
+  ClientManager& client_manager;
   std::atomic<bool> allowed_to_run;
   void run() override;
 
  public:
-  AcceptClientsThread(Socket& acceptor_socket,
-                      BlockingQueue<packet_t>* reception_queue);
+  AcceptClientsThread(Socket& acceptor_socket, ClientManager& client_manager);
 
   AcceptClientsThread(const AcceptClientsThread&) = delete;
   AcceptClientsThread& operator=(const AcceptClientsThread&) = delete;

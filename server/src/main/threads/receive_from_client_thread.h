@@ -9,13 +9,13 @@
 class ReceiveFromClientThread : public Thread {
  private:
   Socket& connected_socket;
-  BlockingQueue<packet_t>* reception_queue;
+  BlockingQueue<packet_t>& reception_queue;
   bool allowed_to_run;
   bool running;
 
  public:
-  ReceiveFromClientThread(Socket& connected_socket,
-                          BlockingQueue<packet_t>* reception_queue);
+  explicit ReceiveFromClientThread(Socket& connected_socket,
+                                   BlockingQueue<packet_t>& reception_queue);
   ~ReceiveFromClientThread();
 
   void run() override;

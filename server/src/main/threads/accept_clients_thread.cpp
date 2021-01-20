@@ -8,11 +8,11 @@
 #include "send_to_client_thread.h"
 #include "thread_set.h"
 
-AcceptClientsThread::AcceptClientsThread(
-    Socket& acceptor_socket, BlockingQueue<packet_t>* reception_queue) {
+AcceptClientsThread::AcceptClientsThread(Socket& acceptor_socket,
+                                         ClientManager& client_manager)
+    : client_manager(client_manager) {
   this->acceptor_socket = std::move(acceptor_socket);
   this->allowed_to_run = true;
-  this->reception_queue = reception_queue;
 }
 
 AcceptClientsThread::~AcceptClientsThread() {}
@@ -24,16 +24,10 @@ void AcceptClientsThread::force_stop() {
 
 void AcceptClientsThread::run() {
   try {
-    ThreadSet threads;
-
     while (allowed_to_run) {
       Socket peer_socket = acceptor_socket.accept();
-      ReceiveFromClientThread* recv_thread =
-          new ReceiveFromClientThread(peer_socket, reception_queue);
-      threads.insert(recv_thread);
-      recv_thread->start();
-
-      threads.clear();
+      client_manager.add_client(peer_socket);
+      client_manager.clear();
     }
   } catch (const SocketError& e) {
     // Expected error when using force_stop()

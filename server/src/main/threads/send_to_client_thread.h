@@ -8,14 +8,14 @@
 
 class SendToClientThread : public Thread {
  private:
-  BlockingQueue<packet_t>* events_queue;
+  BlockingQueue<packet_t>& events_queue;
   Socket& connected_socket;
   bool allowed_to_run;
   bool running;
 
  public:
   SendToClientThread(Socket& connected_socket,
-                     BlockingQueue<packet_t>* events_queue);
+                     BlockingQueue<packet_t>& events_queue);
   ~SendToClientThread();
 
   void force_stop();
