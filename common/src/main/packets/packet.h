@@ -10,6 +10,7 @@
 #define CHANGE_GUN_PACKET 6
 #define KILL_PACKET 7
 #define RESPAWNED_PACKET 8 // Used to solve bug (ask me which)
+#define GAME_OVER_PACKET 9
 
 // Gun type:
 #define KNIFE_ID 1

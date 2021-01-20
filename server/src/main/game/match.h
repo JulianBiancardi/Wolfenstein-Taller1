@@ -17,6 +17,7 @@ class Match {
   std::unordered_map<int, Player> players;
   EventQueue<packet_t> events_to_process;
   std::unordered_map<int, EventQueue<packet_t>> result_events; // <id, Queue>
+  bool keep_running;
 
  public:
   Match(Map& map);
@@ -35,6 +36,8 @@ class Match {
   Player& get_player(int id);  // Only used for testing
   bool has_result_events_left(int id); // Only used for testing
   void eliminate_player(int id);
+  void end();
+  bool has_one_player_left();
 };
 
 #endif  // WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_MATCH_H_

@@ -19,8 +19,11 @@ void ShotHitHandler::handle(Match& match, CollisionChecker& checker) {
     who.add_kill();
     if (enemy_shot.has_lives_left())
       enemy_shot.respawn();
-    else
+    else {
       match.eliminate_player(enemy_shot.get_id());
+      if (match.has_one_player_left())
+        match.enqueue_event(build_game_over_event());
+    }
     match.enqueue_result_for_all(build_kill_event(enemy_shot.get_id(),
                                                   who.get_id()));
   } else {
