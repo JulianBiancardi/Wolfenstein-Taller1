@@ -52,6 +52,7 @@ class Player : public Moveable {
   int get_active_gun();
   int get_kills();
   int get_lives();
+  int get_points();
   void add_kill();
 };
 
