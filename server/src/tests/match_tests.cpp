@@ -815,12 +815,6 @@ int static player_kills_enemy_and_it_respawns() {
 
   packet_t result = match.dequeue_result(2);
 
-  if (result.type != DAMAGE_PACKET || result.player_id != 2
-      || result.data.damage != shot.damage_done)
-    return ERROR;
-
-  result = match.dequeue_result(2);
-
   if (result.type != KILL_PACKET || result.player_id != 2
       || result.data.killer != 1)
     return ERROR;
