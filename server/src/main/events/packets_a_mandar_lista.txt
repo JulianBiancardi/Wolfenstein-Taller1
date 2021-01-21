@@ -1,17 +1,26 @@
 Lista de Packets que se envían
 
+
+/* Para anunciar fin de la conexión
+ * Client<->Server
+ */
+DISCONNECTION PACKET
+
+int type: 0
+
 /* Para comunicar movimientos
  * El cliente lo usa para pedir moverse.
  * El servidor lo usa para notificarte a donde te moviste (puede ser tu mismo lugar).
  * El servidor lo usa para notificar a todos si alguien se movio.
- * Client<->Server
+ * Client->Server
+ * Server->Client
  */
 MOVE PACKET
 
 int type: 1
 int player_id: I
 =====
-sPoint point: X // El cliente pide moverse a (X,Y)
+sPoint point: X // El cliente pide moverse a X
 sPoint point: Y // El server le avisa al cliente donde se encuentra
 =====
 
@@ -19,8 +28,8 @@ sPoint point: Y // El server le avisa al cliente donde se encuentra
 /* Para comunicar levantado de cosas.
  * Se puede recibir luego de moverse, disparar o ser disparado.
  * Si el player_id es el de uno mismo, se aplica. 
- * Siempre se borra del mapa del cliente el item.
- * Client<-Server
+ * Siempre se borra del mapa el item.
+ * Server->Client
  */
 GRAB PACKET
 
@@ -28,47 +37,17 @@ int type: 2
 int player_id: I
 int item_id: X
 
-
-/* Para comunicar disparos acertados.
- * Si el disparado no muere se le manda un paquete de DAMAGE
- * (solo a él, los otros clientes NO conocen sus puntos de vida).
- * Si el disparado muere se manda un paquete de KILL a todos los jugadores.
- * Client->Server
- */
-SHOT HIT PACKET
-
-int type: 3
-int player_id: I // Id del que dispara
-=====
-sShoot damage_done: X
-sShoot enemy_shot: Y // Id del disparado
-sShoot bullets_shot: Z // La cantidad de balas se envia porque el server
-=====                  // no sabe cuanto gasta cada arma
-
-
-/* Para comunicar disparos no acertados.
- * Client->Server
- */
-SHOT MISS PACKET
-
-int type: 4
-int player_id: I // Id del que dispara
-int bullets_shot: X
-
-
-/* Para comunicar daños a un jugador
- * El servidor lo usa para notificar que le quitaron vida.
- * Solo es notificado el jugador que recibe daño
- * (el cliente no conoce los puntos de vida del resto).
- * Solo nace como consecuencia de un disparo acertado.
- * Client<-Server
+/* Para comunicar daños o balas
+ * El cliente lo usa para notificar todos sus disparos
+ * El servidor lo usa para notificar que alguien perdio vida.
+ * El servidor solo envia a clientes si el ID != -1
+ * Client<->Server
  */
 DAMAGE PACKET
 
-int type: 5
+int type: 3
 int player_id: I
-double damage: X
-
+sHit: X, Y // ID de a que le pegaste, Daño que hiciste
 
 /* Para comunicar cambio de arma
  * Los clientes son notificados de que el jugador I cambio de arma para
@@ -135,12 +114,6 @@ int type: TODO
 sPoint door_pos: X 
 
 
-/* Para anunciar fin de la conexión
- * Client<->Server
- */
-DISCONNECTION PACKET
-
-int type: TODO
 
 
 /* Para anunciar una nueva conexión y solicitar un id
