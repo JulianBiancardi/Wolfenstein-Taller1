@@ -6,7 +6,6 @@
 
 #include "receive_from_client_thread.h"
 #include "send_to_client_thread.h"
-#include "thread_set.h"
 
 AcceptClientsThread::AcceptClientsThread(Socket& acceptor_socket,
                                          ClientManager& client_manager)
