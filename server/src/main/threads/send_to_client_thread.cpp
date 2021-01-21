@@ -16,7 +16,9 @@ SendToClientThread::~SendToClientThread() {}
 void SendToClientThread::force_stop() {
   allowed_to_run = false;
   packet_t disconnection_packet;
-  // TODO Fill with disconnection info
+  disconnection_packet.type = 0;
+  disconnection_packet.player_id = 0;
+  disconnection_packet.data.killer = 0;  // A 0 in an arbitrarily member
   events_queue.enqueue(disconnection_packet);
 }
 

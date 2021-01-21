@@ -2,6 +2,8 @@
 
 #include <syslog.h>
 
+#define END_OF_CONNECTION 0
+
 ReceiveFromClientThread::ReceiveFromClientThread(
     Socket& connected_socket, BlockingQueue<packet_t>& reception_queue)
     : connected_socket(connected_socket),
@@ -17,14 +19,10 @@ void ReceiveFromClientThread::run() {
     while (allowed_to_run) {
       packet_t packet;
       connected_socket.receive((char*)&packet, sizeof(packet_t));
-      // TODO Check packet and see if client ended connection
-      /*
+      reception_queue.enqueue(packet);
       if (packet.type == END_OF_CONNECTION) {
         break;
       }
-      */
-
-      reception_queue.enqueue(packet);
     }
     running = false;
   } catch (const std::exception& e) {
