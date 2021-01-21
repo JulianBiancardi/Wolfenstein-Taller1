@@ -21,10 +21,17 @@ MOVE PACKET
 
 int type: 1
 int player_id: I
-=====
-sPoint point: X // El cliente pide moverse a X
-sPoint point: Y // El server le avisa al cliente donde se encuentra
-=====
+int dir: 0-8 
+/* 0 El server lo usa para indicar que no se movió
+ * 1 N Tomese Norte como hacia adelante, para abreviación
+ * 2 NE
+ * 3 E
+ * 4 SE
+ * 5 S
+ * 6 SO
+ * 7 O
+ * 8 NO
+ */
 
 
 /* Para comunicar levantado de cosas.
