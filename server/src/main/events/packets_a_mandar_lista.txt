@@ -10,8 +10,9 @@ int type: 0
 int player_id: I
 int nothing: 0
 
+
 /* Para comunicar movimientos
- * El cliente lo usa para pedir moverse.
+ * El cliente lo usa para pedir moverse en una dirección.
  * El servidor lo usa para notificarte a donde te moviste (puede ser tu mismo lugar).
  * El servidor lo usa para notificar a todos si alguien se movio.
  * Client->Server
@@ -23,14 +24,30 @@ int type: 1
 int player_id: I
 int dir: 0-8 
 /* 0 El server lo usa para indicar que no se movió
- * 1 N Tomese Norte como hacia adelante, para abreviación
- * 2 NE
- * 3 E
- * 4 SE
- * 5 S
- * 6 SO
- * 7 O
- * 8 NO
+ * 1 U   Up
+ * 2 UL  Up Left
+ * 3 L   Left
+ * 4 DL  Down Left
+ * 5 D   Down
+ * 6 DR  Down Right
+ * 7 R   Right
+ * 8 UR  Up Right
+ */
+
+
+/* Para comunicar rotaciones
+ * El cliente lo usa para pedir rotar en un sentido.
+ * El servidor le devuelve el sentido en el que rota.
+ * Client->Server
+ * Server->Client
+ */
+ROTATE PACKET
+
+int type: 2
+int player_id: I
+int dir: 1-2
+/* 1 R   Right (sentido horario)
+ * 2 L   Left (sentido antihorario)
  */
 
 
@@ -42,59 +59,47 @@ int dir: 0-8
  */
 GRAB PACKET
 
-int type: 2
+int type: 3
 int player_id: I
 int item_id: X
 
-/* Para comunicar daños o balas
- * El cliente lo usa para notificar todos sus disparos
- * El servidor lo usa para notificar que alguien perdio vida.
- * El servidor solo envia a clientes si el ID != -1
- * Client<->Server
- */
-DAMAGE PACKET
 
-int type: 3
+/* Para comunicar que la puerta cambia de estado.
+ * Server<->Client
+ */
+DOOR PACKET
+
+int type: 4
 int player_id: I
-sHit: X, Y // ID de a que le pegaste, Daño que hiciste
+int door_id: X
+
 
 /* Para comunicar cambio de arma
- * Los clientes son notificados de que el jugador I cambio de arma para
- * actualizar el sprite.
- * Client<->Server
+ * Los clientes son notificados de que el jugador I cambio.
+ * Client->Server
+ * Server->Client
  */
 CHANGE GUN PACKET
 
-int type: 6
+int type: 5
 int player_id: I
 int gun_id: X
 
 
-/* Para comunicar asesinato
- * Es consecuencia de un disparo acertado.
- * El cliente es el encargado de: hacer que respawnee el jugador (si debe) o eliminarlo.
- * Tambien deberá hacer que spawnee en su mapa el drop que deja la muerte.
- * Este último * puede ser reemplazado con paquetes ADD ITEM.
- * Client<-Server
- */
-KILL PACKET
-
-int type: 7
-int player_id: I
-int killer: X
-
-
-/* Para comunicar que ya respawneo el jugador
- * Nace solo luego de un paquete de KILL y lo genera el cliente que fue asesindo.
- * Sirve para ignorar movimientos acumulados previos a que fuese asesinado
- * (paquetes no procesados todavía por el servidor de MOVE del jugador ya asesinado).
- * Evita teletransportaciones de jugadores.
+/* Para comunicar daños o balas
+ * El cliente lo usa para notificar cada uno de sus disparos.
+ * El servidor lo usa para notificar que alguien perdio vida.
+ * En caso de muerte, el cliente debera solamente reposicionar al jugador muerto en su spawn point
+ * y soltar el drop correspondiente.
+ * El servidor solo envia a clientes si el ID != -1.
  * Client->Server
+ * Server->Client
  */
-RESPAWN PACKET
+DAMAGE PACKET
 
-int type: 8
+int type: 6
 int player_id: I
+sHit: X, Y // ID de a que le pegaste, Daño que hiciste
 
 
 /* Para hacer que el keep_running del match sea false cuando se utiliza una cola bloqueante
@@ -106,7 +111,7 @@ int player_id: I
  */
 GAME OVER PACKET
 
-int type: 9
+int type: 7
 
 
 Lista de Packets que se envían todavia NO IMPLEMENTADOS
@@ -136,14 +141,3 @@ int type: TODO
 int player_id: 0 // Al pedir al server
 int player_id: X // Al recibir del server
 =====
-
-
-/* Para rotaciones
- * Client<->Server
- */
-ROTATION PACKET
-
-int type: TODO
-int player_id: I
-double angle: X // Angulo en el que el jugador quiere quedar respecto al semieje positivo X
-
