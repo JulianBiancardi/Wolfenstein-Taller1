@@ -1,6 +1,6 @@
 #include "move_handler.h"
-#include "../game/match.h"
-#include "event_building.h"
+#include "../../game/match.h"
+#include "../event_building.h"
 
 MoveHandler::MoveHandler(Player& who, Point where) : who(who), where(where) {}
 

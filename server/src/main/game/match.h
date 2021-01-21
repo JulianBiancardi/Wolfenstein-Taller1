@@ -37,7 +37,6 @@ class Match {
   bool has_result_events_left(int id); // Only used for testing
   void eliminate_player(int id);
   void end();
-  bool has_one_player_left();
 };
 
 #endif  // WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_MATCH_H_

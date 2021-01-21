@@ -1,5 +1,5 @@
 #include "game_over_handler.h"
-#include "../game/match.h"
+#include "../../game/match.h"
 
 GameOverHandler::GameOverHandler() {}
 
