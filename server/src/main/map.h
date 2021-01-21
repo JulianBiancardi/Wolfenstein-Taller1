@@ -34,10 +34,14 @@ class Map : public BaseMap {
   void add_spawn_point(const Point& spawn_point);
   const Point next_spawn_point();
 
-  // TODO One method for each item
+  // TODO Use only one method
   void add_blood(const Point& where);
   void add_bullets(const Point& where);
   void add_chain_cannon(const Point& where);
+  void add_chest(const Point& where);
+  void add_cross(const Point& where);
+  void add_crown(const Point& where);
+  void add_cup(const Point& where);
   void add_food(const Point& where);
   void add_key(const Point& where);
   void add_machine_gun(const Point& where);

@@ -1,4 +1,5 @@
 #include "match.h"
+#include "../events/event_building.h"
 
 Match::Match(Map& map) : map(map), keep_running(true) {}
 
@@ -64,8 +65,9 @@ bool Match::has_result_events_left(int id) {
 void Match::eliminate_player(int id) {
   players.erase(id);
   result_events.erase(id); // TODO CHECK THIS! Should problably enqueue kill socket event to notify thread
+
+  if (players.size() == 1)
+    events_to_process.enqueue(build_game_over_event());
 }
 
 void Match::end() { keep_running = false; }
-
-bool Match::has_one_player_left() { return players.size() == 1; }

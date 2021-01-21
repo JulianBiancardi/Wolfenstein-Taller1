@@ -126,6 +126,8 @@ int Player::get_kills() { return players_killed; }
 
 int Player::get_lives() { return lives; }
 
+int Player::get_points() { return points; }
+
 void Player::add_kill() { players_killed++; }
 
 void Player::remove_guns_to_respawn() {

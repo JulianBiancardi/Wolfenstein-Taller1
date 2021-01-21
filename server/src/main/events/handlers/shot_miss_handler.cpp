@@ -1,5 +1,5 @@
 #include "shot_miss_handler.h"
-#include "../game/match.h"
+#include "../../game/match.h"
 
 ShotMissHandler::ShotMissHandler(Player& who, int bullets)
     : who(who), bullets_shot(bullets) {}

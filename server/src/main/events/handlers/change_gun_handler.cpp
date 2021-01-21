@@ -1,6 +1,6 @@
 #include "change_gun_handler.h"
-#include "../game/match.h"
-#include "event_building.h"
+#include "../../game/match.h"
+#include "../event_building.h"
 
 ChangeGunHandler::ChangeGunHandler(Player& who, int gun)
     : who(who), gun(gun) {}

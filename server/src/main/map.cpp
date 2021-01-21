@@ -2,6 +2,10 @@
 #include "game/objects/items/blood.h"
 #include "game/objects/items/bullets.h"
 #include "game/objects/items/chain_cannon_item.h"
+#include "game/objects/items/chest.h"
+#include "game/objects/items/cross.h"
+#include "game/objects/items/crown.h"
+#include "game/objects/items/cup.h"
 #include "game/objects/items/food.h"
 #include "game/objects/items/key.h"
 #include "game/objects/items/machine_gun_item.h"
@@ -47,6 +51,26 @@ void Map::add_bullets(const Point& where) {
 void Map::add_chain_cannon(const Point& where) {
   ChainCannonItem* new_chain_cannon = new ChainCannonItem(where);
   items.insert({new_chain_cannon->get_id(), new_chain_cannon});
+}
+
+void Map::add_chest(const Point& where) {
+  Chest* new_chest = new Chest(where);
+  items.insert({new_chest->get_id(), new_chest});
+}
+
+void Map::add_cross(const Point& where) {
+  Cross* new_cross = new Cross(where);
+  items.insert({new_cross->get_id(), new_cross});
+}
+
+void Map::add_crown(const Point& where) {
+  Crown* new_crown = new Crown(where);
+  items.insert({new_crown->get_id(), new_crown});
+}
+
+void Map::add_cup(const Point& where) {
+  Cup* new_cup = new Cup(where);
+  items.insert({new_cup->get_id(), new_cup});
 }
 
 void Map::add_food(const Point& where) {

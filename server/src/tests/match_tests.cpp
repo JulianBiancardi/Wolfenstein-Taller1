@@ -1,8 +1,6 @@
 #include "match_tests.h"
 #include "../../../common/src/tests/tests_setup.h"
 #include "../main/game/match.h"
-#include "../main/game/objects/items/medic_kit.h"
-#include "../main/game/objects/items/blood.h"
 #include <cmath>
 #include "client_mock.h"
 
@@ -26,6 +24,7 @@ int static player_kills_enemy_and_it_is_no_longer_in_the_map();
 int static player_grabs_gun_correctly();
 int static player_cannot_grab_gun();
 int static player_kills_enemy_and_grabs_drop();
+int static player_grabs_point_items();
 
 // TODO Use configloder for generic tests
 void match_tests() {
@@ -91,6 +90,9 @@ void match_tests() {
              NO_ERROR);
   print_test("Jugador agarra drop de muerte de otro",
              player_kills_enemy_and_grabs_drop,
+             NO_ERROR);
+  print_test("Jugador agarra items de puntos y se le suman",
+             player_grabs_point_items,
              NO_ERROR);
 
   end_tests();
@@ -813,12 +815,6 @@ int static player_kills_enemy_and_it_respawns() {
 
   packet_t result = match.dequeue_result(2);
 
-  if (result.type != DAMAGE_PACKET || result.player_id != 2
-      || result.data.damage != shot.damage_done)
-    return ERROR;
-
-  result = match.dequeue_result(2);
-
   if (result.type != KILL_PACKET || result.player_id != 2
       || result.data.killer != 1)
     return ERROR;
@@ -1029,4 +1025,39 @@ int static player_kills_enemy_and_grabs_drop() {
     return NO_ERROR;
 
   return ERROR;
+}
+
+int static player_grabs_point_items() {
+  Identifiable::reset_id();
+
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  map.add_spawn_point(Point(100, 100));
+
+  map.add_cross(Point(100, 105));
+  map.add_crown(Point(100, 110));
+
+  Match match(map);
+  Ray angled_player_position = Ray(Point(100, 100), 3 * M_PI / 2);
+  match.add_player(angled_player_position.get_angle());
+
+  // CLIENT MOCK
+  Point position = angled_player_position.get_origin();
+  PointData point;
+  packet_t event;
+  for (int i = 0; i < 20; i++) {
+    position = next_position_up(position, Angle(3 * M_PI / 2));
+    point = {.x = position.getX(), .y = position.getY()};
+    event = {.type = MOVE_PACKET, .player_id = 3, .data = {.point = point}};
+
+    match.enqueue_event(event);
+  }
+
+  match.start();
+
+  if (match.get_player(3).get_points() != CL::crosses_points + CL::crown_points)
+    return ERROR;
+
+  return NO_ERROR;
 }

@@ -1,7 +1,7 @@
 #include "event_handler.h"
-#include "event_building.h"
-#include "../game/match.h"
-#include "../game/objects/items/item.h"
+#include "../event_building.h"
+#include "../../game/match.h"
+#include "../../game/objects/items/item.h"
 
 void EventHandler::consequence_grab_event(Match& match,
                                           CollisionChecker& checker,
