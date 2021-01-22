@@ -1,6 +1,7 @@
 #include "match_tests.h"
 #include "../../../common/src/tests/tests_setup.h"
 #include "../main/game/match.h"
+#include "../main/events/event_building.h"
 #include <cmath>
 #include "client_mock.h"
 
@@ -107,24 +108,17 @@ int static can_move_up_player() {
   map.add_spawn_point(Point(100, 100));
 
   Match match(map);
-  Ray angled_player_position = Ray(Point(100, 100), 3 * M_PI / 2);
-  match.add_player(angled_player_position.get_angle());
+  match.add_player(3 * M_PI / 2);
 
   // CLIENT MOCK
-  Point next_position = next_position_up(angled_player_position.get_origin(),
-                                         Angle(angled_player_position.get_angle()));
-  PointData point = {.x = next_position.getX(), .y = next_position.getY()};
-  packet_t event = {.type = MOVE_PACKET,
-      .player_id = 1,
-      .data = {.point = point}};
+  packet_t event = build_move_packet(1, UP);
 
   match.enqueue_event(event);
   match.start();
   packet_t result = match.dequeue_result(1);
 
   if (result.type == MOVE_PACKET && result.player_id == 1
-      && result.data.point.x == 100
-      && result.data.point.y == 101)
+      && result.data.direction == UP)
     return NO_ERROR;
 
   return ERROR;
@@ -139,39 +133,25 @@ int static can_move_up_player_two_times() {
   map.add_spawn_point(Point(100, 100));
 
   Match match(map);
-  Ray angled_player_position = Ray(Point(100, 100), 3 * M_PI / 2);
-  match.add_player(angled_player_position.get_angle());
+  match.add_player(3 * M_PI / 2);
 
   // CLIENT MOCK
-  Point position_1 = next_position_up(angled_player_position.get_origin(),
-                                      Angle(angled_player_position.get_angle()));
-  PointData point_1 = {.x = position_1.getX(), .y = position_1.getY()};
-  packet_t event_1 = {.type = MOVE_PACKET,
-      .player_id = 1,
-      .data = {.point = point_1}};
+  packet_t event = build_move_packet(1, UP);
 
-  match.enqueue_event(event_1);
+  match.enqueue_event(event);
+  match.enqueue_event(event);
 
-  Point position_2 = next_position_up(position_1, Angle(3 * M_PI / 2));
-  PointData point_2 = {.x = position_2.getX(), .y = position_2.getY()};
-  packet_t event_2 = {.type = MOVE_PACKET,
-      .player_id = 1,
-      .data = {.point = point_2}};
-
-  match.enqueue_event(event_2);
   match.start();
   packet_t result = match.dequeue_result(1);
 
   if (result.type != MOVE_PACKET || result.player_id != 1
-      || result.data.point.x != 100
-      || result.data.point.y != 101)
+      || result.data.direction != UP)
     return ERROR;
 
   result = match.dequeue_result(1);
 
   if (result.type != MOVE_PACKET || result.player_id != 1
-      || result.data.point.x != 100
-      || result.data.point.y != 102)
+      || result.data.direction != UP)
     return ERROR;
 
   return NO_ERROR;
@@ -187,24 +167,13 @@ int static can_move_up_until_wall() {
 
   Match match(map);
   Ray angled_player_position = Ray(Point(100, 100), 3 * M_PI / 2);
-  match.add_player(angled_player_position.get_angle());
+  match.add_player(3 * M_PI / 2);
 
-  Point position = angled_player_position.get_origin();
-  PointData point = {.x = position.getX(), .y = position.getY()};
-  packet_t event = {.type = MOVE_PACKET,
-      .player_id = 1,
-      .data = {.point = point}};
-
-  for (int i = 0; i < 471; i++) {
-    position = next_position_up(position, Angle(3 * M_PI / 2));
-    point = {.x = position.getX(), .y = position.getY()};
-    event = {.type = MOVE_PACKET, .player_id = 1, .data = {.point = point}};
-
+  packet_t event;
+  for (int i = 0; i < 571; i++) {
+    event = build_move_packet(1, UP);
     match.enqueue_event(event);
   }
-
-  for (int i = 0; i < 100; i++)
-    match.enqueue_event(event);
 
   match.start();
 
@@ -212,13 +181,13 @@ int static can_move_up_until_wall() {
 
   for (int i = 101; i < 571; i++) {
     result = match.dequeue_result(1);
-    if (result.data.point.y != i)
+    if (result.data.direction != UP)
       return ERROR;
   }
 
   for (int i = 0; i < 100; i++) {
     result = match.dequeue_result(1);
-    if (result.data.point.y != 570)
+    if (result.data.direction != INVALID)
       return ERROR;
   }
 
@@ -236,16 +205,10 @@ int static grabs_medic_kit_and_restores_all_health() {
   map.add_medic_kit(Point(100, 101));
 
   Match match(map);
-  Ray angled_player_position = Ray(Point(100, 100), 3 * M_PI / 2);
-  match.add_player(angled_player_position.get_angle());
+  match.add_player(3 * M_PI / 2);
 
   // CLIENT MOCK
-  Point next_position = next_position_up(angled_player_position.get_origin(),
-                                         Angle(angled_player_position.get_angle()));
-  PointData point = {.x = next_position.getX(), .y = next_position.getY()};
-  packet_t event = {.type = MOVE_PACKET,
-      .player_id = 2,
-      .data = {.point = point}};
+  packet_t event = build_move_packet(2, UP);
 
   match.enqueue_event(event);
 
@@ -277,16 +240,10 @@ int static grabs_medic_kit_and_restores_health_correctly() {
   map.add_medic_kit(Point(100, 101));
 
   Match match(map);
-  Ray angled_player_position = Ray(Point(100, 100), 3 * M_PI / 2);
-  match.add_player(angled_player_position.get_angle());
+  match.add_player(3 * M_PI / 2);
 
   // CLIENT MOCK
-  Point next_position = next_position_up(angled_player_position.get_origin(),
-                                         Angle(angled_player_position.get_angle()));
-  PointData point = {.x = next_position.getX(), .y = next_position.getY()};
-  packet_t event = {.type = MOVE_PACKET,
-      .player_id = 2,
-      .data = {.point = point}};
+  packet_t event = build_move_packet(2, UP);
 
   match.get_player(2).receive_damage(30);
 
@@ -318,26 +275,13 @@ int static walks_two_times_and_grabs_medic_kit() {
   map.add_medic_kit(Point(100, 102));
 
   Match match(map);
-  Ray angled_player_position = Ray(Point(100, 100), 3 * M_PI / 2);
-  match.add_player(angled_player_position.get_angle());
+  match.add_player(3 * M_PI / 2);
 
   // CLIENT MOCK
-  Point position_1 = next_position_up(angled_player_position.get_origin(),
-                                      Angle(angled_player_position.get_angle()));
-  PointData point_1 = {.x = position_1.getX(), .y = position_1.getY()};
-  packet_t event_1 = {.type = MOVE_PACKET,
-      .player_id = 2,
-      .data = {.point = point_1}};
+  packet_t event = build_move_packet(2, UP);
 
-  match.enqueue_event(event_1);
-
-  Point position_2 = next_position_up(position_1, Angle(3 * M_PI / 2));
-  PointData point_2 = {.x = position_2.getX(), .y = position_2.getY()};
-  packet_t event_2 = {.type = MOVE_PACKET,
-      .player_id = 2,
-      .data = {.point = point_2}};
-
-  match.enqueue_event(event_2);
+  match.enqueue_event(event);
+  match.enqueue_event(event);
 
   match.get_player(2).receive_damage(30);
 
@@ -369,29 +313,18 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
   map.add_blood(Point(100, 102));
 
   Match match(map);
-  Ray angled_player_position = Ray(Point(100, 100), 3 * M_PI / 2);
-  match.add_player(angled_player_position.get_angle());
+  match.add_player(3 * M_PI / 2);
 
   // CLIENT MOCK
-  Point position = angled_player_position.get_origin();
-  PointData point = {.x = position.getX(), .y = position.getY()};
-  packet_t event = {.type = MOVE_PACKET,
-      .player_id = 2,
-      .data = {.point = point}};
-
+  packet_t event;
   for (int i = 0; i < 3; i++) {
-    position = next_position_up(position, Angle(3 * M_PI / 2));
-    point = {.x = position.getX(), .y = position.getY()};
-    event = {.type = MOVE_PACKET, .player_id = 2, .data = {.point = point}};
-
+    event = build_move_packet(2, UP);
     match.enqueue_event(event);
   }
 
   match.start();
 
-  position = next_position_down(position, Angle(3 * M_PI / 2));
-  point = {.x = position.getX(), .y = position.getY()};
-  event = {.type = MOVE_PACKET, .player_id = 2, .data = {.point = point}};
+  event = build_move_packet(2, DOWN);
 
   match.enqueue_event(event);
 
@@ -403,7 +336,7 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
   packet_t result = match.dequeue_result(2);
 
   if (result.type != MOVE_PACKET || result.player_id != 2
-      || result.data.point.x != 100 || result.data.point.y != 102) {
+      || result.data.direction != UP) {
     return ERROR;
   }
 
@@ -433,29 +366,16 @@ int static medic_kit_disappears_after_grabbing_it() {
   map.add_medic_kit(Point(100, 101));
 
   Match match(map);
-  Ray angled_player_position = Ray(Point(100, 100), 3 * M_PI / 2);
-  match.add_player(angled_player_position.get_angle());
+  match.add_player(3 * M_PI / 2);
 
   // CLIENT MOCK
-  Point position = angled_player_position.get_origin();
-  PointData point = {.x = position.getX(), .y = position.getY()};
-  packet_t event = {.type = MOVE_PACKET,
-      .player_id = 2,
-      .data = {.point = point}};
-
+  packet_t event;
   for (int i = 0; i < 2; i++) {
-    position = next_position_up(position, Angle(3 * M_PI / 2));
-    point = {.x = position.getX(), .y = position.getY()};
-    event = {.type = MOVE_PACKET,
-        .player_id = 2,
-        .data = {.point = point}};
-
+    event = build_move_packet(2, UP);
     match.enqueue_event(event);
   }
 
-  position = next_position_down(position, Angle(3 * M_PI / 2));
-  point = {.x = position.getX(), .y = position.getY()};
-  event = {.type = MOVE_PACKET, .player_id = 2, .data = {.point = point}};
+  event = build_move_packet(2, DOWN);
 
   match.enqueue_event(event);
 
@@ -477,7 +397,7 @@ int static medic_kit_disappears_after_grabbing_it() {
   result = match.dequeue_result(2);
 
   if (result.type != MOVE_PACKET || result.player_id != 2
-      || result.data.point.x != 100 || result.data.point.y != 101) {
+      || result.data.direction != DOWN) {
     return ERROR;
   }
 
@@ -500,17 +420,11 @@ int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified() {
   map.add_medic_kit(Point(100, 101));
 
   Match match(map);
-  Ray angled_player_position = Ray(Point(100, 100), 3 * M_PI / 2);
-  match.add_player(angled_player_position.get_angle());
+  match.add_player(3 * M_PI / 2);
   match.add_player(M_PI / 2);
 
   // CLIENT MOCK
-  Point next_position = next_position_up(angled_player_position.get_origin(),
-                                         Angle(angled_player_position.get_angle()));
-  PointData point = {.x = next_position.getX(), .y = next_position.getY()};
-  packet_t event = {.type = MOVE_PACKET,
-      .player_id = 2,
-      .data = {.point = point}};
+  packet_t event = build_move_packet(2, UP);
 
   match.enqueue_event(event);
 
@@ -535,12 +449,12 @@ int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified() {
   result_2 = match.dequeue_result(3);
 
   if (result_1.type != MOVE_PACKET || result_1.player_id != 2
-      || result_1.data.point.x != 100 || result_1.data.point.y != 101) {
+      || result_1.data.direction != UP) {
     return ERROR;
   }
 
   if (result_2.type != MOVE_PACKET || result_2.player_id != 2
-      || result_2.data.point.x != 100 || result_2.data.point.y != 101) {
+      || result_2.data.direction != UP) {
     return ERROR;
   }
 
@@ -565,10 +479,7 @@ int static player_shoots_enemy() {
   match.add_player(M_PI / 3);
 
   // CLIENT MOCK
-  ShootData shot = {.damage_done = 10, .enemy_shot = 2, .bullets_shot = 2};
-  packet_t event = {.type = SHOT_HIT_PACKET,
-      .player_id = 1,
-      .data = {.shot = shot}};
+  packet_t event = build_damage_packet(1, 10, 2);
 
   match.enqueue_event(event);
 
@@ -576,11 +487,8 @@ int static player_shoots_enemy() {
 
   packet_t result = match.dequeue_result(2);
 
-  if (result.type != DAMAGE_PACKET || result.player_id != 2
-      || result.data.damage != 10)
-    return ERROR;
-
-  if (match.get_player(1).get_bullets() != CL::player_bullets - 2)
+  if (result.type != DAMAGE_PACKET || result.player_id != 1
+      || result.data.shot.damage_done != 10 || result.data.shot.enemy_shot != 2)
     return ERROR;
 
   if (match.get_player(2).get_health() != CL::player_health - 10)
@@ -601,15 +509,14 @@ int static player_shoots_nobody() {
   match.add_player(M_PI / 2);
 
   // CLIENT MOCK
-  packet_t event = {.type = SHOT_MISS_PACKET,
-      .player_id = 1,
-      .data = {.bullets_shot = 2}};
+  packet_t event = build_damage_packet(1, 0, -1);
 
   match.enqueue_event(event);
 
   match.start();
 
-  if (match.get_player(1).get_bullets() != CL::player_bullets - 2)
+  if (match.get_player(1).get_bullets()
+      != CL::player_bullets - CL::pistol_bullet_required)
     return ERROR;
 
   return NO_ERROR;
@@ -631,10 +538,7 @@ int static player_shoots_enemy_over_blood_and_grabs_it() {
   match.add_player(M_PI / 3);
 
   // CLIENT MOCK
-  ShootData shot = {.damage_done = 30, .enemy_shot = 3, .bullets_shot = 2};
-  packet_t event = {.type = SHOT_HIT_PACKET,
-      .player_id = 2,
-      .data = {.shot = shot}};
+  packet_t event = build_damage_packet(2, 30, 3);
 
   match.enqueue_event(event);
 
@@ -642,8 +546,8 @@ int static player_shoots_enemy_over_blood_and_grabs_it() {
 
   packet_t result = match.dequeue_result(3);
 
-  if (result.type != DAMAGE_PACKET || result.player_id != 3
-      || result.data.damage != 30)
+  if (result.type != DAMAGE_PACKET || result.player_id != 2
+      || result.data.shot.damage_done != 30 || result.data.shot.enemy_shot != 3)
     return ERROR;
 
   result = match.dequeue_result(3);
@@ -652,13 +556,11 @@ int static player_shoots_enemy_over_blood_and_grabs_it() {
       || result.data.item != 1)
     return ERROR;
 
+  match.dequeue_result(2);
   result = match.dequeue_result(2);
 
   if (result.type != GRAB_PACKET || result.player_id != 3
       || result.data.item != 1)
-    return ERROR;
-
-  if (match.get_player(2).get_bullets() != CL::player_bullets - 2)
     return ERROR;
 
   if (match.get_player(3).get_health()
@@ -681,11 +583,10 @@ int static player_with_max_bullets_shoots_and_grabs_bullets() {
   Match match(map);
   match.add_player(M_PI / 2);
   match.get_player(2).add_bullets(CL::player_max_bullets);
+  match.get_player(2).change_gun(KNIFE_ID);
 
   // CLIENT MOCK
-  packet_t event = {.type = SHOT_MISS_PACKET,
-      .player_id = 2,
-      .data = {.bullets_shot = 0}};
+  packet_t event = build_damage_packet(2, 0, -1);
 
   match.enqueue_event(event);
 
@@ -694,9 +595,9 @@ int static player_with_max_bullets_shoots_and_grabs_bullets() {
   if (match.has_result_events_left(2))
     return ERROR;
 
-  event = {.type = SHOT_MISS_PACKET,
-      .player_id = 2,
-      .data = {.bullets_shot = 5}};
+  match.get_player(2).change_gun(PISTOL_ID);
+
+  event = build_damage_packet(2, 0, -1);
 
   match.enqueue_event(event);
 
@@ -709,8 +610,8 @@ int static player_with_max_bullets_shoots_and_grabs_bullets() {
     return ERROR;
 
   if (match.get_player(2).get_bullets()
-      != CL::player_max_bullets - event.data.bullets_shot
-          + 5) //TODO Use configloader
+      != CL::player_max_bullets - CL::pistol_bullet_required
+          + CL::bullets_amount)
     return ERROR;
 
   return NO_ERROR;
@@ -732,9 +633,7 @@ int static player_changes_gun() {
   match.get_player(1).add_gun(3);
 
   // CLIENT MOCK
-  packet_t event = {.type = CHANGE_GUN_PACKET,
-      .player_id = 1,
-      .data = {.gun = 3}};
+  packet_t event = build_change_gun_packet(1, 3);
 
   match.enqueue_event(event);
 
@@ -802,12 +701,7 @@ int static player_kills_enemy_and_it_respawns() {
   match.add_player(M_PI / 3);
 
   // CLIENT MOCK
-  ShootData shot = {.damage_done = CL::player_health + 10.0,
-      .enemy_shot = 2,
-      .bullets_shot = 1};
-  packet_t event = {.type = SHOT_HIT_PACKET,
-      .player_id = 1,
-      .data = {.shot = shot}};
+  packet_t event = build_damage_packet(1, CL::player_health + 10.0, 2);
 
   match.enqueue_event(event);
 
@@ -815,14 +709,16 @@ int static player_kills_enemy_and_it_respawns() {
 
   packet_t result = match.dequeue_result(2);
 
-  if (result.type != KILL_PACKET || result.player_id != 2
-      || result.data.killer != 1)
+  if (result.type != DAMAGE_PACKET || result.player_id != 1
+      || result.data.shot.damage_done != CL::player_health + 10.0
+      || result.data.shot.enemy_shot != 2)
     return ERROR;
 
   result = match.dequeue_result(1);
 
-  if (result.type != KILL_PACKET || result.player_id != 2
-      || result.data.killer != 1)
+  if (result.type != DAMAGE_PACKET || result.player_id != 1
+      || result.data.shot.damage_done != CL::player_health + 10.0
+      || result.data.shot.enemy_shot != 2)
     return ERROR;
 
   if (match.get_player(2).get_position() != Point(200, 200))
@@ -842,29 +738,18 @@ int static player_kills_enemy_and_it_is_no_longer_in_the_map() {
 
   Match match(map);
   match.add_player(3 * M_PI / 2);
+  match.get_player(1).add_bullets(CL::player_max_bullets);
   match.add_player(M_PI / 3);
 
   // CLIENT MOCK
-  ShootData shot;
   packet_t event;
   for (int i = 0; i < CL::player_lives; i++) {
-    shot = {.damage_done = CL::player_health
-        + 10.0, .enemy_shot = 2,
-        .bullets_shot = 1};
-    event = {.type = SHOT_HIT_PACKET, .player_id = 1, .data = {.shot = shot}};
-
+    event = build_damage_packet(1, CL::player_health + 10.0, 2);
     match.enqueue_event(event);
   }
 
-  Ray angled_player_position = Ray(Point(100, 100), 3 * M_PI / 2);
-  Point position = angled_player_position.get_origin();
-
-  PointData point;
   for (int i = 0; i < 20; i++) {
-    position = next_position_up(position, Angle(3 * M_PI / 2));
-    point = {.x = position.getX(), .y = position.getY()};
-    event = {.type = MOVE_PACKET, .player_id = 1, .data = {.point = point}};
-
+    event = build_move_packet(1, UP);
     match.enqueue_event(event);
   }
 
@@ -889,11 +774,7 @@ int static player_grabs_gun_correctly() {
   match.add_player(M_PI / 2);
 
   // CLIENT MOCK;
-  Point next_position = next_position_up(Point(100, 100), Angle(M_PI / 2));
-  PointData point = {.x = next_position.getX(), .y = next_position.getY()};
-  packet_t event = {.type = MOVE_PACKET,
-      .player_id = 2,
-      .data = {.point = point}};
+  packet_t event = build_move_packet(2, UP);
 
   match.enqueue_event(event);
 
@@ -925,11 +806,7 @@ int static player_cannot_grab_gun() {
   match.get_player(2).add_gun(MACHINE_GUN_ID);
 
   // CLIENT MOCK;
-  Point next_position = next_position_up(Point(100, 100), Angle(M_PI / 2));
-  PointData point = {.x = next_position.getX(), .y = next_position.getY()};
-  packet_t event = {.type = MOVE_PACKET,
-      .player_id = 2,
-      .data = {.point = point}};
+  packet_t event = build_move_packet(2, UP);
 
   match.enqueue_event(event);
 
@@ -938,7 +815,7 @@ int static player_cannot_grab_gun() {
   packet_t result = match.dequeue_result(2);
 
   if (result.type != MOVE_PACKET || result.player_id != 2
-      || result.data.point.x != 100 || result.data.point.y != 99)
+      || result.data.direction != UP)
     return ERROR;
 
   if (match.has_result_events_left(2))
@@ -969,40 +846,22 @@ int static player_kills_enemy_and_grabs_drop() {
   match.get_player(2).change_gun(MACHINE_GUN_ID);
 
   // CLIENT MOCK
-  ShootData shot = {.damage_done = CL::player_health + 10.0,
-      .enemy_shot = 2,
-      .bullets_shot = 5};
-  packet_t event = {.type = SHOT_HIT_PACKET,
-      .player_id = 1,
-      .data = {.shot = shot}};
+  packet_t event = build_damage_packet(1, CL::player_health + 10.0, 2);
 
   match.enqueue_event(event);
 
-  Ray angled_player_position = Ray(Point(100, 100), 3 * M_PI / 2);
-  Point position = angled_player_position.get_origin();
-
-  PointData point;
   for (int i = 0; i < 10; i++) {
-    position = next_position_up(position, Angle(3 * M_PI / 2));
-    point = {.x = position.getX(), .y = position.getY()};
-    event = {.type = MOVE_PACKET, .player_id = 1, .data = {.point = point}};
-
+    event = build_move_packet(1, UP);
     match.enqueue_event(event);
   }
 
   for (int i = 0; i < 5; i++) {
-    position = next_position_left(position, Angle(3 * M_PI / 2));
-    point = {.x = position.getX(), .y = position.getY()};
-    event = {.type = MOVE_PACKET, .player_id = 1, .data = {.point = point}};
-
+    event = build_move_packet(1, LEFT);
     match.enqueue_event(event);
   }
 
   for (int i = 0; i < 10; i++) {
-    position = next_position_right(position, Angle(3 * M_PI / 2));
-    point = {.x = position.getX(), .y = position.getY()};
-    event = {.type = MOVE_PACKET, .player_id = 1, .data = {.point = point}};
-
+    event = build_move_packet(1, RIGHT);
     match.enqueue_event(event);
   }
 
@@ -1020,7 +879,8 @@ int static player_kills_enemy_and_grabs_drop() {
     return ERROR;
 
   if (match.get_player(1).has_keys() && match.get_player(1).get_bullets()
-      == CL::player_bullets - 5 + CL::bullets_respawn_amount
+      == CL::player_bullets - CL::pistol_bullet_required
+          + CL::bullets_respawn_amount
       && match.get_player(1).has_gun(MACHINE_GUN_ID))
     return NO_ERROR;
 
@@ -1039,18 +899,12 @@ int static player_grabs_point_items() {
   map.add_crown(Point(100, 110));
 
   Match match(map);
-  Ray angled_player_position = Ray(Point(100, 100), 3 * M_PI / 2);
-  match.add_player(angled_player_position.get_angle());
+  match.add_player(3 * M_PI / 2);
 
   // CLIENT MOCK
-  Point position = angled_player_position.get_origin();
-  PointData point;
   packet_t event;
   for (int i = 0; i < 20; i++) {
-    position = next_position_up(position, Angle(3 * M_PI / 2));
-    point = {.x = position.getX(), .y = position.getY()};
-    event = {.type = MOVE_PACKET, .player_id = 3, .data = {.point = point}};
-
+    event = build_move_packet(3, UP);
     match.enqueue_event(event);
   }
 
