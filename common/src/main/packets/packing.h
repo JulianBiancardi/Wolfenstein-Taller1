@@ -40,9 +40,9 @@ long long int unpacki64(unsigned char* buf);
 unsigned long long int unpacku64(unsigned char* buf);
 
 /* Pack data as indicated by the format into the buffer */
-size_t pack(unsigned char* buf, char* format, ...);
+size_t pack(unsigned char* buf, const char* format, ...);
 
 /* Unpack data as indicated by the format from a char buffer */
-void unpack(unsigned char* buf, char* format, ...);
+void unpack(unsigned char* buf, const char* format, ...);
 
 #endif

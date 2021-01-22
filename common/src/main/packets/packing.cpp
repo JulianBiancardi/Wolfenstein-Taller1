@@ -6,7 +6,7 @@
 void packi8(unsigned char* buf, unsigned char i) { *buf++ = i; }
 
 char unpacki8(unsigned char* buf) {
-  unsigned char u = unpacki8(buf);
+  unsigned char u = unpacku8(buf);
   char i;
 
   // Change sign if necessary using two's complement
@@ -105,7 +105,7 @@ unsigned long long int unpacku64(unsigned char* buf) {
          ((unsigned long long int)buf[6] << 8) | buf[7];
 }
 
-size_t pack(unsigned char* buf, char* format, ...) {
+size_t pack(unsigned char* buf, const char* format, ...) {
   // 8-bit
   signed char c;
   unsigned char C;
@@ -200,7 +200,7 @@ size_t pack(unsigned char* buf, char* format, ...) {
   return size;
 }
 
-void unpack(unsigned char* buf, char* format, ...) {
+void unpack(unsigned char* buf, const char* format, ...) {
   // 8-bit
   signed char* c;
   unsigned char* C;
