@@ -8,6 +8,7 @@ ChangeGunHandler::ChangeGunHandler(Player& who, int gun)
 void ChangeGunHandler::handle(Match& match, CollisionChecker& checker) {
   who.change_gun(gun);
 
-  match.enqueue_result_for_all_others(build_change_gun_event(who.get_id(), gun),
+  match.enqueue_result_for_all_others(build_change_gun_packet
+                                          (who.get_id(), gun),
                                       who.get_id());
 }

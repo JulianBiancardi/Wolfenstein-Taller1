@@ -1,6 +1,8 @@
 #ifndef PACKET_H
 #define PACKET_H
 
+#define INVALID_ID -1
+
 // Packets type:
 #define MOVE_PACKET 1
 #define ROTATE_PACKET 2

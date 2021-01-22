@@ -35,12 +35,11 @@ class Player : public Moveable {
   bool has_gun(int gun_id);
   bool has_droppable_gun();
   void change_gun(int gun_id);
-  void shoot(Player& enemy_shot, double damage_done, int bullets_shot);
+  void shoot();
   void add_bullets(int amount);
   void add_points(int amount);
   void add_health(int amount);
   void add_key();
-  void decrease_bullets(int amount);
   bool is_full_health();
   bool is_full_bullets();
   bool is_dead();
