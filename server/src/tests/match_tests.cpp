@@ -218,6 +218,12 @@ int static grabs_medic_kit_and_restores_all_health() {
 
   packet_t result = match.dequeue_result(2);
 
+  if (result.type != MOVE_PACKET || result.player_id != 2
+      || result.data.direction != UP)
+    return ERROR;
+
+  result = match.dequeue_result(2);
+
   if (result.type != GRAB_PACKET || result.player_id != 2
       || result.data.item != 1)
     return ERROR;
@@ -250,6 +256,7 @@ int static grabs_medic_kit_and_restores_health_correctly() {
   match.enqueue_event(event);
   match.start();
 
+  match.dequeue_result(2);
   packet_t result = match.dequeue_result(2);
 
   if (result.type != GRAB_PACKET || result.player_id != 2
@@ -287,6 +294,7 @@ int static walks_two_times_and_grabs_medic_kit() {
 
   match.start();
 
+  match.dequeue_result(2);
   match.dequeue_result(2);
   packet_t result = match.dequeue_result(2);
 
@@ -332,6 +340,7 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
 
   match.start();
 
+  match.dequeue_result(2);
   match.dequeue_result(2);
   packet_t result = match.dequeue_result(2);
 
@@ -383,6 +392,7 @@ int static medic_kit_disappears_after_grabbing_it() {
 
   match.start();
 
+  match.dequeue_result(2);
   packet_t result = match.dequeue_result(2);
 
   if (result.type != GRAB_PACKET || result.player_id != 2
@@ -390,10 +400,7 @@ int static medic_kit_disappears_after_grabbing_it() {
     return ERROR;
   }
 
-  for (int i = 0; i < 2; i++) {
-    match.dequeue_result(2);
-  }
-
+  match.dequeue_result(2);
   result = match.dequeue_result(2);
 
   if (result.type != MOVE_PACKET || result.player_id != 2
@@ -435,19 +442,6 @@ int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified() {
   packet_t result_1 = match.dequeue_result(2);
   packet_t result_2 = match.dequeue_result(3);
 
-  if (result_1.type != GRAB_PACKET || result_1.player_id != 2
-      || result_1.data.item != 1) {
-    return ERROR;
-  }
-
-  if (result_2.type != GRAB_PACKET || result_2.player_id != 2
-      || result_2.data.item != 1) {
-    return ERROR;
-  }
-
-  result_1 = match.dequeue_result(2);
-  result_2 = match.dequeue_result(3);
-
   if (result_1.type != MOVE_PACKET || result_1.player_id != 2
       || result_1.data.direction != UP) {
     return ERROR;
@@ -455,6 +449,19 @@ int static one_player_moves_and_grabs_medic_kit_and_all_players_are_notified() {
 
   if (result_2.type != MOVE_PACKET || result_2.player_id != 2
       || result_2.data.direction != UP) {
+    return ERROR;
+  }
+
+  result_1 = match.dequeue_result(2);
+  result_2 = match.dequeue_result(3);
+
+  if (result_1.type != GRAB_PACKET || result_1.player_id != 2
+      || result_1.data.item != 1) {
+    return ERROR;
+  }
+
+  if (result_2.type != GRAB_PACKET || result_2.player_id != 2
+      || result_2.data.item != 1) {
     return ERROR;
   }
 
@@ -780,6 +787,7 @@ int static player_grabs_gun_correctly() {
 
   match.start();
 
+  match.dequeue_result(2);
   packet_t result = match.dequeue_result(2);
 
   if (result.type != GRAB_PACKET || result.player_id != 2
