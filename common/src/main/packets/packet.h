@@ -9,7 +9,7 @@
 #define DAMAGE_PACKET 5
 #define CHANGE_GUN_PACKET 6
 #define KILL_PACKET 7
-#define RESPAWNED_PACKET 8 // Used to solve bug (ask me which)
+#define RESPAWNED_PACKET 8  // Used to solve bug (ask me which)
 #define GAME_OVER_PACKET 9
 
 // Gun type:
@@ -34,14 +34,35 @@ typedef struct packet {
   int type;
   int player_id;
   union data {
-    PointData point;  // MOVE
-    int item;         // GRAB
-    ShootData shot;   // SHOT HIT
-    double damage;    // DAMAGE
-    int gun;    // CHANGE GUN
-    int bullets_shot; // SHOT MISS
-    int killer; // KILL
+    PointData point;   // MOVE
+    int item;          // GRAB
+    ShootData shot;    // SHOT HIT
+    double damage;     // DAMAGE
+    int gun;           // CHANGE GUN
+    int bullets_shot;  // SHOT MISS
+    int killer;        // KILL
   } data;
 } __attribute__((packed)) packet_t;
+
+class Packet {
+ private:
+  size_t size;
+  unsigned char type;
+  unsigned char* packet;
+
+ public:
+  explicit Packet(size_t size, unsigned char* packet);
+
+  ~Packet();
+
+  /* Returns the size of the packet */
+  size_t get_size();
+
+  /* Returns the type of the packet */
+  unsigned char get_type();
+
+  /* Returns the packet */
+  unsigned char* get_packet();
+};
 
 #endif
