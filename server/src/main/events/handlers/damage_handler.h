@@ -9,6 +9,9 @@ class DamageHandler : public EventHandler {
   Player* enemy_shot;
   int damage_done;
 
+  bool shot_hits_enemy();
+  void damage_enemy(Match& match, CollisionChecker& checker);
+
  public:
   DamageHandler(Player& who, Player* enemy, int damage);
 

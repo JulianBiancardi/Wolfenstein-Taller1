@@ -10,8 +10,8 @@ void MoveHandler::handle(Match& match, CollisionChecker& checker) {
 
   if (checker.can_move(where, who)) {
     who.set_position(where);
-    consequence_grab_event(match, checker, who);
     match.enqueue_result_for_all(build_move_packet(who.get_id(), direction));
+    consequence_grab_event(match, checker, who);
   } else {
     match.enqueue_result_for_all(build_move_packet(who.get_id(), INVALID));
   }
