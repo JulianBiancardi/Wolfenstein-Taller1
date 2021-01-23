@@ -11,7 +11,7 @@ void EventHandler::consequence_grab_event(Match& match,
     grabbed->use(who);
     int item_id = grabbed->get_id();
     int player_id = who.get_id();
-    match.enqueue_result_for_all(build_grab_event(player_id, item_id));
+    match.enqueue_result_for_all(build_grab_packet(player_id, item_id));
     delete grabbed;
     match.get_map().get_items().erase(item_id);
   } catch (...) {} //TODO Use custom exception

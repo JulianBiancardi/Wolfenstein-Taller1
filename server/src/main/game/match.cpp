@@ -67,7 +67,7 @@ void Match::eliminate_player(int id) {
   result_events.erase(id); // TODO CHECK THIS! Should problably enqueue kill socket event to notify thread
 
   if (players.size() == 1)
-    events_to_process.enqueue(build_game_over_event());
+    events_to_process.enqueue(build_game_over_packet());
 }
 
 void Match::end() { keep_running = false; }

@@ -24,57 +24,49 @@ int static player_kills_are_correct();
 int static player_respawns_correctly();
 
 void move_up(Player& who, CollisionChecker& checker) {
-  Point next_position =
-      next_position_up(who.get_position(), Angle(who.get_angle()));
+  Point next_position = who.next_position(UP);
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
 
 void move_down(Player& who, CollisionChecker& checker) {
-  Point next_position =
-      next_position_down(who.get_position(), Angle(who.get_angle()));
+  Point next_position = who.next_position(DOWN);
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
 
 void move_right(Player& who, CollisionChecker& checker) {
-  Point next_position =
-      next_position_right(who.get_position(), Angle(who.get_angle()));
+  Point next_position = who.next_position(RIGHT);
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
 
 void move_left(Player& who, CollisionChecker& checker) {
-  Point next_position =
-      next_position_left(who.get_position(), Angle(who.get_angle()));
+  Point next_position = who.next_position(LEFT);
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
 
 void move_up_right(Player& who, CollisionChecker& checker) {
-  Point next_position =
-      next_position_up_right(who.get_position(), Angle(who.get_angle()));
+  Point next_position = who.next_position(UP_RIGHT);
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
 
 void move_up_left(Player& who, CollisionChecker& checker) {
-  Point next_position =
-      next_position_up_left(who.get_position(), Angle(who.get_angle()));
+  Point next_position = who.next_position(UP_LEFT);
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
 
 void move_down_right(Player& who, CollisionChecker& checker) {
-  Point next_position =
-      next_position_down_right(who.get_position(), Angle(who.get_angle()));
+  Point next_position = who.next_position(DOWN_RIGHT);
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }
 
 void move_down_left(Player& who, CollisionChecker& checker) {
-  Point next_position =
-      next_position_down_left(who.get_position(), Angle(who.get_angle()));
+  Point next_position = who.next_position(DOWN_LEFT);
   if (checker.can_move(next_position, who))
     who.set_position(next_position);
 }

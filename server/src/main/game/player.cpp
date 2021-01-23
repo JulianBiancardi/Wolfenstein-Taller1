@@ -64,9 +64,28 @@ void Player::change_gun(int gun_id) {
     active_gun = gun_id;
 }
 
-void Player::shoot(Player& enemy_shot, double damage_done, int bullets_shot) {
-  enemy_shot.receive_damage(damage_done);
-  this->decrease_bullets(bullets_shot);
+// PRECONDITION: Keeping the amount of bullets a valid amount is responsibility
+// of the client (shooting logic is in the client).
+void Player::shoot() {
+  int bullets_shot;
+
+  // TODO Try to optimize when testing
+  switch (active_gun) {
+    case KNIFE_ID: bullets_shot = 0;
+      break;
+    case PISTOL_ID: bullets_shot = CL::pistol_bullet_required;
+      break;
+    case MACHINE_GUN_ID: bullets_shot = CL::machine_gun_bullet_required;
+      break;
+    case CHAIN_CANNON_ID: bullets_shot = CL::chain_cannon_bullet_required;
+      break;
+    case ROCKET_LAUNCHER_ID: bullets_shot = CL::rocket_launcher_bullet_required;
+      break;
+    default: bullets_shot = 0;
+  }
+
+  bullets -= bullets_shot;
+  shot_bullets += bullets_shot;
 }
 
 void Player::add_bullets(int amount) {
@@ -89,20 +108,13 @@ void Player::add_health(int amount) {
 
 void Player::add_key() { keys++; }
 
-// PRECONDITION: Keeping the amount of bullets a valid amount is responsibility
-// of the client (shooting logic is in the client).
-void Player::decrease_bullets(int amount) {
-  bullets -= amount;
-  shot_bullets += amount;
-}
-
 bool Player::is_full_health() { return health == max_health; }
 
 bool Player::is_full_bullets() { return bullets == max_bullets; }
 
 bool Player::is_dead() { return health == 0; }
 
-bool Player::has_lives_left() { return lives != 0; }
+bool Player::has_lives_left() { return lives != 1; }
 
 bool Player::has_keys() { return keys != 0; }
 

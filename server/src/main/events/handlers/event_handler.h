@@ -9,6 +9,8 @@ class Match;
 class EventHandler {
  public:
   virtual void handle(Match& match, CollisionChecker& checker) = 0;
+
+ protected:
   void consequence_grab_event(Match& match, CollisionChecker& checker,
                               Player& who);  // Possibly not necessary
 };
