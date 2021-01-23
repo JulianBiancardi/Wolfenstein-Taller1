@@ -10,7 +10,7 @@ class ClientManager {
  private:
   int static next_id;
   std::unordered_map<int, Client> clients;
-  BlockingQueue<packet_t> reception_queue;
+  BlockingQueue<Packet> reception_queue;
 
  public:
   ClientManager();
@@ -23,13 +23,13 @@ class ClientManager {
   void clear();
 
   /* Sends a message to a client */
-  void send_to(int id, packet_t& packet);
+  void send_to(int id, Packet& packet);
 
   /* Sends a message to all clients */
-  void send_to_all(packet_t& packet);
+  void send_to_all(Packet& packet);
 
   /* Forcibly ends a connection with a client */
-  void end_connection(int id);
+  void end_connection(unsigned int id);
 
   /* Forcibly ends a connection with all clients */
   void end_all_connections();

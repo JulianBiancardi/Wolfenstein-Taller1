@@ -8,13 +8,15 @@
 
 class ReceiveFromClientThread : public Thread {
  private:
+  unsigned int client_id;
   Socket& connected_socket;
   BlockingQueue<Packet>& reception_queue;
   bool allowed_to_run;
   bool running;
 
  public:
-  explicit ReceiveFromClientThread(Socket& connected_socket,
+  explicit ReceiveFromClientThread(unsigned int client_id,
+                                   Socket& connected_socket,
                                    BlockingQueue<Packet>& reception_queue);
   ~ReceiveFromClientThread();
 

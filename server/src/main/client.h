@@ -9,19 +9,19 @@
 
 class Client {
  private:
-  int id;
+  unsigned int id;
   Socket client_socket;
-  BlockingQueue<packet_t> sending_queue;
+  BlockingQueue<Packet> sending_queue;
 
   ReceiveFromClientThread* receiving_thread;
   SendToClientThread* sending_thread;
 
  public:
-  explicit Client(int id, Socket& socket,
-                  BlockingQueue<packet_t>& reception_queue);
+  explicit Client(unsigned int id, Socket& socket,
+                  BlockingQueue<Packet>& reception_queue);
   ~Client();
 
-  void send(packet_t& packet);
+  void send(Packet& packet);
 
   /* Returns true if the Client is still active, false otherwise */
   bool is_active();

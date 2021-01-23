@@ -3,7 +3,8 @@
 
 #include <cstddef>
 
-// Packets type:
+// Packet types
+#define END_OF_CONNECTION 0
 #define MOVE_PACKET 1
 #define GRAB_PACKET 2
 #define SHOT_HIT_PACKET 3
@@ -53,7 +54,10 @@ class Packet {
   unsigned char* data;
 
  public:
+  Packet();
   explicit Packet(size_t size, unsigned char* packet);
+  Packet(Packet&& other);
+  Packet& operator=(Packet&& other);
 
   ~Packet();
 
