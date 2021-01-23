@@ -2,10 +2,14 @@
 
 #include <syslog.h>
 
+#include <cstddef>
+
+#include "../../../../common/src/main/packets/packing.h"
+
 #define END_OF_CONNECTION 0
 
 ReceiveFromClientThread::ReceiveFromClientThread(
-    Socket& connected_socket, BlockingQueue<packet_t>& reception_queue)
+    Socket& connected_socket, BlockingQueue<Packet>& reception_queue)
     : connected_socket(connected_socket),
       reception_queue(reception_queue),
       allowed_to_run(true),
@@ -17,12 +21,16 @@ void ReceiveFromClientThread::run() {
   try {
     running = true;
     while (allowed_to_run) {
-      packet_t packet;
-      connected_socket.receive((char*)&packet, sizeof(packet_t));
-      reception_queue.enqueue(packet);
-      if (packet.type == END_OF_CONNECTION) {
-        break;
+      unsigned char size_buf[2];
+      connected_socket.receive((char*)&size_buf, 1);
+      size_t size = unpacku16(size_buf);
+      unsigned char* buf = new unsigned char[size];
+      connected_socket.receive((char*)buf, size);
+      Packet packet(size, buf);
+      if (packet.get_type() == END_OF_CONNECTION) {
+        allowed_to_run = false;
       }
+      reception_queue.enqueue(packet);
     }
     running = false;
   } catch (const std::exception& e) {
