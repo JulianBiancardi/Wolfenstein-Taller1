@@ -16,6 +16,7 @@ void Server::run_server(std::string& port) {
   AcceptClientsThread accepting_thread(acceptor_socket, client_manager);
   accepting_thread.start();
 
+  
   char code;
   while (true) {
     std::cin >> code;

@@ -52,17 +52,18 @@ typedef struct DamageData {
   int enemy_shot;
 } DamageData;
 
-typedef struct packet {
-  int type;
-  int player_id;
-  union data {
-    int direction;    // MOVE, ROTATE
-    int item;         // GRAB
-    int door_id;      // DOOR
-    int gun;          // CHANGE GUN
-    DamageData shot;  // SHOT HIT
-  } data;
-} __attribute__((packed)) packet_t;
+// typedef struct packet {
+int type;
+int player_id;
+union data {
+  int direction;    // MOVE, ROTATE
+  int item;         // GRAB
+  int door_id;      // DOOR
+  int gun;          // CHANGE GUN
+  DamageData shot;  // SHOT HIT
+} data;
+}
+__attribute__((packed)) packet_t;
 
 class Packet {
  private:

@@ -13,4 +13,4 @@ class MoveHandler : public EventHandler {
   void handle(Match& match, CollisionChecker& checker);
 };
 
-#endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_EVENTS_MOVE_HANDLER_H_
+#endif  // WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_EVENTS_MOVE_HANDLER_H_
