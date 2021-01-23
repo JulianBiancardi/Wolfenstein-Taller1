@@ -2,6 +2,8 @@
 
 #include <utility>
 
+#include "../../../../common/src/main/packets/packing.h"
+
 ClientManager::ClientManager() : reception_queue() {}
 
 ClientManager::~ClientManager() {}
@@ -27,27 +29,19 @@ void ClientManager::clear() {
   clients.swap(clients_kept);
 }
 
-void ClientManager::send_to(int id, packet_t& packet) {
+void ClientManager::send_to(int id, Packet& packet) {
   if (clients.find(id) != clients.end()) {
     clients[id].send(packet);
   }
 }
 
-void ClientManager::send_to_all(packet_t& packet) {
+void ClientManager::send_to_all(Packet& packet) {
   std::unordered_map<int, Client>::iterator iter;
   for (iter = clients.begin(); iter != clients.end(); iter++) {
     (*iter).second.send(packet);
   }
 }
 
-void ClientManager::end_connection(int id) {
-  packet_t end_of_connection_packet;  // TODO Fill with the data
-  send_to(id, end_of_connection_packet);
-  clients.erase(id);
-}
+void ClientManager::end_connection(unsigned int id) { clients.erase(id); }
 
-void ClientManager::end_all_connections() {
-  packet_t end_of_connection_packet;  // TODO Fill with the data
-  send_to_all(end_of_connection_packet);
-  clients.clear();
-}
+void ClientManager::end_all_connections() { clients.clear(); }
