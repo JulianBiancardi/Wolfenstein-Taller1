@@ -8,6 +8,7 @@
 class Moveable : public Object {
  private:
   double pace;
+  double rotation_angle;
 
   Point next_position(double direction_angle);
 
@@ -19,6 +20,7 @@ class Moveable : public Object {
   ~Moveable() {}
 
   Point next_position(int direction);
+  void rotate(int direction);
   Point collision_mask_bound(const Point& next_position);
   bool operator!=(const Moveable& other) const;
   void set_position(const Point& new_origin);

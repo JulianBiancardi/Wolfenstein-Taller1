@@ -40,6 +40,7 @@ class Player : public Moveable {
   void add_points(int amount);
   void add_health(int amount);
   void add_key();
+  void remove_key();
   bool is_full_health();
   bool is_full_bullets();
   bool is_dead();

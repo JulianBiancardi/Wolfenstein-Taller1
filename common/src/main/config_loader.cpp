@@ -11,6 +11,9 @@ int CL::player_mask_radio = CL::yaml_file["player_mask_radio"].as<int>();
 int CL::player_lives = CL::yaml_file["player_lives"].as<int>();
 int CL::player_respawn_bullets =
     CL::yaml_file["player_respawn_bullets"].as<int>();
+double CL::player_pace = CL::yaml_file["player_pace"].as<double>();
+double CL::player_rotation_angle =
+    CL::yaml_file["player_rotation_angle"].as<double>();
 
 // Guns
 int CL::knife_range = CL::yaml_file["knife_range"].as<int>();

@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-bool BoxMask::occupies(Point& where) {
+bool BoxMask::occupies(const Point& where) {
   double delta_x = fabs(where.getX() - center.getX());
   double delta_y = fabs(where.getY() - center.getY());
 

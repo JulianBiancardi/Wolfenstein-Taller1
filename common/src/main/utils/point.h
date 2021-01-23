@@ -25,7 +25,7 @@ class Point {
   double static distance(const Point& point2, const Point& point1);
 
   // Calculates and returns the distance to another point.
-  double distance_from(const Point& other);
+  double distance_from(const Point& other) const;
 
   // Calculates and returns the angle between two points in the plane, using the
   // origin as the pivot.
