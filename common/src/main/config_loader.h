@@ -27,6 +27,8 @@ class ConfigLoader {
   static double player_pace;
   static double player_rotation_angle;
 
+  static int bot_positions_difference_allowed;
+
   static int knife_range;
   static int chain_cannon_bullet_required;
   static int chain_cannon_base_precision;

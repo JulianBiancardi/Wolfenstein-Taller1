@@ -56,3 +56,15 @@ void put_data(Matrix<int>& map_data) {
     }
   }
 }
+
+// TODO Should not be here
+void put_data_on_borders(Matrix<int>& map_data) {
+  for (int j = 0; j < map_data.get_rows(); j++) {
+    for (int i = 0; i < map_data.get_columns(); i++) {
+      if ((j == map_data.get_rows() - 1) || (j == 0) ||
+          (i == map_data.get_columns() - 1) || (i == 0)){
+        map_data(j, i) = WALL;
+      }
+    }
+  }
+}

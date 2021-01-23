@@ -8,16 +8,18 @@
 
 class SendToClientThread : public Thread {
  private:
-  BlockingQueue<packet_t>& events_queue;
+  unsigned int client_id;
+  BlockingQueue<Packet>& events_queue;
   Socket& connected_socket;
   bool allowed_to_run;
   bool running;
 
  public:
-  SendToClientThread(Socket& connected_socket,
-                     BlockingQueue<packet_t>& events_queue);
+  SendToClientThread(unsigned int client_id, Socket& connected_socket,
+                     BlockingQueue<Packet>& events_queue);
   ~SendToClientThread();
 
+  bool is_running();
   void force_stop();
   void run() override;
 };

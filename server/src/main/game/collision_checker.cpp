@@ -13,7 +13,8 @@ CollisionChecker::CollisionChecker(Map& map,
 bool CollisionChecker::collides_players(Point& where) {
   for (auto& player : players) {
     if (player.second != *ignored) {
-      if (player.second.occupies(where)) return true;
+      if ( (player.second.occupies(where))
+          && (!player.second.is_dead()) ) {return true;}
     }
   }
 
@@ -60,4 +61,21 @@ Item* CollisionChecker::grabbed_item(Player& by_whom) {
     }
   }
   throw -1;  // TODO Put some error
+}
+//
+
+int CollisionChecker::get_collides_player_id(Point &where, Player& who) {
+  ignored = &who;
+  Point mask_checking_point = who.collision_mask_bound(where);
+  int id_found = 0;
+  for (auto& player : players) {
+    if (player.second != *ignored) {
+      if ((player.second.occupies(mask_checking_point))
+          && (!player.second.is_dead())) {
+        id_found = player.second.get_id();
+      }
+    }
+  }
+  ignored = nullptr;
+  return id_found;
 }

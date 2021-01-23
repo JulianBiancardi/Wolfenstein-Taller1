@@ -11,6 +11,9 @@ player_respawn_bullets: 8
 player_pace: 1
 player_rotation_angle: 0.1
 
+#Bot
+bot_positions_difference_allowed: 5
+
 #Guns
 knife_range: 2
 

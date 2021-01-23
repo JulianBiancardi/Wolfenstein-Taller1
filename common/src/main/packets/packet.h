@@ -1,6 +1,19 @@
 #ifndef PACKET_H
 #define PACKET_H
 
+#include <cstddef>
+
+// Packet types
+#define END_OF_CONNECTION 0
+#define MOVE_PACKET 1
+#define GRAB_PACKET 2
+#define SHOT_HIT_PACKET 3
+#define SHOT_MISS_PACKET 4
+#define DAMAGE_PACKET 5
+#define CHANGE_GUN_PACKET 6
+#define KILL_PACKET 7
+#define RESPAWNED_PACKET 8  // Used to solve bug (ask me which)
+#define GAME_OVER_PACKET 9
 #define INVALID_ID -1
 
 // Packets type:
@@ -43,12 +56,36 @@ typedef struct packet {
   int type;
   int player_id;
   union data {
-    int direction;   // MOVE, ROTATE
-    int item;        // GRAB
-    int door_id;     // DOOR
-    int gun;         // CHANGE GUN
-    DamageData shot; // SHOT HIT
+    int direction;    // MOVE, ROTATE
+    int item;         // GRAB
+    int door_id;      // DOOR
+    int gun;          // CHANGE GUN
+    DamageData shot;  // SHOT HIT
   } data;
 } __attribute__((packed)) packet_t;
+
+class Packet {
+ private:
+  size_t size;
+  unsigned char type;
+  unsigned char* data;
+
+ public:
+  Packet();
+  explicit Packet(size_t size, unsigned char* packet);
+  Packet(Packet&& other);
+  Packet& operator=(Packet&& other);
+
+  ~Packet();
+
+  /* Returns the size of the packet */
+  size_t get_size();
+
+  /* Returns the type of the packet */
+  unsigned char get_type();
+
+  /* Returns the data of the packet */
+  unsigned char* get_data();
+};
 
 #endif

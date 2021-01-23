@@ -5,24 +5,31 @@ add_subdirectory(../common/third-party/yaml-cpp build) # This is one way of refe
 # CMake project
 
 set(CMAKE_CXX_FLAGS "-DDEBUG -ggdb3 -O0 -g")
-add_definitions("-DDEBUG -ggdb3 -O0 -g")
+add_definitions("-DDEBUG -ggdb3 -O0 -g ")
 
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 
+find_package(Lua REQUIRED)
+
 FILE(GLOB ServerFiles
+	src/main/bot.cpp ##
 	src/main/map.cpp # Should be everything different from main_server.cpp
 	src/main/events/*.cpp
+	src/main/events/handlers/*.cpp
 	src/main/game/*.cpp
 	src/main/game/*/*.cpp
 	src/main/game/*/*/*.cpp
-	src/main/threads/*.cpp)
+
+	#src/main/threads/*.cpp
+		)
 
 FILE(GLOB ServerTestsFiles
 	src/tests/client_mock.cpp
 	src/tests/player_test.cpp
 	src/tests/match_tests.cpp
+	src/tests/bot_test.cpp
 	../common/src/tests/tests_setup.cpp)
 
 FILE(GLOB CommonFiles 
@@ -44,6 +51,8 @@ target_link_libraries(
 		PRIVATE
 		Threads::Threads
 		yaml-cpp
+		lua
+		dl
 )
 
 add_executable(
@@ -59,4 +68,6 @@ target_link_libraries(
 		PRIVATE
 		Threads::Threads
 		yaml-cpp
+		lua
+		dl
 )
