@@ -3,7 +3,8 @@
 #include "data_structures_tests/protected_queue_tests.h"
 #include "mask_tests/box_mask_tests.h"
 #include "mask_tests/circle_mask_tests.h"
-#include "packing_tests/packing_tests.h"
+#include "packet_tests/packet_tests.h"
+#include "packet_tests/packing_tests.h"
 #include "utils_tests/angle_tests.h"
 #include "utils_tests/matrix_tests.h"
 #include "utils_tests/point_tests.h"
@@ -21,5 +22,6 @@ int main(int argc, char **argv) {
   circle_mask_tests();
   box_mask_tests();
   packing_tests();
+  packet_tests();
   return 0;
 }

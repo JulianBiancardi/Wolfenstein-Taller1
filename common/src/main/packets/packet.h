@@ -1,6 +1,8 @@
 #ifndef PACKET_H
 #define PACKET_H
 
+#include <cstddef>
+
 // Packets type:
 #define MOVE_PACKET 1
 #define GRAB_PACKET 2
@@ -48,7 +50,7 @@ class Packet {
  private:
   size_t size;
   unsigned char type;
-  unsigned char* packet;
+  unsigned char* data;
 
  public:
   explicit Packet(size_t size, unsigned char* packet);
@@ -61,8 +63,8 @@ class Packet {
   /* Returns the type of the packet */
   unsigned char get_type();
 
-  /* Returns the packet */
-  unsigned char* get_packet();
+  /* Returns the data of the packet */
+  unsigned char* get_data();
 };
 
 #endif

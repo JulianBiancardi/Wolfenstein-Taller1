@@ -40,7 +40,7 @@ void packing_tests() {
 }
 
 int static c_test() {
-  unsigned char buf[4];
+  unsigned char buf[1];
   char a = -10;
   char b = 54;
   char c = 1;
@@ -57,6 +57,27 @@ int static c_test() {
 
   packi8(buf, c);
   if (unpacki8(buf) != c) {
+    return ERROR;
+  }
+
+  char a_unpacked[1];
+  pack(buf, "c", a);
+  unpack(buf, "c", a_unpacked);
+  if (a != *a_unpacked) {
+    return ERROR;
+  }
+
+  char b_unpacked[1];
+  pack(buf, "c", b);
+  unpack(buf, "c", b_unpacked);
+  if (b != *b_unpacked) {
+    return ERROR;
+  }
+
+  char c_unpacked[1];
+  pack(buf, "c", c);
+  unpack(buf, "c", c_unpacked);
+  if (c != *c_unpacked) {
     return ERROR;
   }
 

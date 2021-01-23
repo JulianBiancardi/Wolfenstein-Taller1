@@ -6,12 +6,14 @@
 #include "packing.h"
 
 Packet::Packet(size_t size, unsigned char* packet)
-    : size(size), type(unpacku8(packet)), packet(new unsigned char[size]) {
-  memcpy(this->packet, packet, size);
+    : size(size), type(unpacku8(packet)), data(new unsigned char[size]) {
+  memcpy(data, packet, size);
 }
 
-Packet::~Packet() { delete packet; }
+Packet::~Packet() { delete data; }
 
-unsigned char* Packet::get_packet() { return packet; }
+size_t Packet::get_size() { return size; }
 
 unsigned char Packet::get_type() { return type; }
+
+unsigned char* Packet::get_data() { return data; }
