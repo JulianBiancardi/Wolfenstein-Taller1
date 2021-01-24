@@ -4,6 +4,8 @@
 #include "../../../common/src/tests/tests_setup.h"
 #include "client_mock.h"
 #include "../../../common/src/main/packets/packet.h"
+#include "../main/game/objects/door/normal_door.h"
+#include "../main/game/objects/door/lock_door.h"
 
 int static can_move_up();
 int static collides_wall();
@@ -22,6 +24,13 @@ int static second_simplest_collision();
 int static diagonal_collision_with_table();
 int static player_kills_are_correct();
 int static player_respawns_correctly();
+int static player_collides_against_door();
+int static player_walks_through_door();
+int static player_tries_to_pass_door_opens_it_and_does_it();
+int static player_tries_to_open_locked_door_with_no_key();
+int static player_opens_door_with_key();
+int static player_opens_door_with_key_then_closes_it_and_other_opens_it();
+int static player_cannot_close_door_if_it_is_under_it();
 
 void move_up(Player& who, CollisionChecker& checker) {
   Point next_position = who.next_position(UP);
@@ -123,6 +132,27 @@ void player_tests() {
              NO_ERROR);
   print_test("El jugador respawnea correctamente",
              player_respawns_correctly,
+             NO_ERROR);
+  print_test("El jugador colisiona contra una puerta cerrada",
+             player_collides_against_door,
+             NO_ERROR);
+  print_test("El jugador abre puerta y pasa",
+             player_walks_through_door,
+             NO_ERROR);
+  print_test("El jugador pasa la puerta solo al abrirla",
+             player_tries_to_pass_door_opens_it_and_does_it,
+             NO_ERROR);
+  print_test("Jugador sin llave no puede abrir puerta",
+             player_tries_to_open_locked_door_with_no_key,
+             NO_ERROR);
+  print_test("Jugador abre la puerta con llave",
+             player_opens_door_with_key,
+             NO_ERROR);
+  print_test("Jugador abre la puerta, la cierra y otro la abre",
+             player_opens_door_with_key_then_closes_it_and_other_opens_it,
+             NO_ERROR);
+  print_test("La puerta no se cierra si hay un jugador debajo",
+             player_cannot_close_door_if_it_is_under_it,
              NO_ERROR);
 
   end_tests();
@@ -547,6 +577,205 @@ int static player_respawns_correctly() {
 
   if (player.has_gun(PISTOL_ID) && player.has_gun(KNIFE_ID)
       && !player.has_gun(ROCKET_LAUNCHER_ID) && !player.has_gun(MACHINE_GUN_ID))
+    return NO_ERROR;
+
+  return ERROR;
+}
+
+int static player_collides_against_door() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  Player player(100, 100, 3 * M_PI / 2);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
+  std::vector<Object*> sprites;
+  sprites.push_back(new NormalDoor(Point(100, 101)));
+  std::unordered_map<int, Item*> items;
+  CollisionChecker checker(map, players, items, sprites);
+
+  move_up(players.at(1), checker);
+
+  delete sprites[0];
+
+  if (players.at(1).get_position().getX() == 100
+      && players.at(1).get_position().getY() == 100)
+    return NO_ERROR;
+
+  return ERROR;
+}
+
+int static player_walks_through_door() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  Player player(100, 100, 3 * M_PI / 2);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
+  std::vector<Object*> sprites;
+  sprites.push_back(new NormalDoor(Point(100, 101)));
+  std::unordered_map<int, Item*> items;
+  CollisionChecker checker(map, players, items, sprites);
+
+  ((Door*) sprites.at(0))->interact(players.at(1), checker);
+
+  move_up(players.at(1), checker);
+
+  delete sprites[0];
+
+  if (players.at(1).get_position().getX() == 100
+      && players.at(1).get_position().getY() == 101)
+    return NO_ERROR;
+
+  return ERROR;
+}
+
+int static player_tries_to_pass_door_opens_it_and_does_it() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  Player player(100, 100, 3 * M_PI / 2);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
+  std::vector<Object*> sprites;
+
+  sprites.push_back(new NormalDoor(Point(100, 101)));
+
+  std::unordered_map<int, Item*> items;
+  CollisionChecker checker(map, players, items, sprites);
+
+  move_up(players.at(1), checker);
+
+  if (players.at(1).get_position().getX() != 100
+      || players.at(1).get_position().getY() != 100)
+    return ERROR;
+
+  ((Door*) sprites.at(0))->interact(players.at(1), checker);
+
+  move_up(players.at(1), checker);
+
+  if (players.at(1).get_position().getX() != 100
+      || players.at(1).get_position().getY() != 101)
+    return ERROR;
+
+  delete sprites[0];
+
+  return NO_ERROR;
+}
+
+int static player_tries_to_open_locked_door_with_no_key() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  Player player(100, 100, 3 * M_PI / 2);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
+  std::vector<Object*> sprites;
+  sprites.push_back(new LockedDoor(Point(100, 101)));
+  std::unordered_map<int, Item*> items;
+  CollisionChecker checker(map, players, items, sprites);
+
+  ((Door*) sprites.at(0))->interact(players.at(1), checker);
+  move_up(players.at(1), checker);
+
+  delete sprites[0];
+
+  if (players.at(1).get_position().getX() == 100
+      && players.at(1).get_position().getY() == 100)
+    return NO_ERROR;
+
+  return ERROR;
+}
+
+int static player_opens_door_with_key() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  Player player(100, 100, 3 * M_PI / 2);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
+  std::vector<Object*> sprites;
+  sprites.push_back(new LockedDoor(Point(100, 101)));
+  std::unordered_map<int, Item*> items;
+  CollisionChecker checker(map, players, items, sprites);
+
+  players.at(1).add_key();
+  ((Door*) sprites.at(0))->interact(players.at(1), checker);
+
+  move_up(players.at(1), checker);
+
+  delete sprites[0];
+
+  if (players.at(1).has_keys())
+    return ERROR;
+
+  if (players.at(1).get_position().getX() == 100
+      && players.at(1).get_position().getY() == 101)
+    return NO_ERROR;
+
+  return ERROR;
+}
+
+int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  Player player_1(100, 95, 3 * M_PI / 2);
+  Player player_2(200, 200, M_PI / 2);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player_1});
+  players.insert({2, player_2});
+  std::vector<Object*> sprites;
+  sprites.push_back(new LockedDoor(Point(100, 101)));
+  std::unordered_map<int, Item*> items;
+  CollisionChecker checker(map, players, items, sprites);
+
+  players.at(1).add_key();
+  ((Door*) sprites.at(0))->interact(players.at(1), checker);
+  ((Door*) sprites.at(0))->interact(players.at(1), checker);
+  ((Door*) sprites.at(0))->interact(players.at(2), checker);
+
+  for (int i = 0; i < 6; i++)
+    move_up(players.at(1), checker);
+
+  delete sprites[0];
+
+  if (players.at(1).get_position().getX() == 100
+      && players.at(1).get_position().getY() == 101)
+    return NO_ERROR;
+
+  return ERROR;
+}
+
+int static player_cannot_close_door_if_it_is_under_it() {
+  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  put_data(map_data);
+  Map map(map_data);
+  Player player(100, 90, 3 * M_PI / 2);
+  std::unordered_map<int, Player> players;
+  players.insert({1, player});
+  std::vector<Object*> sprites;
+  sprites.push_back(new NormalDoor(Point(100, 100)));
+  std::unordered_map<int, Item*> items;
+  CollisionChecker checker(map, players, items, sprites);
+
+  ((Door*) sprites.at(0))->interact(players.at(1), checker);
+
+  if (!(((Door*) sprites.at(0))->is_open()))
+    return ERROR;
+
+  for (int i = 0; i < 10; i++)
+    move_up(players.at(1), checker);
+
+  ((Door*) sprites.at(0))->interact(players.at(1), checker);
+
+  if (!(((Door*) sprites.at(0))->is_open()))
+    return ERROR;
+
+  delete sprites[0];
+
+  if (players.at(1).get_position().getX() == 100
+      && players.at(1).get_position().getY() == 100)
     return NO_ERROR;
 
   return ERROR;
