@@ -13,8 +13,7 @@ class CollisionChecker {
   std::unordered_map<int, Item*>& items;
   std::vector<Object*>& objects;
   Moveable* ignored;
-  bool collides_sprites(Point& where);
-  bool is_free(Point& where);
+  bool collides_sprites(const Point& where);
 
  public:
   CollisionChecker(Map& map, std::unordered_map<int, Player>& players,
@@ -22,11 +21,11 @@ class CollisionChecker {
                    std::vector<Object*>& objects);
   ~CollisionChecker() {}
 
+  bool is_free(const Point& where);
   bool can_move(Point& where, Moveable& who);
   Item* grabbed_item(Player& by_whom);
   int get_collides_player_id(Point& where, Player& who);
-  bool collides_players(Point& where);
-
+  bool collides_players(const Point& where);
 };
 
 #endif

@@ -15,7 +15,7 @@ class Object : public Identifiable {
   Object(Ray position, Mask* mask);
 
  public:
-  ~Object();
+  virtual ~Object();
   bool occupies(const Point& where);
   Point get_position();
   double get_angle();
