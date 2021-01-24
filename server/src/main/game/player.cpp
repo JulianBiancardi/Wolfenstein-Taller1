@@ -37,10 +37,10 @@ Player::Player(double x, double y, double angle)
 Player::~Player() {}
 
 void Player::receive_damage(int amount) {
-  if (health - amount <= 0) {
-    health = 0;
-  } else {
-    health -= amount;
+  health = std::min(0, health - amount);
+
+  if (health == 0) {
+    lives--;
   }
 }
 

@@ -139,6 +139,11 @@ bool Match::shoot_gun(unsigned char player_id, unsigned char objective_id,
 
   if (objective_id != 0) {
     Player& objective = players[objective_id];
+
+    if (objective.is_dead()) {
+      throw 1;  // TODO Throw error to ignore the packet
+    }
+
     objective.receive_damage(damage);
 
     if (objective.is_dead()) {
