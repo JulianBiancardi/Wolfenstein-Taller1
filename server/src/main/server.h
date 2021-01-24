@@ -8,6 +8,7 @@
 class Server {
  private:
   ClientManager client_manager;
+  MatchManager match_manager;
 
  public:
   Server();

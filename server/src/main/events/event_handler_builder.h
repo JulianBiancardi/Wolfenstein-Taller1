@@ -1,9 +1,10 @@
 #ifndef WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_EVENTS_EVENT_HANDLER_BUILDER_H_
 #define WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_EVENTS_EVENT_HANDLER_BUILDER_H_
 
-#include "handlers/event_handler.h"
-#include "../../../../common/src/main/utils/point.h"
 #include <unordered_map>
+
+#include "../../../../common/src/main/utils/point.h"
+#include "handlers/event_handler.h"
 
 class EventHandlerBuilder {
  private:
@@ -15,4 +16,4 @@ class EventHandlerBuilder {
                       std::unordered_map<int, Player>& players);
 };
 
-#endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_EVENTS_EVENT_HANDLER_BUILDER_H_
+#endif  // WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_EVENTS_EVENT_HANDLER_BUILDER_H_
