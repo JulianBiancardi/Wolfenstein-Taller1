@@ -48,6 +48,9 @@ class Match {
   Match();
   ~Match();
 
+  /* Returns a vector with all the ids of the players */
+  std::vector<unsigned char> get_players_ids();
+
   /* Move a player in the match */
   bool move_player(unsigned char player_id, unsigned char direction);
 

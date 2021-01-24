@@ -25,6 +25,9 @@ class ClientManager {
   /* Sends a message to a client */
   void send_to(int id, Packet& packet);
 
+  /* Sends a message to the given clients */
+  void send_to_all(std::vector<unsigned char>& ids, Packet& packet);
+
   /* Sends a message to all clients */
   void send_to_all(Packet& packet);
 
