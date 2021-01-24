@@ -16,4 +16,4 @@ Object::~Object() { delete mask; }
 Point Object::get_position() { return position.get_origin(); }
 double Object::get_angle() { return position.get_angle(); }
 
-bool Object::occupies(Point& where) { return mask->occupies(where); }
+bool Object::occupies(const Point& where) { return mask->occupies(where); }

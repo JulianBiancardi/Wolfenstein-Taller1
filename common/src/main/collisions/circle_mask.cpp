@@ -5,7 +5,7 @@ CircleMask::CircleMask(double radius, const Point& center)
 
 CircleMask::~CircleMask() {}
 
-bool CircleMask::occupies(Point& where) {
+bool CircleMask::occupies(const Point& where) {
   return where.distance_from(center) <= radius;
 }
 

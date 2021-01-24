@@ -10,7 +10,7 @@ class Mask {
  public:
   Mask(const Point& center) : center(center) {}
 
-  virtual bool occupies(Point& where) = 0;
+  virtual bool occupies(const Point& where) = 0;
 };
 
 #endif

@@ -9,22 +9,30 @@
 Moveable::Moveable(Point origin, double angle)
     : Object(origin, angle,
              new CircleMask(ConfigLoader::player_mask_radio,
-                            position.get_ref_origin())), pace(1) {}
+                            position.get_ref_origin())),
+      pace(CL::player_pace),
+      rotation_angle(CL::player_rotation_angle) {}
 
 Moveable::Moveable(Ray position)
     : Object(position, new CircleMask(ConfigLoader::player_mask_radio,
-                                      position.get_ref_origin())), pace(1) {}
+                                      position.get_ref_origin())),
+      pace(CL::player_pace),
+      rotation_angle(CL::player_rotation_angle) {}
 
 Moveable::Moveable(double x, double y, double angle)
     : Object(Point(x, y), angle,
              new CircleMask(ConfigLoader::player_mask_radio,
-                            position.get_ref_origin())), pace(1) {}
+                            position.get_ref_origin())),
+      pace(CL::player_pace),
+      rotation_angle(CL::player_rotation_angle) {}
 
 Moveable::Moveable(const Moveable& other)
     : Object(other.position,
              new CircleMask(ConfigLoader::player_mask_radio,
                             position.get_ref_origin()),
-             other.id), pace(1) {}
+             other.id),
+      pace(CL::player_pace),
+      rotation_angle(CL::player_rotation_angle) {}
 
 Point Moveable::next_position(double direction_angle) {
   double movement_angle = position.get_angle() + direction_angle;
@@ -47,6 +55,16 @@ Point Moveable::next_position(int direction) {
     case UP_RIGHT: return next_position(7 * M_PI / 4);
     default: throw -1; // TODO Use our exception
   }
+}
+
+void Moveable::rotate(int direction) {
+  if (direction == LEFT_ROTATION)
+    position = Ray(position.get_ref_origin(),
+                   position.get_angle() + rotation_angle);
+  else
+    position = Ray(position.get_ref_origin(),
+                   position.get_angle() - rotation_angle);
+
 }
 
 Point Moveable::collision_mask_bound(const Point& next_position) {

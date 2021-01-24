@@ -108,6 +108,8 @@ void Player::add_health(int amount) {
 
 void Player::add_key() { keys++; }
 
+void Player::remove_key() { keys--; }
+
 bool Player::is_full_health() { return health == max_health; }
 
 bool Player::is_full_bullets() { return bullets == max_bullets; }

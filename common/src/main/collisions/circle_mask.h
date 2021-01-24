@@ -13,7 +13,7 @@ class CircleMask : public Mask {
   CircleMask(double radius, const Point& center);
   ~CircleMask();
 
-  bool occupies(Point& where) override;
+  bool occupies(const Point& where) override;
   double get_radius() const;
 };
 

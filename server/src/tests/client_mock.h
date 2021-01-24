@@ -15,5 +15,6 @@ Point next_position_down_right(const Point& position, const Angle& angle);
 Point next_position_down_left(const Point& position, const Angle& angle);
 
 void put_data(Matrix<int>& map_data);
+void put_data_on_borders(Matrix<int>& map_data);
 
 #endif //WOLFENSTEIN_TALLER1_COMMON_TESTS_GAME_TEST_CLIENT_MOCK_H_

@@ -13,7 +13,7 @@ class BoxMask : public Mask {
   BoxMask(double width, double height, const Point& center)
       : width(width), height(height), Mask(center) {}
 
-  bool occupies(Point& where) override;
+  bool occupies(const Point& where) override;
 };
 
 #endif

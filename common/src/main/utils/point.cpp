@@ -35,7 +35,7 @@ double Point::distance(const Point& point1, const Point& point2) {
   return sqrt(norm);
 }
 
-double Point::distance_from(const Point& other) {
+double Point::distance_from(const Point& other) const {
   return Point::distance(*this, other);
 }
 
