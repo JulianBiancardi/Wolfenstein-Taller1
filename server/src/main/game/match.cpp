@@ -82,16 +82,7 @@ bool Match::player_exists(unsigned char player_id) {
   return players.find(player_id) != players.end();
 }
 
-std::vector<unsigned char> Match::get_players_ids() {
-  std::vector<unsigned char> ids;
-
-  std::unordered_map<unsigned char, Player>::iterator iter;
-  for (iter = players.begin(); iter != players.end(); iter++) {
-    ids.push_back(iter->first);
-  }
-
-  return std::move(ids);
-}
+std::vector<unsigned char>& Match::get_players_ids() { return players_ids; }
 
 /* Move a player in the match */
 bool Match::move_player(unsigned char player_id, unsigned char direction) {

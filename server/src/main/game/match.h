@@ -41,6 +41,7 @@ class Match2 {
 
 class Match {
  private:
+  std::vector<unsigned char> players_ids;
   std::unordered_map<unsigned char, Player> players;
   bool player_exists(unsigned char player_id);
 
@@ -49,7 +50,7 @@ class Match {
   ~Match();
 
   /* Returns a vector with all the ids of the players */
-  std::vector<unsigned char> get_players_ids();
+  std::vector<unsigned char>& get_players_ids();
 
   /* Move a player in the match */
   bool move_player(unsigned char player_id, unsigned char direction);
