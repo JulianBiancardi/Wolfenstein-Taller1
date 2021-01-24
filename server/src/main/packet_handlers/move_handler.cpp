@@ -16,7 +16,10 @@ void MoveHandler::handle(Match& match, CollisionChecker& checker) {
   }
 }*/
 
+#include <vector>
+
 #include "../../../../common/src/main/packets/packing.h"
+#include "../game/match.h"
 
 MoveHandler::MoveHandler() {}
 

@@ -18,6 +18,9 @@ void ShotHandler::handle(Packet& packet, ClientManager& client_manager,
 
   Match& match = match_manager.get_match(match_id);
   match.shoot_gun(player_id, objective_id, damage);
+
+  std::vector<unsigned char>& client_ids = match.get_players_ids();
+  client_manager.send_to_all(client_ids, packet);
   // TODO Let everyone know so they reproduce the sound or change his gun if he
   // ran out of bullets #EVENT
   if (match.is_dead(objective_id)) {

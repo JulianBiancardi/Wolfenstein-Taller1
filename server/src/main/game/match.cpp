@@ -84,7 +84,6 @@ bool Match::player_exists(unsigned char player_id) {
 
 std::vector<unsigned char>& Match::get_players_ids() { return players_ids; }
 
-/* Move a player in the match */
 bool Match::move_player(unsigned char player_id, unsigned char direction) {
   if (!player_exists(player_id)) {
     throw 1;  // TODO Throw Error
@@ -105,7 +104,6 @@ bool Match::move_player(unsigned char player_id, unsigned char direction) {
   return false;
 }
 
-/* Rotate a player in the given direction */
 bool Match::rotate_player(unsigned char player_id, unsigned char direction) {
   if (!player_exists(player_id)) {
     throw 1;  // TODO Throw Eerror
@@ -116,7 +114,6 @@ bool Match::rotate_player(unsigned char player_id, unsigned char direction) {
   return true;
 }
 
-/* Change the gun of the player in the match */
 bool Match::change_gun(unsigned char player_id, unsigned char gun_id) {
   if (!player_exists(player_id)) {
     throw 1;  // TODO Throw error
@@ -126,7 +123,6 @@ bool Match::change_gun(unsigned char player_id, unsigned char gun_id) {
   return players[player_id].change_gun(gun_id);
 }
 
-/* Shoot the gun of the player in the match */
 bool Match::shoot_gun(unsigned char player_id, unsigned char objective_id,
                       unsigned char damage) {
   if (!player_exists(player_id)) {
@@ -158,4 +154,12 @@ bool Match::is_dead(unsigned char player_id) {
   }
 
   return players[player_id].is_dead();
+}
+
+bool Match::has_lives(unsigned char player_id) {
+  if (!player_exists(player_id)) {
+    throw 1;  // TODO Throw error
+  }
+
+  return players[player_id].has_lives();
 }

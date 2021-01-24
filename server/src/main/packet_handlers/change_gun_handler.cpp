@@ -8,7 +8,10 @@ void ChangeGunHandler::handle(Match& match, CollisionChecker& checker) {
       build_change_gun_packet(who.get_id(), gun), who.get_id());
 }*/
 
+#include <vector>
+
 #include "../../../../common/src/main/packets/packing.h"
+#include "../game/match.h"
 
 ChangeGunHandler::ChangeGunHandler() {}
 

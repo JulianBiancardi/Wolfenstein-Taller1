@@ -44,7 +44,7 @@ class Player : public Moveable {
   bool is_full_health();
   bool is_full_bullets();
   bool is_dead();
-  bool has_lives_left();
+  bool has_lives();
   bool has_keys();
   void respawn();
   int get_health();

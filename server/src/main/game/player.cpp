@@ -126,7 +126,7 @@ bool Player::is_full_bullets() { return bullets == max_bullets; }
 
 bool Player::is_dead() { return health == 0; }
 
-bool Player::has_lives_left() { return lives != 1; }
+bool Player::has_lives() { return lives > 0; }
 
 bool Player::has_keys() { return keys != 0; }
 
