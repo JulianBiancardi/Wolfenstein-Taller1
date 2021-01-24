@@ -1,4 +1,5 @@
 #include "player.h"
+
 #include "../../../../common/src/main/packets/packet.h"
 
 Player::Player(Point origin, double angle)
@@ -53,15 +54,18 @@ bool Player::has_droppable_gun() {
   bool has_droppable_gun = false;
   for (auto it = guns_bag.begin(); it != guns_bag.end() && !has_droppable_gun;
        it++) {
-    if (*it != KNIFE_ID && *it != PISTOL_ID)
-      has_droppable_gun = true;
+    if (*it != KNIFE_ID && *it != PISTOL_ID) has_droppable_gun = true;
   }
   return has_droppable_gun;
 }
 
-void Player::change_gun(int gun_id) {
-  if (this->has_gun(gun_id))
-    active_gun = gun_id;
+bool Player::change_gun(int gun_id) {
+  if (!this->has_gun(gun_id)) {
+    return false;
+  }
+
+  active_gun = gun_id;
+  return true;
 }
 
 // PRECONDITION: Keeping the amount of bullets a valid amount is responsibility
@@ -71,17 +75,23 @@ void Player::shoot() {
 
   // TODO Try to optimize when testing
   switch (active_gun) {
-    case KNIFE_ID: bullets_shot = 0;
+    case KNIFE_ID:
+      bullets_shot = 0;
       break;
-    case PISTOL_ID: bullets_shot = CL::pistol_bullet_required;
+    case PISTOL_ID:
+      bullets_shot = CL::pistol_bullet_required;
       break;
-    case MACHINE_GUN_ID: bullets_shot = CL::machine_gun_bullet_required;
+    case MACHINE_GUN_ID:
+      bullets_shot = CL::machine_gun_bullet_required;
       break;
-    case CHAIN_CANNON_ID: bullets_shot = CL::chain_cannon_bullet_required;
+    case CHAIN_CANNON_ID:
+      bullets_shot = CL::chain_cannon_bullet_required;
       break;
-    case ROCKET_LAUNCHER_ID: bullets_shot = CL::rocket_launcher_bullet_required;
+    case ROCKET_LAUNCHER_ID:
+      bullets_shot = CL::rocket_launcher_bullet_required;
       break;
-    default: bullets_shot = 0;
+    default:
+      bullets_shot = 0;
   }
 
   bullets -= bullets_shot;
@@ -127,7 +137,7 @@ void Player::respawn() {
   keys = 0;
   bullets = ConfigLoader::player_respawn_bullets;
   health = ConfigLoader::player_health;
-  position = Ray(spawn_point, 0); // TODO Angle is not 0
+  position = Ray(spawn_point, 0);  // TODO Angle is not 0
 }
 
 int Player::get_health() { return health; }

@@ -22,5 +22,9 @@ void ChangeGunHandler::handle(Packet& packet, ClientManager& client_manager,
   unsigned char gun_id;
   unpack(packet.get_data(), "CCCC", &type, &match_id, &player_id, &gun_id);
 
-  match_manager.change_gun(match_id, player_id, gun_id);
+  Match& match = match_manager.get_match(match_id);
+
+  if (match.change_gun(player_id, gun_id)) {
+    client_manager.send_to_all(packet);
+  }
 }

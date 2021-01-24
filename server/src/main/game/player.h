@@ -34,7 +34,7 @@ class Player : public Moveable {
   void add_gun(int gun_id);
   bool has_gun(int gun_id);
   bool has_droppable_gun();
-  void change_gun(int gun_id);
+  bool change_gun(int gun_id);
   void shoot();
   void add_bullets(int amount);
   void add_points(int amount);

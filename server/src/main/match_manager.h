@@ -19,15 +19,13 @@ class MatchManager {
   void create_match();
 
   /* Adds a player to a match */
-  void add_player();
+  // void add_player();
 
-  /* Move a player in the given match */
-  void move_player(unsigned char match_id, unsigned char player_id,
-                   unsigned char dir);
-
-  /* Change the gun of the player in the given match */
-  void change_gun(unsigned char match_id, unsigned char player_id,
-                  unsigned char gun_id);
+  // TODO Specify which error when we have it
+  /* Returns the match with the given id.
+   * Throws error if the id doesn't match any match
+   */
+  Match& get_match(unsigned char match_id);
 };
 
 #endif
