@@ -24,12 +24,12 @@ class Socket {
   /* Send a stream using the socket.
    * Returns the amount of bytes sent.
    */
-  ssize_t send(const char* stream, size_t stream_len) const;
+  ssize_t send(const unsigned char* stream, size_t stream_len) const;
 
   /* Receives a stream using the socket.
    * Returns the amount of bytes received.
    */
-  ssize_t receive(char* buffer, size_t buffer_len) const;
+  ssize_t receive(unsigned char* buffer, size_t buffer_len) const;
 
   /* Binds it to a service and marks it as awaiting incoming connections.
 

@@ -23,7 +23,7 @@ Socket::Socket(Socket&& other) {
   other.socket_file_descriptor = -1;
 }
 
-ssize_t Socket::send(const char* stream, size_t stream_len) const {
+ssize_t Socket::send(const unsigned char* stream, size_t stream_len) const {
   ssize_t tot_bytes_sent = 0;
   while (tot_bytes_sent != (ssize_t)stream_len) {
     ssize_t bytes_sent = ::send(socket_file_descriptor, &stream[tot_bytes_sent],
@@ -36,7 +36,7 @@ ssize_t Socket::send(const char* stream, size_t stream_len) const {
   return tot_bytes_sent;
 }
 
-ssize_t Socket::receive(char* buffer, size_t buffer_len) const {
+ssize_t Socket::receive(unsigned char* buffer, size_t buffer_len) const {
   ssize_t tot_bytes_read = 0;
   while (tot_bytes_read != (ssize_t)buffer_len) {
     ssize_t bytes_read = recv(socket_file_descriptor, &buffer[tot_bytes_read],

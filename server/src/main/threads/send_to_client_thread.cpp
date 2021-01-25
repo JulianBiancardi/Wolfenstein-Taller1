@@ -34,7 +34,9 @@ void SendToClientThread::run() {
     while (allowed_to_run) {
       Packet packet;
       events_queue.dequeue(packet);
-      connected_socket.send((char*)&packet, sizeof(packet));
+
+      connected_socket.send((char*)(&packet.get_size()), 2);
+      connected_socket.send((char*)(&packet.get_data()), packet.get_size());
     }
   } catch (const std::exception& e) {
     syslog(LOG_ERR, "[Error] SendToServerThread - Error: %s", e.what());
