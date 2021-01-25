@@ -5,7 +5,7 @@
 #include <utility>
 
 SendToServerThread::SendToServerThread(Socket& connected_socket,
-                                       BlockingQueue<packet_t>* events_queue)
+                                       BlockingQueue<Packet>& events_queue)
     : connected_socket(connected_socket),
       events_queue(events_queue),
       allowed_to_run(true),
@@ -15,16 +15,18 @@ SendToServerThread::~SendToServerThread() {}
 
 void SendToServerThread::force_stop() {
   allowed_to_run = false;
-  packet_t disconnection_packet;
+  Packet disconnection_packet;
   // TODO Fill with disconnection info
   events_queue->enqueue(disconnection_packet);
 }
+
+bool SendToServerThread::is_running() { return running; }
 
 void SendToServerThread::run() {
   try {
     running = true;
     while (allowed_to_run) {
-      packet_t packet;
+      Packet packet;
       events_queue->dequeue(packet);
       connected_socket.send((char*)&packet, sizeof(packet));
     }

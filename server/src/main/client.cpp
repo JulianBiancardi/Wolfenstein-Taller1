@@ -2,6 +2,7 @@
 
 #include <utility>
 
+#include "../../../common/src/main/packets/packing.h"
 #include "threads/receive_from_client_thread.h"
 #include "threads/send_to_client_thread.h"
 
@@ -16,6 +17,12 @@ Client::Client(unsigned int id, Socket& socket,
 
   this->receiving_thread->start();
   this->sending_thread->start();
+
+  // Acknowledge client of his ID
+  unsigned char data[2];
+  size_t size = pack(data, "CC", START_OF_CONNECTION, id);
+  Packet connection_packet(size, data);
+  sending_queue.enqueue(connection_packet);
 }
 
 Client::~Client() {

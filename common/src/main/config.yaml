@@ -1,6 +1,10 @@
 ---
 sv_port: '7777'
 
+#Window Options
+screen_width: 320
+screen_height: 640
+
 #Player Initial Options
 player_health: 40
 player_bullets: 12

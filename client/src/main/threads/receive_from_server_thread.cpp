@@ -3,7 +3,7 @@
 #include <syslog.h>
 
 ReceiveFromServerThread::ReceiveFromServerThread(
-    Socket& connected_socket, ProtectedQueue<packet_t>* reception_queue)
+    Socket& connected_socket, ProtectedQueue<Packet>& reception_queue)
     : connected_socket(connected_socket),
       reception_queue(reception_queue),
       allowed_to_run(true),
@@ -11,12 +11,14 @@ ReceiveFromServerThread::ReceiveFromServerThread(
 
 ReceiveFromServerThread::~ReceiveFromServerThread() {}
 
+bool ReceiveFromServerThread::is_running() { return running; }
+
 void ReceiveFromServerThread::run() {
   try {
     running = true;
     while (allowed_to_run) {
-      packet_t packet;
-      connected_socket.receive((char*)&packet, sizeof(packet_t));
+      Packet packet;
+      connected_socket.receive((char*)&packet, sizeof(Packet));
       reception_queue->enqueue(packet);
     }
     running = false;

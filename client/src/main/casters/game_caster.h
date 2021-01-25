@@ -1,5 +1,5 @@
-#ifndef CASTER_H
-#define CASTER_H
+#ifndef GAME_CASTER_H
+#define GAME_CASTER_H
 
 #include <SDL2/SDL.h>
 
@@ -28,7 +28,9 @@ class _sprite {
 
 // ============================
 
-class Caster {
+#include "caster.h"
+
+class GameCaster : public Caster {
  private:
   SDL_Renderer* renderer;
   Ray& player;
@@ -50,10 +52,10 @@ class Caster {
   void sort_sprites(std::vector<_sprite>& sprites);
 
  public:
-  Caster(Window& window, Ray& player, Map& map);
-  ~Caster();
+  GameCaster(Window& window, Ray& player, Map& map);
+  ~GameCaster();
 
-  void operator()();
+  void operator()() override;
 };
 
 #endif

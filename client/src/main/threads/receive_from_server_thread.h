@@ -9,15 +9,17 @@
 class ReceiveFromServerThread : public Thread {
  private:
   Socket& connected_socket;
-  ProtectedQueue<packet_t>* reception_queue;
+  ProtectedQueue<Packet>& reception_queue;
   bool allowed_to_run;
   bool running;
 
  public:
   ReceiveFromServerThread(Socket& connected_socket,
-                          ProtectedQueue<packet_t>* reception_queue);
+                          ProtectedQueue<Packet>& reception_queue);
   ~ReceiveFromServerThread();
 
+  void force_stop();
+  bool is_running();
   void run() override;
 };
 

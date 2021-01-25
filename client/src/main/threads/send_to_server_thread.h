@@ -8,17 +8,18 @@
 
 class SendToServerThread : public Thread {
  private:
-  BlockingQueue<packet_t>* events_queue;
+  BlockingQueue<Packet>& events_queue;
   Socket& connected_socket;
   bool allowed_to_run;
   bool running;
 
  public:
   SendToServerThread(Socket& connected_socket,
-                     BlockingQueue<packet_t>* events_queue);
+                     BlockingQueue<Packet>& events_queue);
   ~SendToServerThread();
 
   void force_stop();
+  bool is_running();
   void run() override;
 };
 

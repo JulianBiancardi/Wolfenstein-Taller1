@@ -7,9 +7,7 @@
 #include "../../../common/src/main/data_structures/protected_queue.h"
 #include "../../../common/src/main/socket/socket.h"
 #include "../../../common/src/main/utils/ray.h"
-#include "caster.h"
 #include "events/event.h"
-#include "sdl/window.h"
 #include "threads/receive_from_server_thread.h"
 #include "threads/send_to_server_thread.h"
 
@@ -39,18 +37,17 @@ class Client2 {
   ~Client();
 };
 
+#include "sdl/window.h"
+
 class Client {
  private:
-  /* data */
+  Window window;
+
  public:
   Client();
   ~Client();
 
   void run_client();
 };
-
-Client::Client(/* args */) {}
-
-Client::~Client() {}
 
 #endif  // CLIENT_H

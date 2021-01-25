@@ -18,6 +18,9 @@ class ConfigLoader {
 
   static std::string sv_port;
 
+  static int screen_width;
+  static int screen_height;
+
   static int player_health;
   static int player_bullets;
   static int player_max_bullets;

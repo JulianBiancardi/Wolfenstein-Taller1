@@ -4,7 +4,10 @@
 #include <cstddef>
 
 // Packet types
-#define END_OF_CONNECTION 0
+#define END_OF_CONNECTION 0    // To end the connection
+#define START_OF_CONNECTION 1  // To notify the client his ID
+#define REQUEST_MATCHES 2
+
 #define MOVE_PACKET 1
 #define GRAB_PACKET 2
 #define SHOT_HIT_PACKET 3
