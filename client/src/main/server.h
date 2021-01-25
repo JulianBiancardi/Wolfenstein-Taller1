@@ -25,6 +25,7 @@ class Server {
   ~Server();
 
   void send(Packet& packet);
+  unsigned char get_id();
 };
 
 #endif

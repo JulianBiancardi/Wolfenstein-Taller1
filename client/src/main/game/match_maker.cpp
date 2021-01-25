@@ -8,9 +8,12 @@ MatchMaker::MatchMaker(Server& server, Window& window)
 MatchMaker::~MatchMaker() {}
 
 Match MatchMaker::join_match() {
-  unsigned char packet[1];
+  // Update matches
+  unsigned char packet[2];
   size_t size = pack(packet, "CC", REQUEST_MATCHES, server.get_id());
-  Packet request_matches_packet() server.send();
+  Packet request_matches_packet(size, packet);
+  server.send(request_matches_packet);
+
   while (1) {
     handle_events();
 

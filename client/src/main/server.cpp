@@ -52,3 +52,5 @@ void Server::sync_with_server(Socket& server_socket) {
 }
 
 void Server::send(Packet& packet) { sending_queue.enqueue(packet); }
+
+unsigned char Server::get_id() { return id; }
