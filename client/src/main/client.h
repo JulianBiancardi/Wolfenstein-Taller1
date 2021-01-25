@@ -9,13 +9,12 @@
 #include "../../../common/src/main/utils/ray.h"
 #include "caster.h"
 #include "events/event.h"
-#include "map.h"
 #include "sdl/window.h"
 #include "threads/receive_from_server_thread.h"
 #include "threads/send_to_server_thread.h"
 
 //-------------------------------------
-class Client {
+class Client2 {
  private:
   Window window;
   Ray player_ray;
@@ -33,11 +32,25 @@ class Client {
   void handle_key_press(SDL_Keycode& key);
 
  public:
-  Client(std::string& host, std::string& port, Map& map);
+  Client(std::string& host, std::string& port);
 
   void launch();
 
   ~Client();
 };
+
+class Client {
+ private:
+  /* data */
+ public:
+  Client();
+  ~Client();
+
+  void run_client();
+};
+
+Client::Client(/* args */) {}
+
+Client::~Client() {}
 
 #endif  // CLIENT_H

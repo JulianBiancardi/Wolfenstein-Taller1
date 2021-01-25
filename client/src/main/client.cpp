@@ -8,8 +8,9 @@
 #define SCREEN_WIDTH (320 * UNIT)
 #define SCREEN_HEIGHT (200 * UNIT)
 
+/*
 //------------------------------------------------
-Client::Client(std::string& host, std::string& port, Map& map)
+Client::Client(std::string& host, std::string& port)
     : window("Hello World!", SCREEN_WIDTH, SCREEN_HEIGHT),
       player_ray(1.5, 1.5, 0),
       caster(window, player_ray, map),
@@ -76,44 +77,44 @@ void Client::handle_key_press(SDL_Keycode& key) {
   double x = position.getX();
   double y = position.getY();
 
-  /* FIX ME */
-  switch (key) {
-    case SDLK_w:
-      if (cos_angle > 0.9) {
-        // player_ray.set_origin(x + 0.1, y);
-        // TODO DELETE, ONLY TEST W Key
-        events_queue->enqueue(build_move_event(1, Point(x + 0.1, y)));
+// FIXME
+switch (key) {
+  case SDLK_w:
+    if (cos_angle > 0.9) {
+      // player_ray.set_origin(x + 0.1, y);
+      // TODO DELETE, ONLY TEST W Key
+      events_queue->enqueue(build_move_event(1, Point(x + 0.1, y)));
 
-      } else if (cos_angle < -0.9) {
-        // player_ray.set_origin(x - 0.1, y);
-        events_queue->enqueue(build_move_event(1, Point(x - 0.1, y)));
-      } else if (sin_angle > 0.9) {
-        // player_ray.set_origin(x, y - 0.1);
-        events_queue->enqueue(build_move_event(1, Point(x, y - 0.1)));
-      } else if (sin_angle < -0.9) {
-        // player_ray.set_origin(x, y + 0.1);
-        events_queue->enqueue(build_move_event(1, Point(x, y + 0.1)));
-      }
-      break;
-    case SDLK_s:
-      break;
-    case SDLK_a:
-      angle += 0.1;
-      if (angle >= 2 * M_PI) {
-        angle -= 2 * M_PI;
-      }
-      // player_ray.set_angle(angle);
-      break;
-    case SDLK_d:
-      angle -= 0.1;
-      if (angle < 0) {
-        angle += 2 * M_PI;
-      }
-      // player_ray.set_angle(angle);
-      break;
-    default:
-      break;
-  }
+    } else if (cos_angle < -0.9) {
+      // player_ray.set_origin(x - 0.1, y);
+      events_queue->enqueue(build_move_event(1, Point(x - 0.1, y)));
+    } else if (sin_angle > 0.9) {
+      // player_ray.set_origin(x, y - 0.1);
+      events_queue->enqueue(build_move_event(1, Point(x, y - 0.1)));
+    } else if (sin_angle < -0.9) {
+      // player_ray.set_origin(x, y + 0.1);
+      events_queue->enqueue(build_move_event(1, Point(x, y + 0.1)));
+    }
+    break;
+  case SDLK_s:
+    break;
+  case SDLK_a:
+    angle += 0.1;
+    if (angle >= 2 * M_PI) {
+      angle -= 2 * M_PI;
+    }
+    // player_ray.set_angle(angle);
+    break;
+  case SDLK_d:
+    angle -= 0.1;
+    if (angle < 0) {
+      angle += 2 * M_PI;
+    }
+    // player_ray.set_angle(angle);
+    break;
+  default:
+    break;
+}
 }
 
 void Client::update() {}
@@ -124,3 +125,9 @@ Client::~Client() {
   delete events_queue;
   delete reception_queue;
 }
+
+*/
+
+Client::Client() {}
+
+Client::~Client() {}

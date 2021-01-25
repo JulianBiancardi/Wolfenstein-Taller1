@@ -12,7 +12,7 @@ int main(int argc, char **argv) {
     Server server;
     server.run_server(port);
     return EXIT_SUCCESS;
-  } catch (std::exception &e) {
+  } catch (const std::exception &e) {
     syslog(LOG_ERR, "[Error] Server Main Thread - Error: %s", e.what());
     return EXIT_FAILURE;
   } catch (...) {

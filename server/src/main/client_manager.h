@@ -16,6 +16,9 @@ class ClientManager {
   ClientManager();
   ~ClientManager();
 
+  /* Returns a reference to the client reception queue */
+  BlockingQueue<Packet>& get_reception_queue();
+
   /* Adds a new client that will communicate with the server */
   void add_client(Socket& client_socket);
 

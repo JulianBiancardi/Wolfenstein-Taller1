@@ -10,6 +10,10 @@ ClientManager::~ClientManager() {}
 
 int ClientManager::next_id = 1;
 
+BlockingQueue<Packet>& ClientManager::get_reception_queue() {
+  return reception_queue;
+}
+
 void ClientManager::add_client(Socket& client_socket) {
   clients.emplace(next_id, Client(next_id, client_socket, reception_queue));
   next_id++;

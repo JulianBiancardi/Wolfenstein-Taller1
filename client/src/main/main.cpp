@@ -1,9 +1,8 @@
+#include <syslog.h>
+
 #include <exception>
 
 #include "client.h"
-#include "iostream"
-#include "map.h"
-#include "yaml-cpp/yaml.h"
 
 #define ARGS_MIN 3
 #define ARGV_HOST 1
@@ -12,25 +11,25 @@
 //-----------------------------------------------------
 Map load_map();
 int main(int argc, char** argv) {
-  if (argc < ARGS_MIN) {
-    std::cout << "Error: el comando que ha ingresado no se reconoce. Quizas "
-                 "quiso decir: ./client host port"
-              << std::endl;
-    return EXIT_FAILURE;
-  }
-
   try {
-    std::cout << "Starting" << std::endl;
+    if (argc < ARGS_MIN) {
+      syslog(LOG_ERR,
+             "[Error] - Client Main Thread - Error: amount of arguments is not "
+             "enough");
+      return EXIT_FAILURE;
+    }
     std::string host = argv[ARGV_HOST];
     std::string port = argv[ARGV_PORT];
-    Map map = load_map();
-    Client client(host, port, map);
-    client.launch();
+    Client client(host, port);
+    client.run_client();
+    return EXIT_SUCCESS;
   } catch (const std::exception& e) {
-    std::cerr << e.what() << '\n';
+    syslog(LOG_ERR, "[Error] Server Main Thread - Error: %s", e.what());
+    return EXIT_FAILURE;
+  } catch (...) {
+    syslog(LOG_ERR, "[Error] Server Main Thread - Unknown error");
     return EXIT_FAILURE;
   }
-  return EXIT_SUCCESS;
 }
 
 // TODO Move to MapReader

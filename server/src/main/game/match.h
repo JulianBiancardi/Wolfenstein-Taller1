@@ -70,6 +70,9 @@ class Match {
 
   /* Returns true if the player is dead, false otherwise */
   bool is_dead(unsigned char player_id);
+
+  /* Returns true if the player has lives left */
+  bool has_lives(unsigned char player_id);
 };
 
 Match::Match(/* args */) {}

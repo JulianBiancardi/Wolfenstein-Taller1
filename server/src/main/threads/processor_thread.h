@@ -9,16 +9,13 @@
 
 class ProcessorThread : public Thread {
  private:
-  // This class could maybe be the owner
-  MatchManager& match_manager;
+  MatchManager match_manager;
   ClientManager& client_manager;
-  BlockingQueue<Packet>& reception_queue;
   std::atomic<bool> allowed_to_run;
   void run() override;
 
  public:
-  ProcessorThread(MatchManager& match_manager, ClientManager& client_manager,
-                  BlockingQueue<Packet>& reception_queue);
+  ProcessorThread(ClientManager& client_manager);
 
   ProcessorThread(const ProcessorThread&) = delete;
   ProcessorThread& operator=(const ProcessorThread&) = delete;
