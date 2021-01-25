@@ -16,9 +16,21 @@ class BlockingQueue {
 
  public:
   BlockingQueue();
-  void dequeue(T& buffer);
-  void enqueue(const T& value);
+
   ~BlockingQueue();
+
+  /* Take an element from the front of the queue and store it into the buffer.
+   * The thread is blocked until the operation can be satisfied.
+   */
+  void dequeue(T& buffer);
+
+  /* Put an element into the back of the queue */
+  void enqueue(const T& value);
+
+  /* Take an element from the front of the queue and store it into the buffer.
+   * Returns true is operation was successful, false otherwise.
+   */
+  bool poll(T& buffer);
 };
 
 #include "blocking_queue.tpp"

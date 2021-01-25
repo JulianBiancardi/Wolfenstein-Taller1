@@ -22,3 +22,14 @@ void BlockingQueue<T>::enqueue(const T& value) {
   }
   cv.notify_one();
 }
+
+template <class T>
+bool BlockingQueue<T>::poll(T& buffer) {
+  std::unique_lock<std::mutex> lock(mtx);
+  if (prot_q.empty()) {
+    return false;
+  }
+  buffer = prot_q.front();
+  prot_q.pop();
+  return true;
+}
