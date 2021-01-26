@@ -30,6 +30,6 @@ void ProcessorThread::run() {
       handler->handle(packet, client_manager, match_manager);
     } catch (const PacketError& e) {
       syslog(LOG_ERR, "Packet received hasn't got a valid type.");
-    }
+    }  // TODO catch other errors
   }
 }

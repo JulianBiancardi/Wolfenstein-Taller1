@@ -36,7 +36,7 @@ void MoveHandler::handle(Packet& packet, ClientManager& client_manager,
   Match& match = match_manager.get_match(match_id);
 
   if (match.move_player(player_id, dir)) {
-    std::vector<unsigned char>& client_ids = match.get_players_ids();
+    std::vector<unsigned int>& client_ids = match.get_players_ids();
     client_manager.send_to_all(client_ids, packet);
   }
 }

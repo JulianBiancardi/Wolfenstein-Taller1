@@ -11,7 +11,11 @@ Launcher::Launcher(Server& server, Window& window)
 
 Launcher::~Launcher() {}
 
-Match Launcher::operator()() { update_matches(); }
+Match Launcher::operator()() {
+  update_matches();
+  render();
+  listen_clicks();
+}
 
 void Launcher::update_matches() {
   matches.clear();

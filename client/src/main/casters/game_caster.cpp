@@ -1,10 +1,9 @@
-#include "caster.h"
-
 #include <algorithm>
 
 #include "../../../common/src/main/utils/angle.h"
 #include "../../../common/src/main/utils/point.h"  // TODO Delete if not used in the file
 #include "../../../common/src/main/utils/rectangle.h"
+#include "caster.h"
 #include "casting/ray_casting.h"
 #include "sdl/image.h"
 

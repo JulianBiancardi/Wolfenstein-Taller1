@@ -142,6 +142,6 @@ void Client::run_client() {
   Server server;
   Launcher launcher(server, window);
   Match match_joined = launcher();
-  // Lobby lobby(server, window, match_joined);
+  
   // Game game(server, window, map);
 }
