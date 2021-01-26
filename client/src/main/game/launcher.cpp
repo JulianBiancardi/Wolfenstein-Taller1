@@ -2,6 +2,7 @@
 
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/packets/packing.h"
+#include "launcher_error.h"
 
 #define MAP_NAME_MAX_SIZE 64  // TODO Move somewhere where it belongs
 
@@ -39,7 +40,7 @@ unsigned char Launcher::get_amount_of_matches() {
 
   if (packet.get_type() != MATCH_AMOUNT ||
       packet.get_size() != MATCH_AMOUNT_SIZE) {
-    throw 1;  // TODO Throw Error. Should always be a full match packet
+    throw LauncherError("Failed to receive %u packet.", MATCH_AMOUNT);
   }
 
   unsigned char type;
@@ -56,7 +57,7 @@ void Launcher::receive_match() {
   reception_queue.dequeue(packet);
 
   if (packet.get_type() != MATCH_DATA) {
-    throw 1;  // TODO Throw error
+    throw LauncherError("Failed to receive %u packet.", MATCH_DATA);
   }
 
   unsigned char type;
