@@ -78,15 +78,18 @@ void Match::end() { keep_running = false; }
 
 */
 
-bool Match::player_exists(unsigned char player_id) {
+#include "match_error.h"
+
+bool Match::player_exists(unsigned int player_id) {
   return players.find(player_id) != players.end();
 }
 
-std::vector<unsigned char>& Match::get_players_ids() { return players_ids; }
+std::vector<unsigned int>& Match::get_players_ids() { return players_ids; }
 
-bool Match::move_player(unsigned char player_id, unsigned char direction) {
+bool Match::move_player(unsigned int player_id, unsigned char direction) {
   if (!player_exists(player_id)) {
-    throw 1;  // TODO Throw Error
+    throw MatchError("Failed to move player. Player %u doesn't exist.",
+                     player_id);
   }
 
   Player& player = players[player_id];
@@ -104,9 +107,10 @@ bool Match::move_player(unsigned char player_id, unsigned char direction) {
   return false;
 }
 
-bool Match::rotate_player(unsigned char player_id, unsigned char direction) {
+bool Match::rotate_player(unsigned int player_id, unsigned char direction) {
   if (!player_exists(player_id)) {
-    throw 1;  // TODO Throw Eerror
+    throw MatchError("Failed to rotate player. Player %u doesn't exist.",
+                     player_id);
   }
 
   players[player_id].rotate(direction);
@@ -114,24 +118,26 @@ bool Match::rotate_player(unsigned char player_id, unsigned char direction) {
   return true;
 }
 
-bool Match::change_gun(unsigned char player_id, unsigned char gun_id) {
+bool Match::change_gun(unsigned int player_id, unsigned char gun_id) {
   if (!player_exists(player_id)) {
-    throw 1;  // TODO Throw error
+    throw MatchError("Failed to change gun player. Player %u doesn't exist.",
+                     player_id);
   }
 
-  // Check if he has enough bullets to wield it
+  // TODO Check if he has enough bullets to wield it
   return players[player_id].change_gun(gun_id);
 }
 
-bool Match::shoot_gun(unsigned char player_id, unsigned char objective_id,
+bool Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
                       unsigned char damage) {
   if (!player_exists(player_id)) {
-    throw 1;  // TODO Throw error
+    throw MatchError("Failed to shoot gun. Player %u doesn't exist.",
+                     player_id);
   }
 
   if (objective_id != 0 && !player_exists(objective_id)) {
-    throw 1;  // TODO THrow error. I separated them so we can say the id in
-              // the error
+    throw MatchError("Failed to shoot at player. Player %u doesn't exist.",
+                     objective_id);
   }
 
   Player& shooter = players[player_id];
@@ -141,7 +147,8 @@ bool Match::shoot_gun(unsigned char player_id, unsigned char objective_id,
     Player& objective = players[objective_id];
 
     if (objective.is_dead()) {
-      throw 1;  // TODO Throw error to ignore the packet
+      throw MatchError("Failed to shoot player. Player %u is dead.",
+                       objective_id);
     }
 
     objective.receive_damage(damage);
@@ -153,17 +160,21 @@ bool Match::shoot_gun(unsigned char player_id, unsigned char objective_id,
   }
 }
 
-bool Match::is_dead(unsigned char player_id) {
+bool Match::is_dead(unsigned int player_id) {
   if (!player_exists(player_id)) {
-    throw 1;  // TODO Throw error
+    throw MatchError(
+        "Failed to check health status. Player %u doesn't exist, he is neither "
+        "alive nor dead.",
+        player_id);
   }
 
   return players[player_id].is_dead();
 }
 
-bool Match::has_lives(unsigned char player_id) {
+bool Match::has_lives(unsigned int player_id) {
   if (!player_exists(player_id)) {
-    throw 1;  // TODO Throw error
+    throw MatchError("Failed to check lives. Player %u doesn't exist.",
+                     player_id);
   }
 
   return players[player_id].has_lives();

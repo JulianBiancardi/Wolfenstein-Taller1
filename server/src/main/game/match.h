@@ -1,5 +1,5 @@
-#ifndef WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_MATCH_H_
-#define WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_MATCH_H_
+#ifndef MATCH_H_
+#define MATCH_H_
 
 #include <unordered_map>
 
@@ -10,6 +10,7 @@
 #include "collision_checker.h"
 #include "player.h"
 
+/*
 class Match2 {
  private:
   Map& map;
@@ -37,46 +38,42 @@ class Match2 {
   bool has_result_events_left(int id);  // Only used for testing
   void eliminate_player(int id);
   void end();
-};
+}; */
 
 class Match {
  private:
-  std::vector<unsigned char> players_ids;
-  std::unordered_map<unsigned char, Player> players;
-  bool player_exists(unsigned char player_id);
+  std::vector<unsigned int> players_ids;
+  std::unordered_map<unsigned int, Player> players;
+  bool player_exists(unsigned int player_id);
 
  public:
   Match();
   ~Match();
 
   /* Returns a vector with all the ids of the players */
-  std::vector<unsigned char>& get_players_ids();
+  std::vector<unsigned int>& get_players_ids();
 
   /* Move a player in the match */
-  bool move_player(unsigned char player_id, unsigned char direction);
+  bool move_player(unsigned int player_id, unsigned char direction);
 
   /* Rotate a player in the given direction */
-  bool rotate_player(unsigned char player_id, unsigned char direction);
+  bool rotate_player(unsigned int player_id, unsigned char direction);
 
   /* Change the gun of the player in the match */
-  bool change_gun(unsigned char player_id, unsigned char gun_id);
+  bool change_gun(unsigned int player_id, unsigned char gun_id);
 
   /* Shoot the gun of the player in the match */
-  bool shoot_gun(unsigned char player_id, unsigned char objective_id,
+  bool shoot_gun(unsigned int player_id, unsigned int objective_id,
                  unsigned char damage);
 
   /* Kill a player and respawn him */
-  void kill_player(unsigned char player_id);
+  void kill_player(unsigned int player_id);
 
   /* Returns true if the player is dead, false otherwise */
-  bool is_dead(unsigned char player_id);
+  bool is_dead(unsigned int player_id);
 
   /* Returns true if the player has lives left */
-  bool has_lives(unsigned char player_id);
+  bool has_lives(unsigned int player_id);
 };
 
-Match::Match(/* args */) {}
-
-Match::~Match() {}
-
-#endif  // WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_MATCH_H_
+#endif
