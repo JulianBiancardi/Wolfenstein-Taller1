@@ -1,11 +1,11 @@
 #ifndef LAUNCHER_H
 #define LAUNCHER_H
-#include <Iobservable.h>
+//#include <Iobservable.h>
 
 #include "../server.h"
 #include "match.h"
 
-class Launcher : public IObservable {
+class Launcher : {
  private:
   Server& server;
   std::list<Match> matches;

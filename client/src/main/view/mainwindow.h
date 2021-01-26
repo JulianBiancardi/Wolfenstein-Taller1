@@ -1,12 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <Iobserver.h>
-
 #include <QtGui/QCloseEvent>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QWidget>
 
+#include "../../../common/src/main/Iobserver.h"
 #include "game/launcher.h"
 #include "server.h"
 #include "ui_mainwindow.h"

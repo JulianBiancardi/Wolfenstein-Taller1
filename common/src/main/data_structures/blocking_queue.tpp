@@ -1,3 +1,5 @@
+#include <utility>
+
 template <class T>
 BlockingQueue<T>::BlockingQueue() : prot_q() {}
 

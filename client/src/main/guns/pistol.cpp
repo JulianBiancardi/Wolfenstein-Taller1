@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <iostream>  // TODO delete
 #include <limits>
 #include <utility>
 
@@ -27,6 +28,7 @@ Hit Pistol::shoot(Object& player, int& current_bullets, Map& map) {
 
   std::vector<Object*> objects = map.get_objects();
   std::vector<Object*>::iterator iter;
+
   for (iter = objects.begin(); iter != objects.end(); iter++) {
     Object* object = *iter;
     // TODO Consider: if (!object.is_solid()) {continue;}

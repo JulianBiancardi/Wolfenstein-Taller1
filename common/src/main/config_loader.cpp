@@ -1,9 +1,11 @@
 #include "config_loader.h"
 
+#include <string>
+
 YAML::Node CL::yaml_file = YAML::LoadFile("../../common/src/main/config.yaml");
 
-std::string sv_host = CL::yaml_file["sv_host"].as<std::string>();
-std::string sv_port = CL::yaml_file["sv_port"].as<std::string>();
+std::string CL::sv_host = CL::yaml_file["sv_host"].as<std::string>();
+std::string CL::sv_port = CL::yaml_file["sv_port"].as<std::string>();
 
 int CL::screen_width = CL::yaml_file["screen_width"].as<int>();
 int CL::screen_height = CL::yaml_file["screen_height"].as<int>();

@@ -17,6 +17,7 @@ class Moveable : public Object {
   Moveable(Ray position);
   Moveable(double x, double y, double angle);
   Moveable(const Moveable& other);
+  // TODO Add constructor with ID and also to player
   ~Moveable() {}
 
   Point next_position(int direction);
