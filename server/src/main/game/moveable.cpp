@@ -50,19 +50,19 @@ Point Moveable::next_position(int direction) {
       return next_position(0.0);
     case UP_LEFT:
       return next_position(M_PI / 4);
-    case LEFT:
-      return next_position(M_PI / 2);
-    case DOWN_LEFT:
-      return next_position(3 * M_PI / 4);
-    case DOWN:
-      return next_position(M_PI);
-    case DOWN_RIGHT:
-      return next_position(5 * M_PI / 4);
-    case RIGHT:
-      return next_position(3 * M_PI / 2);
     case UP_RIGHT:
       return next_position(7 * M_PI / 4);
-    default:
+    case LEFT:
+      return next_position(M_PI / 2);
+    case RIGHT:
+      return next_position(3 * M_PI / 2);
+    case DOWN_LEFT:
+      return next_position(3 * M_PI / 4);
+    case DOWN_RIGHT:
+      return next_position(5 * M_PI / 4);
+    case DOWN:
+      return next_position(M_PI);
+    default:  // Do nothing
       break;
   }
 }
