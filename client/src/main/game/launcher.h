@@ -1,8 +1,8 @@
 #ifndef LAUNCHER_H
 #define LAUNCHER_H
 
+#include "../server.h"
 #include "match.h"
-#include "server.h"
 
 class Launcher {
  private:
