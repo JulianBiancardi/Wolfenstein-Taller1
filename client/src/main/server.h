@@ -9,7 +9,7 @@
 
 class Server {
  private:
-  unsigned char id;
+  unsigned int id;
   Socket server_socket;
   BlockingQueue<Packet> sending_queue;
   BlockingQueue<Packet> reception_queue;
@@ -23,8 +23,14 @@ class Server {
   Server();
   ~Server();
 
+  /* Returns a reference to the client reception queue */
+  BlockingQueue<Packet>& get_reception_queue();
+
+  /* Sends a message to the client */
   void send(Packet& packet);
-  unsigned char get_id();
+
+  /* Returns the id the server assigned to the the client */
+  unsigned int get_id();
 };
 
 #endif

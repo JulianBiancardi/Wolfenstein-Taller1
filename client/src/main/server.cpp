@@ -31,8 +31,8 @@ void Server::sync_with_server(Socket& server_socket) {
     throw 1;  // TODO Failed to establish connection
   }
   unsigned char type;
-  unsigned char designated_id;
-  unpack(packet.get_data(), "CC", &type, &designated_id);
+  unsigned int designated_id;
+  unpack(packet.get_data(), "CI", &type, &designated_id);
 
   if (designated_id != 0) {
     id = designated_id;
@@ -43,6 +43,8 @@ void Server::sync_with_server(Socket& server_socket) {
   }
 }
 
+BlockingQueue<Packet>& Server::get_reception_queue() { return reception_queue; }
+
 void Server::send(Packet& packet) { sending_queue.enqueue(packet); }
 
-unsigned char Server::get_id() { return id; }
+unsigned int Server::get_id() { return id; }

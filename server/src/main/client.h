@@ -21,6 +21,7 @@ class Client {
                   BlockingQueue<Packet>& reception_queue);
   ~Client();
 
+  /* Sends a message to the client */
   void send(Packet& packet);
 
   /* Returns true if the Client is still active, false otherwise */
