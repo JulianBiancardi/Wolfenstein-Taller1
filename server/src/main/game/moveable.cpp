@@ -1,9 +1,24 @@
 #include "moveable.h"
 
+#include <cmath>
+
 #include "../../../../common/src/main/collisions/circle_mask.h"
 #include "../../../../common/src/main/config_loader.h"
-#include "../../../../common/src/main/packets/packet.h"
-#include <cmath>
+
+// Movement directions
+#define INVALID 0
+#define UP 1
+#define UP_LEFT 2
+#define LEFT 3
+#define DOWN_LEFT 4
+#define DOWN 5
+#define DOWN_RIGHT 6
+#define RIGHT 7
+#define UP_RIGHT 8
+
+// Rotating directions:
+#define RIGHT_ROTATION 1
+#define LEFT_ROTATION 2
 
 // TODO Use config loader
 Moveable::Moveable(Point origin, double angle)
@@ -45,35 +60,43 @@ Point Moveable::next_position(double direction_angle) {
 
 Point Moveable::next_position(int direction) {
   switch (direction) {
-    case UP: return next_position(0.0);
-    case UP_LEFT: return next_position(M_PI / 4);
-    case LEFT: return next_position(M_PI / 2);
-    case DOWN_LEFT: return next_position(3 * M_PI / 4);
-    case DOWN: return next_position(M_PI);
-    case DOWN_RIGHT: return next_position(5 * M_PI / 4);
-    case RIGHT: return next_position(3 * M_PI / 2);
-    case UP_RIGHT: return next_position(7 * M_PI / 4);
-    default: throw -1; // TODO Use our exception
+    case UP:
+      return next_position(0.0);
+    case UP_LEFT:
+      return next_position(M_PI / 4);
+    case LEFT:
+      return next_position(M_PI / 2);
+    case DOWN_LEFT:
+      return next_position(3 * M_PI / 4);
+    case DOWN:
+      return next_position(M_PI);
+    case DOWN_RIGHT:
+      return next_position(5 * M_PI / 4);
+    case RIGHT:
+      return next_position(3 * M_PI / 2);
+    case UP_RIGHT:
+      return next_position(7 * M_PI / 4);
+    default:
+      throw -1;  // TODO Use our exception
   }
 }
 
 void Moveable::rotate(int direction) {
   if (direction == LEFT_ROTATION)
-    position = Ray(position.get_ref_origin(),
-                   position.get_angle() + rotation_angle);
+    position =
+        Ray(position.get_ref_origin(), position.get_angle() + rotation_angle);
   else
-    position = Ray(position.get_ref_origin(),
-                   position.get_angle() - rotation_angle);
-
+    position =
+        Ray(position.get_ref_origin(), position.get_angle() - rotation_angle);
 }
 
 Point Moveable::collision_mask_bound(const Point& next_position) {
   double angle = position.get_origin().angle_to(next_position);
 
   double front_x =
-      next_position.getX() + cos(angle) * ((CircleMask*) mask)->get_radius();
+      next_position.getX() + cos(angle) * ((CircleMask*)mask)->get_radius();
   double front_y =
-      next_position.getY() - sin(angle) * ((CircleMask*) mask)->get_radius();
+      next_position.getY() - sin(angle) * ((CircleMask*)mask)->get_radius();
 
   return Point(front_x, front_y);
 }
