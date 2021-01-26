@@ -4,8 +4,8 @@
 #include "../../../common/src/main/data_structures/blocking_queue.h"
 #include "../../../common/src/main/packets/packet.h"
 #include "../../../common/src/main/socket/socket.h"
-#include "threads/receive_from_client_thread.h"
-#include "threads/send_to_client_thread.h"
+#include "../../../common/src/main/threads/receive_from_peer_thread.h"
+#include "../../../common/src/main/threads/send_to_peer_thread.h"
 
 class Client {
  private:
@@ -13,8 +13,11 @@ class Client {
   Socket client_socket;
   BlockingQueue<Packet> sending_queue;
 
-  ReceiveFromClientThread* receiving_thread;
-  SendToClientThread* sending_thread;
+  ReceiveFromPeerThread receiving_thread;
+  SendToPeerThread sending_thread;
+
+  /* Acknowledge client of his ID */
+  void sync();
 
  public:
   explicit Client(unsigned int id, Socket& socket,
