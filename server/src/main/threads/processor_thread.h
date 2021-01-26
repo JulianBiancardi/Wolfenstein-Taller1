@@ -24,6 +24,8 @@ class ProcessorThread : public Thread {
   ProcessorThread& operator=(ProcessorThread&& other) = delete;
 
   ~ProcessorThread();
+
+  void force_stop();
 };
 
 #endif

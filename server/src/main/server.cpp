@@ -27,7 +27,8 @@ void Server::run_server(std::string& port) {
       accepting_thread.force_stop();
       accepting_thread.join();
 
-      // TODO Stop Processor Thread
+      processor_thread.force_stop();
+      processor_thread.join();
       break;
     }
   }
