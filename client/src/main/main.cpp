@@ -4,23 +4,9 @@
 
 #include "client.h"
 
-#define ARGS_MIN 3
-#define ARGV_HOST 1
-#define ARGV_PORT 2
-
-//-----------------------------------------------------
-Map load_map();
 int main(int argc, char** argv) {
   try {
-    if (argc < ARGS_MIN) {
-      syslog(LOG_ERR,
-             "[Error] - Client Main Thread - Error: amount of arguments is not "
-             "enough");
-      return EXIT_FAILURE;
-    }
-    std::string host = argv[ARGV_HOST];
-    std::string port = argv[ARGV_PORT];
-    Client client(host, port);
+    Client client;
     client.run_client();
     return EXIT_SUCCESS;
   } catch (const std::exception& e) {
@@ -32,6 +18,8 @@ int main(int argc, char** argv) {
   }
 }
 
+/*
+Map load_map();
 // TODO Move to MapReader
 Map load_map() {
   YAML::Node yaml_file =
@@ -54,4 +42,4 @@ Map load_map() {
   }
 
   return Map(map_data);
-}
+}*/

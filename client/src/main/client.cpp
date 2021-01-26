@@ -129,7 +129,7 @@ Client::~Client() {
 */
 
 #include "../../../common/src/main/config_loader.h"
-#include "game/match_maker.h"
+#include "game/launcher.h"
 #include "sdl/window.h"
 #include "server.h"
 
@@ -140,8 +140,8 @@ Client::~Client() {}
 
 void Client::run_client() {
   Server server;
-  MatchMaker match_maker(server, window);
-  Match match_joined = match_maker.join_match();
-  Lobby lobby(server, caster);
-  Game game(server, caster, map);
+  Launcher launcher(server, window);
+  Match match_joined = launcher();
+  // Lobby lobby(server, window, match_joined);
+  // Game game(server, window, map);
 }

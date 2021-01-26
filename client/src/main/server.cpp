@@ -1,9 +1,10 @@
 #include "server.h"
 
+#include "../../../common/src/main/config_loader.h"
 #include "../../../common/src/main/packets/packing.h"
 
 Server::Server()
-    : server_socket(host, port),
+    : server_socket(CL::sv_host, CL::sv_port),
       reception_queue(),
       sending_queue(),
       receiving_thread(server_socket, reception_queue),

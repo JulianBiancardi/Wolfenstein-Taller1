@@ -1,5 +1,5 @@
-#ifndef WOLFENSTEIN_TALLER1_CONFIG_LOADER_H
-#define WOLFENSTEIN_TALLER1_CONFIG_LOADER_H
+#ifndef CONFIG_LOADER_H
+#define CONFIG_LOADER_H
 
 #include <fstream>
 #include <iostream>
@@ -12,10 +12,12 @@ typedef ConfigLoader CL;
 class ConfigLoader {
  public:
   ConfigLoader();
+  ~ConfigLoader();
   // static ConfigLoader& get_init_configs();
 
   static YAML::Node yaml_file;
 
+  static std::string sv_host;
   static std::string sv_port;
 
   static int screen_width;
@@ -57,4 +59,4 @@ class ConfigLoader {
   static int crown_points;
 };
 
-#endif  // WOLFENSTEIN_TALLER1_CONFIG_LOADER_H
+#endif

@@ -4,14 +4,11 @@
 #include <string>
 
 #include "../../../common/src/main/data_structures/blocking_queue.h"
-#include "../../../common/src/main/data_structures/protected_queue.h"
 #include "../../../common/src/main/socket/socket.h"
 #include "../../../common/src/main/utils/ray.h"
-#include "events/event.h"
-#include "threads/receive_from_server_thread.h"
-#include "threads/send_to_server_thread.h"
 
 //-------------------------------------
+/*
 class Client2 {
  private:
   Window window;
@@ -35,7 +32,7 @@ class Client2 {
   void launch();
 
   ~Client();
-};
+}; */
 
 #include "sdl/window.h"
 

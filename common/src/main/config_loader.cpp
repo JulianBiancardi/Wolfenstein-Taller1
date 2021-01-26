@@ -1,6 +1,8 @@
 #include "config_loader.h"
 
 YAML::Node CL::yaml_file = YAML::LoadFile("../../common/src/main/config.yaml");
+
+std::string sv_host = CL::yaml_file["sv_host"].as<std::string>();
 std::string sv_port = CL::yaml_file["sv_port"].as<std::string>();
 
 int CL::screen_width = CL::yaml_file["screen_width"].as<int>();
@@ -111,6 +113,9 @@ ConfigLoader::ConfigLoader() {
   crown_points = this->yaml_file["crown_points"].as<int>();
 */
 }
+
+ConfigLoader::~ConfigLoader() {}
+
 /*
  ConfigLoader & ConfigLoader::get_init_configs() {
      static ConfigLoader instance;
