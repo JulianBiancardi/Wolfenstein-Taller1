@@ -17,6 +17,10 @@ find_package(SDL2 REQUIRED)
 # Add SDL2 into include directories
 include_directories(${SDL2_INCLUDE_DIR})
 
+# Busca el módulo Widgets de la biblioteca Qt5
+find_package(Qt5Widgets)
+
+
 FILE(GLOB ClientFiles
   src/main/*.cpp
   src/main/casting/*.cpp

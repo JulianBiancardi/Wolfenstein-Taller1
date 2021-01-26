@@ -7,7 +7,7 @@
 int main(int argc, char** argv) {
   try {
     Client client;
-    client.run_client();
+    client.run_client(argc, argv);
     return EXIT_SUCCESS;
   } catch (const std::exception& e) {
     syslog(LOG_ERR, "[Error] Server Main Thread - Error: %s", e.what());

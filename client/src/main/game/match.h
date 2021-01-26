@@ -16,8 +16,15 @@ class Match {
   unsigned char status;
 
  public:
+  Match();
   Match(unsigned char match_id, char* map_name, unsigned char players_joined,
         unsigned char players_total, unsigned char status);
+
+  unsigned char get_match_id() const;
+  unsigned char get_players_joined() const;
+  unsigned char get_players_total() const;
+  unsigned char get_status() const;
+
   ~Match();
 };
 #endif
