@@ -34,6 +34,8 @@
 #define DAMAGE_PACKET 6
 #define GAME_OVER_PACKET 7
 
+// TODO Move this somewhere else
+
 // Moving directions:
 #define INVALID 0
 #define UP 1
@@ -55,24 +57,6 @@
 #define MACHINE_GUN_ID 3
 #define CHAIN_CANNON_ID 4
 #define ROCKET_LAUNCHER_ID 5
-
-typedef struct DamageData {
-  int damage_done;
-  int enemy_shot;
-} DamageData;
-
-// typedef struct packet {
-int type;
-int player_id;
-union data {
-  int direction;    // MOVE, ROTATE
-  int item;         // GRAB
-  int door_id;      // DOOR
-  int gun;          // CHANGE GUN
-  DamageData shot;  // SHOT HIT
-} data;
-}
-__attribute__((packed)) packet_t;
 
 class Packet {
  private:
