@@ -45,7 +45,7 @@ class Window {
   /* Manually update the rendering. */
   void update();
 
-  SDL_Renderer* get_renderer();  // TODO Delete
+  SDL_Renderer* get_renderer();
 };
 
 #endif
