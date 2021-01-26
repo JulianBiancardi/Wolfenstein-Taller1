@@ -2,7 +2,6 @@
 #define LAUNCHER_H
 
 #include "match.h"
-#include "sdl/window.h"
 #include "server.h"
 
 class Launcher {
@@ -17,7 +16,7 @@ class Launcher {
   void receive_match();
 
  public:
-  explicit Launcher(Server& server, Window& window);
+  explicit Launcher(Server& server);
   ~Launcher();
 
   /* Run the launcher */

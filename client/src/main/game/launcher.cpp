@@ -6,16 +6,11 @@
 
 #define MAP_NAME_MAX_SIZE 64  // TODO Move somewhere where it belongs
 
-Launcher::Launcher(Server& server, Window& window)
-    : server(server), matches() {}
+Launcher::Launcher(Server& server) : server(server), matches() {}
 
 Launcher::~Launcher() {}
 
-Match Launcher::operator()() {
-  update_matches();
-  render();
-  listen_clicks();
-}
+Match Launcher::operator()() { update_matches(); }
 
 void Launcher::update_matches() {
   matches.clear();
