@@ -1,7 +1,5 @@
 #include "circle_mask_tests.h"
 
-#include <iostream>  // TODO DELETE
-
 #include "../../main/collisions/circle_mask.h"
 #include "../../main/utils/point.h"
 #include "../tests_setup.h"
@@ -57,23 +55,18 @@ int static interior_test() {
   Point p5(-0.2, 0.2);
 
   if (!mask.occupies(p1)) {
-    std::cout << "A" << std::endl;
     return ERROR;
   }
   if (!mask.occupies(p2)) {
-    std::cout << "B" << std::endl;
     return ERROR;
   }
   if (!mask.occupies(p3)) {
-    std::cout << "c" << std::endl;
     return ERROR;
   }
   if (!mask.occupies(p4)) {
-    std::cout << "D" << std::endl;
     return ERROR;
   }
   if (!mask.occupies(p5)) {
-    std::cout << "E" << std::endl;
     return ERROR;
   }
   return NO_ERROR;
