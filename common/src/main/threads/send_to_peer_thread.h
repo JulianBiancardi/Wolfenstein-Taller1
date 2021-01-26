@@ -1,23 +1,23 @@
-#ifndef SEND_THREAD_H
-#define SEND_THREAD_H
+#ifndef SEND_TO_PEER_THREAD_H
+#define SEND_TO_PEER_THREAD_H
 
 #include "../../../../common/src/main/data_structures/blocking_queue.h"
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/socket/socket.h"
 #include "../../../../common/src/main/threads/thread.h"
 
-class SendToClientThread : public Thread {
+class SendToPeerThread : public Thread {
  private:
-  unsigned int client_id;
-  BlockingQueue<Packet>& events_queue;
+  unsigned char client_id;
+  BlockingQueue<Packet>& sending_queue;
   Socket& connected_socket;
   bool allowed_to_run;
   bool running;
 
  public:
-  SendToClientThread(unsigned int client_id, Socket& connected_socket,
-                     BlockingQueue<Packet>& events_queue);
-  ~SendToClientThread();
+  SendToPeerThread(unsigned int client_id, Socket& connected_socket,
+                   BlockingQueue<Packet>& events_queue);
+  ~SendToPeerThread();
 
   bool is_running();
   void force_stop();

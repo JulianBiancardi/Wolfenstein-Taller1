@@ -1,4 +1,4 @@
-#include "receive_from_client_thread.h"
+#include "receive_from_peer_thread.h"
 
 #include <syslog.h>
 
@@ -7,7 +7,7 @@
 
 #include "../../../../common/src/main/packets/packing.h"
 
-ReceiveFromClientThread::ReceiveFromClientThread(
+ReceiveFromPeerThread::ReceiveFromPeerThread(
     unsigned int client_id, Socket& connected_socket,
     BlockingQueue<Packet>& reception_queue)
     : client_id(client_id),
@@ -16,17 +16,17 @@ ReceiveFromClientThread::ReceiveFromClientThread(
       allowed_to_run(true),
       running(false) {}
 
-ReceiveFromClientThread::~ReceiveFromClientThread() {}
+ReceiveFromPeerThread::~ReceiveFromPeerThread() {}
 
-bool ReceiveFromClientThread::is_running() { return running; }
+bool ReceiveFromPeerThread::is_running() { return running; }
 
-void ReceiveFromClientThread::force_stop() {
+void ReceiveFromPeerThread::force_stop() {
   allowed_to_run = false;
   connected_socket.shutdown(SHUT_RD);
   // TODO Confirm if I need to shutdown here or what.
 }
 
-void ReceiveFromClientThread::run() {
+void ReceiveFromPeerThread::run() {
   try {
     running = true;
     while (allowed_to_run) {
@@ -38,7 +38,7 @@ void ReceiveFromClientThread::run() {
       size_t size = unpacku16(size_buf);
       if (size == 0) {
         syslog(LOG_WARNING,
-               "[WARNING] ReceiveFromClientThread - Warning: Received packet "
+               "[WARNING] ReceiveFromPeerThread - Warning: Received packet "
                "of size zero");
         continue;
       }
@@ -64,11 +64,11 @@ void ReceiveFromClientThread::run() {
       reception_queue.enqueue(std::move(packet));
     }
   } catch (const SocketError& e) {
-    syslog(LOG_ERR, "[ERROR] ReceiveFromServerThread - SocketError: %s",
+    syslog(LOG_ERR, "[ERROR] ReceiveFromPeerThread - SocketError: %s",
            e.what());
   } catch (const std::exception& e) {
-    syslog(LOG_ERR, "[Error] ReceiveFromServerThread - Error: %s", e.what());
+    syslog(LOG_ERR, "[Error] ReceiveFromPeerThread - Error: %s", e.what());
   } catch (...) {
-    syslog(LOG_ERR, "[Error] ReceiveFromServerThread - Unknown error");
+    syslog(LOG_ERR, "[Error] ReceiveFromPeerThread - Unknown error");
   }
 }
