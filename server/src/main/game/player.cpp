@@ -1,6 +1,6 @@
 #include "player.h"
 
-#include "../../../../common/src/main/packets/packet.h"
+#include "../../../../common/src/main/ids/gun_ids.h"
 
 Player::Player(Point origin, double angle)
     : shot_bullets(0),

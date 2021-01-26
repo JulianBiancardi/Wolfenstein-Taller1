@@ -4,21 +4,7 @@
 
 #include "../../../../common/src/main/collisions/circle_mask.h"
 #include "../../../../common/src/main/config_loader.h"
-
-// Movement directions
-#define INVALID 0
-#define UP 1
-#define UP_LEFT 2
-#define LEFT 3
-#define DOWN_LEFT 4
-#define DOWN 5
-#define DOWN_RIGHT 6
-#define RIGHT 7
-#define UP_RIGHT 8
-
-// Rotating directions:
-#define RIGHT_ROTATION 1
-#define LEFT_ROTATION 2
+#include "../../../../common/src/main/ids/movement_ids.h"
 
 // TODO Use config loader
 Moveable::Moveable(Point origin, double angle)
