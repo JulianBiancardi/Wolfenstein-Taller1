@@ -8,9 +8,9 @@ Server::Server()
       sending_queue(),
       receiving_thread(server_socket, reception_queue),
       sending_thread(server_socket, sending_queue) {
-  sync_with_server(server_socket);
   receiving_thread.start();
   sending_thread.start();
+  sync_with_server(server_socket);
 }
 
 Server::~Server() {
@@ -25,27 +25,19 @@ Server::~Server() {
 }
 
 void Server::sync_with_server(Socket& server_socket) {
-  unsigned char size_buf[2];
-  unsigned char buf[2];
-  if (server_socket.receive((char*)&size_buf, 2) != 2) {
-    throw SocketError("Failed to receive packet length during server sync");
+  Packet packet;
+  reception_queue.dequeue(packet);
+  if (packet.get_type() != START_OF_CONNECTION) {
+    throw 1;  // TODO Failed to establish connection
   }
-
-  size_t size = unpacku16(size_buf);
-  if (size != 2) {
-    throw 1;  // TODO Failed to sync with server. Received packet of size zero.
-  }
-
-  if (server_socket.receive((char*)buf, size) != size) {
-    throw SocketError(
-        "Failed to receive full packet during initial server sync");
-  }
-
   unsigned char type;
   unsigned char designated_id;
-  unpack(buf, "CC", &type, &designated_id);
-  if (type == 1 && designated_id != 0) {
+  unpack(packet.get_data(), "CC", &type, &designated_id);
+
+  if (designated_id != 0) {
     id = designated_id;
+    receiving_thread.set_id(id);
+    sending_thread.set_id(id);
   } else {
     throw 1;  // TODO Failed to receive id during server sync
   }

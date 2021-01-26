@@ -8,17 +8,20 @@
 
 class SendToPeerThread : public Thread {
  private:
-  unsigned char client_id;
-  BlockingQueue<Packet>& sending_queue;
+  unsigned int client_id;
   Socket& connected_socket;
+  BlockingQueue<Packet>& sending_queue;
   bool allowed_to_run;
   bool running;
 
  public:
-  SendToPeerThread(unsigned int client_id, Socket& connected_socket,
-                   BlockingQueue<Packet>& events_queue);
+  explicit SendToPeerThread(Socket& connected_socket,
+                            BlockingQueue<Packet>& events_queue);
+  explicit SendToPeerThread(unsigned int client_id, Socket& connected_socket,
+                            BlockingQueue<Packet>& events_queue);
   ~SendToPeerThread();
 
+  void set_id(unsigned int id);
   bool is_running();
   void force_stop();
   void run() override;

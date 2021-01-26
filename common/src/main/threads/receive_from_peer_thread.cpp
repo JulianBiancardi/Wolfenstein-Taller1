@@ -8,6 +8,14 @@
 #include "../../../../common/src/main/packets/packing.h"
 
 ReceiveFromPeerThread::ReceiveFromPeerThread(
+    Socket& connected_socket, BlockingQueue<Packet>& reception_queue)
+    : client_id(0),
+      connected_socket(connected_socket),
+      reception_queue(reception_queue),
+      allowed_to_run(true),
+      running(false) {}
+
+ReceiveFromPeerThread::ReceiveFromPeerThread(
     unsigned int client_id, Socket& connected_socket,
     BlockingQueue<Packet>& reception_queue)
     : client_id(client_id),
@@ -17,6 +25,8 @@ ReceiveFromPeerThread::ReceiveFromPeerThread(
       running(false) {}
 
 ReceiveFromPeerThread::~ReceiveFromPeerThread() {}
+
+void ReceiveFromPeerThread::set_id(unsigned int id) { client_id = id; }
 
 bool ReceiveFromPeerThread::is_running() { return running; }
 
@@ -30,8 +40,8 @@ void ReceiveFromPeerThread::run() {
   try {
     running = true;
     while (allowed_to_run) {
-      unsigned char size_buf[2];
-      if (connected_socket.receive((char*)&size_buf, 2) != 2) {
+      unsigned char size_buf[SIZE_SIZE];
+      if (connected_socket.receive(size_buf, SIZE_SIZE) != SIZE_SIZE) {
         throw SocketError("Failed to receive packet length");
       }
 

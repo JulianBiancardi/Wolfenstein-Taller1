@@ -15,11 +15,14 @@ class ReceiveFromPeerThread : public Thread {
   bool running;
 
  public:
+  explicit ReceiveFromPeerThread(Socket& connected_socket,
+                                 BlockingQueue<Packet>& reception_queue);
   explicit ReceiveFromPeerThread(unsigned int client_id,
                                  Socket& connected_socket,
                                  BlockingQueue<Packet>& reception_queue);
   ~ReceiveFromPeerThread();
 
+  void set_id(unsigned int id);
   void run() override;
   bool is_running();
   void force_stop();
