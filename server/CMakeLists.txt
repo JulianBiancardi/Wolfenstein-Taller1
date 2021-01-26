@@ -16,8 +16,6 @@ find_package(Lua REQUIRED)
 FILE(GLOB ServerFiles
 	src/main/bot.cpp ##
 	src/main/map.cpp # Should be everything different from main_server.cpp
-	src/main/events/*.cpp
-	src/main/events/handlers/*.cpp
 	src/main/game/*.cpp
 	src/main/game/*/*.cpp
 	src/main/game/*/*/*.cpp

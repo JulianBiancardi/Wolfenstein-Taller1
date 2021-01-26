@@ -19,6 +19,7 @@ include_directories(${SDL2_INCLUDE_DIR})
 
 FILE(GLOB ClientFiles
   src/main/*.cpp
+  src/main/game/*.cpp
   src/main/casting/*.cpp
   src/main/guns/*.cpp
   src/main/sdl/*.cpp
@@ -35,6 +36,8 @@ FILE(GLOB CommonFiles
   ../common/src/main/socket/*.cpp
   ../common/src/main/threads/*.cpp
 	../common/src/main/utils/*.cpp
+	../common/src/main/packets/*.cpp
+	../common/src/main/exceptions/*.cpp
 
   ../common/src/main/object.cpp
   ../common/src/main/identifiable.cpp

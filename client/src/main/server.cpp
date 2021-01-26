@@ -1,5 +1,7 @@
 #include "server.h"
 
+#include <utility>
+
 #include "../../../common/src/main/config_loader.h"
 #include "../../../common/src/main/exceptions/server_error.h"
 #include "../../../common/src/main/packets/packing.h"

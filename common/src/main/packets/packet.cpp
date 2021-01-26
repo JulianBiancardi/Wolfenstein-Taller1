@@ -12,6 +12,28 @@ Packet::Packet(size_t size, unsigned char* packet)
   memcpy(data, packet, size);
 }
 
+Packet::Packet(const Packet& other) {
+  this->size = other.size;
+  this->type = other.type;
+  this->data = new unsigned char[this->size];
+  memcpy(this->data, other.data, size);
+}
+
+Packet& Packet::operator=(const Packet& other) {
+  if (this != &other) {
+    unsigned char* new_data = new unsigned char[other.size];
+    memcpy(new_data, other.data, other.size);
+
+    delete[] this->data;
+
+    this->data = new_data;
+    this->size = other.size;
+    this->type = other.type;
+  }
+
+  return *this;
+}
+
 Packet::Packet(Packet&& other) {
   this->size = other.size;
   this->type = other.type;

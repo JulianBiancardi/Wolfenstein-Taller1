@@ -37,6 +37,10 @@ class Packet {
  public:
   Packet();
   explicit Packet(size_t size, unsigned char* packet);
+
+  Packet(const Packet& other);
+  Packet& operator=(const Packet&);
+
   Packet(Packet&& other);
   Packet& operator=(Packet&& other);
 

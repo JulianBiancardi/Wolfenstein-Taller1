@@ -1,9 +1,5 @@
 #include "client.h"
 
-#include "../../../common/src/main/utils/point.h"  //TODO MOVE THIS TO OTHER CLASSES
-#include "../../../server/src/main/events/event_building.h"
-#include "frame_limiter.h"
-
 #define UNIT 5
 #define SCREEN_WIDTH (320 * UNIT)
 #define SCREEN_HEIGHT (200 * UNIT)
@@ -140,8 +136,8 @@ Client::~Client() {}
 
 void Client::run_client() {
   Server server;
-  Launcher launcher(server, window);
+  Launcher launcher(server);
   Match match_joined = launcher();
-  
+
   // Game game(server, window, map);
 }
