@@ -11,7 +11,7 @@ Player::Player(Ray position)
       Object(position /*, position.get_angle()*/,
              new CircleMask(ConfigLoader::player_mask_radio,
                             position.get_ref_origin())) {
-  pace = 1;  // TODO Use config file
+  pace = CL::player_pace;
   health = CL::player_health;
   bullets = CL::player_health;
   Knife* knife = new Knife();
@@ -19,19 +19,12 @@ Player::Player(Ray position)
   active_gun = 0;
 }
 
-Player::~Player() {
-  std::unordered_map<int, Gun*>::iterator iter;
-  for (iter = guns_bag.begin(); iter != guns_bag.end(); iter++) {
-    delete iter->second;
-  }
-}
-
 Player::Player(Point origin, double angle)
     : position(origin, angle),
       guns_bag(),
       Object(origin, angle,
              new CircleMask(ConfigLoader::player_mask_radio, origin)) {
-  pace = 1;  // TODO Use config file
+  pace = CL::player_pace;
   health = CL::player_health;
   bullets = CL::player_health;
   Knife* knife = new Knife();
@@ -44,12 +37,19 @@ Player::Player(double x, double y, double angle)
       guns_bag(),
       Object(Point(x, y), angle,
              new CircleMask(ConfigLoader::player_mask_radio, Point(x, y))) {
-  pace = 1;  // TODO Use config file
+  pace = CL::player_pace;
   health = CL::player_health;
   bullets = CL::player_health;
   Knife* knife = new Knife();
   guns_bag.insert(std::pair<int, Gun*>(0, knife));
   active_gun = 0;
+}
+
+Player::~Player() {
+  std::unordered_map<int, Gun*>::iterator iter;
+  for (iter = guns_bag.begin(); iter != guns_bag.end(); iter++) {
+    delete iter->second;
+  }
 }
 
 Point Player::next_position(double direction_angle) {
