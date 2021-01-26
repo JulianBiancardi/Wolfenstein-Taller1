@@ -6,7 +6,6 @@
 #include "../../../../common/src/main/config_loader.h"
 #include "../../../../common/src/main/ids/movement_ids.h"
 
-// TODO Use config loader
 Moveable::Moveable(Point origin, double angle)
     : Object(origin, angle,
              new CircleMask(ConfigLoader::player_mask_radio,
