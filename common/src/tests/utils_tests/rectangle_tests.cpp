@@ -22,7 +22,6 @@ void rectangle_tests() {
   end_tests();
 }
 
-// TODO Add Error checking when width or height would be negative
 int static creation_test() {
   Rectangle rect1(0, 0, 1, 1);
   Rectangle rect2(2, 5, 1, 9);
