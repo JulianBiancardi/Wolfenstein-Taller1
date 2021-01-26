@@ -1,6 +1,7 @@
 #include "server.h"
 
 #include "../../../common/src/main/config_loader.h"
+#include "../../../common/src/main/exceptions/server_error.h"
 #include "../../../common/src/main/packets/packing.h"
 
 Server::Server()
@@ -29,7 +30,9 @@ void Server::sync_with_server(Socket& server_socket) {
   Packet packet;
   reception_queue.dequeue(packet);
   if (packet.get_type() != START_OF_CONNECTION) {
-    throw 1;  // TODO Failed to establish connection
+    throw ServerError(
+        "Failed to establish connection. Received packet of type %u.",
+        packet.get_type());
   }
   unsigned char type;
   unsigned int designated_id;
@@ -40,7 +43,7 @@ void Server::sync_with_server(Socket& server_socket) {
     receiving_thread.set_id(id);
     sending_thread.set_id(id);
   } else {
-    throw 1;  // TODO Failed to receive id during server sync
+    throw ServerError("Failed to receive id during server-sync.");
   }
 }
 
