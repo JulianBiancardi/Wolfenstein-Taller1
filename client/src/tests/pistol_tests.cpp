@@ -1,7 +1,5 @@
 #include "pistol_tests.h"
 
-#include <stdio.h>  // TODO DELETE
-
 #include "../../../common/src/main/utils/matrix.h"
 #include "../main/guns/hit.h"
 #include "../main/guns/pistol.h"
