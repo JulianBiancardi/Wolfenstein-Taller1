@@ -10,7 +10,6 @@
 #include <vector>
 
 #include "../../../common/src/main/config_loader.h"
-#include "../../../common/src/main/ids/gun_ids.h"
 #include "game/collision_checker.h"
 #include "game/player.h"
 

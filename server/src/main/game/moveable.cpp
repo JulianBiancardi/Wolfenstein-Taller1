@@ -63,7 +63,7 @@ Point Moveable::next_position(int direction) {
     case UP_RIGHT:
       return next_position(7 * M_PI / 4);
     default:
-      throw -1;  // TODO Use our exception
+      break;
   }
 }
 
