@@ -44,7 +44,7 @@ class Client {
   Client();
   ~Client();
 
-  void run_client();
+  void run_client(int argc, char** argv);
 };
 
 #endif  // CLIENT_H

@@ -2,20 +2,28 @@
 
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/packets/packing.h"
+#include "iostream"
 #include "launcher_error.h"
 
 #define MAP_NAME_MAX_SIZE 64  // TODO Move somewhere where it belongs
 
+<<<<<<< HEAD
+Launcher::Launcher(Server& server) : server(server), matches() {
+  update_matches();
+}
+=======
 Launcher::Launcher(Server& server) : server(server), matches() {}
 
 Launcher::~Launcher() {}
 
 Match Launcher::operator()() { update_matches(); }
+>>>>>>> a3d6eb862711e2969d00345395822ab593ef91b0
 
 void Launcher::update_matches() {
   matches.clear();
   request_matches();
   receive_matches();
+  notify();
 }
 
 void Launcher::request_matches() {
@@ -72,3 +80,7 @@ void Launcher::receive_match() {
   matches.push_back(
       Match(match_id, map_name, players_joined, players_total, status));
 }
+
+std::list<Match> Launcher::get_matches() const { return matches; }
+
+Launcher::~Launcher() {}

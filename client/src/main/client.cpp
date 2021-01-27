@@ -1,5 +1,11 @@
 #include "client.h"
 
+#include <QtWidgets/QApplication>
+
+#include "../../../common/src/main/utils/point.h"  //TODO MOVE THIS TO OTHER CLASSES
+//#include "../../../server/src/main/events/event_building.h"
+#include "frame_limiter.h"
+
 #define UNIT 5
 #define SCREEN_WIDTH (320 * UNIT)
 #define SCREEN_HEIGHT (200 * UNIT)
@@ -128,16 +134,25 @@ Client::~Client() {
 #include "game/launcher.h"
 #include "sdl/window.h"
 #include "server.h"
+#include "view/mainwindow.h"
 
 Client::Client()
     : window("Wolfenstein 3D", CL::screen_width, CL::screen_height) {}
 
 Client::~Client() {}
 
-void Client::run_client() {
+void Client::run_client(int argc, char** argv) {
   Server server;
-  Launcher launcher(server);
-  Match match_joined = launcher();
+  Match match_selected;
+  QApplication main_app(argc, argv);
+  try {
+    MainWindow main_window(nullptr, &server, &match_selected);
+    main_window.show();
+    main_app.exec();
 
+  } catch (const std::exception& e) {
+    std::cerr << e.what() << '\n';
+  }
+  // Lobby lobby(server, window, match_joined);
   // Game game(server, window, map);
 }

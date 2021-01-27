@@ -17,6 +17,21 @@ find_package(SDL2 REQUIRED)
 # Add SDL2 into include directories
 include_directories(${SDL2_INCLUDE_DIR})
 
+#---------------------------------------------------------  QT5    ---------------------------------------------------------#
+find_package(Qt5Widgets)
+
+
+qt5_wrap_ui(UIS_HEADERS
+
+)
+include_directories(${PROJECT_BINARY_DIR})
+set(CMAKE_AUTOMOC on)
+
+FILE(GLOB QtViewFiles
+  src/main/*.cpp
+)
+#---------------------------------------------------------  QT5    ---------------------------------------------------------#
+
 FILE(GLOB ClientFiles
   src/main/*.cpp
   src/main/game/*.cpp
@@ -42,6 +57,8 @@ FILE(GLOB CommonFiles
   ../common/src/main/object.cpp
   ../common/src/main/identifiable.cpp
 	../common/src/main/config_loader.cpp
+  ../common/src/main/Iobservable.cpp
+  ../common/src/main/Iobserver.cpp
 )
 
 # FIXME Once the files work, delete their line
@@ -53,6 +70,7 @@ list(REMOVE_ITEM ClientTestsFiles "/home/santiagoczop/Taller/tps/tp4/client/src/
 add_executable(
   client_tests
   ${ClientFiles}
+  ${QtViewFiles}
   ${ClientTestsFiles}
   ${CommonFiles}
 )
@@ -60,6 +78,7 @@ add_executable(
 target_link_libraries(
   client_tests
   PRIVATE
+  Qt5::Widgets
   yaml-cpp
   Threads::Threads
   ${SDL2_LIBRARIES}
