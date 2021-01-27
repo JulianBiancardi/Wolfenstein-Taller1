@@ -47,11 +47,13 @@ class Match {
   Map map;
   std::vector<unsigned int> players_ids;
   std::unordered_map<unsigned int, Player> players;
-  bool player_exists(unsigned int player_id);
 
  public:
   Match();
   ~Match();
+
+  /* Returns true if the player is in the match, false otherwise */
+  bool player_exists(unsigned int player_id);
 
   /* Returns a vector with all the ids of the players */
   const std::vector<unsigned int>& get_players_ids() const;
