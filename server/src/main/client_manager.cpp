@@ -22,9 +22,9 @@ void ClientManager::add_client(Socket& client_socket) {
 }
 
 void ClientManager::clear() {
-  std::unordered_map<unsigned int, std::unique_ptr<Client>> clients_kept;
+  std::unordered_map<unsigned int, std::shared_ptr<Client>> clients_kept;
 
-  std::unordered_map<unsigned int, std::unique_ptr<Client>>::iterator iter;
+  std::unordered_map<unsigned int, std::shared_ptr<Client>>::iterator iter;
   for (iter = clients.begin(); iter != clients.end(); iter++) {
     if (iter->second->is_active()) {
       clients_kept.insert(*iter);
@@ -50,7 +50,7 @@ void ClientManager::send_to_all(const std::vector<unsigned int>& ids,
 }
 
 void ClientManager::send_to_all(Packet& packet) {
-  std::unordered_map<unsigned int, std::unique_ptr<Client>>::iterator iter;
+  std::unordered_map<unsigned int, std::shared_ptr<Client>>::iterator iter;
   for (iter = clients.begin(); iter != clients.end(); iter++) {
     iter->second->send(packet);
   }
@@ -67,7 +67,7 @@ void ClientManager::end_connection(unsigned int id) {
 }
 
 void ClientManager::end_all_connections() {
-  std::unordered_map<unsigned int, std::unique_ptr<Client>>::iterator iter;
+  std::unordered_map<unsigned int, std::shared_ptr<Client>>::iterator iter;
   for (iter = clients.begin(); iter != clients.end(); iter++) {
     unsigned char data[END_OF_CONNECTION_SIZE];
     size_t size = pack(data, "CI", END_OF_CONNECTION, iter->first);

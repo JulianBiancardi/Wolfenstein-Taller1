@@ -10,7 +10,7 @@
 class ClientManager {
  private:
   unsigned int static next_id;
-  std::unordered_map<unsigned int, std::unique_ptr<Client>> clients;
+  std::unordered_map<unsigned int, std::shared_ptr<Client>> clients;
   BlockingQueue<Packet> reception_queue;
 
  public:
