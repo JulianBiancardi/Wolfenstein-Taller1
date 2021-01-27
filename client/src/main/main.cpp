@@ -3,7 +3,6 @@
 #include <exception>
 
 #include "client.h"
-
 int main(int argc, char** argv) {
   try {
     Client client;

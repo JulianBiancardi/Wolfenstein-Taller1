@@ -14,11 +14,9 @@ Option::Option(QWidget* parent, size_t id, const QString& name,
       icon(icon_path),
       current_option(current_option) {
   if (current_option == nullptr) {
-    // TODO exception
     throw std::runtime_error("Error to create Option");
   } else {
     ui.setupUi(this);
-    // QPixmap pixmap(icon_path);
     QIcon ButtonIcon(icon);
     ui.OptionButton->setIcon(ButtonIcon);
   }

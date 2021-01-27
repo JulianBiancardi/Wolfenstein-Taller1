@@ -1,4 +1,4 @@
-#include "launcher.h"
+#include "../include/launcher.h"
 
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/packets/packing.h"
@@ -7,17 +7,9 @@
 
 #define MAP_NAME_MAX_SIZE 64  // TODO Move somewhere where it belongs
 
-<<<<<<< HEAD
-Launcher::Launcher(Server& server) : server(server), matches() {
+Launcher::Launcher(Server* server) : server(server), matches() {
   update_matches();
 }
-=======
-Launcher::Launcher(Server& server) : server(server), matches() {}
-
-Launcher::~Launcher() {}
-
-Match Launcher::operator()() { update_matches(); }
->>>>>>> a3d6eb862711e2969d00345395822ab593ef91b0
 
 void Launcher::update_matches() {
   matches.clear();
@@ -28,9 +20,9 @@ void Launcher::update_matches() {
 
 void Launcher::request_matches() {
   unsigned char packet[REQUEST_MATCHES_SIZE];
-  size_t size = pack(packet, "CI", REQUEST_MATCHES, server.get_id());
+  size_t size = pack(packet, "CI", REQUEST_MATCHES, server->get_id());
   Packet request_matches_packet(size, packet);
-  server.send(request_matches_packet);
+  server->send(request_matches_packet);
 }
 
 void Launcher::receive_matches() {
@@ -41,7 +33,7 @@ void Launcher::receive_matches() {
 }
 
 unsigned char Launcher::get_amount_of_matches() {
-  BlockingQueue<Packet>& reception_queue = server.get_reception_queue();
+  BlockingQueue<Packet>& reception_queue = server->get_reception_queue();
   Packet packet;
   reception_queue.dequeue(packet);
 
@@ -59,7 +51,7 @@ unsigned char Launcher::get_amount_of_matches() {
 }
 
 void Launcher::receive_match() {
-  BlockingQueue<Packet>& reception_queue = server.get_reception_queue();
+  BlockingQueue<Packet>& reception_queue = server->get_reception_queue();
   Packet packet;
   reception_queue.dequeue(packet);
 

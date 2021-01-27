@@ -20,21 +20,23 @@ include_directories(${SDL2_INCLUDE_DIR})
 #---------------------------------------------------------  QT5    ---------------------------------------------------------#
 find_package(Qt5Widgets)
 
+include_directories(${PROJECT_SOURCE_DIR}/src/main/launcher/include)
 
 qt5_wrap_ui(UIS_HEADERS
-
+  src/main/launcher/ui/mainwindow.ui
+  src/main/launcher/ui/match_view.ui
 )
 include_directories(${PROJECT_BINARY_DIR})
 set(CMAKE_AUTOMOC on)
 
 FILE(GLOB QtViewFiles
-  src/main/*.cpp
+  src/main/launcher/model/*.cpp
+  src/main/launcher/view/*.cpp
 )
 #---------------------------------------------------------  QT5    ---------------------------------------------------------#
 
 FILE(GLOB ClientFiles
   src/main/*.cpp
-  src/main/game/*.cpp
   src/main/casting/*.cpp
   src/main/guns/*.cpp
   src/main/sdl/*.cpp
@@ -62,21 +64,22 @@ FILE(GLOB CommonFiles
 )
 
 # FIXME Once the files work, delete their line
-list(REMOVE_ITEM ClientFiles "/home/santiagoczop/Taller/tps/tp4/client/src/main/stage.cpp")
-list(REMOVE_ITEM ClientFiles "/home/santiagoczop/Taller/tps/tp4/client/src/main/main.cpp")
-list(REMOVE_ITEM ClientTestsFiles "/home/santiagoczop/Taller/tps/tp4/client/src/tests/gun_tests.cpp")
-list(REMOVE_ITEM ClientTestsFiles "/home/santiagoczop/Taller/tps/tp4/client/src/tests/resource_manager_tests.cpp")
+list(REMOVE_ITEM ClientFiles "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/stage.cpp")
+#list(REMOVE_ITEM ClientFiles "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp")
+list(REMOVE_ITEM ClientTestsFiles "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/tests/gun_tests.cpp")
+list(REMOVE_ITEM ClientTestsFiles "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/tests/resource_manager_tests.cpp")
 
 add_executable(
-  client_tests
+  client
   ${ClientFiles}
   ${QtViewFiles}
-  ${ClientTestsFiles}
+  #${ClientTestsFiles}
   ${CommonFiles}
+  ${UIS_HEADERS}
 )
 
 target_link_libraries(
-  client_tests
+  client
   PRIVATE
   Qt5::Widgets
   yaml-cpp
