@@ -26,8 +26,9 @@ Socket::Socket(Socket&& other) {
 ssize_t Socket::send(const void* stream, size_t stream_len) const {
   ssize_t tot_bytes_sent = 0;
   while (tot_bytes_sent != (ssize_t)stream_len) {
-    ssize_t bytes_sent = ::send(socket_file_descriptor, stream + tot_bytes_sent,
-                                stream_len - tot_bytes_sent, MSG_NOSIGNAL);
+    ssize_t bytes_sent =
+        ::send(socket_file_descriptor, (char*)stream + tot_bytes_sent,
+               stream_len - tot_bytes_sent, MSG_NOSIGNAL);
     if (bytes_sent == ERROR) {
       break;
     }
@@ -39,8 +40,9 @@ ssize_t Socket::send(const void* stream, size_t stream_len) const {
 ssize_t Socket::receive(void* buffer, size_t buffer_len) const {
   ssize_t tot_bytes_read = 0;
   while (tot_bytes_read != (ssize_t)buffer_len) {
-    ssize_t bytes_read = recv(socket_file_descriptor, buffer + tot_bytes_read,
-                              buffer_len - tot_bytes_read, 0);
+    ssize_t bytes_read =
+        recv(socket_file_descriptor, (char*)buffer + tot_bytes_read,
+             buffer_len - tot_bytes_read, 0);
     if (bytes_read <= 0) {
       break;
     }
