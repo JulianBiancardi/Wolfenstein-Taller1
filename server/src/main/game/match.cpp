@@ -84,7 +84,21 @@ bool Match::player_exists(unsigned int player_id) {
   return players.find(player_id) != players.end();
 }
 
-std::vector<unsigned int>& Match::get_players_ids() { return players_ids; }
+const std::vector<unsigned int>& Match::get_players_ids() const {
+  return players_ids;
+}
+
+const std::unordered_map<unsigned int, Player>& Match::get_players() const {
+  return players;
+}
+
+unsigned char Match::get_id() const { return match_id; }
+
+char* Match::get_map_name() const { map.get_name(); }
+
+unsigned char Match::get_capacity() const { map.get_capacity(); }
+
+bool Match::has_started() const { return started; }
 
 bool Match::move_player(unsigned int player_id, unsigned char direction) {
   if (!player_exists(player_id)) {

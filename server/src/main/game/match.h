@@ -42,16 +42,36 @@ class Match2 {
 
 class Match {
  private:
+  unsigned char match_id;
+  bool started;
+  Map map;
   std::vector<unsigned int> players_ids;
   std::unordered_map<unsigned int, Player> players;
-  bool player_exists(unsigned int player_id);
 
  public:
   Match();
   ~Match();
 
+  /* Returns true if the player is in the match, false otherwise */
+  bool player_exists(unsigned int player_id);
+
   /* Returns a vector with all the ids of the players */
-  std::vector<unsigned int>& get_players_ids();
+  const std::vector<unsigned int>& get_players_ids() const;
+
+  /* Returns a reference to the players */
+  const std::unordered_map<unsigned int, Player>& get_players() const;
+
+  /* Returns the match_id */
+  unsigned char get_id() const;
+
+  /* Returns the name of the map */
+  char* get_map_name() const;
+
+  /* Returns the maximum amount of players allowed */
+  unsigned char get_capacity() const;
+
+  /* Returns the current status of the match */
+  bool has_started() const;
 
   /* Move a player in the match */
   bool move_player(unsigned int player_id, unsigned char direction);

@@ -4,9 +4,12 @@
 #include "../../../../common/src/main/packets/packet_error.h"
 #include "change_gun_handler.h"
 #include "move_handler.h"
+#include "request_matches_handler.h"
 
 PacketHandler* PacketHandlerFactory::build(Packet& packet) {
   switch (packet.get_type()) {
+    case REQUEST_MATCHES:
+      return new RequestMatchesHandler();
     case MOVE_PACKET:
       return new MoveHandler();
     case ROTATE_PACKET:
