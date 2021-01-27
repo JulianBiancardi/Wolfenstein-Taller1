@@ -1,13 +1,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <Iobserver.h>
+
 #include <QtGui/QCloseEvent>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QWidget>
 
-#include "../../../common/src/main/Iobserver.h"
-#include "game/launcher.h"
-#include "server.h"
+#include "../../server.h"
+#include "launcher.h"
 #include "ui_mainwindow.h"
 
 class MainWindow : public QMainWindow, public IObserver {
@@ -17,9 +18,11 @@ class MainWindow : public QMainWindow, public IObserver {
   Ui::MainWindow ui;
   Server* server;
   Match* match_selected;
-  Launcher launcher;
+  // Launcher launcher;
+  std::list<Match> matches;
 
   void _remove_matches();
+  void _add_matches();
 
  public:
   MainWindow(QWidget* parent = nullptr, Server* server = nullptr,
@@ -33,6 +36,7 @@ class MainWindow : public QMainWindow, public IObserver {
   void on_RefreshButton_clicked();
   void on_JoinButton_clicked();
   void on_NewButton_clicked();
+  void on_AddMatchButton_clicked();  // Test only TODO DELETE
   void closeEvent(QCloseEvent* event) override;
 };
 #endif  // MAINWINDOW_H

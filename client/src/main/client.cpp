@@ -130,29 +130,37 @@ Client::~Client() {
 
 */
 
+#include <iostream>  //TODO DELETE
+
 #include "../../../common/src/main/config_loader.h"
-#include "game/launcher.h"
+#include "launcher/include/launcher.h"
+#include "launcher/include/mainwindow.h"
 #include "sdl/window.h"
 #include "server.h"
-#include "view/mainwindow.h"
 
-Client::Client()
-    : window("Wolfenstein 3D", CL::screen_width, CL::screen_height) {}
+Client::Client() {}
 
 Client::~Client() {}
 
 void Client::run_client(int argc, char** argv) {
-  Server server;
+  // Server server;
+
   Match match_selected;
   QApplication main_app(argc, argv);
+
   try {
-    MainWindow main_window(nullptr, &server, &match_selected);
+    MainWindow main_window(
+        nullptr, nullptr,
+        &match_selected);  // TODO SOLVE THIS WHEN SERVER IS CONNECTED
     main_window.show();
     main_app.exec();
 
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
   }
+
+  match_selected.print();  // ONLY FOR TEST
+
   // Lobby lobby(server, window, match_joined);
   // Game game(server, window, map);
 }

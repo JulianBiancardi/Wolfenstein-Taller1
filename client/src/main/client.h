@@ -34,12 +34,8 @@ class Client2 {
   ~Client();
 }; */
 
-#include "sdl/window.h"
-
 class Client {
  private:
-  Window window;
-
  public:
   Client();
   ~Client();
