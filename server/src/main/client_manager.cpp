@@ -29,7 +29,6 @@ void ClientManager::clear() {
     if (iter->second->is_active()) {
       clients_kept.insert(*iter);
     }
-    // TODO Check for leaks. We might need to specially clear a Client
   }
 
   clients.swap(clients_kept);
