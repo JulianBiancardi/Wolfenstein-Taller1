@@ -3,9 +3,6 @@
 
 #include <unordered_map>
 
-#include "../../../../common/src/main/event_queue.h"
-#include "../../../../common/src/main/object.h"
-#include "../events/event_handler_builder.h"
 #include "../map.h"
 #include "collision_checker.h"
 #include "player.h"
@@ -47,6 +44,7 @@ class Match {
   Map map;
   std::vector<unsigned int> players_ids;
   std::unordered_map<unsigned int, Player> players;
+  CollisionChecker checker;
 
  public:
   Match();
@@ -65,7 +63,7 @@ class Match {
   unsigned char get_id() const;
 
   /* Returns the name of the map */
-  char* get_map_name() const;
+  const char* get_map_name() const;
 
   /* Returns the maximum amount of players allowed */
   unsigned char get_capacity() const;
@@ -83,7 +81,7 @@ class Match {
   bool change_gun(unsigned int player_id, unsigned char gun_id);
 
   /* Shoot the gun of the player in the match */
-  bool shoot_gun(unsigned int player_id, unsigned int objective_id,
+  void shoot_gun(unsigned int player_id, unsigned int objective_id,
                  unsigned char damage);
 
   /* Kill a player and respawn him */

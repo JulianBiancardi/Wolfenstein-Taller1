@@ -8,13 +8,18 @@
 #include "../../../../common/src/main/utils/base_map.h"
 #include "../../../../common/src/main/utils/matrix.h"
 #include "../../../../common/src/main/utils/point.h"
+#include "../../../common/src/main/object.h"
 #include "game/moveable.h"
 #include "game/objects/items/item.h"
-#include "../../../common/src/main/object.h"
 #include "game/player.h"
+
+#define MAP_NAME_MAX_SIZE 64
 
 class Map : public BaseMap {
  private:
+  char map_name[MAP_NAME_MAX_SIZE];
+  unsigned char player_capacity;
+
   std::unordered_map<int, Item*> items;
   std::vector<Object*> objects;
   // Used for spawning logic:
@@ -28,8 +33,14 @@ class Map : public BaseMap {
 
  public:
   Map(Matrix<int>& map_matrix);
-  Map(Map& other); // Used for testing, TODO decide where to get the map from
+  Map(Map& other);  // Used for testing, TODO decide where to get the map from
   ~Map();
+
+  /* Returns the name of the map */
+  const char* get_name() const;
+
+  /* Returns the player capacity */
+  unsigned char get_capacity() const;
 
   void add_spawn_point(const Point& spawn_point);
   const Point next_spawn_point();

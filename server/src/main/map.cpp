@@ -1,4 +1,6 @@
 #include "map.h"
+
+#include "../../../common/src/main/ids/gun_ids.h"
 #include "game/objects/items/blood.h"
 #include "game/objects/items/bullets.h"
 #include "game/objects/items/chain_cannon_item.h"
@@ -11,7 +13,6 @@
 #include "game/objects/items/machine_gun_item.h"
 #include "game/objects/items/medic_kit.h"
 #include "game/objects/items/rocket_launcher_item.h"
-#include "../../../common/src/main/packets/packet.h"
 
 Map::Map(Matrix<int>& map_matrix)
     : BaseMap(map_matrix), spawn_points_occupied(0) {}
@@ -25,6 +26,10 @@ Map::Map(Map& other)
     items.insert({elements.first, elements.second->copy()});
   }
 }
+
+const char* Map::get_name() const { return map_name; }
+
+unsigned char Map::get_capacity() const { return player_capacity; }
 
 void Map::add_bullets(const Point& where, int amount) {
   Bullets* new_bullets = new Bullets(where, amount);
@@ -108,15 +113,18 @@ void Map::add_bullets_drop(Player& dead_player) {
 // Where is dropped was arbitrary chosen
 void Map::add_gun_drop(Player& dead_player) {
   if (dead_player.has_droppable_gun()) {
-    Point where(dead_player.get_position().getX()
-                    + CL::drop_distance_from_dead_player * CL::items_mask_radio,
+    Point where(dead_player.get_position().getX() +
+                    CL::drop_distance_from_dead_player * CL::items_mask_radio,
                 dead_player.get_position().getY());
     switch (dead_player.get_active_gun()) {
-      case MACHINE_GUN_ID: add_machine_gun(where);
+      case MACHINE_GUN_ID:
+        add_machine_gun(where);
         break;
-      case CHAIN_CANNON_ID: add_chain_cannon(where);
+      case CHAIN_CANNON_ID:
+        add_chain_cannon(where);
         break;
-      case ROCKET_LAUNCHER_ID: add_rocket_launcher(where);
+      case ROCKET_LAUNCHER_ID:
+        add_rocket_launcher(where);
         break;
     }
   }
@@ -125,8 +133,8 @@ void Map::add_gun_drop(Player& dead_player) {
 // Where is dropped was arbitrary chosen
 void Map::add_key_drop(Player& dead_player) {
   if (dead_player.has_keys()) {
-    Point where(dead_player.get_position().getX()
-                    - CL::drop_distance_from_dead_player * CL::items_mask_radio,
+    Point where(dead_player.get_position().getX() -
+                    CL::drop_distance_from_dead_player * CL::items_mask_radio,
                 dead_player.get_position().getY());
     add_key(where);
   }

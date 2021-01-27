@@ -11,7 +11,10 @@ set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 
-find_package(Lua REQUIRED)
+set(CMAKE_FIND_LIBRARY_SUFFIXES ".a;.so")
+set(LUA_VERSION_STRING "5.4")
+find_package(Lua 5.4)
+set(CMAKE_FIND_LIBRARY_SUFFIXES ".so")
 
 FILE(GLOB ServerFiles
 	src/main/bot.cpp ##
@@ -26,7 +29,7 @@ FILE(GLOB ServerFiles
 FILE(GLOB ServerTestsFiles
 	src/tests/client_mock.cpp
 	src/tests/player_test.cpp
-	src/tests/match_tests.cpp
+	# src/tests/match_tests.cpp
 	src/tests/bot_test.cpp
 	../common/src/tests/tests_setup.cpp)
 

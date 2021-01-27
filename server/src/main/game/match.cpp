@@ -94,9 +94,9 @@ const std::unordered_map<unsigned int, Player>& Match::get_players() const {
 
 unsigned char Match::get_id() const { return match_id; }
 
-char* Match::get_map_name() const { map.get_name(); }
+const char* Match::get_map_name() const { return map.get_name(); }
 
-unsigned char Match::get_capacity() const { map.get_capacity(); }
+unsigned char Match::get_capacity() const { return map.get_capacity(); }
 
 bool Match::has_started() const { return started; }
 
@@ -106,7 +106,7 @@ bool Match::move_player(unsigned int player_id, unsigned char direction) {
                      player_id);
   }
 
-  Player& player = players[player_id];
+  Player& player = players.at(player_id);
   Point requested_position = player.next_position(direction);
 
   if (checker.can_move(requested_position, player)) {
@@ -127,7 +127,7 @@ bool Match::rotate_player(unsigned int player_id, unsigned char direction) {
                      player_id);
   }
 
-  players[player_id].rotate(direction);
+  players.at(player_id).rotate(direction);
 
   return true;
 }
@@ -139,10 +139,10 @@ bool Match::change_gun(unsigned int player_id, unsigned char gun_id) {
   }
 
   // TODO Check if he has enough bullets to wield it
-  return players[player_id].change_gun(gun_id);
+  return players.at(player_id).change_gun(gun_id);
 }
 
-bool Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
+void Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
                       unsigned char damage) {
   if (!player_exists(player_id)) {
     throw MatchError("Failed to shoot gun. Player %u doesn't exist.",
@@ -154,11 +154,11 @@ bool Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
                      objective_id);
   }
 
-  Player& shooter = players[player_id];
+  Player& shooter = players.at(player_id);
   shooter.shoot();
 
   if (objective_id != 0) {
-    Player& objective = players[objective_id];
+    Player& objective = players.at(objective_id);
 
     if (objective.is_dead()) {
       throw MatchError("Failed to shoot player. Player %u is dead.",
@@ -182,7 +182,7 @@ bool Match::is_dead(unsigned int player_id) {
         player_id);
   }
 
-  return players[player_id].is_dead();
+  return players.at(player_id).is_dead();
 }
 
 bool Match::has_lives(unsigned int player_id) {
@@ -191,5 +191,5 @@ bool Match::has_lives(unsigned int player_id) {
                      player_id);
   }
 
-  return players[player_id].has_lives();
+  return players.at(player_id).has_lives();
 }

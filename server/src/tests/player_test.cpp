@@ -1,11 +1,13 @@
 #include "../main/game/player.h"
+
+#include "../../../common/src/main/ids/gun_ids.h"
+#include "../../../common/src/main/ids/movement_ids.h"
+#include "../main/game/objects/door/lock_door.h"
+#include "../main/game/objects/door/normal_door.h"
 #include "../main/game/objects/table.h"
 #include "../main/map.h"
-#include "../../../common/src/tests/tests_setup.h"
 #include "client_mock.h"
-#include "../../../common/src/main/packets/packet.h"
-#include "../main/game/objects/door/normal_door.h"
-#include "../main/game/objects/door/lock_door.h"
+#include "tests_setup.h"
 
 int static can_move_up();
 int static collides_wall();
@@ -34,50 +36,42 @@ int static player_cannot_close_door_if_it_is_under_it();
 
 void move_up(Player& who, CollisionChecker& checker) {
   Point next_position = who.next_position(UP);
-  if (checker.can_move(next_position, who))
-    who.set_position(next_position);
+  if (checker.can_move(next_position, who)) who.set_position(next_position);
 }
 
 void move_down(Player& who, CollisionChecker& checker) {
   Point next_position = who.next_position(DOWN);
-  if (checker.can_move(next_position, who))
-    who.set_position(next_position);
+  if (checker.can_move(next_position, who)) who.set_position(next_position);
 }
 
 void move_right(Player& who, CollisionChecker& checker) {
   Point next_position = who.next_position(RIGHT);
-  if (checker.can_move(next_position, who))
-    who.set_position(next_position);
+  if (checker.can_move(next_position, who)) who.set_position(next_position);
 }
 
 void move_left(Player& who, CollisionChecker& checker) {
   Point next_position = who.next_position(LEFT);
-  if (checker.can_move(next_position, who))
-    who.set_position(next_position);
+  if (checker.can_move(next_position, who)) who.set_position(next_position);
 }
 
 void move_up_right(Player& who, CollisionChecker& checker) {
   Point next_position = who.next_position(UP_RIGHT);
-  if (checker.can_move(next_position, who))
-    who.set_position(next_position);
+  if (checker.can_move(next_position, who)) who.set_position(next_position);
 }
 
 void move_up_left(Player& who, CollisionChecker& checker) {
   Point next_position = who.next_position(UP_LEFT);
-  if (checker.can_move(next_position, who))
-    who.set_position(next_position);
+  if (checker.can_move(next_position, who)) who.set_position(next_position);
 }
 
 void move_down_right(Player& who, CollisionChecker& checker) {
   Point next_position = who.next_position(DOWN_RIGHT);
-  if (checker.can_move(next_position, who))
-    who.set_position(next_position);
+  if (checker.can_move(next_position, who)) who.set_position(next_position);
 }
 
 void move_down_left(Player& who, CollisionChecker& checker) {
   Point next_position = who.next_position(DOWN_LEFT);
-  if (checker.can_move(next_position, who))
-    who.set_position(next_position);
+  if (checker.can_move(next_position, who)) who.set_position(next_position);
 }
 
 // FIXME Only works for current map settings
@@ -85,81 +79,55 @@ void player_tests() {
   begin_tests("PLAYER");
 
   print_test("El jugador se mueve correctamente", can_move_up, NO_ERROR);
-  print_test("El jugador colisiona con una pared correctamente",
-             collides_wall,
+  print_test("El jugador colisiona con una pared correctamente", collides_wall,
              NO_ERROR);
   print_test("El jugador camina hasta una pared y colisiona",
-             walks_and_collides_wall,
-             NO_ERROR);
+             walks_and_collides_wall, NO_ERROR);
   print_test("El jugador camina hacia atras mirando hacia adelante",
-             walk_with_different_angle_and_direction,
-             NO_ERROR);
+             walk_with_different_angle_and_direction, NO_ERROR);
   print_test("El jugador completa un path correctamente",
-             complete_path_correctly,
-             NO_ERROR);
-  print_test("El jugador camina en diagonal",
-             walk_diagonally,
-             NO_ERROR);
+             complete_path_correctly, NO_ERROR);
+  print_test("El jugador camina en diagonal", walk_diagonally, NO_ERROR);
   print_test("El jugador completa un path complicado correctamente",
-             complete_difficult_path_correctly,
-             NO_ERROR);
-  print_test("El jugador colisiona correctamente",
-             check_collisions,
-             NO_ERROR);
+             complete_difficult_path_correctly, NO_ERROR);
+  print_test("El jugador colisiona correctamente", check_collisions, NO_ERROR);
   print_test("El jugador colisiona contra otro jugador",
-             player_collides_against_other_player,
-             NO_ERROR);
+             player_collides_against_other_player, NO_ERROR);
   print_test("Otro jugador colisiona contra otro jugador",
-             another_player_collides_against_other_player,
-             NO_ERROR);
-  print_test("Jugador colisiona mesa",
-             player_collides_against_table_from_side,
+             another_player_collides_against_other_player, NO_ERROR);
+  print_test("Jugador colisiona mesa", player_collides_against_table_from_side,
              NO_ERROR);
   print_test("Jugador colisiona mesa desde otro lado",
-             player_collides_against_table_from_another_side,
-             NO_ERROR);
-  print_test("Colision simple",
-             simplest_collision,
-             NO_ERROR);
-  print_test("Colision mas simple",
-             second_simplest_collision,
-             NO_ERROR);
-  print_test("Colision diagonal con mesa",
-             diagonal_collision_with_table,
+             player_collides_against_table_from_another_side, NO_ERROR);
+  print_test("Colision simple", simplest_collision, NO_ERROR);
+  print_test("Colision mas simple", second_simplest_collision, NO_ERROR);
+  print_test("Colision diagonal con mesa", diagonal_collision_with_table,
              NO_ERROR);
   print_test("La cantidad de kills de un jugador es correcta",
-             player_kills_are_correct,
-             NO_ERROR);
-  print_test("El jugador respawnea correctamente",
-             player_respawns_correctly,
+             player_kills_are_correct, NO_ERROR);
+  print_test("El jugador respawnea correctamente", player_respawns_correctly,
              NO_ERROR);
   print_test("El jugador colisiona contra una puerta cerrada",
-             player_collides_against_door,
-             NO_ERROR);
-  print_test("El jugador abre puerta y pasa",
-             player_walks_through_door,
+             player_collides_against_door, NO_ERROR);
+  print_test("El jugador abre puerta y pasa", player_walks_through_door,
              NO_ERROR);
   print_test("El jugador pasa la puerta solo al abrirla",
-             player_tries_to_pass_door_opens_it_and_does_it,
-             NO_ERROR);
+             player_tries_to_pass_door_opens_it_and_does_it, NO_ERROR);
   print_test("Jugador sin llave no puede abrir puerta",
-             player_tries_to_open_locked_door_with_no_key,
-             NO_ERROR);
-  print_test("Jugador abre la puerta con llave",
-             player_opens_door_with_key,
+             player_tries_to_open_locked_door_with_no_key, NO_ERROR);
+  print_test("Jugador abre la puerta con llave", player_opens_door_with_key,
              NO_ERROR);
   print_test("Jugador abre la puerta, la cierra y otro la abre",
              player_opens_door_with_key_then_closes_it_and_other_opens_it,
              NO_ERROR);
   print_test("La puerta no se cierra si hay un jugador debajo",
-             player_cannot_close_door_if_it_is_under_it,
-             NO_ERROR);
+             player_cannot_close_door_if_it_is_under_it, NO_ERROR);
 
   end_tests();
 }
 
 int static can_move_up() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, M_PI / 2);
@@ -171,15 +139,15 @@ int static can_move_up() {
 
   move_up(players.at(1), checker);
 
-  if (players.at(1).get_position().getX() == 100
-      && players.at(1).get_position().getY() == 99)
+  if (players.at(1).get_position().getX() == 100 &&
+      players.at(1).get_position().getY() == 99)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static collides_wall() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(64, 64, M_PI / 2);
@@ -191,15 +159,15 @@ int static collides_wall() {
 
   move_up(players.at(1), checker);
 
-  if (players.at(1).get_position().getX() == 64
-      && players.at(1).get_position().getY() == 64)
+  if (players.at(1).get_position().getX() == 64 &&
+      players.at(1).get_position().getY() == 64)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static walks_and_collides_wall() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(64, 64, 0);
@@ -215,15 +183,15 @@ int static walks_and_collides_wall() {
     move_up(players.at(1), checker);
   } while (previous_x != players.at(1).get_position().getX());
 
-  if (players.at(1).get_position().getX() == 570
-      && players.at(1).get_position().getY() == 64)
+  if (players.at(1).get_position().getX() == 570 &&
+      players.at(1).get_position().getY() == 64)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static walk_with_different_angle_and_direction() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, 3 * M_PI / 2);
@@ -235,15 +203,15 @@ int static walk_with_different_angle_and_direction() {
 
   move_down(players.at(1), checker);
 
-  if (players.at(1).get_position().getX() == 100
-      && players.at(1).get_position().getY() == 99)
+  if (players.at(1).get_position().getX() == 100 &&
+      players.at(1).get_position().getY() == 99)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static complete_path_correctly() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, 0);
@@ -261,15 +229,15 @@ int static complete_path_correctly() {
     move_right(players.at(1), checker);
   }
 
-  if (players.at(1).get_position().getX() == 200
-      && players.at(1).get_position().getY() == 200)
+  if (players.at(1).get_position().getX() == 200 &&
+      players.at(1).get_position().getY() == 200)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static walk_diagonally() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, 0);
@@ -281,17 +249,17 @@ int static walk_diagonally() {
 
   move_up_right(players.at(1), checker);
 
-  if (players.at(1).get_position().getX() > 100.5
-      && players.at(1).get_position().getX() < 101
-      && players.at(1).get_position().getY() > 100.5
-      && players.at(1).get_position().getY() < 101)
+  if (players.at(1).get_position().getX() > 100.5 &&
+      players.at(1).get_position().getX() < 101 &&
+      players.at(1).get_position().getY() > 100.5 &&
+      players.at(1).get_position().getY() < 101)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static complete_difficult_path_correctly() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, 0);
@@ -309,15 +277,15 @@ int static complete_difficult_path_correctly() {
     move_right(players.at(1), checker);
   }
 
-  if (players.at(1).get_position().getX() == 570
-      && players.at(1).get_position().getY() == 200)
+  if (players.at(1).get_position().getX() == 570 &&
+      players.at(1).get_position().getY() == 200)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static check_collisions() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, M_PI / 2);
@@ -331,39 +299,39 @@ int static check_collisions() {
     move_right(players.at(1), checker);
   }
 
-  if (players.at(1).get_position().getX() != 570
-      || players.at(1).get_position().getY() != 100)
+  if (players.at(1).get_position().getX() != 570 ||
+      players.at(1).get_position().getY() != 100)
     return ERROR;
 
   for (int i = 0; i < 700; i++) {
     move_down(players.at(1), checker);
   }
 
-  if (players.at(1).get_position().getX() != 570
-      || players.at(1).get_position().getY() != 570)
+  if (players.at(1).get_position().getX() != 570 ||
+      players.at(1).get_position().getY() != 570)
     return ERROR;
 
   for (int i = 0; i < 700; i++) {
     move_left(players.at(1), checker);
   }
 
-  if (players.at(1).get_position().getX() != 69
-      || players.at(1).get_position().getY() != 570)
+  if (players.at(1).get_position().getX() != 69 ||
+      players.at(1).get_position().getY() != 570)
     return ERROR;
 
   for (int i = 0; i < 700; i++) {
     move_up(players.at(1), checker);
   }
 
-  if (players.at(1).get_position().getX() != 69
-      || players.at(1).get_position().getY() != 69)
+  if (players.at(1).get_position().getX() != 69 ||
+      players.at(1).get_position().getY() != 69)
     return ERROR;
 
   return NO_ERROR;
 }
 
 int static player_collides_against_other_player() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player1(100, 100, M_PI / 2);
@@ -380,15 +348,15 @@ int static player_collides_against_other_player() {
     move_down(players.at(1), checker);
   }
 
-  if (players.at(1).get_position().getX() == 100
-      && players.at(1).get_position().getY() == 189)
+  if (players.at(1).get_position().getX() == 100 &&
+      players.at(1).get_position().getY() == 189)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static another_player_collides_against_other_player() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player1(100, 100, M_PI);
@@ -409,15 +377,15 @@ int static another_player_collides_against_other_player() {
     move_right(players.at(2), checker);
   }
 
-  if (players.at(2).get_position().getX() == 111
-      && players.at(2).get_position().getY() == 200)
+  if (players.at(2).get_position().getX() == 111 &&
+      players.at(2).get_position().getY() == 200)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_collides_against_table_from_side() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, M_PI / 2);
@@ -435,15 +403,15 @@ int static player_collides_against_table_from_side() {
 
   delete sprites[0];
 
-  if (players.at(1).get_position().getX() == 100
-      && players.at(1).get_position().getY() == 112)
+  if (players.at(1).get_position().getX() == 100 &&
+      players.at(1).get_position().getY() == 112)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_collides_against_table_from_another_side() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, M_PI / 2);
@@ -461,15 +429,15 @@ int static player_collides_against_table_from_another_side() {
 
   delete sprites[0];
 
-  if (players.at(1).get_position().getX() == 189
-      && players.at(1).get_position().getY() == 100)
+  if (players.at(1).get_position().getX() == 189 &&
+      players.at(1).get_position().getY() == 100)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static simplest_collision() {
-  Matrix<int> map_data(10, 10, 0); // Emulates map loaded
+  Matrix<int> map_data(10, 10, 0);  // Emulates map loaded
   map_data(9, 0) = WALL;
   Map map(map_data);
   Player player(0.5, 0.5, 0);
@@ -484,15 +452,15 @@ int static simplest_collision() {
     move_up(players.at(1), checker);
   }
 
-  if (players.at(1).get_position().getX() == 3.5
-      && players.at(1).get_position().getY() == 0.5)
+  if (players.at(1).get_position().getX() == 3.5 &&
+      players.at(1).get_position().getY() == 0.5)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static second_simplest_collision() {
-  Matrix<int> map_data(10, 10, 0); // Emulates map loaded
+  Matrix<int> map_data(10, 10, 0);  // Emulates map loaded
   map_data(9, 0) = WALL;
   Map map(map_data);
   Player player(1, 1, 0);
@@ -507,15 +475,15 @@ int static second_simplest_collision() {
     move_up(players.at(1), checker);
   }
 
-  if (players.at(1).get_position().getX() == 4
-      && players.at(1).get_position().getY() == 1)
+  if (players.at(1).get_position().getX() == 4 &&
+      players.at(1).get_position().getY() == 1)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static diagonal_collision_with_table() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, 7 * M_PI / 4);
@@ -533,10 +501,10 @@ int static diagonal_collision_with_table() {
 
   delete sprites[0];
 
-  if (players.at(1).get_position().getX() > 290.91
-      && players.at(1).get_position().getY() < 290.92
-      && players.at(1).get_position().getX() > 290.91
-      && players.at(1).get_position().getY() < 290.92)
+  if (players.at(1).get_position().getX() > 290.91 &&
+      players.at(1).get_position().getY() < 290.92 &&
+      players.at(1).get_position().getX() > 290.91 &&
+      players.at(1).get_position().getY() < 290.92)
     return NO_ERROR;
 
   return ERROR;
@@ -547,8 +515,7 @@ int static player_kills_are_correct() {
 
   player.add_kill();
 
-  if (player.get_kills() == 1)
-    return NO_ERROR;
+  if (player.get_kills() == 1) return NO_ERROR;
 
   return ERROR;
 }
@@ -563,27 +530,23 @@ int static player_respawns_correctly() {
 
   player.respawn();
 
-  if (player.get_bullets() != CL::player_respawn_bullets)
-    return ERROR;
+  if (player.get_bullets() != CL::player_respawn_bullets) return ERROR;
 
-  if (player.get_lives() != CL::player_lives - 1)
-    return ERROR;
+  if (player.get_lives() != CL::player_lives - 1) return ERROR;
 
-  if (player.get_active_gun() != PISTOL_ID)
-    return ERROR;
+  if (player.get_active_gun() != PISTOL_ID) return ERROR;
 
-  if (player.get_health() != CL::player_health)
-    return ERROR;
+  if (player.get_health() != CL::player_health) return ERROR;
 
-  if (player.has_gun(PISTOL_ID) && player.has_gun(KNIFE_ID)
-      && !player.has_gun(ROCKET_LAUNCHER_ID) && !player.has_gun(MACHINE_GUN_ID))
+  if (player.has_gun(PISTOL_ID) && player.has_gun(KNIFE_ID) &&
+      !player.has_gun(ROCKET_LAUNCHER_ID) && !player.has_gun(MACHINE_GUN_ID))
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_collides_against_door() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, 3 * M_PI / 2);
@@ -598,15 +561,15 @@ int static player_collides_against_door() {
 
   delete sprites[0];
 
-  if (players.at(1).get_position().getX() == 100
-      && players.at(1).get_position().getY() == 100)
+  if (players.at(1).get_position().getX() == 100 &&
+      players.at(1).get_position().getY() == 100)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_walks_through_door() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, 3 * M_PI / 2);
@@ -617,21 +580,21 @@ int static player_walks_through_door() {
   std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
-  ((Door*) sprites.at(0))->interact(players.at(1), checker);
+  ((Door*)sprites.at(0))->interact(players.at(1), checker);
 
   move_up(players.at(1), checker);
 
   delete sprites[0];
 
-  if (players.at(1).get_position().getX() == 100
-      && players.at(1).get_position().getY() == 101)
+  if (players.at(1).get_position().getX() == 100 &&
+      players.at(1).get_position().getY() == 101)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_tries_to_pass_door_opens_it_and_does_it() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, 3 * M_PI / 2);
@@ -646,16 +609,16 @@ int static player_tries_to_pass_door_opens_it_and_does_it() {
 
   move_up(players.at(1), checker);
 
-  if (players.at(1).get_position().getX() != 100
-      || players.at(1).get_position().getY() != 100)
+  if (players.at(1).get_position().getX() != 100 ||
+      players.at(1).get_position().getY() != 100)
     return ERROR;
 
-  ((Door*) sprites.at(0))->interact(players.at(1), checker);
+  ((Door*)sprites.at(0))->interact(players.at(1), checker);
 
   move_up(players.at(1), checker);
 
-  if (players.at(1).get_position().getX() != 100
-      || players.at(1).get_position().getY() != 101)
+  if (players.at(1).get_position().getX() != 100 ||
+      players.at(1).get_position().getY() != 101)
     return ERROR;
 
   delete sprites[0];
@@ -664,7 +627,7 @@ int static player_tries_to_pass_door_opens_it_and_does_it() {
 }
 
 int static player_tries_to_open_locked_door_with_no_key() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, 3 * M_PI / 2);
@@ -675,20 +638,20 @@ int static player_tries_to_open_locked_door_with_no_key() {
   std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
-  ((Door*) sprites.at(0))->interact(players.at(1), checker);
+  ((Door*)sprites.at(0))->interact(players.at(1), checker);
   move_up(players.at(1), checker);
 
   delete sprites[0];
 
-  if (players.at(1).get_position().getX() == 100
-      && players.at(1).get_position().getY() == 100)
+  if (players.at(1).get_position().getX() == 100 &&
+      players.at(1).get_position().getY() == 100)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_opens_door_with_key() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 100, 3 * M_PI / 2);
@@ -700,24 +663,23 @@ int static player_opens_door_with_key() {
   CollisionChecker checker(map, players, items, sprites);
 
   players.at(1).add_key();
-  ((Door*) sprites.at(0))->interact(players.at(1), checker);
+  ((Door*)sprites.at(0))->interact(players.at(1), checker);
 
   move_up(players.at(1), checker);
 
   delete sprites[0];
 
-  if (players.at(1).has_keys())
-    return ERROR;
+  if (players.at(1).has_keys()) return ERROR;
 
-  if (players.at(1).get_position().getX() == 100
-      && players.at(1).get_position().getY() == 101)
+  if (players.at(1).get_position().getX() == 100 &&
+      players.at(1).get_position().getY() == 101)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player_1(100, 95, 3 * M_PI / 2);
@@ -731,24 +693,23 @@ int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
   CollisionChecker checker(map, players, items, sprites);
 
   players.at(1).add_key();
-  ((Door*) sprites.at(0))->interact(players.at(1), checker);
-  ((Door*) sprites.at(0))->interact(players.at(1), checker);
-  ((Door*) sprites.at(0))->interact(players.at(2), checker);
+  ((Door*)sprites.at(0))->interact(players.at(1), checker);
+  ((Door*)sprites.at(0))->interact(players.at(1), checker);
+  ((Door*)sprites.at(0))->interact(players.at(2), checker);
 
-  for (int i = 0; i < 6; i++)
-    move_up(players.at(1), checker);
+  for (int i = 0; i < 6; i++) move_up(players.at(1), checker);
 
   delete sprites[0];
 
-  if (players.at(1).get_position().getX() == 100
-      && players.at(1).get_position().getY() == 101)
+  if (players.at(1).get_position().getX() == 100 &&
+      players.at(1).get_position().getY() == 101)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_cannot_close_door_if_it_is_under_it() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
   Player player(100, 90, 3 * M_PI / 2);
@@ -759,23 +720,20 @@ int static player_cannot_close_door_if_it_is_under_it() {
   std::unordered_map<int, Item*> items;
   CollisionChecker checker(map, players, items, sprites);
 
-  ((Door*) sprites.at(0))->interact(players.at(1), checker);
+  ((Door*)sprites.at(0))->interact(players.at(1), checker);
 
-  if (!(((Door*) sprites.at(0))->is_open()))
-    return ERROR;
+  if (!(((Door*)sprites.at(0))->is_open())) return ERROR;
 
-  for (int i = 0; i < 10; i++)
-    move_up(players.at(1), checker);
+  for (int i = 0; i < 10; i++) move_up(players.at(1), checker);
 
-  ((Door*) sprites.at(0))->interact(players.at(1), checker);
+  ((Door*)sprites.at(0))->interact(players.at(1), checker);
 
-  if (!(((Door*) sprites.at(0))->is_open()))
-    return ERROR;
+  if (!(((Door*)sprites.at(0))->is_open())) return ERROR;
 
   delete sprites[0];
 
-  if (players.at(1).get_position().getX() == 100
-      && players.at(1).get_position().getY() == 100)
+  if (players.at(1).get_position().getX() == 100 &&
+      players.at(1).get_position().getY() == 100)
     return NO_ERROR;
 
   return ERROR;

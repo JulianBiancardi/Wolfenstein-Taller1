@@ -1,13 +1,12 @@
 #include "bot_test.h"
 
-#include "../main/bot.h"
-#include "../main/game/player.h"
-#include "../main/game/objects/table.h"
-#include "../main/map.h"
-#include "../../../common/src/tests/tests_setup.h"
-#include "client_mock.h"
 #include "../../../common/src/main/packets/packet.h"
-
+#include "../main/bot.h"
+#include "../main/game/objects/table.h"
+#include "../main/game/player.h"
+#include "../main/map.h"
+#include "client_mock.h"
+#include "tests_setup.h"
 
 int static can_walk_around_alone();
 int static can_kill_a_player();
@@ -21,14 +20,14 @@ int static can_kill_multiple_far_players();
 void bot_tests() {
   begin_tests("BOT (Tests are not shown using std::cout, use printf instead)");
 
-  print_test("El bot se mueve solo correctamente",
-             can_walk_around_alone, NO_ERROR);
+  print_test("El bot se mueve solo correctamente", can_walk_around_alone,
+             NO_ERROR);
 
-  print_test("El bot mata a un jugador correctamente",
-             can_kill_a_player, NO_ERROR);
+  print_test("El bot mata a un jugador correctamente", can_kill_a_player,
+             NO_ERROR);
 
-  print_test("El bot mata a dos jugadores correctamente",
-             can_kill_two_players, NO_ERROR);
+  print_test("El bot mata a dos jugadores correctamente", can_kill_two_players,
+             NO_ERROR);
 
   print_test("El bot mata a jugador en diagonal correctamente",
              can_kill_one_diagonal_player, NO_ERROR);
@@ -43,7 +42,7 @@ void bot_tests() {
 }
 
 int static can_walk_around_alone() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data_on_borders(map_data);
   Map map(map_data);
   Player player1(50, 50, M_PI / 2);
@@ -60,7 +59,7 @@ int static can_walk_around_alone() {
 
   for (int j = 0; j < map_data.get_rows(); j++) {
     for (int i = 0; i < map_data.get_columns(); i++) {
-      bot.load_map(j,i,  map_data(j, i));
+      bot.load_map(j, i, map_data(j, i));
     }
   }
   for (int i = 0; i < 10; ++i) {
@@ -68,19 +67,17 @@ int static can_walk_around_alone() {
     bot.update_player();
   }
   /*move_up(players.at(1), checker);*/
-  if ((players.at(1).get_position().getX() > 39
-      && players.at(1).get_position().getX() < 61)
-      && (players.at(1).get_position().getY() > 39
-        && players.at(1).get_position().getY() < 61)
-        )
+  if ((players.at(1).get_position().getX() > 39 &&
+       players.at(1).get_position().getX() < 61) &&
+      (players.at(1).get_position().getY() > 39 &&
+       players.at(1).get_position().getY() < 61))
     return NO_ERROR;
 
   return ERROR;
-
 }
 
-int static can_kill_a_player(){
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+int static can_kill_a_player() {
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data_on_borders(map_data);
   Map map(map_data);
   Player player1(50, 50, M_PI / 2);
@@ -99,7 +96,7 @@ int static can_kill_a_player(){
 
   for (int j = 0; j < map_data.get_rows(); j++) {
     for (int i = 0; i < map_data.get_columns(); i++) {
-      bot.load_map(j,i,  map_data(j, i));
+      bot.load_map(j, i, map_data(j, i));
     }
   }
 
@@ -107,16 +104,13 @@ int static can_kill_a_player(){
     bot.execute();
     bot.update_player();
   }
-  if (players.at(2).is_dead())
-    return NO_ERROR;
+  if (players.at(2).is_dead()) return NO_ERROR;
 
   return ERROR;
-
 }
 
-
 int static can_kill_two_players() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data_on_borders(map_data);
   Map map(map_data);
   Player player1(50, 50, M_PI / 2);
@@ -137,21 +131,20 @@ int static can_kill_two_players() {
 
   for (int j = 0; j < map_data.get_rows(); j++) {
     for (int i = 0; i < map_data.get_columns(); i++) {
-      bot.load_map(j,i,  map_data(j, i));
+      bot.load_map(j, i, map_data(j, i));
     }
   }
   for (int i = 0; i < 40; ++i) {
-    //printf("\n\nITERACION NÚMERO %i\n\n", i+1);
+    // printf("\n\nITERACION NÚMERO %i\n\n", i+1);
     bot.execute();
     bot.update_player();
   }
-  if (players.at(2).is_dead() && players.at(3).is_dead())
-    return NO_ERROR;
+  if (players.at(2).is_dead() && players.at(3).is_dead()) return NO_ERROR;
   return ERROR;
 }
 
 int static can_kill_one_diagonal_player() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data_on_borders(map_data);
   Map map(map_data);
   Player player1(50, 50, M_PI / 2);
@@ -170,22 +163,20 @@ int static can_kill_one_diagonal_player() {
 
   for (int j = 0; j < map_data.get_rows(); j++) {
     for (int i = 0; i < map_data.get_columns(); i++) {
-      bot.load_map(j,i,  map_data(j, i));
+      bot.load_map(j, i, map_data(j, i));
     }
   }
   for (int i = 0; i < 40; ++i) {
-    //printf("\n\nITERACION NÚMERO %i\n\n", i+1);
+    // printf("\n\nITERACION NÚMERO %i\n\n", i+1);
     bot.execute();
     bot.update_player();
   }
-  if (players.at(2).is_dead())
-    return NO_ERROR;
+  if (players.at(2).is_dead()) return NO_ERROR;
   return ERROR;
 }
 
-
 int static can_kill_one_diagonal_and_then_walk_a_lot() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data_on_borders(map_data);
   Map map(map_data);
   Player player1(50, 50, M_PI / 2);
@@ -204,21 +195,20 @@ int static can_kill_one_diagonal_and_then_walk_a_lot() {
 
   for (int j = 0; j < map_data.get_rows(); j++) {
     for (int i = 0; i < map_data.get_columns(); i++) {
-      bot.load_map(j,i,  map_data(j, i));
+      bot.load_map(j, i, map_data(j, i));
     }
   }
   for (int i = 0; i < 200; ++i) {
-    //printf("\n\nITERACION NÚMERO %i\n\n", i+1);
+    // printf("\n\nITERACION NÚMERO %i\n\n", i+1);
     bot.execute();
     bot.update_player();
   }
-  if (players.at(2).is_dead())
-    return NO_ERROR;
+  if (players.at(2).is_dead()) return NO_ERROR;
   return ERROR;
 }
 
 int static can_kill_multiple_players_in_different_positions() {
-  Matrix<int> map_data(640, 640, 0); // Emulates map loaded
+  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data_on_borders(map_data);
   Map map(map_data);
   Player player1(50, 50, M_PI / 2);
@@ -245,18 +235,18 @@ int static can_kill_multiple_players_in_different_positions() {
 
   for (int j = 0; j < map_data.get_rows(); j++) {
     for (int i = 0; i < map_data.get_columns(); i++) {
-      bot.load_map(j,i,  map_data(j, i));
+      bot.load_map(j, i, map_data(j, i));
     }
   }
   for (int i = 0; i < 1000; ++i) {
-    //printf("\n\nITERACION NÚMERO %i\n\n", i+1);
+    // printf("\n\nITERACION NÚMERO %i\n\n", i+1);
     bot.execute();
     bot.update_player();
-    //printf("\n");
+    // printf("\n");
   }
-  if ((players.at(2).is_dead()) && (players.at(3).is_dead())
-      && (players.at(4).is_dead()) && (players.at(5).is_dead())
-      && (players.at(6).is_dead()))
+  if ((players.at(2).is_dead()) && (players.at(3).is_dead()) &&
+      (players.at(4).is_dead()) && (players.at(5).is_dead()) &&
+      (players.at(6).is_dead()))
     return NO_ERROR;
   return ERROR;
 }
