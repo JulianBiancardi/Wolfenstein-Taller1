@@ -29,7 +29,7 @@ class ClientManager {
   void send_to(unsigned int id, Packet& packet);
 
   /* Sends a message to the given clients */
-  void send_to_all(std::vector<unsigned int>& ids, Packet& packet);
+  void send_to_all(const std::vector<unsigned int>& ids, Packet& packet);
 
   /* Sends a message to all clients */
   void send_to_all(Packet& packet);

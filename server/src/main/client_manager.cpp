@@ -39,9 +39,9 @@ void ClientManager::send_to(unsigned int id, Packet& packet) {
   }
 }
 
-void ClientManager::send_to_all(std::vector<unsigned int>& ids,
+void ClientManager::send_to_all(const std::vector<unsigned int>& ids,
                                 Packet& packet) {
-  std::vector<unsigned int>::iterator iter;
+  std::vector<unsigned int>::const_iterator iter;
   for (iter = ids.begin(); iter != ids.end(); iter++) {
     send_to(*iter, packet);
   }
