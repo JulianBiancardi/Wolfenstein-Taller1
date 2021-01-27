@@ -1,6 +1,7 @@
 #ifndef CLIENT_MANAGER_H
 #define CLIENT_MANAGER_H
 
+#include <memory>
 #include <unordered_map>
 
 #include "../../../common/src/main/data_structures/blocking_queue.h"
@@ -9,7 +10,7 @@
 class ClientManager {
  private:
   unsigned int static next_id;
-  std::unordered_map<unsigned int, Client> clients;
+  std::unordered_map<unsigned int, std::unique_ptr<Client>> clients;
   BlockingQueue<Packet> reception_queue;
 
  public:

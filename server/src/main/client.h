@@ -22,6 +22,13 @@ class Client {
  public:
   explicit Client(unsigned int id, Socket& socket,
                   BlockingQueue<Packet>& reception_queue);
+
+  Client(const Client& other) = delete;
+  Client& operator=(const Client&) = delete;
+
+  Client(Client&& other) = delete;
+  Client& operator=(Client&& other) = delete;
+
   ~Client();
 
   /* Sends a message to the client */
