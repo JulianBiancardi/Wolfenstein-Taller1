@@ -6,7 +6,7 @@
 #include "threads/accept_clients_thread.h"
 #include "threads/processor_thread.h"
 
-Server::Server() : client_manager() {}
+Server::Server() : client_manager(), match_manager() {}
 
 Server::~Server() {}
 

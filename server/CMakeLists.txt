@@ -17,6 +17,9 @@ find_package(Lua 5.4)
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".so")
 
 FILE(GLOB ServerFiles
+	src/main/client_manager.cpp
+	src/main/client.cpp
+	
 	src/main/bot.cpp ##
 	src/main/map.cpp # Should be everything different from main_server.cpp
 	src/main/game/*.cpp

@@ -4,7 +4,7 @@
 
 #include "../../../../common/src/main/packets/packing.h"
 
-ClientManager::ClientManager() : reception_queue() {}
+ClientManager::ClientManager() : clients(), reception_queue() {}
 
 ClientManager::~ClientManager() {}
 
@@ -24,7 +24,7 @@ void ClientManager::clear() {
 
   std::unordered_map<unsigned int, Client>::iterator iter;
   for (iter = clients.begin(); iter != clients.end(); iter++) {
-    if ((*iter).second.is_active()) {
+    if (iter->second.is_active()) {
       clients_kept.insert(*iter);
     }
     // TODO Check for leaks. We might need to specially clear a Client
@@ -35,7 +35,7 @@ void ClientManager::clear() {
 
 void ClientManager::send_to(unsigned int id, Packet& packet) {
   if (clients.find(id) != clients.end()) {
-    clients[id].send(packet);
+    clients.at(id).send(packet);
   }
 }
 
@@ -50,7 +50,7 @@ void ClientManager::send_to_all(const std::vector<unsigned int>& ids,
 void ClientManager::send_to_all(Packet& packet) {
   std::unordered_map<unsigned int, Client>::iterator iter;
   for (iter = clients.begin(); iter != clients.end(); iter++) {
-    (*iter).second.send(packet);
+    iter->second.send(packet);
   }
 }
 
@@ -59,7 +59,7 @@ void ClientManager::end_connection(unsigned int id) {
     unsigned char data[END_OF_CONNECTION_SIZE];
     size_t size = pack(data, "CI", END_OF_CONNECTION, id);
     Packet packet(size, data);
-    clients[id].send(packet);
+    clients.at(id).send(packet);
     clients.erase(id);
   }
 }
@@ -68,9 +68,9 @@ void ClientManager::end_all_connections() {
   std::unordered_map<unsigned int, Client>::iterator iter;
   for (iter = clients.begin(); iter != clients.end(); iter++) {
     unsigned char data[END_OF_CONNECTION_SIZE];
-    size_t size = pack(data, "CI", END_OF_CONNECTION, (*iter).first);
+    size_t size = pack(data, "CI", END_OF_CONNECTION, iter->first);
     Packet packet(size, data);
-    (*iter).second.send(packet);
+    iter->second.send(packet);
   }
   clients.clear();
 }

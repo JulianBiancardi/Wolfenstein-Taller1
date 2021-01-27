@@ -185,6 +185,9 @@ bool Match::is_dead(unsigned int player_id) {
   return players.at(player_id).is_dead();
 }
 
+void Match::kill_player(unsigned int player_id) {  // TODO Fill
+}
+
 bool Match::has_lives(unsigned int player_id) {
   if (!player_exists(player_id)) {
     throw MatchError("Failed to check lives. Player %u doesn't exist.",
