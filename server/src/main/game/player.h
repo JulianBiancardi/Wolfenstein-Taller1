@@ -46,7 +46,7 @@ class Player : public Moveable {
   void remove_key();
   bool is_full_health();
   bool is_full_bullets();
-  bool is_dead();
+  bool is_dead() const;
   bool has_lives();
   bool has_keys();
   void respawn();

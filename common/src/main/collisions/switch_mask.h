@@ -12,8 +12,8 @@ class SwitchMask : public Mask {
   SwitchMask(Mask* mask);
   void switch_mask();
   bool is_active();
-  bool occupies(const Point& where) override;
+  bool occupies(const Point& where) const override;
   ~SwitchMask();
 };
 
-#endif //WOLFENSTEIN_TALLER1_COMMON_SRC_MAIN_COLLISIONS_SWITCH_MASK_H_
+#endif  // WOLFENSTEIN_TALLER1_COMMON_SRC_MAIN_COLLISIONS_SWITCH_MASK_H_

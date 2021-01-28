@@ -124,7 +124,7 @@ bool Player::is_full_health() { return health == max_health; }
 
 bool Player::is_full_bullets() { return bullets == max_bullets; }
 
-bool Player::is_dead() { return health == 0; }
+bool Player::is_dead() const { return health == 0; }
 
 bool Player::has_lives() { return lives > 0; }
 

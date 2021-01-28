@@ -11,9 +11,9 @@ class Identifiable {
  public:
   Identifiable();
   explicit Identifiable(int id);
-  void static reset_id(); // Only used for testing
+  void static reset_id();  // Only used for testing
 
-  int get_id();
+  int get_id() const;
 };
 
 #endif

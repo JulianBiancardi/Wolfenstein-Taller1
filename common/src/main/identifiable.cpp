@@ -9,4 +9,4 @@ int Identifiable::next_id = 1;
 
 void Identifiable::reset_id() { next_id = 1; }
 
-int Identifiable::get_id() { return id; }
+int Identifiable::get_id() const { return id; }

@@ -1,11 +1,8 @@
 #include "collision_checker.h"
 
-CollisionChecker::CollisionChecker(Map& map,
-                                   std::unordered_map<int, Player>& players,
-                                   std::unordered_map<int, Item*>& items,
-                                   std::vector<Object*>& objects)
+CollisionChecker::CollisionChecker(Map& map)
     : map(map),
-      players(players),
+      players(map.get_players()),
       items(items),
       objects(objects),
       ignored(nullptr) {}
@@ -13,8 +10,9 @@ CollisionChecker::CollisionChecker(Map& map,
 bool CollisionChecker::collides_players(const Point& where) {
   for (auto& player : players) {
     if (ignored == nullptr || player.second != *ignored) {
-      if ((player.second.occupies(where))
-          && (!player.second.is_dead())) { return true; }
+      if ((player.second.occupies(where)) && (!player.second.is_dead())) {
+        return true;
+      }
     }
   }
 
@@ -70,8 +68,8 @@ int CollisionChecker::get_collides_player_id(Point& where, Player& who) {
   int id_found = 0;
   for (auto& player : players) {
     if (player.second != *ignored) {
-      if ((player.second.occupies(mask_checking_point))
-          && (!player.second.is_dead())) {
+      if ((player.second.occupies(mask_checking_point)) &&
+          (!player.second.is_dead())) {
         id_found = player.second.get_id();
       }
     }

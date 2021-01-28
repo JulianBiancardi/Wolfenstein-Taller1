@@ -8,7 +8,7 @@ void SwitchMask::switch_mask() { active = !active; }
 
 bool SwitchMask::is_active() { return active; }
 
-bool SwitchMask::occupies(const Point& where) {
+bool SwitchMask::occupies(const Point& where) const {
   if (active)
     return mask->occupies(where);
   else
