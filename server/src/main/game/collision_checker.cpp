@@ -50,18 +50,21 @@ bool CollisionChecker::can_move(Point& where, Moveable& who) {
   return can_move;
 }
 
-Item* CollisionChecker::grabbed_item(Player& by_whom) {
-  Point player_position(by_whom.get_position());
-  for (auto& item : items) {
-    if (item.second->occupies(player_position) &&
-        item.second->can_be_used_by(by_whom)) {
-      return item.second;
+unsigned int CollisionChecker::grabbed_item(const Player& by_whom) {
+  Point position = by_whom.get_position();
+
+  unsigned int item_id = 0;
+
+  for (auto it = items.begin(); it != items.end() && item_id == 0; it++) {
+    if (it->second->occupies(position)) {
+      item_id = it->second->get_id();
     }
   }
-  throw -1;  // TODO Put some error
+
+  return item_id;
 }
 
-int CollisionChecker::get_knife_range_collides_player_id(Point &where,
+int CollisionChecker::get_knife_range_collides_player_id(Point& where,
                                                          Player& who) {
   ignored = &who;
   Point mask_checking_point = who.knife_collision_mask_bound(where);

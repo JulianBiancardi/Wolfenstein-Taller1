@@ -7,6 +7,10 @@
 
 class PacketHandler {
  private:
+ protected:
+  void consequent_grab(unsigned char player_id, Match& match,
+                       ClientManager& client_manager);
+
  public:
   PacketHandler();
   ~PacketHandler();

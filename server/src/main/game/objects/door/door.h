@@ -7,12 +7,15 @@
 
 class Door : public Object {
  protected:
-  Door(const Point& center);
+  explicit Door(const Point& center);
   void change_state(CollisionChecker& checker);
 
  public:
-  virtual void interact(Player& who, CollisionChecker& checker) = 0;
-  bool is_open(); // Only used for testing
+  /* Returns if the door state changed */
+  virtual bool interact(Player& who, CollisionChecker& checker) = 0;
+
+  /* Returns if the door is open or not */
+  bool is_open() const;
 };
 
 #endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_DOOR_H_

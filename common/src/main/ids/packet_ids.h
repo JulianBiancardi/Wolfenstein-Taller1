@@ -19,4 +19,7 @@
 #define MATCH_DATA 4  // To send general data about a match
 // Undefined size
 
+#define GRAB 5  // Player grabbed an item
+#define GRAB_SIZE 6
+
 #endif

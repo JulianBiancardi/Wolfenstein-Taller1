@@ -27,11 +27,9 @@ class Map : public BaseMap {
   void add_key_drop(Player& dead_player);
 
  public:
-  Map(std::string& map_name);
+  explicit Map(std::string& map_name);
 
-  Map(Matrix<int>& map_matrix);
-  // Map(Map& other);  // Used for testing, TODO decide where to get the map
-  // from
+  explicit Map(Matrix<int>& map_matrix);
 
   ~Map();
 
@@ -43,6 +41,15 @@ class Map : public BaseMap {
   /* Returns a reference to a player */
   Player& get_player(unsigned int player_id);
 
+  /* Returns a reference to an item */
+  Item& get_item(unsigned int item_id);
+
+  /* Returns a pointer to an object */
+  Object* get_object(unsigned int object_id);
+
+  /* Deletes an item */
+  void delete_item(unsigned int item_id);
+
   /* Returns a reference to the players */
   const std::unordered_map<unsigned int, Player>& get_players() const;
 
@@ -51,6 +58,9 @@ class Map : public BaseMap {
 
   /* Returns a reference to the objects */
   const std::vector<Object*> get_objects() const;
+
+  /* Returns if only has one player or not */
+  bool has_one_player() const;
 
   //
   //

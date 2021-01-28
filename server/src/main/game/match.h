@@ -46,7 +46,7 @@ class Match {
   CollisionChecker checker;
 
  public:
-  Match(std::string& map_name);
+  explicit Match(std::string& map_name);
 
   Match(const Match& other) = delete;
   Match& operator=(const Match&) = delete;
@@ -88,11 +88,14 @@ class Match {
   /* Rotate a player in the given direction */
   bool rotate_player(unsigned int player_id, unsigned char direction);
 
+  /* Returns the grabbed item id, otherwise returns 0 */
+  unsigned int grab_item(unsigned int player_id);
+
   /* Change the gun of the player in the match */
   bool change_gun(unsigned int player_id, unsigned char gun_id);
 
-  /* Shoot the gun of the player in the match */
-  void shoot_gun(unsigned int player_id, unsigned int objective_id,
+  /* Shoot the gun of the player in the match, returns if objective is killed */
+  bool shoot_gun(unsigned int player_id, unsigned int objective_id,
                  unsigned char damage);
 
   /* Kill a player and respawn him */
@@ -103,6 +106,18 @@ class Match {
 
   /* Returns true if the player has lives left */
   bool has_lives(unsigned int player_id);
+
+  /* Returns if the door state changes */
+  bool interact_with_door(unsigned int player_id, unsigned int door_id);
+
+  /* Delete player from the match */
+  void delete_player(unsigned int player_id);
+
+  /* Returns if match should end (does not check time) */
+  bool should_end() const;
+
+  /* Ends the match */
+  void end();
 };
 
 #endif
