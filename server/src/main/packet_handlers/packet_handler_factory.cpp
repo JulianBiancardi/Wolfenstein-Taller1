@@ -10,7 +10,8 @@ PacketHandler* PacketHandlerFactory::build(Packet& packet) {
   switch (packet.get_type()) {
     case REQUEST_MATCHES:
       return new RequestMatchesHandler();
-    case MOVE_PACKET:
+      // TODO FIX This once all have been defined
+    /*case MOVE_PACKET:
       return new MoveHandler();
     case ROTATE_PACKET:
       return new nullptr;  // TODO
@@ -22,6 +23,7 @@ PacketHandler* PacketHandlerFactory::build(Packet& packet) {
       return new DamageHandler(who, enemy_hit, event.data.shot.damage_done);
     case GAME_OVER_PACKET:
       return new GameOverHandler();
+      */
     default:
       throw PacketError("Packet type is not valid. Type is %u.",
                         packet.get_type());
