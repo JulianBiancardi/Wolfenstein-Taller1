@@ -17,8 +17,8 @@ class Object : public Identifiable {
  public:
   virtual ~Object();
   bool occupies(const Point& where) const;
-  Point get_position();
-  double get_angle();
+  Point get_position() const;
+  double get_angle() const;
 };
 
 #endif

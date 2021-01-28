@@ -10,6 +10,7 @@ Player::Player(Point origin, double angle)
       players_killed(0),
       keys(0),
       active_gun(PISTOL_ID),
+      knife_mask(new CircleMask(ConfigLoader::player_knife_mask_radio, position.get_ref_origin())),
       Moveable(origin, angle) {
   max_health = ConfigLoader::player_health;
   health = max_health;
@@ -26,6 +27,7 @@ Player::Player(double x, double y, double angle)
       players_killed(0),
       keys(0),
       active_gun(PISTOL_ID),
+      knife_mask(new CircleMask(ConfigLoader::player_knife_mask_radio, position.get_ref_origin())),
       Moveable(x, y, angle) {
   max_health = ConfigLoader::player_health;
   health = max_health;
@@ -34,7 +36,7 @@ Player::Player(double x, double y, double angle)
   lives = ConfigLoader::player_lives;
 }
 
-Player::~Player() {}
+Player::~Player() { delete knife_mask; }
 
 void Player::receive_damage(int amount) {
   health = std::min(0, health - amount);
@@ -162,4 +164,31 @@ void Player::remove_guns_to_respawn() {
     else
       it++;
   }
+}
+Player::Player(const Player & player)
+    : shot_bullets(player.shot_bullets),
+      points(player.points),
+    //guns_bag{KNIFE_ID, PISTOL_ID},
+      spawn_point(player.get_position()),
+      players_killed(player.players_killed),
+      keys(player.keys),
+      active_gun(PISTOL_ID),
+      Moveable(player){
+  max_bullets = player.max_bullets;
+  bullets = player.bullets;
+  max_health = player.max_health;
+  health = player.health;
+  lives = player.lives;
+  guns_bag = player.guns_bag;
+  knife_mask = new CircleMask(ConfigLoader::player_knife_mask_radio,  player.position.get_ref_origin());
+}
+Point Player::knife_collision_mask_bound(const Point &next_position) {
+  double angle = position.get_origin().angle_to(next_position);
+
+  double front_x =
+      next_position.getX() + cos(angle) * ((CircleMask*) knife_mask)->get_radius();
+  double front_y =
+      next_position.getY() - sin(angle) * ((CircleMask*) knife_mask)->get_radius();
+
+  return Point(front_x, front_y);
 }

@@ -32,6 +32,7 @@ class ConfigLoader {
   static int player_respawn_bullets;
   static double player_pace;
   static double player_rotation_angle;
+  static int player_knife_mask_radio;
 
   static int bot_positions_difference_allowed;
 
