@@ -67,7 +67,6 @@ int static type_test() {
   unsigned char packet1[2] = {19, 20};
   Packet p1(2, packet1);
   if (p1.get_type() != 19) {
-    printf("A\n");
     return ERROR;
   }
 
@@ -76,9 +75,6 @@ int static type_test() {
   size_t packet2size = pack(packet2, "cccc", type, 'a', 'b', 'c');
   Packet p2(packet2size, packet2);
   if (p2.get_type() != type) {
-    printf("B\n");
-    printf("%u\n", p2.get_type());
-    printf("%u\n", *packet2);
     return ERROR;
   }
 
@@ -86,7 +82,6 @@ int static type_test() {
   size_t packet3size = pack(packet3, "cs", 8, "Hello World!");
   Packet p3(packet3size, packet3);
   if (p3.get_type() != 8) {
-    printf("C\n");
     return ERROR;
   }
 

@@ -22,7 +22,7 @@ void BlockingQueue<T>::enqueue(const T& value) {
     std::unique_lock<std::mutex> lock(mtx);
     prot_q.push(value);
   }
-  cv.notify_one();
+  cv.notify_all();
 }
 
 template <class T>

@@ -143,7 +143,7 @@ Client::Client() {}
 Client::~Client() {}
 
 void Client::run_client(int argc, char** argv) {
-  // Server server;
+  Server server;
 
   Match match_selected;
   QApplication main_app(argc, argv);

@@ -85,7 +85,7 @@ int static c_test() {
 }
 
 int static uc_test() {
-  unsigned char buf[4];
+  unsigned char buf[4] = {10, 11, 12, 13};
   unsigned char a = 9;
   unsigned char b = 100;
   unsigned char c = 0;
@@ -102,6 +102,27 @@ int static uc_test() {
 
   packi8(buf, c);
   if (unpacku8(buf) != c) {
+    return ERROR;
+  }
+
+  unsigned char a_unpacked;
+  pack(buf, "C", a);
+  unpack(buf, "C", &a_unpacked);
+  if (a != a_unpacked) {
+    return ERROR;
+  }
+
+  unsigned char b_unpacked[1];
+  pack(buf, "C", b);
+  unpack(buf, "C", b_unpacked);
+  if (b != *b_unpacked) {
+    return ERROR;
+  }
+
+  unsigned char c_unpacked[1];
+  pack(buf, "C", c);
+  unpack(buf, "C", c_unpacked);
+  if (c != *c_unpacked) {
     return ERROR;
   }
 

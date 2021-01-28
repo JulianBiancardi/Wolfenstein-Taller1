@@ -1,6 +1,6 @@
 ---
 sv_host: 'localhost'
-sv_port: '7777'
+sv_port: '8080'
 
 #Window Options
 screen_width: 320

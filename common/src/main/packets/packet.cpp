@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <cstring>
+#include <iostream>
 
 #include "packing.h"
 
@@ -15,7 +16,7 @@ Packet::Packet(size_t size, unsigned char* packet)
 Packet::Packet(const Packet& other) {
   this->size = other.size;
   this->type = other.type;
-  this->data = new unsigned char[this->size];
+  this->data = new unsigned char[other.size];
   memcpy(this->data, other.data, size);
 }
 

@@ -3,7 +3,7 @@
 #include <cstdarg>
 #include <cstring>
 
-void packi8(unsigned char* buf, unsigned char i) { *buf++ = i; }
+void packi8(unsigned char* buf, unsigned char i) { *buf = i; }
 
 char unpacki8(unsigned char* buf) {
   unsigned char u = unpacku8(buf);
@@ -19,7 +19,7 @@ char unpacki8(unsigned char* buf) {
   return i;
 }
 
-unsigned char unpacku8(unsigned char* buf) { return buf[0]; }
+unsigned char unpacku8(unsigned char* buf) { return *buf; }
 
 void packi16(unsigned char* buf, unsigned int i) {
   *buf++ = i >> 8;
@@ -141,7 +141,7 @@ size_t pack(unsigned char* buf, const char* format, ...) {
         break;
       case 'C':
         C = (unsigned char)va_arg(args, unsigned int);
-        packi8(buf, c);
+        packi8(buf, C);
         buf += 1;
         size += 1;
         break;

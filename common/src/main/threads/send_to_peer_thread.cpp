@@ -45,9 +45,10 @@ void SendToPeerThread::run() {
       Packet packet;
       sending_queue.dequeue(packet);
 
-      size_t packet_size = packet.get_size();
-      connected_socket.send(&packet_size, SIZE_SIZE);
-      connected_socket.send(packet.get_data(), packet_size);
+      unsigned char packet_size[SIZE_SIZE];
+      pack(packet_size, "I", packet.get_size());
+      connected_socket.send(packet_size, SIZE_SIZE);
+      connected_socket.send(packet.get_data(), packet.get_size());
     }
   } catch (const std::exception& e) {
     syslog(LOG_ERR, "[Error] SendToServerThread - Error: %s", e.what());

@@ -13,6 +13,7 @@ class SendToPeerThread : public Thread {
   BlockingQueue<Packet>& sending_queue;
   bool allowed_to_run;
   bool running;
+  void run() override;
 
  public:
   explicit SendToPeerThread(Socket& connected_socket,
@@ -24,7 +25,6 @@ class SendToPeerThread : public Thread {
   void set_id(unsigned int id);
   bool is_running();
   void force_stop();
-  void run() override;
 };
 
 #endif
