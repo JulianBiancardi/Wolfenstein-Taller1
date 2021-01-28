@@ -8,8 +8,8 @@
 class PacketHandler {
  private:
  public:
-  PacketHandler(/* args */);
-  ~PacketHandler();
+  PacketHandler() {}
+  ~PacketHandler() {}
 
   virtual void handle(Packet& packet, ClientManager& client_manager,
                       MatchManager& match_manager) = 0;
