@@ -12,10 +12,10 @@ RotationHandler::~RotationHandler() {}
 void RotationHandler::handle(Packet& packet, ClientManager& client_manager,
                              MatchManager& match_manager) {
   unsigned char type;
-  unsigned int player_id;
   unsigned char match_id;
+  unsigned int player_id;
   unsigned char direction;
-  unpack(packet.get_data(), "CICC", &type, &player_id, &match_id, &direction);
+  unpack(packet.get_data(), "CCIC", &type, &match_id, &player_id, &direction);
 
   Match& match = match_manager.get_match(match_id);
   if (match.rotate_player(player_id, direction)) {

@@ -1,9 +1,6 @@
 #include "change_gun_handler.h"
 
-#include <vector>
-
 #include "../../../../common/src/main/packets/packing.h"
-#include "../game/match.h"
 
 ChangeGunHandler::ChangeGunHandler() {}
 
@@ -13,9 +10,9 @@ void ChangeGunHandler::handle(Packet& packet, ClientManager& client_manager,
                               MatchManager& match_manager) {
   unsigned char type;
   unsigned char match_id;
-  unsigned char player_id;
+  unsigned int player_id;
   unsigned char gun_id;
-  unpack(packet.get_data(), "CCCC", &type, &match_id, &player_id, &gun_id);
+  unpack(packet.get_data(), "CCIC", &type, &match_id, &player_id, &gun_id);
 
   Match& match = match_manager.get_match(match_id);
 

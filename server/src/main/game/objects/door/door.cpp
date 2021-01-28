@@ -9,8 +9,6 @@ Door::Door(const Point& center)
                                         1,
                                         this->position.get_ref_origin()))) {}
 
-bool Door::is_open() { return !(((SwitchMask*) mask)->is_active()); }
-
 void Door::change_state(CollisionChecker& checker) {
   if (!((SwitchMask*) mask)->is_active()
       && !checker.is_free(position.get_ref_origin()))
@@ -18,3 +16,5 @@ void Door::change_state(CollisionChecker& checker) {
 
   ((SwitchMask*) mask)->switch_mask();
 }
+
+bool Door::is_open() const { return !(((SwitchMask*) mask)->is_active()); }

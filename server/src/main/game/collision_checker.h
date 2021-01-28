@@ -21,9 +21,9 @@ class CollisionChecker {
 
   bool is_free(const Point& where);
   bool can_move(Point& where, Moveable& who);
-  Item* grabbed_item(Player& by_whom);
+  unsigned int grabbed_item(const Player& by_whom);
   bool collides_players(const Point& where);
-  int get_knife_range_collides_player_id(Point &where, Player& who);
+  int get_knife_range_collides_player_id(Point& where, Player& who);
 
 };
 

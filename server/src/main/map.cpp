@@ -49,17 +49,30 @@ Player& Map::get_player(unsigned int player_id) {
   return players.at(player_id);
 }
 
+Item& Map::get_item(unsigned int item_id) {
+  return (Item&) (*items.at(item_id));
+}
+
+Object* Map::get_object(unsigned int object_id) {
+  return objects.at(object_id);
+}
+
+void Map::delete_item(unsigned int item_id) {
+  delete items.at(item_id);
+  items.erase(item_id);
+}
+
 const std::unordered_map<unsigned int, Player>& Map::get_players() const {
   return players;
 }
 
-/* Returns a reference to the items */
 const std::unordered_map<unsigned int, Item*>& Map::get_items() const {
   return items;
 }
 
-/* Returns a reference to the objects */
 const std::vector<Object*> Map::get_objects() const { return objects; }
+
+bool Map::has_one_player() const { return players.size() == 1; }
 
 //
 
@@ -150,14 +163,11 @@ void Map::add_gun_drop(Player& dead_player) {
                     CL::drop_distance_from_dead_player * CL::items_mask_radio,
                 dead_player.get_position().getY());
     switch (dead_player.get_active_gun()) {
-      case MACHINE_GUN_ID:
-        add_machine_gun(where);
+      case MACHINE_GUN_ID:add_machine_gun(where);
         break;
-      case CHAIN_CANNON_ID:
-        add_chain_cannon(where);
+      case CHAIN_CANNON_ID:add_chain_cannon(where);
         break;
-      case ROCKET_LAUNCHER_ID:
-        add_rocket_launcher(where);
+      case ROCKET_LAUNCHER_ID:add_rocket_launcher(where);
         break;
     }
   }
