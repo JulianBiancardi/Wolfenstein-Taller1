@@ -17,7 +17,8 @@ class MatchManager {
   ~MatchManager();
 
   /* Returns a reference to the matches */
-  const std::unordered_map<unsigned char, Match>& get_matches();
+  const std::unordered_map<unsigned char, std::shared_ptr<Match>>&
+  get_matches();
 
   /* Returns the match with the given id.
    * Throws MatchManagerError if the id doesn't match any match.
