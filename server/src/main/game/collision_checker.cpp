@@ -3,8 +3,8 @@
 CollisionChecker::CollisionChecker(Map& map)
     : map(map),
       players(map.get_players()),
-      items(items),
-      objects(objects),
+      items(map.get_items()),
+      objects(map.get_objects()),
       ignored(nullptr) {}
 
 bool CollisionChecker::collides_players(const Point& where) {

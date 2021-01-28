@@ -10,8 +10,8 @@ class CollisionChecker {
  private:
   Map& map;
   const std::unordered_map<unsigned int, Player>& players;
-  std::unordered_map<int, Item*>& items;
-  std::vector<Object*>& objects;
+  const std::unordered_map<unsigned int, Item*>& items;
+  const std::vector<Object*>& objects;
   Moveable* ignored;
   bool collides_sprites(const Point& where);
 

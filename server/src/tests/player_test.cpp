@@ -130,12 +130,14 @@ int static can_move_up() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player(100, 100, M_PI / 2);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   move_up(players.at(1), checker);
 
@@ -150,12 +152,14 @@ int static collides_wall() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player(64, 64, M_PI / 2);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   move_up(players.at(1), checker);
 
@@ -170,12 +174,14 @@ int static walks_and_collides_wall() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player(64, 64, 0);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   int previous_x;
   do {
@@ -194,12 +200,14 @@ int static walk_with_different_angle_and_direction() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player(100, 100, 3 * M_PI / 2);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   move_down(players.at(1), checker);
 
@@ -214,12 +222,14 @@ int static complete_path_correctly() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player(100, 100, 0);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   for (int i = 0; i < 100; i++) {
     move_up(players.at(1), checker);
@@ -240,12 +250,14 @@ int static walk_diagonally() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player(100, 100, 0);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   move_up_right(players.at(1), checker);
 
@@ -262,12 +274,14 @@ int static complete_difficult_path_correctly() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player(100, 100, 0);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   for (int i = 0; i < 700; i++) {
     move_up(players.at(1), checker);
@@ -288,12 +302,14 @@ int static check_collisions() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player(100, 100, M_PI / 2);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   for (int i = 0; i < 700; i++) {
     move_right(players.at(1), checker);
@@ -334,6 +350,8 @@ int static player_collides_against_other_player() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player1(100, 100, M_PI / 2);
   Player player2(100, 200, 0);
 
@@ -342,7 +360,7 @@ int static player_collides_against_other_player() {
   players.insert({2, player2});
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   for (int i = 0; i < 200; i++) {
     move_down(players.at(1), checker);
@@ -359,6 +377,8 @@ int static another_player_collides_against_other_player() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player1(100, 100, M_PI);
   Player player2(200, 200, 3 * M_PI / 2);
 
@@ -367,7 +387,7 @@ int static another_player_collides_against_other_player() {
   players.insert({2, player2});
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   for (int i = 0; i < 100; i++) {
     move_left(players.at(1), checker);
@@ -390,12 +410,13 @@ int static player_collides_against_table_from_side() {
   Map map(map_data);
   Player player(100, 100, M_PI / 2);
 
+  // FIXME add manually to map
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   sprites.push_back(new Table(5, 4, Point(100, 120)));
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   for (int i = 0; i < 100; i++) {
     move_down(players.at(1), checker);
@@ -416,12 +437,13 @@ int static player_collides_against_table_from_another_side() {
   Map map(map_data);
   Player player(100, 100, M_PI / 2);
 
+  // FIXME add manually to map
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   sprites.push_back(new Table(10, 10, Point(200, 100)));
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   for (int i = 0; i < 200; i++) {
     move_right(players.at(1), checker);
@@ -442,11 +464,12 @@ int static simplest_collision() {
   Map map(map_data);
   Player player(0.5, 0.5, 0);
 
+  // FIXME Add manually to map
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   for (int i = 0; i < 100; i++) {
     move_up(players.at(1), checker);
@@ -465,11 +488,12 @@ int static second_simplest_collision() {
   Map map(map_data);
   Player player(1, 1, 0);
 
+  // FIXME Add manually to map
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   for (int i = 0; i < 3; i++) {
     move_up(players.at(1), checker);
@@ -488,12 +512,13 @@ int static diagonal_collision_with_table() {
   Map map(map_data);
   Player player(100, 100, 7 * M_PI / 4);
 
+  // FIXME Add manually to map
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   sprites.push_back(new Table(10, 10, Point(300, 300)));
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   for (int i = 0; i < 300; i++) {
     move_up(players.at(1), checker);
@@ -549,13 +574,15 @@ int static player_collides_against_door() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME Add manually to map
   Player player(100, 100, 3 * M_PI / 2);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   sprites.push_back(new NormalDoor(Point(100, 101)));
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   move_up(players.at(1), checker);
 
@@ -572,13 +599,15 @@ int static player_walks_through_door() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player(100, 100, 3 * M_PI / 2);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   sprites.push_back(new NormalDoor(Point(100, 101)));
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   ((Door*)sprites.at(0))->interact(players.at(1), checker);
 
@@ -597,6 +626,8 @@ int static player_tries_to_pass_door_opens_it_and_does_it() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player(100, 100, 3 * M_PI / 2);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
@@ -605,7 +636,7 @@ int static player_tries_to_pass_door_opens_it_and_does_it() {
   sprites.push_back(new NormalDoor(Point(100, 101)));
 
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   move_up(players.at(1), checker);
 
@@ -630,13 +661,15 @@ int static player_tries_to_open_locked_door_with_no_key() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player(100, 100, 3 * M_PI / 2);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   sprites.push_back(new LockedDoor(Point(100, 101)));
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   ((Door*)sprites.at(0))->interact(players.at(1), checker);
   move_up(players.at(1), checker);
@@ -654,13 +687,15 @@ int static player_opens_door_with_key() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player(100, 100, 3 * M_PI / 2);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   sprites.push_back(new LockedDoor(Point(100, 101)));
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   players.at(1).add_key();
   ((Door*)sprites.at(0))->interact(players.at(1), checker);
@@ -682,6 +717,8 @@ int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player_1(100, 95, 3 * M_PI / 2);
   Player player_2(200, 200, M_PI / 2);
   std::unordered_map<int, Player> players;
@@ -690,7 +727,7 @@ int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
   std::vector<Object*> sprites;
   sprites.push_back(new LockedDoor(Point(100, 101)));
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   players.at(1).add_key();
   ((Door*)sprites.at(0))->interact(players.at(1), checker);
@@ -712,13 +749,15 @@ int static player_cannot_close_door_if_it_is_under_it() {
   Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
   put_data(map_data);
   Map map(map_data);
+
+  // FIXME add manually to map
   Player player(100, 90, 3 * M_PI / 2);
   std::unordered_map<int, Player> players;
   players.insert({1, player});
   std::vector<Object*> sprites;
   sprites.push_back(new NormalDoor(Point(100, 100)));
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   ((Door*)sprites.at(0))->interact(players.at(1), checker);
 

@@ -31,14 +31,6 @@ Map::Map(Map& other)
   }
 }*/
 
-Player& Map::get_player(unsigned int player_id) {
-  return players.at(player_id);
-}
-
-const std::unordered_map<unsigned int, Player>& Map::get_players() const {
-  return players;
-}
-
 bool Map::add_player(unsigned int player_id) {
   if (players_joined == player_capacity ||
       players.find(player_id) != players.end()) {
@@ -52,6 +44,22 @@ bool Map::add_player(unsigned int player_id) {
   players_joined++;
   return true;
 }
+
+Player& Map::get_player(unsigned int player_id) {
+  return players.at(player_id);
+}
+
+const std::unordered_map<unsigned int, Player>& Map::get_players() const {
+  return players;
+}
+
+/* Returns a reference to the items */
+const std::unordered_map<unsigned int, Item*>& Map::get_items() const {
+  return items;
+}
+
+/* Returns a reference to the objects */
+const std::vector<Object*> Map::get_objects() const { return objects; }
 
 //
 
@@ -171,10 +179,6 @@ void Map::add_drop(Player& dead_player) {
   add_gun_drop(dead_player);
   add_key_drop(dead_player);
 }
-
-std::unordered_map<int, Item*>& Map::get_items() { return items; }
-
-std::vector<Object*>& Map::get_objects() { return objects; }
 
 Map::~Map() {
   for (auto item : items) delete item.second;

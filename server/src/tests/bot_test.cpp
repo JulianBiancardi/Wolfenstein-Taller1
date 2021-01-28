@@ -52,7 +52,7 @@ int static can_walk_around_alone() {
 
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   Bot bot(checker, players.at(1), players);
   bot.set_id_at_players(1);
@@ -89,7 +89,7 @@ int static can_kill_a_player() {
 
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   Bot bot(checker, players.at(1), players);
   bot.set_id_at_players(1);
@@ -124,7 +124,7 @@ int static can_kill_two_players() {
 
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   Bot bot(checker, players.at(1), players);
   bot.set_id_at_players(1);
@@ -156,7 +156,7 @@ int static can_kill_one_diagonal_player() {
 
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   Bot bot(checker, players.at(1), players);
   bot.set_id_at_players(1);
@@ -188,7 +188,7 @@ int static can_kill_one_diagonal_and_then_walk_a_lot() {
 
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   Bot bot(checker, players.at(1), players);
   bot.set_id_at_players(1);
@@ -228,7 +228,7 @@ int static can_kill_multiple_players_in_different_positions() {
 
   std::vector<Object*> sprites;
   std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map, players, items, sprites);
+  CollisionChecker checker(map);
 
   Bot bot(checker, players.at(1), players);
   bot.set_id_at_players(1);

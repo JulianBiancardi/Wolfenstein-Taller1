@@ -1,13 +1,14 @@
 #ifndef MATCH_MANAGER_H
 #define MATCH_MANAGER_H
 
+#include <memory>
 #include <unordered_map>
 
 #include "game/match.h"
 
 class MatchManager {
  private:
-  std::unordered_map<unsigned char, Match> matches;
+  std::unordered_map<unsigned char, std::shared_ptr<Match>> matches;
   bool match_exists(unsigned char match_id);
 
  public:

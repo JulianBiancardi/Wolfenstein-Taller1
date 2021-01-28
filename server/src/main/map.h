@@ -15,7 +15,7 @@
 
 class Map : public BaseMap {
  private:
-  std::unordered_map<int, Item*> items;
+  std::unordered_map<unsigned int, Item*> items;
   std::vector<Object*> objects;
   std::unordered_map<unsigned int, Player> players;
 
@@ -35,16 +35,22 @@ class Map : public BaseMap {
 
   ~Map();
 
+  /* Creates and adds a player to the map.
+   * Returns true on success, false otherwise
+   */
+  bool add_player(unsigned int player_id);
+
   /* Returns a reference to a player */
   Player& get_player(unsigned int player_id);
 
   /* Returns a reference to the players */
   const std::unordered_map<unsigned int, Player>& get_players() const;
 
-  /* Creates and adds a player to the map.
-   * Returns true on success, false otherwise
-   */
-  bool add_player(unsigned int player_id);
+  /* Returns a reference to the items */
+  const std::unordered_map<unsigned int, Item*>& get_items() const;
+
+  /* Returns a reference to the objects */
+  const std::vector<Object*> get_objects() const;
 
   //
   //
@@ -71,9 +77,6 @@ class Map : public BaseMap {
 
   // The drop added depends on dead_player items
   void add_drop(Player& dead_player);
-
-  std::unordered_map<int, Item*>& get_items();
-  std::vector<Object*>& get_objects();
 };
 
 #endif

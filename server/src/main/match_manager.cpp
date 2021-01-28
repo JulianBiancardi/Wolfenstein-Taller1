@@ -10,7 +10,8 @@ bool MatchManager::match_exists(unsigned char match_id) {
   return matches.find(match_id) != matches.end();
 }
 
-const std::unordered_map<unsigned char, Match>& MatchManager::get_matches() {
+const std::unordered_map<unsigned char, std::shared_ptr<Match>>&
+MatchManager::get_matches() {
   return matches;
 }
 
@@ -20,13 +21,13 @@ Match& MatchManager::get_match(unsigned char match_id) {
                             match_id);
   }
 
-  return matches[match_id];
+  return *(matches[match_id]);
 }
 
 unsigned char MatchManager::find_match_of_player(unsigned int player_id) {
-  std::unordered_map<unsigned char, Match>::iterator iter;
+  std::unordered_map<unsigned char, std::shared_ptr<Match>>::iterator iter;
   for (iter = matches.begin(); iter != matches.end(); iter++) {
-    Match& match = iter->second;
+    Match& match = *(iter->second);
     if (match.player_exists(player_id)) {
       return match.get_id();
     }

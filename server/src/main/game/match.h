@@ -47,6 +47,13 @@ class Match {
 
  public:
   Match(std::string& map_name);
+
+  Match(const Match& other) = delete;
+  Match& operator=(const Match&) = delete;
+
+  Match(Match&& other) = delete;
+  Match& operator=(Match&& other) = delete;
+
   ~Match();
 
   /* Create and add a new player to the match with the given id.
