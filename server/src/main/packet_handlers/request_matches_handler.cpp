@@ -36,7 +36,7 @@ void RequestMatchesHandler::handle(Packet& packet,
 
     unsigned char type = MATCH_DATA;
     unsigned char match_id = match.get_id();
-    const char* map_name = match.get_map_name();
+    const char* map_name = match.get_map_name().c_str();
     unsigned char players_joined = match.get_players().size();
     unsigned char players_total = match.get_capacity();
     unsigned char status = match.has_started();

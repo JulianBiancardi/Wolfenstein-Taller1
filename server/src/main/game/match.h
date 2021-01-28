@@ -74,7 +74,7 @@ class Match {
   unsigned char get_id() const;
 
   /* Returns the name of the map */
-  const char* get_map_name() const;
+  const std::string& get_map_name() const;
 
   /* Returns the maximum amount of players allowed */
   unsigned char get_capacity() const;

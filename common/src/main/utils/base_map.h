@@ -13,7 +13,7 @@ class BaseMap {
   Matrix<int> map_matrix;
 
  protected:
-  char map_name[MAP_NAME_MAX_SIZE];
+  std::string map_name;
   unsigned char player_capacity;
 
   std::vector<Point> spawn_points;
@@ -24,7 +24,7 @@ class BaseMap {
   ~BaseMap();
 
   /* Returns the name of the map */
-  const char* get_name() const;
+  const std::string& get_name() const;
 
   /* Returns the player capacity */
   unsigned char get_capacity() const;

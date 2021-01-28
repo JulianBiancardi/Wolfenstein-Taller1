@@ -7,7 +7,8 @@
 BaseMap::BaseMap(Matrix<int>& map_matrix)
     : map_matrix(map_matrix), player_capacity(10) {}
 
-BaseMap::BaseMap(std::string& map_name) : map_matrix(0, 0) {}
+BaseMap::BaseMap(std::string& map_name)
+    : map_matrix(0, 0), map_name(map_name), player_capacity(5) {}
 /*
   YAML::Node yaml_file = YAML::LoadFile(map_name);
   size_t width = yaml_file["width"].as<int>();
@@ -32,7 +33,7 @@ BaseMap::BaseMap(std::string& map_name) : map_matrix(0, 0) {}
 
 BaseMap::~BaseMap() {}
 
-const char* BaseMap::get_name() const { return map_name; }
+const std::string& BaseMap::get_name() const { return map_name; }
 
 unsigned char BaseMap::get_capacity() const { return player_capacity; }
 

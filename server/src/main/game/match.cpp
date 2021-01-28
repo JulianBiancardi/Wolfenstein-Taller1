@@ -109,7 +109,7 @@ const std::unordered_map<unsigned int, Player>& Match::get_players() const {
 
 unsigned char Match::get_id() const { return match_id; }
 
-const char* Match::get_map_name() const { return map.get_name(); }
+const std::string& Match::get_map_name() const { return map.get_name(); }
 
 unsigned char Match::get_capacity() const { return map.get_capacity(); }
 
@@ -254,28 +254,24 @@ bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
 
   Player& player = map.get_player(player_id);
 
-  Door* door = (Door*) map.get_object(door_id);
+  Door* door = (Door*)map.get_object(door_id);
 
   // FIXME
   if (door == nullptr) {
-    throw MatchError("Failed to get door. Door %u doesn't exist.",
-                     door_id);
+    throw MatchError("Failed to get door. Door %u doesn't exist.", door_id);
   }
 
   return door->interact(player, checker);
 }
 
-void Match::delete_player(unsigned int player_id) { // TODO
+void Match::delete_player(unsigned int player_id) {  // TODO
   if (!player_exists(player_id)) {
     throw MatchError("Failed to delete player. Player %u doesn't exist.",
                      player_id);
   }
-
 }
 
-bool Match::should_end() const {
-  return map.has_one_player();
-}
+bool Match::should_end() const { return map.has_one_player(); }
 
 void Match::end() {
   // TODO
