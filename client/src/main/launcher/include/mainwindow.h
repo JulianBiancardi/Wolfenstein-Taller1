@@ -18,8 +18,7 @@ class MainWindow : public QMainWindow, public IObserver {
   Ui::MainWindow ui;
   Server* server;
   Match* match_selected;
-  // Launcher launcher;
-  std::list<Match> matches;
+  Launcher launcher;
 
   void _remove_matches();
   void _add_matches();
