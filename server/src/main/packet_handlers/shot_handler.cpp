@@ -20,7 +20,7 @@ void ShotHandler::handle(Packet& packet, ClientManager& client_manager,
   // TODO Catch error
   match.shoot_gun(player_id, objective_id, damage);
 
-  std::vector<unsigned int>& client_ids = match.get_players_ids();
+  const std::unordered_set<unsigned int>& client_ids = match.get_players_ids();
   client_manager.send_to_all(client_ids, packet);
   // TODO Let everyone know so they reproduce the sound or change his gun if he
   // ran out of bullets #EVENT
