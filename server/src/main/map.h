@@ -57,7 +57,7 @@ class Map : public BaseMap {
   const std::unordered_map<unsigned int, Item*>& get_items() const;
 
   /* Returns a reference to the objects */
-  const std::vector<Object*> get_objects() const;
+  const std::vector<Object*>& get_objects() const;
 
   /* Returns if only has one player or not */
   bool has_one_player() const;

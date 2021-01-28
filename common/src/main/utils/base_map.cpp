@@ -4,7 +4,8 @@
 
 #include "yaml-cpp/yaml.h"
 
-BaseMap::BaseMap(Matrix<int>& map_matrix) : map_matrix(map_matrix) {}
+BaseMap::BaseMap(Matrix<int>& map_matrix)
+    : map_matrix(map_matrix), player_capacity(10) {}
 
 BaseMap::BaseMap(std::string& map_name) : map_matrix(0, 0) {}
 /*
@@ -43,3 +44,7 @@ bool BaseMap::is_wall(size_t x, size_t y) {
 }
 
 int BaseMap::operator()(size_t x, size_t y) { return map_matrix(x, y); }
+
+void BaseMap::add_spawn_point(double x, double y) {
+  spawn_points.emplace_back(x, y);
+}
