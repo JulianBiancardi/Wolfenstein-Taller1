@@ -4,9 +4,11 @@
 
 #include "yaml-cpp/yaml.h"
 
-BaseMap::BaseMap(Matrix<int>& map_matrix) : map_matrix(map_matrix) {}
+BaseMap::BaseMap(Matrix<int>& map_matrix)
+    : map_matrix(map_matrix), player_capacity(10) {}
 
-BaseMap::BaseMap(std::string& map_name) : map_matrix(0, 0) {
+BaseMap::BaseMap(std::string& map_name) : map_matrix(0, 0) {}
+/*
   YAML::Node yaml_file = YAML::LoadFile(map_name);
   size_t width = yaml_file["width"].as<int>();
   size_t height = yaml_file["height"].as<int>();
@@ -26,7 +28,7 @@ BaseMap::BaseMap(std::string& map_name) : map_matrix(0, 0) {
   }
 
   map_matrix = map_data;
-}
+}*/
 
 BaseMap::~BaseMap() {}
 
@@ -42,3 +44,7 @@ bool BaseMap::is_wall(size_t x, size_t y) {
 }
 
 int BaseMap::operator()(size_t x, size_t y) { return map_matrix(x, y); }
+
+void BaseMap::add_spawn_point(double x, double y) {
+  spawn_points.emplace_back(x, y);
+}

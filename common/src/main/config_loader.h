@@ -27,7 +27,7 @@ class ConfigLoader {
   static int player_health;
   static int player_bullets;
   static int player_max_bullets;
-  static int player_mask_radio;
+  static double player_mask_radio;
   static int player_lives;
   static int player_respawn_bullets;
   static double player_pace;
