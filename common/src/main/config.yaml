@@ -15,6 +15,7 @@ player_lives: 3
 player_respawn_bullets: 8
 player_pace: 1
 player_rotation_angle: 0.1
+player_knife_mask_radio: 10 # must be greater than player_mask_radio
 
 #Bot
 bot_positions_difference_allowed: 5

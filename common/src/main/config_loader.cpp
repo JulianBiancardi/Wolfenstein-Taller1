@@ -21,6 +21,8 @@ int CL::player_respawn_bullets =
 double CL::player_pace = CL::yaml_file["player_pace"].as<double>();
 double CL::player_rotation_angle =
     CL::yaml_file["player_rotation_angle"].as<double>();
+int CL::player_knife_mask_radio =
+    CL::yaml_file["player_knife_mask_radio"].as<int>();
 
 // Bot
 int CL::bot_positions_difference_allowed =

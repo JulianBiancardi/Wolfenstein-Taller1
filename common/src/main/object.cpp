@@ -13,8 +13,8 @@ Object::Object(Ray position, Mask* mask) : position(position), mask(mask) {}
 
 Object::~Object() { delete mask; }
 
-Point Object::get_position() { return position.get_origin(); }
-double Object::get_angle() { return position.get_angle(); }
+Point Object::get_position() const { return position.get_origin(); }
+double Object::get_angle() const { return position.get_angle(); }
 
 bool Object::occupies(const Point& where) const {
   return mask->occupies(where);

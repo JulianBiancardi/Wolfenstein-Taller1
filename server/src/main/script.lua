@@ -30,7 +30,7 @@ function updatePlayer(currentPlayer, goal)
         player[key] = value
     end
     --if player.moving == 1 and prev_node ~=nil and (prev_node.x ~= player.posX or prev_node.y ~= player.posY) then
-        --player.moving = 0
+    --player.moving = 0
     --end
     if player.killing == 1 then
         prev_node = nil
@@ -94,11 +94,11 @@ function is_position_updated()
         return true
     end
     local x_info = math.abs(prev_node.x - player.posX)
-                            / prev_node.x * 100
+            / prev_node.x * 100
     local y_info = math.abs(prev_node.y - player.posY)
-                            / prev_node.y * 100
+            / prev_node.y * 100
     local is_ok = ( (x_info <= differenceAllowed)
-                    and (y_info <= differenceAllowed) )
+            and (y_info <= differenceAllowed) )
     return ( is_ok )
 end
 
@@ -147,9 +147,9 @@ function updatePath(playerX, playerY, playerID)
             end
         end
         table.remove(path, 1) --todo low efficience ?...
-        --[] for node, count in path:nodes() do
-        --[]print(('Step: %d - x: %d - y: %d'):format(count, node.x, node.y))
-        --[]end
+        --for node, count in path:nodes() do
+        --print(('Step: %d - x: %d - y: %d'):format(count, node.x, node.y))
+        --end
         return move()
     end
 end
@@ -214,23 +214,23 @@ function random_movement()
 
 end
 function execute(playerX, playerY, playerID)
-    --[]print("ATACAR A: ")
-    --[]print(playerID)
-    --[]print(" ")
+    --print("ATACAR A: ")
+    --print(playerID)
+    --print(" ")
 
     local Grid = require ('jumper.grid')
     local Pathfinder = require ('jumper.pathfinder')
     local grid = Grid(map)
     local myFinder = Pathfinder(grid, 'ASTAR', 0):
-                        setHeuristic('DIAGONAL'):
-                        setMode('DIAGONAL')
+    setHeuristic('DIAGONAL'):
+    setMode('DIAGONAL')
 
     --[]io.write("...El bot piensa que estoy en:".. round(player.posX,0)..";"..round(player.posY,0).." ......")
 
     path = myFinder:getPath(round(player.posX,0),
-                            round(player.posY,0),
-                            round(playerX, 0),
-                            round(playerY,0))
+        round(player.posY,0),
+        round(playerX, 0),
+        round(playerY,0))
     if path then
         player.moving = 1
         prev_node = nil

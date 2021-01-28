@@ -14,9 +14,9 @@ class Ray {
   Ray(double x, double y, double angle);
   ~Ray();
 
-  Point get_origin();
-  const Point &get_ref_origin();
-  double get_angle();
+  Point get_origin() const;
+  const Point &get_ref_origin() const;
+  double get_angle() const;
 };
 
 #endif

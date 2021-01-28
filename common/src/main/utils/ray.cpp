@@ -7,8 +7,8 @@ Ray::Ray(double x, double y, double angle)
 
 Ray::~Ray() {}
 
-Point Ray::get_origin() { return origin; }
+Point Ray::get_origin() const { return origin; }
 
-const Point &Ray::get_ref_origin() { return origin; }
+const Point &Ray::get_ref_origin() const { return origin; }
 
-double Ray::get_angle() { return angle.to_double(); }
+double Ray::get_angle() const { return angle.to_double(); }
