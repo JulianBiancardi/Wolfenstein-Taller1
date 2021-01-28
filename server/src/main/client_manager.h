@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <unordered_map>
+#include <unordered_set>
 
 #include "../../../common/src/main/data_structures/blocking_queue.h"
 #include "client.h"
@@ -30,7 +31,7 @@ class ClientManager {
   void send_to(unsigned int id, Packet& packet);
 
   /* Sends a message to the given clients */
-  void send_to_all(const std::vector<unsigned int>& ids, Packet& packet);
+  void send_to_all(const std::unordered_set<unsigned int>& ids, Packet& packet);
 
   /* Sends a message to all clients */
   void send_to_all(Packet& packet);
