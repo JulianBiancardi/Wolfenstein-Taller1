@@ -25,7 +25,9 @@ void RequestMatchesHandler::handle(Packet& packet,
   unsigned char matches_amount = matches.size();
   unsigned char buf[MATCH_AMOUNT_SIZE];
   size_t size = pack(buf, "CIC", MATCH_AMOUNT, player_id, matches_amount);
-  Packet packet(size, buf);
+  Packet matches_amount_packet(size, buf);
+
+  client_manager.send_to(player_id, matches_amount_packet);
 
   std::unordered_map<unsigned char, std::shared_ptr<Match>>::const_iterator
       iter;
@@ -33,7 +35,6 @@ void RequestMatchesHandler::handle(Packet& packet,
     const Match& match = *(iter->second);
 
     unsigned char type = MATCH_DATA;
-    unsigned int client_id = player_id;
     unsigned char match_id = match.get_id();
     const char* map_name = match.get_map_name();
     unsigned char players_joined = match.get_players().size();
@@ -41,9 +42,9 @@ void RequestMatchesHandler::handle(Packet& packet,
     unsigned char status = match.has_started();
 
     unsigned char data[100];
-    size = pack(data, "CICsCCC", type, client_id, match_id, map_name,
+    size = pack(data, "CICsCCC", type, player_id, match_id, map_name,
                 players_joined, players_total, status);
     Packet packet(size, data);
-    client_manager.send_to(client_id, packet);
+    client_manager.send_to(player_id, packet);
   }
 }
