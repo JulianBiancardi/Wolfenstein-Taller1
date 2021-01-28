@@ -1,6 +1,8 @@
 
 #include "request_matches_handler.h"
 
+#include <memory>
+
 #include "../../../../common/src/main/packets/packing.h"
 #include "../game/match.h"
 
@@ -17,7 +19,7 @@ void RequestMatchesHandler::handle(Packet& packet,
   unsigned int player_id;
   unpack(packet.get_data(), "CI", &type, &player_id);
 
-  const std::unordered_map<unsigned char, Match>& matches =
+  const std::unordered_map<unsigned char, std::shared_ptr<Match>>& matches =
       match_manager.get_matches();
 
   unsigned char matches_amount = matches.size();
@@ -25,14 +27,15 @@ void RequestMatchesHandler::handle(Packet& packet,
   size_t size = pack(buf, "CIC", MATCH_AMOUNT, player_id, matches_amount);
   Packet packet(size, buf);
 
-  std::unordered_map<unsigned char, Match>::const_iterator iter;
+  std::unordered_map<unsigned char, std::shared_ptr<Match>>::const_iterator
+      iter;
   for (iter = matches.begin(); iter != matches.end(); iter++) {
-    const Match& match = (*iter).second;
+    const Match& match = *(iter->second);
 
     unsigned char type = MATCH_DATA;
     unsigned int client_id = player_id;
     unsigned char match_id = match.get_id();
-    char* map_name = match.get_map_name();
+    const char* map_name = match.get_map_name();
     unsigned char players_joined = match.get_players().size();
     unsigned char players_total = match.get_capacity();
     unsigned char status = match.has_started();
