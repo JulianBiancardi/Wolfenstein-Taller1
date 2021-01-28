@@ -80,16 +80,30 @@ void Match::end() { keep_running = false; }
 
 #include "match_error.h"
 
-bool Match::player_exists(unsigned int player_id) {
-  return players.find(player_id) != players.end();
+Match::Match(std::string& map_name)
+    : players_ids(), map(map_name), checker(map) {}
+
+Match::~Match() {}
+
+bool Match::add_player(unsigned int player_id) {
+  if (map.add_player(player_id)) {
+    players_ids.insert(player_id);
+    return true;
+  } else {
+    return false;
+  }
 }
 
-const std::vector<unsigned int>& Match::get_players_ids() const {
+bool Match::player_exists(unsigned int player_id) {
+  return players_ids.find(player_id) != players_ids.end();
+}
+
+const std::unordered_set<unsigned int>& Match::get_players_ids() const {
   return players_ids;
 }
 
 const std::unordered_map<unsigned int, Player>& Match::get_players() const {
-  return players;
+  return map.get_players();
 }
 
 unsigned char Match::get_id() const { return match_id; }
@@ -106,7 +120,7 @@ bool Match::move_player(unsigned int player_id, unsigned char direction) {
                      player_id);
   }
 
-  Player& player = players.at(player_id);
+  Player& player = map.get_player(player_id);
   Point requested_position = player.next_position(direction);
 
   if (checker.can_move(requested_position, player)) {
@@ -127,7 +141,7 @@ bool Match::rotate_player(unsigned int player_id, unsigned char direction) {
                      player_id);
   }
 
-  players.at(player_id).rotate(direction);
+  map.get_player(player_id).rotate(direction);
 
   return true;
 }
@@ -139,7 +153,7 @@ bool Match::change_gun(unsigned int player_id, unsigned char gun_id) {
   }
 
   // TODO Check if he has enough bullets to wield it
-  return players.at(player_id).change_gun(gun_id);
+  return map.get_player(player_id).change_gun(gun_id);
 }
 
 void Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
@@ -154,11 +168,11 @@ void Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
                      objective_id);
   }
 
-  Player& shooter = players.at(player_id);
+  Player& shooter = map.get_player(player_id);
   shooter.shoot();
 
   if (objective_id != 0) {
-    Player& objective = players.at(objective_id);
+    Player& objective = map.get_player(objective_id);
 
     if (objective.is_dead()) {
       throw MatchError("Failed to shoot player. Player %u is dead.",
@@ -182,7 +196,7 @@ bool Match::is_dead(unsigned int player_id) {
         player_id);
   }
 
-  return players.at(player_id).is_dead();
+  return map.get_player(player_id).is_dead();
 }
 
 void Match::kill_player(unsigned int player_id) {  // TODO Fill
@@ -194,5 +208,5 @@ bool Match::has_lives(unsigned int player_id) {
                      player_id);
   }
 
-  return players.at(player_id).has_lives();
+  return map.get_player(player_id).has_lives();
 }

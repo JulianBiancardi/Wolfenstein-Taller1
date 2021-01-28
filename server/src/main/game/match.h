@@ -41,20 +41,24 @@ class Match {
  private:
   unsigned char match_id;
   bool started;
+  std::unordered_set<unsigned int> players_ids;
   Map map;
-  std::vector<unsigned int> players_ids;
-  std::unordered_map<unsigned int, Player> players;
   CollisionChecker checker;
 
  public:
-  Match();
+  Match(std::string& map_name);
   ~Match();
+
+  /* Create and add a new player to the match with the given id.
+   * Returns true on success, false otherwise
+   */
+  bool add_player(unsigned int player_id);
 
   /* Returns true if the player is in the match, false otherwise */
   bool player_exists(unsigned int player_id);
 
   /* Returns a vector with all the ids of the players */
-  const std::vector<unsigned int>& get_players_ids() const;
+  const std::unordered_set<unsigned int>& get_players_ids() const;
 
   /* Returns a reference to the players */
   const std::unordered_map<unsigned int, Player>& get_players() const;

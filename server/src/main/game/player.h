@@ -17,6 +17,7 @@ class Player : public Moveable {
   int points;
   std::unordered_set<int> guns_bag;
   int active_gun;
+  // TODO Check how it copies
   const Point spawn_point;
   int lives;
   int players_killed;
@@ -27,6 +28,8 @@ class Player : public Moveable {
  public:
   Player(Point origin, double angle);
   Player(double x, double y, double angle);
+
+  // TODO Define copy constructor so they can be put in storages
   ~Player();
 
   // Player has too much responsibilities

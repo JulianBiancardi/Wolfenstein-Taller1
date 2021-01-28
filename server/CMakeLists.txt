@@ -19,7 +19,11 @@ set(CMAKE_FIND_LIBRARY_SUFFIXES ".so")
 FILE(GLOB ServerFiles
 	# src/main/client.cpp
 	src/main/client_manager.cpp
+	src/main/client.cpp
 	src/main/server.cpp
+	src/main/match_manager.cpp
+	src/main/match_manager_error.cpp
+	
 	
 	src/main/bot.cpp ##
 	src/main/map.cpp # Should be everything different from main_server.cpp

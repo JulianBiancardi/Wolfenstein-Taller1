@@ -14,6 +14,8 @@
 #include "game/objects/items/medic_kit.h"
 #include "game/objects/items/rocket_launcher_item.h"
 
+Map::Map(std::string& map_name) : BaseMap(map_name) {}
+
 Map::Map(Matrix<int>& map_matrix)
     : BaseMap(map_matrix), spawn_points_occupied(0) {}
 
@@ -30,6 +32,30 @@ Map::Map(Map& other)
 const char* Map::get_name() const { return map_name; }
 
 unsigned char Map::get_capacity() const { return player_capacity; }
+
+Player& Map::get_player(unsigned int player_id) {
+  return players.at(player_id);
+}
+
+const std::unordered_map<unsigned int, Player>& Map::get_players() const {
+  return players;
+}
+
+bool Map::add_player(unsigned int player_id) {
+  if (players_joined == player_capacity ||
+      players.find(player_id) != players.end()) {
+    return false;
+  }
+
+  Point spawn = spawn_points[players_joined];
+  Player new_player(spawn, 0);
+
+  players.insert(std::make_pair(player_id, new_player));
+  players_joined++;
+  return true;
+}
+
+//
 
 void Map::add_bullets(const Point& where, int amount) {
   Bullets* new_bullets = new Bullets(where, amount);

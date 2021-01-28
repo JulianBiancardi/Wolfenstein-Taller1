@@ -29,8 +29,7 @@ unsigned char MatchManager::find_match_of_player(unsigned int player_id) {
     Match& match = iter->second;
     if (match.player_exists(player_id)) {
       return match.get_id();
-    } else {
-      return 0;
     }
   }
+  return 0;
 }
