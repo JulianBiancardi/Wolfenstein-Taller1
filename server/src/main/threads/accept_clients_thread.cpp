@@ -4,9 +4,6 @@
 
 #include <utility>
 
-#include "receive_from_client_thread.h"
-#include "send_to_client_thread.h"
-
 AcceptClientsThread::AcceptClientsThread(Socket& acceptor_socket,
                                          ClientManager& client_manager)
     : client_manager(client_manager) {

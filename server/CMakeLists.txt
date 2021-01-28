@@ -24,7 +24,9 @@ FILE(GLOB ServerFiles
 	src/main/match_manager.cpp
 	src/main/match_manager_error.cpp
 	
-	
+	src/main/threads/*.cpp
+	src/main/packet_handlers/*.cpp
+
 	src/main/bot.cpp ##
 	src/main/map.cpp # Should be everything different from main_server.cpp
 	src/main/game/*.cpp
