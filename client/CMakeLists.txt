@@ -65,7 +65,6 @@ FILE(GLOB CommonFiles
 
 # FIXME Once the files work, delete their line
 list(REMOVE_ITEM ClientFiles "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/stage.cpp")
-#list(REMOVE_ITEM ClientFiles "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/main.cpp")
 list(REMOVE_ITEM ClientTestsFiles "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/tests/gun_tests.cpp")
 list(REMOVE_ITEM ClientTestsFiles "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/tests/resource_manager_tests.cpp")
 

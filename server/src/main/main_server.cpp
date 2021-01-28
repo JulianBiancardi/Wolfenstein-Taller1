@@ -1,4 +1,4 @@
-/*
+
 #include <syslog.h>
 
 #include <cstdlib>
@@ -20,8 +20,4 @@ int main(int argc, char **argv) {
     syslog(LOG_ERR, "[Error] Server Main Thread - Unknown error");
     return EXIT_FAILURE;
   }
-}
-*/
-int main(){
-
 }

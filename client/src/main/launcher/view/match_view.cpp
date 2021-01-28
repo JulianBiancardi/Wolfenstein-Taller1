@@ -19,8 +19,9 @@ MatchView::MatchView(QWidget* parent, const Match& match, Match* match_selected)
   }
 }
 
-void MatchView::mousePressEvent(QMouseEvent* event) {
+void MatchView::handleMousePressEvent(QMouseEvent* event) {
   if (match_selected != nullptr) {
+    std::cout << "hola" << std::endl;
     match_selected->copy(match);
   }
 }

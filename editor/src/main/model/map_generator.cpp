@@ -9,6 +9,8 @@
 #include "map.h"
 #include "yaml-cpp/yaml.h"
 
+#define SPAWN_POINT_ID 17
+
 MapGenerator::MapGenerator() {}
 
 Map* MapGenerator::generate_map(const std::string& file_path) {
@@ -31,6 +33,8 @@ Map* MapGenerator::generate_map(const std::string& file_path) {
 }
 
 void MapGenerator::generate_yamlfile(const std::string& file_path, Map* map) {
+  size_t max_players = 0;
+
   YAML::Emitter out;
   out << YAML::BeginMap;
   out << YAML::Key << "width";
@@ -44,18 +48,24 @@ void MapGenerator::generate_yamlfile(const std::string& file_path, Map* map) {
     for (size_t column = 0; column < map->column_count(); column++) {
       Cell* celd = map->at(row, column);
       if (celd != NULL) {
+        size_t id = celd->get_id();
         out << YAML::BeginMap;
         out << YAML::Key << "id";
-        out << YAML::Value << celd->get_id();
+        out << YAML::Value << id;
         out << YAML::Key << "x_position";
         out << YAML::Value << column;
         out << YAML::Key << "y_position";
         out << YAML::Value << row;
         out << YAML::EndMap;
+        if (id == SPAWN_POINT_ID) {
+          max_players++;
+        }
       }
     }
   }
   out << YAML::EndSeq;
+  out << YAML::Key << "max_players";
+  out << YAML::Value << max_players;  // TODO COUNT
   out << YAML::EndMap;
 
   std::ofstream fout(file_path);

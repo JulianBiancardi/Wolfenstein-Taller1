@@ -71,9 +71,9 @@
   image: "/home/santiagoczop/Taller/tps/tp4/res/ambient/IMG_Pilar.bmp"
   icon: ""
 17:
-  name: "Nuevo objecto"
+  name: "Spawn Point"
   image: "..."
-  icon: "..."
+  icon: "../resources/images/items/IMG_SpawnPoint.png"
 18:
   name: "Nuevo objecto"
   image: "..."

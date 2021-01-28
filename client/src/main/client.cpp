@@ -130,10 +130,7 @@ Client::~Client() {
 
 */
 
-#include <iostream>  //TODO DELETE
-
 #include "../../../common/src/main/config_loader.h"
-#include "launcher/include/launcher.h"
 #include "launcher/include/mainwindow.h"
 #include "sdl/window.h"
 #include "server.h"
@@ -143,15 +140,12 @@ Client::Client() {}
 Client::~Client() {}
 
 void Client::run_client(int argc, char** argv) {
-  // Server server;
-
+  Server server;
   Match match_selected;
   QApplication main_app(argc, argv);
 
   try {
-    MainWindow main_window(
-        nullptr, nullptr,
-        &match_selected);  // TODO SOLVE THIS WHEN SERVER IS CONNECTED
+    MainWindow main_window(nullptr, &server, &match_selected);
     main_window.show();
     main_app.exec();
 
