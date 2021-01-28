@@ -9,7 +9,7 @@
 #include "../packet_handlers/packet_handler_factory.h"
 
 ProcessorThread::ProcessorThread(ClientManager& client_manager)
-    : match_manager(), client_manager(client_manager) {}
+    : match_manager(), client_manager(client_manager), allowed_to_run(true) {}
 
 ProcessorThread::~ProcessorThread() {}
 
