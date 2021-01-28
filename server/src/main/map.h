@@ -13,20 +13,13 @@
 #include "game/objects/items/item.h"
 #include "game/player.h"
 
-#define MAP_NAME_MAX_SIZE 64
-
 class Map : public BaseMap {
  private:
-  char map_name[MAP_NAME_MAX_SIZE];
-  unsigned char player_capacity;
-  unsigned char players_joined;
-
   std::unordered_map<int, Item*> items;
   std::vector<Object*> objects;
   std::unordered_map<unsigned int, Player> players;
 
-  int spawn_points_occupied;
-  std::vector<Point> spawn_points;
+  unsigned char players_joined;
 
   void add_bullets(const Point& where, int amount);
   void add_bullets_drop(Player& dead_player);
@@ -37,15 +30,10 @@ class Map : public BaseMap {
   Map(std::string& map_name);
 
   Map(Matrix<int>& map_matrix);
-  Map(Map& other);  // Used for testing, TODO decide where to get the map from
+  // Map(Map& other);  // Used for testing, TODO decide where to get the map
+  // from
 
   ~Map();
-
-  /* Returns the name of the map */
-  const char* get_name() const;
-
-  /* Returns the player capacity */
-  unsigned char get_capacity() const;
 
   /* Returns a reference to a player */
   Player& get_player(unsigned int player_id);
@@ -59,9 +47,13 @@ class Map : public BaseMap {
   bool add_player(unsigned int player_id);
 
   //
+  //
+  //
 
+  /*
   void add_spawn_point(const Point& spawn_point);
   const Point next_spawn_point();
+  */
 
   // TODO Use only one method
   void add_blood(const Point& where);

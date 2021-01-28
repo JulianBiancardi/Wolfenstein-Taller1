@@ -14,11 +14,13 @@
 #include "game/objects/items/medic_kit.h"
 #include "game/objects/items/rocket_launcher_item.h"
 
-Map::Map(std::string& map_name) : BaseMap(map_name) {}
+Map::Map(std::string& map_name)
+    : items(), objects(), players(), players_joined(0), BaseMap(map_name) {}
 
 Map::Map(Matrix<int>& map_matrix)
-    : BaseMap(map_matrix), spawn_points_occupied(0) {}
+    : items(), objects(), players(), players_joined(0), BaseMap(map_matrix) {}
 
+/*
 Map::Map(Map& other)
     : BaseMap(other.map_matrix),
       objects(other.objects),
@@ -27,11 +29,7 @@ Map::Map(Map& other)
   for (auto elements : other.items) {  // Deep copies every element
     items.insert({elements.first, elements.second->copy()});
   }
-}
-
-const char* Map::get_name() const { return map_name; }
-
-unsigned char Map::get_capacity() const { return player_capacity; }
+}*/
 
 Player& Map::get_player(unsigned int player_id) {
   return players.at(player_id);
@@ -62,13 +60,14 @@ void Map::add_bullets(const Point& where, int amount) {
   items.insert({new_bullets->get_id(), new_bullets});
 }
 
+/*
 void Map::add_spawn_point(const Point& spawn_point) {
   spawn_points.push_back(spawn_point);
 }
 
 const Point Map::next_spawn_point() {
-  return spawn_points.at(spawn_points_occupied++);
-}
+  return spawn_points.at(players_joined++);
+}*/
 
 void Map::add_blood(const Point& where) {
   Blood* new_blood = new Blood(where);
