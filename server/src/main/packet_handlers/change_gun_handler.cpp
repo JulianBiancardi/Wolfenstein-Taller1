@@ -1,13 +1,5 @@
 #include "change_gun_handler.h"
 
-/*
-void ChangeGunHandler::handle(Match& match, CollisionChecker& checker) {
-  who.change_gun(gun);
-
-  match.enqueue_result_for_all_others(
-      build_change_gun_packet(who.get_id(), gun), who.get_id());
-}*/
-
 #include <vector>
 
 #include "../../../../common/src/main/packets/packing.h"
