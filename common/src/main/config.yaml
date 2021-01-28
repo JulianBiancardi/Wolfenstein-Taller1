@@ -10,10 +10,10 @@ screen_height: 640
 player_health: 40
 player_bullets: 12
 player_max_bullets: 100
-player_mask_radio: 5
+player_mask_radio: 0.5
 player_lives: 3
 player_respawn_bullets: 8
-player_pace: 1
+player_pace: 0.1
 player_rotation_angle: 0.1
 player_knife_mask_radio: 10 # must be greater than player_mask_radio
 
@@ -36,7 +36,7 @@ machine_gun_bullet_required: 10
 machine_gun_base_precision: 10
 
 #Items
-items_mask_radio: 0.5
+items_mask_radio: 0.25
 food_health_recovered: 10
 medic_kit_health_recovered: 20
 blood_health_recovered: 1

@@ -34,6 +34,9 @@ class BaseMap {
 
   /* Returns a copy of the value in the point x,y. */
   int operator()(size_t x, size_t y);
+
+  /* Remove */
+  void add_spawn_point(double x, double y);
 };
 
 #endif

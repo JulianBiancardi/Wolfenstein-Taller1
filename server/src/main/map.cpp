@@ -70,7 +70,7 @@ const std::unordered_map<unsigned int, Item*>& Map::get_items() const {
   return items;
 }
 
-const std::vector<Object*> Map::get_objects() const { return objects; }
+const std::vector<Object*>& Map::get_objects() const { return objects; }
 
 bool Map::has_one_player() const { return players.size() == 1; }
 
