@@ -1,5 +1,7 @@
 #include "match.h"
 
+#include "../game/objects/door/door.h"
+
 /*
 
 #include "../events/event_building.h"
@@ -80,8 +82,7 @@ void Match::end() { keep_running = false; }
 
 #include "match_error.h"
 
-Match::Match(std::string& map_name)
-    : players_ids(), map(map_name), checker(map) {}
+Match::Match(std::string& map_name) : map(map_name), checker(map) {}
 
 Match::~Match() {}
 
@@ -125,10 +126,6 @@ bool Match::move_player(unsigned int player_id, unsigned char direction) {
 
   if (checker.can_move(requested_position, player)) {
     player.set_position(requested_position);
-    // TODO Check if grabbed
-
-    // match.enqueue_result_for_all(build_move_packet(who.get_id(), direction));
-    // consequence_grab_event(match, checker, who);
 
     return true;
   }
@@ -146,6 +143,27 @@ bool Match::rotate_player(unsigned int player_id, unsigned char direction) {
   return true;
 }
 
+unsigned int Match::grab_item(unsigned int player_id) {
+  if (!player_exists(player_id)) {
+    throw MatchError("Failed to grab item. Player %u doesn't exist.",
+                     player_id);
+  }
+
+  Player& player = map.get_player(player_id);
+  unsigned int item_id = checker.grabbed_item(player);
+
+  if (item_id != 0) {
+    Item& item = map.get_item(item_id);
+
+    if (item.can_be_used_by(player)) {
+      item.use(player);
+      map.delete_item(item_id);
+    }
+  }
+
+  return item_id;
+}
+
 bool Match::change_gun(unsigned int player_id, unsigned char gun_id) {
   if (!player_exists(player_id)) {
     throw MatchError("Failed to change gun player. Player %u doesn't exist.",
@@ -156,7 +174,7 @@ bool Match::change_gun(unsigned int player_id, unsigned char gun_id) {
   return map.get_player(player_id).change_gun(gun_id);
 }
 
-void Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
+bool Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
                       unsigned char damage) {
   if (!player_exists(player_id)) {
     throw MatchError("Failed to shoot gun. Player %u doesn't exist.",
@@ -184,8 +202,13 @@ void Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
     if (objective.is_dead()) {
       kill_player(objective_id);
       shooter.add_kill();
+      map.add_drop(objective);
+
+      return true;
     }
   }
+
+  return false;
 }
 
 bool Match::is_dead(unsigned int player_id) {
@@ -199,7 +222,19 @@ bool Match::is_dead(unsigned int player_id) {
   return map.get_player(player_id).is_dead();
 }
 
-void Match::kill_player(unsigned int player_id) {  // TODO Fill
+void Match::kill_player(unsigned int player_id) {
+  if (!player_exists(player_id)) {
+    throw MatchError("Failed to kill player. Player %u doesn't exist.",
+                     player_id);
+  }
+
+  Player& player = map.get_player(player_id);
+
+  if (player.has_lives()) {
+    player.respawn();
+  } else {
+    delete_player(player_id);
+  }
 }
 
 bool Match::has_lives(unsigned int player_id) {
@@ -209,4 +244,39 @@ bool Match::has_lives(unsigned int player_id) {
   }
 
   return map.get_player(player_id).has_lives();
+}
+
+bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
+  if (!player_exists(player_id)) {
+    throw MatchError("Failed to find door interactor. Player %u doesn't exist.",
+                     player_id);
+  }
+
+  Player& player = map.get_player(player_id);
+
+  Door* door = (Door*) map.get_object(door_id);
+
+  // FIXME
+  if (door == nullptr) {
+    throw MatchError("Failed to get door. Door %u doesn't exist.",
+                     door_id);
+  }
+
+  return door->interact(player, checker);
+}
+
+void Match::delete_player(unsigned int player_id) { // TODO
+  if (!player_exists(player_id)) {
+    throw MatchError("Failed to delete player. Player %u doesn't exist.",
+                     player_id);
+  }
+
+}
+
+bool Match::should_end() const {
+  return map.has_one_player();
+}
+
+void Match::end() {
+  // TODO
 }

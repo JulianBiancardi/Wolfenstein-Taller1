@@ -12,7 +12,6 @@
 
 class EventFilter : public QObject {
  private:
-  CellView* lastCell;
   OptionSelected* current_option;
 
  public:

@@ -20,7 +20,7 @@ class MatchView : public QWidget {
   MatchView(QWidget* parent = nullptr, const Match& match = match_default,
             Match* match_selected = nullptr);
 
-  void mousePressEvent(QMouseEvent* event);
+  void handleMousePressEvent(QMouseEvent* event);
 
   ~MatchView();
 };

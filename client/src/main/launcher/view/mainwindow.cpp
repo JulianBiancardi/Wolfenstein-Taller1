@@ -1,17 +1,19 @@
 #include "../include/mainwindow.h"
 
+#include <event_filter.h>
+
 #include <QtWidgets/QMessageBox>
 
 #include "../include/match_view.h"
 #include "iostream"
 #include "moc_mainwindow.cpp"
-
 #define WINDOW_TITLE "Wolfenstein Launcher"
 
 MainWindow::MainWindow(QWidget* parent, Server* server, Match* match_selected)
     : QMainWindow(parent), match_selected(match_selected) {
   ui.setupUi(this);
   setWindowTitle(WINDOW_TITLE);
+  ui.scrollAreaWidgetContents->installEventFilter(new EventFilter());
   ui.RefreshButton->setEnabled(true);
 
   matches.push_back(Match());

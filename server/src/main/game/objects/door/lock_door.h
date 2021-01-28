@@ -9,7 +9,9 @@ class LockedDoor : public Door {
 
  public:
   LockedDoor(const Point& center);
-  void interact(Player& who, CollisionChecker& checker) override;
+
+  /* Returns if the door state changed */
+  bool interact(Player& who, CollisionChecker& checker) override;
 };
 
 #endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_DOOR_LOCK_DOOR_H_

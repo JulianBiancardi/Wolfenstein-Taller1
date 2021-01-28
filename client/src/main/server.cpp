@@ -1,5 +1,6 @@
 #include "server.h"
 
+#include <iostream>  //TODO DELETE
 #include <utility>
 
 #include "../../../common/src/main/config_loader.h"
@@ -29,13 +30,16 @@ Server::~Server() {
 }
 
 void Server::sync_with_server(Socket& server_socket) {
+  std::cout << "connecting to server..." << std::endl;
   Packet packet;
   reception_queue.dequeue(packet);
+  std::cout << "reception succed" << std::endl;
   if (packet.get_type() != START_OF_CONNECTION) {
     throw ServerError(
         "Failed to establish connection. Received packet of type %u.",
         packet.get_type());
   }
+  std::cout << "conection establish" << std::endl;
   unsigned char type;
   unsigned int designated_id;
   unpack(packet.get_data(), "CI", &type, &designated_id);

@@ -18,21 +18,15 @@ void ShotHandler::handle(Packet& packet, ClientManager& client_manager,
 
   Match& match = match_manager.get_match(match_id);
   // TODO Catch error
-  match.shoot_gun(player_id, objective_id, damage);
 
   const std::unordered_set<unsigned int>& client_ids = match.get_players_ids();
   client_manager.send_to_all(client_ids, packet);
-  // TODO Let everyone know so they reproduce the sound or change his gun if he
-  // ran out of bullets #EVENT
-  if (match.is_dead(objective_id)) {
-    // TODO Avisarles que lo mataste
-    // TODO Drop items #EVENT
-    if (match.has_lives(objective_id)) {
-      // TODO Respawn #EVENT
-    } else {
-      // TODO Check for winning condition #EVENT
-    }
-  } else {
-    // TODO Grab health items if over one
+
+  if (!match.shoot_gun(player_id, objective_id, damage)) {
+    consequent_grab(objective_id, match, client_manager);
+  } else if (match.should_end()) {
+    // TODO Game over
   }
+
+  consequent_grab(player_id, match, client_manager);
 }

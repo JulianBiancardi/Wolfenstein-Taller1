@@ -3,14 +3,18 @@
 
 LockedDoor::LockedDoor(const Point& center) : Door(center), locked(true) {}
 
-void LockedDoor::interact(Player& who, CollisionChecker& checker) {
+bool LockedDoor::interact(Player& who, CollisionChecker& checker) {
   if (locked) {
     if (who.has_keys()) {
       locked = false;
       who.remove_key();
       ((SwitchMask*) mask)->switch_mask();
+      return true;
     }
   } else {
     change_state(checker);
+    return true;
   }
+
+  return false;
 }
