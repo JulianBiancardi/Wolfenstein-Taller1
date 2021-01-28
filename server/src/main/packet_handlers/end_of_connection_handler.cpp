@@ -20,7 +20,7 @@ void EndOfConnectionHandler::handle(Packet& packet,
 
   unsigned char match_id = match_manager.find_match_of_player(player_id);
   if (match_id != 0) {
-    const std::vector<unsigned int>& client_ids =
+    const std::unordered_set<unsigned int>& client_ids =
         match_manager.get_match(match_id).get_players_ids();
     client_manager.send_to_all(client_ids, packet);
   }
