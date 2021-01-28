@@ -65,7 +65,7 @@ void MapGenerator::generate_yamlfile(const std::string& file_path, Map* map) {
   }
   out << YAML::EndSeq;
   out << YAML::Key << "max_players";
-  out << YAML::Value << max_players;  // TODO COUNT
+  out << YAML::Value << max_players;
   out << YAML::EndMap;
 
   std::ofstream fout(file_path);

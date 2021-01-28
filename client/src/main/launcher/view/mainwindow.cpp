@@ -10,15 +10,13 @@
 #define WINDOW_TITLE "Wolfenstein Launcher"
 
 MainWindow::MainWindow(QWidget* parent, Server* server, Match* match_selected)
-    : QMainWindow(parent), match_selected(match_selected) {
+    : QMainWindow(parent), match_selected(match_selected), launcher(server) {
   ui.setupUi(this);
   setWindowTitle(WINDOW_TITLE);
   ui.scrollAreaWidgetContents->installEventFilter(new EventFilter());
   ui.RefreshButton->setEnabled(true);
 
-  matches.push_back(Match());
-  matches.push_back(Match(1, "mapa1", 0, 10, true));
-  matches.push_back(Match(2, "mapa2", 0, 10, false));
+  update();
 }
 
 void MainWindow::update() {
@@ -38,6 +36,7 @@ void MainWindow::_remove_matches() {
 }
 
 void MainWindow::_add_matches() {
+  std::list<Match> matches = launcher.get_matches();
   if (matches.empty()) {
     QMessageBox msgBox;
     msgBox.setWindowTitle(WINDOW_TITLE);
@@ -54,6 +53,7 @@ void MainWindow::_add_matches() {
 
 void MainWindow::on_RefreshButton_clicked() {
   match_selected->reset();
+  launcher.update_matches();
   update();
 }
 

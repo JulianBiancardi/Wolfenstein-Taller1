@@ -15,7 +15,6 @@ void Launcher::update_matches() {
   matches.clear();
   request_matches();
   receive_matches();
-  notify();
 }
 
 void Launcher::request_matches() {
