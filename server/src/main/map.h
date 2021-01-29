@@ -27,6 +27,8 @@ class Map : public BaseMap {
   void add_gun_drop(Player& dead_player);
   void add_key_drop(Player& dead_player);
 
+  void load_objects();
+
  public:
   explicit Map(std::string& map_name);
 

@@ -302,22 +302,3 @@ objects:
   - id: 1
     x_position: 9
     y_position: 9
-walls:
-  - id: 1
-    x_position: 0
-    y_position: 0
-  - id: 1
-    x_position: 1
-    y_position: 0
-players:
-  - id: 17
-    x_position: 2
-    y_position: 2
-items: 
-  - id: 3
-    x_position: 9
-    y_position: 1
-objects: 
-  - id: 7
-    x_position: 3
-    y_position: 2

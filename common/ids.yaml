@@ -1,4 +1,5 @@
 --- 
+# Walls
 0:
   type: 0
   name: "Air"
@@ -13,103 +14,144 @@
   name: "Wood Wall"
   image: "resources/images/walls/IMG_WoodWall.png"
   icon: "../resources/images/walls/IMG_WoodWall.png"
-3: 
+
+# Players
+20:
+  type: 1
+  name: "Spawn Point"
+  image: "..."
+  icon: "../resources/images/items/IMG_SpawnPoint.png"
+21:
+  type: 1
+  name: "Dog"
+  image: "..."
+  icon: "..."
+22:
+  type: 1
+  name: "Guard"
+  image: "resources/images/enemies/IMG_Guard.png"
+  icon: "../resources/images/enemies/IMG_Guard.png"
+23:
+  type: 1
+  name: "SS"
+  image: "..."
+  icon: "..."
+24:
+  type: 1
+  name: "Officer"
+  image: "/home/santiagoczop/Taller/tps/tp4/res/officer/officer1.bmp"
+  icon: "..."
+25:
+  type: 1
+  name: "Mutant"
+  image: "..."
+  icon: "..."
+
+# Guns
+30:
+  type: 2
+  name: "Knife"
+  image: "..."
+  icon: "..."
+  sound: "..."
+31:
+  type: 2
+  name: "Pistol"
+  image: "..."
+  icon: "..."
+  sound: "..."
+32:
   type: 2
   name: "Maching Gun"
   image: "resources/images/weapons/IMG_Machingun.png"
   icon: "../resources/images/weapons/IMG_Machingun.png"
-4:
+  sound: "..."
+33:
+  type: 2
+  name: "Chain Gun"
+  image: "..."
+  icon: "..."
+  sound: "..."
+34:
   type: 2
   name: "Bazooka"
   image: "resources/images/weapons/IMG_Bazooka.png"
   icon: "../resources/images/weapons/IMG_Bazooka.png"
   sound: ""
-5:
-  type: 2
-  name: "Pistol"
-  image: "resources/images/weapons/IMG_Pistol.png"
-  icon: "../resources/images/weapons/IMG_Pistol.png"
-  sound: ""
-6:
-  type: 1
-  name: "Guard"
-  image: "resources/images/enemies/IMG_Guard.png"
-  icon: "../resources/images/enemies/IMG_Guard.png"
-  sound: ""
-7:
-  type: 2
-  name: "Bullets"
-  image: ""
-  icon: "../resources/images/items/IMG_Bullets.png"
-8:
+
+# Items
+40:
   type: 2
   name: "Food"
   image: ""
   icon: "../resources/images/items/IMG_Food.png"
-9:
-  type: 2
-  name: "Key"
-  image: ""
-  icon: "../resources/images/items/IMG_Key.png"
-10:
+41:
   type: 2
   name: "MedKit"
   image: ""
   icon: "../resources/images/items/IMG_MedKit.png"
-11:
-  type: 3
-  name: "Chest"
-  image: ""
-  icon: "../resources/images/items/IMG_Treasure_Chest.png"
-12:
+42:
   type: 2
-  name: "Crown"
+  name: "Blood"
+  image: "..."
+  icon: "../resources/images/items/IMG_Blood.png"
+43:
+  type: 2
+  name: "Bullets"
   image: ""
-  icon: "../resources/images/items/IMG_Treasure_Crown.png"
-  sound: ""
-13:
+  icon: "../resources/images/items/IMG_Bullets.png"
+44:
+  type: 2
+  name: "Cross"
+  image: ""
+  icon: ""
+45:
   type: 2
   name: "Cup"
   image: ""
   icon: "../resources/images/items/IMG_Treasure_Cup.png"
-  sound: ""
-14:
+46:
   type: 2
-  name: "Blood"
-  icon: "../resources/images/items/IMG_Blood.png"
-15:
-  type: 1
-  name: "Officer"
-  image: "/home/santiagoczop/Taller/tps/tp4/res/officer/officer1.bmp"
-  icon: ""
-16:
+  name: "Chest"
+  image: ""
+  icon: "../resources/images/items/IMG_Treasure_Chest.png"
+47:
+  type: 2
+  name: "Crown"
+  image: ""
+  icon: "../resources/images/items/IMG_Treasure_Crown.png"
+48:
+  type: 2
+  name: "Key"
+  image: ""
+  icon: "../resources/images/items/IMG_Key.png"
+
+# Solid Objects
+50:
   type: 3
   name: "Pillar"
   image: "/home/santiagoczop/Taller/tps/tp4/res/ambient/IMG_Pilar.bmp"
-  icon: ""
-17:
-  type: 1
-  name: "Spawn Point"
-  image: "..."
-  icon: "../resources/images/items/IMG_SpawnPoint.png"
-18:
-  name: "Nuevo objecto"
+  icon: "..."
+51:
+  type: 3
+  name: "Table"
   image: "..."
   icon: "..."
-19:
-  name: "Nuevo objecto"
+52:
+  type: 3
+  name: "Barrel"
   image: "..."
   icon: "..."
-20:
-  name: "Nuevo objecto"
+
+# Non-solid Objects
+60:
+  type: 4
+  name: "Water"
   image: "..."
   icon: "..."
-21:
-  name: "Nuevo objecto"
-  image: "..."
-  icon: "..."
-22:
-  name: "Nuevo objecto"
+61:
+  type: 4
+  name: "Floor Blood"
   image: "..."
   icon: "..."
 ...
