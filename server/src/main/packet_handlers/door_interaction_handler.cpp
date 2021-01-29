@@ -10,10 +10,10 @@ void DoorInteractionHandler::handle(Packet& packet,
                                     ClientManager& client_manager,
                                     MatchManager& match_manager) {
   unsigned char type;
-  unsigned char match_id;
   unsigned int player_id;
+  unsigned char match_id;
   unsigned int door_id;
-  unpack(packet.get_data(), "CCII", &type, &match_id, &player_id, &door_id);
+  unpack(packet.get_data(), "CICI", &type, &player_id, &match_id, &door_id);
 
   Match& match = match_manager.get_match(match_id);
 

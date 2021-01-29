@@ -46,7 +46,7 @@ class Match {
   CollisionChecker checker;
 
  public:
-  explicit Match(std::string& map_name);
+  explicit Match(unsigned char match_id, std::string& map_name);
 
   Match(const Match& other) = delete;
   Match& operator=(const Match&) = delete;

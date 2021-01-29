@@ -2,7 +2,9 @@
 
 #include "match_manager_error.h"
 
-MatchManager::MatchManager() : matches() {
+#define MATCHES_CAPACITY 255
+
+MatchManager::MatchManager() : next_id(1), matches() {
   // TODO Delete all
   std::string mapa1("prueeeeeeeeeeeeeeeba");
   std::string mapa2("hello");
@@ -16,8 +18,6 @@ MatchManager::MatchManager() : matches() {
 }
 
 MatchManager::~MatchManager() {}
-
-unsigned char MatchManager::next_id = 1;
 
 bool MatchManager::match_exists(unsigned char match_id) {
   return matches.find(match_id) != matches.end();
@@ -37,10 +37,15 @@ Match& MatchManager::get_match(unsigned char match_id) {
   return *(matches[match_id]);
 }
 
-void MatchManager::create_match(std::string& map_name) {
-  std::shared_ptr<Match> new_match(new Match(map_name));
-  matches.insert(std::make_pair(next_id, std::move(new_match)));
-  next_id++;
+unsigned char MatchManager::create_match(std::string& map_name) {
+  if (matches.size() < MATCHES_CAPACITY) {
+    std::shared_ptr<Match> new_match(new Match(next_id, map_name));
+    matches.insert(std::make_pair(next_id, std::move(new_match)));
+    next_id++;
+    return next_id - 1;
+  } else {
+    return 0;
+  }
 }
 
 unsigned char MatchManager::find_match_of_player(unsigned int player_id) {
