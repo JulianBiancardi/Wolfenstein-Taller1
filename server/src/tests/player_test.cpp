@@ -24,8 +24,6 @@ int static player_collides_against_other_player();
 int static another_player_collides_against_other_player();
 int static player_collides_against_table_from_side();
 int static player_collides_against_table_from_another_side();
-int static simplest_collision();
-int static second_simplest_collision();
 int static diagonal_collision_with_table();
 int static player_kills_are_correct();
 int static player_respawns_correctly();
@@ -110,7 +108,7 @@ void player_tests() {
   print_test("El jugador completa un path correctamente",
              complete_path_correctly, NO_ERROR);
   print_test("El jugador camina en diagonal", walk_diagonally, NO_ERROR);
-  /*print_test("El jugador completa un path complicado correctamente",
+  print_test("El jugador completa un path complicado correctamente",
              complete_difficult_path_correctly, NO_ERROR);
   print_test("El jugador colisiona correctamente", check_collisions, NO_ERROR);
   print_test("El jugador colisiona contra otro jugador",
@@ -121,8 +119,6 @@ void player_tests() {
              NO_ERROR);
   print_test("Jugador colisiona mesa desde otro lado",
              player_collides_against_table_from_another_side, NO_ERROR);
-  print_test("Colision simple", simplest_collision, NO_ERROR);
-  print_test("Colision mas simple", second_simplest_collision, NO_ERROR);
   print_test("Colision diagonal con mesa", diagonal_collision_with_table,
              NO_ERROR);
   print_test("La cantidad de kills de un jugador es correcta",
@@ -144,7 +140,6 @@ void player_tests() {
              NO_ERROR);
   print_test("La puerta no se cierra si hay un jugador debajo",
              player_cannot_close_door_if_it_is_under_it, NO_ERROR);
-  */
 
   end_tests();
 }
@@ -267,267 +262,204 @@ int static walk_diagonally() {
 
   return ERROR;
 }
-/*
-int static complete_difficult_path_correctly() {
-  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
-  put_data(map_data);
-  Map map(map_data);
 
-  // FIXME add manually to map
-  Player player(100, 100, 0);
-  std::unordered_map<int, Player> players;
-  players.insert({1, player});
-  std::vector<Object*> sprites;
-  std::unordered_map<int, Item*> items;
+int static complete_difficult_path_correctly() {
+  Matrix<int> map_data = create_base_map();
+  Map map(map_data);
+  map.add_spawn_point(2, 2);
+  map.add_player(1);
+
   CollisionChecker checker(map);
 
-  for (int i = 0; i < 700; i++) {
-    move_up(players.at(1), checker);
-  }
-
   for (int i = 0; i < 100; i++) {
-    move_right(players.at(1), checker);
+    move_up(map.get_player(1), checker);
   }
 
-  if (players.at(1).get_position().getX() == 570 &&
-      players.at(1).get_position().getY() == 200)
+  for (int i = 0; i < 10; i++) {
+    move_right(map.get_player(1), checker);
+  }
+
+  if (double_compare(map.get_player(1).get_position().getX(),
+                     TEST_MAP_SIZE - 1 - CL::player_mask_radio) &&
+      double_compare(map.get_player(1).get_position().getY(),
+                     2 + 10 * CL::player_pace))
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static check_collisions() {
-  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
-  put_data(map_data);
+  Matrix<int> map_data = create_base_map();
   Map map(map_data);
+  map.add_spawn_point(2, 2);
+  map.add_player(1);
 
-  // FIXME add manually to map
-  Player player(100, 100, M_PI / 2);
-  std::unordered_map<int, Player> players;
-  players.insert({1, player});
-  std::vector<Object*> sprites;
-  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map);
 
-  for (int i = 0; i < 700; i++) {
-    move_right(players.at(1), checker);
+  for (int i = 0; i < 140; i++) {
+    move_up(map.get_player(1), checker);
   }
 
-  if (players.at(1).get_position().getX() != 570 ||
-      players.at(1).get_position().getY() != 100)
+  if (!double_compare(map.get_player(1).get_position().getX(),
+                      TEST_MAP_SIZE - 1 - CL::player_mask_radio) ||
+      !double_compare(map.get_player(1).get_position().getY(),
+                      2))
     return ERROR;
 
-  for (int i = 0; i < 700; i++) {
-    move_down(players.at(1), checker);
+  for (int i = 0; i < 140; i++) {
+    move_right(map.get_player(1), checker);
   }
 
-  if (players.at(1).get_position().getX() != 570 ||
-      players.at(1).get_position().getY() != 570)
+  if (!double_compare(map.get_player(1).get_position().getX(),
+                      TEST_MAP_SIZE - 1 - CL::player_mask_radio) ||
+      !double_compare(map.get_player(1).get_position().getY(),
+                      TEST_MAP_SIZE - 1 - CL::player_mask_radio))
     return ERROR;
 
-  for (int i = 0; i < 700; i++) {
-    move_left(players.at(1), checker);
+  for (int i = 0; i < 200; i++) {
+    move_down(map.get_player(1), checker);
   }
 
-  if (players.at(1).get_position().getX() != 69 ||
-      players.at(1).get_position().getY() != 570)
+  if (!double_compare(map.get_player(1).get_position().getX(),
+                      1 + CL::player_mask_radio) ||
+      !double_compare(map.get_player(1).get_position().getY(),
+                      TEST_MAP_SIZE - 1 - CL::player_mask_radio))
     return ERROR;
 
-  for (int i = 0; i < 700; i++) {
-    move_up(players.at(1), checker);
+  for (int i = 0; i < 200; i++) {
+    move_left(map.get_player(1), checker);
   }
 
-  if (players.at(1).get_position().getX() != 69 ||
-      players.at(1).get_position().getY() != 69)
+  if (!double_compare(map.get_player(1).get_position().getX(),
+                      1 + CL::player_mask_radio) ||
+      !double_compare(map.get_player(1).get_position().getY(),
+                      1 + CL::player_mask_radio))
     return ERROR;
 
   return NO_ERROR;
 }
 
 int static player_collides_against_other_player() {
-  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
-  put_data(map_data);
+  Matrix<int> map_data = create_base_map();
   Map map(map_data);
+  map.add_spawn_point(2, 2);
+  map.add_spawn_point(2, 7);
+  map.add_player(1);
+  map.add_player(2);
 
-  // FIXME add manually to map
-  Player player1(100, 100, M_PI / 2);
-  Player player2(100, 200, 0);
-
-  std::unordered_map<int, Player> players;
-  players.insert({1, player1});
-  players.insert({2, player2});
-  std::vector<Object*> sprites;
-  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map);
 
-  for (int i = 0; i < 200; i++) {
-    move_down(players.at(1), checker);
+  for (int i = 0; i < 100; i++) {
+    move_right(map.get_player(1), checker);
   }
 
-  if (players.at(1).get_position().getX() == 100 &&
-      players.at(1).get_position().getY() == 189)
+  if (double_compare(map.get_player(1).get_position().getX(), 2) &&
+      double_compare(map.get_player(1).get_position().getY(),
+                     map.get_player(2).get_position().getY()
+                         - 2 * CL::player_mask_radio))
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static another_player_collides_against_other_player() {
-  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
-  put_data(map_data);
+  Matrix<int> map_data = create_base_map();
   Map map(map_data);
+  map.add_spawn_point(2, 2);
+  map.add_spawn_point(7, 7);
+  map.add_player(1);
+  map.add_player(2);
 
-  // FIXME add manually to map
-  Player player1(100, 100, M_PI);
-  Player player2(200, 200, 3 * M_PI / 2);
-
-  std::unordered_map<int, Player> players;
-  players.insert({1, player1});
-  players.insert({2, player2});
-  std::vector<Object*> sprites;
-  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map);
 
-  for (int i = 0; i < 100; i++) {
-    move_left(players.at(1), checker);
+  for (int i = 0; i < 50; i++) {
+    move_right(map.get_player(1), checker);
   }
 
   for (int i = 0; i < 100; i++) {
-    move_right(players.at(2), checker);
+    move_down(map.get_player(2), checker);
   }
 
-  if (players.at(2).get_position().getX() == 111 &&
-      players.at(2).get_position().getY() == 200)
+  if (double_compare(map.get_player(2).get_position().getX(),
+                     map.get_player(1).get_position().getX()
+                         + 2 * CL::player_mask_radio) &&
+      double_compare(map.get_player(2).get_position().getY(), 7))
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_collides_against_table_from_side() {
-  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
-  put_data(map_data);
-  Map map(map_data);
-  Player player(100, 100, M_PI / 2);
+  double table_width = 2;
 
-  // FIXME add manually to map
-  std::unordered_map<int, Player> players;
-  players.insert({1, player});
-  std::vector<Object*> sprites;
-  sprites.push_back(new Table(5, 4, Point(100, 120)));
-  std::unordered_map<int, Item*> items;
+  Matrix<int> map_data = create_base_map();
+  Map map(map_data);
+  map.add_spawn_point(2, 5);
+  map.add_player(1);
+  map.add_table(Point(5, 5), table_width, 1);
+
   CollisionChecker checker(map);
 
-  for (int i = 0; i < 100; i++) {
-    move_down(players.at(1), checker);
+  for (int i = 0; i < 30; i++) {
+    move_up(map.get_player(1), checker);
   }
 
-  delete sprites[0];
-
-  if (players.at(1).get_position().getX() == 100 &&
-      players.at(1).get_position().getY() == 112)
+  if (double_compare(map.get_player(1).get_position().getX(),
+                     5 - table_width / 2 - CL::player_mask_radio
+                         - CL::player_pace)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_collides_against_table_from_another_side() {
-  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
-  put_data(map_data);
+  double table_height = 1;
+
+  Matrix<int> map_data = create_base_map();
   Map map(map_data);
-  Player player(100, 100, M_PI / 2);
+  map.add_spawn_point(5, 2);
+  map.add_player(1);
+  map.add_table(Point(6, 6), 4, table_height);
 
-  // FIXME add manually to map
-  std::unordered_map<int, Player> players;
-  players.insert({1, player});
-  std::vector<Object*> sprites;
-  sprites.push_back(new Table(10, 10, Point(200, 100)));
-  std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map);
-
-  for (int i = 0; i < 200; i++) {
-    move_right(players.at(1), checker);
-  }
-
-  delete sprites[0];
-
-  if (players.at(1).get_position().getX() == 189 &&
-      players.at(1).get_position().getY() == 100)
-    return NO_ERROR;
-
-  return ERROR;
-}
-
-int static simplest_collision() {
-  Matrix<int> map_data(10, 10, 0);  // Emulates map loaded
-  map_data(9, 0) = WALL;
-  Map map(map_data);
-  Player player(0.5, 0.5, 0);
-
-  // FIXME Add manually to map
-  std::unordered_map<int, Player> players;
-  players.insert({1, player});
-  std::vector<Object*> sprites;
-  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map);
 
   for (int i = 0; i < 100; i++) {
-    move_up(players.at(1), checker);
+    move_right(map.get_player(1), checker);
   }
 
-  if (players.at(1).get_position().getX() == 3.5 &&
-      players.at(1).get_position().getY() == 0.5)
-    return NO_ERROR;
-
-  return ERROR;
-}
-
-int static second_simplest_collision() {
-  Matrix<int> map_data(10, 10, 0);  // Emulates map loaded
-  map_data(9, 0) = WALL;
-  Map map(map_data);
-  Player player(1, 1, 0);
-
-  // FIXME Add manually to map
-  std::unordered_map<int, Player> players;
-  players.insert({1, player});
-  std::vector<Object*> sprites;
-  std::unordered_map<int, Item*> items;
-  CollisionChecker checker(map);
-
-  for (int i = 0; i < 3; i++) {
-    move_up(players.at(1), checker);
-  }
-
-  if (players.at(1).get_position().getX() == 4 &&
-      players.at(1).get_position().getY() == 1)
+  if (map.get_player(1).get_position().getX() == 5 &&
+      double_compare(map.get_player(1).get_position().getY(),
+                     6 - table_height / 2 - CL::player_mask_radio
+                         - CL::player_pace))
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static diagonal_collision_with_table() {
-  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
-  put_data(map_data);
+  Matrix<int> map_data = create_base_map();
   Map map(map_data);
-  Player player(100, 100, 7 * M_PI / 4);
+  map.add_spawn_point(2, 2);
+  map.add_player(1);
+  map.add_table(Point(7, 7), 2, 2);
 
-  // FIXME Add manually to map
-  std::unordered_map<int, Player> players;
-  players.insert({1, player});
-  std::vector<Object*> sprites;
-  sprites.push_back(new Table(10, 10, Point(300, 300)));
-  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map);
 
-  for (int i = 0; i < 300; i++) {
-    move_up(players.at(1), checker);
+  for (int i = 0; i < 60; i++) {
+    move_up_right(map.get_player(1), checker);
   }
 
-  delete sprites[0];
+  if (fabs(map.get_player(1).get_position().distance_from(Point(6, 6)))
+      < CL::player_mask_radio)
+    return ERROR;
 
-  if (players.at(1).get_position().getX() > 290.91 &&
-      players.at(1).get_position().getY() < 290.92 &&
-      players.at(1).get_position().getX() > 290.91 &&
-      players.at(1).get_position().getY() < 290.92)
+  Point previous_point(map.get_player(1).get_position().getX() -
+                           CL::player_pace * cos(7 * M_PI / 4),
+                       map.get_player(1).get_position().getY() +
+                           CL::player_pace * sin(7 * M_PI / 4));
+
+  if (fabs(previous_point.distance_from(Point(6, 6))) > CL::player_mask_radio)
     return NO_ERROR;
 
   return ERROR;
@@ -569,210 +501,201 @@ int static player_respawns_correctly() {
 }
 
 int static player_collides_against_door() {
-  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
-  put_data(map_data);
+  Matrix<int> map_data = create_base_map();
   Map map(map_data);
+  map.add_spawn_point(2, 5);
+  map.add_player(1);
+  map.add_normal_door(Point(5, 5));
 
-  // FIXME Add manually to map
-  Player player(100, 100, 3 * M_PI / 2);
-  std::unordered_map<int, Player> players;
-  players.insert({1, player});
-  std::vector<Object*> sprites;
-  sprites.push_back(new NormalDoor(Point(100, 101)));
-  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map);
 
-  move_up(players.at(1), checker);
+  for (int i = 0; i < 60; i++) {
+    move_up(map.get_player(1), checker);
+  }
 
-  delete sprites[0];
-
-  if (players.at(1).get_position().getX() == 100 &&
-      players.at(1).get_position().getY() == 100)
+  // FIXME Should not be hardcoded door width
+  if (double_compare(map.get_player(1).get_position().getX(),
+                     5 - 0.5 - CL::player_mask_radio - CL::player_pace)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_walks_through_door() {
-  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
-  put_data(map_data);
+  Matrix<int> map_data = create_base_map();
   Map map(map_data);
+  map.add_spawn_point(2, 5);
+  map.add_player(1);
+  map.add_normal_door(Point(5, 5));
 
-  // FIXME add manually to map
-  Player player(100, 100, 3 * M_PI / 2);
-  std::unordered_map<int, Player> players;
-  players.insert({1, player});
-  std::vector<Object*> sprites;
-  sprites.push_back(new NormalDoor(Point(100, 101)));
-  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map);
 
-  ((Door*)sprites.at(0))->interact(players.at(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
-  move_up(players.at(1), checker);
+  for (int i = 0; i < 60; i++) {
+    move_up(map.get_player(1), checker);
+  }
 
-  delete sprites[0];
-
-  if (players.at(1).get_position().getX() == 100 &&
-      players.at(1).get_position().getY() == 101)
+  // FIXME Should not be hardcoded door width
+  if (double_compare(map.get_player(1).get_position().getX(), 8)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_tries_to_pass_door_opens_it_and_does_it() {
-  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
-  put_data(map_data);
+  Matrix<int> map_data = create_base_map();
   Map map(map_data);
+  map.add_spawn_point(2, 5);
+  map.add_player(1);
+  map.add_normal_door(Point(5, 5));
 
-  // FIXME add manually to map
-  Player player(100, 100, 3 * M_PI / 2);
-  std::unordered_map<int, Player> players;
-  players.insert({1, player});
-  std::vector<Object*> sprites;
-
-  sprites.push_back(new NormalDoor(Point(100, 101)));
-
-  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map);
 
-  move_up(players.at(1), checker);
+  for (int i = 0; i < 60; i++) {
+    move_up(map.get_player(1), checker);
+  }
 
-  if (players.at(1).get_position().getX() != 100 ||
-      players.at(1).get_position().getY() != 100)
-    return ERROR;
+  // FIXME Should not be hardcoded door width
+  if (double_compare(map.get_player(1).get_position().getX(),
+                     5 - 0.5 - CL::player_mask_radio - CL::player_pace)
+      && map.get_player(1).get_position().getY() == 5)
+    return NO_ERROR;
 
-  ((Door*)sprites.at(0))->interact(players.at(1), checker);
+  Point previous(map.get_player(1).get_position());
 
-  move_up(players.at(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
-  if (players.at(1).get_position().getX() != 100 ||
-      players.at(1).get_position().getY() != 101)
-    return ERROR;
+  for (int i = 0; i < 20; i++) {
+    move_up(map.get_player(1), checker);
+  }
 
-  delete sprites[0];
+  // FIXME Should not be hardcoded door width
+  if (double_compare(map.get_player(1).get_position().getX(),
+                     previous.getX() + 2)
+      && map.get_player(1).get_position().getY() == 5)
+    return NO_ERROR;
 
-  return NO_ERROR;
+  return ERROR;
 }
 
 int static player_tries_to_open_locked_door_with_no_key() {
-  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
-  put_data(map_data);
+  Matrix<int> map_data = create_base_map();
   Map map(map_data);
+  map.add_spawn_point(2, 5);
+  map.add_player(1);
+  map.add_locked_door(Point(5, 5));
 
-  // FIXME add manually to map
-  Player player(100, 100, 3 * M_PI / 2);
-  std::unordered_map<int, Player> players;
-  players.insert({1, player});
-  std::vector<Object*> sprites;
-  sprites.push_back(new LockedDoor(Point(100, 101)));
-  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map);
 
-  ((Door*)sprites.at(0))->interact(players.at(1), checker);
-  move_up(players.at(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
-  delete sprites[0];
+  for (int i = 0; i < 60; i++) {
+    move_up(map.get_player(1), checker);
+  }
 
-  if (players.at(1).get_position().getX() == 100 &&
-      players.at(1).get_position().getY() == 100)
+  // FIXME Should not be hardcoded door width
+  if (double_compare(map.get_player(1).get_position().getX(),
+                     5 - 0.5 - CL::player_mask_radio - CL::player_pace)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_opens_door_with_key() {
-  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
-  put_data(map_data);
+  Matrix<int> map_data = create_base_map();
   Map map(map_data);
+  map.add_spawn_point(2, 5);
+  map.add_player(1);
+  map.add_locked_door(Point(5, 5));
+  map.get_player(1).add_key();
 
-  // FIXME add manually to map
-  Player player(100, 100, 3 * M_PI / 2);
-  std::unordered_map<int, Player> players;
-  players.insert({1, player});
-  std::vector<Object*> sprites;
-  sprites.push_back(new LockedDoor(Point(100, 101)));
-  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map);
 
-  players.at(1).add_key();
-  ((Door*)sprites.at(0))->interact(players.at(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
-  move_up(players.at(1), checker);
+  for (int i = 0; i < 60; i++) {
+    move_up(map.get_player(1), checker);
+  }
 
-  delete sprites[0];
-
-  if (players.at(1).has_keys()) return ERROR;
-
-  if (players.at(1).get_position().getX() == 100 &&
-      players.at(1).get_position().getY() == 101)
+  // FIXME Should not be hardcoded door width
+  if (double_compare(map.get_player(1).get_position().getX(), 8)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
-  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
-  put_data(map_data);
+  Matrix<int> map_data = create_base_map();
   Map map(map_data);
+  map.add_spawn_point(2, 5);
+  map.add_spawn_point(7, 7);
+  map.add_player(1);
+  map.add_player(2);
+  map.add_locked_door(Point(5, 5));
+  map.get_player(1).add_key();
 
-  // FIXME add manually to map
-  Player player_1(100, 95, 3 * M_PI / 2);
-  Player player_2(200, 200, M_PI / 2);
-  std::unordered_map<int, Player> players;
-  players.insert({1, player_1});
-  players.insert({2, player_2});
-  std::vector<Object*> sprites;
-  sprites.push_back(new LockedDoor(Point(100, 101)));
-  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map);
 
-  players.at(1).add_key();
-  ((Door*)sprites.at(0))->interact(players.at(1), checker);
-  ((Door*)sprites.at(0))->interact(players.at(1), checker);
-  ((Door*)sprites.at(0))->interact(players.at(2), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(2), checker);
 
-  for (int i = 0; i < 6; i++) move_up(players.at(1), checker);
+  for (int i = 0; i < 60; i++) {
+    move_up(map.get_player(1), checker);
+  }
 
-  delete sprites[0];
-
-  if (players.at(1).get_position().getX() == 100 &&
-      players.at(1).get_position().getY() == 101)
+  // FIXME Should not be hardcoded door width
+  if (double_compare(map.get_player(1).get_position().getX(), 8)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_cannot_close_door_if_it_is_under_it() {
-  Matrix<int> map_data(640, 640, 0);  // Emulates map loaded
-  put_data(map_data);
+  Matrix<int> map_data = create_base_map();
   Map map(map_data);
+  map.add_spawn_point(2, 5);
+  map.add_player(1);
+  map.add_normal_door(Point(5, 5));
 
-  // FIXME add manually to map
-  Player player(100, 90, 3 * M_PI / 2);
-  std::unordered_map<int, Player> players;
-  players.insert({1, player});
-  std::vector<Object*> sprites;
-  sprites.push_back(new NormalDoor(Point(100, 100)));
-  std::unordered_map<int, Item*> items;
   CollisionChecker checker(map);
 
-  ((Door*)sprites.at(0))->interact(players.at(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
-  if (!(((Door*)sprites.at(0))->is_open())) return ERROR;
+  while (!(map.get_player(1).get_position().getX() < 5.5
+      && map.get_player(1).get_position().getX() > 4.5)) {
+    move_up(map.get_player(1), checker);
+  }
 
-  for (int i = 0; i < 10; i++) move_up(players.at(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
-  ((Door*)sprites.at(0))->interact(players.at(1), checker);
+  if (!(((Door*) map.get_object(0))->is_open())) {
+    return ERROR;
+  }
 
-  if (!(((Door*)sprites.at(0))->is_open())) return ERROR;
+  Point previous(map.get_player(1).get_position());
 
-  delete sprites[0];
+  for (int i = 0; i < 20; i++) {
+    move_up(map.get_player(1), checker);
+  }
 
-  if (players.at(1).get_position().getX() == 100 &&
-      players.at(1).get_position().getY() == 100)
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
+
+  if ((((Door*) map.get_object(0))->is_open())) {
+    return ERROR;
+  }
+
+  // FIXME Should not be hardcoded door width
+  if (double_compare(map.get_player(1).get_position().getX(),
+                     previous.getX() + 2)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;
 }
-*/
