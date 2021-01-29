@@ -25,6 +25,11 @@ void BaseMap::load_map_matrix() {
   for (iter = objects.begin(); iter != objects.end(); iter++) {
     const YAML::Node& object = *iter;
 
+    int type = object["type"].as<int>();
+    if (type > 0) {
+      continue;
+    }
+
     int id = object["id"].as<int>();
     size_t x = object["x_position"].as<int>();
     size_t y = object["y_position"].as<int>();
