@@ -27,7 +27,7 @@ class MatchManager {
   Match& get_match(unsigned char match_id);
 
   /* Creates a new match */
-  void create_match(std::string& map_name);
+  unsigned char create_match(std::string& map_name);
 
   /* Finds and returns the match id of the player */
   unsigned char find_match_of_player(unsigned int player_id);

@@ -2,6 +2,8 @@
 
 #include "match_manager_error.h"
 
+#define MATCHES_CAPACITY 255
+
 MatchManager::MatchManager() : matches() {
   // TODO Delete all
   std::string mapa1("mapa");
@@ -37,10 +39,15 @@ Match& MatchManager::get_match(unsigned char match_id) {
   return *(matches[match_id]);
 }
 
-void MatchManager::create_match(std::string& map_name) {
-  std::shared_ptr<Match> new_match(new Match(map_name));
-  matches.insert(std::make_pair(next_id, std::move(new_match)));
-  next_id++;
+unsigned char MatchManager::create_match(std::string& map_name) {
+  if (matches.size() < MATCHES_CAPACITY) {
+    std::shared_ptr<Match> new_match(new Match(map_name));
+    matches.insert(std::make_pair(next_id, std::move(new_match)));
+    next_id++;
+    return next_id - 1;
+  } else {
+    return 0;
+  }
 }
 
 unsigned char MatchManager::find_match_of_player(unsigned int player_id) {
