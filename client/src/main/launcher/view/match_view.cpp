@@ -11,7 +11,6 @@ MatchView::MatchView(QWidget* parent, const Match& match, Match* match_selected)
       match(match),
       match_selected(match_selected) {
   ui.setupUi(this);
-  printf("%u \n", match.get_match_id());
   ui.name->setText(QString(match.get_map_name()));
   ui.current_players->setText(QString("%1").arg(match.get_players_joined()) +
                               " / " +

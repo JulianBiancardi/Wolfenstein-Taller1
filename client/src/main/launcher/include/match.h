@@ -3,6 +3,7 @@
 
 #include <cstring>
 
+#define INVALID_ID 0
 #define MAP_NAME_MAX_SIZE \
   64  // TODO Move somewhere else. Also check in launcher.h since i also put it
       // there
