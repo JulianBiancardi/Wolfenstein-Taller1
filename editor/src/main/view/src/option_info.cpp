@@ -19,6 +19,9 @@ void OptionInfo::update() {
   size_t id = current_option->get_current_id();
   ui.Id->setText(QString("Id: %1").arg(id));
 
+  size_t type = current_option->get_current_type();
+  ui.Type->setText(QString("Type: %1").arg(type));
+
   QString name = "Name: " + current_option->get_current_name();
   ui.Name->setText(name);
 

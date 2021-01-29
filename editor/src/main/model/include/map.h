@@ -28,7 +28,7 @@ class Map : public IObservable {
   size_t row_count() const;
   size_t column_count() const;
 
-  void put(size_t row, size_t column, size_t id);
+  void put(size_t row, size_t column, size_t id, size_t type);
   Cell* at(size_t row, size_t column);
   void clear(size_t row, size_t column);
   void clear_all();

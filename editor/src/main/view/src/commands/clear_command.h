@@ -6,11 +6,13 @@
 #include <QtWidgets/QUndoCommand>
 
 #define BASE_ID 0
+#define BASE_TYPE 0
 
 class ClearCommand : public QUndoCommand {
  private:
   Cell* cell;
   size_t old_id;
+  size_t old_type;
 
  public:
   ClearCommand(Cell* cell);
@@ -21,10 +23,11 @@ class ClearCommand : public QUndoCommand {
   ~ClearCommand();
 };
 
-ClearCommand::ClearCommand(Cell* cell) : cell(cell), old_id(cell->get_id()) {}
+ClearCommand::ClearCommand(Cell* cell)
+    : cell(cell), old_id(cell->get_id()), old_type(cell->get_type()) {}
 
-void ClearCommand::undo() { cell->set_id(old_id); }
-void ClearCommand::redo() { cell->set_id(BASE_ID); }
+void ClearCommand::undo() { cell->set_data(old_id, old_type); }
+void ClearCommand::redo() { cell->set_data(BASE_ID, BASE_TYPE); }
 
 ClearCommand::~ClearCommand() {}
 

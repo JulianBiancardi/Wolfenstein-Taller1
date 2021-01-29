@@ -8,11 +8,13 @@
 class EditCommand : public QUndoCommand {
  private:
   Cell* cell;
+  size_t old_type;
   size_t old_id;
+  size_t new_type;
   size_t new_id;
 
  public:
-  EditCommand(Cell* cell, size_t new_id);
+  EditCommand(Cell* cell, size_t new_type, size_t new_id);
 
   void undo() override;
   void redo() override;
@@ -20,11 +22,15 @@ class EditCommand : public QUndoCommand {
   ~EditCommand();
 };
 
-EditCommand::EditCommand(Cell* cell, size_t new_id)
-    : cell(cell), old_id(cell->get_id()), new_id(new_id) {}
+EditCommand::EditCommand(Cell* cell, size_t new_type, size_t new_id)
+    : cell(cell),
+      old_type(cell->get_type()),
+      old_id(cell->get_id()),
+      new_type(new_type),
+      new_id(new_id) {}
 
-void EditCommand::undo() { cell->set_id(old_id); }
-void EditCommand::redo() { cell->set_id(new_id); }
+void EditCommand::undo() { cell->set_data(old_id, old_type); }
+void EditCommand::redo() { cell->set_data(new_id, new_type); }
 
 EditCommand::~EditCommand() {}
 

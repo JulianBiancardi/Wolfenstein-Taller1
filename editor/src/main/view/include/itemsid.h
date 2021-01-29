@@ -9,6 +9,7 @@ class ItemsId {
   ItemsId();
 
   size_t size() const;
+  size_t get_type(size_t id) const;
   const QString get_tooltip(size_t id) const;
   const QString get_icon_path(size_t id) const;
 
