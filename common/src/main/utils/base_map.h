@@ -16,6 +16,9 @@ class BaseMap {
   std::string map_name;
   unsigned char player_capacity;
 
+  void load_map_matrix();
+  void load_capacity();
+
  public:
   BaseMap(Matrix<int>& map_matrix);
   BaseMap(std::string& map_name);

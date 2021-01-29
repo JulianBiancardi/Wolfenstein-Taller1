@@ -1,76 +1,94 @@
 --- 
 0:
+  type: 0
   name: "Air"
   icon: ""
 1:
+  type: 1
   name: "Rock Wall"
   image: "/home/santiagoczop/Taller/tps/tp4/res/walls/grey_brick_wall.bmp"
   icon: "../resources/images/walls/IMG_RockWall.png"
 2:
+  type: 1
   name: "Wood Wall"
   image: "resources/images/walls/IMG_WoodWall.png"
   icon: "../resources/images/walls/IMG_WoodWall.png"
 3: 
+  type: 2
   name: "Maching Gun"
   image: "resources/images/weapons/IMG_Machingun.png"
   icon: "../resources/images/weapons/IMG_Machingun.png"
 4:
+  type: 2
   name: "Bazooka"
   image: "resources/images/weapons/IMG_Bazooka.png"
   icon: "../resources/images/weapons/IMG_Bazooka.png"
   sound: ""
 5:
+  type: 2
   name: "Pistol"
   image: "resources/images/weapons/IMG_Pistol.png"
   icon: "../resources/images/weapons/IMG_Pistol.png"
   sound: ""
 6:
+  type: 1
   name: "Guard"
   image: "resources/images/enemies/IMG_Guard.png"
   icon: "../resources/images/enemies/IMG_Guard.png"
   sound: ""
 7:
+  type: 2
   name: "Bullets"
   image: ""
   icon: "../resources/images/items/IMG_Bullets.png"
 8:
+  type: 2
   name: "Food"
   image: ""
   icon: "../resources/images/items/IMG_Food.png"
 9:
+  type: 2
   name: "Key"
   image: ""
   icon: "../resources/images/items/IMG_Key.png"
 10:
+  type: 2
   name: "MedKit"
   image: ""
   icon: "../resources/images/items/IMG_MedKit.png"
-11 :
+11:
+  type: 3
   name: "Chest"
   image: ""
   icon: "../resources/images/items/IMG_Treasure_Chest.png"
 12:
+  type: 2
   name: "Crown"
   image: ""
   icon: "../resources/images/items/IMG_Treasure_Crown.png"
   sound: ""
 13:
+  type: 2
   name: "Cup"
   image: ""
   icon: "../resources/images/items/IMG_Treasure_Cup.png"
   sound: ""
 14:
+  type: 2
   name: "Blood"
   icon: "../resources/images/items/IMG_Blood.png"
 15:
+  type: 1
   name: "Officer"
   image: "/home/santiagoczop/Taller/tps/tp4/res/officer/officer1.bmp"
   icon: ""
 16:
+  type: 3
   name: "Pillar"
   image: "/home/santiagoczop/Taller/tps/tp4/res/ambient/IMG_Pilar.bmp"
   icon: ""
 17:
+  type: 1
   name: "Spawn Point"
   image: "..."
   icon: "../resources/images/items/IMG_SpawnPoint.png"

@@ -4,12 +4,16 @@
 
 #include "yaml-cpp/yaml.h"
 
+// TODO Eventually remove
 BaseMap::BaseMap(Matrix<int>& map_matrix)
     : map_matrix(map_matrix), player_capacity(10) {}
 
 BaseMap::BaseMap(std::string& map_name)
-    : map_matrix(0, 0), map_name(map_name), player_capacity(5) {}
-/*
+    : map_name(map_name), map_matrix(0, 0), player_capacity(5) {}
+
+BaseMap::~BaseMap() {}
+
+void BaseMap::load_map_matrix() {
   YAML::Node yaml_file = YAML::LoadFile(map_name);
   size_t width = yaml_file["width"].as<int>();
   size_t height = yaml_file["height"].as<int>();
@@ -29,9 +33,12 @@ BaseMap::BaseMap(std::string& map_name)
   }
 
   map_matrix = map_data;
-}*/
+}
 
-BaseMap::~BaseMap() {}
+void BaseMap::load_capacity() {
+  YAML::Node yaml_file = YAML::LoadFile(map_name);
+  player_capacity = yaml_file["max_players"].as<unsigned char>();
+}
 
 const std::string& BaseMap::get_name() const { return map_name; }
 
