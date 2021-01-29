@@ -8,7 +8,7 @@
 
 class MatchManager {
  private:
-  static unsigned char next_id;
+  unsigned char next_id;
   std::unordered_map<unsigned char, std::shared_ptr<Match>> matches;
   bool match_exists(unsigned char match_id);
 
@@ -31,9 +31,6 @@ class MatchManager {
 
   /* Finds and returns the match id of the player */
   unsigned char find_match_of_player(unsigned int player_id);
-
-  /* Adds a player to a match */
-  // void add_player();
 };
 
 #endif
