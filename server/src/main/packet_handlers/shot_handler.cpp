@@ -9,11 +9,11 @@ ShotHandler::~ShotHandler() {}
 void ShotHandler::handle(Packet& packet, ClientManager& client_manager,
                          MatchManager& match_manager) {
   unsigned char type;
+  unsigned int player_id;
   unsigned char match_id;
-  unsigned char player_id;
   unsigned char objective_id;
   unsigned char damage;
-  unpack(packet.get_data(), "CCCCC", &type, &match_id, &player_id,
+  unpack(packet.get_data(), "CICCC", &type, &player_id, &match_id,
          &objective_id, &damage);
 
   Match& match = match_manager.get_match(match_id);

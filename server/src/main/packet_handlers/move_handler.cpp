@@ -12,10 +12,10 @@ MoveHandler::~MoveHandler() {}
 void MoveHandler::handle(Packet& packet, ClientManager& client_manager,
                          MatchManager& match_manager) {
   unsigned char type;
-  unsigned char match_id;
   unsigned int player_id;
+  unsigned char match_id;
   unsigned char dir;
-  unpack(packet.get_data(), "CCIC", &type, &match_id, &player_id, &dir);
+  unpack(packet.get_data(), "CICC", &type, &player_id, &match_id, &dir);
 
   Match& match = match_manager.get_match(match_id);
 
