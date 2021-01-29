@@ -74,4 +74,46 @@ void Launcher::receive_match() {
 
 std::list<Match> Launcher::get_matches() const { return matches; }
 
+unsigned char Launcher::create_match(const std::string& map_name) {
+  request_new_match(map_name);
+  return receive_join_match_result();
+}
+
+void Launcher::request_new_match(const std::string& map_name) {
+  unsigned char packet[100];
+  size_t size = pack(packet, "CIs", REQUEST_NEW_MATCH, server->get_id(),
+                     map_name.c_str());
+  Packet request_new_match_packet(size, packet);
+  server->send(request_new_match_packet);
+}
+
+unsigned char Launcher::join_match(unsigned char match_id) {
+  request_join_match(match_id);
+  return receive_join_match_result();
+}
+
+void Launcher::request_join_match(unsigned char match_id) {
+  unsigned char packet[JOIN_MATCH_SIZE];
+  size_t size = pack(packet, "CIC", JOIN_MATCH, server->get_id(), match_id);
+  Packet join_match_packet(size, packet);
+  server->send(join_match_packet);
+}
+
+unsigned char Launcher::receive_join_match_result() {
+  BlockingQueue<Packet>& reception_queue = server->get_reception_queue();
+  Packet packet;
+  reception_queue.dequeue(packet);
+
+  if (packet.get_type() != JOIN_MATCH) {
+    throw LauncherError("Failed to receive %u packet.", JOIN_MATCH);
+  }
+
+  unsigned char type;
+  unsigned int client_id;
+  unsigned char match_id;
+  unpack(packet.get_data(), "CIC", &type, &client_id, &match_id);
+
+  return match_id;
+}
+
 Launcher::~Launcher() {}

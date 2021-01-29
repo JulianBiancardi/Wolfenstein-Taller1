@@ -19,6 +19,12 @@
 #define MATCH_DATA 4  // To send general data about a match
 // Undefined size
 
+#define REQUEST_NEW_MATCH 5  // To create a new match on the client
+// Undefined size
+
+#define JOIN_MATCH 6  // Used to join a match and notify the result
+#define JOIN_MATCH_SIZE 4
+
 #define GRAB 5  // Player grabbed an item
 #define GRAB_SIZE 6
 

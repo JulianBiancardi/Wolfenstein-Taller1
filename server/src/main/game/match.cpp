@@ -82,7 +82,8 @@ void Match::end() { keep_running = false; }
 
 #include "match_error.h"
 
-Match::Match(std::string& map_name) : map(map_name), checker(map) {}
+Match::Match(std::string& map_name)
+    : map(map_name), checker(map), started(false) {}
 
 Match::~Match() {}
 
