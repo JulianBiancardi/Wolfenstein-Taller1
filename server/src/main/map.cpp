@@ -36,12 +36,15 @@ bool Map::add_player(unsigned int player_id) {
       players.find(player_id) != players.end()) {
     return false;
   }
+  // TODO Remove this. Make map have the spawn points
+  spawn_points.push_back(Point(1.5, 1.5));
 
   Point spawn = spawn_points[players_joined];
   Player new_player(spawn, 0);
 
   players.insert(std::make_pair(player_id, new_player));
   players_joined++;
+
   return true;
 }
 
@@ -50,7 +53,7 @@ Player& Map::get_player(unsigned int player_id) {
 }
 
 Item& Map::get_item(unsigned int item_id) {
-  return (Item&) (*items.at(item_id));
+  return (Item&)(*items.at(item_id));
 }
 
 Object* Map::get_object(unsigned int object_id) {
@@ -163,11 +166,14 @@ void Map::add_gun_drop(Player& dead_player) {
                     CL::drop_distance_from_dead_player * CL::items_mask_radio,
                 dead_player.get_position().getY());
     switch (dead_player.get_active_gun()) {
-      case MACHINE_GUN_ID:add_machine_gun(where);
+      case MACHINE_GUN_ID:
+        add_machine_gun(where);
         break;
-      case CHAIN_CANNON_ID:add_chain_cannon(where);
+      case CHAIN_CANNON_ID:
+        add_chain_cannon(where);
         break;
-      case ROCKET_LAUNCHER_ID:add_rocket_launcher(where);
+      case ROCKET_LAUNCHER_ID:
+        add_rocket_launcher(where);
         break;
     }
   }
@@ -193,4 +199,8 @@ void Map::add_drop(Player& dead_player) {
 Map::~Map() {
   for (auto item : items) delete item.second;
   for (auto object : objects) delete object;
+}
+
+void Map::add_spawn_point(double x, double y) {
+  spawn_points.emplace_back(x, y);
 }

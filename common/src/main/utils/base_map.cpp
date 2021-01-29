@@ -45,7 +45,3 @@ bool BaseMap::is_wall(size_t x, size_t y) {
 }
 
 int BaseMap::operator()(size_t x, size_t y) { return map_matrix(x, y); }
-
-void BaseMap::add_spawn_point(double x, double y) {
-  spawn_points.emplace_back(x, y);
-}

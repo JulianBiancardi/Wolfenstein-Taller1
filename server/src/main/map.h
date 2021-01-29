@@ -18,6 +18,7 @@ class Map : public BaseMap {
   std::unordered_map<unsigned int, Item*> items;
   std::vector<Object*> objects;
   std::unordered_map<unsigned int, Player> players;
+  std::vector<Point> spawn_points;
 
   unsigned char players_joined;
 
@@ -87,6 +88,9 @@ class Map : public BaseMap {
 
   // The drop added depends on dead_player items
   void add_drop(Player& dead_player);
+
+  /* TODO Remove */
+  void add_spawn_point(double x, double y);
 };
 
 #endif
