@@ -5,6 +5,7 @@
 #include "iostream"
 
 #define BASE_ID 0
+#define BASE_TYPE 0
 #define ERROR 0
 //----------------------------------------------------------------
 bool Map::is_in_range(size_t row, size_t column) const {
@@ -25,12 +26,12 @@ size_t Map::row_count() const { return rows; }
 
 size_t Map::column_count() const { return columns; }
 
-void Map::put(size_t row, size_t column, size_t id) {
+void Map::put(size_t row, size_t column, size_t id, size_t type) {
   if (!is_in_range(row, column)) {
     return;  // TODO error
   }
-  this->matrix[row + this->offset_row][column + this->offset_column]->set_id(
-      id);
+  this->matrix[row + this->offset_row][column + this->offset_column]->set_data(
+      id, type);
 }
 
 Cell* Map::at(size_t row, size_t column) {
@@ -44,7 +45,7 @@ void Map::clear(size_t row, size_t column) {
   if (!is_in_range(row, column)) {
     return;  // TODO error
   }
-  put(row, column, BASE_ID);
+  put(row, column, BASE_ID, BASE_TYPE);
 }
 
 void Map::clear_all() {

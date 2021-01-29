@@ -62,6 +62,7 @@ void MainWindow::on_RefreshButton_clicked() {
 }
 
 void MainWindow::on_JoinButton_clicked() {
+  // TODO SEE THE BUG WITH MATCH ID 0
   if (launcher.join_match(match_selected->get_match_id()) !=
       match_selected->get_match_id()) {
     _show_error("Failed to join the match");

@@ -103,7 +103,6 @@ unsigned char Launcher::receive_join_match_result() {
   BlockingQueue<Packet>& reception_queue = server->get_reception_queue();
   Packet packet;
   reception_queue.dequeue(packet);
-
   if (packet.get_type() != JOIN_MATCH) {
     throw LauncherError("Failed to receive %u packet.", JOIN_MATCH);
   }

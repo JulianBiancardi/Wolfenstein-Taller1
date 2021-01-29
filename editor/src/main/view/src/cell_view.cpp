@@ -36,10 +36,11 @@ CellView::CellView(QWidget* parent, Cell* cell, ItemsId* ids,
 void CellView::handleMousePressEvent(QMouseEvent* event) {
   if (event->button() == Qt::LeftButton) {
     size_t new_id = current_option->get_current_id();
+    size_t new_type = current_option->get_current_type();
     if (cell->get_id() != new_id) {
-      EditCommand* cmd = new EditCommand(cell, new_id);
+      EditCommand* cmd = new EditCommand(cell, new_type, new_id);
       undostack->push(cmd);
-      cell->set_id(new_id);
+      cell->set_data(new_id, new_type);
     }
   } else if (event->button() == Qt::RightButton && !cell->is_empty()) {
     ClearCommand* cmd = new ClearCommand(cell);
@@ -50,10 +51,11 @@ void CellView::handleMousePressEvent(QMouseEvent* event) {
 
 void CellView::handleMouseMoveEventInsidePaint(QMouseEvent* event) {
   size_t new_id = current_option->get_current_id();
+  size_t new_type = current_option->get_current_type();
   if (cell->get_id() != new_id) {
-    EditCommand* cmd = new EditCommand(cell, new_id);
+    EditCommand* cmd = new EditCommand(cell, new_type, new_id);
     undostack->push(cmd);
-    cell->set_id(new_id);
+    cell->set_data(new_id, new_type);
   }
 }
 
@@ -97,8 +99,9 @@ void CellView::dragEnterEvent(QDragEnterEvent* event) {
 
 void CellView::dropEvent(QDropEvent* event) {
   Cell* cell_source = ((CellMimeData*)event->mimeData())->getcell_source();
-  DropCommand* cmd = new DropCommand(cell_source, cell, cell_source->get_id());
-  cell->set_id(cell_source->get_id());
+  DropCommand* cmd = new DropCommand(cell_source, cell, cell_source->get_type(),
+                                     cell_source->get_id());
+  cell->set_data(cell_source->get_id(), cell_source->get_type());
   undostack->push(cmd);
   cell_source->clear();
 }

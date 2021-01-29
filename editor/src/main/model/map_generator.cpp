@@ -24,10 +24,11 @@ Map* MapGenerator::generate_map(const std::string& file_path) {
   const YAML::Node& objects = file["objects"];
   for (YAML::const_iterator it = objects.begin(); it != objects.end(); ++it) {
     const YAML::Node& object = *it;
+    size_t type = object["type"].as<std::size_t>();
     size_t id = object["id"].as<std::size_t>();
     size_t x_pos = object["x_position"].as<std::size_t>();
     size_t y_pos = object["y_position"].as<std::size_t>();
-    map->put(y_pos, x_pos, id);
+    map->put(y_pos, x_pos, id, type);
   }
   return map;
 }
@@ -48,16 +49,17 @@ void MapGenerator::generate_yamlfile(const std::string& file_path, Map* map) {
     for (size_t column = 0; column < map->column_count(); column++) {
       Cell* celd = map->at(row, column);
       if (celd != NULL) {
-        size_t id = celd->get_id();
         out << YAML::BeginMap;
+        out << YAML::Key << "type";
+        out << YAML::Value << celd->get_type();
         out << YAML::Key << "id";
-        out << YAML::Value << id;
+        out << YAML::Value << celd->get_id();
         out << YAML::Key << "x_position";
         out << YAML::Value << column;
         out << YAML::Key << "y_position";
         out << YAML::Value << row;
         out << YAML::EndMap;
-        if (id == SPAWN_POINT_ID) {
+        if (celd->get_id() == SPAWN_POINT_ID) {
           max_players++;
         }
       }

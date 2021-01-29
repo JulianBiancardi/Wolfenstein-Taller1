@@ -14,13 +14,14 @@ class Option : public QWidget {
   Q_OBJECT
  private:
   Ui::Option ui;
+  size_t type;
   size_t id;
   QString name;
   QPixmap icon;
   OptionSelected* current_option;
 
  public:
-  Option(QWidget* parent = nullptr, size_t id = 0,
+  Option(QWidget* parent = nullptr, size_t type = 0, size_t id = 0,
          const QString& name = QString(), const QString& icon_path = QString(),
          OptionSelected* current_option = nullptr);
   ~Option();

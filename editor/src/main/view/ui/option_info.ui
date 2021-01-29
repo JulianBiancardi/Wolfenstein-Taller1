@@ -46,6 +46,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QLabel" name="Type">
+       <property name="text">
+        <string>No option selected</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="Id">
        <property name="text">
         <string>No option selected</string>

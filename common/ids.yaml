@@ -90,26 +90,7 @@
 17:
   type: 1
   name: "Spawn Point"
-  image: "..."
+  image: ""
   icon: "../resources/images/items/IMG_SpawnPoint.png"
-18:
-  name: "Nuevo objecto"
-  image: "..."
-  icon: "..."
-19:
-  name: "Nuevo objecto"
-  image: "..."
-  icon: "..."
-20:
-  name: "Nuevo objecto"
-  image: "..."
-  icon: "..."
-21:
-  name: "Nuevo objecto"
-  image: "..."
-  icon: "..."
-22:
-  name: "Nuevo objecto"
-  image: "..."
-  icon: "..."
+
 ...

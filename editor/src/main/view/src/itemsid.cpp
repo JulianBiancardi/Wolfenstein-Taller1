@@ -12,6 +12,7 @@ ItemsId::ItemsId() {
   for (iter = ids_file.begin(); iter != ids_file.end(); iter++) {
     size_t id = iter->first.as<size_t>();
     QMap<QString, QString> resources;
+    resources.insert("type", iter->second["type"].as<std::string>().c_str());
     resources.insert("name", iter->second["name"].as<std::string>().c_str());
     resources.insert("icon", iter->second["icon"].as<std::string>().c_str());
     this->ids.insert(id, resources);
@@ -20,6 +21,9 @@ ItemsId::ItemsId() {
 
 size_t ItemsId::size() const { return this->ids.size(); }
 
+size_t ItemsId::get_type(size_t id) const {
+  return ids.value(id).value("type").toUInt();
+}
 const QString ItemsId::get_tooltip(size_t id) const {
   return ids.value(id).value("name");
 }

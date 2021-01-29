@@ -8,12 +8,14 @@
 class Cell : public IObservable {
  private:
   size_t id;
+  size_t type;
 
  public:
   Cell();
 
   size_t get_id() const;
-  void set_id(size_t value);
+  size_t get_type() const;
+  void set_data(size_t id, size_t type);
   void clear();
   bool is_empty() const;
 
