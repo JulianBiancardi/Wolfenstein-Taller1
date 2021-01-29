@@ -85,6 +85,9 @@ class Map : public BaseMap {
   void add_machine_gun(const Point& where);
   void add_medic_kit(const Point& where);
   void add_rocket_launcher(const Point& where);
+  void add_table(const Point& where, double width, double height);
+  void add_normal_door(const Point& where);
+  void add_locked_door(const Point& where);
 
   // The drop added depends on dead_player items
   void add_drop(Player& dead_player);

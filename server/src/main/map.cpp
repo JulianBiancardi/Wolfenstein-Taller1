@@ -13,6 +13,9 @@
 #include "game/objects/items/machine_gun_item.h"
 #include "game/objects/items/medic_kit.h"
 #include "game/objects/items/rocket_launcher_item.h"
+#include "game/objects/table.h"
+#include "game/objects/door/normal_door.h"
+#include "game/objects/door/lock_door.h"
 
 Map::Map(std::string& map_name)
     : items(), objects(), players(), players_joined(0), BaseMap(map_name) {}
@@ -57,6 +60,7 @@ Item& Map::get_item(unsigned int item_id) {
 }
 
 Object* Map::get_object(unsigned int object_id) {
+  // FIXME
   return objects.at(object_id);
 }
 
@@ -150,6 +154,18 @@ void Map::add_medic_kit(const Point& where) {
 void Map::add_rocket_launcher(const Point& where) {
   RocketLauncherItem* new_rocket_launcher = new RocketLauncherItem(where);
   items.insert({new_rocket_launcher->get_id(), new_rocket_launcher});
+}
+
+void Map::add_table(const Point& where, double width, double height) {
+  objects.push_back(new Table(width, height, where));
+}
+
+void Map::add_normal_door(const Point& where) {
+  objects.push_back(new NormalDoor(where));
+}
+
+void Map::add_locked_door(const Point& where) {
+  objects.push_back(new LockedDoor(where));
 }
 
 // Where is dropped was arbitrary chosen
