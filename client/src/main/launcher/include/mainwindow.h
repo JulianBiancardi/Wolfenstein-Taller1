@@ -1,8 +1,5 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
-#include <Iobserver.h>
-
 #include <QtGui/QCloseEvent>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QWidget>
@@ -11,7 +8,7 @@
 #include "launcher.h"
 #include "ui_mainwindow.h"
 
-class MainWindow : public QMainWindow, public IObserver {
+class MainWindow : public QMainWindow {
   Q_OBJECT
 
  private:
@@ -22,14 +19,13 @@ class MainWindow : public QMainWindow, public IObserver {
 
   void _remove_matches();
   void _add_matches();
+  void _update();
 
  public:
   MainWindow(QWidget* parent = nullptr, Server* server = nullptr,
              Match* match_selected = nullptr);
 
   ~MainWindow();
-
-  void update() override;
 
  private slots:
   void on_RefreshButton_clicked();

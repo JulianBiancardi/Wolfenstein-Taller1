@@ -9,6 +9,14 @@
 #include "moc_mainwindow.cpp"
 #define WINDOW_TITLE "Wolfenstein Launcher"
 
+static void _show_error(const QString& message) {
+  QMessageBox msgBox;
+  msgBox.setWindowTitle(WINDOW_TITLE);
+  msgBox.setText(message);
+  msgBox.setStandardButtons(QMessageBox::Ok);
+  msgBox.exec();
+}
+
 MainWindow::MainWindow(QWidget* parent, Server* server, Match* match_selected)
     : QMainWindow(parent), match_selected(match_selected), launcher(server) {
   ui.setupUi(this);
@@ -16,10 +24,10 @@ MainWindow::MainWindow(QWidget* parent, Server* server, Match* match_selected)
   ui.scrollAreaWidgetContents->installEventFilter(new EventFilter());
   ui.RefreshButton->setEnabled(true);
 
-  update();
+  _update();
 }
 
-void MainWindow::update() {
+void MainWindow::_update() {
   _remove_matches();
   _add_matches();
 }
@@ -38,11 +46,7 @@ void MainWindow::_remove_matches() {
 void MainWindow::_add_matches() {
   std::list<Match> matches = launcher.get_matches();
   if (matches.empty()) {
-    QMessageBox msgBox;
-    msgBox.setWindowTitle(WINDOW_TITLE);
-    msgBox.setText("Not maches found");
-    msgBox.setStandardButtons(QMessageBox::Ok);
-    msgBox.exec();
+    _show_error("Not maches found");
   }
   std::list<Match>::iterator it;
   for (it = matches.begin(); it != matches.end(); ++it) {
@@ -54,16 +58,31 @@ void MainWindow::_add_matches() {
 void MainWindow::on_RefreshButton_clicked() {
   match_selected->reset();
   launcher.update_matches();
-  update();
+  _update();
 }
 
 void MainWindow::on_JoinButton_clicked() {
-  if (!match_selected->is_running()) {
+  if (launcher.join_match(match_selected->get_match_id()) !=
+      match_selected->get_match_id()) {
+    _show_error("Failed to join the match");
+  } else {
+    // Succed to join the match, close the application and continue
+    // with the game
     QApplication::quit();
   }
 }
 
-void MainWindow::on_NewButton_clicked() {}
+void MainWindow::on_NewButton_clicked() {
+  // TODO CREATE OTHER WINDOW or other secction
+  match_selected->set_match_id(launcher.create_match("new_map"));
+  if (match_selected->get_match_id() == INVALID_ID) {
+    _show_error("Failed to create the match");
+  } else {
+    // Succed to create the new match, close the application and continue
+    // with the game
+    QApplication::quit();
+  }
+}
 
 void MainWindow::closeEvent(QCloseEvent* event) { match_selected->reset(); }
 
