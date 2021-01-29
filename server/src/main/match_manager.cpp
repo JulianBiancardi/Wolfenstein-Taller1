@@ -6,7 +6,7 @@
 
 MatchManager::MatchManager() : matches() {
   // TODO Delete all
-  std::string mapa1("mapa");
+  std::string mapa1("prueeeeeeeeeeeeeeeba");
   std::string mapa2("hello");
   std::string mapa3("holi");
   std::string mapa4("holu");

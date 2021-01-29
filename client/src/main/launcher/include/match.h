@@ -25,6 +25,7 @@ class Match {
   void copy(const Match& other);
   void reset();
 
+  void set_match_id(unsigned char id);
   unsigned char get_match_id() const;
   const char* get_map_name() const;
   unsigned char get_players_joined() const;
