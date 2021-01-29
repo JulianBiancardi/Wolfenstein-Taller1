@@ -65,8 +65,6 @@ void MainWindow::on_JoinButton_clicked() {
 
 void MainWindow::on_NewButton_clicked() {}
 
-void MainWindow::on_AddMatchButton_clicked() { _add_matches(); }
-
 void MainWindow::closeEvent(QCloseEvent* event) { match_selected->reset(); }
 
 MainWindow::~MainWindow() {}

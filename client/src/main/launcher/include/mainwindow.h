@@ -35,7 +35,6 @@ class MainWindow : public QMainWindow, public IObserver {
   void on_RefreshButton_clicked();
   void on_JoinButton_clicked();
   void on_NewButton_clicked();
-  void on_AddMatchButton_clicked();  // Test only TODO DELETE
   void closeEvent(QCloseEvent* event) override;
 };
 #endif  // MAINWINDOW_H
