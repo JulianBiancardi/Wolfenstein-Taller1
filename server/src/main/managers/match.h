@@ -3,9 +3,9 @@
 
 #include <unordered_map>
 
+#include "../game/collision_checker.h"
+#include "../game/player.h"
 #include "../map.h"
-#include "collision_checker.h"
-#include "player.h"
 
 /*
 class Match2 {

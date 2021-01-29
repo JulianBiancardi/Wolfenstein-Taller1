@@ -4,8 +4,8 @@
 #include <atomic>
 
 #include "../../../../common/src/main/threads/thread.h"
-#include "../client_manager.h"
-#include "../match_manager.h"
+#include "../managers/client_manager.h"
+#include "../managers/match_manager.h"
 
 class ProcessorThread : public Thread {
  private:

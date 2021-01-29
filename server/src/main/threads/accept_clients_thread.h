@@ -5,7 +5,7 @@
 
 #include "../../../../common/src/main/socket/socket.h"
 #include "../../../../common/src/main/threads/thread.h"
-#include "../client_manager.h"
+#include "../managers/client_manager.h"
 
 class AcceptClientsThread : public Thread {
  private:

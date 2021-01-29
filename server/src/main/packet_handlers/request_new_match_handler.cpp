@@ -1,7 +1,7 @@
 #include "request_new_match_handler.h"
 
 #include "../../../../common/src/main/packets/packing.h"
-#include "../game/match.h"
+#include "../managers/match.h"
 
 RequestNewMatchHandler::RequestNewMatchHandler() {}
 

@@ -1,8 +1,7 @@
 #include "join_match_handler.h"
 
 #include "../../../../common/src/main/packets/packing.h"
-#include "../game/match.h"
-#include "rotation_handler.h"
+#include "../managers/match.h"
 
 JoinMatchHandler::JoinMatchHandler() {}
 

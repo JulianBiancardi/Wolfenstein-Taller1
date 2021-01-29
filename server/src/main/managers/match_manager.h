@@ -4,7 +4,7 @@
 #include <memory>
 #include <unordered_map>
 
-#include "game/match.h"
+#include "match.h"
 
 class MatchManager {
  private:

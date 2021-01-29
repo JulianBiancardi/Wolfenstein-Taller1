@@ -1,6 +1,8 @@
 #ifndef GAME_OVER_HANDLER_H
 #define GAME_OVER_HANDLER_H
 
+#include "../managers/client_manager.h"
+#include "../managers/match_manager.h"
 #include "packet_handler.h"
 
 class GameOverHandler : public PacketHandler {

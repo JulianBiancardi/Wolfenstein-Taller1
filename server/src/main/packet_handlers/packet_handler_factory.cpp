@@ -2,9 +2,7 @@
 
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/packets/packet_error.h"
-#include "change_gun_handler.h"
 #include "join_match_handler.h"
-#include "move_handler.h"
 #include "request_matches_handler.h"
 #include "request_new_match_handler.h"
 

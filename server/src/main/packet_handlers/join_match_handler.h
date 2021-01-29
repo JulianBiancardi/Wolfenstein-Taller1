@@ -2,8 +2,8 @@
 #define JOIN_MATCH_HANDLER_H
 
 #include "../../../../common/src/main/packets/packet.h"
-#include "../client_manager.h"
-#include "../match_manager.h"
+#include "../managers/client_manager.h"
+#include "../managers/match_manager.h"
 #include "packet_handler.h"
 
 class JoinMatchHandler : public PacketHandler {

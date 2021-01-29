@@ -1,6 +1,7 @@
 #include "game_over_handler.h"
 
 #include "../../../../common/src/main/packets/packing.h"
+#include "../managers/match.h"
 
 GameOverHandler::GameOverHandler() {}
 

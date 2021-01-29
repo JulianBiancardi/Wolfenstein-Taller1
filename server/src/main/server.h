@@ -3,8 +3,8 @@
 
 #include <string>
 
-#include "client_manager.h"
-#include "match_manager.h"
+#include "managers/client_manager.h"
+#include "managers/match_manager.h"
 
 class Server {
  private:
