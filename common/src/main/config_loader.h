@@ -59,6 +59,8 @@ class ConfigLoader {
   static int cup_points;
   static int chests_points;
   static int crown_points;
+
+  static double door_timer;
 };
 
 #endif

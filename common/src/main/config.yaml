@@ -49,3 +49,6 @@ crosses_points: 10
 cup_points: 50
 chests_points: 100
 crown_points: 200
+
+#Other
+door_timer: 5
