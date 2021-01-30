@@ -72,6 +72,11 @@ int CL::cup_points = CL::yaml_file["cup_points"].as<int>();
 int CL::chests_points = CL::yaml_file["chests_points"].as<int>();
 int CL::crown_points = CL::yaml_file["crown_points"].as<int>();
 
+double pillar_radius = CL::yaml_file["pillar_radius"].as<double>();
+double table_width = CL::yaml_file["table_width"].as<double>();
+double table_depth = CL::yaml_file["table_depth"].as<double>();
+double barrel_radius = CL::yaml_file["barrel_radius"].as<double>();
+
 ConfigLoader::ConfigLoader() {
   /*
   yaml_file = YAML::LoadFile("../config.yaml");

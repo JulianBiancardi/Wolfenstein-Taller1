@@ -59,6 +59,11 @@ class ConfigLoader {
   static int cup_points;
   static int chests_points;
   static int crown_points;
+
+  static double pillar_radius;
+  static double table_width;
+  static double table_depth;
+  static double barrel_radius;
 };
 
 #endif

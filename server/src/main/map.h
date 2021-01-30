@@ -22,12 +22,9 @@ class Map : public BaseMap {
 
   unsigned char players_joined;
 
-  void add_bullets(const Point& where, int amount);
   void add_bullets_drop(Player& dead_player);
   void add_gun_drop(Player& dead_player);
   void add_key_drop(Player& dead_player);
-
-  void load_objects();
 
  public:
   explicit Map(std::string& map_name);
@@ -68,28 +65,6 @@ class Map : public BaseMap {
   //
   //
   //
-
-  /*
-  void add_spawn_point(const Point& spawn_point);
-  const Point next_spawn_point();
-  */
-
-  // TODO Use only one method
-  void add_blood(const Point& where);
-  void add_bullets(const Point& where);
-  void add_chain_cannon(const Point& where);
-  void add_chest(const Point& where);
-  void add_cross(const Point& where);
-  void add_crown(const Point& where);
-  void add_cup(const Point& where);
-  void add_food(const Point& where);
-  void add_key(const Point& where);
-  void add_machine_gun(const Point& where);
-  void add_medic_kit(const Point& where);
-  void add_rocket_launcher(const Point& where);
-  void add_table(const Point& where, double width, double height);
-  void add_normal_door(const Point& where);
-  void add_locked_door(const Point& where);
 
   // The drop added depends on dead_player items
   void add_drop(Player& dead_player);

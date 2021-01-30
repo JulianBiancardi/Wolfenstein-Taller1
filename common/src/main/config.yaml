@@ -49,3 +49,8 @@ crosses_points: 10
 cup_points: 50
 chests_points: 100
 crown_points: 200
+
+pillar_radius: 0.5
+table_width: 0.5
+table_depth: 0.5
+barrel_radius: 0.5
