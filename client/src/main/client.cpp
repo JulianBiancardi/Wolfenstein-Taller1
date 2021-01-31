@@ -156,6 +156,5 @@ void Client::run_client(int argc, char** argv) {
 
   match_selected.print();  // ONLY FOR TEST
 
-  // Lobby lobby(server, window, match_joined);
   // Game game(server, window, map);
 }
