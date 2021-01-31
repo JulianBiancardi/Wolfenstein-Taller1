@@ -154,4 +154,16 @@
   name: "Floor Blood"
   image: "..."
   icon: "..."
+
+# Doors
+70:
+  type: 5
+  name: "Door"
+  image: "..."
+  icon: "..."
+71:
+  type: 5
+  name: "Locked Door"
+  image: "..."
+  icon: "..."
 ...

@@ -41,8 +41,8 @@ class MapLoader {
   void add_table(const Point& where);
   void add_barrel(const Point& where);
 
-  // static void add_normal_door(const Point& where);
-  // static void add_locked_door(const Point& where);
+  void add_normal_door(const Point& where);
+  void add_locked_door(const Point& where);
 
  public:
   MapLoader(std::unordered_map<unsigned int, Player>& players,

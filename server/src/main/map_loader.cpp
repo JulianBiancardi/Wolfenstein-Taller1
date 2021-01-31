@@ -5,7 +5,7 @@
 #include "../../../common/src/main/config_loader.h"
 #include "../../../common/src/main/ids/map_ids.h"
 #include "game/objects/circular_object.h"
-#include "game/objects/door/lock_door.h"
+#include "game/objects/door/locked_door.h"
 #include "game/objects/door/normal_door.h"
 #include "game/objects/items/blood.h"
 #include "game/objects/items/bullets.h"
@@ -34,7 +34,7 @@ MapLoader::~MapLoader() {}
 
 void MapLoader::load_map(std::string& map_name) {
   YAML::Node yaml_file =
-      YAML::LoadFile(std::string("../../../res/maps/") + map_name);
+      YAML::LoadFile("../../../res/maps/" + map_name + ".yaml");
 
   const YAML::Node& objects = yaml_file["objects"];
 
@@ -99,6 +99,11 @@ void MapLoader::load_map(std::string& map_name) {
       case BARREL:
         add_barrel(Point(x, y));
         break;
+      case DOOR:
+        add_normal_door(Point(x, y));
+        break;
+      case LOCKED_DOOR:
+        add_locked_door(Point(x, y));
     }
   }
 }
@@ -176,14 +181,10 @@ void MapLoader::add_table(const Point& where) {
       new RectangularObject(CL::table_width, CL::table_depth, where));
 }
 
-//===================================================
+void MapLoader::add_normal_door(const Point& where) {
+  solid_objects.push_back(new NormalDoor(where));
+}
 
-/*
-void Map::add_normal_door(const Point& where) {
-  objects.push_back(new NormalDoor(where));
-}*/
-
-/*
-void Map::add_locked_door(const Point& where) {
-  objects.push_back(new LockedDoor(where));
-}*/
+void MapLoader::add_locked_door(const Point& where) {
+  solid_objects.push_back(new LockedDoor(where));
+}

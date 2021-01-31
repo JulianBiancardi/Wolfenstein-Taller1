@@ -390,10 +390,10 @@ int static player_collides_against_table_from_side() {
   double table_width = 2;
 
   Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 5);
+
+  std::string map_name("test_map1");
+  Map map(map_name);
   map.add_player(1);
-  map.add_table(Point(5, 5), table_width, 1);
 
   CollisionChecker checker(map);
 
@@ -413,11 +413,9 @@ int static player_collides_against_table_from_side() {
 int static player_collides_against_table_from_another_side() {
   double table_height = 1;
 
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(5, 2);
+  std::string map_name("test_map2");
+  Map map(map_name);
   map.add_player(1);
-  map.add_table(Point(6, 6), 4, table_height);
 
   CollisionChecker checker(map);
 
@@ -435,11 +433,9 @@ int static player_collides_against_table_from_another_side() {
 }
 
 int static diagonal_collision_with_table() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 2);
+  std::string map_name("test_map3");
+  Map map(map_name);
   map.add_player(1);
-  map.add_table(Point(7, 7), 2, 2);
 
   CollisionChecker checker(map);
 

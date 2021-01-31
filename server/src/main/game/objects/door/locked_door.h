@@ -1,5 +1,5 @@
-#ifndef WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_DOOR_LOCK_DOOR_H_
-#define WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_DOOR_LOCK_DOOR_H_
+#ifndef LOCKED_DOOR_H
+#define LOCKED_DOOR_H
 
 #include "door.h"
 
@@ -14,4 +14,4 @@ class LockedDoor : public Door {
   bool interact(Player& who, CollisionChecker& checker) override;
 };
 
-#endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_DOOR_LOCK_DOOR_H_
+#endif

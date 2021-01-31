@@ -1,5 +1,5 @@
-#ifndef WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_DOOR_NORMAL_DOOR_H_
-#define WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_DOOR_NORMAL_DOOR_H_
+#ifndef NORMAL_DOOR_H
+#define NORMAL_DOOR_H
 
 #include "door.h"
 
@@ -11,4 +11,4 @@ class NormalDoor : public Door {
   bool interact(Player& who, CollisionChecker& checker) override;
 };
 
-#endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_DOOR_NORMAL_DOOR_H_
+#endif

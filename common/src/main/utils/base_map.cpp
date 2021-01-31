@@ -14,7 +14,8 @@ BaseMap::BaseMap(std::string& map_name)
 BaseMap::~BaseMap() {}
 
 void BaseMap::load_map_matrix() {
-  YAML::Node yaml_file = YAML::LoadFile(map_name);
+  YAML::Node yaml_file =
+      YAML::LoadFile("../../../res/maps/" + map_name + ".yaml");
   size_t width = yaml_file["width"].as<int>();
   size_t height = yaml_file["height"].as<int>();
   Matrix<int> map_data(height, width, 0);

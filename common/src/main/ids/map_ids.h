@@ -41,4 +41,8 @@
 #define WATER 60
 #define FLOOR_BLOOD 61
 
+// Doors
+#define DOOR 70
+#define LOCKED_DOOR 71
+
 #endif
