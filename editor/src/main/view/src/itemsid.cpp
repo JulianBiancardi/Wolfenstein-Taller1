@@ -21,6 +21,10 @@ ItemsId::ItemsId() {
 
 size_t ItemsId::size() const { return this->ids.size(); }
 
+const QMap<size_t, QMap<QString, QString>>& ItemsId::get_ids() const {
+  return ids;
+}
+
 size_t ItemsId::get_type(size_t id) const {
   return ids.value(id).value("type").toUInt();
 }

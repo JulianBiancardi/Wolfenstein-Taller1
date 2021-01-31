@@ -49,13 +49,13 @@
 
 # Guns
 30:
-  type: 2
+  type: 0
   name: "Knife"
   image: "..."
   icon: "..."
   sound: "..."
 31:
-  type: 2
+  type: 0
   name: "Pistol"
   image: "..."
   icon: "..."
