@@ -17,68 +17,73 @@ find_package(Lua 5.4)
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".so")
 
 FILE(GLOB ServerFiles
-	# src/main/client.cpp
-	src/main/client_manager.cpp
-	src/main/client.cpp
-	src/main/server.cpp
-	src/main/match_manager.cpp
-	src/main/match_manager_error.cpp
-	
-	src/main/threads/*.cpp
-	src/main/packet_handlers/*.cpp
+        # src/main/client.cpp
+        src/main/client_manager.cpp
+        src/main/client.cpp
+        src/main/server.cpp
+        src/main/match_manager.cpp
+        src/main/match_manager_error.cpp
 
-	#src/main/bot.cpp ##
-	src/main/map.cpp # Should be everything different from main_server.cpp
-	src/main/game/*.cpp
-	src/main/game/*/*.cpp
-	src/main/game/*/*/*.cpp
+        src/main/threads/*.cpp
+        src/main/threads/*/*.cpp
+        src/main/packet_handlers/*.cpp
 
-	#src/main/threads/*.cpp
-		)
+        #src/main/bot.cpp ##
+        src/main/map.cpp # Should be everything different from main_server.cpp
+        src/main/game/*.cpp
+        src/main/game/*/*.cpp
+        src/main/game/*/*/*.cpp
+        
+        src/main/managers/*.cpp
+
+        #src/main/threads/*.cpp
+        )
 
 FILE(GLOB ServerTestsFiles
-	src/tests/client_mock.cpp
-	src/tests/player_test.cpp
-	# src/tests/match_tests.cpp
-	src/tests/bot_test.cpp
-	../common/src/tests/tests_setup.cpp)
+        src/tests/client_mock.cpp
+        src/tests/player_test.cpp
+        # src/tests/match_tests.cpp
+        src/tests/clock/clock_tests.cpp
+        src/tests/bot_test.cpp
+        src/tests/*/*.cpp
+        ../common/src/tests/tests_setup.cpp)
 
-FILE(GLOB CommonFiles 
-	../common/src/main/*/*.cpp
-	../common/src/main/*.cpp)
+FILE(GLOB CommonFiles
+        ../common/src/main/*/*.cpp
+        ../common/src/main/*.cpp)
 
-FILE(GLOB ServerMain  src/main/main_server.cpp)
-FILE(GLOB ServerTests  src/tests/main_tests.cpp)
+FILE(GLOB ServerMain src/main/main_server.cpp)
+FILE(GLOB ServerTests src/tests/main_tests.cpp)
 
 add_executable(
-	server_main
-	${ServerMain}
-	${ServerFiles}
-	${CommonFiles}
+        server_main
+        ${ServerMain}
+        ${ServerFiles}
+        ${CommonFiles}
 )
 
 target_link_libraries(
-		server_main
-		PRIVATE
-		Threads::Threads
-		yaml-cpp
-		#lua
-		dl
+        server_main
+        PRIVATE
+        Threads::Threads
+        yaml-cpp
+        #lua
+        dl
 )
 
 add_executable(
-		server_tests
-		${ServerTests}
-		${ServerTestsFiles}
-		${ServerFiles}
-		${CommonFiles}
+        server_tests
+        ${ServerTests}
+        ${ServerTestsFiles}
+        ${ServerFiles}
+        ${CommonFiles}
 )
 
 target_link_libraries(
-		server_tests
-		PRIVATE
-		Threads::Threads
-		yaml-cpp
-		#lua
-		dl
+        server_tests
+        PRIVATE
+        Threads::Threads
+        yaml-cpp
+        #lua
+        dl
 )

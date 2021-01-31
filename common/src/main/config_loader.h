@@ -64,6 +64,8 @@ class ConfigLoader {
   static double table_width;
   static double table_depth;
   static double barrel_radius;
+
+  static double door_timer;
 };
 
 #endif

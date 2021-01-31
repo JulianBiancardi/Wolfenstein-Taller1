@@ -2,11 +2,11 @@
 sv_host: 'localhost'
 sv_port: '8080'
 
-#Window Options
+# Window Options
 screen_width: 320
 screen_height: 640
 
-#Player Initial Options
+# Player Initial Options
 player_health: 40
 player_bullets: 12
 player_max_bullets: 100
@@ -17,10 +17,10 @@ player_pace: 0.1
 player_rotation_angle: 0.1
 player_knife_mask_radio: 10 # must be greater than player_mask_radio
 
-#Bot
+# Bot
 bot_positions_difference_allowed: 5
 
-#Guns
+# Guns
 knife_range: 2
 
 chain_cannon_bullet_required: 10
@@ -35,7 +35,7 @@ rocket_launcher_base_precision: 10
 machine_gun_bullet_required: 10
 machine_gun_base_precision: 10
 
-#Items
+# Items
 items_mask_radio: 0.25
 food_health_recovered: 10
 medic_kit_health_recovered: 20
@@ -50,7 +50,11 @@ cup_points: 50
 chests_points: 100
 crown_points: 200
 
+# Solid Objects
 pillar_radius: 0.5
 table_width: 0.5
 table_depth: 0.5
 barrel_radius: 0.5
+
+# Other
+door_timer: 5
