@@ -40,8 +40,6 @@ bool Map::add_player(unsigned int player_id) {
       players.find(player_id) != players.end()) {
     return false;
   }
-  // TODO Remove this. Make map have the spawn points
-  spawn_points.push_back(Point(1.5, 1.5));
 
   Point spawn = spawn_points[players_joined];
   Player new_player(spawn, 0);

@@ -387,8 +387,6 @@ int static another_player_collides_against_other_player() {
 }
 
 int static player_collides_against_table_from_side() {
-  double table_width = 2;
-
   std::string map_name("test_map1");
   Map map(map_name);
   map.add_player(1);
@@ -401,7 +399,7 @@ int static player_collides_against_table_from_side() {
 
   if (double_compare(
           map.get_player(1).get_position().getX(),
-          5 - table_width / 2 - CL::player_mask_radio - CL::player_pace) &&
+          5 - CL::table_width / 2 - CL::player_mask_radio - CL::player_pace) &&
       map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
@@ -409,8 +407,6 @@ int static player_collides_against_table_from_side() {
 }
 
 int static player_collides_against_table_from_another_side() {
-  double table_height = 1;
-
   std::string map_name("test_map2");
   Map map(map_name);
   map.add_player(1);
@@ -424,7 +420,7 @@ int static player_collides_against_table_from_another_side() {
   if (map.get_player(1).get_position().getX() == 5 &&
       double_compare(
           map.get_player(1).get_position().getY(),
-          6 - table_height / 2 - CL::player_mask_radio - CL::player_pace))
+          5 - CL::table_depth / 2 - CL::player_mask_radio - CL::player_pace))
     return NO_ERROR;
 
   return ERROR;
@@ -441,19 +437,22 @@ int static diagonal_collision_with_table() {
     move_up_right(map.get_player(1), checker);
   }
 
-  if (fabs(map.get_player(1).get_position().distance_from(Point(6, 6))) <
-      CL::player_mask_radio)
+  if (fabs(map.get_player(1).get_position().distance_from(Point(7, 7))) <
+      CL::player_mask_radio) {
     return ERROR;
+  }
 
   Point previous_point(map.get_player(1).get_position().getX() -
                            CL::player_pace * cos(7 * M_PI / 4),
                        map.get_player(1).get_position().getY() +
                            CL::player_pace * sin(7 * M_PI / 4));
 
-  if (fabs(previous_point.distance_from(Point(6, 6))) > CL::player_mask_radio)
-    return NO_ERROR;
+  if (fabs(previous_point.distance_from(Point(7, 7))) <=
+      CL::player_mask_radio) {
+    return ERROR;
+  }
 
-  return ERROR;
+  return NO_ERROR;
 }
 
 int static player_kills_are_correct() {
@@ -636,6 +635,7 @@ int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
 }
 
 int static player_cannot_close_door_if_it_is_under_it() {
+  // FIXME Test not working
   std::string map_name("test_map5");
   Map map(map_name);
   map.add_player(1);

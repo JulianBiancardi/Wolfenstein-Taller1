@@ -52,8 +52,8 @@ crown_points: 200
 
 # Solid Objects
 pillar_radius: 0.5
-table_width: 0.5
-table_depth: 0.5
+table_width: 1.0
+table_depth: 1.0
 barrel_radius: 0.5
 
 # Other

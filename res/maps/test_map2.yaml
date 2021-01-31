@@ -45,38 +45,6 @@ objects:
     id: 1
     x_position: 0
     y_position: 1
-  - type: 0
-    id: 0
-    x_position: 1
-    y_position: 1
-  - type: 0
-    id: 0
-    x_position: 2
-    y_position: 1
-  - type: 0
-    id: 0
-    x_position: 3
-    y_position: 1
-  - type: 0
-    id: 0
-    x_position: 4
-    y_position: 1
-  - type: 0
-    id: 0
-    x_position: 5
-    y_position: 1
-  - type: 0
-    id: 0
-    x_position: 6
-    y_position: 1
-  - type: 0
-    id: 0
-    x_position: 7
-    y_position: 1
-  - type: 0
-    id: 0
-    x_position: 8
-    y_position: 1
   - type: 1
     id: 1
     x_position: 9
@@ -85,77 +53,17 @@ objects:
     id: 1
     x_position: 0
     y_position: 2
-  - type: 0
-    id: 0
-    x_position: 1
-    y_position: 2
-  - type: 0
-    id: 0
-    x_position: 2
-    y_position: 2
-  - type: 0
-    id: 0
-    x_position: 3
-    y_position: 2
-  - type: 0
-    id: 0
-    x_position: 4
-    y_position: 2
-  - type: 0
-    id: 0
-    x_position: 5
-    y_position: 2
-  - type: 0
-    id: 0
-    x_position: 6
-    y_position: 2
-  - type: 0
-    id: 0
-    x_position: 7
-    y_position: 2
-  - type: 0
-    id: 0
-    x_position: 8
-    y_position: 2
-  - type: 1
-    id: 1
-    x_position: 9
-    y_position: 2
-  - type: 1
-    id: 1
-    x_position: 0
-    y_position: 3
-  - type: 0
-    id: 0
-    x_position: 1
-    y_position: 3
-  - type: 0
-    id: 0
-    x_position: 2
-    y_position: 3
-  - type: 0
-    id: 0
-    x_position: 3
-    y_position: 3
-  - type: 0
-    id: 0
-    x_position: 4
-    y_position: 3
   - type: 1
     id: 20
     x_position: 5
-    y_position: 3
-  - type: 0
-    id: 0
-    x_position: 6
-    y_position: 3
-  - type: 0
-    id: 0
-    x_position: 7
-    y_position: 3
-  - type: 0
-    id: 0
-    x_position: 8
+    y_position: 2
+  - type: 1
+    id: 1
+    x_position: 9
+    y_position: 2
+  - type: 1
+    id: 1
+    x_position: 0
     y_position: 3
   - type: 1
     id: 1
@@ -165,38 +73,6 @@ objects:
     id: 1
     x_position: 0
     y_position: 4
-  - type: 0
-    id: 0
-    x_position: 1
-    y_position: 4
-  - type: 0
-    id: 0
-    x_position: 2
-    y_position: 4
-  - type: 0
-    id: 0
-    x_position: 3
-    y_position: 4
-  - type: 0
-    id: 0
-    x_position: 4
-    y_position: 4
-  - type: 0
-    id: 0
-    x_position: 5
-    y_position: 4
-  - type: 0
-    id: 0
-    x_position: 6
-    y_position: 4
-  - type: 0
-    id: 0
-    x_position: 7
-    y_position: 4
-  - type: 0
-    id: 0
-    x_position: 8
-    y_position: 4
   - type: 1
     id: 1
     x_position: 9
@@ -205,77 +81,17 @@ objects:
     id: 1
     x_position: 0
     y_position: 5
-  - type: 0
-    id: 0
-    x_position: 1
-    y_position: 5
-  - type: 0
-    id: 0
-    x_position: 2
-    y_position: 5
-  - type: 0
-    id: 0
-    x_position: 3
-    y_position: 5
-  - type: 0
-    id: 0
-    x_position: 4
-    y_position: 5
-  - type: 0
-    id: 0
-    x_position: 5
-    y_position: 5
-  - type: 0
-    id: 0
-    x_position: 6
-    y_position: 5
-  - type: 0
-    id: 0
-    x_position: 7
-    y_position: 5
-  - type: 0
-    id: 0
-    x_position: 8
-    y_position: 5
-  - type: 1
-    id: 1
-    x_position: 9
-    y_position: 5
-  - type: 1
-    id: 1
-    x_position: 0
-    y_position: 6
-  - type: 0
-    id: 0
-    x_position: 1
-    y_position: 6
-  - type: 0
-    id: 0
-    x_position: 2
-    y_position: 6
-  - type: 0
-    id: 0
-    x_position: 3
-    y_position: 6
-  - type: 0
-    id: 0
-    x_position: 4
-    y_position: 6
-  - type: 0
-    id: 0
-    x_position: 5
-    y_position: 6
   - type: 3
     id: 51
-    x_position: 6
-    y_position: 6
-  - type: 0
-    id: 0
-    x_position: 7
-    y_position: 6
-  - type: 0
-    id: 0
-    x_position: 8
+    x_position: 5
+    y_position: 5
+  - type: 1
+    id: 1
+    x_position: 9
+    y_position: 5
+  - type: 1
+    id: 1
+    x_position: 0
     y_position: 6
   - type: 1
     id: 1
@@ -285,38 +101,6 @@ objects:
     id: 1
     x_position: 0
     y_position: 7
-  - type: 0
-    id: 0
-    x_position: 1
-    y_position: 7
-  - type: 0
-    id: 0
-    x_position: 2
-    y_position: 7
-  - type: 0
-    id: 0
-    x_position: 3
-    y_position: 7
-  - type: 0
-    id: 0
-    x_position: 4
-    y_position: 7
-  - type: 0
-    id: 0
-    x_position: 5
-    y_position: 7
-  - type: 0
-    id: 0
-    x_position: 6
-    y_position: 7
-  - type: 0
-    id: 0
-    x_position: 7
-    y_position: 7
-  - type: 0
-    id: 0
-    x_position: 8
-    y_position: 7
   - type: 1
     id: 1
     x_position: 9
@@ -324,38 +108,6 @@ objects:
   - type: 1
     id: 1
     x_position: 0
-    y_position: 8
-  - type: 0
-    id: 0
-    x_position: 1
-    y_position: 8
-  - type: 0
-    id: 0
-    x_position: 2
-    y_position: 8
-  - type: 0
-    id: 0
-    x_position: 3
-    y_position: 8
-  - type: 0
-    id: 0
-    x_position: 4
-    y_position: 8
-  - type: 0
-    id: 0
-    x_position: 5
-    y_position: 8
-  - type: 0
-    id: 0
-    x_position: 6
-    y_position: 8
-  - type: 0
-    id: 0
-    x_position: 7
-    y_position: 8
-  - type: 0
-    id: 0
-    x_position: 8
     y_position: 8
   - type: 1
     id: 1

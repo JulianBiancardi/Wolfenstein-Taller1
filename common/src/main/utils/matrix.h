@@ -42,8 +42,6 @@ class Matrix {
   /* Return the element in the position x,y. */
   T& operator()(size_t x, size_t y) {
     if (x >= columns || y >= rows) {
-      printf("%u %u\n", columns, rows);
-      printf("%u %u\n", x, y);
       throw RangeError(
           "RangeError: indexes out of matrix's range\nx: %zu\ny: %zu\n", x, y);
     }

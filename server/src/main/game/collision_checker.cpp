@@ -28,7 +28,6 @@ bool CollisionChecker::collides_sprites(const Point& where) {
 }
 
 bool CollisionChecker::is_free(const Point& where) {
-  fprintf(stderr, "X,Y: %f,%f\n", where.getX(), where.getY());
   if (map.is_wall(where.getX(), where.getY())) return false;
 
   if (collides_players(where)) return false;
