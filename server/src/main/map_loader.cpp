@@ -33,7 +33,8 @@ MapLoader::MapLoader(std::unordered_map<unsigned int, Player>& players,
 MapLoader::~MapLoader() {}
 
 void MapLoader::load_map(std::string& map_name) {
-  YAML::Node yaml_file = YAML::LoadFile(map_name);
+  YAML::Node yaml_file =
+      YAML::LoadFile(std::string("../../../res/maps/") + map_name);
 
   const YAML::Node& objects = yaml_file["objects"];
 
