@@ -1,11 +1,11 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-#include "../../../common/src/main/data_structures/blocking_queue.h"
-#include "../../../common/src/main/packets/packet.h"
-#include "../../../common/src/main/socket/socket.h"
-#include "../../../common/src/main/threads/receive_from_peer_thread.h"
-#include "../../../common/src/main/threads/send_to_peer_thread.h"
+#include "../../../../common/src/main/data_structures/blocking_queue.h"
+#include "../../../../common/src/main/packets/packet.h"
+#include "../../../../common/src/main/socket/socket.h"
+#include "../../../../common/src/main/threads/receive_from_peer_thread.h"
+#include "../../../../common/src/main/threads/send_to_peer_thread.h"
 
 class Client {
  private:

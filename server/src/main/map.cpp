@@ -51,8 +51,7 @@ void Map::load_objects() {
     size_t y = object["y_position"].as<int>();
 
     switch (id) {
-      case 3:
-        add_machine_gun(Point(x, y));
+      case 3:add_machine_gun(Point(x, y));
         break;
       case 4:
         // Bazooka
@@ -62,234 +61,226 @@ void Map::load_objects() {
         break;
       case 6:
         // Guard bot
-      case 7:
-        add_bullets(Point(x, y));
+      case 7:add_bullets(Point(x, y));
         break;
-      case 8:
-        add_food(Point(x, y));
+      case 8:add_food(Point(x, y));
         break;
-      case 9:
-        add_key(Point(x, y));
+      case 9:add_key(Point(x, y));
         break;
-      case 10:
-        add_medic_kit(Point(x, y));
+      case 10:add_medic_kit(Point(x, y));
         break;
-      case 11:
-        add_chest(Point(x, y));
+      case 11:add_chest(Point(x, y));
         break;
-      case 12:
-        add_crown(Point(x, y));
+      case 12:add_crown(Point(x, y));
         break;
-      case 13:
-        add_cup(Point(x, y));
+      case 13:add_cup(Point(x, y));
         break;
-      case 14:
-        add_blood(Point(x, y));
+      case 14:add_blood(Point(x, y));
         break;
       case 15:
         // Officer bot
         break;
-      case 16:
-        add_pillar(Point(x, y));
+      case 16:add_pillar(Point(x, y));
         break;
-      case 17:
-        spawn_points.push_back(Point(x, y));
+      case 17:spawn_points.push_back(Point(x, y));
         break;
     }
 
     if (type == 2) {
     }
   }
+}
 
-  /*
-  Map::Map(Map& other)
-      : BaseMap(other.map_matrix),
-        objects(other.objects),
-        spawn_points_occupied(other.spawn_points_occupied),
-        spawn_points(other.spawn_points) {
-    for (auto elements : other.items) {  // Deep copies every element
-      items.insert({elements.first, elements.second->copy()});
-    }
-  }*/
-
-  bool Map::add_player(unsigned int player_id) {
-    if (players_joined == player_capacity ||
-        players.find(player_id) != players.end()) {
-      return false;
-    }
-    // TODO Remove this. Make map have the spawn points
-    spawn_points.push_back(Point(1.5, 1.5));
-
-    Point spawn = spawn_points[players_joined];
-    Player new_player(spawn, 0);
-
-    players.insert(std::make_pair(player_id, new_player));
-    players_joined++;
-
-    return true;
+/*
+Map::Map(Map& other)
+    : BaseMap(other.map_matrix),
+      objects(other.objects),
+      spawn_points_occupied(other.spawn_points_occupied),
+      spawn_points(other.spawn_points) {
+  for (auto elements : other.items) {  // Deep copies every element
+    items.insert({elements.first, elements.second->copy()});
   }
+}*/
 
-  Player& Map::get_player(unsigned int player_id) {
-    return players.at(player_id);
+bool Map::add_player(unsigned int player_id) {
+  if (players_joined == player_capacity ||
+      players.find(player_id) != players.end()) {
+    return false;
   }
+  // TODO Remove this. Make map have the spawn points
+  spawn_points.push_back(Point(1.5, 1.5));
 
-  Item& Map::get_item(unsigned int item_id) {
-    return (Item&)(*items.at(item_id));
-  }
+  Point spawn = spawn_points[players_joined];
+  Player new_player(spawn, 0);
 
-  Object* Map::get_object(unsigned int object_id) {
-    // FIXME
-    return objects.at(object_id);
-  }
+  players.insert(std::make_pair(player_id, new_player));
+  players_joined++;
 
-  void Map::delete_item(unsigned int item_id) {
-    delete items.at(item_id);
-    items.erase(item_id);
-  }
+  return true;
+}
 
-  const std::unordered_map<unsigned int, Player>& Map::get_players() const {
-    return players;
-  }
+Player& Map::get_player(unsigned int player_id) {
+  return players.at(player_id);
+}
 
-  const std::unordered_map<unsigned int, Item*>& Map::get_items() const {
-    return items;
-  }
+Item& Map::get_item(unsigned int item_id) {
+  return (Item&) (*items.at(item_id));
+}
 
-  const std::vector<Object*>& Map::get_objects() const { return objects; }
+Object* Map::get_object(unsigned int object_id) {
+  // FIXME
+  return objects.at(object_id);
+}
 
-  bool Map::has_one_player() const { return players.size() == 1; }
+void Map::delete_item(unsigned int item_id) {
+  delete items.at(item_id);
+  items.erase(item_id);
+}
 
-  //
+const std::unordered_map<unsigned int, Player>& Map::get_players() const {
+  return players;
+}
 
-  void Map::add_bullets(const Point& where, int amount) {
-    Bullets* new_bullets = new Bullets(where, amount);
-    items.insert({new_bullets->get_id(), new_bullets});
-  }
+const std::unordered_map<unsigned int, Item*>& Map::get_items() const {
+  return items;
+}
 
-  /*
-  void Map::add_spawn_point(const Point& spawn_point) {
-    spawn_points.push_back(spawn_point);
-  }
+const std::vector<Object*>& Map::get_objects() const { return objects; }
 
-  const Point Map::next_spawn_point() {
-    return spawn_points.at(players_joined++);
-  }*/
+bool Map::has_one_player() const { return players.size() == 1; }
 
-  void Map::add_blood(const Point& where) {
-    Blood* new_blood = new Blood(where);
-    items.insert({new_blood->get_id(), new_blood});
-  }
+//
 
-  void Map::add_bullets(const Point& where) {
-    add_bullets(where, CL::bullets_amount);
-  }
+void Map::add_bullets(const Point& where, int amount) {
+  Bullets* new_bullets = new Bullets(where, amount);
+  items.insert({new_bullets->get_id(), new_bullets});
+}
 
-  void Map::add_chain_cannon(const Point& where) {
-    ChainCannonItem* new_chain_cannon = new ChainCannonItem(where);
-    items.insert({new_chain_cannon->get_id(), new_chain_cannon});
-  }
+/*
+void Map::add_spawn_point(const Point& spawn_point) {
+  spawn_points.push_back(spawn_point);
+}
 
-  void Map::add_chest(const Point& where) {
-    Chest* new_chest = new Chest(where);
-    items.insert({new_chest->get_id(), new_chest});
-  }
+const Point Map::next_spawn_point() {
+  return spawn_points.at(players_joined++);
+}*/
 
-  void Map::add_cross(const Point& where) {
-    Cross* new_cross = new Cross(where);
-    items.insert({new_cross->get_id(), new_cross});
-  }
+void Map::add_blood(const Point& where) {
+  Blood* new_blood = new Blood(where);
+  items.insert({new_blood->get_id(), new_blood});
+}
 
-  void Map::add_crown(const Point& where) {
-    Crown* new_crown = new Crown(where);
-    items.insert({new_crown->get_id(), new_crown});
-  }
+void Map::add_bullets(const Point& where) {
+  add_bullets(where, CL::bullets_amount);
+}
 
-  void Map::add_cup(const Point& where) {
-    Cup* new_cup = new Cup(where);
-    items.insert({new_cup->get_id(), new_cup});
-  }
+void Map::add_chain_cannon(const Point& where) {
+  ChainCannonItem* new_chain_cannon = new ChainCannonItem(where);
+  items.insert({new_chain_cannon->get_id(), new_chain_cannon});
+}
 
-  void Map::add_food(const Point& where) {
-    Food* new_food = new Food(where);
-    items.insert({new_food->get_id(), new_food});
-  }
+void Map::add_chest(const Point& where) {
+  Chest* new_chest = new Chest(where);
+  items.insert({new_chest->get_id(), new_chest});
+}
 
-  void Map::add_key(const Point& where) {
-    Key* new_key = new Key(where);
-    items.insert({new_key->get_id(), new_key});
-  }
+void Map::add_cross(const Point& where) {
+  Cross* new_cross = new Cross(where);
+  items.insert({new_cross->get_id(), new_cross});
+}
 
-  void Map::add_machine_gun(const Point& where) {
-    MachineGunItem* new_machine_gun = new MachineGunItem(where);
-    items.insert({new_machine_gun->get_id(), new_machine_gun});
-  }
+void Map::add_crown(const Point& where) {
+  Crown* new_crown = new Crown(where);
+  items.insert({new_crown->get_id(), new_crown});
+}
 
-  void Map::add_medic_kit(const Point& where) {
-    MedicKit* new_medic_kit = new MedicKit(where);
-    items.insert({new_medic_kit->get_id(), new_medic_kit});
-  }
+void Map::add_cup(const Point& where) {
+  Cup* new_cup = new Cup(where);
+  items.insert({new_cup->get_id(), new_cup});
+}
 
-  void Map::add_rocket_launcher(const Point& where) {
-    RocketLauncherItem* new_rocket_launcher = new RocketLauncherItem(where);
-    items.insert({new_rocket_launcher->get_id(), new_rocket_launcher});
-  }
+void Map::add_food(const Point& where) {
+  Food* new_food = new Food(where);
+  items.insert({new_food->get_id(), new_food});
+}
 
-  void Map::add_table(const Point& where, double width, double height) {
-    objects.push_back(new Table(width, height, where));
-  }
+void Map::add_key(const Point& where) {
+  Key* new_key = new Key(where);
+  items.insert({new_key->get_id(), new_key});
+}
 
-  void Map::add_normal_door(const Point& where) {
-    objects.push_back(new NormalDoor(where));
-  }
+void Map::add_machine_gun(const Point& where) {
+  MachineGunItem* new_machine_gun = new MachineGunItem(where);
+  items.insert({new_machine_gun->get_id(), new_machine_gun});
+}
 
-  void Map::add_locked_door(const Point& where) {
-    objects.push_back(new LockedDoor(where));
-  }
+void Map::add_medic_kit(const Point& where) {
+  MedicKit* new_medic_kit = new MedicKit(where);
+  items.insert({new_medic_kit->get_id(), new_medic_kit});
+}
 
-  // Where is dropped was arbitrary chosen
-  void Map::add_bullets_drop(Player & dead_player) {
-    Point where(dead_player.get_position().getX(),
+void Map::add_rocket_launcher(const Point& where) {
+  RocketLauncherItem* new_rocket_launcher = new RocketLauncherItem(where);
+  items.insert({new_rocket_launcher->get_id(), new_rocket_launcher});
+}
+
+void Map::add_table(const Point& where, double width, double height) {
+  objects.push_back(new Table(width, height, where));
+}
+
+void Map::add_normal_door(const Point& where) {
+  objects.push_back(new NormalDoor(where));
+}
+
+void Map::add_locked_door(const Point& where) {
+  objects.push_back(new LockedDoor(where));
+}
+
+void Map::add_pillar(const Point& where) {
+
+}
+
+// Where is dropped was arbitrary chosen
+void Map::add_bullets_drop(Player& dead_player) {
+  Point where(dead_player.get_position().getX(),
+              dead_player.get_position().getY());
+  add_bullets(where, CL::bullets_respawn_amount);
+}
+
+// Where is dropped was arbitrary chosen
+void Map::add_gun_drop(Player& dead_player) {
+  if (dead_player.has_droppable_gun()) {
+    Point where(dead_player.get_position().getX() +
+                    CL::drop_distance_from_dead_player * CL::items_mask_radio,
                 dead_player.get_position().getY());
-    add_bullets(where, CL::bullets_respawn_amount);
-  }
-
-  // Where is dropped was arbitrary chosen
-  void Map::add_gun_drop(Player & dead_player) {
-    if (dead_player.has_droppable_gun()) {
-      Point where(dead_player.get_position().getX() +
-                      CL::drop_distance_from_dead_player * CL::items_mask_radio,
-                  dead_player.get_position().getY());
-      switch (dead_player.get_active_gun()) {
-        case MACHINE_GUN_ID:
-          add_machine_gun(where);
-          break;
-        case CHAIN_CANNON_ID:
-          add_chain_cannon(where);
-          break;
-        case ROCKET_LAUNCHER_ID:
-          add_rocket_launcher(where);
-          break;
-      }
+    switch (dead_player.get_active_gun()) {
+      case MACHINE_GUN_ID:add_machine_gun(where);
+        break;
+      case CHAIN_CANNON_ID:add_chain_cannon(where);
+        break;
+      case ROCKET_LAUNCHER_ID:add_rocket_launcher(where);
+        break;
     }
   }
+}
 
-  // Where is dropped was arbitrary chosen
-  void Map::add_key_drop(Player & dead_player) {
-    if (dead_player.has_keys()) {
-      Point where(dead_player.get_position().getX() -
-                      CL::drop_distance_from_dead_player * CL::items_mask_radio,
-                  dead_player.get_position().getY());
-      add_key(where);
-    }
+// Where is dropped was arbitrary chosen
+void Map::add_key_drop(Player& dead_player) {
+  if (dead_player.has_keys()) {
+    Point where(dead_player.get_position().getX() -
+                    CL::drop_distance_from_dead_player * CL::items_mask_radio,
+                dead_player.get_position().getY());
+    add_key(where);
   }
+}
 
-  // Possible bug: items can spawn inside walls depending on YAML values
-  void Map::add_drop(Player & dead_player) {
-    add_bullets_drop(dead_player);
-    add_gun_drop(dead_player);
-    add_key_drop(dead_player);
-  }
+// Possible bug: items can spawn inside walls depending on YAML values
+void Map::add_drop(Player& dead_player) {
+  add_bullets_drop(dead_player);
+  add_gun_drop(dead_player);
+  add_key_drop(dead_player);
+}
 
-  void Map::add_spawn_point(double x, double y) {
-    spawn_points.emplace_back(x, y);
-  }
+void Map::add_spawn_point(double x, double y) {
+  spawn_points.emplace_back(x, y);
+}

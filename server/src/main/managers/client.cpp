@@ -2,9 +2,7 @@
 
 #include <utility>
 
-#include "../../../common/src/main/packets/packing.h"
-#include "../../../common/src/main/threads/receive_from_peer_thread.h"
-#include "../../../common/src/main/threads/send_to_peer_thread.h"
+#include "../../../../common/src/main/packets/packing.h"
 
 Client::Client(unsigned int id, Socket& socket,
                BlockingQueue<Packet>& reception_queue)

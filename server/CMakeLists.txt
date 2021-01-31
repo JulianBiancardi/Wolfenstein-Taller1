@@ -33,6 +33,8 @@ FILE(GLOB ServerFiles
         src/main/game/*.cpp
         src/main/game/*/*.cpp
         src/main/game/*/*/*.cpp
+        
+        src/main/managers/*.cpp
 
         #src/main/threads/*.cpp
         )
