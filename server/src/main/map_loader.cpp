@@ -33,8 +33,7 @@ MapLoader::MapLoader(std::unordered_map<unsigned int, Player>& players,
 MapLoader::~MapLoader() {}
 
 void MapLoader::load_map(std::string& map_name) {
-  YAML::Node yaml_file =
-      YAML::LoadFile("../../../res/maps/" + map_name + ".yaml");
+  YAML::Node yaml_file = YAML::LoadFile("../../res/maps/" + map_name + ".yaml");
 
   const YAML::Node& objects = yaml_file["objects"];
 
@@ -179,6 +178,10 @@ void MapLoader::add_pillar(const Point& where) {
 void MapLoader::add_table(const Point& where) {
   solid_objects.push_back(
       new RectangularObject(CL::table_width, CL::table_depth, where));
+}
+
+void MapLoader::add_barrel(const Point& where) {
+  solid_objects.push_back(new CircularObject(CL::barrel_radius, where));
 }
 
 void MapLoader::add_normal_door(const Point& where) {

@@ -73,10 +73,10 @@ int CL::chests_points = CL::yaml_file["chests_points"].as<int>();
 int CL::crown_points = CL::yaml_file["crown_points"].as<int>();
 
 // Solid Objects
-double pillar_radius = CL::yaml_file["pillar_radius"].as<double>();
-double table_width = CL::yaml_file["table_width"].as<double>();
-double table_depth = CL::yaml_file["table_depth"].as<double>();
-double barrel_radius = CL::yaml_file["barrel_radius"].as<double>();
+double CL::pillar_radius = CL::yaml_file["pillar_radius"].as<double>();
+double CL::table_width = CL::yaml_file["table_width"].as<double>();
+double CL::table_depth = CL::yaml_file["table_depth"].as<double>();
+double CL::barrel_radius = CL::yaml_file["barrel_radius"].as<double>();
 
 // Other
 double CL::door_timer = CL::yaml_file["door_timer"].as<double>();

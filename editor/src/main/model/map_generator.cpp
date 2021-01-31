@@ -48,6 +48,9 @@ void MapGenerator::generate_yamlfile(const std::string& file_path, Map* map) {
   for (size_t row = 0; row < map->row_count(); row++) {
     for (size_t column = 0; column < map->column_count(); column++) {
       Cell* celd = map->at(row, column);
+      if (celd->get_id() == 0) {
+        continue;
+      }
       if (celd != NULL) {
         out << YAML::BeginMap;
         out << YAML::Key << "type";

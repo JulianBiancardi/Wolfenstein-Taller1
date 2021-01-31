@@ -28,6 +28,7 @@ bool CollisionChecker::collides_sprites(const Point& where) {
 }
 
 bool CollisionChecker::is_free(const Point& where) {
+  fprintf(stderr, "X,Y: %f,%f\n", where.getX(), where.getY());
   if (map.is_wall(where.getX(), where.getY())) return false;
 
   if (collides_players(where)) return false;
@@ -71,8 +72,8 @@ int CollisionChecker::get_knife_range_collides_player_id(Point& where,
   int id_found = 0;
   for (auto& player : players) {
     if (player.second != *ignored) {
-      if ((player.second.occupies(mask_checking_point))
-          && (!player.second.is_dead()))
+      if ((player.second.occupies(mask_checking_point)) &&
+          (!player.second.is_dead()))
         id_found = player.second.get_id();
     }
   }

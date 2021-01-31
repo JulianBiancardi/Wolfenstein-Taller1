@@ -9,13 +9,14 @@ BaseMap::BaseMap(Matrix<int>& map_matrix)
     : map_matrix(map_matrix), player_capacity(10) {}
 
 BaseMap::BaseMap(std::string& map_name)
-    : map_name(map_name), map_matrix(0, 0), player_capacity(5) {}
+    : map_name(map_name), map_matrix(0, 0), player_capacity(5) {
+  load_map_matrix();
+}
 
 BaseMap::~BaseMap() {}
 
 void BaseMap::load_map_matrix() {
-  YAML::Node yaml_file =
-      YAML::LoadFile("../../../res/maps/" + map_name + ".yaml");
+  YAML::Node yaml_file = YAML::LoadFile("../../res/maps/" + map_name + ".yaml");
   size_t width = yaml_file["width"].as<int>();
   size_t height = yaml_file["height"].as<int>();
   Matrix<int> map_data(height, width, 0);

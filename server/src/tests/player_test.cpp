@@ -2,7 +2,7 @@
 
 #include "../../../common/src/main/ids/gun_ids.h"
 #include "../../../common/src/main/ids/movement_ids.h"
-#include "../main/game/objects/door/lock_door.h"
+#include "../main/game/objects/door/locked_door.h"
 #include "../main/game/objects/door/normal_door.h"
 #include "../main/game/objects/rectangular_object.h"
 #include "../main/map.h"
@@ -389,8 +389,6 @@ int static another_player_collides_against_other_player() {
 int static player_collides_against_table_from_side() {
   double table_width = 2;
 
-  Matrix<int> map_data = create_base_map();
-
   std::string map_name("test_map1");
   Map map(map_name);
   map.add_player(1);
@@ -494,11 +492,9 @@ int static player_respawns_correctly() {
 }
 
 int static player_collides_against_door() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 5);
+  std::string map_name("test_map4");
+  Map map(map_name);
   map.add_player(1);
-  map.add_normal_door(Point(5, 5));
 
   CollisionChecker checker(map);
 
@@ -516,11 +512,9 @@ int static player_collides_against_door() {
 }
 
 int static player_walks_through_door() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 5);
+  std::string map_name("test_map4");
+  Map map(map_name);
   map.add_player(1);
-  map.add_normal_door(Point(5, 5));
 
   CollisionChecker checker(map);
 
@@ -539,11 +533,9 @@ int static player_walks_through_door() {
 }
 
 int static player_tries_to_pass_door_opens_it_and_does_it() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 5);
+  std::string map_name("test_map4");
+  Map map(map_name);
   map.add_player(1);
-  map.add_normal_door(Point(5, 5));
 
   CollisionChecker checker(map);
 
@@ -575,11 +567,9 @@ int static player_tries_to_pass_door_opens_it_and_does_it() {
 }
 
 int static player_tries_to_open_locked_door_with_no_key() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 5);
+  std::string map_name("test_map5");
+  Map map(map_name);
   map.add_player(1);
-  map.add_locked_door(Point(5, 5));
 
   CollisionChecker checker(map);
 
@@ -599,11 +589,9 @@ int static player_tries_to_open_locked_door_with_no_key() {
 }
 
 int static player_opens_door_with_key() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 5);
+  std::string map_name("test_map5");
+  Map map(map_name);
   map.add_player(1);
-  map.add_locked_door(Point(5, 5));
   map.get_player(1).add_key();
 
   CollisionChecker checker(map);
@@ -623,13 +611,10 @@ int static player_opens_door_with_key() {
 }
 
 int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 5);
-  map.add_spawn_point(7, 7);
+  std::string map_name("test_map6");
+  Map map(map_name);
   map.add_player(1);
   map.add_player(2);
-  map.add_locked_door(Point(5, 5));
   map.get_player(1).add_key();
 
   CollisionChecker checker(map);
@@ -651,11 +636,9 @@ int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
 }
 
 int static player_cannot_close_door_if_it_is_under_it() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 5);
+  std::string map_name("test_map5");
+  Map map(map_name);
   map.add_player(1);
-  map.add_normal_door(Point(5, 5));
 
   CollisionChecker checker(map);
 

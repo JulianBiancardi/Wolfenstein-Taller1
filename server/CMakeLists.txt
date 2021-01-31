@@ -30,6 +30,7 @@ FILE(GLOB ServerFiles
 
         #src/main/bot.cpp ##
         src/main/map.cpp # Should be everything different from main_server.cpp
+        src/main/map_loader.cpp
         src/main/game/*.cpp
         src/main/game/*/*.cpp
         src/main/game/*/*/*.cpp

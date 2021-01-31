@@ -97,18 +97,21 @@ void Map::add_gun_drop(Player& dead_player) {
                     CL::drop_distance_from_dead_player * CL::items_mask_radio,
                 dead_player.get_position().getY());
     switch (dead_player.get_active_gun()) {
-      case MACHINE_GUN_ID:
+      case MACHINE_GUN_ID: {
         MachineGunItem* new_machine_gun = new MachineGunItem(where);
         items.insert({new_machine_gun->get_id(), new_machine_gun});
         break;
-      case CHAIN_CANNON_ID:
+      }
+      case CHAIN_CANNON_ID: {
         ChainCannonItem* new_chain_cannon = new ChainCannonItem(where);
         items.insert({new_chain_cannon->get_id(), new_chain_cannon});
         break;
-      case ROCKET_LAUNCHER_ID:
+      }
+      case ROCKET_LAUNCHER_ID: {
         RocketLauncherItem* new_rocket_launcher = new RocketLauncherItem(where);
         items.insert({new_rocket_launcher->get_id(), new_rocket_launcher});
         break;
+      }
       default:
         break;
     }
