@@ -75,7 +75,7 @@ void MainWindow::on_JoinButton_clicked() {
 
 void MainWindow::on_NewButton_clicked() {
   // TODO CREATE OTHER WINDOW or other secction
-  match_selected->set_match_id(launcher.create_match("new_map"));
+  match_selected->set_match_id(launcher.create_match("test_map"));
   if (match_selected->get_match_id() == INVALID_ID) {
     _show_error("Failed to create the match");
   } else {

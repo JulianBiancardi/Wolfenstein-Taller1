@@ -37,6 +37,8 @@ Collision RayCasting::get_collision(BaseMap& map, Ray& ray) {
     return vertical_axis(map, ray);
   } else if (angle > 3 * M_PI_2 && angle <= 2 * M_PI) {
     return RayCasting::forth_quad(map, ray);
+  } else {
+    throw RangeError("RayCasting angle is not normalized.");
   }
 }
 

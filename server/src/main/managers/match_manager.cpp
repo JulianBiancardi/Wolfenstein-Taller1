@@ -4,18 +4,7 @@
 
 #define MATCHES_CAPACITY 255
 
-MatchManager::MatchManager() : next_id(1), matches() {
-  // TODO Delete all
-  std::string mapa1("prueeeeeeeeeeeeeeeba");
-  std::string mapa2("hello");
-  std::string mapa3("holi");
-  std::string mapa4("holu");
-
-  create_match(mapa1);
-  create_match(mapa2);
-  create_match(mapa3);
-  create_match(mapa4);
-}
+MatchManager::MatchManager() : next_id(1), matches() {}
 
 MatchManager::~MatchManager() {}
 
@@ -39,7 +28,9 @@ Match& MatchManager::get_match(unsigned char match_id) {
 
 unsigned char MatchManager::create_match(std::string& map_name) {
   if (matches.size() < MATCHES_CAPACITY) {
+    printf("A\n");  // TODO DELETE
     std::shared_ptr<Match> new_match(new Match(next_id, map_name));
+    printf("B\n");  // TODO DELETE
     matches.insert(std::make_pair(next_id, std::move(new_match)));
     next_id++;
     return next_id - 1;
