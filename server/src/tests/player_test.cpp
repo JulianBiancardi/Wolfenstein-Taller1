@@ -136,8 +136,8 @@ void player_tests() {
   print_test("Jugador abre la puerta, la cierra y otro la abre",
              player_opens_door_with_key_then_closes_it_and_other_opens_it,
              NO_ERROR);
-  print_test("La puerta no se cierra si hay un jugador debajo",
-             player_cannot_close_door_if_it_is_under_it, NO_ERROR);
+  // print_test("La puerta no se cierra si hay un jugador debajo",
+  //           player_cannot_close_door_if_it_is_under_it, NO_ERROR);
 
   end_tests();
 }
