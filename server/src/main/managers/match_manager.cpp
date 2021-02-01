@@ -28,9 +28,7 @@ Match& MatchManager::get_match(unsigned char match_id) {
 
 unsigned char MatchManager::create_match(std::string& map_name) {
   if (matches.size() < MATCHES_CAPACITY) {
-    printf("A\n");  // TODO DELETE
     std::shared_ptr<Match> new_match(new Match(next_id, map_name));
-    printf("B\n");  // TODO DELETE
     matches.insert(std::make_pair(next_id, std::move(new_match)));
     next_id++;
     return next_id - 1;
