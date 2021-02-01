@@ -2,6 +2,8 @@
 
 Map::Map(Matrix<int>& map_matrix) : BaseMap(map_matrix) {}
 
+Map::Map(const std::string& map_name) : BaseMap(map_name) {}
+
 void Map::add_player(Object* player) {
   // players.push_back(player);
   // objects.push_back(player);

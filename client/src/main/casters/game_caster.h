@@ -3,11 +3,11 @@
 
 #include <SDL2/SDL.h>
 
-#include "../../../common/src/main/utils/ray.h"
-#include "casting/collision.h"
-#include "map.h"
-#include "resource_manager.h"
-#include "sdl/window.h"
+#include "../../../../common/src/main/utils/ray.h"
+#include "../casting/collision.h"
+#include "../map.h"
+#include "../resource_manager.h"
+#include "../sdl/window.h"
 
 // ============================
 
@@ -28,9 +28,7 @@ class _sprite {
 
 // ============================
 
-#include "caster.h"
-
-class GameCaster : public Caster {
+class GameCaster {
  private:
   SDL_Renderer* renderer;
   Ray& player;
@@ -55,7 +53,7 @@ class GameCaster : public Caster {
   GameCaster(Window& window, Ray& player, Map& map);
   ~GameCaster();
 
-  void operator()() override;
+  void operator()();
 };
 
 #endif

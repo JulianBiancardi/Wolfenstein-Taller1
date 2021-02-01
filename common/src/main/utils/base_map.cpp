@@ -8,7 +8,7 @@
 BaseMap::BaseMap(Matrix<int>& map_matrix)
     : map_matrix(map_matrix), player_capacity(10) {}
 
-BaseMap::BaseMap(std::string& map_name)
+BaseMap::BaseMap(const std::string& map_name)
     : map_name(map_name), map_matrix(0, 0), player_capacity(5) {
   load_map_matrix();
 }
@@ -28,7 +28,7 @@ void BaseMap::load_map_matrix() {
     const YAML::Node& object = *iter;
 
     int type = object["type"].as<int>();
-    if (type > 0) {
+    if (type != 1) {
       continue;
     }
 

@@ -89,7 +89,7 @@ objects:
     id: 0
     x_position: 1
     y_position: 2
-  - type: 1
+  - type: 2
     id: 20
     x_position: 2
     y_position: 2
@@ -189,7 +189,7 @@ objects:
     id: 0
     x_position: 6
     y_position: 4
-  - type: 1
+  - type: 2
     id: 20
     x_position: 7
     y_position: 4
@@ -293,7 +293,7 @@ objects:
     id: 0
     x_position: 2
     y_position: 7
-  - type: 1
+  - type: 2
     id: 20
     x_position: 3
     y_position: 7

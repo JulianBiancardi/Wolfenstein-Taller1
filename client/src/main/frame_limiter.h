@@ -5,7 +5,7 @@
 
 #include "iostream"  //TODO delete
 
-#define FPS 60                   // TODO move to congif file
+#define FPS 30                   // TODO move to congif file
 #define FRAME_RATE (1000 / FPS)  // TODO move to congif file
 
 //-------------------------------------

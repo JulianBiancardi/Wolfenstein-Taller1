@@ -21,7 +21,7 @@ class BaseMap {
 
  public:
   BaseMap(Matrix<int>& map_matrix);
-  BaseMap(std::string& map_name);
+  BaseMap(const std::string& map_name);
   ~BaseMap();
 
   /* Returns the name of the map */

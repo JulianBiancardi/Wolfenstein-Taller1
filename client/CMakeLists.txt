@@ -37,6 +37,7 @@ FILE(GLOB QtViewFiles
 
 FILE(GLOB ClientFiles
   src/main/*.cpp
+  src/main/casters/*.cpp
   src/main/casting/*.cpp
   src/main/guns/*.cpp
   src/main/sdl/*.cpp

@@ -1,11 +1,12 @@
+#include "game_caster.h"
+
 #include <algorithm>
 
-#include "../../../common/src/main/utils/angle.h"
-#include "../../../common/src/main/utils/point.h"  // TODO Delete if not used in the file
-#include "../../../common/src/main/utils/rectangle.h"
-#include "caster.h"
-#include "casting/ray_casting.h"
-#include "sdl/image.h"
+#include "../../../../common/src/main/utils/angle.h"
+#include "../../../../common/src/main/utils/point.h"  // TODO Delete if not used in the file
+#include "../../../../common/src/main/utils/rectangle.h"
+#include "../casting/ray_casting.h"
+#include "../sdl/image.h"
 
 #define UNIT 5
 #define SCREEN_WIDTH (320 * UNIT)
@@ -38,23 +39,27 @@ double _sprite::get_distance() { return distance; }
 int _sprite::get_id() { return id; }
 // =========
 
-Caster::Caster(Window& window, Ray& player, Map& map)
+GameCaster::GameCaster(Window& window, Ray& player, Map& map)
     : renderer(window.get_renderer()),
       player(player),
       map(map),
       window(window),
       res_manager(window) {}
 
-Caster::~Caster() {}
+GameCaster::~GameCaster() {}
 
-void Caster::operator()() {
+void GameCaster::operator()() {
+  fprintf(stderr, "Background\n");
   draw_background();
+  fprintf(stderr, "Walls\n");
   std::vector<double> wall_distances = draw_walls();
+  fprintf(stderr, "Sprites\n");
   draw_sprites(wall_distances);
+  fprintf(stderr, "Window\n");
   window.update();
 }
 
-void Caster::draw_background() {
+void GameCaster::draw_background() {
   window.fill(255, 255, 255, 255);
 
   window.set_draw_color(56, 56, 56, 255);
@@ -74,7 +79,7 @@ void Caster::draw_background() {
   SDL_RenderFillRect(renderer, &bot_half);
 }
 
-std::vector<double> Caster::draw_walls() {
+std::vector<double> GameCaster::draw_walls() {
   std::vector<double> wall_collisions;
   wall_collisions.reserve(SCREEN_WIDTH);
 
@@ -98,11 +103,11 @@ std::vector<double> Caster::draw_walls() {
   return std::move(wall_collisions);
 }
 
-void Caster::draw_wall(Collision& collision, size_t screen_pos,
-                       double ray_angle) {
+void GameCaster::draw_wall(Collision& collision, size_t screen_pos,
+                           double ray_angle) {
   Image* image = res_manager.get_image(collision.get_collided_obj_id());
 
-  double projected_distance = Caster::get_projected_distance(
+  double projected_distance = GameCaster::get_projected_distance(
       ray_angle, player.get_angle(), collision.get_distance_from_src());
   int wall_size = SCALING_FACTOR / (projected_distance * image->get_height());
 
@@ -128,9 +133,9 @@ void Caster::draw_wall(Collision& collision, size_t screen_pos,
   image->draw(pos, &slice);
 }
 
-void Caster::draw_sprites(std::vector<double>& wall_distances) {
+void GameCaster::draw_sprites(std::vector<double>& wall_distances) {
   std::vector<_sprite> sprites;
-  load_sprites(sprites);
+  // load_sprites(sprites);
   sort_sprites(sprites);
 
   std::vector<_sprite>::iterator iter;
@@ -139,7 +144,8 @@ void Caster::draw_sprites(std::vector<double>& wall_distances) {
   }
 }
 
-void Caster::draw_sprite(_sprite& sprite, std::vector<double>& wall_distances) {
+void GameCaster::draw_sprite(_sprite& sprite,
+                             std::vector<double>& wall_distances) {
   // TODO Optimize
   Image* image = res_manager.get_image(sprite.get_id());
   size_t img_width = image->get_width();
@@ -198,8 +204,8 @@ void Caster::draw_sprite(_sprite& sprite, std::vector<double>& wall_distances) {
   }
 }
 
-double Caster::get_projected_distance(double ray_angle, double player_angle,
-                                      double collision_distance) {
+double GameCaster::get_projected_distance(double ray_angle, double player_angle,
+                                          double collision_distance) {
   double ray_offset = ray_angle - player_angle;
   return collision_distance * cos(ray_offset);
 }
@@ -211,7 +217,7 @@ void static load_sprites(std::vector<_sprite>& sprites) {
   sprites.push_back(_sprite(Point(2.5, 2.5), 15));
 }
 
-void Caster::sort_sprites(std::vector<_sprite>& sprites) {
+void GameCaster::sort_sprites(std::vector<_sprite>& sprites) {
   std::vector<_sprite>::iterator iter;
   for (iter = sprites.begin(); iter != sprites.end(); iter++) {
     (*iter).update_distance(player.get_origin());

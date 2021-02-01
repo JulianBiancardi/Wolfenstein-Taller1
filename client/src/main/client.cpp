@@ -4,7 +4,6 @@
 
 #include "../../../common/src/main/utils/point.h"  //TODO MOVE THIS TO OTHER CLASSES
 //#include "../../../server/src/main/events/event_building.h"
-#include "frame_limiter.h"
 
 #define UNIT 5
 #define SCREEN_WIDTH (320 * UNIT)
@@ -131,8 +130,8 @@ Client::~Client() {
 */
 
 #include "../../../common/src/main/config_loader.h"
+#include "game.h"
 #include "launcher/include/mainwindow.h"
-#include "sdl/window.h"
 #include "server.h"
 
 Client::Client() {}
@@ -156,5 +155,6 @@ void Client::run_client(int argc, char** argv) {
 
   match_selected.print();  // ONLY FOR TEST
 
-  // Game game(server, window, map);
+  Game game(match_selected);
+  game();
 }

@@ -15,7 +15,8 @@ class Map : public BaseMap {
   std::vector<Object*> objects;
 
  public:
-  Map(Matrix<int>& map_matrix);
+  explicit Map(Matrix<int>& map_matrix);
+  explicit Map(const std::string& map_name);
   ~Map();
 
   std::vector<Object*>& get_objects();
