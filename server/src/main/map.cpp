@@ -54,8 +54,12 @@ Player& Map::get_player(unsigned int player_id) {
   return players.at(player_id);
 }
 
+void Map::delete_player(unsigned int player_id) {
+  players.erase(player_id);
+}
+
 Item& Map::get_item(unsigned int item_id) {
-  return (Item&)(*items.at(item_id));
+  return (Item&) (*items.at(item_id));
 }
 
 Object* Map::get_object(unsigned int object_id) {
@@ -110,8 +114,7 @@ void Map::add_gun_drop(Player& dead_player) {
         items.insert({new_rocket_launcher->get_id(), new_rocket_launcher});
         break;
       }
-      default:
-        break;
+      default:break;
     }
   }
 }

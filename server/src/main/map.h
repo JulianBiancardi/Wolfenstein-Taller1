@@ -41,6 +41,9 @@ class Map : public BaseMap {
   /* Returns a reference to a player */
   Player& get_player(unsigned int player_id);
 
+  /* Deletes player */
+  void delete_player(unsigned int player_id);
+
   /* Returns a reference to an item */
   Item& get_item(unsigned int item_id);
 

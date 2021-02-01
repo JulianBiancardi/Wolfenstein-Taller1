@@ -159,10 +159,12 @@ unsigned int Match::grab_item(unsigned int player_id) {
     if (item.can_be_used_by(player)) {
       item.use(player);
       map.delete_item(item_id);
+
+      return item_id;
     }
   }
 
-  return item_id;
+  return 0;
 }
 
 bool Match::change_gun(unsigned int player_id, unsigned char gun_id) {
@@ -203,7 +205,6 @@ bool Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
     if (objective.is_dead()) {
       kill_player(objective_id);
       shooter.add_kill();
-      map.add_drop(objective);
 
       return true;
     }
@@ -231,7 +232,9 @@ void Match::kill_player(unsigned int player_id) {
 
   Player& player = map.get_player(player_id);
 
-  if (player.has_lives()) {
+  map.add_drop(player);
+
+  if (player.has_extra_lives()) {
     player.respawn();
   } else {
     delete_player(player_id);
@@ -244,7 +247,7 @@ bool Match::has_lives(unsigned int player_id) {
                      player_id);
   }
 
-  return map.get_player(player_id).has_lives();
+  return map.get_player(player_id).has_extra_lives();
 }
 
 bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
@@ -255,7 +258,7 @@ bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
 
   Player& player = map.get_player(player_id);
 
-  Door* door = (Door*)map.get_object(door_id);
+  Door* door = (Door*) map.get_object(door_id);
 
   // FIXME
   if (door == nullptr) {
@@ -270,6 +273,9 @@ void Match::delete_player(unsigned int player_id) {  // TODO
     throw MatchError("Failed to delete player. Player %u doesn't exist.",
                      player_id);
   }
+
+  map.delete_player(player_id);
+  players_ids.erase(player_id);
 }
 
 bool Match::should_end() const { return map.has_one_player(); }

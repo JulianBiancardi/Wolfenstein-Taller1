@@ -116,7 +116,7 @@ class Match {
   /* Returns if match should end (does not check time) */
   bool should_end() const;
 
-  /* Ends the match */
+  /* Ends match */
   void end();
 };
 
