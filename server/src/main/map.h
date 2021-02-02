@@ -65,15 +65,8 @@ class Map : public BaseMap {
   /* Returns if only has one player or not */
   bool has_one_player() const;
 
-  //
-  //
-  //
-
-  // The drop added depends on dead_player items
+  /* Adds player's death drop */
   void add_drop(Player& dead_player);
-
-  /* TODO Remove */
-  void add_spawn_point(double x, double y);
 };
 
 #endif

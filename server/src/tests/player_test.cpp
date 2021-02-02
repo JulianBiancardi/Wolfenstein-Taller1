@@ -8,6 +8,8 @@
 #include "tests_setup.h"
 
 #define TEST_MAP_SIZE 10
+
+#define TEST_MAP_EMPTY "test_map_empty"
 #define TEST_MAP_WITH_TABLE "test_map_with_table"
 #define TEST_MAP_WITH_DOOR "test_map_with_door"
 #define TEST_MAP_WITH_LOCKED_DOOR "test_map_with_locked_door"
@@ -60,30 +62,8 @@ void move_up_right(Player& who, CollisionChecker& checker) {
   if (checker.can_move(next_position, who)) who.set_position(next_position);
 }
 
-void move_up_left(Player& who, CollisionChecker& checker) {
-  Point next_position = who.next_position(UP_LEFT);
-  if (checker.can_move(next_position, who)) who.set_position(next_position);
-}
-
-void move_down_right(Player& who, CollisionChecker& checker) {
-  Point next_position = who.next_position(DOWN_RIGHT);
-  if (checker.can_move(next_position, who)) who.set_position(next_position);
-}
-
-void move_down_left(Player& who, CollisionChecker& checker) {
-  Point next_position = who.next_position(DOWN_LEFT);
-  if (checker.can_move(next_position, who)) who.set_position(next_position);
-}
-
-Matrix<int> create_base_map() {
-  Matrix<int> map_data(TEST_MAP_SIZE, TEST_MAP_SIZE, 0);
-  for (size_t i = 0; i < TEST_MAP_SIZE; i++) {
-    map_data(i, 0) = WALL;
-    map_data(i, TEST_MAP_SIZE - 1) = WALL;
-    map_data(0, i) = WALL;
-    map_data(TEST_MAP_SIZE - 1, i) = WALL;
-  }
-  return map_data;
+void move_player_to(Player& who, CollisionChecker& checker, Point where) {
+  if (checker.can_move(where, who)) who.set_position(where);
 }
 
 void player_tests() {
@@ -141,9 +121,8 @@ void player_tests() {
 }
 
 int static can_move_up() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(5, 5);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
@@ -158,12 +137,12 @@ int static can_move_up() {
 }
 
 int static collides_wall() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(8.45, 5);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(8.45, 5));
 
   move_up(map.get_player(1), checker);
 
@@ -175,9 +154,8 @@ int static collides_wall() {
 }
 
 int static walks_and_collides_wall() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(5, 5);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
@@ -197,9 +175,8 @@ int static walks_and_collides_wall() {
 }
 
 int static walk_with_different_angle_and_direction() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(5, 5);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
@@ -214,12 +191,12 @@ int static walk_with_different_angle_and_direction() {
 }
 
 int static complete_path_correctly() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 2);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 2));
 
   for (int i = 0; i < 40; i++) {
     move_up(map.get_player(1), checker);
@@ -239,12 +216,12 @@ int static complete_path_correctly() {
 }
 
 int static walk_diagonally() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 2);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 2));
 
   move_up_right(map.get_player(1), checker);
 
@@ -260,12 +237,12 @@ int static walk_diagonally() {
 }
 
 int static complete_difficult_path_correctly() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 2);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 2));
 
   for (int i = 0; i < 100; i++) {
     move_up(map.get_player(1), checker);
@@ -285,12 +262,12 @@ int static complete_difficult_path_correctly() {
 }
 
 int static check_collisions() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 2);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 2));
 
   for (int i = 0; i < 140; i++) {
     move_up(map.get_player(1), checker);
@@ -336,14 +313,14 @@ int static check_collisions() {
 }
 
 int static player_collides_against_other_player() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 2);
-  map.add_spawn_point(2, 7);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
   map.add_player(2);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 2));
+  move_player_to(map.get_player(2), checker, Point(2, 7));
 
   for (int i = 0; i < 100; i++) {
     move_right(map.get_player(1), checker);
@@ -359,14 +336,14 @@ int static player_collides_against_other_player() {
 }
 
 int static another_player_collides_against_other_player() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 2);
-  map.add_spawn_point(7, 7);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
   map.add_player(2);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 2));
+  move_player_to(map.get_player(2), checker, Point(7, 7));
 
   for (int i = 0; i < 50; i++) {
     move_right(map.get_player(1), checker);
@@ -388,10 +365,10 @@ int static another_player_collides_against_other_player() {
 int static player_collides_against_table_from_side() {
   std::string map_name(TEST_MAP_WITH_TABLE);
   Map map(map_name);
-  map.add_spawn_point(2, 5);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
   for (int i = 0; i < 30; i++) {
     move_up(map.get_player(1), checker);
@@ -409,10 +386,10 @@ int static player_collides_against_table_from_side() {
 int static player_collides_against_table_from_another_side() {
   std::string map_name(TEST_MAP_WITH_TABLE);
   Map map(map_name);
-  map.add_spawn_point(5, 2);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(5, 2));
 
   for (int i = 0; i < 100; i++) {
     move_right(map.get_player(1), checker);
@@ -430,7 +407,6 @@ int static player_collides_against_table_from_another_side() {
 int static diagonal_collision_with_table() {
   std::string map_name(TEST_MAP_WITH_TABLE);
   Map map(map_name);
-  map.add_spawn_point(2, 2);
   map.add_player(1);
 
   CollisionChecker checker(map);
@@ -492,10 +468,10 @@ int static player_respawns_correctly() {
 int static player_collides_against_door() {
   std::string map_name(TEST_MAP_WITH_DOOR);
   Map map(map_name);
-  map.add_spawn_point(2, 5);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
   for (int i = 0; i < 60; i++) {
     move_up(map.get_player(1), checker);
@@ -512,10 +488,10 @@ int static player_collides_against_door() {
 int static player_walks_through_door() {
   std::string map_name(TEST_MAP_WITH_DOOR);
   Map map(map_name);
-  map.add_spawn_point(2, 5);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
   ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
@@ -533,10 +509,10 @@ int static player_walks_through_door() {
 int static player_tries_to_pass_door_opens_it_and_does_it() {
   std::string map_name(TEST_MAP_WITH_DOOR);
   Map map(map_name);
-  map.add_spawn_point(2, 5);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
   for (int i = 0; i < 60; i++) {
     move_up(map.get_player(1), checker);
@@ -566,10 +542,10 @@ int static player_tries_to_pass_door_opens_it_and_does_it() {
 int static player_tries_to_open_locked_door_with_no_key() {
   std::string map_name(TEST_MAP_WITH_LOCKED_DOOR);
   Map map(map_name);
-  map.add_spawn_point(2, 5);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
   ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
@@ -588,11 +564,11 @@ int static player_tries_to_open_locked_door_with_no_key() {
 int static player_opens_door_with_key() {
   std::string map_name(TEST_MAP_WITH_LOCKED_DOOR);
   Map map(map_name);
-  map.add_spawn_point(2, 5);
   map.add_player(1);
   map.get_player(1).add_key();
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
   ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
@@ -610,13 +586,12 @@ int static player_opens_door_with_key() {
 int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
   std::string map_name(TEST_MAP_WITH_LOCKED_DOOR);
   Map map(map_name);
-  map.add_spawn_point(2, 5);
-  map.add_spawn_point(7, 7);
   map.add_player(1);
   map.add_player(2);
   map.get_player(1).add_key();
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
   ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
   ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
@@ -636,10 +611,10 @@ int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
 int static player_cannot_close_door_if_it_is_under_it() {
   std::string map_name(TEST_MAP_WITH_DOOR);
   Map map(map_name);
-  map.add_spawn_point(2, 5);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
   ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 

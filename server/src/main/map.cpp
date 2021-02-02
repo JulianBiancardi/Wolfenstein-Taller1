@@ -24,17 +24,6 @@ Map::~Map() {
 Map::Map(Matrix<int>& map_matrix)
     : items(), objects(), players(), players_joined(0), BaseMap(map_matrix) {}
 
-/*
-Map::Map(Map& other)
-    : BaseMap(other.map_matrix),
-      objects(other.objects),
-      spawn_points_occupied(other.spawn_points_occupied),
-      spawn_points(other.spawn_points) {
-  for (auto elements : other.items) {  // Deep copies every element
-    items.insert({elements.first, elements.second->copy()});
-  }
-}*/
-
 bool Map::add_player(unsigned int player_id) {
   if (players_joined == player_capacity ||
       players.find(player_id) != players.end()) {
@@ -135,8 +124,4 @@ void Map::add_drop(Player& dead_player) {
   add_bullets_drop(dead_player);
   add_gun_drop(dead_player);
   add_key_drop(dead_player);
-}
-
-void Map::add_spawn_point(double x, double y) {
-  spawn_points.emplace_back(x, y);
 }
