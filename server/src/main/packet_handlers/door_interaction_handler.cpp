@@ -18,8 +18,7 @@ void DoorInteractionHandler::handle(Packet& packet,
   Match& match = match_manager.get_match(match_id);
 
   if (match.interact_with_door(player_id, door_id)) {
-    const std::unordered_set<unsigned int>& client_ids =
-        match.get_players_ids();
-    client_manager.send_to_all(client_ids, packet);
+    const std::unordered_set<unsigned int>& clients = match.get_players_ids();
+    client_manager.send_to_all(clients, packet);
   }
 }

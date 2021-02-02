@@ -25,7 +25,25 @@
 #define JOIN_MATCH 6  // Used to join a match and notify the result
 #define JOIN_MATCH_SIZE 4
 
-#define GRAB 5  // Player grabbed an item
-#define GRAB_SIZE 6
+#define MOVE 7
+#define MOVE_SIZE 7
+
+#define ROTATE 8
+#define ROTATE_SIZE 7
+
+#define GRAB 9
+#define GRAB_SIZE 9
+
+#define SHOT 10
+#define SHOT_SIZE 8
+
+#define CHANGE_GUN 11
+#define CHANGE_GUN_SIZE 7
+
+#define DOOR_INTERACTION 12
+#define DOOR_INTERACTION_SIZE 10
+
+#define GAME_OVER 13
+#define GAME_OVER_SIZE 2
 
 #endif
