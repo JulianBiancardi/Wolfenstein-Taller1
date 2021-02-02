@@ -41,7 +41,7 @@ Player::Player(double x, double y, double angle)
 Player::~Player() { delete knife_mask; }
 
 void Player::receive_damage(int amount) {
-  health = std::min(0, health - amount);
+  health = std::max(0, health - amount);
 }
 
 void Player::add_gun(int gun_id) { guns_bag.insert(gun_id); }
