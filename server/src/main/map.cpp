@@ -77,51 +77,56 @@ bool Map::has_one_player() const { return players.size() == 1; }
 void Map::add_bullets_drop(Player& dead_player) {
   Point where(dead_player.get_position().getX(),
               dead_player.get_position().getY());
-  Bullets* dropped_bullets = new Bullets(where, CL::bullets_respawn_amount);
+
+  auto dropped_bullets = new Bullets(where, CL::bullets_respawn_amount);
   items.insert({dropped_bullets->get_id(), dropped_bullets});
 }
 
 // Where is dropped was arbitrary chosen
 void Map::add_gun_drop(Player& dead_player) {
-  if (dead_player.has_droppable_gun()) {
-    Point where(dead_player.get_position().getX() +
-                    CL::drop_distance_from_dead_player * CL::items_mask_radio,
-                dead_player.get_position().getY());
-    switch (dead_player.get_active_gun()) {
-      case MACHINE_GUN_ID: {
-        MachineGunItem* new_machine_gun = new MachineGunItem(where);
-        items.insert({new_machine_gun->get_id(), new_machine_gun});
-        break;
-      }
-      case CHAIN_CANNON_ID: {
-        ChainCannonItem* new_chain_cannon = new ChainCannonItem(where);
-        items.insert({new_chain_cannon->get_id(), new_chain_cannon});
-        break;
-      }
-      case ROCKET_LAUNCHER_ID: {
-        RocketLauncherItem* new_rocket_launcher = new RocketLauncherItem(where);
-        items.insert({new_rocket_launcher->get_id(), new_rocket_launcher});
-        break;
-      }
-      default:break;
+  Point where(dead_player.get_position().getX() +
+                  CL::drop_distance_from_dead_player * CL::items_mask_radio,
+              dead_player.get_position().getY());
+
+  switch (dead_player.get_active_gun()) {
+    case MACHINE_GUN_ID: {
+      auto new_machine_gun = new MachineGunItem(where);
+      items.insert({new_machine_gun->get_id(), new_machine_gun});
+      break;
     }
+    case CHAIN_CANNON_ID: {
+      auto new_chain_cannon = new ChainCannonItem(where);
+      items.insert({new_chain_cannon->get_id(), new_chain_cannon});
+      break;
+    }
+    case ROCKET_LAUNCHER_ID: {
+      auto new_rocket_launcher = new RocketLauncherItem(where);
+      items.insert({new_rocket_launcher->get_id(), new_rocket_launcher});
+      break;
+    }
+    default: break;
   }
 }
 
 // Where is dropped was arbitrary chosen
 void Map::add_key_drop(Player& dead_player) {
-  if (dead_player.has_keys()) {
-    Point where(dead_player.get_position().getX() -
-                    CL::drop_distance_from_dead_player * CL::items_mask_radio,
-                dead_player.get_position().getY());
-    Key* new_key = new Key(where);
-    items.insert({new_key->get_id(), new_key});
-  }
+  Point where(dead_player.get_position().getX() -
+                  CL::drop_distance_from_dead_player * CL::items_mask_radio,
+              dead_player.get_position().getY());
+
+  auto new_key = new Key(where);
+  items.insert({new_key->get_id(), new_key});
 }
 
 // Possible bug: items can spawn inside walls depending on YAML values
 void Map::add_drop(Player& dead_player) {
   add_bullets_drop(dead_player);
-  add_gun_drop(dead_player);
-  add_key_drop(dead_player);
+
+  if (dead_player.has_droppable_gun()) {
+    add_gun_drop(dead_player);
+  }
+
+  if (dead_player.has_keys()) {
+    add_key_drop(dead_player);
+  }
 }
