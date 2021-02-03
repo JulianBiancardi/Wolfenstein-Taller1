@@ -49,13 +49,9 @@ GameCaster::GameCaster(Window& window, Ray& player, Map& map)
 GameCaster::~GameCaster() {}
 
 void GameCaster::operator()() {
-  fprintf(stderr, "Background\n");
   draw_background();
-  fprintf(stderr, "Walls\n");
   std::vector<double> wall_distances = draw_walls();
-  fprintf(stderr, "Sprites\n");
   draw_sprites(wall_distances);
-  fprintf(stderr, "Window\n");
   window.update();
 }
 

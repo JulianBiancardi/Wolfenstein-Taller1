@@ -6,8 +6,9 @@
 #define SCREEN_WIDTH (320 * UNIT)
 #define SCREEN_HEIGHT (200 * UNIT)
 
-Game::Game(Match& match)
-    : window("Hello World!", SCREEN_WIDTH, SCREEN_HEIGHT),
+Game::Game(Server& server, Match& match)
+    : server(server),
+      window("Hello World!", SCREEN_WIDTH, SCREEN_HEIGHT),
       map("test_map"),
       player_ray(2.5, 2.5, 0),
       caster(window, player_ray, map),
@@ -20,7 +21,6 @@ void Game::operator()() {
 
   is_running = true;
   while (is_running) {
-    fprintf(stderr, "Handle\n");
     handle_events();
 
     // Receive events
@@ -28,37 +28,35 @@ void Game::operator()() {
     // movement_event.setCaster(caster);
     // movement_event.process();
 
-    fprintf(stderr, "Update\n");
     update();
-    fprintf(stderr, "Render\n");
     render();
-    fprintf(stderr, "Sleep\n");
     frame_limiter.sleep();
   }
 }
 
 void Game::handle_events() {
   SDL_Event event;
-  SDL_PollEvent(&event);
-  switch (event.type) {
-    case SDL_QUIT:
-      this->is_running = false;
-      break;
-    case SDL_KEYDOWN:
-      printf("Key press\n");
-      handle_key_press(event.key.keysym.sym);
-      break;
-    case SDL_KEYUP:
-      printf("Key release\n");
-      break;
-    case SDL_MOUSEBUTTONDOWN:
-      printf("Mouse clicked\n");
-      break;
-    case SDL_MOUSEBUTTONUP:
-      printf("Mouse unclicked\n");
-      break;
-    default:
-      break;
+  while (SDL_PollEvent(&event)) {
+    switch (event.type) {
+      case SDL_QUIT:
+        this->is_running = false;
+        break;
+      case SDL_KEYDOWN:
+        printf("Key press\n");
+        handle_key_press(event.key.keysym.sym);
+        break;
+      case SDL_KEYUP:
+        printf("Key release\n");
+        break;
+      case SDL_MOUSEBUTTONDOWN:
+        printf("Mouse clicked\n");
+        break;
+      case SDL_MOUSEBUTTONUP:
+        printf("Mouse unclicked\n");
+        break;
+      default:
+        break;
+    }
   }
 }
 
@@ -113,6 +111,11 @@ void Game::handle_key_press(SDL_Keycode& key) {
   }
 }
 
-void Game::update() {}
+void Game::update() {
+  BlockingQueue<Packet>& reception_queue = server.get_reception_queue();
+  Packet packet;
+  while (reception_queue.poll(packet)) {
+  }
+}
 
 void Game::render() { caster(); }

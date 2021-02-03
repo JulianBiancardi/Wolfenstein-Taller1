@@ -6,9 +6,11 @@
 #include "launcher/include/match.h"  // TODO Move smwhere else
 #include "map.h"
 #include "sdl/window.h"
+#include "server.h"
 
 class Game {
  private:
+  Server& server;
   Window window;
   Map map;
   Ray player_ray;
@@ -32,7 +34,7 @@ class Game {
   */
 
  public:
-  Game(Match& match);
+  Game(Server& server, Match& match);
   ~Game();
 
   void operator()();
