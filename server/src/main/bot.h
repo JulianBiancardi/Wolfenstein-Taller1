@@ -22,13 +22,11 @@ extern "C" {
 
 class Bot {
  public:
-  Bot(CollisionChecker& checker, Player& player,
-      std::unordered_map<int, Player>& players);
+  Bot(CollisionChecker& checker, Map& map, int id_at_players);
   ~Bot();
   void execute();
   void update_player();
   void load_map(int x, int y, int value /*todo change?*/);
-  void set_id_at_players(int id);
   void move_actions();
   void kill_actions();
   void rotate_to_player_goal();
@@ -38,10 +36,11 @@ class Bot {
   lua_State* state;
   int id_at_players;
   CollisionChecker& checker;
-  Player& player;
-  std::unordered_map<int, Player>& players;
-  std::list<Player*> attacked_players;
+  //Player& player;
+  //const std::unordered_map<unsigned int, Player>& players;
+  std::list<int> attacked_players;
   Player* player_goal;
+  Map& map;
   void lua_checker(int status);
   void lua_push_table_number(const char* key, const auto value);
 };

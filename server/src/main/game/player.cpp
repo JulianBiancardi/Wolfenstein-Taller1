@@ -13,6 +13,8 @@ Player::Player(Point origin, double angle)
       knife_mask(new CircleMask(ConfigLoader::player_knife_mask_radio,
                                 position.get_ref_origin())),
       Moveable(origin, angle) {
+  knife_mask = new CircleMask(ConfigLoader::player_knife_mask_radio,
+      position.get_ref_origin());
   max_health = ConfigLoader::player_health;
   health = max_health;
   max_bullets = ConfigLoader::player_max_bullets;
@@ -31,6 +33,8 @@ Player::Player(double x, double y, double angle)
       knife_mask(new CircleMask(ConfigLoader::player_knife_mask_radio,
                                 position.get_ref_origin())),
       Moveable(x, y, angle) {
+  knife_mask = new CircleMask(ConfigLoader::player_knife_mask_radio,
+                              position.get_ref_origin());
   max_health = ConfigLoader::player_health;
   health = max_health;
   max_bullets = ConfigLoader::player_max_bullets;
@@ -172,10 +176,10 @@ Player::Player(const Player& player)
   health = player.health;
   lives = player.lives;
   guns_bag = player.guns_bag;
-  knife_mask = new CircleMask(ConfigLoader::player_knife_mask_radio,
-                              player.position.get_ref_origin());
+  this->knife_mask = new CircleMask(ConfigLoader::player_knife_mask_radio,
+                              position.get_ref_origin());
 }
-Point Player::knife_collision_mask_bound(const Point& next_position) {
+Point Player::knife_collision_mask_bound(const Point& next_position) const{
   double angle = position.get_origin().angle_to(next_position);
 
   double front_x =
@@ -186,4 +190,8 @@ Point Player::knife_collision_mask_bound(const Point& next_position) {
           - sin(angle) * ((CircleMask*) knife_mask)->get_radius();
 
   return Point(front_x, front_y);
+}
+
+bool Player::knife_mask_bound_occupies(const Point& where) const {
+  return knife_mask->occupies(where);
 }

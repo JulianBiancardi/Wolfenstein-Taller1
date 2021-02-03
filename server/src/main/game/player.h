@@ -59,8 +59,8 @@ class Player : public Moveable {
   int get_lives();
   int get_points();
   void add_kill();
-  Point knife_collision_mask_bound(const Point& next_position);
-
+  Point knife_collision_mask_bound(const Point& next_position) const;
+  bool knife_mask_bound_occupies(const Point& where) const;
 };
 
 #endif  // WOLFENSTEIN_TALLER1_PLAYER_H

@@ -28,7 +28,7 @@ FILE(GLOB ServerFiles
         src/main/threads/*/*.cpp
         src/main/packet_handlers/*.cpp
 
-        #src/main/bot.cpp ##
+        src/main/bot.cpp ##
         src/main/map.cpp # Should be everything different from main_server.cpp
         src/main/map_loader.cpp
         src/main/game/*.cpp
@@ -68,7 +68,7 @@ target_link_libraries(
         PRIVATE
         Threads::Threads
         yaml-cpp
-        #lua
+        lua
         dl
 )
 
@@ -85,6 +85,6 @@ target_link_libraries(
         PRIVATE
         Threads::Threads
         yaml-cpp
-        #lua
+        lua
         dl
 )
