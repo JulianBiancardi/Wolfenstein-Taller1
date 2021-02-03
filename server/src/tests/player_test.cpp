@@ -1,16 +1,18 @@
-#include "../main/game/player.h"
+#include "player_test.h"
 
+#include "../main/game/player.h"
 #include "../../../common/src/main/ids/gun_ids.h"
 #include "../../../common/src/main/ids/movement_ids.h"
-#include "../main/game/objects/door/locked_door.h"
-#include "../main/game/objects/door/normal_door.h"
-#include "../main/game/objects/rectangular_object.h"
-#include "../main/map.h"
+#include "../main/game/objects/door/door.h"
 #include "client_mock.h"
 #include "tests_setup.h"
 
 #define TEST_MAP_SIZE 10
-#define EPSILON 0.1
+
+#define TEST_MAP_EMPTY "test_map_empty"
+#define TEST_MAP_WITH_TABLE "test_map_with_table"
+#define TEST_MAP_WITH_DOOR "test_map_with_door"
+#define TEST_MAP_WITH_LOCKED_DOOR "test_map_with_locked_door"
 
 int static can_move_up();
 int static collides_wall();
@@ -60,33 +62,9 @@ void move_up_right(Player& who, CollisionChecker& checker) {
   if (checker.can_move(next_position, who)) who.set_position(next_position);
 }
 
-void move_up_left(Player& who, CollisionChecker& checker) {
-  Point next_position = who.next_position(UP_LEFT);
-  if (checker.can_move(next_position, who)) who.set_position(next_position);
+void move_player_to(Player& who, CollisionChecker& checker, Point where) {
+  if (checker.can_move(where, who)) who.set_position(where);
 }
-
-void move_down_right(Player& who, CollisionChecker& checker) {
-  Point next_position = who.next_position(DOWN_RIGHT);
-  if (checker.can_move(next_position, who)) who.set_position(next_position);
-}
-
-void move_down_left(Player& who, CollisionChecker& checker) {
-  Point next_position = who.next_position(DOWN_LEFT);
-  if (checker.can_move(next_position, who)) who.set_position(next_position);
-}
-
-Matrix<int> create_base_map() {
-  Matrix<int> map_data(TEST_MAP_SIZE, TEST_MAP_SIZE, 0);
-  for (size_t i = 0; i < TEST_MAP_SIZE; i++) {
-    map_data(i, 0) = WALL;
-    map_data(i, TEST_MAP_SIZE - 1) = WALL;
-    map_data(0, i) = WALL;
-    map_data(TEST_MAP_SIZE - 1, i) = WALL;
-  }
-  return map_data;
-}
-
-bool double_compare(double x, double y) { return fabs(x - y) < EPSILON; }
 
 void player_tests() {
   begin_tests("PLAYER");
@@ -136,16 +114,15 @@ void player_tests() {
   print_test("Jugador abre la puerta, la cierra y otro la abre",
              player_opens_door_with_key_then_closes_it_and_other_opens_it,
              NO_ERROR);
-  // print_test("La puerta no se cierra si hay un jugador debajo",
-  //           player_cannot_close_door_if_it_is_under_it, NO_ERROR);
+  print_test("La puerta no se cierra si hay un jugador debajo",
+             player_cannot_close_door_if_it_is_under_it, NO_ERROR);
 
   end_tests();
 }
 
 int static can_move_up() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(5, 5);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
@@ -160,12 +137,12 @@ int static can_move_up() {
 }
 
 int static collides_wall() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(8.45, 5);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(8.45, 5));
 
   move_up(map.get_player(1), checker);
 
@@ -177,9 +154,8 @@ int static collides_wall() {
 }
 
 int static walks_and_collides_wall() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(5, 5);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
@@ -199,9 +175,8 @@ int static walks_and_collides_wall() {
 }
 
 int static walk_with_different_angle_and_direction() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(5, 5);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
@@ -216,12 +191,12 @@ int static walk_with_different_angle_and_direction() {
 }
 
 int static complete_path_correctly() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 2);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 2));
 
   for (int i = 0; i < 40; i++) {
     move_up(map.get_player(1), checker);
@@ -241,33 +216,33 @@ int static complete_path_correctly() {
 }
 
 int static walk_diagonally() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 2);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 2));
 
   move_up_right(map.get_player(1), checker);
 
   if (double_compare(map.get_player(1).get_position().getX(),
-                     map.get_player(1).get_position().getX() +
-                         CL::player_pace * cos(7 * M_PI / 4)) &&
-      double_compare(map.get_player(1).get_position().getY(),
-                     map.get_player(1).get_position().getY() -
-                         CL::player_pace * sin(7 * M_PI / 4)))
+                     map.get_player(1).get_position().getX()
+                         + CL::player_pace * cos(7 * M_PI / 4))
+      && double_compare(map.get_player(1).get_position().getY(),
+                        map.get_player(1).get_position().getY()
+                            - CL::player_pace * sin(7 * M_PI / 4)))
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static complete_difficult_path_correctly() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 2);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 2));
 
   for (int i = 0; i < 100; i++) {
     move_up(map.get_player(1), checker);
@@ -287,12 +262,12 @@ int static complete_difficult_path_correctly() {
 }
 
 int static check_collisions() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 2);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 2));
 
   for (int i = 0; i < 140; i++) {
     move_up(map.get_player(1), checker);
@@ -300,7 +275,8 @@ int static check_collisions() {
 
   if (!double_compare(map.get_player(1).get_position().getX(),
                       TEST_MAP_SIZE - 1 - CL::player_mask_radio) ||
-      !double_compare(map.get_player(1).get_position().getY(), 2))
+      !double_compare(map.get_player(1).get_position().getY(),
+                      2))
     return ERROR;
 
   for (int i = 0; i < 140; i++) {
@@ -337,37 +313,37 @@ int static check_collisions() {
 }
 
 int static player_collides_against_other_player() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 2);
-  map.add_spawn_point(2, 7);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
   map.add_player(2);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 2));
+  move_player_to(map.get_player(2), checker, Point(2, 7));
 
   for (int i = 0; i < 100; i++) {
     move_right(map.get_player(1), checker);
   }
 
   if (double_compare(map.get_player(1).get_position().getX(), 2) &&
-      double_compare(
-          map.get_player(1).get_position().getY(),
-          map.get_player(2).get_position().getY() - 2 * CL::player_mask_radio))
+      double_compare(map.get_player(1).get_position().getY(),
+                     map.get_player(2).get_position().getY()
+                         - 2 * CL::player_mask_radio))
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static another_player_collides_against_other_player() {
-  Matrix<int> map_data = create_base_map();
-  Map map(map_data);
-  map.add_spawn_point(2, 2);
-  map.add_spawn_point(7, 7);
+  std::string map_name(TEST_MAP_EMPTY);
+  Map map(map_name);
   map.add_player(1);
   map.add_player(2);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 2));
+  move_player_to(map.get_player(2), checker, Point(7, 7));
 
   for (int i = 0; i < 50; i++) {
     move_right(map.get_player(1), checker);
@@ -378,8 +354,8 @@ int static another_player_collides_against_other_player() {
   }
 
   if (double_compare(map.get_player(2).get_position().getX(),
-                     map.get_player(1).get_position().getX() +
-                         2 * CL::player_mask_radio) &&
+                     map.get_player(1).get_position().getX()
+                         + 2 * CL::player_mask_radio) &&
       double_compare(map.get_player(2).get_position().getY(), 7))
     return NO_ERROR;
 
@@ -387,47 +363,49 @@ int static another_player_collides_against_other_player() {
 }
 
 int static player_collides_against_table_from_side() {
-  std::string map_name("test_map1");
+  std::string map_name(TEST_MAP_WITH_TABLE);
   Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
   for (int i = 0; i < 30; i++) {
     move_up(map.get_player(1), checker);
   }
 
-  if (double_compare(
-          map.get_player(1).get_position().getX(),
-          5 - CL::table_width / 2 - CL::player_mask_radio - CL::player_pace) &&
-      map.get_player(1).get_position().getY() == 5)
+  if (double_compare(map.get_player(1).get_position().getX(),
+                     5 - CL::table_width / 2 - CL::player_mask_radio
+                         - CL::player_pace)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_collides_against_table_from_another_side() {
-  std::string map_name("test_map2");
+  std::string map_name(TEST_MAP_WITH_TABLE);
   Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(5, 2));
 
   for (int i = 0; i < 100; i++) {
     move_right(map.get_player(1), checker);
   }
 
   if (map.get_player(1).get_position().getX() == 5 &&
-      double_compare(
-          map.get_player(1).get_position().getY(),
-          5 - CL::table_depth / 2 - CL::player_mask_radio - CL::player_pace))
+      double_compare(map.get_player(1).get_position().getY(),
+                     5 - CL::table_depth / 2 - CL::player_mask_radio
+                         - CL::player_pace))
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static diagonal_collision_with_table() {
-  std::string map_name("test_map3");
+  std::string map_name(TEST_MAP_WITH_TABLE);
   Map map(map_name);
   map.add_player(1);
 
@@ -437,22 +415,19 @@ int static diagonal_collision_with_table() {
     move_up_right(map.get_player(1), checker);
   }
 
-  if (fabs(map.get_player(1).get_position().distance_from(Point(7, 7))) <
-      CL::player_mask_radio) {
+  if (fabs(map.get_player(1).get_position().distance_from(Point(5, 5)))
+      < CL::player_mask_radio)
     return ERROR;
-  }
 
   Point previous_point(map.get_player(1).get_position().getX() -
                            CL::player_pace * cos(7 * M_PI / 4),
                        map.get_player(1).get_position().getY() +
                            CL::player_pace * sin(7 * M_PI / 4));
 
-  if (fabs(previous_point.distance_from(Point(7, 7))) <=
-      CL::player_mask_radio) {
-    return ERROR;
-  }
+  if (fabs(previous_point.distance_from(Point(5, 5))) > CL::player_mask_radio)
+    return NO_ERROR;
 
-  return NO_ERROR;
+  return ERROR;
 }
 
 int static player_kills_are_correct() {
@@ -491,167 +466,166 @@ int static player_respawns_correctly() {
 }
 
 int static player_collides_against_door() {
-  std::string map_name("test_map4");
+  std::string map_name(TEST_MAP_WITH_DOOR);
   Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
   for (int i = 0; i < 60; i++) {
     move_up(map.get_player(1), checker);
   }
 
-  // FIXME Should not be hardcoded door width
   if (double_compare(map.get_player(1).get_position().getX(),
-                     5 - 0.5 - CL::player_mask_radio - CL::player_pace) &&
-      map.get_player(1).get_position().getY() == 5)
+                     5 - 0.5 - CL::player_mask_radio - CL::player_pace)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_walks_through_door() {
-  std::string map_name("test_map4");
+  std::string map_name(TEST_MAP_WITH_DOOR);
   Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
-  ((Door*)map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
   for (int i = 0; i < 60; i++) {
     move_up(map.get_player(1), checker);
   }
 
-  // FIXME Should not be hardcoded door width
-  if (double_compare(map.get_player(1).get_position().getX(), 8) &&
-      map.get_player(1).get_position().getY() == 5)
+  if (double_compare(map.get_player(1).get_position().getX(), 8)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_tries_to_pass_door_opens_it_and_does_it() {
-  std::string map_name("test_map4");
+  std::string map_name(TEST_MAP_WITH_DOOR);
   Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
   for (int i = 0; i < 60; i++) {
     move_up(map.get_player(1), checker);
   }
 
-  // FIXME Should not be hardcoded door width
   if (double_compare(map.get_player(1).get_position().getX(),
-                     5 - 0.5 - CL::player_mask_radio - CL::player_pace) &&
-      map.get_player(1).get_position().getY() == 5)
+                     5 - 0.5 - CL::player_mask_radio - CL::player_pace)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   Point previous(map.get_player(1).get_position());
 
-  ((Door*)map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
   for (int i = 0; i < 20; i++) {
     move_up(map.get_player(1), checker);
   }
 
-  // FIXME Should not be hardcoded door width
   if (double_compare(map.get_player(1).get_position().getX(),
-                     previous.getX() + 2) &&
-      map.get_player(1).get_position().getY() == 5)
+                     previous.getX() + 2)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_tries_to_open_locked_door_with_no_key() {
-  std::string map_name("test_map5");
+  std::string map_name(TEST_MAP_WITH_LOCKED_DOOR);
   Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
-  ((Door*)map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
   for (int i = 0; i < 60; i++) {
     move_up(map.get_player(1), checker);
   }
 
-  // FIXME Should not be hardcoded door width
   if (double_compare(map.get_player(1).get_position().getX(),
-                     5 - 0.5 - CL::player_mask_radio - CL::player_pace) &&
-      map.get_player(1).get_position().getY() == 5)
+                     5 - 0.5 - CL::player_mask_radio - CL::player_pace)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_opens_door_with_key() {
-  std::string map_name("test_map5");
+  std::string map_name(TEST_MAP_WITH_LOCKED_DOOR);
   Map map(map_name);
   map.add_player(1);
   map.get_player(1).add_key();
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
-  ((Door*)map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
   for (int i = 0; i < 60; i++) {
     move_up(map.get_player(1), checker);
   }
 
-  // FIXME Should not be hardcoded door width
-  if (double_compare(map.get_player(1).get_position().getX(), 8) &&
-      map.get_player(1).get_position().getY() == 5)
+  if (double_compare(map.get_player(1).get_position().getX(), 8)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
-  std::string map_name("test_map6");
+  std::string map_name(TEST_MAP_WITH_LOCKED_DOOR);
   Map map(map_name);
   map.add_player(1);
   map.add_player(2);
   map.get_player(1).add_key();
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
-  ((Door*)map.get_object(0))->interact(map.get_player(1), checker);
-  ((Door*)map.get_object(0))->interact(map.get_player(1), checker);
-  ((Door*)map.get_object(0))->interact(map.get_player(2), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(2), checker);
 
   for (int i = 0; i < 60; i++) {
     move_up(map.get_player(1), checker);
   }
 
-  // FIXME Should not be hardcoded door width
-  if (double_compare(map.get_player(1).get_position().getX(), 8) &&
-      map.get_player(1).get_position().getY() == 5)
+  if (double_compare(map.get_player(1).get_position().getX(), 8)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;
 }
 
 int static player_cannot_close_door_if_it_is_under_it() {
-  // FIXME Test not working
-  std::string map_name("test_map5");
+  std::string map_name(TEST_MAP_WITH_DOOR);
   Map map(map_name);
   map.add_player(1);
 
   CollisionChecker checker(map);
+  move_player_to(map.get_player(1), checker, Point(2, 5));
 
-  ((Door*)map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
-  while (!(map.get_player(1).get_position().getX() < 5.5 &&
-           map.get_player(1).get_position().getX() > 4.5)) {
+  while (!(map.get_player(1).get_position().getX() < 5.5
+      && map.get_player(1).get_position().getX() > 4.5)) {
     move_up(map.get_player(1), checker);
   }
 
-  ((Door*)map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
-  if (!(((Door*)map.get_object(0))->is_open())) {
+  if (!(((Door*) map.get_object(0))->is_open())) {
     return ERROR;
   }
 
@@ -661,16 +635,15 @@ int static player_cannot_close_door_if_it_is_under_it() {
     move_up(map.get_player(1), checker);
   }
 
-  ((Door*)map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
 
-  if ((((Door*)map.get_object(0))->is_open())) {
+  if ((((Door*) map.get_object(0))->is_open())) {
     return ERROR;
   }
 
-  // FIXME Should not be hardcoded door width
   if (double_compare(map.get_player(1).get_position().getX(),
-                     previous.getX() + 2) &&
-      map.get_player(1).get_position().getY() == 5)
+                     previous.getX() + 2)
+      && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
   return ERROR;

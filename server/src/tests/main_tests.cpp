@@ -4,6 +4,7 @@
 
 int main(int argc, char** argv) {
   bot_tests();
+  match_tests();
   player_tests();
   clock_tests();
   return 0;

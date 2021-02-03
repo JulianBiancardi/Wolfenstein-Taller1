@@ -23,7 +23,7 @@ class Player : public Moveable {
   int lives;
   int players_killed;
   int keys;
-  Mask * knife_mask;
+  Mask* knife_mask;
 
   void remove_guns_to_respawn();
 
@@ -37,7 +37,7 @@ class Player : public Moveable {
   // Player has too much responsibilities
   void receive_damage(int amount);
   void add_gun(int gun_id);
-  bool has_gun(int gun_id);
+  bool has_gun(int gun_id) const;
   bool has_droppable_gun();
   bool change_gun(int gun_id);
   void shoot();
@@ -46,18 +46,18 @@ class Player : public Moveable {
   void add_health(int amount);
   void add_key();
   void remove_key();
-  bool is_full_health();
+  bool is_full_health() const;
   bool is_full_bullets();
   bool is_dead() const;
-  bool has_lives();
-  bool has_keys();
+  bool has_extra_lives();
+  bool has_keys() const;
   void respawn();
-  int get_health();
-  int get_bullets();
-  int get_active_gun();
+  int get_health() const;
+  int get_bullets() const;
+  int get_active_gun() const;
   int get_kills();
   int get_lives();
-  int get_points();
+  int get_points() const;
   void add_kill();
   Point knife_collision_mask_bound(const Point& next_position) const;
   bool knife_mask_bound_occupies(const Point& where) const;
