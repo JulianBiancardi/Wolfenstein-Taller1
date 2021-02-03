@@ -1,6 +1,12 @@
 #include "game.h"
 
+#include <syslog.h>
+
+#include <memory>
+
+#include "../../../common/src/main/packets/packet_handler_factory_error.h"
 #include "frame_limiter.h"
+#include "packet_handlers/packet_handler_factory.h"
 
 #define UNIT 5
 #define SCREEN_WIDTH (320 * UNIT)
@@ -115,6 +121,13 @@ void Game::update() {
   BlockingQueue<Packet>& reception_queue = server.get_reception_queue();
   Packet packet;
   while (reception_queue.poll(packet)) {
+    try {
+      std::unique_ptr<PacketHandler> handler(
+          PacketHandlerFactory::build(packet));
+      handler->handle(packet);
+    } catch (const PacketHandlerFactoryError& e) {
+      syslog(LOG_ERR, "Packet received hasn't got a valid type.");
+    }
   }
 }
 

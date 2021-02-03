@@ -2,13 +2,14 @@
 
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/packets/packet_handler_factory_error.h"
+#include "move_handler.h"
 
 PacketHandler* PacketHandlerFactory::build(Packet& packet) {
   switch (packet.get_type()) {
       // TODO FIX This once all have been defined
-    /*case MOVE_PACKET:
+    case MOVE_PACKET:
       return new MoveHandler();
-    case ROTATE_PACKET:
+    /*case ROTATE_PACKET:
       return new nullptr;  // TODO
     case DOOR_PACKET:
       return new nullptr;  // TODO

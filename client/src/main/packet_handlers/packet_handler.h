@@ -2,6 +2,7 @@
 #define PACKET_HANDLER_H
 
 #include "../../../../common/src/main/packets/packet.h"
+#include "../map.h"
 
 class PacketHandler {
  private:
@@ -9,7 +10,7 @@ class PacketHandler {
   PacketHandler();
   ~PacketHandler();
 
-  virtual void handle(Packet& packet) = 0;
+  virtual void handle(Packet& packet, Map& map) = 0;
 };
 
 #endif
