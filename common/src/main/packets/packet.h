@@ -26,7 +26,10 @@
 #define DOOR_PACKET 4
 #define CHANGE_GUN_PACKET 5
 #define DAMAGE_PACKET 6
-#define GAME_OVER_PACKET 7*/
+#define GAME_OVER_PACKET 7
+#define GRAB 5  // Player grabbed an item
+#define GRAB_SIZE 6
+*/
 
 class Packet {
  private:

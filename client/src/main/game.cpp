@@ -162,9 +162,9 @@ void Game::process_movement() {
     }
   }
 
-  unsigned char data[MOVEMENT_PACKET_SIZE];
+  unsigned char data[MOVEMENT_SIZE];
   size_t size =
-      pack(data, "CICC", MOVEMENT_PACKET, server.get_id(), match_id, direction);
+      pack(data, "CICC", MOVEMENT, server.get_id(), match_id, direction);
   Packet move_packet(size, data);
   server.send(move_packet);
 }
@@ -181,9 +181,9 @@ void Game::process_rotation() {
     direction = LEFT_ROTATION;
   }
 
-  unsigned char data[ROTATION_PACKET_SIZE];
+  unsigned char data[ROTATION_SIZE];
   size_t size =
-      pack(data, "CICC", ROTATION_PACKET, server.get_id(), match_id, direction);
+      pack(data, "CICC", ROTATION, server.get_id(), match_id, direction);
   Packet move_packet(size, data);
   server.send(move_packet);
 }

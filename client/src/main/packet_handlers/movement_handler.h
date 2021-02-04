@@ -5,11 +5,11 @@
 #include "../map.h"
 #include "packet_handler.h"
 
-class MoveHandler : public PacketHandler {
+class MovementHandler : public PacketHandler {
  private:
  public:
-  MoveHandler();
-  ~MoveHandler();
+  MovementHandler();
+  ~MovementHandler();
 
   void handle(Packet& packet, Map& map) override;
 };
