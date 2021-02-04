@@ -1,5 +1,5 @@
 #include "circle_mask.h"
-
+#include <iostream>
 CircleMask::CircleMask(double radius, const Point& center)
     : radius(radius), Mask(center) {}
 

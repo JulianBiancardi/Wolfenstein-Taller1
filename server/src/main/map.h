@@ -41,6 +41,9 @@ class Map : public BaseMap {
   /* Returns a reference to a player */
   Player& get_player(unsigned int player_id);
 
+  /* Deletes player */
+  void delete_player(unsigned int player_id);
+
   /* Returns a reference to an item */
   Item& get_item(unsigned int item_id);
 
@@ -62,15 +65,8 @@ class Map : public BaseMap {
   /* Returns if only has one player or not */
   bool has_one_player() const;
 
-  //
-  //
-  //
-
-  // The drop added depends on dead_player items
+  /* Adds player's death drop */
   void add_drop(Player& dead_player);
-
-  /* TODO Remove */
-  void add_spawn_point(double x, double y);
 };
 
 #endif

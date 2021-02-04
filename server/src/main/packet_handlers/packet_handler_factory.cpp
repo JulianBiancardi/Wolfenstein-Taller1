@@ -2,9 +2,15 @@
 
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/packets/packet_handler_factory_error.h"
+#include "change_gun_handler.h"
+#include "door_interaction_handler.h"
+#include "game_over_handler.h"
 #include "join_match_handler.h"
+#include "move_handler.h"
 #include "request_matches_handler.h"
 #include "request_new_match_handler.h"
+#include "rotation_handler.h"
+#include "shot_handler.h"
 
 PacketHandler* PacketHandlerFactory::build(Packet& packet) {
   switch (packet.get_type()) {
@@ -14,18 +20,18 @@ PacketHandler* PacketHandlerFactory::build(Packet& packet) {
       return new RequestNewMatchHandler();
     case JOIN_MATCH:
       return new JoinMatchHandler();
-      // TODO FIX This once all have been defined
-    /*case MOVE_PACKET:
+    /*
+    case MOVE:
       return new MoveHandler();
-    case ROTATE_PACKET:
-      return new nullptr;  // TODO
-    case DOOR_PACKET:
-      return new nullptr;  // TODO
-    case CHANGE_GUN_PACKET:
+    case ROTATE:
+      return new RotationHandler();
+    case SHOT:
+      return new ShotHandler();
+    case CHANGE_GUN:
       return new ChangeGunHandler();
-    case DAMAGE_PACKET:
-      return new DamageHandler(who, enemy_hit, event.data.shot.damage_done);
-    case GAME_OVER_PACKET:
+    case DOOR_INTERACTION:
+      return new DoorInteractionHandler();
+    case GAME_OVER:
       return new GameOverHandler();
       */
     default:

@@ -6,7 +6,7 @@ PacketHandler::PacketHandler() {}
 
 PacketHandler::~PacketHandler() {}
 
-void PacketHandler::consequent_grab(unsigned char player_id, Match& match,
+void PacketHandler::consequent_grab(unsigned int player_id, Match& match,
                                     ClientManager& client_manager) {
   unsigned int item_id = match.grab_item(player_id);
 
@@ -15,8 +15,18 @@ void PacketHandler::consequent_grab(unsigned char player_id, Match& match,
     size_t size = pack(data, "CII", GRAB, &player_id, &item_id);
     Packet packet(size, data);
 
-    const std::unordered_set<unsigned int>
-        & client_ids = match.get_players_ids();
-    client_manager.send_to_all(client_ids, packet);
+    const std::unordered_set<unsigned int>& clients = match.get_players_ids();
+    client_manager.send_to_all(clients, packet);
   }
+}
+
+void PacketHandler::game_over(Match& match, ClientManager& client_manager) {
+  unsigned char match_id = match.get_id();
+
+  unsigned char data[GAME_OVER_SIZE];
+  size_t size = pack(data, "CC", GAME_OVER, &match_id);
+  Packet packet(size, data);
+
+  BlockingQueue<Packet>& reception_queue = client_manager.get_reception_queue();
+  reception_queue.enqueue(packet);
 }

@@ -13,6 +13,8 @@ Player::Player(Point origin, double angle)
       knife_mask(new CircleMask(ConfigLoader::player_knife_mask_radio,
                                 position.get_ref_origin())),
       Moveable(origin, angle) {
+  knife_mask = new CircleMask(ConfigLoader::player_knife_mask_radio,
+      position.get_ref_origin());
   max_health = ConfigLoader::player_health;
   health = max_health;
   max_bullets = ConfigLoader::player_max_bullets;
@@ -31,6 +33,8 @@ Player::Player(double x, double y, double angle)
       knife_mask(new CircleMask(ConfigLoader::player_knife_mask_radio,
                                 position.get_ref_origin())),
       Moveable(x, y, angle) {
+  knife_mask = new CircleMask(ConfigLoader::player_knife_mask_radio,
+                              position.get_ref_origin());
   max_health = ConfigLoader::player_health;
   health = max_health;
   max_bullets = ConfigLoader::player_max_bullets;
@@ -41,12 +45,12 @@ Player::Player(double x, double y, double angle)
 Player::~Player() { delete knife_mask; }
 
 void Player::receive_damage(int amount) {
-  health = std::min(0, health - amount);
+  health = std::max(0, health - amount);
 }
 
 void Player::add_gun(int gun_id) { guns_bag.insert(gun_id); }
 
-bool Player::has_gun(int gun_id) {
+bool Player::has_gun(int gun_id) const {
   return guns_bag.find(gun_id) != guns_bag.end();
 }
 
@@ -114,15 +118,15 @@ void Player::add_key() { keys++; }
 
 void Player::remove_key() { keys--; }
 
-bool Player::is_full_health() { return health == max_health; }
+bool Player::is_full_health() const { return health == max_health; }
 
 bool Player::is_full_bullets() { return bullets == max_bullets; }
 
 bool Player::is_dead() const { return health == 0; }
 
-bool Player::has_lives() { return lives > 0; }
+bool Player::has_extra_lives() { return lives > 1; }
 
-bool Player::has_keys() { return keys != 0; }
+bool Player::has_keys() const { return keys != 0; }
 
 void Player::respawn() {
   lives--;
@@ -134,17 +138,17 @@ void Player::respawn() {
   position = Ray(spawn_point, 0);  // TODO Angle is not 0
 }
 
-int Player::get_health() { return health; }
+int Player::get_health() const { return health; }
 
-int Player::get_bullets() { return bullets; }
+int Player::get_bullets() const { return bullets; }
 
-int Player::get_active_gun() { return active_gun; }
+int Player::get_active_gun() const { return active_gun; }
 
 int Player::get_kills() { return players_killed; }
 
 int Player::get_lives() { return lives; }
 
-int Player::get_points() { return points; }
+int Player::get_points() const { return points; }
 
 void Player::add_kill() { players_killed++; }
 
@@ -172,10 +176,10 @@ Player::Player(const Player& player)
   health = player.health;
   lives = player.lives;
   guns_bag = player.guns_bag;
-  knife_mask = new CircleMask(ConfigLoader::player_knife_mask_radio,
-                              player.position.get_ref_origin());
+  this->knife_mask = new CircleMask(ConfigLoader::player_knife_mask_radio,
+                              position.get_ref_origin());
 }
-Point Player::knife_collision_mask_bound(const Point& next_position) {
+Point Player::knife_collision_mask_bound(const Point& next_position) const{
   double angle = position.get_origin().angle_to(next_position);
 
   double front_x =
@@ -186,4 +190,8 @@ Point Player::knife_collision_mask_bound(const Point& next_position) {
           - sin(angle) * ((CircleMask*) knife_mask)->get_radius();
 
   return Point(front_x, front_y);
+}
+
+bool Player::knife_mask_bound_occupies(const Point& where) const {
+  return knife_mask->occupies(where);
 }

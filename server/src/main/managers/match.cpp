@@ -1,85 +1,6 @@
 #include "match.h"
 
 #include "../game/objects/door/door.h"
-
-/*
-
-#include "../events/event_building.h"
-
-
-Match::Match(Map& map) : map(map), keep_running(true) {}
-
-Match::~Match() {}
-
-void Match::add_player(double initial_angle) {
-  Player new_player(map.next_spawn_point(), initial_angle);
-  players.insert({new_player.get_id(), new_player});
-  result_events.emplace(std::piecewise_construct,
-                        std::forward_as_tuple(new_player.get_id()),
-                        std::forward_as_tuple());  // In-place construction
-}
-
-void Match::enqueue_event(const packet_t& event) {
-  events_to_process.enqueue(event);
-}
-
-const packet_t Match::dequeue_result(int for_whom) {
-  return result_events.at(for_whom)
-      .dequeue();  // Throws out_of_range if not found
-}
-
-void Match::start() {
-  keep_running = true;  // TODO Remove (Fix tests)
-  EventHandlerBuilder builder;
-  CollisionChecker checker(map, players, map.get_items(), map.get_objects());
-
-  while (keep_running) {
-    const packet_t next_event = events_to_process.dequeue();
-    EventHandler* handler = builder.build(next_event, players);
-    handler->handle(*this, checker);
-    delete handler;
-
-    if (events_to_process.is_empty())  // TODO Change way of ending loop
-      keep_running = false;
-  }
-}
-
-void Match::enqueue_result(const packet_t& event, int for_whom) {
-  result_events.at(for_whom).enqueue(
-      event);  // Throws out_of_range if not found
-}
-
-void Match::enqueue_result_for_all(const packet_t& event) {
-  for (auto& queue : result_events) queue.second.enqueue(event);
-}
-
-void Match::enqueue_result_for_all_others(const packet_t& event,
-                                          int others_than) {
-  for (auto& queue : result_events) {
-    if (queue.first != others_than) queue.second.enqueue(event);
-  }
-}
-
-Map& Match::get_map() { return map; }
-
-Player& Match::get_player(int id) { return players.at(id); }
-
-bool Match::has_result_events_left(int id) {
-  return !result_events.at(id).is_empty();
-}
-
-void Match::eliminate_player(int id) {
-  players.erase(id);
-  result_events.erase(id);  // TODO CHECK THIS! Should problably enqueue kill
-                            // socket event to notify thread
-
-  if (players.size() == 1) events_to_process.enqueue(build_game_over_packet());
-}
-
-void Match::end() { keep_running = false; }
-
-*/
-
 #include "match_error.h"
 
 Match::Match(unsigned char match_id, std::string& map_name)
@@ -130,6 +51,7 @@ bool Match::move_player(unsigned int player_id, unsigned char direction) {
 
     return true;
   }
+
   return false;
 }
 
@@ -159,10 +81,12 @@ unsigned int Match::grab_item(unsigned int player_id) {
     if (item.can_be_used_by(player)) {
       item.use(player);
       map.delete_item(item_id);
+
+      return item_id;
     }
   }
 
-  return item_id;
+  return 0;
 }
 
 bool Match::change_gun(unsigned int player_id, unsigned char gun_id) {
@@ -203,7 +127,6 @@ bool Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
     if (objective.is_dead()) {
       kill_player(objective_id);
       shooter.add_kill();
-      map.add_drop(objective);
 
       return true;
     }
@@ -231,7 +154,9 @@ void Match::kill_player(unsigned int player_id) {
 
   Player& player = map.get_player(player_id);
 
-  if (player.has_lives()) {
+  map.add_drop(player);
+
+  if (player.has_extra_lives()) {
     player.respawn();
   } else {
     delete_player(player_id);
@@ -244,7 +169,7 @@ bool Match::has_lives(unsigned int player_id) {
                      player_id);
   }
 
-  return map.get_player(player_id).has_lives();
+  return map.get_player(player_id).has_extra_lives();
 }
 
 bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
@@ -255,7 +180,7 @@ bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
 
   Player& player = map.get_player(player_id);
 
-  Door* door = (Door*)map.get_object(door_id);
+  Door* door = (Door*) map.get_object(door_id);
 
   // FIXME
   if (door == nullptr) {
@@ -265,11 +190,14 @@ bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
   return door->interact(player, checker);
 }
 
-void Match::delete_player(unsigned int player_id) {  // TODO
+void Match::delete_player(unsigned int player_id) {  // TODO Finish this
   if (!player_exists(player_id)) {
     throw MatchError("Failed to delete player. Player %u doesn't exist.",
                      player_id);
   }
+
+  map.delete_player(player_id);
+  players_ids.erase(player_id);
 }
 
 bool Match::should_end() const { return map.has_one_player(); }

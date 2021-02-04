@@ -93,10 +93,13 @@ function is_position_updated()
     if prev_node == nil then
         return true
     end
-    local x_info = math.abs(prev_node.x - player.posX)
+--[[    local x_info = math.abs(prev_node.x - player.posX)
             / prev_node.x * 100
     local y_info = math.abs(prev_node.y - player.posY)
-            / prev_node.y * 100
+            / prev_node.y * 100]]
+    local x_info = math.abs(prev_node.x - player.posX)
+    local y_info = math.abs(prev_node.y - player.posY)
+
     local is_ok = ( (x_info <= differenceAllowed)
             and (y_info <= differenceAllowed) )
     return ( is_ok )

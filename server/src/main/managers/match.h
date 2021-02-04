@@ -7,36 +7,6 @@
 #include "../game/player.h"
 #include "../map.h"
 
-/*
-class Match2 {
- private:
-  Map& map;
-  std::unordered_map<int, int> test;
-  std::unordered_map<int, Player> players;
-  EventQueue<packet_t> events_to_process;
-  std::unordered_map<int, EventQueue<packet_t>> result_events;  // <id, Queue>
-  bool keep_running;
-
- public:
-  Match2(Map& map);
-  ~Match2();
-
-  void add_player(double initial_angle);  // Could be spawn rays
-  void enqueue_event(const packet_t& event);
-  const packet_t dequeue_result(int for_whom);
-  void start();
-
-  Map& get_map();
-  // Enqueuing results
-  void enqueue_result(const packet_t& event, int for_whom);
-  void enqueue_result_for_all(const packet_t& event);
-  void enqueue_result_for_all_others(const packet_t& event, int others_than);
-  Player& get_player(int id);           // Only used for testing
-  bool has_result_events_left(int id);  // Only used for testing
-  void eliminate_player(int id);
-  void end();
-}; */
-
 class Match {
  private:
   unsigned char match_id;
@@ -116,7 +86,7 @@ class Match {
   /* Returns if match should end (does not check time) */
   bool should_end() const;
 
-  /* Ends the match */
+  /* Ends match */
   void end();
 };
 

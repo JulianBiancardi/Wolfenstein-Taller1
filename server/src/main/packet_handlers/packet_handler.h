@@ -8,8 +8,9 @@
 class PacketHandler {
  private:
  protected:
-  void consequent_grab(unsigned char player_id, Match& match,
+  void consequent_grab(unsigned int player_id, Match& match,
                        ClientManager& client_manager);
+  void game_over(Match& match, ClientManager& client_manager);
 
  public:
   PacketHandler();
