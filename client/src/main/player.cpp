@@ -3,6 +3,7 @@
 #include <cmath>
 #include <utility>
 
+#include "../../../common/src/main/ids/movement_ids.h"
 #include "guns/knife.h"
 
 Player::Player(Ray position)
@@ -52,33 +53,46 @@ Player::~Player() {
   }
 }
 
-Point Player::next_position(double direction_angle) {
-  double movement_angle = position.get_angle() + direction_angle;
+void Player::move(unsigned char direction) {
+  double movement_angle = position.get_angle();
+  switch (direction) {
+    case UP:
+      break;
+    case UP_LEFT:
+      movement_angle += (M_PI / 4);
+      break;
+    case LEFT:
+      movement_angle += (M_PI / 2);
+      break;
+    case DOWN_LEFT:
+      movement_angle += (3 * M_PI / 4);
+      break;
+    case DOWN:
+      movement_angle += M_PI;
+      break;
+    case DOWN_RIGHT:
+      movement_angle += (5 * M_PI / 4);
+      break;
+    case RIGHT:
+      movement_angle += (3 * M_PI / 2);
+      break;
+    case UP_RIGHT:
+      movement_angle += (7 * M_PI / 4);
+      break;
+  }
 
   double next_x = position.get_origin().getX() + cos(movement_angle) * pace;
   double next_y = position.get_origin().getY() + sin(movement_angle) * pace;
 
-  return Point(next_x, next_y);
+  position = Ray(next_x, next_y, position.get_angle());
 }
 
-Point Player::next_position_up() { return next_position(0); }
-
-Point Player::next_position_down() { return next_position(M_PI); }
-
-Point Player::next_position_right() { return next_position(3 * M_PI / 2); }
-
-Point Player::next_position_left() { return next_position(M_PI / 2); }
-
-Point Player::next_position_up_right() { return next_position(7 * M_PI / 4); }
-
-Point Player::next_position_up_left() { return next_position(M_PI / 4); }
-
-Point Player::next_position_down_right() { return next_position(5 * M_PI / 4); }
-
-Point Player::next_position_down_left() { return next_position(3 * M_PI / 4); }
-
-void Player::set_position(const Point& new_origin) {
-  position = Ray(new_origin, position.get_angle());
+void Player::rotate(unsigned char direction) {
+  switch (direction) {
+    case LEFT_ROTATION:
+      position = Ray(position.get_origin(),
+                     position.get_angle() + CL::player_rotation_angle);
+  }
 }
 
 Hit Player::shoot(Map& map) {

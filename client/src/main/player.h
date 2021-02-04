@@ -21,13 +21,14 @@ class Player : public Object {
   std::unordered_map<int, Gun*> guns_bag;
   int active_gun;
 
-  Point next_position(double direction_angle);
-
  public:
   Player(Ray position);
   Player(Point origin, double angle);
   Player(double x, double y, double angle);
   ~Player();
+
+  void move(unsigned char direction);
+  void rotate(unsigned char direction);
 
   //
   void add_gun(int gun_num, Gun* gun);
@@ -36,18 +37,7 @@ class Player : public Object {
   void set_health(int health);
   bool has_bullets(int bullets);
   void decrease_bullets(int amount);
-  //
 
-  Point next_position_up();
-  Point next_position_down();
-  Point next_position_right();
-  Point next_position_left();
-  Point next_position_up_right();
-  Point next_position_up_left();
-  Point next_position_down_right();
-  Point next_position_down_left();
-
-  void set_position(const Point& new_origin);
   Hit shoot(Map& map);
 };
 

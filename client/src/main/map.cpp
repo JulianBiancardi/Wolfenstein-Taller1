@@ -17,3 +17,11 @@ Map::~Map() {
 }
 
 std::vector<Object*>& Map::get_objects() { return objects; }
+
+void Map::move_player(unsigned int player_id, unsigned char direction) {
+  players.at(player_id).move(direction);
+}
+
+void Map::rotate_player(unsigned int player_id, unsigned char direction) {
+  players.at(player_id).rotate(direction);
+}

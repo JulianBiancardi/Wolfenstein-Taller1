@@ -2,7 +2,7 @@
 #define MOVEMENT_IDS_H
 
 // Movement directions
-#define INVALID 0
+#define INVALID_MOVEMENT 0
 #define UP 1
 #define UP_LEFT 2
 #define LEFT 3
@@ -13,6 +13,7 @@
 #define UP_RIGHT 8
 
 // Rotating directions:
+#define INVALID_ROTATION 0
 #define RIGHT_ROTATION 1
 #define LEFT_ROTATION 2
 

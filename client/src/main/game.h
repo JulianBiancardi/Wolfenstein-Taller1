@@ -10,6 +10,7 @@
 
 class Game {
  private:
+  unsigned char match_id;
   Server& server;
   Window window;
   Map map;
@@ -17,21 +18,22 @@ class Game {
   GameCaster caster;
   bool is_running;
 
+  unsigned char forward_velocity;
+  unsigned char sideways_velocity;
+  unsigned char angular_velocity;
+
   void update();  // update all objects of the game
   void render();  // render thats changes
 
   void handle_events();  // handle any user events
   void handle_key_press(SDL_Keycode& key);
-  /*Ray player_ray;
-  Socket socket;
-  BlockingQueue<packet_t>* events_queue;
-  ProtectedQueue<packet_t>* reception_queue;
-  SendToServerThread send_thread;
-  ReceiveFromServerThread receive_thread;
-  bool is_running;
+  void handle_key_release(SDL_Keycode& key);
 
+  void process_events();
+  void process_movement();
+  void process_rotation();
 
-  */
+  void send_move_packet(unsigned char direction);
 
  public:
   Game(Server& server, Match& match);
