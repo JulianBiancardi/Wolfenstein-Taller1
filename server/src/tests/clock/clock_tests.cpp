@@ -3,8 +3,14 @@
 #include "../tests_setup.h"
 #include "../../main/threads/clock/clock_thread.h"
 #include "../../../../common/src/main/config_loader.h"
+#include "../../main/managers/match.h"
+#include "../../main/managers/client_manager.h"
+#include "../../../../common/src/main/packets/packing.h"
 #include <chrono>
 #include <cmath>
+
+#define TEST_MAP_WITH_DOOR "test_map_with_door"
+#define TEST_MAP_WITH_MULTIPLE_DOORS "test_map_with_multiple_doors"
 
 using namespace std::chrono;
 
@@ -33,7 +39,11 @@ void clock_tests() {
 }
 
 int static clock_countdown_works() {
-  ClockThread thread(2);
+  ClientManager manager;
+  std::string map_name(TEST_MAP_WITH_DOOR);
+  Match match(1, map_name);
+
+  ClockThread thread(2, manager.get_reception_queue(), 1);
 
   steady_clock::time_point begin = steady_clock::now();
 
@@ -44,16 +54,31 @@ int static clock_countdown_works() {
 
   double seconds_spent = duration<double>(end - begin).count();
 
-  if (time_compare(seconds_spent, 2, 0.1))
-    return NO_ERROR;
+  if (!time_compare(seconds_spent, 2, 0.1))
+    return ERROR;
 
-  return ERROR;
+  /*Packet packet;
+  manager.get_reception_queue().dequeue(packet);
+
+  unsigned char type;
+  unsigned char match_id;
+  unpack(packet.get_data(), "CC", &type, &match_id);
+
+  if (type != GAME_OVER || match_id != 1)
+    return ERROR;*/
+
+  return NO_ERROR;
 }
 
 int static clock_countdown_with_an_event_works() {
-  ClockThread thread(CL::door_timer / 2);
+  ClientManager manager;
+  std::string map_name(TEST_MAP_WITH_DOOR);
+  Match match(1, map_name);
 
-  thread.add_door_timer();
+  ClockThread thread((unsigned int) (CL::door_timer / 2),
+                     manager.get_reception_queue(), 1);
+
+  thread.add_door_timer(1);
 
   steady_clock::time_point begin = steady_clock::now();
 
@@ -64,17 +89,32 @@ int static clock_countdown_with_an_event_works() {
 
   double seconds_spent = duration<double>(end - begin).count();
 
-  if (time_compare(seconds_spent, (unsigned int) (CL::door_timer / 2), 0.1))
-    return NO_ERROR;
+  if (!time_compare(seconds_spent, (unsigned int) (CL::door_timer / 2), 0.1))
+    return ERROR;
 
-  return ERROR;
+  /*Packet packet;
+  manager.get_reception_queue().dequeue(packet);
+
+  unsigned char type;
+  unsigned char match_id;
+  unpack(packet.get_data(), "CC", &type, &match_id);
+
+  if (type != GAME_OVER || match_id != 1)
+    return ERROR;*/
+
+  return NO_ERROR;
 }
 
 int static clock_countdown_with_various_event_works() {
-  ClockThread thread(CL::door_timer / 2);
+  ClientManager manager;
+  std::string map_name(TEST_MAP_WITH_MULTIPLE_DOORS);
+  Match match(1, map_name);
 
-  for (int i = 0; i < 10; i++) {
-    thread.add_door_timer();
+  ClockThread thread((unsigned int) (CL::door_timer / 2),
+                     manager.get_reception_queue(), 1);
+
+  for (int i = 1; i < 6; i++) {
+    thread.add_door_timer(i);
   }
 
   steady_clock::time_point begin = steady_clock::now();
@@ -93,10 +133,15 @@ int static clock_countdown_with_various_event_works() {
 }
 
 int static clock_deletes_timed_events_finished() {
-  ClockThread thread(2 * CL::door_timer);
+  ClientManager manager;
+  std::string map_name(TEST_MAP_WITH_MULTIPLE_DOORS);
+  Match match(1, map_name);
 
-  for (int i = 0; i < 5; i++) {
-    thread.add_door_timer();
+  ClockThread thread((unsigned int) (CL::door_timer * 2),
+                     manager.get_reception_queue(), 1);
+
+  for (int i = 1; i < 6; i++) {
+    thread.add_door_timer(i);
   }
 
   steady_clock::time_point begin = steady_clock::now();
@@ -108,7 +153,7 @@ int static clock_deletes_timed_events_finished() {
 
   double seconds_spent = duration<double>(end - begin).count();
 
-  if (time_compare(seconds_spent, (unsigned int) (2 * CL::door_timer), 0.1))
+  if (time_compare(seconds_spent, (unsigned int) (CL::door_timer * 2), 0.1))
     return NO_ERROR;
 
   return ERROR;
