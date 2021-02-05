@@ -8,6 +8,7 @@
 #include "../../../common/src/main/object.h"
 #include "../../../common/src/main/utils/base_map.h"
 #include "../../../common/src/main/utils/matrix.h"
+#include "../../../common/src/main/utils/ray.h"
 #include "player.h"
 
 class Map : public BaseMap {
@@ -22,9 +23,10 @@ class Map : public BaseMap {
   explicit Map(const std::string& map_name);
   ~Map();
 
-  std::vector<Object*>& get_objects();
+  const std::vector<Object*>& get_objects() const;
+  const Player& get_player(unsigned int player_id) const;
 
-  void add_player(Object* player);
+  void add_player(unsigned int player_id, Ray position);
   void move_player(unsigned int player_id, unsigned char direction);
   void rotate_player(unsigned int player_id, unsigned char direction);
   // void add_sprite(Sprite &sprite);

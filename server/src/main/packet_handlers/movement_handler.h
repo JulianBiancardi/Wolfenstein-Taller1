@@ -1,16 +1,16 @@
-#ifndef MOVE_HANDLER_H
-#define MOVE_HANDLER_H
+#ifndef MOVEMENT_HANDLER_H
+#define MOVEMENT_HANDLER_H
 
 #include "../../../../common/src/main/packets/packet.h"
 #include "../managers/client_manager.h"
 #include "../managers/match_manager.h"
 #include "packet_handler.h"
 
-class MoveHandler : public PacketHandler {
+class MovementHandler : public PacketHandler {
  private:
  public:
-  MoveHandler();
-  ~MoveHandler();
+  MovementHandler();
+  ~MovementHandler();
 
   void handle(Packet& packet, ClientManager& client_manager,
               MatchManager& match_manager) override;

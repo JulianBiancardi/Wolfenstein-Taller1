@@ -17,12 +17,12 @@
 #define SCREEN_HEIGHT (200 * UNIT)
 
 Game::Game(Server& server, Match& match)
-    : match_id(match.get_match_id()),
+    : player_id(server.get_id()),
+      match_id(match.get_match_id()),
       server(server),
       window("Hello World!", SCREEN_WIDTH, SCREEN_HEIGHT),
       map("test_map"),
-      player_ray(2.5, 2.5, 0),
-      caster(window, player_ray, map),
+      caster(window, map, player_id),
       is_running(false),
       forward_velocity(0),
       sideways_velocity(0),
@@ -36,12 +36,7 @@ void Game::operator()() {
   is_running = true;
   while (is_running) {
     handle_events();
-
-    // Receive events
-    // MovementEvent movement_event;
-    // movement_event.setCaster(caster);
-    // movement_event.process();
-
+    process_events();
     update();
     render();
     frame_limiter.sleep();
@@ -49,6 +44,7 @@ void Game::operator()() {
 }
 
 void Game::handle_events() {
+  // TODO Check how to move everything into a flags vector
   SDL_Event event;
   while (SDL_PollEvent(&event)) {
     switch (event.type) {
@@ -73,8 +69,6 @@ void Game::handle_events() {
         break;
     }
   }
-
-  process_events();
 }
 
 void Game::handle_key_press(SDL_Keycode& key) {
@@ -163,8 +157,7 @@ void Game::process_movement() {
   }
 
   unsigned char data[MOVEMENT_SIZE];
-  size_t size =
-      pack(data, "CICC", MOVEMENT, server.get_id(), match_id, direction);
+  size_t size = pack(data, "CICC", MOVEMENT, player_id, match_id, direction);
   Packet move_packet(size, data);
   server.send(move_packet);
 }
@@ -182,8 +175,7 @@ void Game::process_rotation() {
   }
 
   unsigned char data[ROTATION_SIZE];
-  size_t size =
-      pack(data, "CICC", ROTATION, server.get_id(), match_id, direction);
+  size_t size = pack(data, "CICC", ROTATION, player_id, match_id, direction);
   Packet move_packet(size, data);
   server.send(move_packet);
 }

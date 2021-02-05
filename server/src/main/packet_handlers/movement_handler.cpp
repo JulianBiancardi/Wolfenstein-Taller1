@@ -1,16 +1,16 @@
-#include "move_handler.h"
+#include "movement_handler.h"
 
 #include <vector>
 
 #include "../../../../common/src/main/packets/packing.h"
 #include "../managers/match.h"
 
-MoveHandler::MoveHandler() {}
+MovementHandler::MovementHandler() {}
 
-MoveHandler::~MoveHandler() {}
+MovementHandler::~MovementHandler() {}
 
-void MoveHandler::handle(Packet& packet, ClientManager& client_manager,
-                         MatchManager& match_manager) {
+void MovementHandler::handle(Packet& packet, ClientManager& client_manager,
+                             MatchManager& match_manager) {
   unsigned char type;
   unsigned int player_id;
   unsigned char match_id;

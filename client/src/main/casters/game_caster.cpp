@@ -6,6 +6,7 @@
 #include "../../../../common/src/main/utils/point.h"  // TODO Delete if not used in the file
 #include "../../../../common/src/main/utils/rectangle.h"
 #include "../casting/ray_casting.h"
+#include "../player.h"
 #include "../sdl/image.h"
 
 #define UNIT 5
@@ -39,12 +40,12 @@ double _sprite::get_distance() { return distance; }
 int _sprite::get_id() { return id; }
 // =========
 
-GameCaster::GameCaster(Window& window, Ray& player, Map& map)
+GameCaster::GameCaster(Window& window, Map& map, unsigned int player_id)
     : renderer(window.get_renderer()),
-      player(player),
       map(map),
       window(window),
-      res_manager(window) {}
+      res_manager(window),
+      player_id(player_id) {}
 
 GameCaster::~GameCaster() {}
 
@@ -79,11 +80,12 @@ std::vector<double> GameCaster::draw_walls() {
   std::vector<double> wall_collisions;
   wall_collisions.reserve(SCREEN_WIDTH);
 
+  const Player& player = map.get_player(player_id);
   double ray_angle = player.get_angle() + FOV / 2;
 
   double angle_step = FOV / SCREEN_WIDTH;
   for (int i = 0; i < SCREEN_WIDTH;) {
-    Ray ray(player.get_origin(), ray_angle);
+    Ray ray(player.get_position(), ray_angle);
 
     Collision wall_collision = RayCasting::get_collision(map, ray);
     draw_wall(wall_collision, i, ray_angle);
@@ -104,7 +106,8 @@ void GameCaster::draw_wall(Collision& collision, size_t screen_pos,
   Image* image = res_manager.get_image(collision.get_collided_obj_id());
 
   double projected_distance = GameCaster::get_projected_distance(
-      ray_angle, player.get_angle(), collision.get_distance_from_src());
+      ray_angle, map.get_player(player_id).get_angle(),
+      collision.get_distance_from_src());
   int wall_size = SCALING_FACTOR / (projected_distance * image->get_height());
 
   Rectangle pos(SCREEN_HEIGHT_HALF - (wall_size / 2),
@@ -142,14 +145,15 @@ void GameCaster::draw_sprites(std::vector<double>& wall_distances) {
 
 void GameCaster::draw_sprite(_sprite& sprite,
                              std::vector<double>& wall_distances) {
+  const Player& player = map.get_player(player_id);
   // TODO Optimize
   Image* image = res_manager.get_image(sprite.get_id());
   size_t img_width = image->get_width();
   size_t img_height = image->get_height();
 
-  double x_relative = sprite.get_pos().getX() - player.get_origin().getX();
+  double x_relative = sprite.get_pos().getX() - player.get_position().getX();
   // Y grows going down
-  double y_relative = player.get_origin().getY() - sprite.get_pos().getY();
+  double y_relative = player.get_position().getY() - sprite.get_pos().getY();
 
   double sprite_angle_rel = atan2(y_relative, x_relative);
   /*if (sprite_angle_rel > 2 * M_PI) {
@@ -216,7 +220,7 @@ void static load_sprites(std::vector<_sprite>& sprites) {
 void GameCaster::sort_sprites(std::vector<_sprite>& sprites) {
   std::vector<_sprite>::iterator iter;
   for (iter = sprites.begin(); iter != sprites.end(); iter++) {
-    (*iter).update_distance(player.get_origin());
+    (*iter).update_distance(map.get_player(player_id).get_position());
   }
   std::sort(sprites.begin(), sprites.end(), sprite_comp);
 }

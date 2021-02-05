@@ -2,10 +2,11 @@
 #define GUN_H
 
 #include <random>
+#include <vector>
 
 #include "../../../../common/src/main/config_loader.h"
 #include "../../../../common/src/main/object.h"
-#include "../map.h"
+#include "../../../../common/src/main/utils/base_map.h"
 #include "hit.h"
 
 class Gun {
@@ -16,7 +17,8 @@ class Gun {
  public:
   Gun(double min_range, double max_range);
   ~Gun();
-  virtual Hit shoot(Object& player, int& current_bullets, Map& map) = 0;
+  virtual Hit shoot(Object& player, int& current_bullets, BaseMap& map,
+                    const std::vector<Object*>& objects) = 0;
 };
 
 #endif

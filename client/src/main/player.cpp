@@ -20,6 +20,21 @@ Player::Player(Ray position)
   active_gun = 0;
 }
 
+Player::Player(Ray position, unsigned int player_id)
+    : position(position),
+      guns_bag(),
+      Object(position /*, position.get_angle()*/,
+             new CircleMask(ConfigLoader::player_mask_radio,
+                            position.get_ref_origin()),
+             player_id) {
+  pace = CL::player_pace;
+  health = CL::player_health;
+  bullets = CL::player_health;
+  Knife* knife = new Knife();
+  guns_bag.insert(std::pair<int, Gun*>(0, knife));
+  active_gun = 0;
+}
+
 Player::Player(Point origin, double angle)
     : position(origin, angle),
       guns_bag(),
@@ -33,11 +48,39 @@ Player::Player(Point origin, double angle)
   active_gun = 0;
 }
 
+Player::Player(Point origin, double angle, unsigned int player_id)
+    : position(origin, angle),
+      guns_bag(),
+      Object(origin, angle,
+             new CircleMask(ConfigLoader::player_mask_radio, origin),
+             player_id) {
+  pace = CL::player_pace;
+  health = CL::player_health;
+  bullets = CL::player_health;
+  Knife* knife = new Knife();
+  guns_bag.insert(std::pair<int, Gun*>(0, knife));
+  active_gun = 0;
+}
+
 Player::Player(double x, double y, double angle)
     : position(x, y, angle),
       guns_bag(),
       Object(Point(x, y), angle,
              new CircleMask(ConfigLoader::player_mask_radio, Point(x, y))) {
+  pace = CL::player_pace;
+  health = CL::player_health;
+  bullets = CL::player_health;
+  Knife* knife = new Knife();
+  guns_bag.insert(std::pair<int, Gun*>(0, knife));
+  active_gun = 0;
+}
+
+Player::Player(double x, double y, double angle, unsigned int player_id)
+    : position(x, y, angle),
+      guns_bag(),
+      Object(Point(x, y), angle,
+             new CircleMask(ConfigLoader::player_mask_radio, Point(x, y)),
+             player_id) {
   pace = CL::player_pace;
   health = CL::player_health;
   bullets = CL::player_health;
@@ -95,8 +138,9 @@ void Player::rotate(unsigned char direction) {
   }
 }
 
-Hit Player::shoot(Map& map) {
-  return std::move(guns_bag[active_gun]->shoot(*this, bullets, map));
+Hit Player::shoot(BaseMap& map, const std::vector<Object*>& map_objects) {
+  return std::move(
+      guns_bag[active_gun]->shoot(*this, bullets, map, map_objects));
 }
 
 void Player::add_gun(int gun_num, Gun* gun) {

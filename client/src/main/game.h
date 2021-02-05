@@ -10,11 +10,11 @@
 
 class Game {
  private:
+  unsigned int player_id;
   unsigned char match_id;
   Server& server;
   Window window;
   Map map;
-  Ray player_ray;
   GameCaster caster;
   bool is_running;
 
