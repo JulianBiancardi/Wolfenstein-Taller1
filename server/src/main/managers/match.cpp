@@ -3,8 +3,13 @@
 #include "../game/objects/door/door.h"
 #include "match_error.h"
 
-Match::Match(unsigned char match_id, std::string& map_name)
-    : map(map_name), checker(map), started(false), match_id(match_id) {}
+Match::Match(unsigned int host_id, unsigned char match_id,
+             std::string& map_name)
+    : host_id(host_id),
+      map(map_name),
+      checker(map),
+      started(false),
+      match_id(match_id) {}
 
 Match::~Match() {}
 
@@ -36,6 +41,14 @@ const std::string& Match::get_map_name() const { return map.get_name(); }
 unsigned char Match::get_capacity() const { return map.get_capacity(); }
 
 bool Match::has_started() const { return started; }
+
+bool Match::start(unsigned int player_id) {
+  if (player_id == host_id) {
+    started = true;
+    return true;
+  }
+  return false;
+}
 
 bool Match::move_player(unsigned int player_id, unsigned char direction) {
   if (!player_exists(player_id)) {
@@ -180,7 +193,7 @@ bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
 
   Player& player = map.get_player(player_id);
 
-  Door* door = (Door*) map.get_object(door_id);
+  Door* door = (Door*)map.get_object(door_id);
 
   // FIXME
   if (door == nullptr) {

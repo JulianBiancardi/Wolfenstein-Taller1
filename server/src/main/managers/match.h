@@ -9,6 +9,7 @@
 
 class Match {
  private:
+  unsigned int host_id;
   unsigned char match_id;
   bool started;
   std::unordered_set<unsigned int> players_ids;
@@ -16,7 +17,8 @@ class Match {
   CollisionChecker checker;
 
  public:
-  explicit Match(unsigned char match_id, std::string& map_name);
+  explicit Match(unsigned int host_id, unsigned char match_id,
+                 std::string& map_name);
 
   Match(const Match& other) = delete;
   Match& operator=(const Match&) = delete;
@@ -25,6 +27,11 @@ class Match {
   Match& operator=(Match&& other) = delete;
 
   ~Match();
+
+  /* Starts the match given the host id.
+   * Returns true on success, false otherwise.
+   */
+  bool start(unsigned int player_id);
 
   /* Create and add a new player to the match with the given id.
    * Returns true on success, false otherwise

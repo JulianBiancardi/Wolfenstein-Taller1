@@ -6,6 +6,7 @@
 #include "door_interaction_handler.h"
 #include "game_over_handler.h"
 #include "join_match_handler.h"
+#include "match_start_handler.h"
 #include "movement_handler.h"
 #include "request_matches_handler.h"
 #include "request_new_match_handler.h"
