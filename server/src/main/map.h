@@ -16,7 +16,7 @@
 class Map : public BaseMap {
  private:
   std::unordered_map<unsigned int, Item*> items;
-  std::vector<Object*> objects;
+  std::unordered_map<unsigned int, Object*> objects;
   std::unordered_map<unsigned int, Player> players;
   std::vector<Point> spawn_points;
 
@@ -50,6 +50,9 @@ class Map : public BaseMap {
   /* Returns a pointer to an object */
   Object* get_object(unsigned int object_id);
 
+  /* Returns if it has the object */
+  bool has_object(unsigned int object_id);
+
   /* Deletes an item */
   void delete_item(unsigned int item_id);
 
@@ -60,7 +63,7 @@ class Map : public BaseMap {
   const std::unordered_map<unsigned int, Item*>& get_items() const;
 
   /* Returns a reference to the objects */
-  const std::vector<Object*>& get_objects() const;
+  const std::unordered_map<unsigned int, Object*>& get_objects() const;
 
   /* Returns if only has one player or not */
   bool has_one_player() const;

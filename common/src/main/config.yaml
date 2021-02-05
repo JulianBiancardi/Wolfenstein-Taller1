@@ -57,4 +57,5 @@ table_depth: 1.0
 barrel_radius: 0.5
 
 # Other
+match_length: 300
 door_timer: 5

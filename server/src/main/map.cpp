@@ -18,7 +18,7 @@ Map::Map(std::string& map_name)
 
 Map::~Map() {
   for (auto item : items) delete item.second;
-  for (auto object : objects) delete object;
+  for (auto object : objects) delete object.second;
 }
 
 Map::Map(Matrix<int>& map_matrix)
@@ -52,8 +52,11 @@ Item& Map::get_item(unsigned int item_id) {
 }
 
 Object* Map::get_object(unsigned int object_id) {
-  // FIXME
   return objects.at(object_id);
+}
+
+bool Map::has_object(unsigned int object_id) {
+  return objects.find(object_id) != objects.end();
 }
 
 void Map::delete_item(unsigned int item_id) {
@@ -69,7 +72,9 @@ const std::unordered_map<unsigned int, Item*>& Map::get_items() const {
   return items;
 }
 
-const std::vector<Object*>& Map::get_objects() const { return objects; }
+const std::unordered_map<unsigned int, Object*>& Map::get_objects() const {
+  return objects;
+}
 
 bool Map::has_one_player() const { return players.size() == 1; }
 

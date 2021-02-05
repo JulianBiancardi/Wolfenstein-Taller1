@@ -13,7 +13,7 @@ class MapLoader {
  private:
   std::unordered_map<unsigned int, Player>& players;
   std::unordered_map<unsigned int, Item*>& items;
-  std::vector<Object*>& solid_objects;
+  std::unordered_map<unsigned int, Object*>& solid_objects;
   std::vector<Point>& spawn_points;
 
   void add_spawn_point(const Point& where);
@@ -47,7 +47,7 @@ class MapLoader {
  public:
   MapLoader(std::unordered_map<unsigned int, Player>& players,
             std::unordered_map<unsigned int, Item*>& items,
-            std::vector<Object*>& solid_objects,
+            std::unordered_map<unsigned int, Object*>& solid_objects,
             std::vector<Point>& spawn_points);
   ~MapLoader();
 

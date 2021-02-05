@@ -6,6 +6,9 @@
 #include "../game/collision_checker.h"
 #include "../game/player.h"
 #include "../map.h"
+#include "../../../../common/src/main/packets/packet.h"
+#include "../../../../common/src/main/data_structures/blocking_queue.h"
+#include "../../../../common/src/main/threads/thread.h"
 
 class Match {
  private:
@@ -14,6 +17,7 @@ class Match {
   std::unordered_set<unsigned int> players_ids;
   Map map;
   CollisionChecker checker;
+  std::map<int, Thread*> threads;
 
  public:
   explicit Match(unsigned char match_id, std::string& map_name);
@@ -25,6 +29,9 @@ class Match {
   Match& operator=(Match&& other) = delete;
 
   ~Match();
+
+  /* Starts match, starts clock and bots */
+  void start(BlockingQueue<Packet>& reception_queue);
 
   /* Create and add a new player to the match with the given id.
    * Returns true on success, false otherwise
@@ -79,6 +86,9 @@ class Match {
 
   /* Returns if the door state changes */
   bool interact_with_door(unsigned int player_id, unsigned int door_id);
+
+  /* Closes the door, returns if could do it */
+  bool close_door(unsigned int door_id);
 
   /* Delete player from the match */
   void delete_player(unsigned int player_id);

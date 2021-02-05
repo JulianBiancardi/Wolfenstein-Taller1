@@ -21,7 +21,7 @@ bool CollisionChecker::collides_players(const Point& where) {
 
 bool CollisionChecker::collides_sprites(const Point& where) {
   for (auto& object : objects) {
-    if (object->occupies(where)) return true;
+    if (object.second->occupies(where)) return true;
   }
 
   return false;
@@ -76,7 +76,7 @@ int CollisionChecker::get_knife_range_collides_player_id(Point& where,
       //printf("Voy a llamar: ");
       player.second.knife_collision_mask_bound(where);
       if ((player.second.knife_mask_bound_occupies(mask_checking_point)) &&
-          (!player.second.is_dead())){
+          (!player.second.is_dead())) {
         id_found = player.second.get_id();
       }
     }
