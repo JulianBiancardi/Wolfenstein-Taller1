@@ -59,3 +59,9 @@ bool BaseMap::is_wall(size_t x, size_t y) {
 }
 
 int BaseMap::operator()(size_t x, size_t y) { return map_matrix(x, y); }
+
+/* Returns the amount of rows in the matrix. */
+size_t BaseMap::get_rows() { return map_matrix.get_rows(); }
+
+/* Returns the amount of columns in the matrix. */
+size_t BaseMap::get_columns() { return map_matrix.get_columns(); }

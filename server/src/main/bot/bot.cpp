@@ -1,29 +1,29 @@
 #include "bot.h"
 
-#define MOVE 2
+#define MOVE_EVENT 2
 //#define GRAB 3
-#define DAMAGE 4
+#define DAMAGE_EVENT 4
 
-#include "../../../common/src/main/ids/gun_ids.h"
+#include "../../../../common/src/main/ids/gun_ids.h"
 
-Bot::Bot(CollisionChecker &checker, Map &map, int id_at_players)
+Bot::Bot(CollisionChecker &checker, Map &map, int id_at_players,
+         BlockingQueue<Packet>& queue)
     : checker(checker), map(map), id_at_players(id_at_players),
-    player_goal(nullptr) {
+    player_goal(nullptr), queue(queue) {
   map.get_player(id_at_players).change_gun(KNIFE_ID);
   map.get_player(id_at_players).get_active_gun();
 
   this->state = luaL_newstate();
   luaL_openlibs(this->state);
 
-  lua_checker(luaL_loadfile(this->state, "../src/main/script.lua"));
+  lua_checker(luaL_loadfile(this->state, "../src/main/bot/script.lua"));
   lua_checker(lua_pcall(this->state, 0, 0, 0));
   lua_checker(lua_getglobal(this->state, "init"));
 
   lua_newtable(this->state);
 
-  lua_push_table_number("move", MOVE);
-  lua_push_table_number("grab", GRAB);
-  lua_push_table_number("damage", DAMAGE);
+  lua_push_table_number("move", MOVE_EVENT);
+  lua_push_table_number("damage", DAMAGE_EVENT);
 
   lua_pushnumber(this->state, ConfigLoader::player_pace);
 
@@ -38,8 +38,6 @@ void Bot::kill_actions() {
   lua_pop(this->state, 1);
   //printf("DAMAGE DONE: %i", player_goal->get_health());
   player_goal->receive_damage(damage_done);
-   //if (player_goal->is_dead())
-   //printf("MUERTO %d", player_goal->get_id());
 }
 
 void Bot::move_actions() {
@@ -126,6 +124,7 @@ Player *Bot::find_nearest_player() {
 }
 
 void Bot::execute() {
+  //return &map.get_player(least_distance_player_id);
   lua_checker(lua_getglobal(this->state, "decision"));
   lua_checker(lua_pcall(this->state, 0, 1, 0));
 
@@ -165,12 +164,10 @@ void Bot::execute() {
   int type = lua_tonumber(this->state, -1);
   lua_pop(this->state, 1);
   switch (type) {
-    case MOVE:
+    case MOVE_EVENT:
       move_actions();
       break;
-      // case GRAB:
-      // break;
-    case DAMAGE:
+    case DAMAGE_EVENT:
       kill_actions();
       break;
     default:

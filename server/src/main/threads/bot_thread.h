@@ -2,7 +2,7 @@
 #define WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_THREADS_BOT_THREAD_H_
 
 #include "../../../../common/src/main/threads/thread.h"
-#include "../bot.h"
+#include "../bot/bot.h"
 class BotThread: public Thread {
  private:
   Bot &bot;
