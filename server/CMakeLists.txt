@@ -43,11 +43,11 @@ FILE(GLOB ServerFiles
 FILE(GLOB ServerTestsFiles
         src/tests/client_mock.cpp
         src/tests/player_test.cpp
-        src/tests/match_tests.cpp
-        src/tests/clock/clock_tests.cpp
-        src/tests/bot_test.cpp
-        src/tests/*/*.cpp
-        ../common/src/tests/tests_setup.cpp)
+        #src/tests/match_tests.cpp
+        #src/tests/clock/clock_tests.cpp
+        #src/tests/bot_test.cpp
+        #src/tests/*/*.cpp
+        src/tests/tests_setup.cpp)
 
 FILE(GLOB CommonFiles
         ../common/src/main/*/*.cpp

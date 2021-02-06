@@ -7,12 +7,12 @@
 1:
   type: 1
   name: "Rock Wall"
-  image: "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/res/walls/wood_wall.bmp"
+  image: "../../res/walls/wood_wall.bmp"
   icon: "../resources/images/walls/IMG_RockWall.png"
 2:
   type: 1
   name: "Wood Wall"
-  image: "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/res/walls/wood_wall.bmp"
+  image: "../../res/walls/wood_wall.bmp"
   icon: "../resources/images/walls/IMG_WoodWall.png"
 
 # Players

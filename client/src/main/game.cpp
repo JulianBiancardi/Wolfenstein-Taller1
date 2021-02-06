@@ -7,6 +7,7 @@
 
 #include "../../../common/src/main/ids/movement_ids.h"
 #include "../../../common/src/main/packets/packet.h"
+#include "../../../common/src/main/packets/packet_error.h"
 #include "../../../common/src/main/packets/packet_handler_factory_error.h"
 #include "../../../common/src/main/packets/packing.h"
 #include "frame_limiter.h"
@@ -27,9 +28,7 @@ Game::Game(Server& server, Match& match)
       forward_velocity(0),
       sideways_velocity(0),
       angular_velocity(0),
-      match_start(0) {
-  map.add_player(player_id, Ray(2.5, 2.5, 0));
-}
+      match_start(0) {}
 
 Game::~Game() {}
 
@@ -37,14 +36,33 @@ void Game::operator()() {
   FrameLimiter frame_limiter;
 
   is_running = true;
+
+  spawn_self();
+
   while (is_running) {
     handle_events();
     process_events();
     update();
     render();
-    ;
     frame_limiter.sleep();
   }
+}
+
+void Game::spawn_self() {
+  BlockingQueue<Packet>& reception_queue = server.get_reception_queue();
+  Packet packet;
+  reception_queue.dequeue(packet);
+  if (packet.get_type() != SPAWN_PLAYER) {
+    throw PacketError("Failed to receive spawn packet upon match start.");
+  }
+
+  unsigned char type;
+  unsigned int player_id;
+  unsigned char x_pos;
+  unsigned char y_pos;
+  unpack(packet.get_data(), "CICC", &type, &player_id, &x_pos, &y_pos);
+
+  map.add_player(player_id, Ray(x_pos + 0.5, y_pos + 0.5, 0));
 }
 
 void Game::handle_events() {

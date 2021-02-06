@@ -8,6 +8,9 @@
 
 class RequestNewMatchHandler : public PacketHandler {
  private:
+  void notify_spawn(unsigned int player_id, unsigned char match_id,
+                    ClientManager& client_manager, MatchManager& match_manager);
+
  public:
   RequestNewMatchHandler();
   ~RequestNewMatchHandler();

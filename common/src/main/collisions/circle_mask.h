@@ -1,9 +1,8 @@
 #ifndef CIRCLE_MASK_H
 #define CIRCLE_MASK_H
 
+#include "../utils/point.h"
 #include "mask.h"
-
-class Map;
 
 class CircleMask : public Mask {
  private:

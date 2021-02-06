@@ -25,6 +25,7 @@ Map::Map(Matrix<int>& map_matrix)
     : items(), objects(), players(), players_joined(0), BaseMap(map_matrix) {}
 
 bool Map::add_player(unsigned int player_id) {
+  printf("Joined: %u\nCapacity: %u\n", players_joined, player_capacity);
   if (players_joined == player_capacity ||
       players.find(player_id) != players.end()) {
     return false;
@@ -43,12 +44,10 @@ Player& Map::get_player(unsigned int player_id) {
   return players.at(player_id);
 }
 
-void Map::delete_player(unsigned int player_id) {
-  players.erase(player_id);
-}
+void Map::delete_player(unsigned int player_id) { players.erase(player_id); }
 
 Item& Map::get_item(unsigned int item_id) {
-  return (Item&) (*items.at(item_id));
+  return (Item&)(*items.at(item_id));
 }
 
 Object* Map::get_object(unsigned int object_id) {
@@ -109,7 +108,8 @@ void Map::add_gun_drop(Player& dead_player) {
       items.insert({new_rocket_launcher->get_id(), new_rocket_launcher});
       break;
     }
-    default: break;
+    default:
+      break;
   }
 }
 

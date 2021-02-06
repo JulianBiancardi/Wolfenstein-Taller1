@@ -23,6 +23,9 @@ class Game {
   char angular_velocity;
   char match_start;
 
+  /* Receive spawn point and add the player there. */
+  void spawn_self();
+
   void update();  // update all objects of the game
   void render();  // render thats changes
 

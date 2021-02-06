@@ -39,16 +39,20 @@
 #define JOIN_MATCH 6
 #define JOIN_MATCH_SIZE 4
 
+// Used to spawn a player on match start or as respawn
+#define SPAWN_PLAYER 7
+#define SPAWN_PLAYER_SIZE 5
+
 // Used to start a match being the host or notify the rest
-#define MATCH_START 7
+#define MATCH_START 8
 #define MATCH_START_SIZE 4
 
 // Used to move a player
-#define MOVEMENT 8
+#define MOVEMENT 9
 #define MOVEMENT_SIZE 5
 
 // Used to rotate a player
-#define ROTATION 9
+#define ROTATION 10
 #define ROTATION_SIZE 5
 
 //==============================

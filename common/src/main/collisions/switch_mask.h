@@ -1,6 +1,7 @@
 #ifndef WOLFENSTEIN_TALLER1_COMMON_SRC_MAIN_COLLISIONS_SWITCH_MASK_H_
 #define WOLFENSTEIN_TALLER1_COMMON_SRC_MAIN_COLLISIONS_SWITCH_MASK_H_
 
+#include "../utils/point.h"
 #include "mask.h"
 
 class SwitchMask : public Mask {

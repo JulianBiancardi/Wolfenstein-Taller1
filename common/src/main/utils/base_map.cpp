@@ -9,8 +9,9 @@ BaseMap::BaseMap(Matrix<int>& map_matrix)
     : map_matrix(map_matrix), player_capacity(10) {}
 
 BaseMap::BaseMap(const std::string& map_name)
-    : map_name(map_name), map_matrix(0, 0), player_capacity(5) {
+    : map_name(map_name), map_matrix(0, 0), player_capacity(0) {
   load_map_matrix();
+  load_capacity();
 }
 
 BaseMap::~BaseMap() {}
@@ -43,7 +44,7 @@ void BaseMap::load_map_matrix() {
 }
 
 void BaseMap::load_capacity() {
-  YAML::Node yaml_file = YAML::LoadFile(map_name);
+  YAML::Node yaml_file = YAML::LoadFile("../../res/maps/" + map_name + ".yaml");
   player_capacity = yaml_file["max_players"].as<unsigned char>();
 }
 
