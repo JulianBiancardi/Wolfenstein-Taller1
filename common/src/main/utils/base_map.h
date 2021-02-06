@@ -35,6 +35,13 @@ class BaseMap {
 
   /* Returns a copy of the value in the point x,y. */
   int operator()(size_t x, size_t y);
+
+  /* Returns the amount of rows in the matrix. */
+  size_t get_rows();
+
+/* Returns the amount of columns in the matrix. */
+  size_t get_columns();
+
 };
 
 #endif
