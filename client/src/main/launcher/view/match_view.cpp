@@ -8,7 +8,6 @@
 MatchView::MatchView(QWidget* parent, const Match& match, Match* match_selected)
     : QWidget(parent),
       match_id(match.get_match_id()),
-      match(match),
       match_selected(match_selected) {
   ui.setupUi(this);
   ui.name->setText(QString(match.get_map_name()));

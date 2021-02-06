@@ -14,7 +14,6 @@ class MatchView : public QWidget {
  private:
   Ui::MatchView ui;
   unsigned char match_id;
-  const Match& match;
   Match* match_selected;
 
  public:
