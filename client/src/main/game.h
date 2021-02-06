@@ -18,10 +18,10 @@ class Game {
   GameCaster caster;
   bool is_running;
 
-  unsigned char forward_velocity;
-  unsigned char sideways_velocity;
-  unsigned char angular_velocity;
-  unsigned char match_start;
+  char forward_velocity;
+  char sideways_velocity;
+  char angular_velocity;
+  char match_start;
 
   void update();  // update all objects of the game
   void render();  // render thats changes

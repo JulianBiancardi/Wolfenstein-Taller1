@@ -182,6 +182,13 @@ void Player::rotate(unsigned char direction) {
     case LEFT_ROTATION:
       position = Ray(position.get_origin(),
                      position.get_angle() + CL::player_rotation_angle);
+      break;
+    case RIGHT_ROTATION:
+      position = Ray(position.get_origin(),
+                     position.get_angle() - CL::player_rotation_angle);
+      break;
+    default:
+      break;
   }
 }
 

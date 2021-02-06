@@ -67,12 +67,13 @@ Point Moveable::next_position(int direction) {
 }
 
 void Moveable::rotate(int direction) {
-  if (direction == LEFT_ROTATION)
+  if (direction == LEFT_ROTATION) {
     position =
         Ray(position.get_ref_origin(), position.get_angle() + rotation_angle);
-  else
+  } else {
     position =
         Ray(position.get_ref_origin(), position.get_angle() - rotation_angle);
+  }
 }
 
 Point Moveable::collision_mask_bound(const Point& next_position) {

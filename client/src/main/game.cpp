@@ -12,7 +12,7 @@
 #include "frame_limiter.h"
 #include "packet_handlers/packet_handler_factory.h"
 
-#define UNIT 1
+#define UNIT 3
 #define SCREEN_WIDTH (320 * UNIT)
 #define SCREEN_HEIGHT (200 * UNIT)
 
