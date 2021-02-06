@@ -17,12 +17,16 @@ void MovementHandler::handle(Packet& packet, ClientManager& client_manager,
   unsigned char dir;
   unpack(packet.get_data(), "CICC", &type, &player_id, &match_id, &dir);
 
+  printf("Get match\n");
   Match& match = match_manager.get_match(match_id);
+  printf("Move player\n");
 
   if (match.move_player(player_id, dir)) {
+    printf("Succeeded moving\n");
     const std::unordered_set<unsigned int>& clients = match.get_players_ids();
     client_manager.send_to_all(clients, packet);
 
     consequent_grab(player_id, match, client_manager);
   }
+  printf("Finished moving");
 }

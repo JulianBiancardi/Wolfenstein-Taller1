@@ -26,7 +26,9 @@ Game::Game(Server& server, Match& match)
       is_running(false),
       forward_velocity(0),
       sideways_velocity(0),
-      angular_velocity(0) {}
+      angular_velocity(0) {
+  map.add_player(player_id, Ray(1.5, 1.5, 0));
+}
 
 Game::~Game() {}
 
@@ -35,11 +37,17 @@ void Game::operator()() {
 
   is_running = true;
   while (is_running) {
+    printf("A\n");
     handle_events();
+    printf("B\n");
     process_events();
+    printf("C\n");
     update();
+    printf("D\n");
     render();
+    printf("E\n");
     frame_limiter.sleep();
+    printf("F\n");
   }
 }
 

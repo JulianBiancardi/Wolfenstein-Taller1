@@ -155,6 +155,9 @@ void Client::run_client(int argc, char** argv) {
 
   match_selected.print();  // ONLY FOR TEST
 
+  if (match_selected.get_match_id() == 0) {
+    return;
+  }
   Game game(server, match_selected);
   game();
 }

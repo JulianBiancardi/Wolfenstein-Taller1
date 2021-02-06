@@ -14,7 +14,6 @@ class Gun;
 
 class Player : public Object {
  private:
-  Ray position;
   int pace;
   int health;
   int bullets;
@@ -29,6 +28,13 @@ class Player : public Object {
   Player(Point origin, double angle, unsigned int player_id);
   Player(double x, double y, double angle);
   Player(double x, double y, double angle, unsigned int player_id);
+
+  Player(const Player& other) = delete;
+  Player& operator=(const Player&) = delete;
+
+  Player(Player&& other) = delete;
+  Player& operator=(Player&& other) = delete;
+
   ~Player();
 
   void move(unsigned char direction);

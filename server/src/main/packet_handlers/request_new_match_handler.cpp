@@ -20,7 +20,7 @@ void RequestNewMatchHandler::handle(Packet& packet,
   // TODO Check if map is in server
   if (true) {
     std::string file_name(map_name);
-    unsigned char match_id = match_manager.create_match(file_name);
+    unsigned char match_id = match_manager.create_match(player_id, file_name);
 
     if (match_id != 0) {
       Match& match = match_manager.get_match(match_id);

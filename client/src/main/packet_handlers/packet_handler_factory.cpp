@@ -9,6 +9,7 @@ PacketHandler* PacketHandlerFactory::build(Packet& packet) {
   switch (packet.get_type()) {
       // TODO FIX This once all have been defined
     case MOVEMENT:
+      printf("Detected Movement Handler\n");
       return new MovementHandler();
     case ROTATION:
       return new RotationHandler();

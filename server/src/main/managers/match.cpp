@@ -44,13 +44,22 @@ bool Match::has_started() const { return started; }
 
 bool Match::start(unsigned int player_id) {
   if (player_id == host_id) {
-    started = true;
-    return true;
+    if (!started) {
+      started = true;
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    throw MatchError("Failed to start match. Player isn't Host.");
   }
-  return false;
 }
 
 bool Match::move_player(unsigned int player_id, unsigned char direction) {
+  if (!started) {
+    throw MatchError("Failed to move player. Match hasn't started.");
+  }
+
   if (!player_exists(player_id)) {
     throw MatchError("Failed to move player. Player %u doesn't exist.",
                      player_id);
@@ -69,6 +78,10 @@ bool Match::move_player(unsigned int player_id, unsigned char direction) {
 }
 
 bool Match::rotate_player(unsigned int player_id, unsigned char direction) {
+  if (!started) {
+    throw MatchError("Failed to rotate player. Match hasn't started.");
+  }
+
   if (!player_exists(player_id)) {
     throw MatchError("Failed to rotate player. Player %u doesn't exist.",
                      player_id);
@@ -103,6 +116,10 @@ unsigned int Match::grab_item(unsigned int player_id) {
 }
 
 bool Match::change_gun(unsigned int player_id, unsigned char gun_id) {
+  if (!started) {
+    throw MatchError("Failed to change gun. Match hasn't started.");
+  }
+
   if (!player_exists(player_id)) {
     throw MatchError("Failed to change gun player. Player %u doesn't exist.",
                      player_id);
@@ -114,6 +131,10 @@ bool Match::change_gun(unsigned int player_id, unsigned char gun_id) {
 
 bool Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
                       unsigned char damage) {
+  if (!started) {
+    throw MatchError("Failed to shoot gun. Match hasn't started.");
+  }
+
   if (!player_exists(player_id)) {
     throw MatchError("Failed to shoot gun. Player %u doesn't exist.",
                      player_id);

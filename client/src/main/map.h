@@ -2,6 +2,7 @@
 #define CLIENT_MAP_H
 
 #include <functional>
+#include <memory>
 #include <unordered_map>
 #include <vector>
 
@@ -16,7 +17,7 @@ class Map : public BaseMap {
   // std::vector<std::reference_wrapper<Player>> players;
   // std::vector<std::reference_wrapper<Sprite>> sprites;
   std::vector<Object*> objects;
-  std::unordered_map<unsigned int, Player> players;
+  std::unordered_map<unsigned int, std::shared_ptr<Player>> players;
 
  public:
   explicit Map(Matrix<int>& map_matrix);  // TODO Delete eventually
@@ -26,7 +27,7 @@ class Map : public BaseMap {
   const std::vector<Object*>& get_objects() const;
   const Player& get_player(unsigned int player_id) const;
 
-  void add_player(unsigned int player_id, Ray position);
+  void add_player(unsigned int player_id, const Ray& position);
   void move_player(unsigned int player_id, unsigned char direction);
   void rotate_player(unsigned int player_id, unsigned char direction);
   // void add_sprite(Sprite &sprite);

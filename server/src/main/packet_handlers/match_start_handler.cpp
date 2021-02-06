@@ -1,13 +1,14 @@
+#include "match_start_handler.h"
+
 #include "../../../../common/src/main/packets/packing.h"
 #include "../managers/match.h"
-#include "join_match_handler.h"
 
-JoinMatchHandler::JoinMatchHandler() {}
+MatchStartHandler::MatchStartHandler() {}
 
-JoinMatchHandler::~JoinMatchHandler() {}
+MatchStartHandler::~MatchStartHandler() {}
 
-void JoinMatchHandler::handle(Packet& packet, ClientManager& client_manager,
-                              MatchManager& match_manager) {
+void MatchStartHandler::handle(Packet& packet, ClientManager& client_manager,
+                               MatchManager& match_manager) {
   unsigned char type;
   unsigned int player_id;
   unsigned char match_id;
