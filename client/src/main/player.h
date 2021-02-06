@@ -14,7 +14,7 @@ class Gun;
 
 class Player : public Object {
  private:
-  int pace;
+  double pace;
   int health;
   int bullets;
   std::unordered_map<int, Gun*> guns_bag;

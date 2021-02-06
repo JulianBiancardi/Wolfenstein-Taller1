@@ -41,7 +41,7 @@
 
 // Used to start a match being the host or notify the rest
 #define MATCH_START 7
-#define MATCH_START_SIZE 0  // TODO Define size
+#define MATCH_START_SIZE 4
 
 // Used to move a player
 #define MOVEMENT 8

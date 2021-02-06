@@ -24,7 +24,6 @@ PacketHandler* PacketHandlerFactory::build(Packet& packet) {
     case MATCH_START:
       return new MatchStartHandler();
     case MOVEMENT:
-      printf("Detected Move Packet\n");
       return new MovementHandler();
     case ROTATION:
       return new RotationHandler();

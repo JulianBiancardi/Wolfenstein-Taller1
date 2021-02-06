@@ -9,7 +9,7 @@
 #include "../player.h"
 #include "../sdl/image.h"
 
-#define UNIT 5
+#define UNIT 1
 #define SCREEN_WIDTH (320 * UNIT)
 #define SCREEN_HEIGHT (200 * UNIT)
 #define SCREEN_WIDTH_HALF (SCREEN_WIDTH / 2)

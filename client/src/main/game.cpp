@@ -12,7 +12,7 @@
 #include "frame_limiter.h"
 #include "packet_handlers/packet_handler_factory.h"
 
-#define UNIT 5
+#define UNIT 1
 #define SCREEN_WIDTH (320 * UNIT)
 #define SCREEN_HEIGHT (200 * UNIT)
 
@@ -26,7 +26,8 @@ Game::Game(Server& server, Match& match)
       is_running(false),
       forward_velocity(0),
       sideways_velocity(0),
-      angular_velocity(0) {
+      angular_velocity(0),
+      match_start(0) {
   map.add_player(player_id, Ray(1.5, 1.5, 0));
 }
 
@@ -37,17 +38,12 @@ void Game::operator()() {
 
   is_running = true;
   while (is_running) {
-    printf("A\n");
     handle_events();
-    printf("B\n");
     process_events();
-    printf("C\n");
     update();
-    printf("D\n");
     render();
-    printf("E\n");
+    ;
     frame_limiter.sleep();
-    printf("F\n");
   }
 }
 
@@ -99,6 +95,9 @@ void Game::handle_key_press(SDL_Keycode& key) {
     case SDLK_q:
       angular_velocity = std::min(1, angular_velocity + 1);
       break;
+    case SDLK_RETURN:  // Enter
+      match_start = 1;
+      break;
     default:
       break;
   }
@@ -124,6 +123,9 @@ void Game::handle_key_release(SDL_Keycode& key) {
     case SDLK_q:
       angular_velocity = std::min(0, angular_velocity - 1);
       break;
+    case SDLK_RETURN:
+      match_start = 0;
+      break;
     default:
       break;
   }
@@ -132,6 +134,7 @@ void Game::handle_key_release(SDL_Keycode& key) {
 void Game::process_events() {
   process_movement();
   process_rotation();
+  process_match_start();
 }
 
 void Game::process_movement() {
@@ -186,6 +189,17 @@ void Game::process_rotation() {
   size_t size = pack(data, "CICC", ROTATION, player_id, match_id, direction);
   Packet move_packet(size, data);
   server.send(move_packet);
+}
+
+void Game::process_match_start() {
+  if (match_start == 0) {
+    return;
+  }
+
+  unsigned char data[MATCH_START_SIZE];
+  size_t size = pack(data, "CIC", MATCH_START, player_id, match_id);
+  Packet match_start_packet(size, data);
+  server.send(match_start_packet);
 }
 
 void Game::update() {

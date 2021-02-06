@@ -21,6 +21,7 @@ class Game {
   unsigned char forward_velocity;
   unsigned char sideways_velocity;
   unsigned char angular_velocity;
+  unsigned char match_start;
 
   void update();  // update all objects of the game
   void render();  // render thats changes
@@ -32,6 +33,7 @@ class Game {
   void process_events();
   void process_movement();
   void process_rotation();
+  void process_match_start();
 
   void send_move_packet(unsigned char direction);
 
