@@ -25,7 +25,7 @@
   type: 2
   name: "Dog"
   image: "..."
-  icon: "..."
+  icon: "../resources/images/enemies/IMG_Dog.png"
 22:
   type: 2
   name: "Guard"
@@ -35,17 +35,17 @@
   type: 2
   name: "SS"
   image: "..."
-  icon: "..."
+  icon: "../resources/images/enemies/IMG_SS.png"
 24:
   type: 2
   name: "Officer"
   image: "/home/santiagoczop/Taller/tps/tp4/res/officer/officer1.bmp"
-  icon: "..."
+  icon: "../resources/images/enemies/IMG_Officer.png"
 25:
   type: 2
   name: "Mutant"
   image: "..."
-  icon: "..."
+  icon: "../resources/images/enemies/IMG_Mutant.png"
 
 # Guns
 30:
@@ -71,7 +71,7 @@
   name: "Chain Gun"
   image: "..."
   icon: "..."
-  sound: "..."
+  sound: "../resources/images/weapons/IMG_Chaingun.png"
 34:
   type: 3
   name: "Bazooka"
@@ -104,7 +104,7 @@
   type: 4
   name: "Cross"
   image: ""
-  icon: ""
+  icon: "../resources/images/items/IMG_Cross.png"
 45:
   type: 4
   name: "Cup"
@@ -131,17 +131,17 @@
   type: 5
   name: "Pillar"
   image: "/home/santiagoczop/Taller/tps/tp4/res/ambient/IMG_Pilar.bmp"
-  icon: "..."
+  icon: "../resources/images/objects/IMG_Pillar.png"
 51:
   type: 5
   name: "Table"
   image: "..."
-  icon: "..."
+  icon: "../resources/images/objects/IMG_Table.png"
 52:
   type: 5
   name: "Barrel"
   image: "..."
-  icon: "..."
+  icon: "../resources/images/objects/IMG_Barrel.png"
 
 # Non-solid Objects
 60:
