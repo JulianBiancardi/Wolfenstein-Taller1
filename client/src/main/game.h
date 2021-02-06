@@ -10,17 +10,18 @@
 
 class Game {
  private:
+  unsigned int player_id;
   unsigned char match_id;
   Server& server;
   Window window;
   Map map;
-  Ray player_ray;
   GameCaster caster;
   bool is_running;
 
-  unsigned char forward_velocity;
-  unsigned char sideways_velocity;
-  unsigned char angular_velocity;
+  char forward_velocity;
+  char sideways_velocity;
+  char angular_velocity;
+  char match_start;
 
   void update();  // update all objects of the game
   void render();  // render thats changes
@@ -32,6 +33,7 @@ class Game {
   void process_events();
   void process_movement();
   void process_rotation();
+  void process_match_start();
 
   void send_move_packet(unsigned char direction);
 

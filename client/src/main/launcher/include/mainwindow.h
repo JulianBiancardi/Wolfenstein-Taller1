@@ -1,5 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+
 #include <QtGui/QCloseEvent>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QWidget>
@@ -31,6 +32,8 @@ class MainWindow : public QMainWindow {
   void on_RefreshButton_clicked();
   void on_JoinButton_clicked();
   void on_NewButton_clicked();
+  void on_CreateButton_clicked();
+  void on_CancelButton_clicked();
   void closeEvent(QCloseEvent* event) override;
 };
 #endif  // MAINWINDOW_H

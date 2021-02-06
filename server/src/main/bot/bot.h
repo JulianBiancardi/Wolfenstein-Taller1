@@ -19,9 +19,13 @@
 
 
 extern "C" {
+/*
 #include <lauxlib.h>
 #include <lua.h>
-#include <lualib.h>
+#include <lua5.1/lauxlib.h>*/
+#include <lua5.1/lauxlib.h>
+#include <lua5.1/lua.h>
+#include <lua5.1/lualib.h>
 }
 
 class Bot {
@@ -45,8 +49,8 @@ class Bot {
 
   int id_at_players;
   CollisionChecker& checker;
-  //Player& player;
-  //const std::unordered_map<unsigned int, Player>& players;
+  // Player& player;
+  // const std::unordered_map<unsigned int, Player>& players;
   std::list<int> attacked_players;
   Player* player_goal;
   Map& map;

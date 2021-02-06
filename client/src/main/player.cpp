@@ -7,11 +7,23 @@
 #include "guns/knife.h"
 
 Player::Player(Ray position)
-    : position(position),
-      guns_bag(),
-      Object(position /*, position.get_angle()*/,
+    : guns_bag(),
+      Object(position, new CircleMask(ConfigLoader::player_mask_radio,
+                                      position.get_ref_origin())) {
+  pace = CL::player_pace;
+  health = CL::player_health;
+  bullets = CL::player_health;
+  Knife* knife = new Knife();
+  guns_bag.insert(std::pair<int, Gun*>(0, knife));
+  active_gun = 0;
+}
+
+Player::Player(Ray position, unsigned int player_id)
+    : guns_bag(),
+      Object(position,
              new CircleMask(ConfigLoader::player_mask_radio,
-                            position.get_ref_origin())) {
+                            position.get_ref_origin()),
+             player_id) {
   pace = CL::player_pace;
   health = CL::player_health;
   bullets = CL::player_health;
@@ -21,8 +33,7 @@ Player::Player(Ray position)
 }
 
 Player::Player(Point origin, double angle)
-    : position(origin, angle),
-      guns_bag(),
+    : guns_bag(),
       Object(origin, angle,
              new CircleMask(ConfigLoader::player_mask_radio, origin)) {
   pace = CL::player_pace;
@@ -33,9 +44,21 @@ Player::Player(Point origin, double angle)
   active_gun = 0;
 }
 
+Player::Player(Point origin, double angle, unsigned int player_id)
+    : guns_bag(),
+      Object(origin, angle,
+             new CircleMask(ConfigLoader::player_mask_radio, origin),
+             player_id) {
+  pace = CL::player_pace;
+  health = CL::player_health;
+  bullets = CL::player_health;
+  Knife* knife = new Knife();
+  guns_bag.insert(std::pair<int, Gun*>(0, knife));
+  active_gun = 0;
+}
+
 Player::Player(double x, double y, double angle)
-    : position(x, y, angle),
-      guns_bag(),
+    : guns_bag(),
       Object(Point(x, y), angle,
              new CircleMask(ConfigLoader::player_mask_radio, Point(x, y))) {
   pace = CL::player_pace;
@@ -45,6 +68,73 @@ Player::Player(double x, double y, double angle)
   guns_bag.insert(std::pair<int, Gun*>(0, knife));
   active_gun = 0;
 }
+
+Player::Player(double x, double y, double angle, unsigned int player_id)
+    : guns_bag(),
+      Object(Point(x, y), angle,
+             new CircleMask(ConfigLoader::player_mask_radio, Point(x, y)),
+             player_id) {
+  pace = CL::player_pace;
+  health = CL::player_health;
+  bullets = CL::player_health;
+  Knife* knife = new Knife();
+  guns_bag.insert(std::pair<int, Gun*>(0, knife));
+  active_gun = 0;
+}
+
+/*
+Player::Player(const Player& other) : Object(other) {
+  this->pace = other.pace;
+  this->health = other.health;
+  this->bullets = other.bullets;
+  this->guns_bag = other.guns_bag;
+  this->active_gun = other.active_gun;
+}
+Player& Player::operator=(const Player& other) {
+  if (this != &other) {
+    Object::operator=(other);
+    this->pace = other.pace;
+    this->health = other.health;
+    this->bullets = other.bullets;
+    this->guns_bag = other.guns_bag;
+    this->active_gun = other.active_gun;
+  }
+
+  return *this;
+}
+
+Player::Player(Player&& other) : Object(std::move(other)) {
+  this->pace = other.pace;
+  this->health = other.health;
+  this->bullets = other.bullets;
+  this->guns_bag = std::move(other.guns_bag);
+  this->active_gun = other.active_gun;
+
+  other.pace = 0;
+  other.health = 0;
+  other.bullets = 0;
+  other.active_gun = 0;
+}
+
+Player& Player::operator=(Player&& other) {
+  if (this == &other) {
+    return *this;
+  }
+
+  Object::operator=(std::move(other));
+  this->pace = other.pace;
+  this->health = other.health;
+  this->bullets = other.bullets;
+  this->guns_bag = std::move(other.guns_bag);
+  this->active_gun = other.active_gun;
+
+  other.pace = 0;
+  other.health = 0;
+  other.bullets = 0;
+  other.active_gun = 0;
+
+  return *this;
+}*/
 
 Player::~Player() {
   std::unordered_map<int, Gun*>::iterator iter;
@@ -82,7 +172,7 @@ void Player::move(unsigned char direction) {
   }
 
   double next_x = position.get_origin().getX() + cos(movement_angle) * pace;
-  double next_y = position.get_origin().getY() + sin(movement_angle) * pace;
+  double next_y = position.get_origin().getY() - sin(movement_angle) * pace;
 
   position = Ray(next_x, next_y, position.get_angle());
 }
@@ -92,11 +182,19 @@ void Player::rotate(unsigned char direction) {
     case LEFT_ROTATION:
       position = Ray(position.get_origin(),
                      position.get_angle() + CL::player_rotation_angle);
+      break;
+    case RIGHT_ROTATION:
+      position = Ray(position.get_origin(),
+                     position.get_angle() - CL::player_rotation_angle);
+      break;
+    default:
+      break;
   }
 }
 
-Hit Player::shoot(Map& map) {
-  return std::move(guns_bag[active_gun]->shoot(*this, bullets, map));
+Hit Player::shoot(BaseMap& map, const std::vector<Object*>& map_objects) {
+  return std::move(
+      guns_bag[active_gun]->shoot(*this, bullets, map, map_objects));
 }
 
 void Player::add_gun(int gun_num, Gun* gun) {

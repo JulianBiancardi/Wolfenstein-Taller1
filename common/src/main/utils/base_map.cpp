@@ -1,6 +1,6 @@
 #include "base_map.h"
 
-#define WALL 1  // TODO Remove this and ask in Config
+#define AIR 0  // TODO Remove this and ask in Config
 
 #include "yaml-cpp/yaml.h"
 
@@ -52,7 +52,7 @@ const std::string& BaseMap::get_name() const { return map_name; }
 unsigned char BaseMap::get_capacity() const { return player_capacity; }
 
 bool BaseMap::is_wall(size_t x, size_t y) {
-  if (map_matrix(x, y) >= WALL) {
+  if (map_matrix(x, y) != AIR) {
     return true;
   }
   return false;

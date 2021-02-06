@@ -37,7 +37,6 @@ void FrameLimiter::sleep() {
     iteration += floor(double(lost / FRAME_RATE));  // floor division
   }
 
-  std::cout << "FPS: " << 1000 / rest_time << std::endl;
   SDL_Delay(rest_time);
   frame_start += FRAME_RATE;
   iteration++;
@@ -45,4 +44,4 @@ void FrameLimiter::sleep() {
 
 FrameLimiter::~FrameLimiter() {}
 
-#endif  // FRAME_LIMITER_H
+#endif

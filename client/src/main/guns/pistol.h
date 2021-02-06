@@ -18,7 +18,8 @@ class Pistol : public Gun {
   Pistol();
   ~Pistol();
 
-  Hit shoot(Object& player, int& current_bullets, Map& map) override;
+  Hit shoot(Object& player, int& current_bullets, BaseMap& map,
+            const std::vector<Object*>& objects) override;
 };
 
 #endif

@@ -6,7 +6,8 @@
 
 ChainCannon::ChainCannon() : Gun(0, 0) {}
 
-Hit ChainCannon::shoot(Object& player, int& current_bullets, Map& map) {
+Hit ChainCannon::shoot(Object& player, int& current_bullets, BaseMap& map,
+                       const std::vector<Object*>& objects) {
   /* TODO decrease bullets
    */
   // if

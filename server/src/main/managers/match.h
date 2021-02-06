@@ -3,15 +3,16 @@
 
 #include <unordered_map>
 
+#include "../../../../common/src/main/data_structures/blocking_queue.h"
+#include "../../../../common/src/main/packets/packet.h"
+#include "../../../../common/src/main/threads/thread.h"
 #include "../game/collision_checker.h"
 #include "../game/player.h"
 #include "../map.h"
-#include "../../../../common/src/main/packets/packet.h"
-#include "../../../../common/src/main/data_structures/blocking_queue.h"
-#include "../../../../common/src/main/threads/thread.h"
 
 class Match {
  private:
+  unsigned int host_id;
   unsigned char match_id;
   bool started;
   std::unordered_set<unsigned int> players_ids;
@@ -20,7 +21,8 @@ class Match {
   std::map<int, Thread*> threads;
 
  public:
-  explicit Match(unsigned char match_id, std::string& map_name);
+  explicit Match(unsigned int host_id, unsigned char match_id,
+                 std::string& map_name);
 
   Match(const Match& other) = delete;
   Match& operator=(const Match&) = delete;
@@ -30,8 +32,10 @@ class Match {
 
   ~Match();
 
-  /* Starts match, starts clock and bots */
-  void start(BlockingQueue<Packet>& reception_queue);
+  /* Starts the match given the host id.
+   * Returns true on success, false otherwise.
+   */
+  bool start(unsigned int player_id);
 
   /* Create and add a new player to the match with the given id.
    * Returns true on success, false otherwise

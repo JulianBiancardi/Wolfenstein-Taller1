@@ -31,10 +31,10 @@ class _sprite {
 class GameCaster {
  private:
   SDL_Renderer* renderer;
-  Ray& player;
   Map& map;
   Window& window;
   ResourceManager res_manager;
+  unsigned int player_id;
 
   void draw_background();
 
@@ -50,7 +50,7 @@ class GameCaster {
   void sort_sprites(std::vector<_sprite>& sprites);
 
  public:
-  GameCaster(Window& window, Ray& player, Map& map);
+  GameCaster(Window& window, Map& map, unsigned int player_id);
   ~GameCaster();
 
   void operator()();

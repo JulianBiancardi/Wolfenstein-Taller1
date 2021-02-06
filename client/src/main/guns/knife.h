@@ -5,7 +5,8 @@
 class Knife : public Gun {
  public:
   Knife();
-  Hit shoot(Object& player, int& current_bullets, Map& map) override;
+  Hit shoot(Object& player, int& current_bullets,BaseMap& map,
+                    const std::vector<Object*>& objects) override;
 
  private:
   const static int range;

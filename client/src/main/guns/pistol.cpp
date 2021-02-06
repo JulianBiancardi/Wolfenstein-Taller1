@@ -16,7 +16,8 @@ Pistol::Pistol() : spray(0.17453, 0.1), Gun(2, 20) {
   //    = ConfigLoader::get_init_configs().pistol_base_precision;
 }
 
-Hit Pistol::shoot(Object& player, int& current_bullets, Map& map) {
+Hit Pistol::shoot(Object& player, int& current_bullets, BaseMap& map,
+                  const std::vector<Object*>& objects) {
   Ray bullet(player.get_position(), player.get_angle() + spray());
 
   double wall_distance =
@@ -26,8 +27,7 @@ Hit Pistol::shoot(Object& player, int& current_bullets, Map& map) {
   double closest_obj_dist = std::numeric_limits<double>::infinity();
   double closest_obj_angle = std::numeric_limits<double>::quiet_NaN();
 
-  std::vector<Object*> objects = map.get_objects();
-  std::vector<Object*>::iterator iter;
+  std::vector<Object*>::const_iterator iter;
 
   for (iter = objects.begin(); iter != objects.end(); iter++) {
     Object* object = *iter;

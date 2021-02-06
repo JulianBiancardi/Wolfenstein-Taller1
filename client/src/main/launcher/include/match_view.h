@@ -21,7 +21,8 @@ class MatchView : public QWidget {
   MatchView(QWidget* parent = nullptr, const Match& match = match_default,
             Match* match_selected = nullptr);
 
-  void handleMousePressEvent(QMouseEvent* event);
+  void handleSelectedEvent(QMouseEvent* event);
+  void handleDeselectedEvent(QMouseEvent* event);
 
   ~MatchView();
 };

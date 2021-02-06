@@ -12,21 +12,24 @@
 #include "frame_limiter.h"
 #include "packet_handlers/packet_handler_factory.h"
 
-#define UNIT 5
+#define UNIT 3
 #define SCREEN_WIDTH (320 * UNIT)
 #define SCREEN_HEIGHT (200 * UNIT)
 
 Game::Game(Server& server, Match& match)
-    : match_id(match.get_match_id()),
+    : player_id(server.get_id()),
+      match_id(match.get_match_id()),
       server(server),
       window("Hello World!", SCREEN_WIDTH, SCREEN_HEIGHT),
       map("test_map"),
-      player_ray(2.5, 2.5, 0),
-      caster(window, player_ray, map),
+      caster(window, map, player_id),
       is_running(false),
       forward_velocity(0),
       sideways_velocity(0),
-      angular_velocity(0) {}
+      angular_velocity(0),
+      match_start(0) {
+  map.add_player(player_id, Ray(1.5, 1.5, 0));
+}
 
 Game::~Game() {}
 
@@ -36,19 +39,16 @@ void Game::operator()() {
   is_running = true;
   while (is_running) {
     handle_events();
-
-    // Receive events
-    // MovementEvent movement_event;
-    // movement_event.setCaster(caster);
-    // movement_event.process();
-
+    process_events();
     update();
     render();
+    ;
     frame_limiter.sleep();
   }
 }
 
 void Game::handle_events() {
+  // TODO Check how to move everything into a flags vector
   SDL_Event event;
   while (SDL_PollEvent(&event)) {
     switch (event.type) {
@@ -73,8 +73,6 @@ void Game::handle_events() {
         break;
     }
   }
-
-  process_events();
 }
 
 void Game::handle_key_press(SDL_Keycode& key) {
@@ -96,6 +94,9 @@ void Game::handle_key_press(SDL_Keycode& key) {
       break;
     case SDLK_q:
       angular_velocity = std::min(1, angular_velocity + 1);
+      break;
+    case SDLK_RETURN:  // Enter
+      match_start = 1;
       break;
     default:
       break;
@@ -122,6 +123,9 @@ void Game::handle_key_release(SDL_Keycode& key) {
     case SDLK_q:
       angular_velocity = std::min(0, angular_velocity - 1);
       break;
+    case SDLK_RETURN:
+      match_start = 0;
+      break;
     default:
       break;
   }
@@ -130,6 +134,7 @@ void Game::handle_key_release(SDL_Keycode& key) {
 void Game::process_events() {
   process_movement();
   process_rotation();
+  process_match_start();
 }
 
 void Game::process_movement() {
@@ -163,8 +168,7 @@ void Game::process_movement() {
   }
 
   unsigned char data[MOVEMENT_SIZE];
-  size_t size =
-      pack(data, "CICC", MOVEMENT, server.get_id(), match_id, direction);
+  size_t size = pack(data, "CICC", MOVEMENT, player_id, match_id, direction);
   Packet move_packet(size, data);
   server.send(move_packet);
 }
@@ -182,10 +186,20 @@ void Game::process_rotation() {
   }
 
   unsigned char data[ROTATION_SIZE];
-  size_t size =
-      pack(data, "CICC", ROTATION, server.get_id(), match_id, direction);
+  size_t size = pack(data, "CICC", ROTATION, player_id, match_id, direction);
   Packet move_packet(size, data);
   server.send(move_packet);
+}
+
+void Game::process_match_start() {
+  if (match_start == 0) {
+    return;
+  }
+
+  unsigned char data[MATCH_START_SIZE];
+  size_t size = pack(data, "CIC", MATCH_START, player_id, match_id);
+  Packet match_start_packet(size, data);
+  server.send(match_start_packet);
 }
 
 void Game::update() {

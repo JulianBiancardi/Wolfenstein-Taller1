@@ -5,6 +5,8 @@
 #include <memory>
 
 #include "../../../../common/src/main/packets/packet_handler_factory_error.h"
+#include "../managers/match_error.h"
+#include "../managers/match_manager_error.h"
 #include "../packet_handlers/packet_handler.h"
 #include "../packet_handlers/packet_handler_factory.h"
 
@@ -28,8 +30,18 @@ void ProcessorThread::run() {
       std::unique_ptr<PacketHandler> handler(
           PacketHandlerFactory::build(packet));
       handler->handle(packet, client_manager, match_manager);
+    } catch (const MatchError& e) {
+      syslog(LOG_NOTICE,
+             "[ERROR] ProcessorThread - Notice: Invalid operation in packet - "
+             "%s\n",
+             e.what());
+    } catch (const MatchManagerError& e) {
+      syslog(LOG_NOTICE,
+             "[ERROR] ProcessorThread - Notice: Invalid operation in packet - "
+             "%s\n",
+             e.what());
     } catch (const PacketHandlerFactoryError& e) {
-      syslog(LOG_ERR, "Packet received hasn't got a valid type.");
+      syslog(LOG_ERR, "[ERROR] ProcessorThread - Error: %s\n", e.what());
     }  // TODO catch other errors
   }
 }

@@ -26,9 +26,10 @@ Match& MatchManager::get_match(unsigned char match_id) {
   return *(matches[match_id]);
 }
 
-unsigned char MatchManager::create_match(std::string& map_name) {
+unsigned char MatchManager::create_match(unsigned int host_id,
+                                         std::string& map_name) {
   if (matches.size() < MATCHES_CAPACITY) {
-    std::shared_ptr<Match> new_match(new Match(next_id, map_name));
+    std::shared_ptr<Match> new_match(new Match(host_id, next_id, map_name));
     matches.insert(std::make_pair(next_id, std::move(new_match)));
     next_id++;
     return next_id - 1;

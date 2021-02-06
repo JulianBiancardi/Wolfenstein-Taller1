@@ -23,6 +23,7 @@ PacketHandler* PacketHandlerFactory::build(Packet& packet) {
       return new GameOverHandler();
       */
     default:
+      printf("Undetected Packet Type: %u\n", packet.get_type());
       throw PacketHandlerFactoryError("Packet type is not valid. Type is %u.",
                                       packet.get_type());
       break;

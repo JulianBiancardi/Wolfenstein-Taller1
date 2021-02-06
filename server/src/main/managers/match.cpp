@@ -1,16 +1,22 @@
 #include "match.h"
 
 #include "../game/objects/door/door.h"
-#include "match_error.h"
 #include "../threads/clock/clock_thread.h"
+#include "match_error.h"
 
 #define CLOCK_KEY 0
 
-Match::Match(unsigned char match_id, std::string& map_name)
-    : map(map_name), checker(map), started(false), match_id(match_id) {}
+Match::Match(unsigned int host_id, unsigned char match_id,
+             std::string& map_name)
+    : host_id(host_id),
+      map(map_name),
+      checker(map),
+      started(false),
+      match_id(match_id) {}
 
 Match::~Match() {}
 
+/*
 void Match::start(BlockingQueue<Packet>& reception_queue) {
   auto clock = new ClockThread(CL::match_length, reception_queue, match_id);
   threads.insert({CLOCK_KEY, clock});
@@ -18,7 +24,7 @@ void Match::start(BlockingQueue<Packet>& reception_queue) {
   for (auto thread : threads) {
     thread.second->start();
   }
-}
+}*/
 
 bool Match::add_player(unsigned int player_id) {
   if (map.add_player(player_id)) {
@@ -49,7 +55,24 @@ unsigned char Match::get_capacity() const { return map.get_capacity(); }
 
 bool Match::has_started() const { return started; }
 
+bool Match::start(unsigned int player_id) {
+  if (player_id == host_id) {
+    if (!started) {
+      started = true;
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    throw MatchError("Failed to start match. Player isn't Host.");
+  }
+}
+
 bool Match::move_player(unsigned int player_id, unsigned char direction) {
+  if (!started) {
+    throw MatchError("Failed to move player. Match hasn't started.");
+  }
+
   if (!player_exists(player_id)) {
     throw MatchError("Failed to move player. Player %u doesn't exist.",
                      player_id);
@@ -68,6 +91,10 @@ bool Match::move_player(unsigned int player_id, unsigned char direction) {
 }
 
 bool Match::rotate_player(unsigned int player_id, unsigned char direction) {
+  if (!started) {
+    throw MatchError("Failed to rotate player. Match hasn't started.");
+  }
+
   if (!player_exists(player_id)) {
     throw MatchError("Failed to rotate player. Player %u doesn't exist.",
                      player_id);
@@ -102,6 +129,10 @@ unsigned int Match::grab_item(unsigned int player_id) {
 }
 
 bool Match::change_gun(unsigned int player_id, unsigned char gun_id) {
+  if (!started) {
+    throw MatchError("Failed to change gun. Match hasn't started.");
+  }
+
   if (!player_exists(player_id)) {
     throw MatchError("Failed to change gun player. Player %u doesn't exist.",
                      player_id);
@@ -113,6 +144,10 @@ bool Match::change_gun(unsigned int player_id, unsigned char gun_id) {
 
 bool Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
                       unsigned char damage) {
+  if (!started) {
+    throw MatchError("Failed to shoot gun. Match hasn't started.");
+  }
+
   if (!player_exists(player_id)) {
     throw MatchError("Failed to shoot gun. Player %u doesn't exist.",
                      player_id);
@@ -193,15 +228,14 @@ bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
   Player& player = map.get_player(player_id);
 
   if (!map.has_object(door_id)) {
-    throw MatchError("Failed to find door. Door %u doesn't exist.",
-                     door_id);
+    throw MatchError("Failed to find door. Door %u doesn't exist.", door_id);
   }
 
-  Door* door = (Door*) map.get_object(door_id);
+  Door* door = (Door*)map.get_object(door_id);
 
   if (door->interact(player, checker)) {
     if (door->is_open()) {
-      ((ClockThread*) threads.at(CLOCK_KEY))->add_door_timer(door_id);
+      ((ClockThread*)threads.at(CLOCK_KEY))->add_door_timer(door_id);
     }
     return true;
   } else {
@@ -211,16 +245,15 @@ bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
 
 bool Match::close_door(unsigned int door_id) {
   if (!map.has_object(door_id)) {
-    throw MatchError("Failed to find door. Door %u doesn't exist.",
-                     door_id);
+    throw MatchError("Failed to find door. Door %u doesn't exist.", door_id);
   }
 
-  Door* door = (Door*) map.get_object(door_id);
+  Door* door = (Door*)map.get_object(door_id);
 
   door->close(checker);
 
   if (!door->is_open()) {
-    ((ClockThread*) threads.at(CLOCK_KEY))->delete_door_timer(door_id);
+    ((ClockThread*)threads.at(CLOCK_KEY))->delete_door_timer(door_id);
     return true;
   } else {
     return false;
@@ -240,7 +273,7 @@ void Match::delete_player(unsigned int player_id) {
 bool Match::should_end() const { return map.has_one_player(); }
 
 void Match::end() {
-  ((ClockThread*) threads.at(CLOCK_KEY))->force_stop();
+  ((ClockThread*)threads.at(CLOCK_KEY))->force_stop();
   threads.at(CLOCK_KEY)->join();
   // Force_stop and join other threads
 }

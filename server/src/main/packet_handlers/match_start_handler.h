@@ -1,16 +1,16 @@
-#ifndef CLOSE_DOOR_HANDLER_H
-#define CLOSE_DOOR_HANDLER_H
+#ifndef MATCH_START_HANDLER_H
+#define MATCH_START_HANDLER_H
 
 #include "../../../../common/src/main/packets/packet.h"
 #include "../managers/client_manager.h"
 #include "../managers/match_manager.h"
 #include "packet_handler.h"
 
-class CloseDoorHandler : public PacketHandler {
+class MatchStartHandler : public PacketHandler {
  private:
  public:
-  CloseDoorHandler();
-  ~CloseDoorHandler();
+  MatchStartHandler();
+  ~MatchStartHandler();
 
   void handle(Packet& packet, ClientManager& client_manager,
               MatchManager& match_manager) override;
