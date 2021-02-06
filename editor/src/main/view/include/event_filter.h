@@ -28,15 +28,22 @@ EventFilter::EventFilter(OptionSelected* current_option)
 bool EventFilter::eventFilter(QObject* watched, QEvent* event) {
   auto mouse_event = static_cast<QMouseEvent*>(event);
   auto current_cell = qobject_cast<CellView*>(watched);
+  if (current_cell == nullptr) {
+    return false;
+  }
 
   switch (current_option->state()) {
     case PAINT_STATE:
       if (event->type() == QEvent::MouseMove) {
-        auto widget = qApp->widgetAt(mouse_event->globalPos())->parent();
-        auto currentCell = qobject_cast<CellView*>(widget);
+        auto widget = qApp->widgetAt(mouse_event->globalPos());
+        if (widget == nullptr) {
+          return false;
+        }
+        auto currentCell = qobject_cast<CellView*>(widget->parent());
         if (currentCell == nullptr) {
           return false;
         }
+
         if ((mouse_event->buttons() & Qt::LeftButton) == Qt::LeftButton) {
           currentCell->handleMouseMoveEventInsidePaint(mouse_event);
           return true;
@@ -46,6 +53,7 @@ bool EventFilter::eventFilter(QObject* watched, QEvent* event) {
           currentCell->handleMouseMoveEventInsideClear(mouse_event);
           return true;
         }
+        return true;
       }
       if (event->type() == QEvent::MouseButtonPress) {
         current_cell->handleMousePressEvent(mouse_event);

@@ -6,10 +6,13 @@
 #include <QtCore/QDebug>
 #include <QtCore/QEvent>
 #include <QtCore/QObject>
-#include <iostream>
+#include <QtGui/QMouseEvent>
 
 class EventFilter : public QObject {
  private:
+  MatchView* last_match = nullptr;
+  MatchView* current_match = nullptr;
+
  public:
   EventFilter();
 
@@ -25,15 +28,21 @@ bool EventFilter::eventFilter(QObject* watched, QEvent* event) {
 
   if (event->type() == QEvent::MouseButtonPress) {
     auto widget = qApp->widgetAt(mouse_event->globalPos());
-    if (MatchView* current_match = qobject_cast<MatchView*>(widget)) {
-      current_match->handleMousePressEvent(mouse_event);
-      return true;
-    } else if (MatchView* current_match =
-                   qobject_cast<MatchView*>(widget->parent())) {
-      current_match->handleMousePressEvent(mouse_event);
-      return true;
+    current_match = qobject_cast<MatchView*>(widget);
+    if (current_match == nullptr) {
+      current_match = qobject_cast<MatchView*>(widget->parent());
+      if (current_match == nullptr) {
+        return false;
+      }
     }
-    return false;
+
+    current_match->handleSelectedEvent(mouse_event);
+    if (last_match != nullptr) {
+      last_match->handleDeselectedEvent(mouse_event);
+    }
+    last_match = current_match;
+    return true;
+
   } else {
     return false;
   }

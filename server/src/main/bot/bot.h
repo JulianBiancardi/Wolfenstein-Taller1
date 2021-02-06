@@ -8,21 +8,31 @@
 #include <iostream>
 #include <list>
 #include <vector>
+#include <mutex>
 
-#include "../../../common/src/main/config_loader.h"
-#include "../../../common/src/main/packets/packet.h"
-#include "game/collision_checker.h"
-#include "game/player.h"
+#include "../../../../common/src/main/config_loader.h"
+#include "../../../../common/src/main/packets/packet.h"
+#include "../game/collision_checker.h"
+#include "../game/player.h"
+
+#include "../../../../common/src/main/data_structures/blocking_queue.h"
+
 
 extern "C" {
+/*
 #include <lauxlib.h>
 #include <lua.h>
-#include <lualib.h>
+#include <lua5.1/lauxlib.h>*/
+#include <lua5.1/lauxlib.h>
+#include <lua5.1/lua.h>
+#include <lua5.1/lualib.h>
 }
 
 class Bot {
  public:
-  Bot(CollisionChecker& checker, Map& map, int id_at_players);
+  Bot(CollisionChecker& checker, Map& map, int id_at_players,
+      BlockingQueue<Packet>& queue);
+
   ~Bot();
   void execute();
   void update_player();
@@ -33,11 +43,14 @@ class Bot {
   Player* find_nearest_player();
 
  private:
+  BlockingQueue<Packet>& queue;
+  std::mutex mutex;
   lua_State* state;
+
   int id_at_players;
   CollisionChecker& checker;
-  //Player& player;
-  //const std::unordered_map<unsigned int, Player>& players;
+  // Player& player;
+  // const std::unordered_map<unsigned int, Player>& players;
   std::list<int> attacked_players;
   Player* player_goal;
   Map& map;

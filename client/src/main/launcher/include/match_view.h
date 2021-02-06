@@ -14,14 +14,14 @@ class MatchView : public QWidget {
  private:
   Ui::MatchView ui;
   unsigned char match_id;
-  const Match& match;
   Match* match_selected;
 
  public:
   MatchView(QWidget* parent = nullptr, const Match& match = match_default,
             Match* match_selected = nullptr);
 
-  void handleMousePressEvent(QMouseEvent* event);
+  void handleSelectedEvent(QMouseEvent* event);
+  void handleDeselectedEvent(QMouseEvent* event);
 
   ~MatchView();
 };

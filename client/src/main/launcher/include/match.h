@@ -22,6 +22,7 @@ class Match {
         unsigned char players_joined, unsigned char players_total, bool status);
 
   bool is_running() const;
+  bool is_valid() const;
 
   void copy(const Match& other);
   void reset();
