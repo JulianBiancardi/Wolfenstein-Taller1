@@ -28,7 +28,7 @@ Game::Game(Server& server, Match& match)
       sideways_velocity(0),
       angular_velocity(0),
       match_start(0) {
-  map.add_player(player_id, Ray(1.5, 1.5, 0));
+  map.add_player(player_id, Ray(2.5, 2.5, 0));
 }
 
 Game::~Game() {}
