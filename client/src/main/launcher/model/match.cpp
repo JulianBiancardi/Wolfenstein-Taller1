@@ -24,6 +24,7 @@ Match::Match(unsigned char match_id, const char* map_name,
 }
 
 bool Match::is_running() const { return (status == IN_GAME); }
+bool Match::is_valid() const { return match_id != INVALID_ID; }
 
 void Match::copy(const Match& other) {
   this->match_id = other.match_id;
