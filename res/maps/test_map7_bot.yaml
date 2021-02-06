@@ -431,7 +431,7 @@ objects:
     y_position: 22
   - type: 2
     id: 20
-    x_position: 1
+    x_position: 2
     y_position: 18
   - type: 2
     id: 20
@@ -449,10 +449,6 @@ objects:
     id: 20
     x_position: 49
     y_position: 16
-  - type: 2
-    id: 20
-    x_position: 62
-    y_position: 59
   - type: 1
     id: 1
     x_position: 63

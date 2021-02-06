@@ -1,6 +1,9 @@
 #ifndef POINT_H
 #define POINT_H
 
+#include "../ids/movement_ids.h"
+#include "../config_loader.h"
+
 class Point {
  private:
   double x;
@@ -30,6 +33,9 @@ class Point {
   // Calculates and returns the angle between two points in the plane, using the
   // origin as the pivot.
   double angle_to(const Point& other);
+
+  // Calculates and returns the kind of movement direction between two points.
+  int movement_direction(const Point& other);
 };
 
 #endif
