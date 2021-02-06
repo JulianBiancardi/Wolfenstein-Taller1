@@ -172,7 +172,7 @@ void Player::move(unsigned char direction) {
   }
 
   double next_x = position.get_origin().getX() + cos(movement_angle) * pace;
-  double next_y = position.get_origin().getY() + sin(movement_angle) * pace;
+  double next_y = position.get_origin().getY() - sin(movement_angle) * pace;
 
   position = Ray(next_x, next_y, position.get_angle());
 }
