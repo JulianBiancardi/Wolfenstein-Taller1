@@ -16,6 +16,9 @@ class Door : public Object {
 
   /* Returns if the door is open or not */
   bool is_open() const;
+
+  /* Closes the door */
+  void close(CollisionChecker& checker);
 };
 
 #endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_DOOR_H_

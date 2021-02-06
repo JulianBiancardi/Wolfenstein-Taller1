@@ -70,7 +70,10 @@
 #define DOOR_INTERACTION 12
 #define DOOR_INTERACTION_SIZE 10
 
-#define GAME_OVER 13
+#define CLOSE_DOOR 13
+#define CLOSE_DOOR_SIZE 5
+
+#define GAME_OVER 14
 #define GAME_OVER_SIZE 2
 
 #endif

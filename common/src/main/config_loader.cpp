@@ -79,6 +79,8 @@ double CL::table_depth = CL::yaml_file["table_depth"].as<double>();
 double CL::barrel_radius = CL::yaml_file["barrel_radius"].as<double>();
 
 // Other
+unsigned int
+    CL::match_length = CL::yaml_file["match_length"].as<unsigned int>();
 double CL::door_timer = CL::yaml_file["door_timer"].as<double>();
 
 ConfigLoader::ConfigLoader() {

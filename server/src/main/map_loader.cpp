@@ -23,7 +23,7 @@
 
 MapLoader::MapLoader(std::unordered_map<unsigned int, Player>& players,
                      std::unordered_map<unsigned int, Item*>& items,
-                     std::vector<Object*>& solid_objects,
+                     std::unordered_map<unsigned int, Object*>& solid_objects,
                      std::vector<Point>& spawn_points)
     : players(players),
       items(items),
@@ -51,58 +51,41 @@ void MapLoader::load_map(std::string& map_name) {
     size_t y = object["y_position"].as<int>();
 
     switch (id) {
-      case SPAWN_POINT:
-        add_spawn_point(Point(x, y));
+      case SPAWN_POINT:add_spawn_point(Point(x, y));
         break;
-      case MACHINE_GUN:
-        add_machine_gun(Point(x, y));
+      case MACHINE_GUN:add_machine_gun(Point(x, y));
         break;
-      case CHAIN_GUN:
-        add_chain_cannon(Point(x, y));
+      case CHAIN_GUN:add_chain_cannon(Point(x, y));
         break;
-      case BAZOOKA:
-        add_rocket_launcher(Point(x, y));
-      case FOOD:
-        add_food(Point(x, y));
+      case BAZOOKA:add_rocket_launcher(Point(x, y));
         break;
-      case MEDKIT:
-        add_medic_kit(Point(x, y));
+      case FOOD:add_food(Point(x, y));
         break;
-      case BLOOD:
-        add_blood(Point(x, y));
+      case MEDKIT:add_medic_kit(Point(x, y));
         break;
-      case BULLETS:
-        add_bullets(Point(x, y));
+      case BLOOD:add_blood(Point(x, y));
         break;
-      case CROSS:
-        add_cross(Point(x, y));
+      case BULLETS:add_bullets(Point(x, y));
         break;
-      case CUP:
-        add_cup(Point(x, y));
+      case CROSS:add_cross(Point(x, y));
         break;
-      case CHEST:
-        add_chest(Point(x, y));
+      case CUP:add_cup(Point(x, y));
         break;
-      case CROWN:
-        add_crown(Point(x, y));
+      case CHEST:add_chest(Point(x, y));
         break;
-      case KEY:
-        add_key(Point(x, y));
+      case CROWN:add_crown(Point(x, y));
         break;
-      case PILLAR:
-        add_pillar(Point(x, y));
+      case KEY:add_key(Point(x, y));
         break;
-      case TABLE:
-        add_table(Point(x, y));
+      case PILLAR:add_pillar(Point(x, y));
         break;
-      case BARREL:
-        add_barrel(Point(x, y));
+      case TABLE:add_table(Point(x, y));
         break;
-      case DOOR:
-        add_normal_door(Point(x, y));
+      case BARREL:add_barrel(Point(x, y));
         break;
-      case LOCKED_DOOR:
-        add_locked_door(Point(x, y));
+      case DOOR:add_normal_door(Point(x, y));
+        break;
+      case LOCKED_DOOR:add_locked_door(Point(x, y));
     }
   }
 }
@@ -172,22 +155,27 @@ void MapLoader::add_key(const Point& where) {
 }
 
 void MapLoader::add_pillar(const Point& where) {
-  solid_objects.push_back(new CircularObject(CL::pillar_radius, where));
+  CircularObject* new_pillar = new CircularObject(CL::pillar_radius, where);
+  solid_objects.insert({new_pillar->get_id(), new_pillar});
 }
 
 void MapLoader::add_table(const Point& where) {
-  solid_objects.push_back(
-      new RectangularObject(CL::table_width, CL::table_depth, where));
+  RectangularObject* new_table = new RectangularObject(CL::table_width,
+                                                       CL::table_depth, where);
+  solid_objects.insert({new_table->get_id(), new_table});
 }
 
 void MapLoader::add_barrel(const Point& where) {
-  solid_objects.push_back(new CircularObject(CL::barrel_radius, where));
+  CircularObject* new_barrel = new CircularObject(CL::barrel_radius, where);
+  solid_objects.insert({new_barrel->get_id(), new_barrel});
 }
 
 void MapLoader::add_normal_door(const Point& where) {
-  solid_objects.push_back(new NormalDoor(where));
+  NormalDoor* new_door = new NormalDoor(where);
+  solid_objects.insert({new_door->get_id(), new_door});
 }
 
 void MapLoader::add_locked_door(const Point& where) {
-  solid_objects.push_back(new LockedDoor(where));
+  LockedDoor* new_door = new LockedDoor(where);
+  solid_objects.insert({new_door->get_id(), new_door});
 }

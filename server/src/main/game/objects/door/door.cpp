@@ -18,3 +18,9 @@ void Door::change_state(CollisionChecker& checker) {
 }
 
 bool Door::is_open() const { return !(((SwitchMask*) mask)->is_active()); }
+
+void Door::close(CollisionChecker& checker) {
+  if (is_open()) {
+    change_state(checker);
+  }
+}

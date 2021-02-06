@@ -2,7 +2,7 @@
 #define CLOCK_THREAD_H
 
 #include <atomic>
-#include <vector>
+#include <unordered_map>
 #include <mutex>
 
 #include "../../../../../common/src/main/threads/thread.h"
@@ -12,15 +12,21 @@ class ClockThread : public Thread {
  private:
   std::chrono::duration<double> remaining_time;
   std::atomic<bool> allowed_to_run;
-  std::vector<TimedEvent*> timed_events;
+  std::unordered_map<unsigned int, TimedEvent*> timed_events;
   std::mutex mutex;
+  BlockingQueue<Packet>& reception_queue;
+  unsigned char match_id;
   void run() override;
 
   void update_timed_events();
+  void end_game();
+  bool timed_event_exist(unsigned int id);
 
  public:
   /* Match length is in seconds */
-  explicit ClockThread(unsigned int match_length);
+  explicit ClockThread(unsigned int match_length,
+                       BlockingQueue<Packet>& queue,
+                       unsigned char match_id);
 
   ClockThread(const ClockThread&) = delete;
   ClockThread& operator=(const ClockThread&) = delete;
@@ -31,7 +37,8 @@ class ClockThread : public Thread {
   ~ClockThread();
 
   void force_stop();
-  void add_door_timer();
+  void add_door_timer(unsigned int door_id);
+  void delete_door_timer(unsigned int door_id);
 };
 
 #endif

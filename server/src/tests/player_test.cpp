@@ -486,6 +486,8 @@ int static player_collides_against_door() {
 }
 
 int static player_walks_through_door() {
+  Identifiable::reset_id();
+
   std::string map_name(TEST_MAP_WITH_DOOR);
   Map map(map_name);
   map.add_player(1);
@@ -493,7 +495,7 @@ int static player_walks_through_door() {
   CollisionChecker checker(map);
   move_player_to(map.get_player(1), checker, Point(2, 5));
 
-  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(1))->interact(map.get_player(1), checker);
 
   for (int i = 0; i < 60; i++) {
     move_up(map.get_player(1), checker);
@@ -507,6 +509,8 @@ int static player_walks_through_door() {
 }
 
 int static player_tries_to_pass_door_opens_it_and_does_it() {
+  Identifiable::reset_id();
+
   std::string map_name(TEST_MAP_WITH_DOOR);
   Map map(map_name);
   map.add_player(1);
@@ -525,7 +529,7 @@ int static player_tries_to_pass_door_opens_it_and_does_it() {
 
   Point previous(map.get_player(1).get_position());
 
-  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(1))->interact(map.get_player(1), checker);
 
   for (int i = 0; i < 20; i++) {
     move_up(map.get_player(1), checker);
@@ -540,6 +544,8 @@ int static player_tries_to_pass_door_opens_it_and_does_it() {
 }
 
 int static player_tries_to_open_locked_door_with_no_key() {
+  Identifiable::reset_id();
+
   std::string map_name(TEST_MAP_WITH_LOCKED_DOOR);
   Map map(map_name);
   map.add_player(1);
@@ -547,7 +553,7 @@ int static player_tries_to_open_locked_door_with_no_key() {
   CollisionChecker checker(map);
   move_player_to(map.get_player(1), checker, Point(2, 5));
 
-  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(1))->interact(map.get_player(1), checker);
 
   for (int i = 0; i < 60; i++) {
     move_up(map.get_player(1), checker);
@@ -562,6 +568,8 @@ int static player_tries_to_open_locked_door_with_no_key() {
 }
 
 int static player_opens_door_with_key() {
+  Identifiable::reset_id();
+
   std::string map_name(TEST_MAP_WITH_LOCKED_DOOR);
   Map map(map_name);
   map.add_player(1);
@@ -570,7 +578,7 @@ int static player_opens_door_with_key() {
   CollisionChecker checker(map);
   move_player_to(map.get_player(1), checker, Point(2, 5));
 
-  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(1))->interact(map.get_player(1), checker);
 
   for (int i = 0; i < 60; i++) {
     move_up(map.get_player(1), checker);
@@ -584,6 +592,8 @@ int static player_opens_door_with_key() {
 }
 
 int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
+  Identifiable::reset_id();
+
   std::string map_name(TEST_MAP_WITH_LOCKED_DOOR);
   Map map(map_name);
   map.add_player(1);
@@ -593,9 +603,9 @@ int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
   CollisionChecker checker(map);
   move_player_to(map.get_player(1), checker, Point(2, 5));
 
-  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
-  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
-  ((Door*) map.get_object(0))->interact(map.get_player(2), checker);
+  ((Door*) map.get_object(1))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(1))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(1))->interact(map.get_player(2), checker);
 
   for (int i = 0; i < 60; i++) {
     move_up(map.get_player(1), checker);
@@ -609,6 +619,8 @@ int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
 }
 
 int static player_cannot_close_door_if_it_is_under_it() {
+  Identifiable::reset_id();
+
   std::string map_name(TEST_MAP_WITH_DOOR);
   Map map(map_name);
   map.add_player(1);
@@ -616,16 +628,16 @@ int static player_cannot_close_door_if_it_is_under_it() {
   CollisionChecker checker(map);
   move_player_to(map.get_player(1), checker, Point(2, 5));
 
-  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(1))->interact(map.get_player(1), checker);
 
   while (!(map.get_player(1).get_position().getX() < 5.5
       && map.get_player(1).get_position().getX() > 4.5)) {
     move_up(map.get_player(1), checker);
   }
 
-  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(1))->interact(map.get_player(1), checker);
 
-  if (!(((Door*) map.get_object(0))->is_open())) {
+  if (!(((Door*) map.get_object(1))->is_open())) {
     return ERROR;
   }
 
@@ -635,9 +647,9 @@ int static player_cannot_close_door_if_it_is_under_it() {
     move_up(map.get_player(1), checker);
   }
 
-  ((Door*) map.get_object(0))->interact(map.get_player(1), checker);
+  ((Door*) map.get_object(1))->interact(map.get_player(1), checker);
 
-  if ((((Door*) map.get_object(0))->is_open())) {
+  if ((((Door*) map.get_object(1))->is_open())) {
     return ERROR;
   }
 
