@@ -133,14 +133,13 @@ void GameCaster::draw_wall(Collision& collision, size_t screen_pos,
 }
 
 void GameCaster::draw_sprites(std::vector<double>& wall_distances) {
-  std::vector<_sprite> sprites;
-  // load_sprites(sprites);
-  sort_sprites(sprites);
+  // const std::vector<Object*>& objects = map.get_objects();
+  // sort_sprites(objects);
 
-  std::vector<_sprite>::iterator iter;
-  for (iter = sprites.begin(); iter != sprites.end(); iter++) {
-    draw_sprite(*iter, wall_distances);
-  }
+  // std::vector<_sprite>::iterator iter;
+  // for (iter = sprites.begin(); iter != sprites.end(); iter++) {
+  //  draw_sprite(*iter, wall_distances);
+  //}
 }
 
 void GameCaster::draw_sprite(_sprite& sprite,
@@ -223,4 +222,27 @@ void GameCaster::sort_sprites(std::vector<_sprite>& sprites) {
     (*iter).update_distance(map.get_player(player_id).get_position());
   }
   std::sort(sprites.begin(), sprites.end(), sprite_comp);
+}
+
+void GameCaster::sort_objects(std::vector<std::shared_ptr<Object>>& objects) {
+  Point player_pos = map.get_player(player_id).get_position();
+  size_t size = objects.size();
+
+  std::vector<double> distances;
+  distances.resize(size);
+
+  for (size_t i = 0; i < size; i++) {
+    distances[i] = objects[i]->get_position().distance_from(player_pos);
+  }
+
+  /* Insertion sort is used since it is the best algorithm for nearly-sorted
+   * arrays. The changes between iteration and iteration are too small,
+   * so it is always nearly sorted. Best case: O(n).
+   */
+  for (size_t i = 1; i < size; i++) {
+    for (size_t j = i; j > 0 && distances[j - 1] > distances[j]; j--) {
+      std::swap(distances[j], distances[j - 1]);
+      std::swap(objects[j], objects[j - 1]);
+    }
+  }
 }

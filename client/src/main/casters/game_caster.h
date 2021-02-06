@@ -48,6 +48,7 @@ class GameCaster {
                                 double collision_distance);
   // TODO Review this code
   void sort_sprites(std::vector<_sprite>& sprites);
+  void sort_objects(std::vector<std::shared_ptr<Object>>& objects);
 
  public:
   GameCaster(Window& window, Map& map, unsigned int player_id);
