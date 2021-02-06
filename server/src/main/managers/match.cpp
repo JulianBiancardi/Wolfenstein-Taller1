@@ -26,15 +26,6 @@ void Match::start(BlockingQueue<Packet>& reception_queue) {
   }
 }*/
 
-bool Match::add_player(unsigned int player_id) {
-  if (map.add_player(player_id)) {
-    players_ids.insert(player_id);
-    return true;
-  } else {
-    return false;
-  }
-}
-
 bool Match::player_exists(unsigned int player_id) {
   return players_ids.find(player_id) != players_ids.end();
 }
@@ -65,6 +56,19 @@ bool Match::start(unsigned int player_id) {
     }
   } else {
     throw MatchError("Failed to start match. Player isn't Host.");
+  }
+}
+
+bool Match::add_player(unsigned int player_id) {
+  /* TODO Once everything is done, remove this so players can't join after start
+  if (started) {
+    return false;
+  }*/
+  if (map.add_player(player_id)) {
+    players_ids.insert(player_id);
+    return true;
+  } else {
+    return false;
   }
 }
 
