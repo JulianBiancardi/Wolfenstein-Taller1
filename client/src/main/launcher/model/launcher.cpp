@@ -1,14 +1,41 @@
 #include "../include/launcher.h"
 
+#include <dirent.h>
+
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/packets/packing.h"
 #include "iostream"
 #include "launcher_error.h"
 
+#define DIR_MAPS_NAMES "../../res/maps"
+#define YAML_EXTENSION ".yaml"
 #define MAP_NAME_MAX_SIZE 64  // TODO Move somewhere where it belongs
 
-Launcher::Launcher(Server* server) : server(server), matches() {
+Launcher::Launcher(Server* server) : server(server), maps_names(), matches() {
+  obtain_maps_names();
   update_matches();
+}
+
+void Launcher::obtain_maps_names() {
+  DIR* dir;
+  struct dirent* ent;
+  dir = opendir(DIR_MAPS_NAMES);
+  if (dir == NULL) {
+    throw LauncherError("Failed too obtain the maps names.");
+  }
+
+  std::string yaml_extension(YAML_EXTENSION);
+  while ((ent = readdir(dir)) != NULL) {
+    if ((strcmp(ent->d_name, ".") != 0) && (strcmp(ent->d_name, "..") != 0)) {
+      std::string name(ent->d_name);
+      size_t pos = name.find(yaml_extension);
+      if (pos != std::string::npos) {
+        name.erase(pos, yaml_extension.length());
+      }
+      maps_names.push_back(name);
+    }
+  }
+  closedir(dir);
 }
 
 void Launcher::update_matches() {
@@ -72,9 +99,6 @@ void Launcher::receive_match() {
       Match(match_id, map_name, players_joined, players_total, status));
 }
 
-std::list<Match> Launcher::get_matches() const { return matches; }
-std::list<Match> Launcher::get_maps() const { return matches; }
-
 unsigned char Launcher::create_match(const std::string& map_name) {
   request_new_match(map_name);
   return receive_join_match_result();
@@ -115,5 +139,9 @@ unsigned char Launcher::receive_join_match_result() {
 
   return match_id;
 }
+
+std::list<Match> Launcher::get_matches() const { return matches; }
+
+std::list<std::string> Launcher::get_maps_names() const { return maps_names; }
 
 Launcher::~Launcher() {}

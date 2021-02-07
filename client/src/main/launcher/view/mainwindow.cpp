@@ -1,8 +1,10 @@
 #include "../include/mainwindow.h"
 
 #include <QtWidgets/QMessageBox>
+#include <iostream>  //TODO DELETE
 
 #include "../include/event_filter.h"
+#include "../include/event_filter_mapsnames.h"
 #include "../include/map_view.h"
 #include "../include/match_view.h"
 #include "moc_mainwindow.cpp"
@@ -20,10 +22,14 @@ static void _show_error(const QString& message) {
 }
 
 MainWindow::MainWindow(QWidget* parent, Server* server, Match* match_selected)
-    : QMainWindow(parent), match_selected(match_selected), launcher(server) {
+    : QMainWindow(parent),
+      map_selected(""),
+      match_selected(match_selected),
+      launcher(server) {
   ui.setupUi(this);
   setWindowTitle(WINDOW_TITLE);
   ui.scrollAreaWidgetContents->installEventFilter(new EventFilter());
+  ui.scrollAreaWidgetContents_2->installEventFilter(new EventFilterMapsNames());
   ui.stackedWidget->setCurrentIndex(MATCHLIST_PAGE);
   _add_maps();
 }
@@ -57,12 +63,11 @@ void MainWindow::_add_matches() {
 }
 
 void MainWindow::_add_maps() {
-  // TODO
-  std::list<Match> maps = launcher.get_maps();
+  std::list<std::string> maps = launcher.get_maps_names();
 
-  std::list<Match>::iterator it;
+  std::list<std::string>::iterator it;
   for (it = maps.begin(); it != maps.end(); ++it) {
-    MapView* map_view = new MapView(nullptr);
+    MapView* map_view = new MapView(nullptr, *it, map_selected);
     ui.mapsLayout->addWidget(map_view);
   }
 }
@@ -94,7 +99,12 @@ void MainWindow::on_NewButton_clicked() {
 }
 
 void MainWindow::on_CreateButton_clicked() {
-  match_selected->set_match_id(launcher.create_match("test_map"));
+  std::cout << "Creating a map: " + map_selected << std::endl;
+  if (map_selected.empty()) {
+    _show_error("No map selected");
+    return;
+  }
+  match_selected->set_match_id(launcher.create_match(map_selected));
   if (match_selected->is_valid()) {
     // Succed to create the new match, close the application and continue
     // with the game

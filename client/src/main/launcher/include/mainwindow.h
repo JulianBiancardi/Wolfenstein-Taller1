@@ -15,6 +15,7 @@ class MainWindow : public QMainWindow {
  private:
   Ui::MainWindow ui;
   Server* server;
+  std::string map_selected;
   Match* match_selected;
   Launcher launcher;
 

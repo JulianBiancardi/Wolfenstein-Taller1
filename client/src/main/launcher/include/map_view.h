@@ -5,14 +5,18 @@
 
 #include "ui_map_view.h"
 
+static std::string default_map_selected;
+
 class MapView : public QWidget {
   Q_OBJECT
 
  private:
   Ui::MapView ui;
+  std::string& map_selected;
 
  public:
-  MapView(QWidget* parent = nullptr);
+  MapView(QWidget* parent = nullptr, const std::string& map_name = "",
+          std::string& map_selected = default_map_selected);
 
   void handleSelectedEvent(QMouseEvent* event);
   void handleDeselectedEvent(QMouseEvent* event);

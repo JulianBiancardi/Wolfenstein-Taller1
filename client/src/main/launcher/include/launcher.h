@@ -9,7 +9,11 @@
 class Launcher {
  private:
   Server* server;
+  std::list<std::string> maps_names;
   std::list<Match> matches;
+
+  /* Obtain all the maps aviables */
+  void obtain_maps_names();
 
   /* Used for updating matches */
   void request_matches();
@@ -28,7 +32,7 @@ class Launcher {
   explicit Launcher(Server* server);
 
   std::list<Match> get_matches() const;
-  std::list<Match> get_maps() const;
+  std::list<std::string> get_maps_names() const;
 
   /* Requests the server for an update on the matches.
    * Clears the matches and fills it with the updated data.
