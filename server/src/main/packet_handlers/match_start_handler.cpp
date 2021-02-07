@@ -16,7 +16,7 @@ void MatchStartHandler::handle(Packet& packet, ClientManager& client_manager,
 
   Match& match = match_manager.get_match(match_id);
 
-  if (match.start(player_id)) {
+  if (match.start(player_id, client_manager.get_reception_queue())) {
     const std::unordered_set<unsigned int>& client_ids =
         match.get_players_ids();
     client_manager.send_to_all(client_ids, packet);

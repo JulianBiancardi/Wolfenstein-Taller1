@@ -61,6 +61,7 @@ class Player : public Moveable {
   void add_kill();
   Point knife_collision_mask_bound(const Point& next_position) const;
   bool knife_mask_bound_occupies(const Point& where) const;
+  bool is_using_rocket_launcher();
 };
 
 #endif  // WOLFENSTEIN_TALLER1_PLAYER_H

@@ -30,8 +30,8 @@ class ConfigLoader {
   static double player_mask_radio;
   static int player_lives;
   static int player_respawn_bullets;
-  static double player_pace;
-  static double player_rotation_angle;
+  static double player_speed;
+  static double player_rotation_speed;
   static int player_knife_mask_radio;
 
   static int bot_positions_difference_allowed;
@@ -64,9 +64,11 @@ class ConfigLoader {
   static double table_width;
   static double table_depth;
   static double barrel_radius;
+  static double rocket_radius;
+  static double rocket_speed;
 
   static unsigned int match_length;
-  static double door_timer;
+  static unsigned int door_timer;
 };
 
 #endif

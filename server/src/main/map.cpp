@@ -135,3 +135,10 @@ void Map::add_drop(Player& dead_player) {
     add_key_drop(dead_player);
   }
 }
+
+unsigned int Map::add_rocket(const Point& where, double angle) {
+  auto new_rocket = new Moveable(where, angle, CL::rocket_speed, 0,
+                                 CL::rocket_radius);
+  objects.insert({new_rocket->get_id(), new_rocket});
+  return new_rocket->get_id();
+}
