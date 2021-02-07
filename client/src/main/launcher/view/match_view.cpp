@@ -1,8 +1,5 @@
 #include "match_view.h"
 
-#include <iostream>
-#include <string>
-
 #include "moc_match_view.cpp"
 
 MatchView::MatchView(QWidget* parent, const Match& match, Match* match_selected)

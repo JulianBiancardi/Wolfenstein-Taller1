@@ -28,6 +28,7 @@ class Launcher {
   explicit Launcher(Server* server);
 
   std::list<Match> get_matches() const;
+  std::list<Match> get_maps() const;
 
   /* Requests the server for an update on the matches.
    * Clears the matches and fills it with the updated data.

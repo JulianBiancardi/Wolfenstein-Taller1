@@ -20,11 +20,13 @@ class MainWindow : public QMainWindow {
 
   void _remove_matches();
   void _add_matches();
-  void _update();
+  void _add_maps();
 
  public:
   MainWindow(QWidget* parent = nullptr, Server* server = nullptr,
              Match* match_selected = nullptr);
+
+  void update();
 
   ~MainWindow();
 

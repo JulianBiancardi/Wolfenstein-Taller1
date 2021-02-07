@@ -3,6 +3,7 @@
 #include <QtWidgets/QMessageBox>
 
 #include "../include/event_filter.h"
+#include "../include/map_view.h"
 #include "../include/match_view.h"
 #include "moc_mainwindow.cpp"
 
@@ -24,12 +25,10 @@ MainWindow::MainWindow(QWidget* parent, Server* server, Match* match_selected)
   setWindowTitle(WINDOW_TITLE);
   ui.scrollAreaWidgetContents->installEventFilter(new EventFilter());
   ui.stackedWidget->setCurrentIndex(MATCHLIST_PAGE);
-  ui.RefreshButton->setEnabled(true);
-
-  _update();
+  _add_maps();
 }
 
-void MainWindow::_update() {
+void MainWindow::update() {
   _remove_matches();
   _add_matches();
 }
@@ -57,11 +56,22 @@ void MainWindow::_add_matches() {
   }
 }
 
+void MainWindow::_add_maps() {
+  // TODO
+  std::list<Match> maps = launcher.get_maps();
+
+  std::list<Match>::iterator it;
+  for (it = maps.begin(); it != maps.end(); ++it) {
+    MapView* map_view = new MapView(nullptr);
+    ui.mapsLayout->addWidget(map_view);
+  }
+}
+
 void MainWindow::on_RefreshButton_clicked() {
   ui.scrollAreaWidgetContents->installEventFilter(new EventFilter());
   match_selected->reset();
   launcher.update_matches();
-  _update();
+  update();
 }
 
 void MainWindow::on_JoinButton_clicked() {

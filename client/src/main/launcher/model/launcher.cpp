@@ -73,6 +73,7 @@ void Launcher::receive_match() {
 }
 
 std::list<Match> Launcher::get_matches() const { return matches; }
+std::list<Match> Launcher::get_maps() const { return matches; }
 
 unsigned char Launcher::create_match(const std::string& map_name) {
   request_new_match(map_name);
