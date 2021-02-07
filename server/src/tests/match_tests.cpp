@@ -87,7 +87,7 @@ void match_tests() {
 
 int static can_move_up_player() {
   std::string map_name(MOVEMENT_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
 
@@ -98,7 +98,7 @@ int static can_move_up_player() {
   Point final_position = match.get_players().at(1).get_position();
 
   if (double_compare(final_position.getX(),
-                     initial_position.getX() + CL::player_pace)
+                     initial_position.getX() + CL::player_speed)
       && initial_position.getY() == final_position.getY())
     return NO_ERROR;
 
@@ -107,7 +107,7 @@ int static can_move_up_player() {
 
 int static can_move_up_player_two_times() {
   std::string map_name(MOVEMENT_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
 
@@ -119,7 +119,7 @@ int static can_move_up_player_two_times() {
   Point final_position = match.get_players().at(1).get_position();
 
   if (double_compare(final_position.getX(),
-                     initial_position.getX() + 2 * CL::player_pace)
+                     initial_position.getX() + 2 * CL::player_speed)
       && initial_position.getY() == final_position.getY())
     return NO_ERROR;
 
@@ -128,7 +128,7 @@ int static can_move_up_player_two_times() {
 
 int static can_move_up_until_wall() {
   std::string map_name(MOVEMENT_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
 
@@ -141,7 +141,8 @@ int static can_move_up_until_wall() {
   Point final_position = match.get_players().at(1).get_position();
 
   if (double_compare(final_position.getX(),
-                     initial_position.getX() + movements_made * CL::player_pace)
+                     initial_position.getX()
+                         + movements_made * CL::player_speed)
       && initial_position.getY() == final_position.getY())
     return NO_ERROR;
 
@@ -150,7 +151,7 @@ int static can_move_up_until_wall() {
 
 int static grabs_medic_kit_and_restores_all_health() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
 
@@ -164,7 +165,7 @@ int static grabs_medic_kit_and_restores_all_health() {
 
 int static grabs_medic_kit_and_restores_health_correctly() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
@@ -182,12 +183,12 @@ int static grabs_medic_kit_and_restores_health_correctly() {
 
 int static grabs_blood_only_when_health_is_less_than_eleven() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
 
-  for (int i = 0; i < 1 / CL::player_pace; i++) {
+  for (int i = 0; i < 1 / CL::player_speed; i++) {
     match.move_player(1, RIGHT);
   }
 
@@ -210,7 +211,7 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
 
 int static medic_kit_disappears_after_grabbing_it() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
@@ -236,7 +237,7 @@ int static medic_kit_disappears_after_grabbing_it() {
 
 int static player_shoots_enemy() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
@@ -256,7 +257,7 @@ int static player_shoots_enemy() {
 
 int static player_shoots_nobody() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
 
@@ -275,12 +276,12 @@ int static player_shoots_nobody() {
 
 int static player_shoots_enemy_over_blood_and_grabs_it() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
 
-  for (int i = 0; i < 1 / CL::player_pace; i++) {
+  for (int i = 0; i < 1 / CL::player_speed; i++) {
     match.move_player(1, RIGHT);
   }
 
@@ -313,11 +314,11 @@ int static player_shoots_enemy_over_blood_and_grabs_it() {
 
 int static player_grabs_bullets() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
 
-  for (int i = 0; i < 2 / CL::player_pace; i++) {
+  for (int i = 0; i < 2 / CL::player_speed; i++) {
     match.move_player(1, RIGHT);
   }
 
@@ -332,11 +333,11 @@ int static player_grabs_bullets() {
 
 int static player_changes_gun() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
 
-  for (int i = 0; i < 1 / CL::player_pace; i++) {
+  for (int i = 0; i < 1 / CL::player_speed; i++) {
     match.move_player(1, LEFT);
   }
 
@@ -356,14 +357,14 @@ int static player_changes_gun() {
 
 int static player_kills_enemy_and_it_respawns() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
 
   Point initial_position = match.get_players().at(2).get_position();
 
-  for (int i = 0; i < 1 / CL::player_pace; i++) {
+  for (int i = 0; i < 1 / CL::player_speed; i++) {
     match.move_player(2, LEFT);
   }
 
@@ -378,7 +379,7 @@ int static player_kills_enemy_and_it_respawns() {
 
 int static player_kills_enemy_and_it_is_no_longer_in_the_map() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
@@ -401,11 +402,11 @@ int static player_kills_enemy_and_it_is_no_longer_in_the_map() {
 
 int static player_cannot_grab_gun() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
 
-  for (int i = 0; i < 1 / CL::player_pace; i++) {
+  for (int i = 0; i < 1 / CL::player_speed; i++) {
     match.move_player(1, LEFT);
   }
 
@@ -427,7 +428,7 @@ int static player_cannot_grab_gun() {
 
 int static player_kills_enemy_and_grabs_drop() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
@@ -443,7 +444,7 @@ int static player_kills_enemy_and_grabs_drop() {
     match.move_player(2, UP);
   }
 
-  for (int i = 0; i < 2 / CL::player_pace; i++) {
+  for (int i = 0; i < 2 / CL::player_speed; i++) {
     match.move_player(2, LEFT);
   }
 
@@ -468,7 +469,7 @@ int static player_kills_enemy_and_grabs_drop() {
 
 int static player_grabs_point_items() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
 

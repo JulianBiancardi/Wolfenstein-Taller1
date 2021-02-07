@@ -69,7 +69,7 @@ void move_player_to(Player& who, CollisionChecker& checker, Point where) {
 void player_tests() {
   begin_tests("PLAYER");
 
-  if (CL::player_pace < EPSILON) {
+  if (CL::player_speed < EPSILON) {
     std::cout << "Configurar correctamente el epsilon de comparacion\n";
     end_tests();
   }
@@ -129,7 +129,7 @@ int static can_move_up() {
 
   move_up(map.get_player(1), checker);
 
-  if (map.get_player(1).get_position().getX() == 5 + CL::player_pace &&
+  if (map.get_player(1).get_position().getX() == 5 + CL::player_speed &&
       map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
@@ -183,7 +183,7 @@ int static walk_with_different_angle_and_direction() {
 
   move_down(map.get_player(1), checker);
 
-  if (map.get_player(1).get_position().getX() == 5 - CL::player_pace &&
+  if (map.get_player(1).get_position().getX() == 5 - CL::player_speed &&
       map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
@@ -207,9 +207,9 @@ int static complete_path_correctly() {
   }
 
   if (double_compare(map.get_player(1).get_position().getX(),
-                     2 + 40 * CL::player_pace) &&
+                     2 + 40 * CL::player_speed) &&
       double_compare(map.get_player(1).get_position().getY(),
-                     2 + 40 * CL::player_pace))
+                     2 + 40 * CL::player_speed))
     return NO_ERROR;
 
   return ERROR;
@@ -227,10 +227,10 @@ int static walk_diagonally() {
 
   if (double_compare(map.get_player(1).get_position().getX(),
                      map.get_player(1).get_position().getX()
-                         + CL::player_pace * cos(7 * M_PI / 4))
+                         + CL::player_speed * cos(7 * M_PI / 4))
       && double_compare(map.get_player(1).get_position().getY(),
                         map.get_player(1).get_position().getY()
-                            - CL::player_pace * sin(7 * M_PI / 4)))
+                            - CL::player_speed * sin(7 * M_PI / 4)))
     return NO_ERROR;
 
   return ERROR;
@@ -255,7 +255,7 @@ int static complete_difficult_path_correctly() {
   if (double_compare(map.get_player(1).get_position().getX(),
                      TEST_MAP_SIZE - 1 - CL::player_mask_radio) &&
       double_compare(map.get_player(1).get_position().getY(),
-                     2 + 10 * CL::player_pace))
+                     2 + 10 * CL::player_speed))
     return NO_ERROR;
 
   return ERROR;
@@ -376,7 +376,7 @@ int static player_collides_against_table_from_side() {
 
   if (double_compare(map.get_player(1).get_position().getX(),
                      5 - CL::table_width / 2 - CL::player_mask_radio
-                         - CL::player_pace)
+                         - CL::player_speed)
       && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
@@ -398,7 +398,7 @@ int static player_collides_against_table_from_another_side() {
   if (map.get_player(1).get_position().getX() == 5 &&
       double_compare(map.get_player(1).get_position().getY(),
                      5 - CL::table_depth / 2 - CL::player_mask_radio
-                         - CL::player_pace))
+                         - CL::player_speed))
     return NO_ERROR;
 
   return ERROR;
@@ -420,9 +420,9 @@ int static diagonal_collision_with_table() {
     return ERROR;
 
   Point previous_point(map.get_player(1).get_position().getX() -
-                           CL::player_pace * cos(7 * M_PI / 4),
+                           CL::player_speed * cos(7 * M_PI / 4),
                        map.get_player(1).get_position().getY() +
-                           CL::player_pace * sin(7 * M_PI / 4));
+                           CL::player_speed * sin(7 * M_PI / 4));
 
   if (fabs(previous_point.distance_from(Point(5, 5))) > CL::player_mask_radio)
     return NO_ERROR;
@@ -478,7 +478,7 @@ int static player_collides_against_door() {
   }
 
   if (double_compare(map.get_player(1).get_position().getX(),
-                     5 - 0.5 - CL::player_mask_radio - CL::player_pace)
+                     5 - 0.5 - CL::player_mask_radio - CL::player_speed)
       && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
@@ -523,7 +523,7 @@ int static player_tries_to_pass_door_opens_it_and_does_it() {
   }
 
   if (double_compare(map.get_player(1).get_position().getX(),
-                     5 - 0.5 - CL::player_mask_radio - CL::player_pace)
+                     5 - 0.5 - CL::player_mask_radio - CL::player_speed)
       && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
@@ -560,7 +560,7 @@ int static player_tries_to_open_locked_door_with_no_key() {
   }
 
   if (double_compare(map.get_player(1).get_position().getX(),
-                     5 - 0.5 - CL::player_mask_radio - CL::player_pace)
+                     5 - 0.5 - CL::player_mask_radio - CL::player_speed)
       && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 

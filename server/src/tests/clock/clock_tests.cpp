@@ -41,7 +41,7 @@ void clock_tests() {
 int static clock_countdown_works() {
   ClientManager manager;
   std::string map_name(TEST_MAP_WITH_DOOR);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   ClockThread thread(2, manager.get_reception_queue(), 1);
 
@@ -73,7 +73,7 @@ int static clock_countdown_works() {
 int static clock_countdown_with_an_event_works() {
   ClientManager manager;
   std::string map_name(TEST_MAP_WITH_DOOR);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   ClockThread thread((unsigned int) (CL::door_timer / 2),
                      manager.get_reception_queue(), 1);
@@ -108,7 +108,7 @@ int static clock_countdown_with_an_event_works() {
 int static clock_countdown_with_various_event_works() {
   ClientManager manager;
   std::string map_name(TEST_MAP_WITH_MULTIPLE_DOORS);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   ClockThread thread((unsigned int) (CL::door_timer / 2),
                      manager.get_reception_queue(), 1);
@@ -135,7 +135,7 @@ int static clock_countdown_with_various_event_works() {
 int static clock_deletes_timed_events_finished() {
   ClientManager manager;
   std::string map_name(TEST_MAP_WITH_MULTIPLE_DOORS);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   ClockThread thread((unsigned int) (CL::door_timer * 2),
                      manager.get_reception_queue(), 1);
