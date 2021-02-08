@@ -1,7 +1,7 @@
 #ifndef CIRCLE_MASK_H
 #define CIRCLE_MASK_H
 
-#include "../utils/point.h"
+#include "../../../../../common/src/main/utils/point.h"
 #include "mask.h"
 
 class CircleMask : public Mask {

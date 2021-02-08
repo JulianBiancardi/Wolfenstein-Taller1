@@ -1,6 +1,14 @@
 #ifndef MAP_IDS_H
 #define MAP_IDS_H
 
+#define NULL_TYPE 0
+#define WALLS_TYPE 1
+#define PLAYERS_TYPE 2
+#define GUNS_TYPE 3
+#define ITEMS_TYPE 4
+#define SOLID_OBJECTS_TYPE 5
+#define NON_SOLID_OBJECTS_TYPE 6
+
 // Walls
 #define AIR 0
 #define ROCK_WALL 1

@@ -50,9 +50,13 @@ GameCaster::GameCaster(Window& window, Map& map, unsigned int player_id)
 GameCaster::~GameCaster() {}
 
 void GameCaster::operator()() {
+  printf("D1\n");
   draw_background();
+  printf("D2\n");
   std::vector<double> wall_distances = draw_walls();
-  draw_sprites(wall_distances);
+  printf("D3\n");
+  draw_objects(wall_distances);
+  printf("D4\n");
   window.update();
 }
 
@@ -132,46 +136,49 @@ void GameCaster::draw_wall(Collision& collision, size_t screen_pos,
   image->draw(pos, &slice);
 }
 
-void GameCaster::draw_sprites(std::vector<double>& wall_distances) {
-  // const std::vector<Object*>& objects = map.get_objects();
-  // sort_sprites(objects);
+void GameCaster::draw_objects(std::vector<double>& wall_distances) {
+  printf("D3A\n");
+  std::vector<std::shared_ptr<Object>>& objects = map.get_objects();
+  printf("D3B\n");
 
-  // std::vector<_sprite>::iterator iter;
-  // for (iter = sprites.begin(); iter != sprites.end(); iter++) {
-  //  draw_sprite(*iter, wall_distances);
-  //}
+  std::vector<double> object_distances;
+  printf("D3C\n");
+
+  sort_objects(objects, object_distances);
+  printf("D3D\n");
+
+  for (int i = 0; i < objects.size(); i++) {
+    draw_object(*objects[i], object_distances[i], wall_distances);
+    printf("D3E\n");
+  }
 }
 
-void GameCaster::draw_sprite(_sprite& sprite,
+void GameCaster::draw_object(Object& object, double distance,
                              std::vector<double>& wall_distances) {
+  if (distance == 0) {  // Object is oneself
+    return;
+  }
+
   const Player& player = map.get_player(player_id);
   // TODO Optimize
-  Image* image = res_manager.get_image(sprite.get_id());
+  Image* image = res_manager.get_image(object.get_id());
   size_t img_width = image->get_width();
   size_t img_height = image->get_height();
 
-  double x_relative = sprite.get_pos().getX() - player.get_position().getX();
+  double x_relative =
+      object.get_position().getX() - player.get_position().getX();
   // Y grows going down
-  double y_relative = player.get_position().getY() - sprite.get_pos().getY();
+  double y_relative =
+      player.get_position().getY() - object.get_position().getY();
 
   double sprite_angle_rel = atan2(y_relative, x_relative);
-  /*if (sprite_angle_rel > 2 * M_PI) {
-    sprite_angle_rel -= 2 * M_PI;
-  } else if (sprite_angle_rel < 0) {
-    sprite_angle_rel += 2 * M_PI;
-  }*/
   double sprite_angle = Angle::normalize(sprite_angle_rel - player.get_angle());
-  /*if (sprite_angle > 2 * M_PI) {
-    sprite_angle -= 2 * M_PI;
-  } else if (sprite_angle < 0) {
-    sprite_angle += 2 * M_PI;
-  }*/
 
   // printf("sprite_angle_rel: %f\n", sprite_angle_rel);
   // printf("sprite_angle: %f\n", sprite_angle);
   // printf("player_angle: %f\n", player.get_angle());
 
-  double projected_distance = sprite.get_distance() * cos(sprite_angle);
+  double projected_distance = distance * cos(sprite_angle);
   // printf("proj_dist: %f\n", projected_distance);
   int sprite_size = SCALING_FACTOR / (projected_distance * img_height);
   // printf("sprite_size: %d\n", sprite_size);
@@ -209,26 +216,11 @@ double GameCaster::get_projected_distance(double ray_angle, double player_angle,
   return collision_distance * cos(ray_offset);
 }
 
-// TODO Delete when linked with map.
-void static load_sprites(std::vector<_sprite>& sprites) {
-  sprites.push_back(_sprite(Point(2.5, 3.5), 15));
-  sprites.push_back(_sprite(Point(5, 2.5), 15));
-  sprites.push_back(_sprite(Point(2.5, 2.5), 15));
-}
-
-void GameCaster::sort_sprites(std::vector<_sprite>& sprites) {
-  std::vector<_sprite>::iterator iter;
-  for (iter = sprites.begin(); iter != sprites.end(); iter++) {
-    (*iter).update_distance(map.get_player(player_id).get_position());
-  }
-  std::sort(sprites.begin(), sprites.end(), sprite_comp);
-}
-
-void GameCaster::sort_objects(std::vector<std::shared_ptr<Object>>& objects) {
+void GameCaster::sort_objects(std::vector<std::shared_ptr<Object>>& objects,
+                              std::vector<double>& distances) {
   Point player_pos = map.get_player(player_id).get_position();
   size_t size = objects.size();
 
-  std::vector<double> distances;
   distances.resize(size);
 
   for (size_t i = 0; i < size; i++) {

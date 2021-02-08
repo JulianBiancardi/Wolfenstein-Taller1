@@ -42,7 +42,7 @@ void MapLoader::load_map(std::string& map_name) {
     const YAML::Node& object = *iter;
 
     int type = object["type"].as<int>();
-    if (type == 0) {
+    if (type == NULL_TYPE || type == WALLS_TYPE) {
       continue;
     }
 

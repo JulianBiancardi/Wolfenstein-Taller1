@@ -1,6 +1,6 @@
 #include "locked_door.h"
 
-#include "../../../../../../common/src/main/collisions/switch_mask.h"
+#include "../../collisions/switch_mask.h"
 
 LockedDoor::LockedDoor(const Point& center) : Door(center), locked(true) {}
 

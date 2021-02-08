@@ -1,9 +1,9 @@
 #ifndef COLLISION_CHECKER_H
 #define COLLISION_CHECKER_H
 
-#include "../../../../common/src/main/object.h"
 #include "../map.h"
 #include "objects/items/item.h"
+#include "objects/object.h"
 #include "player.h"
 
 class CollisionChecker {
@@ -24,7 +24,6 @@ class CollisionChecker {
   unsigned int grabbed_item(const Player& by_whom);
   bool collides_players(const Point& where);
   int get_knife_range_collides_player_id(Point& where, Player& who);
-
 };
 
 #endif

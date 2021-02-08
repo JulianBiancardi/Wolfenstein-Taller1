@@ -1,8 +1,8 @@
 #ifndef ITEMS_H
 #define ITEMS_H
 
-#include "../../../../../../common/src/main/object.h"
 #include "../../player.h"
+#include "../object.h"
 
 class Item : public Object {
  protected:

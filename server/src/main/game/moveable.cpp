@@ -2,9 +2,9 @@
 
 #include <cmath>
 
-#include "../../../../common/src/main/collisions/circle_mask.h"
 #include "../../../../common/src/main/config_loader.h"
 #include "../../../../common/src/main/ids/movement_ids.h"
+#include "collisions/circle_mask.h"
 
 Moveable::Moveable(Point origin, double angle)
     : Object(origin, angle,

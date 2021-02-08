@@ -14,9 +14,10 @@
 
 class Map : public BaseMap {
  private:
-  // std::vector<std::reference_wrapper<Player>> players;
-  // std::vector<std::reference_wrapper<Sprite>> sprites;
-  std::vector<Object*> objects;
+  // TODO Upon deleting an object, make sure to also remove from this vector
+  // with linear search
+  std::vector<std::shared_ptr<Object>> objects_and_players;
+  std::unordered_map<unsigned int, std::shared_ptr<Object>> objects;
   std::unordered_map<unsigned int, std::shared_ptr<Player>> players;
 
  public:
@@ -24,7 +25,12 @@ class Map : public BaseMap {
   explicit Map(const std::string& map_name);
   ~Map();
 
-  const std::vector<Object*>& get_objects() const;
+  /* Returns a reference to all of the objects in the map.
+   * Deleting objects from the vector might cause problems.
+   */
+  std::vector<std::shared_ptr<Object>>& get_objects_and_players();
+
+  /* Returns a constant reference to a player given its id. */
   const Player& get_player(unsigned int player_id) const;
 
   void add_player(unsigned int player_id, const Ray& position);

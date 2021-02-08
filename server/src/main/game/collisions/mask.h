@@ -1,7 +1,7 @@
 #ifndef MASK_H
 #define MASK_H
 
-#include "../utils/point.h"
+#include "../../../../../common/src/main/utils/point.h"
 
 class Mask {
  protected:

@@ -1,9 +1,9 @@
 #ifndef MOVEABLE_H
 #define MOVEABLE_H
 
-#include "../../../../common/src/main/object.h"
 #include "../../../../common/src/main/utils/point.h"
 #include "../../../../common/src/main/utils/ray.h"
+#include "objects/object.h"
 
 class Moveable : public Object {
  private:

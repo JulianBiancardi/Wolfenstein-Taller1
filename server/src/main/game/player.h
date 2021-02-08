@@ -5,7 +5,7 @@
 #include <unordered_set>
 
 #include "../../../../common/src/main/config_loader.h"
-#include "../../../../common/src/main/collisions/circle_mask.h" //Is needed?
+#include "collisions/circle_mask.h"  //TODO Is needed?
 #include "moveable.h"
 
 class Player : public Moveable {
@@ -31,7 +31,8 @@ class Player : public Moveable {
   Player(Point origin, double angle);
   Player(double x, double y, double angle);
   Player(const Player& player);
-  // TODO Define copy constructor so they can be put in storages. UPDATE: DEFINED
+  // TODO Define copy constructor so they can be put in storages. UPDATE:
+  // DEFINED
   ~Player();
 
   // Player has too much responsibilities

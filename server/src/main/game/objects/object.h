@@ -1,9 +1,10 @@
-#ifndef OBJECT_H
-#define OBJECT_H
+#ifndef SERVER_OBJECT_H
+#define SERVER_OBJECT_H
 
-#include "collisions/mask.h"
-#include "identifiable.h"
-#include "utils/ray.h"
+#include "../../../../common/src/main/identifiable.h"
+#include "../../../../common/src/main/utils/point.h"
+#include "../../../../common/src/main/utils/ray.h"
+#include "../collisions/mask.h"
 
 class Object : public Identifiable {
  protected:

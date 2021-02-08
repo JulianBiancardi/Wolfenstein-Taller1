@@ -1,8 +1,8 @@
 #ifndef CIRCULAR_OBJECT_H
 #define CIRCULAR_OBJECT_H
 
-#include "../../../../../common/src/main/collisions/circle_mask.h"
-#include "../../../../../common/src/main/object.h"
+#include "../collisions/circle_mask.h"
+#include "object.h"
 
 class CircularObject : public Object {
  public:
