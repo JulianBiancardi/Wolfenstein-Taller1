@@ -25,6 +25,7 @@ include_directories(${PROJECT_SOURCE_DIR}/src/main/launcher/include)
 qt5_wrap_ui(UIS_HEADERS
   src/main/launcher/ui/mainwindow.ui
   src/main/launcher/ui/match_view.ui
+  src/main/launcher/ui/map_view.ui
 )
 include_directories(${PROJECT_BINARY_DIR})
 set(CMAKE_AUTOMOC on)

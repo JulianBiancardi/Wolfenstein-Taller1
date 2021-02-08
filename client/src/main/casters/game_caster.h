@@ -41,14 +41,15 @@ class GameCaster {
   std::vector<double> draw_walls();
   void draw_wall(Collision& collision, size_t screen_pos, double ray_angle);
 
-  void draw_sprites(std::vector<double>& wall_distances);
-  void draw_sprite(_sprite& sprite, std::vector<double>& wall_distances);
+  void draw_objects(std::vector<double>& wall_distances);
+  void draw_object(Object& object, double distance,
+                   std::vector<double>& wall_distances);
 
   double get_projected_distance(double ray_angle, double player_angle,
                                 double collision_distance);
-  // TODO Review this code
-  void sort_sprites(std::vector<_sprite>& sprites);
-  void sort_objects(std::vector<std::shared_ptr<Object>>& objects);
+
+  void sort_objects(std::vector<std::shared_ptr<Object>>& objects,
+                    std::vector<double>& distances);
 
  public:
   GameCaster(Window& window, Map& map, unsigned int player_id);

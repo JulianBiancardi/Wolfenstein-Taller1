@@ -24,6 +24,7 @@ Match::Match(unsigned char match_id, const char* map_name,
 }
 
 bool Match::is_running() const { return (status == IN_GAME); }
+
 bool Match::is_valid() const { return match_id != INVALID_ID; }
 
 void Match::copy(const Match& other) {
@@ -36,21 +37,15 @@ void Match::copy(const Match& other) {
 void Match::reset() { match_id = INVALID_ID; }
 
 void Match::set_match_id(unsigned char id) { match_id = id; }
-unsigned char Match::get_match_id() const { return match_id; }
-const char* Match::get_map_name() const { return map_name; }
-unsigned char Match::get_players_joined() const { return players_joined; }
-unsigned char Match::get_players_total() const { return players_total; }
-bool Match::get_status() const { return status; }
 
-void Match::print() const {
-  std::cout << "Match selected" << std::endl;
-  printf("match_id: %u \n", match_id);
-  printf("name: %s \n", map_name);
-  if (is_running()) {
-    std::cout << "in game" << std::endl;
-  } else {
-    std::cout << "wating" << std::endl;
-  }
-}
+unsigned char Match::get_match_id() const { return match_id; }
+
+const char* Match::get_map_name() const { return map_name; }
+
+unsigned char Match::get_players_joined() const { return players_joined; }
+
+unsigned char Match::get_players_total() const { return players_total; }
+
+bool Match::get_status() const { return status; }
 
 Match::~Match() {}

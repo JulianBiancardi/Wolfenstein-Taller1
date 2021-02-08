@@ -10,7 +10,7 @@
 
 class ClockThread : public Thread {
  private:
-  std::chrono::duration<double> remaining_time;
+  int remaining_tics;
   std::atomic<bool> allowed_to_run;
   std::unordered_map<unsigned int, TimedEvent*> timed_events;
   std::mutex mutex;
@@ -37,8 +37,18 @@ class ClockThread : public Thread {
   ~ClockThread();
 
   void force_stop();
+
+  /* Adds door automatic close timer, if it already exists, it is reset */
   void add_door_timer(unsigned int door_id);
+
+  /* Deletes door automatic close timer */
   void delete_door_timer(unsigned int door_id);
+
+  /* Adds rocket movement controller */
+  void add_rocket_controller(unsigned int rocket_id);
+
+  /* Deletes rocket movement controller */
+  void delete_rocket_controller(unsigned int rocket_id);
 };
 
 #endif

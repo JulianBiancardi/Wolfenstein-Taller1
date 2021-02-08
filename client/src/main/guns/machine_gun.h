@@ -1,7 +1,6 @@
 #ifndef MACHINE_GUN_H
 #define MACHINE_GUN_H
 
-//#include "../player.h"
 #include "gun.h"
 
 class MachineGun : public Gun {

@@ -87,9 +87,12 @@ void match_tests() {
 
 int static can_move_up_player() {
   std::string map_name(MOVEMENT_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
+
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
 
   Point initial_position = match.get_players().at(1).get_position();
 
@@ -97,8 +100,10 @@ int static can_move_up_player() {
 
   Point final_position = match.get_players().at(1).get_position();
 
+  match.end();
+
   if (double_compare(final_position.getX(),
-                     initial_position.getX() + CL::player_pace)
+                     initial_position.getX() + CL::player_speed)
       && initial_position.getY() == final_position.getY())
     return NO_ERROR;
 
@@ -107,9 +112,12 @@ int static can_move_up_player() {
 
 int static can_move_up_player_two_times() {
   std::string map_name(MOVEMENT_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
+
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
 
   Point initial_position = match.get_players().at(1).get_position();
 
@@ -118,8 +126,10 @@ int static can_move_up_player_two_times() {
 
   Point final_position = match.get_players().at(1).get_position();
 
+  match.end();
+
   if (double_compare(final_position.getX(),
-                     initial_position.getX() + 2 * CL::player_pace)
+                     initial_position.getX() + 2 * CL::player_speed)
       && initial_position.getY() == final_position.getY())
     return NO_ERROR;
 
@@ -128,9 +138,12 @@ int static can_move_up_player_two_times() {
 
 int static can_move_up_until_wall() {
   std::string map_name(MOVEMENT_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
+
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
 
   unsigned int movements_made = 0;
 
@@ -140,8 +153,11 @@ int static can_move_up_until_wall() {
 
   Point final_position = match.get_players().at(1).get_position();
 
+  match.end();
+
   if (double_compare(final_position.getX(),
-                     initial_position.getX() + movements_made * CL::player_pace)
+                     initial_position.getX()
+                         + movements_made * CL::player_speed)
       && initial_position.getY() == final_position.getY())
     return NO_ERROR;
 
@@ -150,11 +166,16 @@ int static can_move_up_until_wall() {
 
 int static grabs_medic_kit_and_restores_all_health() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
 
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
+
   while (match.move_player(1, UP) && match.grab_item(1) == 0);
+
+  match.end();
 
   if (match.get_players().at(1).is_full_health())
     return NO_ERROR;
@@ -164,15 +185,20 @@ int static grabs_medic_kit_and_restores_all_health() {
 
 int static grabs_medic_kit_and_restores_health_correctly() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
+
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
 
   match.shoot_gun(2, 1, CL::medic_kit_health_recovered + 1);
 
   // Walks until wall
   while (match.move_player(1, UP) && match.grab_item(1) == 0);
+
+  match.end();
 
   if (match.get_players().at(1).get_health() == CL::player_health - 1)
     return NO_ERROR;
@@ -182,12 +208,15 @@ int static grabs_medic_kit_and_restores_health_correctly() {
 
 int static grabs_blood_only_when_health_is_less_than_eleven() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
 
-  for (int i = 0; i < 1 / CL::player_pace; i++) {
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
+
+  for (int i = 0; i < 1 / CL::player_speed; i++) {
     match.move_player(1, RIGHT);
   }
 
@@ -202,6 +231,8 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
   // Walks until blood
   while (match.move_player(1, DOWN) && match.grab_item(1) == 0);
 
+  match.end();
+
   if (match.get_players().at(1).get_health() == 10 + CL::blood_health_recovered)
     return NO_ERROR;
 
@@ -210,10 +241,13 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
 
 int static medic_kit_disappears_after_grabbing_it() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
+
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
 
   match.shoot_gun(2, 1, CL::player_health - 5);
 
@@ -227,6 +261,8 @@ int static medic_kit_disappears_after_grabbing_it() {
   // Walks until medic kit
   while (match.move_player(1, DOWN) && match.grab_item(1) == 0);
 
+  match.end();
+
   if (match.get_players().at(1).get_health()
       == 5 + CL::medic_kit_health_recovered)
     return NO_ERROR;
@@ -236,12 +272,15 @@ int static medic_kit_disappears_after_grabbing_it() {
 
 int static player_shoots_enemy() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
 
-  if (match.shoot_gun(2, 1, CL::player_health - 5))
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
+
+  if (!match.shoot_gun(2, 1, CL::player_health - 5))
     return ERROR;
 
   if (match.get_players().at(1).get_health() != 5)
@@ -251,14 +290,19 @@ int static player_shoots_enemy() {
       != CL::player_bullets - CL::pistol_bullet_required)
     return ERROR;
 
+  match.end();
+
   return NO_ERROR;
 }
 
 int static player_shoots_nobody() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
+
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
 
   if (match.shoot_gun(1, 0, 5))
     return ERROR;
@@ -270,21 +314,26 @@ int static player_shoots_nobody() {
       != CL::player_bullets - CL::pistol_bullet_required)
     return ERROR;
 
+  match.end();
+
   return NO_ERROR;
 }
 
 int static player_shoots_enemy_over_blood_and_grabs_it() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
 
-  for (int i = 0; i < 1 / CL::player_pace; i++) {
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
+
+  for (int i = 0; i < 1 / CL::player_speed; i++) {
     match.move_player(1, RIGHT);
   }
 
-  while (match.get_players().at(1).get_position().getX() < 7) {
+  while (match.get_players().at(1).get_position().getX() < 7.5) {
     match.move_player(1, UP);
     match.grab_item(1);
   }
@@ -292,7 +341,7 @@ int static player_shoots_enemy_over_blood_and_grabs_it() {
   if (match.get_players().at(1).get_health() != CL::player_health)
     return ERROR;
 
-  if (match.shoot_gun(2, 1, CL::player_health - 5))
+  if (!match.shoot_gun(2, 1, CL::player_health - 5))
     return ERROR;
 
   if (match.get_players().at(1).get_health() != 5)
@@ -308,16 +357,21 @@ int static player_shoots_enemy_over_blood_and_grabs_it() {
       != CL::player_bullets - CL::pistol_bullet_required)
     return ERROR;
 
+  match.end();
+
   return NO_ERROR;
 }
 
 int static player_grabs_bullets() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
 
-  for (int i = 0; i < 2 / CL::player_pace; i++) {
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
+
+  for (int i = 0; i < 2 / CL::player_speed; i++) {
     match.move_player(1, RIGHT);
   }
 
@@ -327,16 +381,21 @@ int static player_grabs_bullets() {
       != CL::player_bullets + CL::bullets_amount)
     return ERROR;
 
+  match.end();
+
   return NO_ERROR;
 }
 
 int static player_changes_gun() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
 
-  for (int i = 0; i < 1 / CL::player_pace; i++) {
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
+
+  for (int i = 0; i < 1 / CL::player_speed; i++) {
     match.move_player(1, LEFT);
   }
 
@@ -351,24 +410,31 @@ int static player_changes_gun() {
   if (match.get_players().at(1).get_active_gun() != MACHINE_GUN_ID)
     return ERROR;
 
+  match.end();
+
   return NO_ERROR;
 }
 
 int static player_kills_enemy_and_it_respawns() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
 
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
+
   Point initial_position = match.get_players().at(2).get_position();
 
-  for (int i = 0; i < 1 / CL::player_pace; i++) {
+  for (int i = 0; i < 1 / CL::player_speed; i++) {
     match.move_player(2, LEFT);
   }
 
   if (!match.shoot_gun(1, 2, CL::player_health + 1))
     return ERROR;
+
+  match.end();
 
   if (match.get_players().at(2).get_position() == initial_position)
     return NO_ERROR;
@@ -378,10 +444,13 @@ int static player_kills_enemy_and_it_respawns() {
 
 int static player_kills_enemy_and_it_is_no_longer_in_the_map() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
+
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
 
   for (int i = 0; i < CL::player_lives; i++) {
     match.shoot_gun(1, 2, CL::player_health + 1);
@@ -393,6 +462,8 @@ int static player_kills_enemy_and_it_is_no_longer_in_the_map() {
                       10 - 1 - CL::player_mask_radio))
     return ERROR;
 
+  match.end();
+
   if (match.get_players().size() == 1)
     return NO_ERROR;
 
@@ -401,11 +472,14 @@ int static player_kills_enemy_and_it_is_no_longer_in_the_map() {
 
 int static player_cannot_grab_gun() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
 
-  for (int i = 0; i < 1 / CL::player_pace; i++) {
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
+
+  for (int i = 0; i < 1 / CL::player_speed; i++) {
     match.move_player(1, LEFT);
   }
 
@@ -422,15 +496,20 @@ int static player_cannot_grab_gun() {
       return ERROR;
   }
 
+  match.end();
+
   return NO_ERROR;
 }
 
 int static player_kills_enemy_and_grabs_drop() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
   match.add_player(2);
+
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
 
   Point initial_position = match.get_players().at(2).get_position();
 
@@ -443,7 +522,7 @@ int static player_kills_enemy_and_grabs_drop() {
     match.move_player(2, UP);
   }
 
-  for (int i = 0; i < 2 / CL::player_pace; i++) {
+  for (int i = 0; i < 2 / CL::player_speed; i++) {
     match.move_player(2, LEFT);
   }
 
@@ -463,14 +542,19 @@ int static player_kills_enemy_and_grabs_drop() {
       != CL::player_bullets + CL::bullets_respawn_amount)
     return ERROR;
 
+  match.end();
+
   return NO_ERROR;
 }
 
 int static player_grabs_point_items() {
   std::string map_name(ITEMS_MAP);
-  Match match(1, map_name);
+  Match match(1, 1, map_name);
 
   match.add_player(1);
+
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
 
   while (match.move_player(1, DOWN) && match.grab_item(1) == 0);
   while (match.move_player(1, LEFT) && match.grab_item(1) == 0);
@@ -478,6 +562,8 @@ int static player_grabs_point_items() {
   if (match.get_players().at(1).get_points()
       != CL::crown_points + CL::cup_points)
     return ERROR;
+
+  match.end();
 
   return NO_ERROR;
 }

@@ -17,6 +17,15 @@
 #define SCREEN_WIDTH (320 * UNIT)
 #define SCREEN_HEIGHT (200 * UNIT)
 
+#define FLAGS 7
+#define FORWARD_FLAG 0
+#define LEFT_FLAG 1
+#define BACKWARD_FLAG 2
+#define RIGHT_FLAG 3
+#define ROTATE_LEFT_FLAG 4
+#define ROTATE_RIGHT_FLAG 5
+#define ENTER_FLAG 6
+
 Game::Game(Server& server, Match& match)
     : player_id(server.get_id()),
       match_id(match.get_match_id()),
@@ -25,17 +34,16 @@ Game::Game(Server& server, Match& match)
       map("test_map"),
       caster(window, map, player_id),
       is_running(false),
-      forward_velocity(0),
-      sideways_velocity(0),
-      angular_velocity(0),
-      match_start(0),
+      input_flags(FLAGS, false),
       gamesound(GameSound(Point(map.get_rows(), map.get_columns()))){}
 
 Game::~Game() {}
 
 void Game::operator()() {
   FrameLimiter frame_limiter;
+
   is_running = true;
+
   spawn_self();
 
   gamesound.set_point(map.get_player(player_id).get_position());
@@ -78,18 +86,14 @@ void Game::handle_events() {
         this->is_running = false;
         break;
       case SDL_KEYDOWN:
-        printf("Key press\n");
         handle_key_press(event.key.keysym.sym);
         break;
       case SDL_KEYUP:
-        printf("Key release\n");
         handle_key_release(event.key.keysym.sym);
         break;
       case SDL_MOUSEBUTTONDOWN:
-        printf("Mouse clicked\n");
         break;
       case SDL_MOUSEBUTTONUP:
-        printf("Mouse unclicked\n");
         break;
       default:
         break;
@@ -100,25 +104,25 @@ void Game::handle_events() {
 void Game::handle_key_press(SDL_Keycode& key) {
   switch (key) {
     case SDLK_w:
-      forward_velocity = std::min(1, forward_velocity + 1);
+      input_flags[FORWARD_FLAG] = true;
       break;
     case SDLK_s:
-      forward_velocity = std::max(-1, forward_velocity - 1);
+      input_flags[BACKWARD_FLAG] = true;
       break;
     case SDLK_a:
-      sideways_velocity = std::max(-1, sideways_velocity - 1);
+      input_flags[LEFT_FLAG] = true;
       break;
     case SDLK_d:
-      sideways_velocity = std::min(1, sideways_velocity + 1);
+      input_flags[RIGHT_FLAG] = true;
       break;
     case SDLK_e:
-      angular_velocity = std::max(-1, angular_velocity - 1);
+      input_flags[ROTATE_RIGHT_FLAG] = true;
       break;
     case SDLK_q:
-      angular_velocity = std::min(1, angular_velocity + 1);
+      input_flags[ROTATE_LEFT_FLAG] = true;
       break;
     case SDLK_RETURN:  // Enter
-      match_start = 1;
+      input_flags[ENTER_FLAG] = true;
       break;
     default:
       break;
@@ -128,25 +132,25 @@ void Game::handle_key_press(SDL_Keycode& key) {
 void Game::handle_key_release(SDL_Keycode& key) {
   switch (key) {
     case SDLK_w:
-      forward_velocity = std::min(0, forward_velocity - 1);
+      input_flags[FORWARD_FLAG] = false;
       break;
     case SDLK_s:
-      forward_velocity = std::max(0, forward_velocity + 1);
+      input_flags[BACKWARD_FLAG] = false;
       break;
     case SDLK_a:
-      sideways_velocity = std::max(0, sideways_velocity + 1);
+      input_flags[LEFT_FLAG] = false;
       break;
     case SDLK_d:
-      sideways_velocity = std::min(0, sideways_velocity - 1);
+      input_flags[RIGHT_FLAG] = false;
       break;
     case SDLK_e:
-      angular_velocity = std::max(0, angular_velocity + 1);
+      input_flags[ROTATE_RIGHT_FLAG] = false;
       break;
     case SDLK_q:
-      angular_velocity = std::min(0, angular_velocity - 1);
+      input_flags[ROTATE_LEFT_FLAG] = false;
       break;
     case SDLK_RETURN:
-      match_start = 0;
+      input_flags[ENTER_FLAG] = false;
       break;
     default:
       break;
@@ -160,32 +164,46 @@ void Game::process_events() {
 }
 
 void Game::process_movement() {
-  if (forward_velocity == 0 && sideways_velocity == 0) {
+  if (!input_flags[FORWARD_FLAG] && !input_flags[BACKWARD_FLAG] &&
+      !input_flags[RIGHT_FLAG] && !input_flags[LEFT_FLAG]) {
     return;
   }
 
+  // Check where to move, in the order of most common to least common
   unsigned char direction = INVALID_MOVEMENT;
-  if (forward_velocity == 1) {
-    if (sideways_velocity == 0) {
+  if (input_flags[FORWARD_FLAG] && !input_flags[BACKWARD_FLAG]) {
+    if (!input_flags[LEFT_FLAG] && !input_flags[RIGHT_FLAG]) {
       direction = UP;
-    } else if (sideways_velocity == -1) {
+    } else if (input_flags[LEFT_FLAG] && !input_flags[RIGHT_FLAG]) {
       direction = UP_LEFT;
-    } else if (sideways_velocity == 1) {
+    } else if (!input_flags[LEFT_FLAG] && input_flags[RIGHT_FLAG]) {
       direction = UP_RIGHT;
+    } else {
+      direction = UP;
     }
-  } else if (forward_velocity == 0) {
-    if (sideways_velocity == -1) {
+  } else if (!input_flags[FORWARD_FLAG] && !input_flags[BACKWARD_FLAG]) {
+    if (input_flags[LEFT_FLAG] && !input_flags[RIGHT_FLAG]) {
       direction = LEFT;
-    } else if (sideways_velocity == 1) {
+    } else if (!input_flags[LEFT_FLAG] && input_flags[RIGHT_FLAG]) {
       direction = RIGHT;
     }
-  } else if (forward_velocity == -1) {
-    if (sideways_velocity == 0) {
+  } else if (!input_flags[FORWARD_FLAG] && input_flags[BACKWARD_FLAG]) {
+    if (!input_flags[LEFT_FLAG] && !input_flags[RIGHT_FLAG]) {
       direction = DOWN;
-    } else if (sideways_velocity == -1) {
+    } else if (input_flags[LEFT_FLAG] && !input_flags[RIGHT_FLAG]) {
       direction = DOWN_LEFT;
-    } else if (sideways_velocity == 1) {
+    } else if (!input_flags[LEFT_FLAG] && input_flags[RIGHT_FLAG]) {
       direction = DOWN_RIGHT;
+    } else {
+      direction = DOWN;
+    }
+  } else {
+    if (input_flags[LEFT_FLAG] && !input_flags[RIGHT_FLAG]) {
+      direction = LEFT;
+    } else if (!input_flags[LEFT_FLAG] && input_flags[RIGHT_FLAG]) {
+      direction = RIGHT;
+    } else {
+      return;
     }
   }
 
@@ -196,15 +214,17 @@ void Game::process_movement() {
 }
 
 void Game::process_rotation() {
-  if (angular_velocity == 0) {
+  if (!input_flags[ROTATE_LEFT_FLAG] && !input_flags[ROTATE_RIGHT_FLAG]) {
     return;
   }
 
   unsigned char direction = INVALID_ROTATION;
-  if (angular_velocity == -1) {
-    direction = RIGHT_ROTATION;
-  } else if (angular_velocity == 1) {
+  if (input_flags[ROTATE_LEFT_FLAG] && !input_flags[ROTATE_RIGHT_FLAG]) {
     direction = LEFT_ROTATION;
+  } else if (!input_flags[ROTATE_LEFT_FLAG] && input_flags[ROTATE_RIGHT_FLAG]) {
+    direction = RIGHT_ROTATION;
+  } else {
+    return;
   }
 
   unsigned char data[ROTATION_SIZE];
@@ -214,7 +234,7 @@ void Game::process_rotation() {
 }
 
 void Game::process_match_start() {
-  if (match_start == 0) {
+  if (!input_flags[ENTER_FLAG]) {
     return;
   }
 

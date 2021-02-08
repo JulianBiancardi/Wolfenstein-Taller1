@@ -13,8 +13,8 @@ player_max_bullets: 100
 player_mask_radio: 0.1
 player_lives: 3
 player_respawn_bullets: 8
-player_pace: 0.1
-player_rotation_angle: 0.1
+player_speed: 0.1
+player_rotation_speed: 0.1
 player_knife_mask_radio: 10 # > player_mask_radio
 
 # Bot
@@ -55,6 +55,8 @@ pillar_radius: 0.5
 table_width: 1.0
 table_depth: 1.0
 barrel_radius: 0.5
+rocket_radius: 0.1
+rocket_speed: 0.5
 
 # Other
 match_length: 300

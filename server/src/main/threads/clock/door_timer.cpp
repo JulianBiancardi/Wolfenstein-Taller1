@@ -6,7 +6,8 @@
 DoorTimer::DoorTimer(BlockingQueue<Packet>& queue,
                      unsigned char match_id,
                      unsigned int door_id)
-    : TimedEvent(CL::door_timer, queue, match_id), door_id(door_id) {}
+    : TimedEvent(CL::door_timer, queue, match_id),
+      door_id(door_id) {}
 
 DoorTimer::~DoorTimer() {}
 

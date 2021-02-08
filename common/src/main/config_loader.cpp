@@ -18,9 +18,9 @@ double CL::player_mask_radio = CL::yaml_file["player_mask_radio"].as<double>();
 int CL::player_lives = CL::yaml_file["player_lives"].as<int>();
 int CL::player_respawn_bullets =
     CL::yaml_file["player_respawn_bullets"].as<int>();
-double CL::player_pace = CL::yaml_file["player_pace"].as<double>();
-double CL::player_rotation_angle =
-    CL::yaml_file["player_rotation_angle"].as<double>();
+double CL::player_speed = CL::yaml_file["player_speed"].as<double>();
+double CL::player_rotation_speed =
+    CL::yaml_file["player_rotation_speed"].as<double>();
 int CL::player_knife_mask_radio =
     CL::yaml_file["player_knife_mask_radio"].as<int>();
 
@@ -77,63 +77,14 @@ double CL::pillar_radius = CL::yaml_file["pillar_radius"].as<double>();
 double CL::table_width = CL::yaml_file["table_width"].as<double>();
 double CL::table_depth = CL::yaml_file["table_depth"].as<double>();
 double CL::barrel_radius = CL::yaml_file["barrel_radius"].as<double>();
+double CL::rocket_radius = CL::yaml_file["rocket_radius"].as<double>();
+double CL::rocket_speed = CL::yaml_file["rocket_speed"].as<double>();
 
 // Other
 unsigned int
     CL::match_length = CL::yaml_file["match_length"].as<unsigned int>();
-double CL::door_timer = CL::yaml_file["door_timer"].as<double>();
+unsigned int CL::door_timer = CL::yaml_file["door_timer"].as<unsigned int>();
 
-ConfigLoader::ConfigLoader() {
-  /*
-  yaml_file = YAML::LoadFile("../config.yaml");
-  //Server Config
-  sv_port = this->yaml_file["sv_port"].as<std::string>();
+ConfigLoader::ConfigLoader() = default;
 
-  //Player
-  player_health = this->yaml_file["player_health"].as<int>();
-  player_bullets = this->yaml_file["player_bullets"].as<int>();
-
-  //Guns
-  knife_range = this->yaml_file["knife_range"].as<int>();
-
-  chain_cannon_bullet_required = this->yaml_file
-      ["chain_cannon_bullet_required"].as<int>();
-  chain_cannon_base_precision = this->yaml_file
-      ["chain_cannon_base_precision"].as<int>();
-
-  pistol_bullet_required = this->yaml_file["pistol_bullet_required"].as<int>();
-  pistol_base_precision = this->yaml_file["pistol_base_precision"].as<int>();
-
-  rocket_launcher_bullet_required = this->yaml_file
-      ["rocket_launcher_bullet_required"].as<int>();
-  rocket_launcher_base_precision = this->yaml_file
-      ["rocket_launcher_base_precision"].as<int>();
-
-  machine_gun_bullet_required = this->yaml_file
-      ["machine_gun_bullet_required"].as<int>();
-  machine_gun_base_precision = this->yaml_file
-          ["machine_gun_base_precision"].as<int>();
-
-  //Items
-  food_health_recovered = this->yaml_file["food_health_recovered"].as<int>();
-  medic_kit_health_recovered =
-          this->yaml_file["medic_kit_health_recovered"].as<int>();
-  blood_health_recovered = this->yaml_file["blood_health_recovered"].as<int>();
-  blood_health_recovered_if_less_than =
-          this->yaml_file["blood_health_recovered_if_less_than"].as<int>();
-
-  crosses_points = this->yaml_file["crosses_points"].as<int>();
-  cup_points = this->yaml_file["cup_points"].as<int>();
-  chests_points = this->yaml_file["chests_points"].as<int>();
-  crown_points = this->yaml_file["crown_points"].as<int>();
-*/
-}
-
-ConfigLoader::~ConfigLoader() {}
-
-/*
- ConfigLoader & ConfigLoader::get_init_configs() {
-     static ConfigLoader instance;
-     return instance;
-}
-*/
+ConfigLoader::~ConfigLoader() = default;

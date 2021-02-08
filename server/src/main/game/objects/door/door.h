@@ -1,9 +1,9 @@
 #ifndef WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_DOOR_H_
 #define WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_DOOR_H_
 
-#include "../../../../../../common/src/main/object.h"
-#include "../../player.h"
 #include "../../collision_checker.h"
+#include "../../player.h"
+#include "../object.h"
 
 class Door : public Object {
  protected:
@@ -21,4 +21,4 @@ class Door : public Object {
   void close(CollisionChecker& checker);
 };
 
-#endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_DOOR_H_
+#endif  // WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_DOOR_H_

@@ -8,9 +8,9 @@
 #include "../../../../common/src/main/utils/base_map.h"
 #include "../../../../common/src/main/utils/matrix.h"
 #include "../../../../common/src/main/utils/point.h"
-#include "../../../common/src/main/object.h"
 #include "game/moveable.h"
 #include "game/objects/items/item.h"
+#include "game/objects/object.h"
 #include "game/player.h"
 
 class Map : public BaseMap {
@@ -70,6 +70,9 @@ class Map : public BaseMap {
 
   /* Adds player's death drop */
   void add_drop(Player& dead_player);
+
+  /* Adds a new rocket at the given position */
+  unsigned int add_rocket(const Point& where, double angle);
 };
 
 #endif

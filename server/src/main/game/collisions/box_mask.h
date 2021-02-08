@@ -1,7 +1,7 @@
 #ifndef BOX_MASK_H
 #define BOX_MASK_H
 
-#include "../utils/point.h"
+#include "../../../../../common/src/main/utils/point.h"
 #include "mask.h"
 
 class BoxMask : public Mask {

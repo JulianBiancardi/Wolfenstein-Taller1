@@ -30,7 +30,6 @@ Server::~Server() {
 }
 
 void Server::sync_with_server(Socket& server_socket) {
-  std::cout << "connecting to server..." << std::endl;
   Packet packet;
   reception_queue.dequeue(packet);
   if (packet.get_type() != START_OF_CONNECTION) {
@@ -49,7 +48,6 @@ void Server::sync_with_server(Socket& server_socket) {
   } else {
     throw ServerError("Failed to receive id during server-sync.");
   }
-  std::cout << "conection establish" << std::endl;
 }
 
 BlockingQueue<Packet>& Server::get_reception_queue() { return reception_queue; }
