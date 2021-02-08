@@ -25,7 +25,7 @@ class FrameLimiter {
 FrameLimiter::FrameLimiter() : frame_start(SDL_GetTicks()) {}
 
 void FrameLimiter::sleep() {
-  Uint32 frame_time, rest_time, behind, lost;
+  long long frame_time, rest_time, behind, lost;
   frame_time = SDL_GetTicks();
 
   rest_time = FRAME_RATE - (frame_time - frame_start);

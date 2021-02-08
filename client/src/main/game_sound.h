@@ -6,7 +6,7 @@
 #include "../../common/src/main/utils/point.h"
 class GameSound {
  public:
-  GameSound(const Point& furthest_point/*, const Point& own_point*/);
+  GameSound(const Point& furthest_point);
   ~GameSound();
   void play_background();
   void play_shoot(Point& point);

@@ -13,13 +13,18 @@ class Pistol : public Gun {
   double linear_func(double x);
   double slope;
   double intercept;
+  bool triggered;
+
+  Hit shoot(Object& player, int& current_bullets, BaseMap& map,
+            const std::vector<std::shared_ptr<Object>>& objects) override;
 
  public:
   Pistol();
   ~Pistol();
 
-  Hit shoot(Object& player, int& current_bullets, BaseMap& map,
-            const std::vector<Object*>& objects) override;
+  Hit trigger(Object& player, int& current_bullets, BaseMap& map,
+              const std::vector<std::shared_ptr<Object>>& objects) override;
+  void untrigger() override;
 };
 
 #endif

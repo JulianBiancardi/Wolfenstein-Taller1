@@ -11,20 +11,22 @@
 #include "../../../common/src/main/packets/packet_handler_factory_error.h"
 #include "../../../common/src/main/packets/packing.h"
 #include "frame_limiter.h"
+#include "guns/hit.h"
 #include "packet_handlers/packet_handler_factory.h"
 
 #define UNIT 3
 #define SCREEN_WIDTH (320 * UNIT)
 #define SCREEN_HEIGHT (200 * UNIT)
 
-#define FLAGS 7
+#define FLAGS 8
 #define FORWARD_FLAG 0
 #define LEFT_FLAG 1
 #define BACKWARD_FLAG 2
 #define RIGHT_FLAG 3
 #define ROTATE_LEFT_FLAG 4
 #define ROTATE_RIGHT_FLAG 5
-#define ENTER_FLAG 6
+#define SHOOT_FLAG 6
+#define ENTER_FLAG 7
 
 Game::Game(Server& server, Match& match)
     : player_id(server.get_id()),
@@ -35,17 +37,16 @@ Game::Game(Server& server, Match& match)
       caster(window, map, player_id),
       is_running(false),
       input_flags(FLAGS, false),
-      gamesound(GameSound(Point(map.get_rows(), map.get_columns()))){}
+      gamesound(GameSound(Point(map.get_rows(), map.get_columns()))) {}
 
 Game::~Game() {}
 
 void Game::operator()() {
-  FrameLimiter frame_limiter;
-
   is_running = true;
 
   spawn_self();
 
+  FrameLimiter frame_limiter;
   gamesound.set_point(map.get_player(player_id).get_position());
   gamesound.play_background();
   while (is_running) {
@@ -54,9 +55,9 @@ void Game::operator()() {
     update();
     render();
     frame_limiter.sleep();
-    //gamesound.set_point(map.get_player(player_id).get_position());
-    //Point punto(0,0);
-    //gamesound.play_shoot(punto);
+    // gamesound.set_point(map.get_player(player_id).get_position());
+    // Point punto(0,0);
+    // gamesound.play_shoot(punto);
   }
 }
 
@@ -92,8 +93,10 @@ void Game::handle_events() {
         handle_key_release(event.key.keysym.sym);
         break;
       case SDL_MOUSEBUTTONDOWN:
+        handle_click(event.button);
         break;
       case SDL_MOUSEBUTTONUP:
+        handle_unclick(event.button);
         break;
       default:
         break;
@@ -157,9 +160,22 @@ void Game::handle_key_release(SDL_Keycode& key) {
   }
 }
 
+void Game::handle_click(SDL_MouseButtonEvent& button) {
+  if (button.button == SDL_BUTTON_LEFT) {
+    input_flags[SHOOT_FLAG] = true;
+  }
+}
+
+void Game::handle_unclick(SDL_MouseButtonEvent& button) {
+  if (button.button == SDL_BUTTON_LEFT) {
+    input_flags[SHOOT_FLAG] = false;
+  }
+}
+
 void Game::process_events() {
   process_movement();
   process_rotation();
+  process_trigger();
   process_match_start();
 }
 
@@ -231,6 +247,24 @@ void Game::process_rotation() {
   size_t size = pack(data, "CICC", ROTATION, player_id, match_id, direction);
   Packet move_packet(size, data);
   server.send(move_packet);
+}
+
+void Game::process_trigger() {
+  if (input_flags[SHOOT_FLAG]) {
+    Hit hit = map.trigger_gun(player_id);
+    if (!hit.is_shot()) {
+      return;
+    }
+
+    unsigned char data[SHOT_SIZE];
+    size_t size =
+        pack(data, "CICCCC", SHOT, player_id, match_id, hit.get_object_id(),
+             hit.get_damage(), hit.get_bullets_used());
+    Packet shot_packet(size, data);
+    server.send(shot_packet);
+  } else {
+    map.untrigger_gun(player_id);
+  }
 }
 
 void Game::process_match_start() {

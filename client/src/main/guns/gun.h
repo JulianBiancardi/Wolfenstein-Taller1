@@ -1,6 +1,7 @@
 #ifndef GUN_H
 #define GUN_H
 
+#include <memory>
 #include <random>
 #include <vector>
 
@@ -13,12 +14,15 @@ class Gun {
  protected:
   double max_range;
   double min_range;
+  virtual Hit shoot(Object& player, int& current_bullets, BaseMap& map,
+                    const std::vector<std::shared_ptr<Object>>& objects) = 0;
 
  public:
   Gun(double min_range, double max_range);
   ~Gun();
-  virtual Hit shoot(Object& player, int& current_bullets, BaseMap& map,
-                    const std::vector<Object*>& objects) = 0;
+  virtual Hit trigger(Object& player, int& current_bullets, BaseMap& map,
+                      const std::vector<std::shared_ptr<Object>>& objects) = 0;
+  virtual void untrigger() = 0;
 };
 
 #endif

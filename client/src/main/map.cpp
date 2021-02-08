@@ -32,3 +32,21 @@ void Map::move_player(unsigned int player_id, unsigned char direction) {
 void Map::rotate_player(unsigned int player_id, unsigned char direction) {
   players.at(player_id)->rotate(direction);
 }
+
+void Map::shoot_player(unsigned int player_id, unsigned char damage) {
+  players.at(player_id)->set_health(
+      std::min(0, players.at(player_id)->get_health() - damage));
+}
+
+void Map::use_bullets(unsigned int player_id, unsigned char bullets) {
+  players.at(player_id)->decrease_bullets(bullets);
+}
+
+Hit Map::trigger_gun(unsigned int player_id) {
+  return std::move(
+      players.at(player_id)->trigger_gun(*this, objects_and_players));
+}
+
+void Map::untrigger_gun(unsigned int player_id) {
+  players.at(player_id)->untrigger_gun();
+}

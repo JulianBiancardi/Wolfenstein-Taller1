@@ -55,18 +55,12 @@
 #define ROTATION 10
 #define ROTATION_SIZE 5
 
+#define SHOT 11
+#define SHOT_SIZE 7
+
 //==============================
-#define MOVE 7
-#define MOVE_SIZE 7
-
-#define ROTATE 8
-#define ROTATE_SIZE 7
-
 #define GRAB 9
 #define GRAB_SIZE 9
-
-#define SHOT 10
-#define SHOT_SIZE 8
 
 #define CHANGE_GUN 11
 #define CHANGE_GUN_SIZE 7

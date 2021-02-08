@@ -6,15 +6,17 @@
 #include "../../../common/src/main/ids/map_ids.h"
 #include "../../../common/src/main/ids/movement_ids.h"
 #include "guns/knife.h"
+#include "guns/pistol.h"
 
 Player::Player(Ray position, unsigned int player_id)
     : guns_bag(), Object(GUARD, position, player_id) {
   health = CL::player_health;
-  bullets = CL::player_health;
-  Knife* knife = new Knife();
-  // FIXME Create with gun
-  guns_bag.insert(std::pair<int, Gun*>(0, knife));
-  active_gun = 0;
+  bullets = CL::player_bullets;
+  std::shared_ptr<Gun> knife(new Knife());
+  std::shared_ptr<Gun> pistol(new Pistol());
+  guns_bag.insert(std::make_pair(1, std::move(knife)));
+  guns_bag.insert(std::make_pair(2, std::move(pistol)));
+  active_gun = 2;
 }
 
 /*
@@ -71,12 +73,7 @@ Player& Player::operator=(Player&& other) {
   return *this;
 }*/
 
-Player::~Player() {
-  std::unordered_map<int, Gun*>::iterator iter;
-  for (iter = guns_bag.begin(); iter != guns_bag.end(); iter++) {
-    delete iter->second;
-  }
-}
+Player::~Player() {}
 
 void Player::move(unsigned char direction) {
   double movement_angle = position.get_angle();
@@ -129,10 +126,13 @@ void Player::rotate(unsigned char direction) {
   }
 }
 
-Hit Player::shoot(BaseMap& map, const std::vector<Object*>& map_objects) {
+Hit Player::trigger_gun(
+    BaseMap& map, const std::vector<std::shared_ptr<Object>>& map_objects) {
   return std::move(
-      guns_bag[active_gun]->shoot(*this, bullets, map, map_objects));
+      guns_bag[active_gun]->trigger(*this, bullets, map, map_objects));
 }
+
+void Player::untrigger_gun() { guns_bag[active_gun]->untrigger(); }
 
 void Player::add_gun(int gun_num, Gun* gun) {
   guns_bag.insert(std::pair<int, Gun*>(gun_num, gun));
@@ -146,8 +146,10 @@ void Player::set_gun(int gun_num) {
 
 void Player::set_health(int health) { this->health = health; }
 
-int Player::get_health() { return this->health; }
+int Player::get_health() const { return this->health; }
 
 bool Player::has_bullets(int amount) { return (bullets >= amount); }
+
+int Player::get_bullets() const { return bullets; }
 
 void Player::decrease_bullets(int amount) { bullets -= amount; }

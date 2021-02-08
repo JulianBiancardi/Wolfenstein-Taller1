@@ -16,15 +16,21 @@
 
 PacketHandler* PacketHandlerFactory::build(Packet& packet) {
   switch (packet.get_type()) {
-    case REQUEST_MATCHES:return new RequestMatchesHandler();
-    case REQUEST_NEW_MATCH:return new RequestNewMatchHandler();
-    case JOIN_MATCH:return new JoinMatchHandler();
-    case MATCH_START:return new MatchStartHandler();
-    case MOVEMENT:return new MovementHandler();
-    case ROTATION:return new RotationHandler();
-      /* Por favor, dejar comentado hasta que se enlace servidor/cliente
-      case SHOT:
+    case REQUEST_MATCHES:
+      return new RequestMatchesHandler();
+    case REQUEST_NEW_MATCH:
+      return new RequestNewMatchHandler();
+    case JOIN_MATCH:
+      return new JoinMatchHandler();
+    case MATCH_START:
+      return new MatchStartHandler();
+    case MOVEMENT:
+      return new MovementHandler();
+    case ROTATION:
+      return new RotationHandler();
+    case SHOT:
       return new ShotHandler();
+      /* Por favor, dejar comentado hasta que se enlace servidor/cliente
       case CHANGE_GUN:
       return new ChangeGunHandler();
       case DOOR_INTERACTION:

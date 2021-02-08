@@ -4,14 +4,17 @@
 #include "gun.h"
 
 class Knife : public Gun {
+ private:
+  bool triggered;
+  Hit shoot(Object& player, int& current_bullets, BaseMap& map,
+            const std::vector<std::shared_ptr<Object>>& objects) override;
+
  public:
   Knife();
-  Hit shoot(Object& player, int& current_bullets, BaseMap& map,
-            const std::vector<Object*>& objects) override;
 
- private:
-  const static int range;
-  const static int bullet_required = 0;
+  Hit trigger(Object& player, int& current_bullets, BaseMap& map,
+              const std::vector<std::shared_ptr<Object>>& objects) override;
+  void untrigger() override;
 };
 
 #endif

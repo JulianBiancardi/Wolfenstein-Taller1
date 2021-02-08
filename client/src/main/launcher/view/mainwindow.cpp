@@ -99,7 +99,6 @@ void MainWindow::on_NewButton_clicked() {
 }
 
 void MainWindow::on_CreateButton_clicked() {
-  std::cout << "Creating a map: " + map_selected << std::endl;
   if (map_selected.empty()) {
     _show_error("No map selected");
     return;

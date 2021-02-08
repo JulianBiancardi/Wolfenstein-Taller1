@@ -8,29 +8,26 @@
 
 #include "../casting/ray_casting.h"
 
-Pistol::Pistol() : spray(0.17453, 0.1), Gun(2, 20) {
+Pistol::Pistol() : spray(0.17453, 0.1), Gun(2, 20), triggered(false) {
   slope = 1 / (min_range - max_range);
   intercept = -slope * max_range;
-  //    bullet_required =
-  //    ConfigLoader::get_init_configs().pistol_bullet_required; base_precision
-  //    = ConfigLoader::get_init_configs().pistol_base_precision;
 }
 
 Hit Pistol::shoot(Object& player, int& current_bullets, BaseMap& map,
-                  const std::vector<Object*>& objects) {
+                  const std::vector<std::shared_ptr<Object>>& objects) {
   Ray bullet(player.get_position(), player.get_angle() + spray());
 
   double wall_distance =
       RayCasting::get_collision(map, bullet).get_distance_from_src();
 
-  Object* closest_obj = nullptr;
+  std::shared_ptr<Object> closest_obj(nullptr);
   double closest_obj_dist = std::numeric_limits<double>::infinity();
   double closest_obj_angle = std::numeric_limits<double>::quiet_NaN();
 
-  std::vector<Object*>::const_iterator iter;
+  std::vector<std::shared_ptr<Object>>::const_iterator iter;
 
   for (iter = objects.begin(); iter != objects.end(); iter++) {
-    Object* object = *iter;
+    std::shared_ptr<Object> object = *iter;
     // TODO Consider: if (!object.is_solid()) {continue;}
     double object_distance =
         object->get_position().distance_from(bullet.get_origin());
@@ -81,10 +78,22 @@ Hit Pistol::shoot(Object& player, int& current_bullets, BaseMap& map,
     double angle_modifier = std::cos(closest_obj_angle);
     double damage = base_damage * dist_modifier * angle_modifier;
 
-    return std::move(Hit(closest_obj->get_id(), damage));
+    return std::move(Hit(closest_obj->get_id(), damage, 1, true));
   }
-  return std::move(Hit(-1, 0));
+  return std::move(Hit(0, 0, 1, true));
 }
+
+Hit Pistol::trigger(Object& player, int& current_bullets, BaseMap& map,
+                    const std::vector<std::shared_ptr<Object>>& objects) {
+  if (triggered || current_bullets == 0) {
+    std::move(Hit(0, 0, 0, false));
+  } else {
+    triggered = true;
+    return std::move(shoot(player, current_bullets, map, objects));
+  }
+}
+
+void Pistol::untrigger() { triggered = false; }
 
 double Pistol::linear_func(double x) { return slope * x + intercept; }
 

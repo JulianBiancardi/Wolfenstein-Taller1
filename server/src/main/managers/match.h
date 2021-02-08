@@ -63,24 +63,37 @@ class Match {
   /* Returns the current status of the match */
   bool has_started() const;
 
-  /* Move a player in the match */
+  /* Move a player in the match.
+   * Returns true on sucess, false otherwise.
+   */
   bool move_player(unsigned int player_id, unsigned char direction);
 
-  /* Rotate a player in the given direction */
+  /* Rotate a player in the given direction.
+   * Returns true on success, false otherwise.
+   */
   bool rotate_player(unsigned int player_id, unsigned char direction);
 
   /* Returns the grabbed item id, otherwise returns 0 */
   unsigned int grab_item(unsigned int player_id);
 
-  /* Change the gun of the player in the match */
+  /* Change the gun of the player in the match.
+   * Returns true on success, false otherwise.
+   */
   bool change_gun(unsigned int player_id, unsigned char gun_id);
 
-  /* Shoot the gun of the player in the match, returns if hits enemy */
+  /* Shoot the gun of the player in the match.
+   * Returns true on success, false otherwise.
+   */
   bool shoot_gun(unsigned int player_id, unsigned int objective_id,
                  unsigned char damage);
 
-  /* Adds rocket from player's position */
-  void add_rocket(unsigned int player_id);
+  /* Returns true if the player is using a rocket launcher. */
+  bool is_using_rocket_launcher(unsigned int player_id);
+
+  /* Shoot the rocket launcher of the player in the match.
+   * Returns true on success, false otherwise.
+   */
+  bool shoot_rocket(unsigned int player_id);
 
   /* Kill a player and respawn him */
   void kill_player(unsigned int player_id);

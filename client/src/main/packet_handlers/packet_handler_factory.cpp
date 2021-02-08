@@ -4,6 +4,7 @@
 #include "../../../../common/src/main/packets/packet_handler_factory_error.h"
 #include "movement_handler.h"
 #include "rotation_handler.h"
+#include "shot_handler.h"
 
 PacketHandler* PacketHandlerFactory::build(Packet& packet) {
   switch (packet.get_type()) {
@@ -12,6 +13,8 @@ PacketHandler* PacketHandlerFactory::build(Packet& packet) {
       return new MovementHandler();
     case ROTATION:
       return new RotationHandler();
+    case SHOT:
+      return new ShotHandler();
     /*
     case DOOR_PACKET:
       return new nullptr;  // TODO
