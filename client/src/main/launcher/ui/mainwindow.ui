@@ -236,35 +236,11 @@
       <widget class="QWidget" name="NewMatchPage">
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>Name: </string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="mapNameEdit">
-            <property name="maxLength">
-             <number>64</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>MAPS</string>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QScrollArea" name="scrollArea_2">
@@ -283,7 +259,7 @@
              <x>0</x>
              <y>0</y>
              <width>668</width>
-             <height>340</height>
+             <height>350</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
