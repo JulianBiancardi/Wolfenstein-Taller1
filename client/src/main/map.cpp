@@ -37,3 +37,7 @@ Hit Map::trigger_gun(unsigned int player_id) {
   return std::move(
       players.at(player_id)->trigger_gun(*this, objects_and_players));
 }
+
+void Map::untrigger_gun(unsigned int player_id) {
+  players.at(player_id)->untrigger_gun();
+}

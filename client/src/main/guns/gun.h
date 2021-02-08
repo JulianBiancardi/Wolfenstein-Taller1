@@ -22,6 +22,7 @@ class Gun {
   ~Gun();
   virtual Hit trigger(Object& player, int& current_bullets, BaseMap& map,
                       const std::vector<std::shared_ptr<Object>>& objects) = 0;
+  virtual void untrigger() = 0;
 };
 
 #endif

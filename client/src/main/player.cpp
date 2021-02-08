@@ -135,6 +135,8 @@ Hit Player::trigger_gun(
       guns_bag[active_gun]->trigger(*this, bullets, map, map_objects));
 }
 
+void Player::untrigger_gun() { guns_bag[active_gun]->untrigger(); }
+
 void Player::add_gun(int gun_num, Gun* gun) {
   guns_bag.insert(std::pair<int, Gun*>(gun_num, gun));
 }

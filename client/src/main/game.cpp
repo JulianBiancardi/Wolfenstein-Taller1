@@ -164,6 +164,7 @@ void Game::handle_click(SDL_MouseButtonEvent& button) {
 void Game::handle_unclick(SDL_MouseButtonEvent& button) {
   if (button.button == SDL_BUTTON_LEFT) {
     printf("Right Click\n");
+    map.untrigger_gun(player_id);
     // Left Button
   }
 }

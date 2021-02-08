@@ -45,6 +45,7 @@ class Player : public Object {
 
   Hit trigger_gun(BaseMap& map,
                   const std::vector<std::shared_ptr<Object>>& map_objects);
+  void untrigger_gun();
 };
 
 #endif

@@ -37,6 +37,7 @@ class Map : public BaseMap {
   void move_player(unsigned int player_id, unsigned char direction);
   void rotate_player(unsigned int player_id, unsigned char direction);
   Hit trigger_gun(unsigned int player_id);
+  void untrigger_gun(unsigned int player_id);
 };
 
 #endif
