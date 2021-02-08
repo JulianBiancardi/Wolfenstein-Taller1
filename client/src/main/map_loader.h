@@ -5,7 +5,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "../../../common/src/main/object.h"
+#include "object.h"
 #include "player.h"
 
 class MapLoader {

@@ -3,81 +3,17 @@
 #include <cmath>
 #include <utility>
 
+#include "../../../common/src/main/ids/map_ids.h"
 #include "../../../common/src/main/ids/movement_ids.h"
 #include "guns/knife.h"
 
-Player::Player(Ray position)
-    : guns_bag(),
-      Object(position, new CircleMask(ConfigLoader::player_mask_radio,
-                                      position.get_ref_origin())) {
-  pace = CL::player_pace;
-  health = CL::player_health;
-  bullets = CL::player_health;
-  Knife* knife = new Knife();
-  guns_bag.insert(std::pair<int, Gun*>(0, knife));
-  active_gun = 0;
-}
-
 Player::Player(Ray position, unsigned int player_id)
-    : guns_bag(),
-      Object(position,
-             new CircleMask(ConfigLoader::player_mask_radio,
-                            position.get_ref_origin()),
-             player_id) {
+    : guns_bag(), Object(GUARD, position, player_id) {
   pace = CL::player_pace;
   health = CL::player_health;
   bullets = CL::player_health;
   Knife* knife = new Knife();
-  guns_bag.insert(std::pair<int, Gun*>(0, knife));
-  active_gun = 0;
-}
-
-Player::Player(Point origin, double angle)
-    : guns_bag(),
-      Object(origin, angle,
-             new CircleMask(ConfigLoader::player_mask_radio, origin)) {
-  pace = CL::player_pace;
-  health = CL::player_health;
-  bullets = CL::player_health;
-  Knife* knife = new Knife();
-  guns_bag.insert(std::pair<int, Gun*>(0, knife));
-  active_gun = 0;
-}
-
-Player::Player(Point origin, double angle, unsigned int player_id)
-    : guns_bag(),
-      Object(origin, angle,
-             new CircleMask(ConfigLoader::player_mask_radio, origin),
-             player_id) {
-  pace = CL::player_pace;
-  health = CL::player_health;
-  bullets = CL::player_health;
-  Knife* knife = new Knife();
-  guns_bag.insert(std::pair<int, Gun*>(0, knife));
-  active_gun = 0;
-}
-
-Player::Player(double x, double y, double angle)
-    : guns_bag(),
-      Object(Point(x, y), angle,
-             new CircleMask(ConfigLoader::player_mask_radio, Point(x, y))) {
-  pace = CL::player_pace;
-  health = CL::player_health;
-  bullets = CL::player_health;
-  Knife* knife = new Knife();
-  guns_bag.insert(std::pair<int, Gun*>(0, knife));
-  active_gun = 0;
-}
-
-Player::Player(double x, double y, double angle, unsigned int player_id)
-    : guns_bag(),
-      Object(Point(x, y), angle,
-             new CircleMask(ConfigLoader::player_mask_radio, Point(x, y)),
-             player_id) {
-  pace = CL::player_pace;
-  health = CL::player_health;
-  bullets = CL::player_health;
-  Knife* knife = new Knife();
+  // FIXME Create with gun
   guns_bag.insert(std::pair<int, Gun*>(0, knife));
   active_gun = 0;
 }

@@ -5,8 +5,8 @@
 #include <vector>
 
 #include "../../../../common/src/main/config_loader.h"
-#include "../../../../common/src/main/object.h"
 #include "../../../../common/src/main/utils/base_map.h"
+#include "../object.h"
 #include "hit.h"
 
 class Gun {

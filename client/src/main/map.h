@@ -6,10 +6,10 @@
 #include <unordered_map>
 #include <vector>
 
-#include "../../../common/src/main/object.h"
 #include "../../../common/src/main/utils/base_map.h"
 #include "../../../common/src/main/utils/matrix.h"
 #include "../../../common/src/main/utils/ray.h"
+#include "object.h"
 #include "player.h"
 
 class Map : public BaseMap {

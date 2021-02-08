@@ -138,7 +138,7 @@ void GameCaster::draw_wall(Collision& collision, size_t screen_pos,
 
 void GameCaster::draw_objects(std::vector<double>& wall_distances) {
   printf("D3A\n");
-  std::vector<std::shared_ptr<Object>>& objects = map.get_objects();
+  std::vector<std::shared_ptr<Object>>& objects = map.get_objects_and_players();
   printf("D3B\n");
 
   std::vector<double> object_distances;

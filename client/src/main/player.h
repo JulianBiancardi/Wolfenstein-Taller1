@@ -3,7 +3,6 @@
 
 #include <unordered_map>
 
-#include "../../../common/src/main/collisions/circle_mask.h"
 #include "../../../common/src/main/utils/base_map.h"
 #include "../../../common/src/main/utils/point.h"
 #include "../../../common/src/main/utils/ray.h"
@@ -22,12 +21,7 @@ class Player : public Object {
 
   // TODO Make copyable since it is stored in STD Containers
  public:
-  Player(Ray position);
   Player(Ray position, unsigned int player_id);
-  Player(Point origin, double angle);
-  Player(Point origin, double angle, unsigned int player_id);
-  Player(double x, double y, double angle);
-  Player(double x, double y, double angle, unsigned int player_id);
 
   Player(const Player& other) = delete;
   Player& operator=(const Player&) = delete;
