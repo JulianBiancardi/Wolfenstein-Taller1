@@ -20,7 +20,7 @@ void GameSound::play_background() {
   Mix_VolumeMusic(30);
 }
 
-void GameSound::play_door(Point &point, const int type) {
+void GameSound::play_door(Point point, const int type) {
   int channel = Mix_GroupAvailable(-1);
   sound_checker(Mix_SetPosition(channel, 0, map_distance(point)));
   if (type == OPEN_DOOR){
@@ -29,14 +29,14 @@ void GameSound::play_door(Point &point, const int type) {
     sound_checker(Mix_PlayChannel (channel, sounds.at(SOUND_CLOSE_DOOR), 0));
   }
 }
-void GameSound::play_shoot(Point &point) {
+void GameSound::play_shoot(Point point) {
   //Mix_PlayChannel(15, sounds.at(SOUND_SHOOT), 0);
   int channel = Mix_GroupAvailable(-1);
   sound_checker(Mix_SetPosition(channel, 0, map_distance(point)));
   sound_checker(Mix_PlayChannel (channel, sounds.at(SOUND_SHOOT), 0));
 }
 
-void GameSound::play_guard_death(Point &point) {
+void GameSound::play_guard_death(Point point) {
   int channel = Mix_GroupAvailable(-1);
   sound_checker(Mix_SetPosition(channel, 0, map_distance(point)));
   sound_checker(Mix_PlayChannel(channel, sounds.at(SOUND_GUARD_DEATH), 0));
@@ -89,11 +89,11 @@ GameSound::~GameSound() {
   Mix_Quit();
 }
 
-void GameSound::sound_checker(const int status) {
+void GameSound::sound_checker(int status) {
   if ((status ==  0) || (status == -1))
     std::cerr << Mix_GetError() << std::endl;
 }
-void GameSound::sound_checker(const int status, bool error_on_null) {
+void GameSound::sound_checker(int status, bool error_on_null) {
   if (error_on_null){
     this->sound_checker(status);
   }else{
@@ -108,7 +108,7 @@ void GameSound::set_point(const Point& point) {
   //std::cout<<std::endl;
 }
 
-Uint8 GameSound::map_distance(Point &point) {
+Uint8 GameSound::map_distance(Point point) {
   double output = round(slope * (Point::distance(this->own_point, point)));
   return floor(output + 0.5);
 }
