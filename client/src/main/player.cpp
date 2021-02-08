@@ -11,12 +11,12 @@
 Player::Player(Ray position, unsigned int player_id)
     : guns_bag(), Object(GUARD, position, player_id) {
   health = CL::player_health;
-  bullets = CL::player_health;
+  bullets = CL::player_bullets;
   std::shared_ptr<Gun> knife(new Knife());
   std::shared_ptr<Gun> pistol(new Pistol());
-  guns_bag.insert(std::make_pair(3, std::move(knife)));
+  guns_bag.insert(std::make_pair(1, std::move(knife)));
   guns_bag.insert(std::make_pair(2, std::move(pistol)));
-  active_gun = 3;
+  active_gun = 2;
 }
 
 /*
