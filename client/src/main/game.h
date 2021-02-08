@@ -1,6 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <vector>
+
 #include "../../../common/src/main/utils/ray.h"
 #include "casters/game_caster.h"
 #include "launcher/include/match.h"  // TODO Move smwhere else
@@ -18,10 +20,7 @@ class Game {
   GameCaster caster;
   bool is_running;
 
-  char forward_velocity;
-  char sideways_velocity;
-  char angular_velocity;
-  char match_start;
+  std::vector<bool> input_flags;
 
   /* Receive spawn point and add the player there. */
   void spawn_self();
