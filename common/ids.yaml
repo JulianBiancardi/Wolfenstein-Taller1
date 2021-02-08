@@ -8,13 +8,16 @@
   type: 1
   name: "Rock Wall"
   #image: "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/res/walls/grey_brick_wall.bmp"
-  image: "/home/fer/Escritorio/Wolfenstein-Taller1/res/walls/wood_wall.bmp"
+  #image: "/home/fer/Escritorio/Wolfenstein-Taller1/res/walls/wood_wall.bmp"
+  image: "../../res/walls/wood_wall.bmp"
   icon: "../resources/images/walls/IMG_RockWall.png"
 2:
   type: 1
   name: "Wood Wall"
   #image: "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/res/walls/wood_wall.bmp"
-  image: "/home/fer/Escritorio/Wolfenstein-Taller1/res/walls/wood_wall.bmp"
+  #image: "/home/fer/Escritorio/Wolfenstein-Taller1/res/walls/wood_wall.bmp"
+  image: "../../res/walls/wood_wall.bmp"
+
   icon: "../resources/images/walls/IMG_WoodWall.png"
 
 # Players
@@ -41,7 +44,8 @@
 24:
   type: 2
   name: "Officer"
-  image: "/home/santiagoczop/Taller/tps/tp4/res/officer/officer1.bmp"
+  #image: "/home/santiagoczop/Taller/tps/tp4/res/officer/officer1.bmp"
+  image: "../../res/officer/officer1.bmp"
   icon: "../resources/images/enemies/IMG_Officer.png"
 25:
   type: 2
@@ -132,7 +136,8 @@
 50:
   type: 5
   name: "Pillar"
-  image: "/home/santiagoczop/Taller/tps/tp4/res/ambient/IMG_Pilar.bmp"
+  #image: "/home/santiagoczop/Taller/tps/tp4/res/ambient/IMG_Pilar.bmp"
+  image: "../../res/ambient/IMG_Pilar.bmp"
   icon: "../resources/images/objects/IMG_Pillar.png"
 51:
   type: 5
