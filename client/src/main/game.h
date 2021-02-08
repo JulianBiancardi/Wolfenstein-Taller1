@@ -31,6 +31,8 @@ class Game {
   void handle_events();  // handle any user events
   void handle_key_press(SDL_Keycode& key);
   void handle_key_release(SDL_Keycode& key);
+  void handle_click(SDL_MouseButtonEvent& button);
+  void handle_unclick(SDL_MouseButtonEvent& button);
 
   void process_events();
   void process_movement();

@@ -129,9 +129,10 @@ void Player::rotate(unsigned char direction) {
   }
 }
 
-Hit Player::shoot(BaseMap& map, const std::vector<Object*>& map_objects) {
+Hit Player::trigger_gun(
+    BaseMap& map, const std::vector<std::shared_ptr<Object>>& map_objects) {
   return std::move(
-      guns_bag[active_gun]->shoot(*this, bullets, map, map_objects));
+      guns_bag[active_gun]->trigger(*this, bullets, map, map_objects));
 }
 
 void Player::add_gun(int gun_num, Gun* gun) {

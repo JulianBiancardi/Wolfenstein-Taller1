@@ -32,3 +32,8 @@ void Map::move_player(unsigned int player_id, unsigned char direction) {
 void Map::rotate_player(unsigned int player_id, unsigned char direction) {
   players.at(player_id)->rotate(direction);
 }
+
+Hit Map::trigger_gun(unsigned int player_id) {
+  return std::move(
+      players.at(player_id)->trigger_gun(*this, objects_and_players));
+}

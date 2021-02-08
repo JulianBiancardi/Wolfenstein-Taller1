@@ -11,6 +11,7 @@
 #include "../../../common/src/main/packets/packet_handler_factory_error.h"
 #include "../../../common/src/main/packets/packing.h"
 #include "frame_limiter.h"
+#include "guns/hit.h"
 #include "packet_handlers/packet_handler_factory.h"
 
 #define UNIT 3
@@ -39,12 +40,11 @@ Game::Game(Server& server, Match& match)
 Game::~Game() {}
 
 void Game::operator()() {
-  FrameLimiter frame_limiter;
-
   is_running = true;
 
   spawn_self();
 
+  FrameLimiter frame_limiter;
   while (is_running) {
     handle_events();
     process_events();
@@ -86,8 +86,10 @@ void Game::handle_events() {
         handle_key_release(event.key.keysym.sym);
         break;
       case SDL_MOUSEBUTTONDOWN:
+        handle_click(event.button);
         break;
       case SDL_MOUSEBUTTONUP:
+        handle_unclick(event.button);
         break;
       default:
         break;
@@ -148,6 +150,21 @@ void Game::handle_key_release(SDL_Keycode& key) {
       break;
     default:
       break;
+  }
+}
+
+void Game::handle_click(SDL_MouseButtonEvent& button) {
+  if (button.button == SDL_BUTTON_LEFT) {
+    printf("Left Click\n");
+    Hit hit = map.trigger_gun(player_id);
+    // Left Button
+  }
+}
+
+void Game::handle_unclick(SDL_MouseButtonEvent& button) {
+  if (button.button == SDL_BUTTON_LEFT) {
+    printf("Right Click\n");
+    // Left Button
   }
 }
 

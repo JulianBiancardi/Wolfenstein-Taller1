@@ -36,7 +36,7 @@ class Map : public BaseMap {
   void add_player(unsigned int player_id, const Ray& position);
   void move_player(unsigned int player_id, unsigned char direction);
   void rotate_player(unsigned int player_id, unsigned char direction);
-  // void add_sprite(Sprite &sprite);
+  Hit trigger_gun(unsigned int player_id);
 };
 
 #endif

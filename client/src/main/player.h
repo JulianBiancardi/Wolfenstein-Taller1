@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <memory>
 #include <unordered_map>
 
 #include "../../../common/src/main/utils/base_map.h"
@@ -8,6 +9,7 @@
 #include "../../../common/src/main/utils/ray.h"
 #include "guns/gun.h"
 #include "guns/hit.h"
+#include "object.h"
 
 class Gun;
 
@@ -41,7 +43,8 @@ class Player : public Object {
   bool has_bullets(int bullets);
   void decrease_bullets(int amount);
 
-  Hit shoot(BaseMap& map, const std::vector<Object*>& map_objects);
+  Hit trigger_gun(BaseMap& map,
+                  const std::vector<std::shared_ptr<Object>>& map_objects);
 };
 
 #endif
