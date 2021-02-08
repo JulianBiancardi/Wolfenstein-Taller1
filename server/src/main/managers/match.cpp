@@ -15,8 +15,9 @@ Match::Match(unsigned int host_id, unsigned char match_id,
       match_id(match_id) {}
 
 Match::~Match() {
+  ((ClockThread*)threads.at(CLOCK_KEY))->force_stop();
+  threads.at(CLOCK_KEY)->join();
   for (auto thread : threads) {
-    thread.second->join();
     delete thread.second;
   }
 }
@@ -166,11 +167,6 @@ bool Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
   }
 
   Player& shooter = map.get_player(player_id);
-  shooter.shoot();
-
-  if (shooter.is_using_rocket_launcher()) {
-    add_rocket(player_id);
-  }
 
   if (objective_id != 0) {
     Player& objective = map.get_player(objective_id);
@@ -178,6 +174,12 @@ bool Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
     if (objective.is_dead()) {
       throw MatchError("Failed to shoot player. Player %u is dead.",
                        objective_id);
+    }
+
+    if (!shooter.shoot()) {
+      throw MatchError(
+          "Failed to shoot gun. Player %u doesn't have enough bullets.",
+          player_id);
     }
 
     objective.receive_damage(damage);
@@ -189,22 +191,43 @@ bool Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
 
     return true;
   } else {
-    return false;
+    if (!shooter.shoot()) {
+      throw MatchError(
+          "Failed to shoot gun. Player %u doesn't have enough bullets.",
+          player_id);
+    }
+
+    return true;
   }
 }
 
-void Match::add_rocket(unsigned int player_id) {
+bool Match::is_using_rocket_launcher(unsigned int player_id) {
+  if (!player_exists(player_id)) {
+    throw MatchError(
+        "Failed to check for rocket launcher usage. Player %u doesn't exist.",
+        player_id);
+  }
+
+  return map.get_player(player_id).is_using_rocket_launcher();
+}
+
+bool Match::shoot_rocket(unsigned int player_id) {
   if (!player_exists(player_id)) {
     throw MatchError("Failed to create rocket. Player %u doesn't exist.",
                      player_id);
   }
 
   Player& shooter = map.get_player(player_id);
+  if (!shooter.shoot()) {
+    return false;
+  }
+
   Point spawn_point = shooter.collision_mask_bound(shooter.get_position());
-  Angle spawn_angle = shooter.get_position().angle_to(spawn_point);
+  Angle spawn_angle = shooter.get_angle();
 
   unsigned int rocket_id = map.add_rocket(spawn_point, spawn_angle.to_double());
   ((ClockThread*)threads.at(CLOCK_KEY))->add_rocket_controller(rocket_id);
+  return true;
 }
 
 bool Match::is_dead(unsigned int player_id) {

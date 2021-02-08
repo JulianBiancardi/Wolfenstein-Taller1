@@ -21,19 +21,15 @@ player_knife_mask_radio: 10 # > player_mask_radio
 bot_positions_difference_allowed: 5
 
 # Guns
-knife_range: 2
 
-chain_cannon_bullet_required: 10
-chain_cannon_base_precision: 10
+pistol_bullet_required: 1
 
-pistol_bullet_required: 10
-pistol_base_precision: 10
+machine_gun_bullet_required: 1
 
-rocket_launcher_bullet_required: 10
-rocket_launcher_base_precision: 10
+chain_cannon_bullet_required: 1
 
-machine_gun_bullet_required: 10
-machine_gun_base_precision: 10
+rocket_launcher_bullet_required: 5
+
 
 # Items
 items_mask_radio: 0.25

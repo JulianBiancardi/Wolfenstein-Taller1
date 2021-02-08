@@ -252,7 +252,15 @@ void Game::process_rotation() {
 void Game::process_trigger() {
   if (input_flags[SHOOT_FLAG]) {
     Hit hit = map.trigger_gun(player_id);
-    printf("Detected Shot!\n");
+    if (!hit.is_shot()) {
+      return;
+    }
+
+    unsigned char data[SHOT_SIZE];
+    size_t size = pack(data, "CICCC", SHOT, player_id, match_id,
+                       hit.get_object_id(), hit.get_damage());
+    Packet shot_packet(size, data);
+    server.send(shot_packet);
   } else {
     map.untrigger_gun(player_id);
   }

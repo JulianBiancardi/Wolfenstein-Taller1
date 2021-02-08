@@ -42,7 +42,7 @@ class Player : public Moveable {
   bool has_gun(int gun_id) const;
   bool has_droppable_gun();
   bool change_gun(int gun_id);
-  void shoot();
+  bool shoot();
   void add_bullets(int amount);
   void add_points(int amount);
   void add_health(int amount);

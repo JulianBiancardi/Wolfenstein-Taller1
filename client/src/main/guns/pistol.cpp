@@ -78,18 +78,18 @@ Hit Pistol::shoot(Object& player, int& current_bullets, BaseMap& map,
     double angle_modifier = std::cos(closest_obj_angle);
     double damage = base_damage * dist_modifier * angle_modifier;
 
-    return std::move(Hit(closest_obj->get_id(), damage, 1));
+    return std::move(Hit(closest_obj->get_id(), damage, true));
   }
-  return std::move(Hit(0, 0, 1));
+  return std::move(Hit(0, 0, true));
 }
 
 Hit Pistol::trigger(Object& player, int& current_bullets, BaseMap& map,
                     const std::vector<std::shared_ptr<Object>>& objects) {
   if (triggered || current_bullets == 0) {
-    std::move(Hit(0, 0, 0));
+    std::move(Hit(0, 0, false));
   } else {
     triggered = true;
-    std::move(shoot(player, current_bullets, map, objects));
+    return std::move(shoot(player, current_bullets, map, objects));
   }
 }
 
