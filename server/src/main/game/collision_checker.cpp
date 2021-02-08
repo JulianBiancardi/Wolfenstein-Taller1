@@ -67,13 +67,10 @@ unsigned int CollisionChecker::grabbed_item(const Player& by_whom) {
 int CollisionChecker::get_knife_range_collides_player_id(Point& where,
                                                          Player& who) {
   ignored = &who;
-  //printf("(%f, %f) ", where.getX(), where.getY());
   Point mask_checking_point = who.knife_collision_mask_bound(where);
-  //printf("(%f, %f) ", mask_checking_point.getX(), mask_checking_point.getY());
   int id_found = 0;
   for (auto& player : players) {
     if (player.second != *ignored) {
-      //printf("Voy a llamar: ");
       player.second.knife_collision_mask_bound(where);
       if ((player.second.knife_mask_bound_occupies(mask_checking_point)) &&
           (!player.second.is_dead())) {
