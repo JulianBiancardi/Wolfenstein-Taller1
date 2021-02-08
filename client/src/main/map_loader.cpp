@@ -45,4 +45,5 @@ void MapLoader::add_object(unsigned char res_id, Point where) {
   // TODO Correct the id assigned
   std::shared_ptr<Object> new_object(new Object(res_id, where, 0.0, 0));
   objects.insert(std::make_pair(new_object->get_id(), new_object));
+  objects_and_players.push_back(new_object);
 }

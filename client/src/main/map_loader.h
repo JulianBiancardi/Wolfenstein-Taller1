@@ -10,9 +10,9 @@
 
 class MapLoader {
  private:
-  std::vector<std::shared_ptr<Object>> objects_and_players;
-  std::unordered_map<unsigned int, std::shared_ptr<Object>> objects;
-  std::unordered_map<unsigned int, std::shared_ptr<Player>> players;
+  std::vector<std::shared_ptr<Object>>& objects_and_players;
+  std::unordered_map<unsigned int, std::shared_ptr<Object>>& objects;
+  std::unordered_map<unsigned int, std::shared_ptr<Player>>& players;
 
   void add_object(unsigned char res_id, Point where);
 

@@ -74,18 +74,14 @@ void Game::handle_events() {
         this->is_running = false;
         break;
       case SDL_KEYDOWN:
-        printf("Key press\n");
         handle_key_press(event.key.keysym.sym);
         break;
       case SDL_KEYUP:
-        printf("Key release\n");
         handle_key_release(event.key.keysym.sym);
         break;
       case SDL_MOUSEBUTTONDOWN:
-        printf("Mouse clicked\n");
         break;
       case SDL_MOUSEBUTTONUP:
-        printf("Mouse unclicked\n");
         break;
       default:
         break;

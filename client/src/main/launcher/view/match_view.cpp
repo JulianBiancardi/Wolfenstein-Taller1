@@ -20,7 +20,6 @@ MatchView::MatchView(QWidget* parent, const Match& match, Match* match_selected)
 
 void MatchView::handleSelectedEvent(QMouseEvent* event) {
   if (match_selected != nullptr) {
-    printf("%u \n", match_id);
     match_selected->set_match_id(match_id);
   }
   this->setStyleSheet("background-color: rgb(136, 138, 133);");

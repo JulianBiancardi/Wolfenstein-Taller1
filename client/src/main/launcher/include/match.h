@@ -34,9 +34,6 @@ class Match {
   unsigned char get_players_total() const;
   bool get_status() const;
 
-  /*Test function*/
-  void print() const;
-
   ~Match();
 };
 #endif
