@@ -35,7 +35,7 @@ class Point {
   double angle_to(const Point& other);
 
   // Calculates and returns the kind of movement direction between two points.
-  int movement_direction(const Point& other);
+  int movement_direction(const Point& other); //todo point's responsability?
 };
 
 #endif
