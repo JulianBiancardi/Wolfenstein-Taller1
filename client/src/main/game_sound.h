@@ -10,7 +10,8 @@ class GameSound {
   ~GameSound();
   void play_background();
   void play_shoot(Point& point);
-  void play_death(Point& point);
+  void play_guard_death(Point& point);
+  void play_self_death();
   void play_door(Point& point, const int type); //30 -> Open, 31->Close
   void sound_checker(const int status);
   void set_point(const Point& point);
