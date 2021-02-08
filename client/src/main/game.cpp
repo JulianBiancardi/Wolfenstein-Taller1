@@ -257,8 +257,9 @@ void Game::process_trigger() {
     }
 
     unsigned char data[SHOT_SIZE];
-    size_t size = pack(data, "CICCC", SHOT, player_id, match_id,
-                       hit.get_object_id(), hit.get_damage());
+    size_t size =
+        pack(data, "CICCCC", SHOT, player_id, match_id, hit.get_object_id(),
+             hit.get_damage(), hit.get_bullets_used());
     Packet shot_packet(size, data);
     server.send(shot_packet);
   } else {

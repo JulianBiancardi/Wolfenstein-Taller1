@@ -56,7 +56,7 @@
 #define ROTATION_SIZE 5
 
 #define SHOT 11
-#define SHOT_SIZE 6
+#define SHOT_SIZE 7
 
 //==============================
 #define GRAB 9

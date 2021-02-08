@@ -35,16 +35,33 @@ class Player : public Object {
   void move(unsigned char direction);
   void rotate(unsigned char direction);
 
-  //
+  // TODO Double check this
   void add_gun(int gun_num, Gun* gun);
+
+  /* Sets the gun of the player, changing its res_id */
   void set_gun(int gun_num);
-  int get_health();
+
+  /* Returns the health of the player. */
+  int get_health() const;
+  /* Sets the player health to the given amount. */
   void set_health(int health);
+
+  // TODO Remove this. It isn't used anywhere other than tests.
   bool has_bullets(int bullets);
+
+  /* Returns the amount of bullets owned by the player. */
+  int get_bullets() const;
+
+  /* Decreases the amount of bullets owned by the player. */
   void decrease_bullets(int amount);
 
+  /* Pulls the trigger of the player's gun.
+   * Returns a Hit object containing the data of the shot attempt.
+   */
   Hit trigger_gun(BaseMap& map,
                   const std::vector<std::shared_ptr<Object>>& map_objects);
+
+  /* Unpulls the trigger of the player's gun. */
   void untrigger_gun();
 };
 

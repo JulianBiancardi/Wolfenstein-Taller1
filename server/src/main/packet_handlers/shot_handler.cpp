@@ -14,8 +14,9 @@ void ShotHandler::handle(Packet& packet, ClientManager& client_manager,
   unsigned char match_id;
   unsigned char objective_id;
   unsigned char damage;
+  unsigned char bullets_used;
   unpack(packet.get_data(), "CICCC", &type, &player_id, &match_id,
-         &objective_id, &damage);
+         &objective_id, &damage, &bullets_used);
 
   Match& match = match_manager.get_match(match_id);
 

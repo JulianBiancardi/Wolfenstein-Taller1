@@ -146,8 +146,10 @@ void Player::set_gun(int gun_num) {
 
 void Player::set_health(int health) { this->health = health; }
 
-int Player::get_health() { return this->health; }
+int Player::get_health() const { return this->health; }
 
 bool Player::has_bullets(int amount) { return (bullets >= amount); }
+
+int Player::get_bullets() const { return bullets; }
 
 void Player::decrease_bullets(int amount) { bullets -= amount; }
