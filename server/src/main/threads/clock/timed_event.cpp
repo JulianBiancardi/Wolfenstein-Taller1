@@ -1,10 +1,10 @@
 #include "timed_event.h"
 
-TimedEvent::TimedEvent(double duration,
+TimedEvent::TimedEvent(unsigned int duration,
                        BlockingQueue<Packet>& queue,
                        unsigned char match_id)
-    : initial_time(duration),
-      remaining_time(duration),
+    : initial_time(duration * TICS_PER_SECOND),
+      remaining_time(duration * TICS_PER_SECOND),
       reception_queue(queue),
       match_id(match_id),
       should_delete(false) {}
@@ -14,7 +14,7 @@ TimedEvent::~TimedEvent() = default;
 void TimedEvent::update() {
   remaining_time--;
 
-  if (remaining_time == std::chrono::duration<double>(0)) {
+  if (remaining_time == 0) {
     execute();
     reset();
   }

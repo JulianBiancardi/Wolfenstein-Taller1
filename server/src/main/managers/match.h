@@ -35,7 +35,7 @@ class Match {
   /* Starts the match given the host id.
    * Returns true on success, false otherwise.
    */
-  bool start(unsigned int player_id);
+  bool start(unsigned int player_id, BlockingQueue<Packet>& queue);
 
   /* Create and add a new player to the match with the given id.
    * Returns true on success, false otherwise
@@ -75,9 +75,12 @@ class Match {
   /* Change the gun of the player in the match */
   bool change_gun(unsigned int player_id, unsigned char gun_id);
 
-  /* Shoot the gun of the player in the match, returns if objective is killed */
+  /* Shoot the gun of the player in the match, returns if hits enemy */
   bool shoot_gun(unsigned int player_id, unsigned int objective_id,
                  unsigned char damage);
+
+  /* Adds rocket from player's position */
+  void add_rocket(unsigned int player_id);
 
   /* Kill a player and respawn him */
   void kill_player(unsigned int player_id);

@@ -70,6 +70,9 @@ class Map : public BaseMap {
 
   /* Adds player's death drop */
   void add_drop(Player& dead_player);
+
+  /* Adds a new rocket at the given position */
+  unsigned int add_rocket(const Point& where, double angle);
 };
 
 #endif

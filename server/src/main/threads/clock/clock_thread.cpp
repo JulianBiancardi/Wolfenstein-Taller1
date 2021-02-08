@@ -1,18 +1,23 @@
 #include "clock_thread.h"
 
 #include <chrono>
+#include <iostream>
 #include "door_timer.h"
+#include "rocket_controller.h"
 #include "lock.h"
 #include "../../../../common/src/main/packets/packing.h"
 
+#define SECONDS_PER_TICS 1 / TICS_PER_SECOND
+
 #define DOOR_TYPE 1
+#define ROCKET_TYPE 2
 
 using namespace std::chrono;
 
 ClockThread::ClockThread(unsigned int match_length,
                          BlockingQueue<Packet>& queue,
                          unsigned char match_id)
-    : remaining_time(match_length),
+    : remaining_tics(match_length * TICS_PER_SECOND),
       reception_queue(queue),
       match_id(match_id),
       allowed_to_run(true) {}
@@ -53,18 +58,23 @@ void ClockThread::force_stop() { allowed_to_run = false; }
 void ClockThread::run() {
   while (allowed_to_run) {
     steady_clock::time_point begin = steady_clock::now();
-
     update_timed_events();
-
     steady_clock::time_point end = steady_clock::now();
 
-    duration<double> seconds_spent = duration<double>(end - begin);
+    double seconds_spent = duration<double>(end - begin).count();
+    double tics_spent = seconds_spent * TICS_PER_SECOND;
 
-    std::this_thread::sleep_for(seconds(1) - seconds_spent);
+    if (tics_spent >= 1) {
+      remaining_tics -= (int) tics_spent;
+      tics_spent = tics_spent - (int) tics_spent;
+    }
 
-    remaining_time--;
+    double seconds_to_sleep = (1 - tics_spent) * SECONDS_PER_TICS;
+    std::this_thread::sleep_for(duration<double>(seconds_to_sleep));
 
-    if (remaining_time == seconds(0)) {
+    remaining_tics--;
+
+    if (remaining_tics <= 0) {
       allowed_to_run = false;
       end_game();
     }
@@ -90,6 +100,33 @@ void ClockThread::add_door_timer(unsigned int door_id) {
 void ClockThread::delete_door_timer(unsigned int door_id) {
   Lock lock(this->mutex);
   unsigned int id = get_door_id(door_id);
+
+  if (timed_event_exist(id)) {
+    delete timed_events.at(id);
+    timed_events.erase(id);
+  }
+}
+
+unsigned int get_rocket_id(unsigned int rocket_id) {
+  return stoul(std::to_string(ROCKET_TYPE) + std::to_string(rocket_id));
+}
+
+void ClockThread::add_rocket_controller(unsigned int rocket_id) {
+  Lock lock(this->mutex);
+  unsigned int id = get_rocket_id(rocket_id);
+
+  if (timed_event_exist(id)) {
+    timed_events.at(id)->reset();
+  } else {
+    timed_events.insert({id, new RocketController(reception_queue,
+                                                  match_id,
+                                                  rocket_id)});
+  }
+}
+
+void ClockThread::delete_rocket_controller(unsigned int rocket_id) {
+  Lock lock(this->mutex);
+  unsigned int id = get_rocket_id(rocket_id);
 
   if (timed_event_exist(id)) {
     delete timed_events.at(id);

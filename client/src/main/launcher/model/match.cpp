@@ -46,11 +46,6 @@ void Match::print() const {
   std::cout << "Match selected" << std::endl;
   printf("match_id: %u \n", match_id);
   printf("name: %s \n", map_name);
-  if (is_running()) {
-    std::cout << "in game" << std::endl;
-  } else {
-    std::cout << "wating" << std::endl;
-  }
 }
 
 Match::~Match() {}

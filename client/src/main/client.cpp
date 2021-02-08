@@ -5,10 +5,6 @@
 #include "../../../common/src/main/utils/point.h"  //TODO MOVE THIS TO OTHER CLASSES
 //#include "../../../server/src/main/events/event_building.h"
 
-#define UNIT 5
-#define SCREEN_WIDTH (320 * UNIT)
-#define SCREEN_HEIGHT (200 * UNIT)
-
 /*
 //------------------------------------------------
 Client::Client(std::string& host, std::string& port)
@@ -140,13 +136,13 @@ Client::~Client() {}
 
 void Client::run_client(int argc, char** argv) {
   Server server;
-
   Match match_selected;
-  QApplication main_app(argc, argv);
 
   try {
+    QApplication main_app(argc, argv);
     MainWindow main_window(nullptr, &server, &match_selected);
     main_window.show();
+    main_window.update();
     main_app.exec();
 
   } catch (const std::exception& e) {

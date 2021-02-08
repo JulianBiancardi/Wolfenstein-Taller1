@@ -22,10 +22,12 @@ void ShotHandler::handle(Packet& packet, ClientManager& client_manager,
   const std::unordered_set<unsigned int>& clients = match.get_players_ids();
   client_manager.send_to_all(clients, packet);
 
-  if (!match.shoot_gun(player_id, objective_id, damage)) {
-    consequent_grab(objective_id, match, client_manager);
-  } else if (match.should_end()) {
-    game_over(match, client_manager);
+  if (match.shoot_gun(player_id, objective_id, damage)) {
+    if (!match.is_dead(objective_id)) {
+      consequent_grab(objective_id, match, client_manager);
+    } else if (match.should_end()) {
+      game_over(match, client_manager);
+    }
   }
 
   consequent_grab(player_id, match, client_manager);

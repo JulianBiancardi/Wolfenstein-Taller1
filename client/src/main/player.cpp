@@ -7,9 +7,81 @@
 #include "../../../common/src/main/ids/movement_ids.h"
 #include "guns/knife.h"
 
+<<<<<<< HEAD
 Player::Player(Ray position, unsigned int player_id)
     : guns_bag(), Object(GUARD, position, player_id) {
   pace = CL::player_pace;
+=======
+Player::Player(Ray position)
+    : guns_bag(),
+      Object(position, new CircleMask(ConfigLoader::player_mask_radio,
+                                      position.get_ref_origin())) {
+  pace = CL::player_speed;
+  health = CL::player_health;
+  bullets = CL::player_health;
+  Knife* knife = new Knife();
+  guns_bag.insert(std::pair<int, Gun*>(0, knife));
+  active_gun = 0;
+}
+
+Player::Player(Ray position, unsigned int player_id)
+    : guns_bag(),
+      Object(position,
+             new CircleMask(ConfigLoader::player_mask_radio,
+                            position.get_ref_origin()),
+             player_id) {
+  pace = CL::player_speed;
+  health = CL::player_health;
+  bullets = CL::player_health;
+  Knife* knife = new Knife();
+  guns_bag.insert(std::pair<int, Gun*>(0, knife));
+  active_gun = 0;
+}
+
+Player::Player(Point origin, double angle)
+    : guns_bag(),
+      Object(origin, angle,
+             new CircleMask(ConfigLoader::player_mask_radio, origin)) {
+  pace = CL::player_speed;
+  health = CL::player_health;
+  bullets = CL::player_health;
+  Knife* knife = new Knife();
+  guns_bag.insert(std::pair<int, Gun*>(0, knife));
+  active_gun = 0;
+}
+
+Player::Player(Point origin, double angle, unsigned int player_id)
+    : guns_bag(),
+      Object(origin, angle,
+             new CircleMask(ConfigLoader::player_mask_radio, origin),
+             player_id) {
+  pace = CL::player_speed;
+  health = CL::player_health;
+  bullets = CL::player_health;
+  Knife* knife = new Knife();
+  guns_bag.insert(std::pair<int, Gun*>(0, knife));
+  active_gun = 0;
+}
+
+Player::Player(double x, double y, double angle)
+    : guns_bag(),
+      Object(Point(x, y), angle,
+             new CircleMask(ConfigLoader::player_mask_radio, Point(x, y))) {
+  pace = CL::player_speed;
+  health = CL::player_health;
+  bullets = CL::player_health;
+  Knife* knife = new Knife();
+  guns_bag.insert(std::pair<int, Gun*>(0, knife));
+  active_gun = 0;
+}
+
+Player::Player(double x, double y, double angle, unsigned int player_id)
+    : guns_bag(),
+      Object(Point(x, y), angle,
+             new CircleMask(ConfigLoader::player_mask_radio, Point(x, y)),
+             player_id) {
+  pace = CL::player_speed;
+>>>>>>> 8cce666cb6cc761010e415fe6d411727b4f6af0a
   health = CL::player_health;
   bullets = CL::player_health;
   Knife* knife = new Knife();
@@ -82,28 +154,20 @@ Player::~Player() {
 void Player::move(unsigned char direction) {
   double movement_angle = position.get_angle();
   switch (direction) {
-    case UP:
+    case UP:break;
+    case UP_LEFT:movement_angle += (M_PI / 4);
       break;
-    case UP_LEFT:
-      movement_angle += (M_PI / 4);
+    case LEFT:movement_angle += (M_PI / 2);
       break;
-    case LEFT:
-      movement_angle += (M_PI / 2);
+    case DOWN_LEFT:movement_angle += (3 * M_PI / 4);
       break;
-    case DOWN_LEFT:
-      movement_angle += (3 * M_PI / 4);
+    case DOWN:movement_angle += M_PI;
       break;
-    case DOWN:
-      movement_angle += M_PI;
+    case DOWN_RIGHT:movement_angle += (5 * M_PI / 4);
       break;
-    case DOWN_RIGHT:
-      movement_angle += (5 * M_PI / 4);
+    case RIGHT:movement_angle += (3 * M_PI / 2);
       break;
-    case RIGHT:
-      movement_angle += (3 * M_PI / 2);
-      break;
-    case UP_RIGHT:
-      movement_angle += (7 * M_PI / 4);
+    case UP_RIGHT:movement_angle += (7 * M_PI / 4);
       break;
   }
 
@@ -117,14 +181,13 @@ void Player::rotate(unsigned char direction) {
   switch (direction) {
     case LEFT_ROTATION:
       position = Ray(position.get_origin(),
-                     position.get_angle() + CL::player_rotation_angle);
+                     position.get_angle() + CL::player_rotation_speed);
       break;
     case RIGHT_ROTATION:
       position = Ray(position.get_origin(),
-                     position.get_angle() - CL::player_rotation_angle);
+                     position.get_angle() - CL::player_rotation_speed);
       break;
-    default:
-      break;
+    default:break;
   }
 }
 

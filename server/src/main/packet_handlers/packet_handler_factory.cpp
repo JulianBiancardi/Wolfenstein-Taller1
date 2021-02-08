@@ -16,30 +16,26 @@
 
 PacketHandler* PacketHandlerFactory::build(Packet& packet) {
   switch (packet.get_type()) {
-    case REQUEST_MATCHES:
-      return new RequestMatchesHandler();
-    case REQUEST_NEW_MATCH:
-      return new RequestNewMatchHandler();
-    case JOIN_MATCH:
-      return new JoinMatchHandler();
-    case MATCH_START:
-      return new MatchStartHandler();
-    case MOVEMENT:
-      return new MovementHandler();
-    case ROTATION:
-      return new RotationHandler();
-    /* Por favor, dejar comentado hasta que se enlace servidor/cliente
-  case SHOT:
-    return new ShotHandler();
-  case CHANGE_GUN:
-    return new ChangeGunHandler();
-  case DOOR_INTERACTION:
-    return new DoorInteractionHandler();
-  case CLOSE_DOOR:
-     return new CloseDoorHandler();
-  case GAME_OVER:
-    return new GameOverHandler();
-    */
+    case REQUEST_MATCHES:return new RequestMatchesHandler();
+    case REQUEST_NEW_MATCH:return new RequestNewMatchHandler();
+    case JOIN_MATCH:return new JoinMatchHandler();
+    case MATCH_START:return new MatchStartHandler();
+    case MOVEMENT:return new MovementHandler();
+    case ROTATION:return new RotationHandler();
+      /* Por favor, dejar comentado hasta que se enlace servidor/cliente
+      case SHOT:
+      return new ShotHandler();
+      case CHANGE_GUN:
+      return new ChangeGunHandler();
+      case DOOR_INTERACTION:
+      return new DoorInteractionHandler();
+      case CLOSE_DOOR:
+       return new CloseDoorHandler();
+      case ROCKET_MOVE:
+       return new RocketMoveHandler();
+      case GAME_OVER:
+      return new GameOverHandler();
+      */
     default:
       throw PacketHandlerFactoryError("Packet type is not valid. Type is %u.",
                                       packet.get_type());
