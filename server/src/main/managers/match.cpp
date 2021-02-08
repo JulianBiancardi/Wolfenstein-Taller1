@@ -14,7 +14,7 @@ Match::Match(unsigned int host_id, unsigned char match_id,
       started(false),
       match_id(match_id) {}
 
-Match::~Match() {}
+Match::~Match() { for (auto thread : threads) delete thread.second; }
 
 bool Match::player_exists(unsigned int player_id) {
   return players_ids.find(player_id) != players_ids.end();

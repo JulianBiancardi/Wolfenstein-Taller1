@@ -47,63 +47,45 @@ void MapLoader::load_map(std::string& map_name) {
     }
 
     int id = object["id"].as<int>();
-    size_t x = object["x_position"].as<int>();
-    size_t y = object["y_position"].as<int>();
+    double x = object["x_position"].as<int>() + 0.5;
+    double y = object["y_position"].as<int>() + 0.5;
 
     switch (id) {
-      case SPAWN_POINT:
-        add_spawn_point(Point(x + 0.5, y + 0.5));
+      case SPAWN_POINT: add_spawn_point(Point(x, y));
         break;
-      case MACHINE_GUN:
-        add_machine_gun(Point(x, y));
+      case MACHINE_GUN: add_machine_gun(Point(x, y));
         break;
-      case CHAIN_GUN:
-        add_chain_cannon(Point(x, y));
+      case CHAIN_GUN: add_chain_cannon(Point(x, y));
         break;
-      case BAZOOKA:
-        add_rocket_launcher(Point(x, y));
+      case BAZOOKA: add_rocket_launcher(Point(x, y));
         break;
-      case FOOD:
-        add_food(Point(x, y));
+      case FOOD: add_food(Point(x, y));
         break;
-      case MEDKIT:
-        add_medic_kit(Point(x, y));
+      case MEDKIT: add_medic_kit(Point(x, y));
         break;
-      case BLOOD:
-        add_blood(Point(x, y));
+      case BLOOD: add_blood(Point(x, y));
         break;
-      case BULLETS:
-        add_bullets(Point(x, y));
+      case BULLETS: add_bullets(Point(x, y));
         break;
-      case CROSS:
-        add_cross(Point(x, y));
+      case CROSS: add_cross(Point(x, y));
         break;
-      case CUP:
-        add_cup(Point(x, y));
+      case CUP: add_cup(Point(x, y));
         break;
-      case CHEST:
-        add_chest(Point(x, y));
+      case CHEST: add_chest(Point(x, y));
         break;
-      case CROWN:
-        add_crown(Point(x, y));
+      case CROWN: add_crown(Point(x, y));
         break;
-      case KEY:
-        add_key(Point(x, y));
+      case KEY: add_key(Point(x, y));
         break;
-      case PILLAR:
-        add_pillar(Point(x, y));
+      case PILLAR: add_pillar(Point(x, y));
         break;
-      case TABLE:
-        add_table(Point(x, y));
+      case TABLE: add_table(Point(x, y));
         break;
-      case BARREL:
-        add_barrel(Point(x, y));
+      case BARREL: add_barrel(Point(x, y));
         break;
-      case DOOR:
-        add_normal_door(Point(x, y));
+      case DOOR: add_normal_door(Point(x, y));
         break;
-      case LOCKED_DOOR:
-        add_locked_door(Point(x, y));
+      case LOCKED_DOOR: add_locked_door(Point(x, y));
     }
   }
 }

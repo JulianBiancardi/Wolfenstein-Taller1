@@ -8,8 +8,7 @@
 #include "iostream"
 #include "map.h"
 #include "yaml-cpp/yaml.h"
-
-#define SPAWN_POINT_ID 17
+#include "../../../../common/src/main/ids/map_ids.h"
 
 MapGenerator::MapGenerator() {}
 
@@ -62,7 +61,7 @@ void MapGenerator::generate_yamlfile(const std::string& file_path, Map* map) {
         out << YAML::Key << "y_position";
         out << YAML::Value << row;
         out << YAML::EndMap;
-        if (celd->get_id() == SPAWN_POINT_ID) {
+        if (celd->get_id() == SPAWN_POINT) {
           max_players++;
         }
       }
