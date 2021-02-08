@@ -130,7 +130,7 @@
 50:
   type: 5
   name: "Pillar"
-  image: "/home/santiagoczop/Taller/tps/tp4/res/ambient/IMG_Pilar.bmp"
+  image:   "../../res/ambient/IMG_Pilar.bmp"
   icon: "../resources/images/objects/IMG_Pillar.png"
 51:
   type: 5
