@@ -11,9 +11,6 @@
 Pistol::Pistol() : spray(0.17453, 0.1), Gun(2, 20), triggered(false) {
   slope = 1 / (min_range - max_range);
   intercept = -slope * max_range;
-  //    bullet_required =
-  //    ConfigLoader::get_init_configs().pistol_bullet_required; base_precision
-  //    = ConfigLoader::get_init_configs().pistol_base_precision;
 }
 
 Hit Pistol::shoot(Object& player, int& current_bullets, BaseMap& map,
@@ -88,7 +85,7 @@ Hit Pistol::shoot(Object& player, int& current_bullets, BaseMap& map,
 
 Hit Pistol::trigger(Object& player, int& current_bullets, BaseMap& map,
                     const std::vector<std::shared_ptr<Object>>& objects) {
-  if (triggered) {
+  if (triggered || current_bullets == 0) {
     std::move(Hit(0, 0, 0));
   } else {
     triggered = true;

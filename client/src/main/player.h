@@ -17,7 +17,7 @@ class Player : public Object {
  private:
   int health;
   int bullets;
-  std::unordered_map<int, Gun*> guns_bag;
+  std::unordered_map<int, std::shared_ptr<Gun>> guns_bag;
   int active_gun;
 
   // TODO Make copyable since it is stored in STD Containers

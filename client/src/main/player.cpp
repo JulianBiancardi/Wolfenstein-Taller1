@@ -6,15 +6,17 @@
 #include "../../../common/src/main/ids/map_ids.h"
 #include "../../../common/src/main/ids/movement_ids.h"
 #include "guns/knife.h"
+#include "guns/pistol.h"
 
 Player::Player(Ray position, unsigned int player_id)
     : guns_bag(), Object(GUARD, position, player_id) {
   health = CL::player_health;
   bullets = CL::player_health;
-  Knife* knife = new Knife();
-  // FIXME Create with gun
-  guns_bag.insert(std::pair<int, Gun*>(0, knife));
-  active_gun = 0;
+  std::shared_ptr<Gun> knife(new Knife());
+  std::shared_ptr<Gun> pistol(new Pistol());
+  guns_bag.insert(std::make_pair(3, std::move(knife)));
+  guns_bag.insert(std::make_pair(2, std::move(pistol)));
+  active_gun = 3;
 }
 
 /*
@@ -71,12 +73,7 @@ Player& Player::operator=(Player&& other) {
   return *this;
 }*/
 
-Player::~Player() {
-  std::unordered_map<int, Gun*>::iterator iter;
-  for (iter = guns_bag.begin(); iter != guns_bag.end(); iter++) {
-    delete iter->second;
-  }
-}
+Player::~Player() {}
 
 void Player::move(unsigned char direction) {
   double movement_angle = position.get_angle();
