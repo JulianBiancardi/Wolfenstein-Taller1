@@ -15,7 +15,7 @@ class Gun {
   double max_range;
   double min_range;
   virtual Hit shoot(Object& player, int& current_bullets, BaseMap& map,
-                    const std::vector<Object*>& objects) = 0;
+                    const std::vector<std::shared_ptr<Object>>& objects) = 0;
 
  public:
   Gun(double min_range, double max_range);
