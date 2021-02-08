@@ -86,7 +86,8 @@ void GameSound::sound_checker(const int status) {
 
 void GameSound::set_point(const Point& point) {
   this->own_point = point;
-  printf("(%f, %f)", own_point.getX(), own_point.getY());
+  //printf("(%f, %f)", own_point.getX(), own_point.getY());
+  //std::cout<<std::endl;
 }
 
 Uint8 GameSound::map_distance(Point &point) {
