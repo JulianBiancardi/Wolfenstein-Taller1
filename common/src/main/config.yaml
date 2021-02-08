@@ -21,7 +21,6 @@ player_knife_mask_radio: 10 # > player_mask_radio
 bot_positions_difference_allowed: 5
 
 # Guns
-
 pistol_bullet_required: 1
 
 machine_gun_bullet_required: 1

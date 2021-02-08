@@ -29,27 +29,17 @@ int CL::bot_positions_difference_allowed =
     CL::yaml_file["bot_positions_difference_allowed"].as<int>();
 
 // Guns
-int CL::knife_range = CL::yaml_file["knife_range"].as<int>();
-
 int CL::chain_cannon_bullet_required =
     CL::yaml_file["chain_cannon_bullet_required"].as<int>();
-int CL::chain_cannon_base_precision =
-    CL::yaml_file["chain_cannon_base_precision"].as<int>();
 
 int CL::pistol_bullet_required =
     CL::yaml_file["pistol_bullet_required"].as<int>();
-int CL::pistol_base_precision =
-    CL::yaml_file["pistol_base_precision"].as<int>();
 
 int CL::rocket_launcher_bullet_required =
     CL::yaml_file["rocket_launcher_bullet_required"].as<int>();
-int CL::rocket_launcher_base_precision =
-    CL::yaml_file["rocket_launcher_base_precision"].as<int>();
 
 int CL::machine_gun_bullet_required =
     CL::yaml_file["machine_gun_bullet_required"].as<int>();
-int CL::machine_gun_base_precision =
-    CL::yaml_file["machine_gun_base_precision"].as<int>();
 
 // Items
 double CL::items_mask_radio = CL::yaml_file["items_mask_radio"].as<double>();
@@ -81,8 +71,8 @@ double CL::rocket_radius = CL::yaml_file["rocket_radius"].as<double>();
 double CL::rocket_speed = CL::yaml_file["rocket_speed"].as<double>();
 
 // Other
-unsigned int
-    CL::match_length = CL::yaml_file["match_length"].as<unsigned int>();
+unsigned int CL::match_length =
+    CL::yaml_file["match_length"].as<unsigned int>();
 unsigned int CL::door_timer = CL::yaml_file["door_timer"].as<unsigned int>();
 
 ConfigLoader::ConfigLoader() = default;
