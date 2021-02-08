@@ -40,17 +40,11 @@ void Game::operator()() {
   spawn_self();
 
   while (is_running) {
-    printf("A\n");
     handle_events();
-    printf("B\n");
     process_events();
-    printf("C\n");
     update();
-    printf("D\n");
     render();
-    printf("E\n");
     frame_limiter.sleep();
-    printf("F\n");
   }
 }
 

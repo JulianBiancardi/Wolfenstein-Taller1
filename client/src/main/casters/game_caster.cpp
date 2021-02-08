@@ -50,13 +50,9 @@ GameCaster::GameCaster(Window& window, Map& map, unsigned int player_id)
 GameCaster::~GameCaster() {}
 
 void GameCaster::operator()() {
-  printf("D1\n");
   draw_background();
-  printf("D2\n");
   std::vector<double> wall_distances = draw_walls();
-  printf("D3\n");
   draw_objects(wall_distances);
-  printf("D4\n");
   window.update();
 }
 
@@ -137,19 +133,14 @@ void GameCaster::draw_wall(Collision& collision, size_t screen_pos,
 }
 
 void GameCaster::draw_objects(std::vector<double>& wall_distances) {
-  printf("D3A\n");
   std::vector<std::shared_ptr<Object>>& objects = map.get_objects_and_players();
-  printf("D3B\n");
 
   std::vector<double> object_distances;
-  printf("D3C\n");
 
   sort_objects(objects, object_distances);
-  printf("D3D\n");
 
   for (int i = 0; i < objects.size(); i++) {
     draw_object(*objects[i], object_distances[i], wall_distances);
-    printf("D3E\n");
   }
 }
 
