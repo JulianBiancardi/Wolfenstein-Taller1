@@ -11,7 +11,7 @@ class MovementHandler : public PacketHandler {
   MovementHandler();
   ~MovementHandler();
 
-  void handle(Packet& packet, Map& map) override;
+  void handle(Packet &packet, Map &map, GameSound &sound) override;
 };
 
 #endif

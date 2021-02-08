@@ -6,7 +6,8 @@ RotationHandler::RotationHandler() {}
 
 RotationHandler::~RotationHandler() {}
 
-void RotationHandler::handle(Packet& packet, Map& map) {
+
+void RotationHandler::handle(Packet &packet, Map &map, GameSound &sound) {
   unsigned char type;
   unsigned int player_id;
   unsigned char match_id;

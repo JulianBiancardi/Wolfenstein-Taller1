@@ -10,6 +10,8 @@
 #include "sdl/window.h"
 #include "server.h"
 
+#include "game_sound.h"
+
 class Game {
  private:
   unsigned int player_id;
@@ -18,6 +20,7 @@ class Game {
   Window window;
   Map map;
   GameCaster caster;
+  GameSound gamesound;
   bool is_running;
 
   std::vector<bool> input_flags;

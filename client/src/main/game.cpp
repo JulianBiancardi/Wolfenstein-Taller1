@@ -36,7 +36,8 @@ Game::Game(Server& server, Match& match)
       map("test_map"),
       caster(window, map, player_id),
       is_running(false),
-      input_flags(FLAGS, false) {}
+      input_flags(FLAGS, false),
+      gamesound(GameSound(Point(map.get_rows(), map.get_columns()))) {}
 
 Game::~Game() {}
 
@@ -46,12 +47,17 @@ void Game::operator()() {
   spawn_self();
 
   FrameLimiter frame_limiter;
+  gamesound.set_point(map.get_player(player_id).get_position());
+  gamesound.play_background();
   while (is_running) {
     handle_events();
     process_events();
     update();
     render();
     frame_limiter.sleep();
+    // gamesound.set_point(map.get_player(player_id).get_position());
+    // Point punto(0,0);
+    // gamesound.play_shoot(punto);
   }
 }
 
@@ -270,7 +276,7 @@ void Game::update() {
     try {
       std::unique_ptr<PacketHandler> handler(
           PacketHandlerFactory::build(packet));
-      handler->handle(packet, map);
+      handler->handle(packet, map, gamesound);
     } catch (const PacketHandlerFactoryError& e) {
       syslog(LOG_ERR, "Packet received hasn't got a valid type.");
     }

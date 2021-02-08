@@ -4,18 +4,17 @@
 
 #include <fstream>
 
+#include "../../../../common/src/main/ids/map_ids.h"
 #include "cell.h"
 #include "iostream"
 #include "map.h"
 #include "yaml-cpp/yaml.h"
-#include "../../../../common/src/main/ids/map_ids.h"
 
 MapGenerator::MapGenerator() {}
 
 Map* MapGenerator::generate_map(const std::string& file_path) {
   YAML::Node file = YAML::LoadFile(file_path);
 
-  // TODO fix the problem with other map sizes
   size_t rows = file["height"].as<std::size_t>();
   size_t columns = file["width"].as<std::size_t>();
 
