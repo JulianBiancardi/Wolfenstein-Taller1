@@ -55,7 +55,7 @@ GameSound::GameSound(const Point& furthest_point):own_point(0,0){
   Mix_Init(MIX_INIT_MP3);
 
   sound_checker(Mix_OpenAudio(
-      44100, MIX_DEFAULT_FORMAT, 2, 2048 ));
+      44100, MIX_DEFAULT_FORMAT, 2, 2048 ), false);
   Mix_AllocateChannels(16);
 
   sounds.insert({SOUND_SHOOT,
@@ -92,6 +92,14 @@ GameSound::~GameSound() {
 void GameSound::sound_checker(const int status) {
   if ((status ==  0) || (status == -1))
     std::cerr << Mix_GetError() << std::endl;
+}
+void GameSound::sound_checker(const int status, bool error_on_null) {
+  if (error_on_null){
+    this->sound_checker(status);
+  }else{
+    if (status == -1)
+      std::cerr << Mix_GetError() << std::endl;
+  }
 }
 
 void GameSound::set_point(const Point& point) {
