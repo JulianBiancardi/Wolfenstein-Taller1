@@ -8,12 +8,9 @@
 MachineGun::MachineGun() : Gun(1, 50) {}
 
 Hit MachineGun::shoot(Object& player, int& current_bullets, BaseMap& map,
-                      const std::vector<Object*>& objects) {
-  // Randomizo el daño con random
-  std::random_device rd;     // Creo la semilla (toma info aleatoria del SO)
-  std::mt19937_64 mt(rd());  // Genero un valor pseudo-aleatorio de 64 bits.
-  std::uniform_int_distribution<int> damage_dist(1, 10);
+                      const std::vector<std::shared_ptr<Object>>& objects) {}
 
-  return Hit(-1, 0);
-  // shooter.receive_damage(damage_dist(mt));
-}
+Hit MachineGun::trigger(Object& player, int& current_bullets, BaseMap& map,
+                        const std::vector<std::shared_ptr<Object>>& objects) {}
+
+void MachineGun::untrigger() {}

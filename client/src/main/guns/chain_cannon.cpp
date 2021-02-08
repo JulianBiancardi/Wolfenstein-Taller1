@@ -7,21 +7,9 @@
 ChainCannon::ChainCannon() : Gun(0, 0) {}
 
 Hit ChainCannon::shoot(Object& player, int& current_bullets, BaseMap& map,
-                       const std::vector<Object*>& objects) {
-  /* TODO decrease bullets
-   */
-  // if
-  // (player_shooting.has_bullets(ConfigLoader::chain_cannon_bullet_required))
-  //  return Hit(-1, 0);
-  // player_shooting.decrease_bullets(ConfigLoader::chain_cannon_bullet_required);
+                       const std::vector<std::shared_ptr<Object>>& objects) {}
 
-  // if (available_bullets < ConfigLoader::chain_cannon_bullet_required)
-  // available_bullets -= ConfigLoader::chain_cannon_bullet_required;
+Hit ChainCannon::trigger(Object& player, int& current_bullets, BaseMap& map,
+                         const std::vector<std::shared_ptr<Object>>& objects) {}
 
-  // Randomizo el daño
-  std::random_device rd;     // Creo la semilla (toma info aleatoria del SO)
-  std::mt19937_64 mt(rd());  // Genero un valor pseudo-aleatorio de 64 bits.
-  std::uniform_int_distribution<int> damage_dist(1, 10);
-
-  return Hit(-1, 0);
-}
+void ChainCannon::untrigger() {}

@@ -14,7 +14,7 @@ class Knife : public Gun {
 
   Hit trigger(Object& player, int& current_bullets, BaseMap& map,
               const std::vector<std::shared_ptr<Object>>& objects) override;
-  void untrigger();
+  void untrigger() override;
 };
 
 #endif

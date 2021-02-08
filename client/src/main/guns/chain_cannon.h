@@ -4,14 +4,17 @@
 #include "gun.h"
 
 class ChainCannon : public Gun {
+ private:
+  Hit shoot(Object& player, int& current_bullets, BaseMap& map,
+            const std::vector<std::shared_ptr<Object>>& objects) override;
+
  public:
   ChainCannon();
-  Hit shoot(Object& player, int& current_bullets, BaseMap& map,
-            const std::vector<Object*>& objects) override;
+  ~ChainCannon();
 
- private:
-  const static int bullet_required;
-  const static int base_precision;
+  Hit trigger(Object& player, int& current_bullets, BaseMap& map,
+              const std::vector<std::shared_ptr<Object>>& objects) override;
+  void untrigger() override;
 };
 
 #endif
