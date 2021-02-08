@@ -163,17 +163,19 @@ void Game::process_movement() {
     return;
   }
 
+  // Check where to move, in the order of most common to least common
   unsigned char direction = INVALID_MOVEMENT;
   if (input_flags[FORWARD_FLAG] && !input_flags[BACKWARD_FLAG]) {
     if (!input_flags[LEFT_FLAG] && !input_flags[RIGHT_FLAG]) {
       direction = UP;
-    } else if (input_flags[LEFT_FLAG]) {
+    } else if (input_flags[LEFT_FLAG] && !input_flags[RIGHT_FLAG]) {
       direction = UP_LEFT;
-    } else {
+    } else if (!input_flags[LEFT_FLAG] && input_flags[RIGHT_FLAG]) {
       direction = UP_RIGHT;
+    } else {
+      direction = UP;
     }
-  } else if ((!input_flags[FORWARD_FLAG] && !input_flags[BACKWARD_FLAG]) ||
-             (input_flags[FORWARD_FLAG] && input_flags[BACKWARD_FLAG])) {
+  } else if (!input_flags[FORWARD_FLAG] && !input_flags[BACKWARD_FLAG]) {
     if (input_flags[LEFT_FLAG] && !input_flags[RIGHT_FLAG]) {
       direction = LEFT;
     } else if (!input_flags[LEFT_FLAG] && input_flags[RIGHT_FLAG]) {
@@ -182,10 +184,20 @@ void Game::process_movement() {
   } else if (!input_flags[FORWARD_FLAG] && input_flags[BACKWARD_FLAG]) {
     if (!input_flags[LEFT_FLAG] && !input_flags[RIGHT_FLAG]) {
       direction = DOWN;
-    } else if (input_flags[LEFT_FLAG]) {
+    } else if (input_flags[LEFT_FLAG] && !input_flags[RIGHT_FLAG]) {
       direction = DOWN_LEFT;
-    } else {
+    } else if (!input_flags[LEFT_FLAG] && input_flags[RIGHT_FLAG]) {
       direction = DOWN_RIGHT;
+    } else {
+      direction = DOWN;
+    }
+  } else {
+    if (input_flags[LEFT_FLAG] && !input_flags[RIGHT_FLAG]) {
+      direction = LEFT;
+    } else if (!input_flags[LEFT_FLAG] && input_flags[RIGHT_FLAG]) {
+      direction = RIGHT;
+    } else {
+      return;
     }
   }
 
@@ -197,7 +209,7 @@ void Game::process_movement() {
 
 void Game::process_rotation() {
   if (!input_flags[ROTATE_LEFT_FLAG] && !input_flags[ROTATE_RIGHT_FLAG]) {
-    return;  // None got pressed
+    return;
   }
 
   unsigned char direction = INVALID_ROTATION;
