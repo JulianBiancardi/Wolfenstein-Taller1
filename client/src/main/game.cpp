@@ -18,14 +18,15 @@
 #define SCREEN_WIDTH (320 * UNIT)
 #define SCREEN_HEIGHT (200 * UNIT)
 
-#define FLAGS 7
+#define FLAGS 8
 #define FORWARD_FLAG 0
 #define LEFT_FLAG 1
 #define BACKWARD_FLAG 2
 #define RIGHT_FLAG 3
 #define ROTATE_LEFT_FLAG 4
 #define ROTATE_RIGHT_FLAG 5
-#define ENTER_FLAG 6
+#define SHOOT_FLAG 6
+#define ENTER_FLAG 7
 
 Game::Game(Server& server, Match& match)
     : player_id(server.get_id()),
@@ -155,23 +156,20 @@ void Game::handle_key_release(SDL_Keycode& key) {
 
 void Game::handle_click(SDL_MouseButtonEvent& button) {
   if (button.button == SDL_BUTTON_LEFT) {
-    printf("Left Click\n");
-    Hit hit = map.trigger_gun(player_id);
-    // Left Button
+    input_flags[SHOOT_FLAG] = true;
   }
 }
 
 void Game::handle_unclick(SDL_MouseButtonEvent& button) {
   if (button.button == SDL_BUTTON_LEFT) {
-    printf("Right Click\n");
-    map.untrigger_gun(player_id);
-    // Left Button
+    input_flags[SHOOT_FLAG] = false;
   }
 }
 
 void Game::process_events() {
   process_movement();
   process_rotation();
+  process_trigger();
   process_match_start();
 }
 
@@ -243,6 +241,15 @@ void Game::process_rotation() {
   size_t size = pack(data, "CICC", ROTATION, player_id, match_id, direction);
   Packet move_packet(size, data);
   server.send(move_packet);
+}
+
+void Game::process_trigger() {
+  if (input_flags[SHOOT_FLAG]) {
+    Hit hit = map.trigger_gun(player_id);
+    printf("Detected Shot!\n");
+  } else {
+    map.untrigger_gun(player_id);
+  }
 }
 
 void Game::process_match_start() {
