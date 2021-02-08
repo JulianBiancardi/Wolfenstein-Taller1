@@ -3,7 +3,6 @@
 
 #include "game_sound.h"
 
-#define SOUND_ENGINE 1
 #define SOUND_SHOOT 2
 #define SOUND_GUARD_DEATH 3
 #define SOUND_OPEN_DOOR 4
@@ -55,7 +54,8 @@ GameSound::GameSound(const Point& furthest_point)/*, const Point& own_point):
 //     std::cerr<<"Mix_OpenAudio: "<<Mix_GetError()<<std::endl;
   Mix_AllocateChannels(16); //17
 
-  sounds.insert({SOUND_SHOOT, Mix_LoadWAV("../src/main/sounds/shoot.wav")});
+  sounds.insert({SOUND_SHOOT,
+                 Mix_LoadWAV("../src/main/sounds/shoot.wav")});
   sounds.insert({SOUND_GUARD_DEATH,
                  Mix_LoadWAV("../src/main/sounds/guard_death.wav")});
   sounds.insert({SOUND_OPEN_DOOR,
@@ -86,6 +86,7 @@ void GameSound::sound_checker(const int status) {
 
 void GameSound::set_point(const Point& point) {
   this->own_point = point;
+  printf("(%f, %f)", own_point.getX(), own_point.getY());
 }
 
 Uint8 GameSound::map_distance(Point &point) {

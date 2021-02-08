@@ -251,7 +251,7 @@ void Game::update() {
     try {
       std::unique_ptr<PacketHandler> handler(
           PacketHandlerFactory::build(packet));
-      handler->handle(packet, map);
+      handler->handle(packet, map, gamesound);
     } catch (const PacketHandlerFactoryError& e) {
       syslog(LOG_ERR, "Packet received hasn't got a valid type.");
     }

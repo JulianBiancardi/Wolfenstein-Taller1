@@ -4,6 +4,7 @@
 #include "../../../../common/src/main/packets/packet.h"
 #include "../map.h"
 #include "packet_handler.h"
+#include "../game.h"
 
 class RotationHandler : public PacketHandler {
  private:
@@ -11,7 +12,7 @@ class RotationHandler : public PacketHandler {
   RotationHandler();
   ~RotationHandler();
 
-  void handle(Packet& packet, Map& map) override;
+  void handle(Packet &packet, Map &map, GameSound &sound) override;
 };
 
 #endif
