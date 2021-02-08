@@ -82,6 +82,18 @@ add_executable(
 target_link_libraries(
   client
   PRIVATE
+  SDL2
+  SDL2_image
+  SDL2_ttf
+  SDL2_mixer
+  dl
+  tiff
+  avformat
+  avcodec
+  avutil
+  swscale
+
+
   Qt5::Widgets
   yaml-cpp
   Threads::Threads

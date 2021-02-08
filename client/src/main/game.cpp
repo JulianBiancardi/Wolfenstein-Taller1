@@ -28,23 +28,27 @@ Game::Game(Server& server, Match& match)
       forward_velocity(0),
       sideways_velocity(0),
       angular_velocity(0),
-      match_start(0) {}
+      match_start(0),
+      gamesound(GameSound(Point(map.get_rows(), map.get_columns()))){}
 
 Game::~Game() {}
 
 void Game::operator()() {
   FrameLimiter frame_limiter;
-
   is_running = true;
-
   spawn_self();
 
+  gamesound.set_point(map.get_player(player_id).get_position());
+  gamesound.play_background();
   while (is_running) {
     handle_events();
     process_events();
     update();
     render();
     frame_limiter.sleep();
+    //gamesound.set_point(map.get_player(player_id).get_position());
+    //Point punto(0,0);
+    //gamesound.play_shoot(punto);
   }
 }
 

@@ -1,4 +1,4 @@
---- 
+---
 # Walls
 0:
   type: 0
@@ -7,12 +7,14 @@
 1:
   type: 1
   name: "Rock Wall"
-  image: "../../res/walls/wood_wall.bmp"
+  #image: "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/res/walls/grey_brick_wall.bmp"
+  image: "/home/fer/Escritorio/Wolfenstein-Taller1/res/walls/wood_wall.bmp"
   icon: "../resources/images/walls/IMG_RockWall.png"
 2:
   type: 1
   name: "Wood Wall"
-  image: "../../res/walls/wood_wall.bmp"
+  #image: "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/res/walls/wood_wall.bmp"
+  image: "/home/fer/Escritorio/Wolfenstein-Taller1/res/walls/wood_wall.bmp"
   icon: "../resources/images/walls/IMG_WoodWall.png"
 
 # Players
@@ -70,8 +72,8 @@
   type: 3
   name: "Chain Gun"
   image: "..."
-  icon: "../resources/images/weapons/IMG_Chaingun.png"
-  sound: "..."
+  icon: "..."
+  sound: "../resources/images/weapons/IMG_Chaingun.png"
 34:
   type: 3
   name: "Bazooka"
