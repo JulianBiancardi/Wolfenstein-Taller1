@@ -15,6 +15,8 @@ class Moveable : public Object {
  public:
   Moveable(Point origin, double angle, double speed, double rotation_speed,
            double radius);
+  Moveable(Point origin, double angle, double speed, double rotation_speed,
+           double radius, unsigned int id);
   Moveable(Ray position, double speed, double rotation_speed, double radius);
   Moveable(double x, double y, double angle, double speed,
            double rotation_speed, double radius);

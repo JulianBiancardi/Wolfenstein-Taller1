@@ -83,11 +83,9 @@ add_executable(
 target_link_libraries(
   client
   PRIVATE
-  
   SDL2
   SDL2_mixer
   dl
-
   Qt5::Widgets
   yaml-cpp
   Threads::Threads

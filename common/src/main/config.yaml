@@ -51,7 +51,10 @@ table_width: 1.0
 table_depth: 1.0
 barrel_radius: 0.5
 rocket_radius: 0.1
-rocket_speed: 0.5
+rocket_speed: 0.2
+rocket_explosion_radius: 2.0
+rocket_max_damage: 30
+rocket_min_damage: 1
 
 # Other
 match_length: 300

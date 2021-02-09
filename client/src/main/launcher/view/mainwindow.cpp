@@ -104,6 +104,7 @@ void MainWindow::on_CreateButton_clicked() {
     return;
   }
   match_selected->set_match_id(launcher.create_match(map_selected));
+  match_selected->set_map_name(map_selected.c_str());
   if (match_selected->is_valid()) {
     // Succed to create the new match, close the application and continue
     // with the game

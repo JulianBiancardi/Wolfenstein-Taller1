@@ -13,7 +13,7 @@ class CollisionChecker {
   const std::unordered_map<unsigned int, Item*>& items;
   const std::unordered_map<unsigned int, Object*>& objects;
   Moveable* ignored;
-  bool collides_sprites(const Point& where);
+  bool collides_objects(const Point& where);
 
  public:
   CollisionChecker(Map& map);
@@ -22,6 +22,8 @@ class CollisionChecker {
   bool is_free(const Point& where);
   bool can_move(Point& where, Moveable& who);
   unsigned int grabbed_item(const Player& by_whom);
+  std::vector<unsigned int> get_players_in_radio(const Point& where,
+                                                 double radius);
   bool collides_players(const Point& where);
   int get_knife_range_collides_player_id(Point& where, Player& who);
 };

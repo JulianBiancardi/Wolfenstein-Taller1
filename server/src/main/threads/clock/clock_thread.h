@@ -45,7 +45,7 @@ class ClockThread : public Thread {
   void delete_door_timer(unsigned int door_id);
 
   /* Adds rocket movement controller */
-  void add_rocket_controller(unsigned int rocket_id);
+  void add_rocket_controller(unsigned int rocket_id, unsigned int player_id);
 
   /* Deletes rocket movement controller */
   void delete_rocket_controller(unsigned int rocket_id);

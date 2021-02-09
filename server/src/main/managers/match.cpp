@@ -15,8 +15,6 @@ Match::Match(unsigned int host_id, unsigned char match_id,
       match_id(match_id) {}
 
 Match::~Match() {
-  ((ClockThread*)threads.at(CLOCK_KEY))->force_stop();
-  threads.at(CLOCK_KEY)->join();
   for (auto thread : threads) {
     delete thread.second;
   }
@@ -150,7 +148,39 @@ bool Match::change_gun(unsigned int player_id, unsigned char gun_id) {
   return map.get_player(player_id).change_gun(gun_id);
 }
 
-bool Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
+void Match::damage_player(unsigned int player_id, unsigned int damager_id,
+                          unsigned char damage) {
+  if (!started) {
+    throw MatchError("Failed to damage player. Match hasn't started.");
+  }
+
+  if (!player_exists(player_id)) {
+    throw MatchError("Failed to damage player. Player %u doesn't exist.",
+                     player_id);
+  }
+
+  if (!player_exists(damager_id)) {
+    throw MatchError("Failed to damage player. Player %u doesn't exist.",
+                     damager_id);
+  }
+
+  Player& player = map.get_player(player_id);
+
+  if (player.is_dead()) {
+    throw MatchError("Failed to damage player. Player %u is dead.",
+                     player_id);
+  }
+
+  player.receive_damage(damage);
+
+  if (player.is_dead()) {
+    kill_player(player_id);
+    Player& damager = map.get_player(damager_id);
+    damager.add_kill();
+  }
+}
+
+void Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
                       unsigned char damage) {
   if (!started) {
     throw MatchError("Failed to shoot gun. Match hasn't started.");
@@ -168,66 +198,121 @@ bool Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
 
   Player& shooter = map.get_player(player_id);
 
-  if (objective_id != 0) {
-    Player& objective = map.get_player(objective_id);
+  if (!shooter.shoot()) {
+    throw MatchError(
+        "Failed to shoot gun. Player %u doesn't have enough bullets.",
+        player_id);
+  }
 
-    if (objective.is_dead()) {
-      throw MatchError("Failed to shoot player. Player %u is dead.",
-                       objective_id);
-    }
-
-    if (!shooter.shoot()) {
-      throw MatchError(
-          "Failed to shoot gun. Player %u doesn't have enough bullets.",
-          player_id);
-    }
-
-    objective.receive_damage(damage);
-
-    if (objective.is_dead()) {
-      kill_player(objective_id);
-      shooter.add_kill();
-    }
-
-    return true;
-  } else {
-    if (!shooter.shoot()) {
-      throw MatchError(
-          "Failed to shoot gun. Player %u doesn't have enough bullets.",
-          player_id);
-    }
-
-    return true;
+  if (!shooter.is_using_rocket_launcher() && objective_id != 0) {
+    damage_player(objective_id, player_id, damage);
   }
 }
 
 bool Match::is_using_rocket_launcher(unsigned int player_id) {
-  if (!player_exists(player_id)) {
-    throw MatchError(
-        "Failed to check for rocket launcher usage. Player %u doesn't exist.",
-        player_id);
+  if (!started) {
+    throw MatchError("Failed to check if player can launch rocket. "
+                     "Match hasn't started.");
   }
 
-  return map.get_player(player_id).is_using_rocket_launcher();
+  if (!player_exists(player_id)) {
+    throw MatchError("Failed to check if player can launch rocket. "
+                     "Player %u doesn't exist.",
+                     player_id);
+  }
+
+  Player& player = map.get_player(player_id);
+
+  return player.is_using_rocket_launcher();
 }
 
-bool Match::shoot_rocket(unsigned int player_id) {
+unsigned int Match::shoot_rocket(unsigned int player_id) {
   if (!player_exists(player_id)) {
     throw MatchError("Failed to create rocket. Player %u doesn't exist.",
                      player_id);
   }
 
   Player& shooter = map.get_player(player_id);
+
   if (!shooter.shoot()) {
-    return false;
+    throw MatchError(
+        "Failed to shoot gun. Player %u doesn't have enough bullets.",
+        player_id);
   }
 
   Point spawn_point = shooter.collision_mask_bound(shooter.get_position());
-  Angle spawn_angle = shooter.get_angle();
+  double spawn_angle = shooter.get_angle();
 
-  unsigned int rocket_id = map.add_rocket(spawn_point, spawn_angle.to_double());
-  ((ClockThread*)threads.at(CLOCK_KEY))->add_rocket_controller(rocket_id);
-  return true;
+  unsigned int rocket_id = map.add_rocket(spawn_point, spawn_angle);
+  ((ClockThread*) threads.at(CLOCK_KEY))->add_rocket_controller(rocket_id,
+                                                                player_id);
+
+  return rocket_id;
+}
+
+bool Match::move_rocket(unsigned int rocket_id) {
+  if (!map.object_exists(rocket_id)) {
+    throw MatchError("Failed to move rocket. Rocket %u doesn't exist.",
+                     rocket_id);
+  }
+
+  auto rocket = (Moveable*) map.get_object(rocket_id);
+
+  Point next_position = rocket->next_position(UP);
+  if (checker.can_move(next_position, *rocket)) {
+    rocket->set_position(next_position);
+
+    return true;
+  } else {
+    return false;
+  }
+}
+
+unsigned char calculate_damage(Moveable& rocket, Player& player) {
+  Point rocket_center = rocket.get_position();
+  Point player_center = player.get_position();
+
+  double distance = rocket_center.distance_from(player_center);
+
+  /* Damage(distance) = a / distance + b
+   * Damage(0) = CL::rocket_max_damage
+   * Damage(CL::rocket_explosion_radius) = CL::rocket_min_damage
+   */
+  double b = CL::rocket_min_damage * CL::rocket_explosion_radius
+      / (CL::rocket_max_damage - CL::rocket_min_damage);
+  double a = CL::rocket_max_damage * b;
+
+  return (unsigned char) (a / (distance + b));
+}
+
+std::unordered_map<unsigned int, unsigned char>
+Match::explode_rocket(unsigned int rocket_id, unsigned int owner_id) {
+  if (!map.object_exists(rocket_id)) {
+    throw MatchError("Failed to explode rocket. Rocket %u doesn't exist.",
+                     rocket_id);
+  }
+
+  auto rocket = (Moveable*) map.get_object(rocket_id);
+
+  Point next_position = rocket->next_position(UP);
+  std::vector<unsigned int> players_exploded =
+      checker.get_players_in_radio(next_position, CL::rocket_explosion_radius);
+
+  std::unordered_map<unsigned int, unsigned char> return_map;
+
+  for (auto id : players_exploded) {
+    Player& player = map.get_player(id);
+    unsigned char damage = calculate_damage(*rocket, player);
+
+    damage_player(id, owner_id, damage);
+
+    return_map.insert({id, damage});
+  }
+
+  map.delete_object(rocket_id);
+  ((ClockThread*) threads.at(CLOCK_KEY))->delete_rocket_controller(rocket_id);
+
+  return return_map;
 }
 
 bool Match::is_dead(unsigned int player_id) {
@@ -275,15 +360,15 @@ bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
 
   Player& player = map.get_player(player_id);
 
-  if (!map.has_object(door_id)) {
+  if (!map.object_exists(door_id)) {
     throw MatchError("Failed to find door. Door %u doesn't exist.", door_id);
   }
 
-  Door* door = (Door*)map.get_object(door_id);
+  auto door = (Door*) map.get_object(door_id);
 
   if (door->interact(player, checker)) {
     if (door->is_open()) {
-      ((ClockThread*)threads.at(CLOCK_KEY))->add_door_timer(door_id);
+      ((ClockThread*) threads.at(CLOCK_KEY))->add_door_timer(door_id);
     }
     return true;
   } else {
@@ -292,16 +377,16 @@ bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
 }
 
 bool Match::close_door(unsigned int door_id) {
-  if (!map.has_object(door_id)) {
+  if (!map.object_exists(door_id)) {
     throw MatchError("Failed to find door. Door %u doesn't exist.", door_id);
   }
 
-  Door* door = (Door*)map.get_object(door_id);
+  auto door = (Door*) map.get_object(door_id);
 
   door->close(checker);
 
   if (!door->is_open()) {
-    ((ClockThread*)threads.at(CLOCK_KEY))->delete_door_timer(door_id);
+    ((ClockThread*) threads.at(CLOCK_KEY))->delete_door_timer(door_id);
     return true;
   } else {
     return false;
@@ -321,7 +406,7 @@ void Match::delete_player(unsigned int player_id) {
 bool Match::should_end() const { return map.has_one_player(); }
 
 void Match::end() {
-  ((ClockThread*)threads.at(CLOCK_KEY))->force_stop();
+  ((ClockThread*) threads.at(CLOCK_KEY))->force_stop();
   threads.at(CLOCK_KEY)->join();
   // Force_stop and join other threads
 }

@@ -72,13 +72,13 @@
 #define CLOSE_DOOR_SIZE 5
 
 #define ROCKET_ADD 14
-//#define ROCKET_ADD_SIZE
+#define ROCKET_ADD_SIZE 5
 
 #define ROCKET_MOVE 15
 #define ROCKET_MOVE_SIZE 4
 
 #define ROCKET_EXPLODE 16
-//#define ROCKET_EXPLODE_SIZE
+#define ROCKET_EXPLODE_SIZE 18
 
 #define GAME_OVER 17
 #define GAME_OVER_SIZE 2

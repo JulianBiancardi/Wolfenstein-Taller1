@@ -81,19 +81,26 @@ class Match {
    */
   bool change_gun(unsigned int player_id, unsigned char gun_id);
 
-  /* Shoot the gun of the player in the match.
-   * Returns true on success, false otherwise.
-   */
-  bool shoot_gun(unsigned int player_id, unsigned int objective_id,
+  /* Damages the player, kills if health is less or equal to 0 */
+  void damage_player(unsigned int player_id, unsigned int damager_id,
+                     unsigned char damage);
+
+  /* Shoots player's gun and damages objective */
+  void shoot_gun(unsigned int player_id, unsigned int objective_id,
                  unsigned char damage);
 
-  /* Returns true if the player is using a rocket launcher. */
+  /* Returns if the player is using a rocket launcher */
   bool is_using_rocket_launcher(unsigned int player_id);
 
-  /* Shoot the rocket launcher of the player in the match.
-   * Returns true on success, false otherwise.
-   */
-  bool shoot_rocket(unsigned int player_id);
+  /* Adds rocket from player's position, returns its id */
+  unsigned int shoot_rocket(unsigned int player_id);
+
+  /* Returns if the rocket can be moved */
+  bool move_rocket(unsigned int rocket_id);
+
+  /* Explodes the rocket and returns players damage and the damage made */
+  std::unordered_map<unsigned int, unsigned char>
+  explode_rocket(unsigned int rocket_id, unsigned int owner_id);
 
   /* Kill a player and respawn him */
   void kill_player(unsigned int player_id);

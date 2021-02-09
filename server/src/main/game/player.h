@@ -30,6 +30,7 @@ class Player : public Moveable {
 
  public:
   Player(Point origin, double angle);
+  Player(Point origin, double angle, unsigned int id);
   Player(double x, double y, double angle);
   Player(const Player& player);
   // TODO Define copy constructor so they can be put in storages. UPDATE:

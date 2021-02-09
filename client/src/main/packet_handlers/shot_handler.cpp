@@ -16,8 +16,7 @@ void ShotHandler::handle(Packet &packet, Map &map, GameSound &sound) {
   unpack(packet.get_data(), "CICCCC", &type, &player_id, &match_id,
          &objective_id, &damage, &bullets_used);
 
-  // TODO Reproduce gun sound
-  printf("Pum! *Hace ruido el arma* \n");
+  sound.play_shoot(map.get_player(player_id).get_position());
   map.use_bullets(player_id, bullets_used);
   printf("Bullets: %d\n", map.get_player(player_id).get_bullets());
   if (objective_id != 0) {

@@ -69,6 +69,10 @@ double CL::table_depth = CL::yaml_file["table_depth"].as<double>();
 double CL::barrel_radius = CL::yaml_file["barrel_radius"].as<double>();
 double CL::rocket_radius = CL::yaml_file["rocket_radius"].as<double>();
 double CL::rocket_speed = CL::yaml_file["rocket_speed"].as<double>();
+double CL::rocket_explosion_radius =
+    CL::yaml_file["rocket_explosion_radius"].as<double>();
+double CL::rocket_max_damage = CL::yaml_file["rocket_max_damage"].as<double>();
+double CL::rocket_min_damage = CL::yaml_file["rocket_min_damage"].as<double>();
 
 // Other
 unsigned int CL::match_length =
