@@ -20,7 +20,6 @@ Bot::Bot(CollisionChecker& checker, Map& map, unsigned int id_at_players,
   lua_checker(lua_getglobal(this->state, "init"));
 
   lua_newtable(this->state);
-
   lua_push_table_number("move", MOVE_EVENT);
   lua_push_table_number("damage", DAMAGE_EVENT);
 
@@ -50,12 +49,11 @@ void Bot::move_actions() {
     lua_pop(this->state, 1);
   }
   Point new_point(x, y);
-
   if (player_goal != nullptr &&
       checker.get_knife_range_collides_player_id(
           new_point, map.get_player(id_at_players)) == player_goal->get_id()) {
     if (checker.can_move(new_point, map.get_player(id_at_players))){
-      /*TODO should not be here.*/
+      /*TODO next line should not be here.*/
       map.get_player(id_at_players).set_position(Point(x, y));
       send_rotation_package();
       send_movement_package(map.get_player(id_at_players).
@@ -92,7 +90,8 @@ Player *Bot::find_nearest_player() {
                        return p_id == id_attacked;
                      }) != attacked_players.end();
     if (was_attacked) continue;
-    if ((distance < least_distance) && (distance != 0) && (!player.second.is_dead())) {
+    if ((distance < least_distance) && (distance != 0) &&
+          (!player.second.is_dead())) {
       least_distance = distance;
       least_distance_point = player.second.get_position();
       least_distance_player_id = player.second.get_id();
@@ -150,8 +149,10 @@ void Bot::execute() {
 void Bot::update_player() {
   lua_checker(lua_getglobal(this->state, "updatePlayer"));
   lua_newtable(this->state);
-  lua_push_table_number("posX", map.get_player(id_at_players).get_position().getX());
-  lua_push_table_number("posY", map.get_player(id_at_players).get_position().getY());
+  lua_push_table_number("posX", map.get_player(id_at_players).
+                                                get_position().getX());
+  lua_push_table_number("posY", map.get_player(id_at_players).
+                                                get_position().getY());
   lua_push_table_number("walking", 1);
   lua_push_table_number("angle", map.get_player(id_at_players).get_angle());
   lua_newtable(this->state);

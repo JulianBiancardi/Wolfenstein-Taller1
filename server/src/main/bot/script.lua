@@ -52,7 +52,6 @@ end
 
 function move()
     player.moving = 1
-    --io.write("MOVERSE A "..position.x.." "..position.y)
     return position, packets.move
 end
 
