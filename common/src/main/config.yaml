@@ -24,8 +24,10 @@ bot_positions_difference_allowed: 5
 pistol_bullet_required: 1
 
 machine_gun_bullet_required: 1
+machine_gun_frecuency: 10
 
 chain_cannon_bullet_required: 1
+chain_cannon_frecuency: 10
 
 rocket_launcher_bullet_required: 5
 
