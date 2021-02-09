@@ -23,7 +23,7 @@ Bot::Bot(CollisionChecker& checker, Map& map, unsigned int id_at_players,
   lua_push_table_number("move", MOVE_EVENT);
   lua_push_table_number("damage", DAMAGE_EVENT);
 
-  lua_pushnumber(this->state, ConfigLoader::player_pace);
+  lua_pushnumber(this->state, ConfigLoader::player_speed);
   lua_pushnumber(this->state, ConfigLoader::bot_positions_difference_allowed);
   lua_checker(lua_pcall(this->state, 3, 0, 0));
 }
@@ -190,7 +190,7 @@ void Bot::lua_push_table_number(const char *key, const auto value) {
 void Bot::send_movement_package(unsigned char direction) {
   unsigned char data[MOVEMENT_SIZE];
   size_t size = pack(data, "CICC", MOVEMENT, id_at_players,
-              (unsigned char)match.get_id(), dire.ction);
+              (unsigned char)match.get_id(), direction);
   queue.enqueue(Packet(size, data));
 }
 
@@ -205,7 +205,7 @@ void Bot::send_rotation_package() {
 
 void Bot::send_damage_package(unsigned int damage) {
   unsigned char data[SHOT_SIZE];
-  size_t size = pack(data, "CICII", SHOT, id_at_players,
+  size_t size = pack(data, "CICCC", SHOT, id_at_players,
                      (unsigned char) match.get_id(), damage,
                      player_goal->get_id());
   queue.enqueue(Packet(size, data));

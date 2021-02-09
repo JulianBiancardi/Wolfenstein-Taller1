@@ -447,8 +447,8 @@ objects:
     y_position: 61
   - type: 2
     id: 20
-    x_position: 62
-    y_position: 59
+    x_position: 61
+    y_position: 58
   - type: 1
     id: 1
     x_position: 63
@@ -1029,4 +1029,4 @@ objects:
     id: 1
     x_position: 63
     y_position: 63
-max_players: 9
+max_players: 5
