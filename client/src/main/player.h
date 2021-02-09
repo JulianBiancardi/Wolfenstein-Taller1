@@ -41,6 +41,9 @@ class Player : public Object {
   /* Sets the gun of the player, changing its res_id */
   void set_gun(int gun_num);
 
+  /* Gets the active gun of the player. */
+  int get_gun() const;
+
   /* Returns the health of the player. */
   int get_health() const;
   /* Sets the player health to the given amount. */

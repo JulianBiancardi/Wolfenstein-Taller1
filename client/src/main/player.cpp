@@ -138,6 +138,8 @@ void Player::add_gun(int gun_num, Gun* gun) {
   guns_bag.insert(std::pair<int, Gun*>(gun_num, gun));
 }
 
+int Player::get_gun() const { return active_gun; }
+
 void Player::set_gun(int gun_num) {
   if (guns_bag.find(gun_num) != guns_bag.end()) {
     active_gun = gun_num;

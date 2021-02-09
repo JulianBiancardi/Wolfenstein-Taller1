@@ -2,6 +2,7 @@
 
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/packets/packet_handler_factory_error.h"
+#include "change_gun_handler.h"
 #include "movement_handler.h"
 #include "rotation_handler.h"
 #include "shot_handler.h"
@@ -15,11 +16,11 @@ PacketHandler* PacketHandlerFactory::build(Packet& packet) {
       return new RotationHandler();
     case SHOT:
       return new ShotHandler();
+    case CHANGE_GUN:
+      return new ChangeGunHandler();
     /*
     case DOOR_PACKET:
       return new nullptr;  // TODO
-    case CHANGE_GUN_PACKET:
-      return new ChangeGunHandler();
     case DAMAGE_PACKET:
       return new DamageHandler(who, enemy_hit, event.data.shot.damage_done);
     case GAME_OVER_PACKET:

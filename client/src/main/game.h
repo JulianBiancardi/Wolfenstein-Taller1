@@ -5,12 +5,11 @@
 
 #include "../../../common/src/main/utils/ray.h"
 #include "casters/game_caster.h"
+#include "game_sound.h"
 #include "launcher/include/match.h"  // TODO Move smwhere else
 #include "map.h"
 #include "sdl/window.h"
 #include "server.h"
-
-#include "game_sound.h"
 
 class Game {
  private:
@@ -23,7 +22,7 @@ class Game {
   GameSound gamesound;
   bool is_running;
 
-  std::vector<bool> input_flags;
+  std::vector<unsigned int> input_flags;
 
   /* Receive spawn point and add the player there. */
   void spawn_self();
@@ -41,6 +40,7 @@ class Game {
   void process_movement();
   void process_rotation();
   void process_trigger();
+  void process_gun_changes();
   void process_match_start();
 
   void send_move_packet(unsigned char direction);
