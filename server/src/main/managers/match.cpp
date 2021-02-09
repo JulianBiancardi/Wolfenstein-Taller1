@@ -300,7 +300,7 @@ std::unordered_map<unsigned int, unsigned char> Match::explode_rocket(
 
   Point next_position = rocket->next_position(UP);
   std::vector<unsigned int> players_exploded =
-      checker.get_players_in_radio(next_position, CL::rocket_explosion_radius);
+      checker.get_players_in_radius(next_position, CL::rocket_explosion_radius);
 
   std::unordered_map<unsigned int, unsigned char> return_map;
 
