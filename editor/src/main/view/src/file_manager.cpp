@@ -6,6 +6,8 @@
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMessageBox>
 
+#include "../../model/include/map_incorrect_exception.h"
+
 #define WINDOW_TITLE "Wolfenstein Editor"
 
 //----------------------------------------------
@@ -62,6 +64,8 @@ void FileManager::save_file(const QString& file_path) {
     this->map_grid->generate_yamlfile(file_path.toStdString());
     this->is_saved = true;
     this->current_file_path = file_path;
+  } catch (const MapIncorrectException& e) {
+    QMessageBox::critical(nullptr, "Error", e.what());
   } catch (const std::exception& e) {
     QMessageBox::critical(nullptr, "Error", "Cant save the file.");
   }
