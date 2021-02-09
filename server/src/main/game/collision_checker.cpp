@@ -41,7 +41,7 @@ bool CollisionChecker::is_free(const Point& where) {
   return true;
 }
 
-bool CollisionChecker::can_move(Point& where, Moveable& who) {
+bool CollisionChecker::can_move(const Point& where, Moveable& who) {
   ignored = &who;
 
   bool can_move = false;
@@ -69,7 +69,7 @@ unsigned int CollisionChecker::grabbed_item(const Player& by_whom) {
 }
 
 std::vector<unsigned int>
-CollisionChecker::get_players_in_radio(const Point& where, double radius) {
+CollisionChecker::get_players_in_radius(const Point& where, double radius) {
   std::vector<unsigned int> players_in_radio;
 
   for (const auto& pair : players) {
