@@ -38,8 +38,12 @@ void Map::shoot_player(unsigned int player_id, unsigned char damage) {
       std::min(0, players.at(player_id)->get_health() - damage));
 }
 
-void Map::use_bullets(unsigned int player_id, unsigned char bullets) {
-  players.at(player_id)->decrease_bullets(bullets);
+void Map::change_gun(unsigned int player_id, unsigned char gun_id) {
+  players.at(player_id)->set_gun(gun_id);
+}
+
+void Map::use_bullets(unsigned int player_id, unsigned char gun_id) {
+  players.at(player_id)->decrease_bullets(gun_id);
 }
 
 Hit Map::trigger_gun(unsigned int player_id) {

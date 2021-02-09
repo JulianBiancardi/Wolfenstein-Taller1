@@ -55,15 +55,17 @@
 #define ROTATION 10
 #define ROTATION_SIZE 5
 
+// Used to shoot the gun
 #define SHOT 11
 #define SHOT_SIZE 7
+
+// Used to change the gun
+#define CHANGE_GUN 12
+#define CHANGE_GUN_SIZE 5
 
 //==============================
 #define GRAB 9
 #define GRAB_SIZE 9
-
-#define CHANGE_GUN 11
-#define CHANGE_GUN_SIZE 7
 
 #define DOOR_INTERACTION 12
 #define DOOR_INTERACTION_SIZE 10

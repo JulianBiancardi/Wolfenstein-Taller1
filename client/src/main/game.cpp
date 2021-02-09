@@ -5,6 +5,7 @@
 #include <cmath>
 #include <memory>
 
+#include "../../../common/src/main/ids/gun_ids.h"
 #include "../../../common/src/main/ids/movement_ids.h"
 #include "../../../common/src/main/packets/packet.h"
 #include "../../../common/src/main/packets/packet_error.h"
@@ -19,15 +20,17 @@
 #define SCREEN_HEIGHT (200 * UNIT)
 #define GAME_NAME "Wolfestein"
 
-#define FLAGS 8
 #define FORWARD_FLAG 0
-#define LEFT_FLAG 1
-#define BACKWARD_FLAG 2
-#define RIGHT_FLAG 3
-#define ROTATE_LEFT_FLAG 4
-#define ROTATE_RIGHT_FLAG 5
-#define SHOOT_FLAG 6
-#define ENTER_FLAG 7
+#define LEFT_FLAG (FORWARD_FLAG + 1)
+#define BACKWARD_FLAG (LEFT_FLAG + 1)
+#define RIGHT_FLAG (BACKWARD_FLAG + 1)
+#define ROTATE_LEFT_FLAG (RIGHT_FLAG + 1)
+#define ROTATE_RIGHT_FLAG (ROTATE_LEFT_FLAG + 1)
+#define SHOOT_FLAG (ROTATE_RIGHT_FLAG + 1)
+#define GUN_CHANGE_FLAG (SHOOT_FLAG + 1)
+#define ENTER_FLAG (GUN_CHANGE_FLAG + 1)
+
+#define FLAGS (ENTER_FLAG + 1)
 
 Game::Game(Server& server, Match& match)
     : player_id(server.get_id()),
@@ -125,6 +128,21 @@ void Game::handle_key_press(SDL_Keycode& key) {
     case SDLK_q:
       input_flags[ROTATE_LEFT_FLAG] = true;
       break;
+    case SDLK_1:
+      input_flags[GUN_CHANGE_FLAG] = KNIFE_ID;
+      break;
+    case SDLK_2:
+      input_flags[GUN_CHANGE_FLAG] = PISTOL_ID;
+      break;
+    case SDLK_3:
+      input_flags[GUN_CHANGE_FLAG] = MACHINE_GUN_ID;
+      break;
+    case SDLK_4:
+      input_flags[GUN_CHANGE_FLAG] = CHAIN_CANNON_ID;
+      break;
+    case SDLK_5:
+      input_flags[GUN_CHANGE_FLAG] = ROCKET_LAUNCHER_ID;
+      break;
     case SDLK_RETURN:  // Enter
       input_flags[ENTER_FLAG] = true;
       break;
@@ -153,6 +171,31 @@ void Game::handle_key_release(SDL_Keycode& key) {
     case SDLK_q:
       input_flags[ROTATE_LEFT_FLAG] = false;
       break;
+    case SDLK_1:
+      if (input_flags[GUN_CHANGE_FLAG] == KNIFE_ID) {
+        input_flags[GUN_CHANGE_FLAG] = false;
+      }
+      break;
+    case SDLK_2:
+      if (input_flags[GUN_CHANGE_FLAG] == PISTOL_ID) {
+        input_flags[GUN_CHANGE_FLAG] = false;
+      }
+      break;
+    case SDLK_3:
+      if (input_flags[GUN_CHANGE_FLAG] == MACHINE_GUN_ID) {
+        input_flags[GUN_CHANGE_FLAG] = false;
+      }
+      break;
+    case SDLK_4:
+      if (input_flags[GUN_CHANGE_FLAG] == CHAIN_CANNON_ID) {
+        input_flags[GUN_CHANGE_FLAG] = false;
+      }
+      break;
+    case SDLK_5:
+      if (input_flags[GUN_CHANGE_FLAG] == ROCKET_LAUNCHER_ID) {
+        input_flags[GUN_CHANGE_FLAG] = false;
+      }
+      break;
     case SDLK_RETURN:
       input_flags[ENTER_FLAG] = false;
       break;
@@ -177,6 +220,7 @@ void Game::process_events() {
   process_movement();
   process_rotation();
   process_trigger();
+  process_gun_changes();
   process_match_start();
 }
 
@@ -258,14 +302,29 @@ void Game::process_trigger() {
     }
 
     unsigned char data[SHOT_SIZE];
-    size_t size =
-        pack(data, "CICCCC", SHOT, player_id, match_id, hit.get_object_id(),
-             hit.get_damage(), hit.get_bullets_used());
+    size_t size = pack(data, "CICCCC", SHOT, player_id, match_id,
+                       hit.get_object_id(), hit.get_damage(), hit.get_gun_id());
     Packet shot_packet(size, data);
     server.send(shot_packet);
   } else {
     map.untrigger_gun(player_id);
   }
+}
+
+void Game::process_gun_changes() {
+  if (!input_flags[GUN_CHANGE_FLAG]) {
+    return;
+  }
+
+  if (map.get_player(player_id).get_gun() == input_flags[GUN_CHANGE_FLAG]) {
+    return;
+  }
+
+  unsigned char data[CHANGE_GUN_SIZE];
+  size_t size = pack(data, "CICC", CHANGE_GUN, player_id, match_id,
+                     input_flags[GUN_CHANGE_FLAG]);
+  Packet change_gun_packet(size, data);
+  server.send(change_gun_packet);
 }
 
 void Game::process_match_start() {

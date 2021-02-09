@@ -3,9 +3,9 @@
 #include "../../../../common/src/main/packets/packet_error.h"
 #include "../../../../common/src/main/packets/packet_handler_factory_error.h"
 #include "change_gun_handler.h"
-#include "close_door_handler.h"
-#include "door_interaction_handler.h"
-#include "game_over_handler.h"
+//#include "close_door_handler.h"
+//#include "door_interaction_handler.h"
+//#include "game_over_handler.h"
 #include "join_match_handler.h"
 #include "match_start_handler.h"
 #include "movement_handler.h"
@@ -30,9 +30,9 @@ PacketHandler* PacketHandlerFactory::build(Packet& packet) {
       return new RotationHandler();
     case SHOT:
       return new ShotHandler();
-      /* Por favor, dejar comentado hasta que se enlace servidor/cliente
-      case CHANGE_GUN:
+    case CHANGE_GUN:
       return new ChangeGunHandler();
+      /* Por favor, dejar comentado hasta que se enlace servidor/cliente
       case DOOR_INTERACTION:
       return new DoorInteractionHandler();
       case CLOSE_DOOR:

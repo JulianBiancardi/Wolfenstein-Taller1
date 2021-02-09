@@ -3,6 +3,7 @@
 #include <cmath>
 #include <utility>
 
+#include "../../../common/src/main/ids/gun_ids.h"
 #include "../../../common/src/main/ids/map_ids.h"
 #include "../../../common/src/main/ids/movement_ids.h"
 #include "guns/knife.h"
@@ -138,6 +139,8 @@ void Player::add_gun(int gun_num, Gun* gun) {
   guns_bag.insert(std::pair<int, Gun*>(gun_num, gun));
 }
 
+int Player::get_gun() const { return active_gun; }
+
 void Player::set_gun(int gun_num) {
   if (guns_bag.find(gun_num) != guns_bag.end()) {
     active_gun = gun_num;
@@ -152,4 +155,23 @@ bool Player::has_bullets(int amount) { return (bullets >= amount); }
 
 int Player::get_bullets() const { return bullets; }
 
-void Player::decrease_bullets(int amount) { bullets -= amount; }
+void Player::decrease_bullets(unsigned char gun_id) {
+  switch (gun_id) {
+    case PISTOL_ID:
+      bullets -= CL::pistol_bullet_required;
+      break;
+    case MACHINE_GUN_ID:
+      bullets -= CL::machine_gun_bullet_required;
+      break;
+    case CHAIN_CANNON_ID:
+      bullets -= CL::chain_cannon_bullet_required;
+      break;
+    case ROCKET_LAUNCHER_ID:
+      bullets -= CL::rocket_launcher_bullet_required;
+      break;
+    default:
+      break;
+  }
+
+  bullets = std::max(bullets, 0);
+}

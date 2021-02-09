@@ -5,6 +5,8 @@
 
 class Knife : public Gun {
  private:
+  std::default_random_engine generator;
+  std::uniform_real_distribution<double> distribution;
   bool triggered;
   Hit shoot(Object& player, int& current_bullets, BaseMap& map,
             const std::vector<std::shared_ptr<Object>>& objects) override;
