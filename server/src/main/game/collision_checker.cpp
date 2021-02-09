@@ -9,7 +9,7 @@ CollisionChecker::CollisionChecker(Map& map)
 
 bool CollisionChecker::collides_players(const Point& where) {
   for (auto& player : players) {
-    if (ignored == nullptr || player.second != *ignored) {
+    if (ignored == nullptr || &player.second != ignored) {
       if ((player.second.occupies(where)) && (!player.second.is_dead())) {
         return true;
       }
@@ -88,7 +88,7 @@ int CollisionChecker::get_knife_range_collides_player_id(Point& where,
   Point mask_checking_point = who.knife_collision_mask_bound(where);
   int id_found = 0;
   for (auto& player : players) {
-    if (player.second != *ignored) {
+    if (&player.second != ignored) {
       player.second.knife_collision_mask_bound(where);
       if ((player.second.knife_mask_bound_occupies(mask_checking_point)) &&
           (!player.second.is_dead())) {

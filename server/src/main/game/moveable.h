@@ -24,10 +24,16 @@ class Moveable : public Object {
   // TODO Add constructor with ID and also to player
   ~Moveable();
 
+  /* Returns the next position given a direction */
   Point next_position(int direction);
+
+  /* Rotates the moveable in the given direction */
   void rotate(int direction);
+
+  /* Returns the point in bound of the mask in the direction of the position sent  */
   Point collision_mask_bound(const Point& next_position);
-  bool operator!=(const Moveable& other) const;
+
+  /* Sets moveable position */
   void set_position(const Point& new_origin);
 };
 
