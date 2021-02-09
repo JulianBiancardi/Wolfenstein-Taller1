@@ -63,9 +63,10 @@
 #define CHANGE_GUN 12
 #define CHANGE_GUN_SIZE 5
 
+#define GRAB 13
+#define GRAB_SIZE 5
+
 //==============================
-#define GRAB 9
-#define GRAB_SIZE 9
 
 #define DOOR_INTERACTION 12
 #define DOOR_INTERACTION_SIZE 10

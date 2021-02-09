@@ -32,13 +32,13 @@ pistol_std_dev: 0.1
 
 machine_gun_range: 60
 machine_gun_bullet_required: 1
-machine_gun_frecuency: 10
+machine_gun_frecuency: 33
 machine_gun_spray: 0.261799
 machine_gun_std_dev: 0.2
 
 chain_cannon_range: 40
 chain_cannon_bullet_required: 1
-chain_cannon_frecuency: 10
+chain_cannon_frecuency: 100
 chain_cannon_spray: 0.349066
 chain_cannon_std_dev: 0.2
 

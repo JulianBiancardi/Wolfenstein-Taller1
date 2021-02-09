@@ -17,6 +17,8 @@ class Player : public Object {
  private:
   int health;
   int bullets;
+  int score;
+  int keys;
   std::unordered_map<int, std::shared_ptr<Gun>> guns_bag;
   int active_gun;
 
@@ -35,8 +37,11 @@ class Player : public Object {
   void move(unsigned char direction);
   void rotate(unsigned char direction);
 
-  // TODO Double check this
-  void add_gun(int gun_num, Gun* gun);
+  /* Receives a gun id and adds it to the guns bag. */
+  void add_gun(unsigned int gun_id);
+
+  /* Receives an item ids and adds it to the player. */
+  void add_item(unsigned int item_id);
 
   /* Sets the gun of the player, changing its res_id */
   void set_gun(int gun_num);
@@ -57,6 +62,9 @@ class Player : public Object {
 
   /* Decreases the amount of bullets owned by the player. */
   void decrease_bullets(unsigned char gun_id);
+
+  /* Grabs an item. */
+  void grab_item(Object& item);
 
   /* Pulls the trigger of the player's gun.
    * Returns a Hit object containing the data of the shot attempt.

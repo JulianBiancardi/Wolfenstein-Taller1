@@ -92,11 +92,10 @@ Hit ChainCannon::shoot(Object& player, int& current_bullets, BaseMap& map,
 Hit ChainCannon::trigger(Object& player, int& current_bullets, BaseMap& map,
                          const std::vector<std::shared_ptr<Object>>& objects) {
   Uint32 now_time = SDL_GetTicks();
-  if (triggered || current_bullets == 0 ||
+  if (current_bullets == 0 ||
       (now_time - last_shot_time) < CL::machine_gun_frecuency) {
     return std::move(Hit(CHAIN_CANNON_ID, 0, 0, false));
   } else {
-    triggered = true;
     last_shot_time = SDL_GetTicks();
     return std::move(shoot(player, current_bullets, map, objects));
   }

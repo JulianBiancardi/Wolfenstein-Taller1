@@ -6,17 +6,22 @@
 #include "../../../common/src/main/ids/gun_ids.h"
 #include "../../../common/src/main/ids/map_ids.h"
 #include "../../../common/src/main/ids/movement_ids.h"
+#include "guns/chain_cannon.h"
 #include "guns/knife.h"
+#include "guns/machine_gun.h"
 #include "guns/pistol.h"
+#include "guns/rocket_launcher.h"
 
 Player::Player(Ray position, unsigned int player_id)
     : guns_bag(), Object(GUARD, position, player_id) {
   health = CL::player_health;
   bullets = CL::player_bullets;
+  score = 0;
+  keys = 0;
   std::shared_ptr<Gun> knife(new Knife());
   std::shared_ptr<Gun> pistol(new Pistol());
-  guns_bag.insert(std::make_pair(1, std::move(knife)));
-  guns_bag.insert(std::make_pair(2, std::move(pistol)));
+  guns_bag.insert(std::make_pair(KNIFE_ID, std::move(knife)));
+  guns_bag.insert(std::make_pair(PISTOL_ID, std::move(pistol)));
   active_gun = 2;
 }
 
@@ -135,15 +140,13 @@ Hit Player::trigger_gun(
 
 void Player::untrigger_gun() { guns_bag[active_gun]->untrigger(); }
 
-void Player::add_gun(int gun_num, Gun* gun) {
-  guns_bag.insert(std::pair<int, Gun*>(gun_num, gun));
-}
-
 int Player::get_gun() const { return active_gun; }
 
 void Player::set_gun(int gun_num) {
   if (guns_bag.find(gun_num) != guns_bag.end()) {
     active_gun = gun_num;
+  } else {
+    printf("Failed to change gun!\n");
   }
 }
 
@@ -174,4 +177,70 @@ void Player::decrease_bullets(unsigned char gun_id) {
   }
 
   bullets = std::max(bullets, 0);
+}
+
+void Player::grab_item(Object& item) {
+  switch (item.get_type()) {
+    case GUNS_TYPE:
+      add_gun(item.get_res_id());
+      break;
+    case ITEMS_TYPE:
+      add_item(item.get_res_id());
+      break;
+  }
+}
+
+void Player::add_gun(unsigned int gun_id) {
+  switch (gun_id) {
+    case MACHINE_GUN: {
+      std::shared_ptr<Gun> machine_gun(new MachineGun());
+      guns_bag.insert(std::make_pair(MACHINE_GUN_ID, std::move(machine_gun)));
+      break;
+    }
+    case CHAIN_GUN: {
+      std::shared_ptr<Gun> chain_cannon(new ChainCannon());
+      guns_bag.insert(std::make_pair(CHAIN_CANNON_ID, std::move(chain_cannon)));
+      break;
+    }
+    case ROCKET_LAUNCHER_ID: {
+      // std::shared_ptr<Gun> rocket_launcher(new RocketLauncher());
+      // guns_bag.insert(std::make_pair(5, std::move(rocket_launcher)));
+      break;
+    }
+    default:;
+      break;
+  }
+}
+
+void Player::add_item(unsigned int item_id) {
+  switch (item_id) {
+    case FOOD:
+      health = std::min(CL::player_health, health + CL::food_health_recovered);
+      break;
+    case MEDKIT:
+      health =
+          std::min(CL::player_health, health + CL::medic_kit_health_recovered);
+      break;
+    case BLOOD:
+      health = CL::player_health + CL::blood_health_recovered;
+      break;
+    case BULLETS:
+      bullets = std::min(CL::player_max_bullets, bullets + CL::bullets_amount);
+      break;
+    case CROSS:
+      score += CL::crosses_points;
+      break;
+    case CUP:
+      score += CL::cup_points;
+      break;
+    case CHEST:
+      score += CL::chests_points;
+      break;
+    case CROWN:
+      score += CL::crown_points;
+      break;
+    case KEY:
+      keys += 1;
+      break;
+  }
 }

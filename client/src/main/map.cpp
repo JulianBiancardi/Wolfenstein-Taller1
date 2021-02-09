@@ -40,10 +40,21 @@ void Map::shoot_player(unsigned int player_id, unsigned char damage) {
 
 void Map::change_gun(unsigned int player_id, unsigned char gun_id) {
   players.at(player_id)->set_gun(gun_id);
+  printf("Equipping: %u\n", gun_id);
 }
 
 void Map::use_bullets(unsigned int player_id, unsigned char gun_id) {
   players.at(player_id)->decrease_bullets(gun_id);
+}
+
+void Map::pick_item(unsigned int player_id, unsigned int item_id) {
+  Player& player = *(players.at(player_id));
+  player.grab_item(*objects.at(item_id));
+  objects_and_players.erase(
+      std::remove(objects_and_players.begin(), objects_and_players.end(),
+                  objects.at(item_id)),
+      objects_and_players.end());
+  objects.erase(item_id);
 }
 
 Hit Map::trigger_gun(unsigned int player_id) {

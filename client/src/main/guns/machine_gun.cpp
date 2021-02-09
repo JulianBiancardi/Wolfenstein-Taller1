@@ -94,11 +94,10 @@ Hit MachineGun::shoot(Object& player, int& current_bullets, BaseMap& map,
 Hit MachineGun::trigger(Object& player, int& current_bullets, BaseMap& map,
                         const std::vector<std::shared_ptr<Object>>& objects) {
   Uint32 now_time = SDL_GetTicks();
-  if (triggered || current_bullets == 0 ||
+  if (current_bullets == 0 ||
       (now_time - last_shot_time) < CL::machine_gun_frecuency) {
     return std::move(Hit(MACHINE_GUN_ID, 0, 0, false));
   } else {
-    triggered = true;
     last_shot_time = SDL_GetTicks();
     return std::move(shoot(player, current_bullets, map, objects));
   }
@@ -106,6 +105,6 @@ Hit MachineGun::trigger(Object& player, int& current_bullets, BaseMap& map,
 
 double MachineGun::linear_func(double x) { return slope * x + intercept; }
 
-void MachineGun::untrigger() { triggered = false; }
+void MachineGun::untrigger() {}
 
 MachineGun::~MachineGun() {}
