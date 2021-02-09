@@ -21,6 +21,10 @@
 #define SOUND_KNIFE_HIT_2 14
 #define SOUND_MACHINE_GUN_SHOOT 15
 #define SOUND_CHAIN_CANNON_SHOOT 16
+#define SOUND_KNIFE_CHANGE 17
+#define SOUND_PISTOL_CHANGE 18
+#define SOUND_MACHINE_GUN_CHANGE 19
+#define SOUND_CHAIN_CANNON_CHANGE 20
 
 #define OPEN_DOOR 30
 #define CLOSE_DOOR 31
@@ -37,6 +41,28 @@ void GameSound::play_door(Point point, const int type) {
   } else if (type == CLOSE_DOOR) {
     sound_checker(Mix_PlayChannel(channel, sounds.at(SOUND_CLOSE_DOOR), 0));
   }
+}
+
+void GameSound::play_gun_change(Point point, unsigned char gun_id) {
+  int channel = Mix_GroupAvailable(-1);
+
+  Mix_Chunk* sound = nullptr;
+  if (gun_id == KNIFE_ID) {
+    sound = sounds.at(SOUND_KNIFE_CHANGE);
+  } else if (gun_id == PISTOL_ID) {
+    sound = sounds.at(SOUND_PISTOL_CHANGE);
+  } else if (gun_id == MACHINE_GUN_ID) {
+    sound = sounds.at(SOUND_MACHINE_GUN_CHANGE);
+  } else if (gun_id == CHAIN_CANNON_ID) {
+    sound = sounds.at(SOUND_CHAIN_CANNON_CHANGE);
+  } else if (gun_id == ROCKET_LAUNCHER_ID) {
+    return;  // TODO Add sound
+  } else {
+    return;
+  }
+
+  sound_checker(Mix_SetPosition(channel, 0, map_distance(point)));
+  sound_checker(Mix_PlayChannel(channel, sound, 0));
 }
 
 void GameSound::play_knife(Point point, unsigned char damage,
@@ -100,7 +126,8 @@ GameSound::GameSound(const Point& furthest_point) : own_point(0, 0) {
   sound_checker(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048), false);
   Mix_AllocateChannels(16);
 
-  sounds.insert({SOUND_SHOOT, Mix_LoadWAV("../src/main/sounds/shoot.wav")});
+  sounds.insert(
+      {SOUND_SHOOT, Mix_LoadWAV("../src/main/sounds/weapons/deagle-1.wav")});
   sounds.insert(
       {SOUND_GUARD_DEATH, Mix_LoadWAV("../src/main/sounds/guard_death.wav")});
   sounds.insert(
@@ -129,6 +156,14 @@ GameSound::GameSound(const Point& furthest_point) : own_point(0, 0) {
                  Mix_LoadWAV("../src/main/sounds/weapons/m4a1-1.wav")});
   sounds.insert({SOUND_CHAIN_CANNON_SHOOT,
                  Mix_LoadWAV("../src/main/sounds/weapons/m249-1.wav")});
+  sounds.insert({SOUND_KNIFE_CHANGE,
+                 Mix_LoadWAV("../src/main/sounds/knife/knife_deploy1.wav")});
+  sounds.insert({SOUND_PISTOL_CHANGE,
+                 Mix_LoadWAV("../src/main/sounds/weapons/usp_slideback.wav")});
+  sounds.insert({SOUND_MACHINE_GUN_CHANGE,
+                 Mix_LoadWAV("../src/main/sounds/weapons/m4a4_deploy.wav")});
+  sounds.insert({SOUND_CHAIN_CANNON_CHANGE,
+                 Mix_LoadWAV("../src/main/sounds/weapons/m249_chain.wav")});
 
   music = Mix_LoadMUS("../src/main/sounds/background.mp3");
   if (!music) std::cerr << Mix_GetError();

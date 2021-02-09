@@ -16,6 +16,6 @@ void ChangeGunHandler::handle(Packet &packet, Map &map, GameSound &sound) {
   if (map.get_player(player_id).get_gun() != gun_id) {
     map.untrigger_gun(player_id);
     map.change_gun(player_id, gun_id);
-    printf("*Ruido de Cambiar arma de Counter*\n");
+    sound.play_gun_change(map.get_player(player_id).get_position(), gun_id);
   }
 }

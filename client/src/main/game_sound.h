@@ -11,6 +11,7 @@ class GameSound {
   GameSound(const Point& furthest_point);
   ~GameSound();
   void play_background();
+  void play_gun_change(Point point, unsigned char gun_id);
   void play_shoot(Point point, unsigned char gun_id);
   void play_knife(Point point, unsigned char damage, unsigned int objective_id);
   void play_guard_death(Point point);
