@@ -31,6 +31,8 @@ int CL::bot_positions_difference_allowed =
 // Guns
 int CL::chain_cannon_bullet_required =
     CL::yaml_file["chain_cannon_bullet_required"].as<int>();
+uint32_t CL::chain_cannon_frecuency =
+    CL::yaml_file["chain_cannon_frecuency"].as<uint32_t>();
 
 int CL::pistol_bullet_required =
     CL::yaml_file["pistol_bullet_required"].as<int>();
@@ -40,6 +42,8 @@ int CL::rocket_launcher_bullet_required =
 
 int CL::machine_gun_bullet_required =
     CL::yaml_file["machine_gun_bullet_required"].as<int>();
+uint32_t CL::machine_gun_frecuency =
+    CL::yaml_file["machine_gun_frecuency"].as<uint32_t>();
 
 // Items
 double CL::items_mask_radio = CL::yaml_file["items_mask_radio"].as<double>();

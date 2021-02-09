@@ -38,12 +38,14 @@ class ConfigLoader {
 
   static int knife_range;
   static int chain_cannon_bullet_required;
+  static uint32_t chain_cannon_frecuency;
   static int chain_cannon_base_precision;
   static int pistol_bullet_required;
   static int pistol_base_precision;
   static int rocket_launcher_bullet_required;
   static int rocket_launcher_base_precision;
   static int machine_gun_bullet_required;
+  static uint32_t machine_gun_frecuency;
   static int machine_gun_base_precision;
 
   static double items_mask_radio;
