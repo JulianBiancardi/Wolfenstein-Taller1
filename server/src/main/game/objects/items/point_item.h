@@ -1,19 +1,22 @@
-#ifndef WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_POINT_ITEM_H_
-#define WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_POINT_ITEM_H_
+#ifndef POINT_ITEM_H
+#define POINT_ITEM_H
 
 #include "item.h"
 
 class PointItem : public Item {
- public:
-  void use(Player& user) override;
-  bool can_be_used_by(Player& whom) override;
+ private:
+  int points_given;
 
  protected:
   PointItem(const Point& center, int points_given);
   PointItem(const Point& center, int points_given, int id);
 
- private:
-  int points_given;
+ public:
+  /* Item gets used by the player */
+  void use(Player& user) override;
+
+  /* Returns if the player can use the item */
+  bool can_be_used_by(const Player& whom) override;
 };
 
-#endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_POINT_ITEM_H_
+#endif

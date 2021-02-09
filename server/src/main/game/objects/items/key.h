@@ -5,13 +5,19 @@
 
 class Key : public Item {
  private:
-  Key(Point center, int id);
+  Key(const Point& center, int id);
 
  public:
-  Key(Point center);
+  explicit Key(const Point& center);
+
+  /* Item gets used by the player */
   void use(Player& user) override;
+
+  /* Returns if the player can use the item */
+  bool can_be_used_by(const Player& whom) override;
+
+  /* Returns a copy of the element */
   Item* copy() override;
-  bool can_be_used_by(Player& whom) override;
 };
 
 #endif

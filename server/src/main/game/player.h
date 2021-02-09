@@ -50,7 +50,7 @@ class Player : public Moveable {
   void add_key();
   void remove_key();
   bool is_full_health() const;
-  bool is_full_bullets();
+  bool is_full_bullets() const;
   bool is_dead() const;
   bool has_extra_lives();
   bool has_keys() const;

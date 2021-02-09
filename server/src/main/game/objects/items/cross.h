@@ -1,15 +1,17 @@
-#ifndef WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_CROSS_H_
-#define WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_CROSS_H_
+#ifndef CROSS_H
+#define CROSS_H
 
 #include "point_item.h"
 
 class Cross : public PointItem {
- public:
-  Cross(const Point& center);
-  Item* copy() override;
-
  private:
   Cross(const Point& center, int id);
+
+ public:
+  explicit Cross(const Point& center);
+
+  /* Returns a copy of the element */
+  Item* copy() override;
 };
 
-#endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_CROSS_H_
+#endif
