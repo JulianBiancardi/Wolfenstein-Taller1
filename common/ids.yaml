@@ -29,7 +29,7 @@
 22:
   type: 2
   name: "Guard"
-  image: "resources/images/enemies/IMG_Guard.png"
+  image: "../../res/guard/guard_state_1.bmp"
   icon: "../resources/images/enemies/IMG_Guard.png"
 23:
   type: 2
