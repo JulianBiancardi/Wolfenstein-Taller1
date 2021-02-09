@@ -18,7 +18,7 @@
 #define SPAWN_POINT 20
 #define DOG 21
 #define GUARD 22
-#define SS 23
+#define SCHUTZSTAFFEL 23
 #define OFFICER 24
 #define MUTANT 25
 
