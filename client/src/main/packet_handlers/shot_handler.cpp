@@ -12,12 +12,12 @@ void ShotHandler::handle(Packet &packet, Map &map, GameSound &sound) {
   unsigned char match_id;
   unsigned char objective_id;
   unsigned char damage;
-  unsigned char bullets_used;
+  unsigned char gun_id;
   unpack(packet.get_data(), "CICCCC", &type, &player_id, &match_id,
-         &objective_id, &damage, &bullets_used);
+         &objective_id, &damage, &gun_id);
 
   sound.play_shoot(map.get_player(player_id).get_position());
-  map.use_bullets(player_id, bullets_used);
+  map.use_bullets(player_id, gun_id);  // TODO Correct
   printf("Bullets: %d\n", map.get_player(player_id).get_bullets());
   if (objective_id != 0) {
     printf("*Horror Screams* AHH! You hit me!\n");

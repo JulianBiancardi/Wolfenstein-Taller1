@@ -1,5 +1,6 @@
 #include "knife.h"
 
+#include "../../../../common/src/main/ids/gun_ids.h"
 #include "../casting/ray_casting.h"
 
 Knife::Knife() : Gun(0, 2) {}
@@ -65,18 +66,18 @@ Hit Knife::shoot(Object& player, int& current_bullets, BaseMap& map,
     std::uniform_real_distribution<double> distribution(1, 10);
     double damage = distribution(generator);
 
-    return std::move(Hit(closest_obj->get_id(), damage, 0, true));
+    return std::move(Hit(KNIFE_ID, closest_obj->get_id(), damage, true));
   }
-  return std::move(Hit(0, 0, 0, true));
+  return std::move(Hit(KNIFE_ID, 0, 0, true));
 }
 
 Hit Knife::trigger(Object& player, int& current_bullets, BaseMap& map,
                    const std::vector<std::shared_ptr<Object>>& objects) {
   if (triggered) {
-    std::move(Hit(0, 0, 0, false));
+    return std::move(Hit(KNIFE_ID, 0, 0, false));
   } else {
     triggered = true;
-    std::move(shoot(player, current_bullets, map, objects));
+    return std::move(shoot(player, current_bullets, map, objects));
   }
 }
 

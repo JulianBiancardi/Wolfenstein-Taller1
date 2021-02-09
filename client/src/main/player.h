@@ -56,7 +56,7 @@ class Player : public Object {
   int get_bullets() const;
 
   /* Decreases the amount of bullets owned by the player. */
-  void decrease_bullets(int amount);
+  void decrease_bullets(unsigned char gun_id);
 
   /* Pulls the trigger of the player's gun.
    * Returns a Hit object containing the data of the shot attempt.

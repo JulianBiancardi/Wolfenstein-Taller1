@@ -42,8 +42,8 @@ void Map::change_gun(unsigned int player_id, unsigned char gun_id) {
   players.at(player_id)->set_gun(gun_id);
 }
 
-void Map::use_bullets(unsigned int player_id, unsigned char bullets) {
-  players.at(player_id)->decrease_bullets(bullets);
+void Map::use_bullets(unsigned int player_id, unsigned char gun_id) {
+  players.at(player_id)->decrease_bullets(gun_id);
 }
 
 Hit Map::trigger_gun(unsigned int player_id) {

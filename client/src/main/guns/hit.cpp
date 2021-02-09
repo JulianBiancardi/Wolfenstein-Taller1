@@ -1,22 +1,19 @@
 #include "hit.h"
 
-Hit::Hit(int object_id, int damage, int bullets_used, bool shot)
-    : object_id(object_id),
-      damage(damage),
-      bullets_used(bullets_used),
-      shot(shot) {}
+Hit::Hit(unsigned char gun_id, int object_id, int damage, bool shot)
+    : gun_id(gun_id), object_id(object_id), damage(damage), shot(shot) {}
 
 Hit::~Hit() {}
 
 Hit::Hit(Hit&& other) {
+  this->gun_id = other.gun_id;
   this->object_id = other.object_id;
   this->damage = other.damage;
-  this->bullets_used = other.bullets_used;
   this->shot = other.shot;
 
+  other.gun_id = 0;
   other.object_id = -1;
   other.damage = 0;
-  other.bullets_used = 0;
   other.shot = false;
   ;
 }
@@ -26,23 +23,23 @@ Hit& Hit::operator=(Hit&& other) {
     return *this;
   }
 
+  gun_id = other.gun_id;
   object_id = other.object_id;
   damage = other.damage;
-  bullets_used = other.bullets_used;
   shot = other.shot;
 
+  other.gun_id = 0;
   other.object_id = -1;
   other.damage = 0;
-  other.bullets_used = 0;
   other.shot = false;
 
   return *this;
 }
 
+unsigned char Hit::get_gun_id() { return gun_id; }
+
 int Hit::get_damage() { return damage; }
 
 int Hit::get_object_id() { return object_id; }
-
-int Hit::get_bullets_used() { return bullets_used; }
 
 bool Hit::is_shot() { return shot; }
