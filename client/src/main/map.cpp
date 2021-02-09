@@ -40,7 +40,6 @@ void Map::shoot_player(unsigned int player_id, unsigned char damage) {
 
 void Map::change_gun(unsigned int player_id, unsigned char gun_id) {
   players.at(player_id)->set_gun(gun_id);
-  printf("Equipping: %u\n", gun_id);
 }
 
 void Map::use_bullets(unsigned int player_id, unsigned char gun_id) {

@@ -145,8 +145,6 @@ int Player::get_gun() const { return active_gun; }
 void Player::set_gun(int gun_num) {
   if (guns_bag.find(gun_num) != guns_bag.end()) {
     active_gun = gun_num;
-  } else {
-    printf("Failed to change gun!\n");
   }
 }
 
