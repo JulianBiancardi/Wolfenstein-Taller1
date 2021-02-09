@@ -17,6 +17,7 @@
 #define UNIT 3
 #define SCREEN_WIDTH (320 * UNIT)
 #define SCREEN_HEIGHT (200 * UNIT)
+#define GAME_NAME "Wolfestein"
 
 #define FLAGS 8
 #define FORWARD_FLAG 0
@@ -32,8 +33,8 @@ Game::Game(Server& server, Match& match)
     : player_id(server.get_id()),
       match_id(match.get_match_id()),
       server(server),
-      window("Hello World!", SCREEN_WIDTH, SCREEN_HEIGHT),
-      map("test_map"),
+      window(GAME_NAME, SCREEN_WIDTH, SCREEN_HEIGHT),
+      map(match.get_map_name()),
       caster(window, map, player_id),
       is_running(false),
       input_flags(FLAGS, false),
