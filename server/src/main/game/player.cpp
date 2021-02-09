@@ -2,7 +2,7 @@
 
 #include "../../../../common/src/main/ids/gun_ids.h"
 
-Player::Player(Point origin, double angle)
+Player::Player(const Point& origin, double angle)
     : shot_bullets(0), points(0), guns_bag{KNIFE_ID, PISTOL_ID},
       spawn_point(origin), players_killed(0), keys(0), active_gun(PISTOL_ID),
       knife_mask(new CircleMask(ConfigLoader::player_knife_mask_radio,
@@ -13,7 +13,7 @@ Player::Player(Point origin, double angle)
       Moveable(origin, angle, CL::player_speed, CL::player_rotation_speed,
                CL::player_mask_radio) {}
 
-Player::Player(Point origin, double angle, unsigned int id)
+Player::Player(const Point& origin, double angle, unsigned int id)
     : shot_bullets(0), points(0), guns_bag{KNIFE_ID, PISTOL_ID},
       spawn_point(origin), players_killed(0), keys(0), active_gun(PISTOL_ID),
       knife_mask(new CircleMask(ConfigLoader::player_knife_mask_radio,
@@ -35,7 +35,36 @@ Player::Player(double x, double y, double angle)
       Moveable(x, y, angle, CL::player_speed, CL::player_rotation_speed,
                CL::player_mask_radio) {}
 
+Player::Player(const Player& player)
+    : shot_bullets(player.shot_bullets),
+      points(player.points),
+    // guns_bag{KNIFE_ID, PISTOL_ID},
+      spawn_point(player.get_position()),
+      players_killed(player.players_killed),
+      keys(player.keys),
+      active_gun(PISTOL_ID),
+      Moveable(player) {
+  max_bullets = player.max_bullets;
+  bullets = player.bullets;
+  max_health = player.max_health;
+  health = player.health;
+  lives = player.lives;
+  guns_bag = player.guns_bag;
+  this->knife_mask = new CircleMask(ConfigLoader::player_knife_mask_radio,
+                                    position.get_ref_origin());
+}
+
 Player::~Player() { delete knife_mask; }
+
+void Player::remove_guns_to_respawn() {
+  auto it = guns_bag.begin();
+  while (it != guns_bag.end()) {
+    if (*it != KNIFE_ID && *it != PISTOL_ID)
+      it = guns_bag.erase(it);
+    else
+      it++;
+  }
+}
 
 void Player::receive_damage(int amount) {
   health = std::max(0, health - amount);
@@ -91,6 +120,51 @@ bool Player::shoot() {
   return true;
 }
 
+void Player::remove_key() {
+  if (has_keys()) {
+    keys--;
+  }
+}
+
+bool Player::is_full_health() const { return health == max_health; }
+
+bool Player::is_full_bullets() const { return bullets == max_bullets; }
+
+bool Player::is_dead() const { return health == 0; }
+
+bool Player::has_extra_lives() const { return lives > 1; }
+
+bool Player::has_keys() const { return keys != 0; }
+
+void Player::respawn() {
+  lives--;
+  remove_guns_to_respawn();
+  active_gun = PISTOL_ID;
+  keys = 0;
+  bullets = ConfigLoader::player_respawn_bullets;
+  health = ConfigLoader::player_health;
+  position = Ray(spawn_point, 0);
+}
+
+bool Player::is_using_rocket_launcher() const {
+  return active_gun == ROCKET_LAUNCHER_ID;
+}
+
+Point Player::knife_collision_mask_bound(const Point& next_position) const {
+  double angle = position.get_origin().angle_to(next_position);
+
+  double front_x = next_position.getX() +
+      cos(angle) * ((CircleMask*) knife_mask)->get_radius();
+  double front_y = next_position.getY() -
+      sin(angle) * ((CircleMask*) knife_mask)->get_radius();
+
+  return Point(front_x, front_y);
+}
+
+bool Player::knife_mask_bound_occupies(const Point& where) const {
+  return knife_mask->occupies(where);
+}
+
 void Player::add_bullets(int amount) {
   if (bullets + amount < max_bullets) {
     bullets += amount;
@@ -111,27 +185,7 @@ void Player::add_health(int amount) {
 
 void Player::add_key() { keys++; }
 
-void Player::remove_key() { keys--; }
-
-bool Player::is_full_health() const { return health == max_health; }
-
-bool Player::is_full_bullets() const { return bullets == max_bullets; }
-
-bool Player::is_dead() const { return health == 0; }
-
-bool Player::has_extra_lives() { return lives > 1; }
-
-bool Player::has_keys() const { return keys != 0; }
-
-void Player::respawn() {
-  lives--;
-  remove_guns_to_respawn();
-  active_gun = PISTOL_ID;
-  keys = 0;
-  bullets = ConfigLoader::player_respawn_bullets;
-  health = ConfigLoader::player_health;
-  position = Ray(spawn_point, 0);  // TODO Angle is not 0
-}
+void Player::add_kill() { players_killed++; }
 
 int Player::get_health() const { return health; }
 
@@ -139,56 +193,8 @@ int Player::get_bullets() const { return bullets; }
 
 int Player::get_active_gun() const { return active_gun; }
 
-int Player::get_kills() { return players_killed; }
+int Player::get_kills() const { return players_killed; }
 
-int Player::get_lives() { return lives; }
+int Player::get_lives() const { return lives; }
 
 int Player::get_points() const { return points; }
-
-void Player::add_kill() { players_killed++; }
-
-void Player::remove_guns_to_respawn() {
-  auto it = guns_bag.begin();
-  while (it != guns_bag.end()) {
-    if (*it != KNIFE_ID && *it != PISTOL_ID)
-      it = guns_bag.erase(it);
-    else
-      it++;
-  }
-}
-Player::Player(const Player& player)
-    : shot_bullets(player.shot_bullets),
-      points(player.points),
-    // guns_bag{KNIFE_ID, PISTOL_ID},
-      spawn_point(player.get_position()),
-      players_killed(player.players_killed),
-      keys(player.keys),
-      active_gun(PISTOL_ID),
-      Moveable(player) {
-  max_bullets = player.max_bullets;
-  bullets = player.bullets;
-  max_health = player.max_health;
-  health = player.health;
-  lives = player.lives;
-  guns_bag = player.guns_bag;
-  this->knife_mask = new CircleMask(ConfigLoader::player_knife_mask_radio,
-                                    position.get_ref_origin());
-}
-
-Point Player::knife_collision_mask_bound(const Point& next_position) const {
-  double angle = position.get_origin().angle_to(next_position);
-
-  double front_x = next_position.getX() +
-      cos(angle) * ((CircleMask*) knife_mask)->get_radius();
-  double front_y = next_position.getY() -
-      sin(angle) * ((CircleMask*) knife_mask)->get_radius();
-
-  return Point(front_x, front_y);
-}
-
-bool Player::knife_mask_bound_occupies(const Point& where) const {
-  return knife_mask->occupies(where);
-}
-bool Player::is_using_rocket_launcher() {
-  return active_gun == ROCKET_LAUNCHER_ID;
-}
