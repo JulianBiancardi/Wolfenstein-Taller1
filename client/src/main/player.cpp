@@ -197,7 +197,7 @@ void Player::add_gun(unsigned int gun_id) {
       guns_bag.insert(std::make_pair(MACHINE_GUN_ID, std::move(machine_gun)));
       break;
     }
-    case CHAIN_GUN: {
+    case CHAIN_CANNON: {
       std::shared_ptr<Gun> chain_cannon(new ChainCannon());
       guns_bag.insert(std::make_pair(CHAIN_CANNON_ID, std::move(chain_cannon)));
       break;
