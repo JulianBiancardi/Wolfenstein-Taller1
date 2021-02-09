@@ -12,9 +12,12 @@ Match::Match(unsigned int host_id, unsigned char match_id,
       map(map_name),
       checker(map),
       started(false),
+      ended(false),
       match_id(match_id) {}
 
 Match::~Match() {
+  end();
+
   for (auto thread : threads) {
     delete thread.second;
   }
@@ -406,7 +409,13 @@ void Match::delete_player(unsigned int player_id) {
 bool Match::should_end() const { return map.has_one_player(); }
 
 void Match::end() {
+  if (ended || !started) {
+    return;
+  }
+
   ((ClockThread*) threads.at(CLOCK_KEY))->force_stop();
   threads.at(CLOCK_KEY)->join();
   // Force_stop and join other threads
+
+  ended = true;
 }
