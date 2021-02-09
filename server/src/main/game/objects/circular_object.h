@@ -6,7 +6,7 @@
 
 class CircularObject : public Object {
  public:
-  CircularObject(double radius, Point center)
+  CircularObject(double radius, const Point& center)
       : Object(center, 0,
                new CircleMask(radius, this->position.get_ref_origin())) {}
 };

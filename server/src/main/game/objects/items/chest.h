@@ -1,15 +1,17 @@
-#ifndef WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_CHEST_H_
-#define WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_CHEST_H_
+#ifndef CHEST_H
+#define CHEST_H
 
 #include "point_item.h"
 
 class Chest : public PointItem {
- public:
-  Chest(const Point& center);
-  Item* copy() override;
-
  private:
   Chest(const Point& center, int id);
+
+ public:
+  explicit Chest(const Point& center);
+
+  /* Returns a copy of the element */
+  Item* copy() override;
 };
 
-#endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_CHEST_H_
+#endif

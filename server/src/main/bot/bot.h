@@ -1,7 +1,6 @@
 #ifndef WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_BOT_H_
 #define WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_BOT_H_
 
-//#include <LuaBridge.h>
 #include <float.h>
 
 #include <cstdio>
@@ -13,13 +12,17 @@
 #include "../../../../common/src/main/config_loader.h"
 #include "../../../../common/src/main/data_structures/blocking_queue.h"
 #include "../../../../common/src/main/packets/packet.h"
+#include "../../../../common/src/main/packets/packing.h"
+
 #include "../game/collision_checker.h"
 #include "../game/player.h"
+#include "../../main/managers/match.h"
 
 extern "C" {
 
 #include <lauxlib.h>
 #include <lua.h>
+#include <lualib.h>
 /*
 #include <lua5.1/lauxlib.h>
 #include <lua5.1/lua.h>
@@ -28,8 +31,8 @@ extern "C" {
 
 class Bot {
  public:
-  Bot(CollisionChecker& checker, Map& map, int id_at_players,
-      BlockingQueue<Packet>& queue);
+  Bot(CollisionChecker& checker, Map& map, unsigned int id_at_players,
+      BlockingQueue<Packet>& queue, Match& match);
 
   ~Bot();
   void execute();
@@ -44,16 +47,18 @@ class Bot {
   BlockingQueue<Packet>& queue;
   std::mutex mutex;
   lua_State* state;
-
   int id_at_players;
   CollisionChecker& checker;
-  // Player& player;
-  // const std::unordered_map<unsigned int, Player>& players;
   std::list<int> attacked_players;
   Player* player_goal;
   Map& map;
+  Match& match;
   void lua_checker(int status);
   void lua_push_table_number(const char* key, const auto value);
+  void send_movement_package(unsigned char direction);
+  void send_rotation_package();
+  void send_damage_package(unsigned int damage);
+  void send_set_gun_package();
 };
 
 #endif  // WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_BOT_H_

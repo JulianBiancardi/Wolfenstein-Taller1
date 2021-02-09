@@ -92,6 +92,7 @@ void GameSound::play_shoot(Point point, unsigned char gun_id) {
 
   Mix_Chunk* sound = nullptr;
   if (gun_id == PISTOL_ID) {
+    Mix_Volume(channel,MIX_MAX_VOLUME/4); //MIX_MAX_VOLUME = 128
     sound = sounds.at(SOUND_SHOOT);
   } else if (gun_id == MACHINE_GUN_ID) {
     sound = sounds.at(SOUND_MACHINE_GUN_SHOOT);

@@ -10,11 +10,19 @@ class SwitchMask : public Mask {
   Mask* mask;
 
  public:
-  SwitchMask(Mask* mask);
-  void switch_mask();
-  bool is_active();
-  bool occupies(const Point& where) const override;
+  explicit SwitchMask(Mask* mask);
   ~SwitchMask();
+
+  /* Changes the state of the mask.
+   * If the mask is active, it occupies its surface. If it is not, it is turned off.
+   */
+  void switch_mask();
+
+  /* Returns the state of the mask */
+  bool is_active() const;
+
+  /* Returns if the mask occupies the point sent or not */
+  bool occupies(const Point& where) const override;
 };
 
 #endif

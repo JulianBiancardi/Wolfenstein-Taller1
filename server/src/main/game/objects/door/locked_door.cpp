@@ -9,7 +9,7 @@ bool LockedDoor::interact(Player& who, CollisionChecker& checker) {
     if (who.has_keys()) {
       locked = false;
       who.remove_key();
-      ((SwitchMask*)mask)->switch_mask();
+      change_state(checker);
       return true;
     }
   } else {

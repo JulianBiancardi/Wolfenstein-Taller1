@@ -1,15 +1,17 @@
-#ifndef WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_CROWN_H_
-#define WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_CROWN_H_
+#ifndef CROWN_H
+#define CROWN_H
 
 #include "point_item.h"
 
 class Crown : public PointItem {
- public:
-  Crown(const Point& center);
-  Item* copy() override;
-
  private:
   Crown(const Point& center, int id);
+
+ public:
+  explicit Crown(const Point& center);
+
+  /* Returns a copy of the element */
+  Item* copy() override;
 };
 
-#endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_CROWN_H_
+#endif

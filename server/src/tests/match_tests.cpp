@@ -600,7 +600,7 @@ int static rocket_moves_once_correctly() {
     return ERROR;
   }
 
-  if (!match.move_player(1, UP)) {
+  if (match.move_player(1, UP) && !match.move_player(1, UP)) {
     return ERROR;
   }
 

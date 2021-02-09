@@ -1,15 +1,17 @@
-#ifndef WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_CUP_H_
-#define WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_CUP_H_
+#ifndef CUP_H
+#define CUP_H
 
 #include "point_item.h"
 
 class Cup : public PointItem {
- public:
-  Cup(const Point& center);
-  Item* copy() override;
-
  private:
   Cup(const Point& center, int id);
+
+ public:
+  explicit Cup(const Point& center);
+
+  /* Returns a copy of the element */
+  Item* copy() override;
 };
 
-#endif //WOLFENSTEIN_TALLER1_SERVER_SRC_MAIN_GAME_OBJECTS_ITEMS_CUP_H_
+#endif

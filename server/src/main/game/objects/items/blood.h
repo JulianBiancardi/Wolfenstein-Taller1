@@ -1,19 +1,25 @@
-#ifndef WOLFENSTEIN_TALLER1_BLOOD_H
-#define WOLFENSTEIN_TALLER1_BLOOD_H
+#ifndef BLOOD_H
+#define BLOOD_H
 
 #include "item.h"
 
 class Blood : public Item {
- public:
-  Blood(Point center);
-  void use(Player& user) override;
-  Item* copy() override;
-  bool can_be_used_by(Player& whom) override;
-
  private:
-  Blood(Point center, int id);
+  Blood(const Point& center, int id);
   int health_recovered;
   int less_than;
+
+ public:
+  explicit Blood(const Point& center);
+
+  /* Item gets used by the player */
+  void use(Player& user) override;
+
+  /* Returns if the player can use the item */
+  bool can_be_used_by(const Player& whom) override;
+
+  /* Returns a copy of the element */
+  Item* copy() override;
 };
 
-#endif  // WOLFENSTEIN_TALLER1_BLOOD_H
+#endif

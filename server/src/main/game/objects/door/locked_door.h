@@ -8,7 +8,7 @@ class LockedDoor : public Door {
   bool locked;
 
  public:
-  LockedDoor(const Point& center);
+  explicit LockedDoor(const Point& center);
 
   /* Returns if the door state changed */
   bool interact(Player& who, CollisionChecker& checker) override;

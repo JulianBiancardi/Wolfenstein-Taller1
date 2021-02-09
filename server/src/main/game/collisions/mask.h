@@ -9,9 +9,13 @@ class Mask {
 
  public:
   Mask(const Point& center) : center(center) {}
-  virtual bool occupies(const Point& where) const = 0;
-  const Point& get_center() { return center; }
   virtual ~Mask() {}
+
+  /* Returns if the mask occupies the point sent or not */
+  virtual bool occupies(const Point& where) const = 0;
+
+  /* Returns mask's center */
+  const Point& get_center() { return center; }
 };
 
 #endif

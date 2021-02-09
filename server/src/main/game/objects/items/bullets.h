@@ -4,15 +4,21 @@
 #include "item.h"
 
 class Bullets : public Item {
- public:
-  Bullets(Point center, int amount);
-  void use(Player& user) override;
-  Item* copy() override;
-  bool can_be_used_by(Player& whom) override;
-
  private:
-  Bullets(Point center, int amount, int id);
+  Bullets(const Point& center, int amount, int id);
   int amount;
+
+ public:
+  Bullets(const Point& center, int amount);
+
+  /* Item gets used by the player */
+  void use(Player& user) override;
+
+  /* Returns if the player can use the item */
+  bool can_be_used_by(const Player& whom) override;
+
+  /* Returns a copy of the element */
+  Item* copy() override;
 };
 
 #endif
