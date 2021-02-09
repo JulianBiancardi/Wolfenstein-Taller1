@@ -15,6 +15,7 @@ class Match {
   unsigned int host_id;
   unsigned char match_id;
   bool started;
+  bool ended;
   std::unordered_set<unsigned int> players_ids;
   Map map;
   CollisionChecker checker;
