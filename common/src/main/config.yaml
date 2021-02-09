@@ -34,7 +34,7 @@ machine_gun_range: 60
 machine_gun_bullet_required: 1
 machine_gun_frecuency: 10
 machine_gun_spray: 0.261799
-machine_gun_std:dev: 0.2
+machine_gun_std_dev: 0.2
 
 chain_cannon_range: 40
 chain_cannon_bullet_required: 1

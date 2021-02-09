@@ -38,7 +38,7 @@ class ConfigLoader {
 
   static int bullet_max_dmg;
 
-  static int knife_range;
+  static double knife_range;
 
   static int pistol_range;
   static int pistol_bullet_required;

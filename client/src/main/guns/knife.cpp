@@ -3,7 +3,10 @@
 #include "../../../../common/src/main/ids/gun_ids.h"
 #include "../casting/ray_casting.h"
 
-Knife::Knife() : Gun(0, 2), generator(), distribution(1, 10) {}
+Knife::Knife()
+    : Gun(0, CL::knife_range),
+      generator(),
+      distribution(1, CL::bullet_max_dmg) {}
 
 Hit Knife::shoot(Object& player, int& current_bullets, BaseMap& map,
                  const std::vector<std::shared_ptr<Object>>& objects) {

@@ -1,5 +1,6 @@
 #include "config_loader.h"
 
+#include <iostream>  // TODO DELETE
 #include <string>
 
 YAML::Node CL::yaml_file = YAML::LoadFile("../../common/src/main/config.yaml");
@@ -29,7 +30,9 @@ int CL::bot_positions_difference_allowed =
     CL::yaml_file["bot_positions_difference_allowed"].as<int>();
 
 // Guns
-int CL::bullet_max_dmg = CL::yaml_file["bullet_max_dmg"].as<int>();
+int CL::bullet_max_dmg = CL::yaml_file["bullet_max_damage"].as<int>();
+
+double CL::knife_range = CL::yaml_file["knife_range"].as<double>();
 
 int CL::pistol_range = CL::yaml_file["pistol_range"].as<int>();
 int CL::pistol_bullet_required =
