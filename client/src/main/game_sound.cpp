@@ -162,7 +162,7 @@ GameSound::GameSound(const Point& furthest_point) : own_point(0, 0) {
   sounds.insert({SOUND_PISTOL_CHANGE,
                  Mix_LoadWAV("../src/main/sounds/weapons/usp_slideback.wav")});
   sounds.insert({SOUND_MACHINE_GUN_CHANGE,
-                 Mix_LoadWAV("../src/main/sounds/weapons/m4a4_deploy.wav")});
+                 Mix_LoadWAV("../src/main/sounds/weapons/m4a1_deploy.wav")});
   sounds.insert({SOUND_CHAIN_CANNON_CHANGE,
                  Mix_LoadWAV("../src/main/sounds/weapons/m249_chain.wav")});
 

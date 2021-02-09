@@ -17,9 +17,6 @@ void ShotHandler::handle(Packet &packet, Map &map, GameSound &sound) {
   unpack(packet.get_data(), "CICCCC", &type, &player_id, &match_id,
          &objective_id, &damage, &gun_id);
 
-  printf("Objective ID: %u\n", objective_id);
-  printf("Shooter ID: %u\n", player_id);
-  printf("Damage: %u\n", damage);
   if (gun_id == KNIFE_ID) {
     sound.play_knife(map.get_player(player_id).get_position(), damage,
                      objective_id);
@@ -28,8 +25,8 @@ void ShotHandler::handle(Packet &packet, Map &map, GameSound &sound) {
   }
 
   map.use_bullets(player_id, gun_id);
+  printf("Bullets: %u\n", map.get_player(player_id).get_bullets());
   if (objective_id != 0) {
-    printf("Health: %u\n", map.get_player(objective_id).get_health());
     map.shoot_player(objective_id, damage);
     printf("Health: %u\n", map.get_player(objective_id).get_health());
   }

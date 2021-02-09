@@ -23,6 +23,7 @@ class Object : public Identifiable {
   unsigned char get_res_id();
   Point get_position() const;
   double get_angle() const;
+  unsigned char get_type() const;
 };
 
 #endif
