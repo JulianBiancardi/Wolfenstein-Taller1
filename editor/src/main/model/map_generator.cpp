@@ -8,6 +8,7 @@
 #include "cell.h"
 #include "iostream"
 #include "map.h"
+#include "map_incorrect_exception.h"
 #include "yaml-cpp/yaml.h"
 
 MapGenerator::MapGenerator() {}
@@ -70,6 +71,10 @@ void MapGenerator::generate_yamlfile(const std::string& file_path, Map* map) {
   out << YAML::Key << "max_players";
   out << YAML::Value << max_players;
   out << YAML::EndMap;
+  if (max_players == 0) {
+    throw MapIncorrectException(
+        "The map is incorrect. Remember to add spawns points.");
+  }
 
   std::ofstream fout(file_path);
   fout << out.c_str();
