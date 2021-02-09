@@ -12,9 +12,16 @@ Match::Match(unsigned int host_id, unsigned char match_id,
       map(map_name),
       checker(map),
       started(false),
+      ended(false),
       match_id(match_id) {}
 
-Match::~Match() { for (auto thread : threads) delete thread.second; }
+Match::~Match() {
+  end();
+
+  for (auto thread : threads) {
+    delete thread.second;
+  }
+}
 
 bool Match::player_exists(unsigned int player_id) {
   return players_ids.find(player_id) != players_ids.end();
@@ -205,7 +212,7 @@ void Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
   }
 }
 
-bool Match::player_can_launch_rocket(unsigned int player_id) {
+bool Match::is_using_rocket_launcher(unsigned int player_id) {
   if (!started) {
     throw MatchError("Failed to check if player can launch rocket. "
                      "Match hasn't started.");
@@ -402,7 +409,13 @@ void Match::delete_player(unsigned int player_id) {
 bool Match::should_end() const { return map.has_one_player(); }
 
 void Match::end() {
+  if (ended || !started) {
+    return;
+  }
+
   ((ClockThread*) threads.at(CLOCK_KEY))->force_stop();
   threads.at(CLOCK_KEY)->join();
   // Force_stop and join other threads
+
+  ended = true;
 }

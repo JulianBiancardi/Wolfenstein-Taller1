@@ -21,7 +21,7 @@ void ShotHandler::handle(Packet& packet, ClientManager& client_manager,
 
   const std::unordered_set<unsigned int>& clients = match.get_players_ids();
 
-  if (match.player_can_launch_rocket(player_id)) {
+  if (match.is_using_rocket_launcher(player_id)) {
     unsigned int rocket_id = match.shoot_rocket(player_id);
 
     unsigned char data[ROCKET_ADD_SIZE];
@@ -36,8 +36,10 @@ void ShotHandler::handle(Packet& packet, ClientManager& client_manager,
 
     if (objective_id != 0) {
       if (!match.is_dead(objective_id)) {
+        // FIXME Remove Consequent grab since it is not POO. Use function or new
+        // handler.
         consequent_grab(objective_id, match, client_manager);
-      } else if (match.should_end()) {
+      } else if (match.should_end()) {   // TODO Consider a better name
         game_over(match, client_manager);
       }
     }

@@ -15,6 +15,7 @@ class Match {
   unsigned int host_id;
   unsigned char match_id;
   bool started;
+  bool ended;
   std::unordered_set<unsigned int> players_ids;
   Map map;
   CollisionChecker checker;
@@ -63,16 +64,22 @@ class Match {
   /* Returns the current status of the match */
   bool has_started() const;
 
-  /* Move a player in the match */
+  /* Move a player in the match.
+   * Returns true on sucess, false otherwise.
+   */
   bool move_player(unsigned int player_id, unsigned char direction);
 
-  /* Rotate a player in the given direction */
+  /* Rotate a player in the given direction.
+   * Returns true on success, false otherwise.
+   */
   bool rotate_player(unsigned int player_id, unsigned char direction);
 
   /* Returns the grabbed item id, otherwise returns 0 */
   unsigned int grab_item(unsigned int player_id);
 
-  /* Change the gun of the player in the match */
+  /* Change the gun of the player in the match.
+   * Returns true on success, false otherwise.
+   */
   bool change_gun(unsigned int player_id, unsigned char gun_id);
 
   /* Damages the player, kills if health is less or equal to 0 */
@@ -83,8 +90,8 @@ class Match {
   void shoot_gun(unsigned int player_id, unsigned int objective_id,
                  unsigned char damage);
 
-  /* Returns if the player can launch a rocket */
-  bool player_can_launch_rocket(unsigned int player_id);
+  /* Returns if the player is using a rocket launcher */
+  bool is_using_rocket_launcher(unsigned int player_id);
 
   /* Adds rocket from player's position, returns its id */
   unsigned int shoot_rocket(unsigned int player_id);

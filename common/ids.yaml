@@ -33,7 +33,7 @@
   icon: "../resources/images/enemies/IMG_Guard.png"
 23:
   type: 2
-  name: "SS"
+  name: "Schutzstaffel"
   image: "..."
   icon: "../resources/images/enemies/IMG_SS.png"
 24:
