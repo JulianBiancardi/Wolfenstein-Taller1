@@ -21,27 +21,38 @@ void ProcessorThread::force_stop() {
 }
 
 void ProcessorThread::run() {
-  BlockingQueue<Packet>& reception_queue = client_manager.get_reception_queue();
-  while (allowed_to_run) {
-    Packet packet;
-    reception_queue.dequeue(packet);
+  try {
+    BlockingQueue<Packet>& reception_queue =
+        client_manager.get_reception_queue();
+    while (allowed_to_run) {
+      Packet packet;
+      reception_queue.dequeue(packet);
 
-    try {
-      std::unique_ptr<PacketHandler> handler(
-          PacketHandlerFactory::build(packet));
-      handler->handle(packet, client_manager, match_manager);
-    } catch (const MatchError& e) {
-      syslog(LOG_NOTICE,
-             "[ERROR] ProcessorThread - Notice: Invalid operation in packet - "
-             "%s\n",
-             e.what());
-    } catch (const MatchManagerError& e) {
-      syslog(LOG_NOTICE,
-             "[ERROR] ProcessorThread - Notice: Invalid operation in packet - "
-             "%s\n",
-             e.what());
-    } catch (const PacketHandlerFactoryError& e) {
-      syslog(LOG_ERR, "[ERROR] ProcessorThread - Error: %s\n", e.what());
-    }  // TODO catch other errors
+      try {
+        std::unique_ptr<PacketHandler> handler(
+            PacketHandlerFactory::build(packet));
+        handler->handle(packet, client_manager, match_manager);
+      } catch (const MatchError& e) {
+        syslog(
+            LOG_NOTICE,
+            "[ERROR] ProcessorThread - Notice: Invalid operation in packet - "
+            "%s\n",
+            e.what());
+      } catch (const MatchManagerError& e) {
+        syslog(
+            LOG_NOTICE,
+            "[ERROR] ProcessorThread - Notice: Invalid operation in packet - "
+            "%s\n",
+            e.what());
+      } catch (const PacketHandlerFactoryError& e) {
+        syslog(LOG_ERR, "[ERROR] ProcessorThread - Error: %s\n", e.what());
+      }
+    }
+
+  } catch (const std::exception& e) {
+    syslog(LOG_ERR, "[Error] ProcessorThread - Error: %s", e.what());
+    printf("Error: %s\n", e.what());  // TODO Remove
+  } catch (...) {
+    syslog(LOG_ERR, "[Error] ProcessorThread - Unknown error");
   }
 }
