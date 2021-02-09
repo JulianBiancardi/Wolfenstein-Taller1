@@ -8,12 +8,62 @@
   type: 1
   name: "Rock Wall"
   image: "../../res/walls/grey_brick_wall.bmp"
-  icon: "../resources/images/walls/IMG_RockWall.png"
+  icon: "../../../../res/walls/grey_brick_wall.bmp"
 2:
   type: 1
   name: "Wood Wall"
   image: "../../res/walls/wood_wall.bmp"
-  icon: "../resources/images/walls/IMG_WoodWall.png"
+  icon: "../../../../res/walls/wood_wall.bmp"
+3:
+  type: 1
+  name: "Grey Stone"
+  image: "../../res/walls/grey_stone.bmp"
+  icon: "../../../../res/walls/grey_stone.bmp"
+4:
+  type: 1
+  name: "Grey Stone with Swastika"
+  image: "../../res/walls/grey_stone_swastika.bmp"
+  icon: "../../../../res/walls/grey_stone_swastika.bmp"
+5:
+  type: 1
+  name: "Blue Wall"
+  image: "../../res/walls/blue_wall.bmp"
+  icon: "../../../../res/walls/blue_wall.bmp"
+6:
+  type: 1
+  name: "Blue Wall with Hitler"
+  image: "../../res/walls/blue_hitler.bmp"
+  icon: "../../../../res/walls/blue_wall_hitler.bmp"
+7:
+  type: 1
+  name: "Blue Wall with Banner"
+  image: "../../res/walls/blue_wall_banner.bmp"
+  icon: "../../../../res/walls/blue_wall_banner.bmp"
+8:
+  type: 1
+  name: "Rock Wall 1"
+  image: "../../res/walls/rock_wall_1.bmp"
+  icon: "../../../../res/walls/rock_wall_1.bmp"
+9:
+  type: 1
+  name: "Rock Wall 2"
+  image: "../../res/walls/rock_wall_2.bmp"
+  icon: "../../../../res/walls/rock_wall_2.bmp"
+10:
+  type: 1
+  name: "Rock Wall with Banner"
+  image: "../../res/walls/rock_wall_banner.bmp"
+  icon: "../../../../res/walls/rock_wall_banner.bmp"
+11:
+  type: 1
+  name: "Rock wall with Swastika"
+  image: "../../res/walls/rock_wall_swastika.bmp"
+  icon: "../../../../res/walls/rock_wall_swastika.bmp"
+12:
+  type: 1
+  name: "Rock wall with Warning"
+  image: "../../res/walls/rock_wall_warning.bmp"
+  icon: "../../../../res/walls/rock_wall_warning.bmp"
 
 # Players
 20:
@@ -29,7 +79,7 @@
 22:
   type: 2
   name: "Guard"
-  image: "resources/images/enemies/IMG_Guard.png"
+  image: "../../res/guard/guard_state_1.bmp"
   icon: "../resources/images/enemies/IMG_Guard.png"
 23:
   type: 2
@@ -64,13 +114,13 @@
 32:
   type: 3
   name: "Maching Gun"
-  image: "resources/images/weapons/IMG_Machingun.png"
+  image: "../../res/guns/machine_gun_item.bmp"
   icon: "../resources/images/weapons/IMG_Machingun.png"
   sound: "..."
 33:
   type: 3
   name: "Chain Gun"
-  image: "..."
+  image: "../../res/guns/chain_cannon_item.bmp"
   icon: "../resources/images/weapons/IMG_Chaingun.png"
   sound: "..."
 34:

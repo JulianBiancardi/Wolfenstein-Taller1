@@ -170,8 +170,7 @@ void Match::damage_player(unsigned int player_id, unsigned int damager_id,
   Player& player = map.get_player(player_id);
 
   if (player.is_dead()) {
-    throw MatchError("Failed to damage player. Player %u is dead.",
-                     player_id);
+    throw MatchError("Failed to damage player. Player %u is dead.", player_id);
   }
 
   player.receive_damage(damage);
@@ -207,21 +206,23 @@ void Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
         player_id);
   }
 
-  if (!shooter.is_using_rocket_launcher() && objective_id != 0) {
+  if (objective_id != 0) {
     damage_player(objective_id, player_id, damage);
   }
 }
 
 bool Match::is_using_rocket_launcher(unsigned int player_id) {
   if (!started) {
-    throw MatchError("Failed to check if player can launch rocket. "
-                     "Match hasn't started.");
+    throw MatchError(
+        "Failed to check if player can launch rocket. "
+        "Match hasn't started.");
   }
 
   if (!player_exists(player_id)) {
-    throw MatchError("Failed to check if player can launch rocket. "
-                     "Player %u doesn't exist.",
-                     player_id);
+    throw MatchError(
+        "Failed to check if player can launch rocket. "
+        "Player %u doesn't exist.",
+        player_id);
   }
 
   Player& player = map.get_player(player_id);
@@ -247,8 +248,8 @@ unsigned int Match::shoot_rocket(unsigned int player_id) {
   double spawn_angle = shooter.get_angle();
 
   unsigned int rocket_id = map.add_rocket(spawn_point, spawn_angle);
-  ((ClockThread*) threads.at(CLOCK_KEY))->add_rocket_controller(rocket_id,
-                                                                player_id);
+  ((ClockThread*)threads.at(CLOCK_KEY))
+      ->add_rocket_controller(rocket_id, player_id);
 
   return rocket_id;
 }
@@ -259,7 +260,7 @@ bool Match::move_rocket(unsigned int rocket_id) {
                      rocket_id);
   }
 
-  auto rocket = (Moveable*) map.get_object(rocket_id);
+  auto rocket = (Moveable*)map.get_object(rocket_id);
 
   Point next_position = rocket->next_position(UP);
   if (checker.can_move(next_position, *rocket)) {
@@ -281,21 +282,21 @@ unsigned char calculate_damage(Moveable& rocket, Player& player) {
    * Damage(0) = CL::rocket_max_damage
    * Damage(CL::rocket_explosion_radius) = CL::rocket_min_damage
    */
-  double b = CL::rocket_min_damage * CL::rocket_explosion_radius
-      / (CL::rocket_max_damage - CL::rocket_min_damage);
+  double b = CL::rocket_min_damage * CL::rocket_explosion_radius /
+             (CL::rocket_max_damage - CL::rocket_min_damage);
   double a = CL::rocket_max_damage * b;
 
-  return (unsigned char) (a / (distance + b));
+  return (unsigned char)(a / (distance + b));
 }
 
-std::unordered_map<unsigned int, unsigned char>
-Match::explode_rocket(unsigned int rocket_id, unsigned int owner_id) {
+std::unordered_map<unsigned int, unsigned char> Match::explode_rocket(
+    unsigned int rocket_id, unsigned int owner_id) {
   if (!map.object_exists(rocket_id)) {
     throw MatchError("Failed to explode rocket. Rocket %u doesn't exist.",
                      rocket_id);
   }
 
-  auto rocket = (Moveable*) map.get_object(rocket_id);
+  auto rocket = (Moveable*)map.get_object(rocket_id);
 
   Point next_position = rocket->next_position(UP);
   std::vector<unsigned int> players_exploded =
@@ -313,7 +314,7 @@ Match::explode_rocket(unsigned int rocket_id, unsigned int owner_id) {
   }
 
   map.delete_object(rocket_id);
-  ((ClockThread*) threads.at(CLOCK_KEY))->delete_rocket_controller(rocket_id);
+  ((ClockThread*)threads.at(CLOCK_KEY))->delete_rocket_controller(rocket_id);
 
   return return_map;
 }
@@ -367,11 +368,11 @@ bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
     throw MatchError("Failed to find door. Door %u doesn't exist.", door_id);
   }
 
-  auto door = (Door*) map.get_object(door_id);
+  auto door = (Door*)map.get_object(door_id);
 
   if (door->interact(player, checker)) {
     if (door->is_open()) {
-      ((ClockThread*) threads.at(CLOCK_KEY))->add_door_timer(door_id);
+      ((ClockThread*)threads.at(CLOCK_KEY))->add_door_timer(door_id);
     }
     return true;
   } else {
@@ -384,12 +385,12 @@ bool Match::close_door(unsigned int door_id) {
     throw MatchError("Failed to find door. Door %u doesn't exist.", door_id);
   }
 
-  auto door = (Door*) map.get_object(door_id);
+  auto door = (Door*)map.get_object(door_id);
 
   door->close(checker);
 
   if (!door->is_open()) {
-    ((ClockThread*) threads.at(CLOCK_KEY))->delete_door_timer(door_id);
+    ((ClockThread*)threads.at(CLOCK_KEY))->delete_door_timer(door_id);
     return true;
   } else {
     return false;
@@ -413,7 +414,7 @@ void Match::end() {
     return;
   }
 
-  ((ClockThread*) threads.at(CLOCK_KEY))->force_stop();
+  ((ClockThread*)threads.at(CLOCK_KEY))->force_stop();
   threads.at(CLOCK_KEY)->join();
   // Force_stop and join other threads
 

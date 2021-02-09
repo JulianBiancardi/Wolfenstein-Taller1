@@ -11,6 +11,9 @@ class Object : public Identifiable {
   Ray position;
 
  public:
+  Object(unsigned char res_id, double x_pos, double y_pos, double angle);
+  Object(unsigned char res_id, Point position, double angle);
+  Object(unsigned char res_id, Ray position);
   Object(unsigned char res_id, double x_pos, double y_pos, double angle,
          int id);
   Object(unsigned char res_id, Point position, double angle, int id);

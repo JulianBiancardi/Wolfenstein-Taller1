@@ -9,25 +9,6 @@
 #include "../resource_manager.h"
 #include "../sdl/window.h"
 
-// ============================
-
-class _sprite {
- private:
-  Point pos;
-  double distance;
-  int id;
-
- public:
-  _sprite(Point pos, int id) : pos(pos), distance(0), id(id) {}
-  ~_sprite() {}
-  void update_distance(Point src);
-  double get_distance();
-  Point get_pos() { return pos; }
-  int get_id();
-};
-
-// ============================
-
 class GameCaster {
  private:
   SDL_Renderer* renderer;

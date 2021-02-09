@@ -1,5 +1,7 @@
 #include "surface.h"
 
+#include <SDL2/SDL.h>
+
 #include "sdl_error.h"
 
 Surface::Surface(std::string& file) {
@@ -7,6 +9,10 @@ Surface::Surface(std::string& file) {
   if (surface == NULL) {
     throw SDLError("SDLError: failed to load image '%s' - %s\n", file.c_str(),
                    SDL_GetError());
+  }
+  if (SDL_SetColorKey(surface, SDL_TRUE,
+                      SDL_MapRGB(surface->format, 152, 00, 136))) {
+    throw SDLError("SDLError: failed to set color key - %s\n", SDL_GetError());
   }
 }
 

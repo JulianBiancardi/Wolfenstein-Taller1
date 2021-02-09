@@ -9,6 +9,8 @@
 
 class MachineGun : public Gun {
  private:
+  std::default_random_engine generator;
+  std::uniform_real_distribution<double> distribution;
   Spray spray;
   double slope;
   double intercept;

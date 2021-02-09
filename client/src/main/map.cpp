@@ -35,7 +35,7 @@ void Map::rotate_player(unsigned int player_id, unsigned char direction) {
 
 void Map::shoot_player(unsigned int player_id, unsigned char damage) {
   players.at(player_id)->set_health(
-      std::min(0, players.at(player_id)->get_health() - damage));
+      std::max(0, players.at(player_id)->get_health() - damage));
 }
 
 void Map::change_gun(unsigned int player_id, unsigned char gun_id) {

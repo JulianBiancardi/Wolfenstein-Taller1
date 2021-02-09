@@ -36,17 +36,28 @@ class ConfigLoader {
 
   static int bot_positions_difference_allowed;
 
-  static int knife_range;
-  static int chain_cannon_bullet_required;
-  static uint32_t chain_cannon_frecuency;
-  static int chain_cannon_base_precision;
+  static int bullet_max_dmg;
+
+  static double knife_range;
+
+  static int pistol_range;
   static int pistol_bullet_required;
-  static int pistol_base_precision;
-  static int rocket_launcher_bullet_required;
-  static int rocket_launcher_base_precision;
+  static double pistol_spray;
+  static double pistol_std_dev;
+
+  static int machine_gun_range;
   static int machine_gun_bullet_required;
   static uint32_t machine_gun_frecuency;
-  static int machine_gun_base_precision;
+  static double machine_gun_spray;
+  static double machine_gun_std_dev;
+
+  static int chain_cannon_range;
+  static int chain_cannon_bullet_required;
+  static uint32_t chain_cannon_frecuency;
+  static double chain_cannon_spray;
+  static double chain_cannon_std_dev;
+
+  static int rocket_launcher_bullet_required;
 
   static double items_mask_radio;
   static int food_health_recovered;

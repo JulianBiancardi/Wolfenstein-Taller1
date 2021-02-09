@@ -26,20 +26,6 @@
 #define FOV_DEG 70
 #define FOV (FOV_DEG * M_PI / 180)
 
-// =======
-bool static sprite_comp(_sprite& a, _sprite& b) {
-  return a.get_distance() > b.get_distance();
-}
-
-void static load_sprites(std::vector<_sprite>& sprites);
-
-void _sprite::update_distance(Point src) {
-  distance = Point::distance(src, pos);
-}
-double _sprite::get_distance() { return distance; }
-int _sprite::get_id() { return id; }
-// =========
-
 GameCaster::GameCaster(Window& window, Map& map, unsigned int player_id)
     : renderer(window.get_renderer()),
       map(map),
@@ -224,7 +210,7 @@ void GameCaster::sort_objects(std::vector<std::shared_ptr<Object>>& objects,
    * so it is always nearly sorted. Best case: O(n).
    */
   for (size_t i = 1; i < size; i++) {
-    for (size_t j = i; j > 0 && distances[j - 1] > distances[j]; j--) {
+    for (size_t j = i; j > 0 && distances[j - 1] <= distances[j]; j--) {
       std::swap(distances[j], distances[j - 1]);
       std::swap(objects[j], objects[j - 1]);
     }

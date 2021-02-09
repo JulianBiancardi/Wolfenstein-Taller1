@@ -14,6 +14,7 @@ class Identifiable {
   void static reset_id();  // Only used for testing
 
   int get_id() const;
+  static void increase_id();
 };
 
 #endif

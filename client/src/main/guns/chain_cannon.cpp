@@ -10,7 +10,14 @@
 #include "../../../../common/src/main/ids/gun_ids.h"
 #include "../casting/ray_casting.h"
 
-ChainCannon::ChainCannon() : spray(0.17453, 0.1), Gun(0, 0), triggered(false) {}
+#define COS_MOD 3
+
+ChainCannon::ChainCannon()
+    : generator(),
+      distribution(1, CL::bullet_max_dmg),
+      spray(CL::chain_cannon_spray, CL::chain_cannon_std_dev),
+      Gun(0, CL::chain_cannon_range),
+      triggered(false) {}
 
 Hit ChainCannon::shoot(Object& player, int& current_bullets, BaseMap& map,
                        const std::vector<std::shared_ptr<Object>>& objects) {
@@ -69,12 +76,12 @@ Hit ChainCannon::shoot(Object& player, int& current_bullets, BaseMap& map,
   }
 
   if (closest_obj_dist != std::numeric_limits<double>::infinity()) {
-    std::default_random_engine generator;
-    std::uniform_real_distribution<double> distribution(1, 10);
     double base_damage = distribution(generator);
     double dist_modifier =
         std::max(0.0, std::min(1.0, linear_func(closest_obj_dist)));
-    double angle_modifier = std::cos(closest_obj_angle);
+    double angle_modifier =
+        std::fabs(std::cos((closest_obj_angle - bullet.get_angle()) *
+                           (M_PI / (COS_MOD * CL::chain_cannon_spray))));
     double damage = base_damage * dist_modifier * angle_modifier;
 
     return std::move(Hit(CHAIN_CANNON_ID, closest_obj->get_id(), damage, true));

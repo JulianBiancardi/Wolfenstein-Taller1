@@ -8,6 +8,8 @@
 
 class Pistol : public Gun {
  private:
+  std::default_random_engine generator;
+  std::uniform_real_distribution<double> distribution;
   Spray spray;
 
   double linear_func(double x);

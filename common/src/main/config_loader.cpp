@@ -1,5 +1,6 @@
 #include "config_loader.h"
 
+#include <iostream>  // TODO DELETE
 #include <string>
 
 YAML::Node CL::yaml_file = YAML::LoadFile("../../common/src/main/config.yaml");
@@ -29,21 +30,37 @@ int CL::bot_positions_difference_allowed =
     CL::yaml_file["bot_positions_difference_allowed"].as<int>();
 
 // Guns
-int CL::chain_cannon_bullet_required =
-    CL::yaml_file["chain_cannon_bullet_required"].as<int>();
-uint32_t CL::chain_cannon_frecuency =
-    CL::yaml_file["chain_cannon_frecuency"].as<uint32_t>();
+int CL::bullet_max_dmg = CL::yaml_file["bullet_max_damage"].as<int>();
 
+double CL::knife_range = CL::yaml_file["knife_range"].as<double>();
+
+int CL::pistol_range = CL::yaml_file["pistol_range"].as<int>();
 int CL::pistol_bullet_required =
     CL::yaml_file["pistol_bullet_required"].as<int>();
+double CL::pistol_spray = CL::yaml_file["pistol_spray"].as<double>();
+double CL::pistol_std_dev = CL::yaml_file["pistol_std_dev"].as<double>();
 
-int CL::rocket_launcher_bullet_required =
-    CL::yaml_file["rocket_launcher_bullet_required"].as<int>();
-
+int CL::machine_gun_range = CL::yaml_file["machine_gun_range"].as<int>();
 int CL::machine_gun_bullet_required =
     CL::yaml_file["machine_gun_bullet_required"].as<int>();
 uint32_t CL::machine_gun_frecuency =
     CL::yaml_file["machine_gun_frecuency"].as<uint32_t>();
+double CL::machine_gun_spray = CL::yaml_file["machine_gun_spray"].as<double>();
+double CL::machine_gun_std_dev =
+    CL::yaml_file["machine_gun_std_dev"].as<double>();
+
+int CL::chain_cannon_range = CL::yaml_file["chain_cannon_range"].as<int>();
+int CL::chain_cannon_bullet_required =
+    CL::yaml_file["chain_cannon_bullet_required"].as<int>();
+uint32_t CL::chain_cannon_frecuency =
+    CL::yaml_file["chain_cannon_frecuency"].as<uint32_t>();
+double CL::chain_cannon_spray =
+    CL::yaml_file["chain_cannon_spray"].as<double>();
+double CL::chain_cannon_std_dev =
+    CL::yaml_file["chain_cannon_std_dev"].as<double>();
+
+int CL::rocket_launcher_bullet_required =
+    CL::yaml_file["rocket_launcher_bullet_required"].as<int>();
 
 // Items
 double CL::items_mask_radio = CL::yaml_file["items_mask_radio"].as<double>();

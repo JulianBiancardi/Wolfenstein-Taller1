@@ -13,6 +13,7 @@
 #include "../../../common/src/main/packets/packing.h"
 #include "frame_limiter.h"
 #include "guns/hit.h"
+#include "packet_handlers/packet_handler.h"
 #include "packet_handlers/packet_handler_factory.h"
 
 #define UNIT 3
@@ -73,13 +74,8 @@ void Game::spawn_self() {
     throw PacketError("Failed to receive spawn packet upon match start.");
   }
 
-  unsigned char type;
-  unsigned int player_id;
-  unsigned char x_pos;
-  unsigned char y_pos;
-  unpack(packet.get_data(), "CICC", &type, &player_id, &x_pos, &y_pos);
-
-  map.add_player(player_id, Ray(x_pos + 0.5, y_pos + 0.5, 0));
+  std::unique_ptr<PacketHandler> handler(PacketHandlerFactory::build(packet));
+  handler->handle(packet, map, gamesound);
 }
 
 void Game::handle_events() {
