@@ -10,7 +10,7 @@ screen_height: 640
 player_health: 100
 player_bullets: 8
 player_max_bullets: 100
-player_mask_radio: 0.1
+player_mask_radio: 0.4
 player_lives: 3
 player_respawn_bullets: 8
 player_speed: 0.1
