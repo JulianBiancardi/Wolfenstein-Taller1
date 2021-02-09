@@ -8,6 +8,7 @@
 
 #define MOVEMENT_MAP "test_map_movement"
 #define ITEMS_MAP "test_map_items"
+#define ROCKET_MAP "test_map_rocket"
 
 int static can_move_up_player();
 int static can_move_up_player_two_times();
@@ -26,61 +27,57 @@ int static player_kills_enemy_and_it_is_no_longer_in_the_map();
 int static player_cannot_grab_gun();
 int static player_kills_enemy_and_grabs_drop();
 int static player_grabs_point_items();
+int static rocket_spawns_where_it_should();
+int static rocket_moves_once_correctly();
+int static rocket_moves_until_it_finds_a_player();
+int static rocket_explodes_and_damages_player();
+int static rocket_explodes_and_damages_multiple_players();
 
 void match_tests() {
   begin_tests("MATCH");
 
   print_test("Un jugador en una partida se mueve correctamente",
-             can_move_up_player,
-             NO_ERROR);
-  print_test("Un jugador se mueve dos veces",
-             can_move_up_player_two_times,
+             can_move_up_player, NO_ERROR);
+  print_test("Un jugador se mueve dos veces", can_move_up_player_two_times,
              NO_ERROR);
   print_test("Se mueve un jugador hasta que llega a la pared",
-             can_move_up_until_wall,
-             NO_ERROR);
+             can_move_up_until_wall, NO_ERROR);
   print_test("Jugador se mueve, agarra kit medico y recupera toda la salud",
-             grabs_medic_kit_and_restores_all_health,
-             NO_ERROR);
+             grabs_medic_kit_and_restores_all_health, NO_ERROR);
   print_test("Jugador se mueve, agarra kit medico y recupera salud",
-             grabs_medic_kit_and_restores_health_correctly,
-             NO_ERROR);
+             grabs_medic_kit_and_restores_health_correctly, NO_ERROR);
   print_test("Jugador agarra la sangre solo cuando tiene menos de 11 de vida",
-             grabs_blood_only_when_health_is_less_than_eleven,
-             NO_ERROR);
+             grabs_blood_only_when_health_is_less_than_eleven, NO_ERROR);
   print_test("El kit medico desaparece al agarrarse",
-             medic_kit_disappears_after_grabbing_it,
+             medic_kit_disappears_after_grabbing_it, NO_ERROR);
+  print_test("Jugador dispara correctamente a otro", player_shoots_enemy,
              NO_ERROR);
-  print_test("Jugador dispara correctamente a otro",
-             player_shoots_enemy,
-             NO_ERROR);
-  print_test("Jugador dispara pero no acierta",
-             player_shoots_nobody,
-             NO_ERROR);
+  print_test("Jugador dispara pero no acierta", player_shoots_nobody, NO_ERROR);
   print_test("Jugador recibe disparo y agarra sangre",
-             player_shoots_enemy_over_blood_and_grabs_it,
-             NO_ERROR);
-  print_test("Jugador agarra balas",
-             player_grabs_bullets,
-             NO_ERROR);
-  print_test("Jugador cambia de arma correctamente",
-             player_changes_gun,
+             player_shoots_enemy_over_blood_and_grabs_it, NO_ERROR);
+  print_test("Jugador agarra balas", player_grabs_bullets, NO_ERROR);
+  print_test("Jugador cambia de arma correctamente", player_changes_gun,
              NO_ERROR);
   print_test("Jugador mata enemigo y respawnea",
-             player_kills_enemy_and_it_respawns,
-             NO_ERROR);
+             player_kills_enemy_and_it_respawns, NO_ERROR);
   print_test("Enemigo muere definitivamente y desaparece",
-             player_kills_enemy_and_it_is_no_longer_in_the_map,
-             NO_ERROR);
+             player_kills_enemy_and_it_is_no_longer_in_the_map, NO_ERROR);
   print_test("Jugador no puede agarrar arma que ya tiene",
-             player_cannot_grab_gun,
-             NO_ERROR);
+             player_cannot_grab_gun, NO_ERROR);
   print_test("Jugador agarra drop de muerte de otro",
-             player_kills_enemy_and_grabs_drop,
-             NO_ERROR);
+             player_kills_enemy_and_grabs_drop, NO_ERROR);
   print_test("Jugador agarra items de puntos y se le suman",
-             player_grabs_point_items,
+             player_grabs_point_items, NO_ERROR);
+  print_test("El cohete aparece donde debe", rocket_spawns_where_it_should,
              NO_ERROR);
+  print_test("El cohete se mueve una vez", rocket_moves_once_correctly,
+             NO_ERROR);
+  print_test("El cohete se mueve hasta colisionar con un jugador",
+             rocket_moves_until_it_finds_a_player, NO_ERROR);
+  print_test("Jugador se daña al explotar un cohete",
+             rocket_explodes_and_damages_player, NO_ERROR);
+  print_test("Un cohete daña multiples jugadores",
+             rocket_explodes_and_damages_multiple_players, NO_ERROR);
 
   end_tests();
 }
@@ -280,8 +277,7 @@ int static player_shoots_enemy() {
   BlockingQueue<Packet> queue_mock;
   match.start(1, queue_mock);
 
-  if (!match.shoot_gun(2, 1, CL::player_health - 5))
-    return ERROR;
+  match.shoot_gun(2, 1, CL::player_health - 5);
 
   if (match.get_players().at(1).get_health() != 5)
     return ERROR;
@@ -304,8 +300,7 @@ int static player_shoots_nobody() {
   BlockingQueue<Packet> queue_mock;
   match.start(1, queue_mock);
 
-  if (match.shoot_gun(1, 0, 5))
-    return ERROR;
+  match.shoot_gun(1, 0, 5);
 
   if (match.get_players().at(1).get_health() != CL::player_health)
     return ERROR;
@@ -341,8 +336,7 @@ int static player_shoots_enemy_over_blood_and_grabs_it() {
   if (match.get_players().at(1).get_health() != CL::player_health)
     return ERROR;
 
-  if (!match.shoot_gun(2, 1, CL::player_health - 5))
-    return ERROR;
+  match.shoot_gun(2, 1, CL::player_health - 5);
 
   if (match.get_players().at(1).get_health() != 5)
     return ERROR;
@@ -431,8 +425,7 @@ int static player_kills_enemy_and_it_respawns() {
     match.move_player(2, LEFT);
   }
 
-  if (!match.shoot_gun(1, 2, CL::player_health + 1))
-    return ERROR;
+  match.shoot_gun(1, 2, CL::player_health + 1);
 
   match.end();
 
@@ -562,6 +555,165 @@ int static player_grabs_point_items() {
   if (match.get_players().at(1).get_points()
       != CL::crown_points + CL::cup_points)
     return ERROR;
+
+  match.end();
+
+  return NO_ERROR;
+}
+
+int static rocket_spawns_where_it_should() {
+  std::string map_name(ROCKET_MAP);
+  Match match(1, 1, map_name);
+
+  match.add_player(1);
+
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
+
+  while (match.move_player(1, UP) && match.grab_item(1) == 0);
+
+  unsigned int rocket_id = match.shoot_rocket(1);
+
+  if (match.move_player(1, UP)) {
+    return ERROR;
+  }
+
+  match.end();
+
+  return NO_ERROR;
+}
+
+int static rocket_moves_once_correctly() {
+  std::string map_name(ROCKET_MAP);
+  Match match(1, 1, map_name);
+
+  match.add_player(1);
+
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
+
+  while (match.move_player(1, UP) && match.grab_item(1) == 0);
+
+  unsigned int rocket_id = match.shoot_rocket(1);
+
+  if (!match.move_rocket(rocket_id)) {
+    return ERROR;
+  }
+
+  if (!match.move_player(1, UP)) {
+    return ERROR;
+  }
+
+  match.end();
+
+  return NO_ERROR;
+}
+
+int static rocket_moves_until_it_finds_a_player() {
+  std::string map_name(ROCKET_MAP);
+  Match match(1, 1, map_name);
+
+  match.add_player(1);
+  match.add_player(2);
+
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
+
+  while (match.move_player(1, UP) && match.grab_item(1) == 0);
+
+  unsigned int rocket_id = match.shoot_rocket(1);
+
+  while (match.move_rocket(rocket_id));
+
+  if (match.move_player(2, DOWN)) {
+    return ERROR;
+  }
+
+  match.end();
+
+  return NO_ERROR;
+}
+
+int static rocket_explodes_and_damages_player() {
+  std::string map_name(ROCKET_MAP);
+  Match match(1, 1, map_name);
+
+  match.add_player(1);
+  match.add_player(2);
+
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
+
+  while (match.move_player(1, UP) && match.grab_item(1) == 0);
+
+  unsigned int rocket_id = match.shoot_rocket(1);
+
+  while (match.move_rocket(rocket_id));
+
+  std::unordered_map<unsigned int, unsigned char>
+      damages = match.explode_rocket(rocket_id, 1);
+
+  if (match.get_players().at(2).get_health() == CL::player_health) {
+    return ERROR;
+  }
+
+  if (damages.find(2) == damages.end()) {
+    return ERROR;
+  }
+
+  if (damages.size() != 1) {
+    return ERROR;
+  }
+
+  match.end();
+
+  return NO_ERROR;
+}
+
+int static rocket_explodes_and_damages_multiple_players() {
+  std::string map_name(ROCKET_MAP);
+  Match match(1, 1, map_name);
+
+  match.add_player(1);
+  match.add_player(2);
+  match.add_player(3);
+
+  BlockingQueue<Packet> queue_mock;
+  match.start(1, queue_mock);
+
+  while (match.move_player(1, UP) && match.grab_item(1) == 0);
+
+  unsigned int rocket_id = match.shoot_rocket(1);
+
+  while (match.move_rocket(rocket_id));
+
+  std::unordered_map<unsigned int, unsigned char>
+      damages = match.explode_rocket(rocket_id, 1);
+
+  if (match.get_players().at(2).get_health() == CL::player_health) {
+    return ERROR;
+  }
+
+  if (match.get_players().at(3).get_health() == CL::player_health) {
+    return ERROR;
+  }
+
+  if (match.get_players().at(3).get_health()
+      < match.get_players().at(2).get_health()) {
+    return ERROR;
+  }
+
+  if (damages.find(2) == damages.end()) {
+    return ERROR;
+  }
+
+  if (damages.find(3) == damages.end()) {
+    return ERROR;
+  }
+
+  if (damages.size() != 2) {
+    return ERROR;
+  }
 
   match.end();
 
