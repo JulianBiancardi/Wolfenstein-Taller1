@@ -118,7 +118,8 @@ void GameSound::play_self_death() {
 }
 
 GameSound::GameSound(const Point& furthest_point) : own_point(0, 0) {
-  double max_distance = Point::distance(Point(0, 0), furthest_point);
+  double max_distance =
+     std::min(Point::distance(Point(0, 0), furthest_point), 50.0) ;
   this->slope = 1.0 * 255 / (max_distance);
 
   Mix_Init(MIX_INIT_MP3);
@@ -195,6 +196,9 @@ void GameSound::set_point(const Point& point) {
 }
 
 Uint8 GameSound::map_distance(Point point) {
-  double output = round(slope * (Point::distance(this->own_point, point)));
+  double distance = Point::distance(this->own_point, point);
+  if (distance>50)
+    return 255;
+  double output = round(slope * distance);
   return floor(output + 0.5);
 }
