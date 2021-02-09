@@ -20,14 +20,27 @@ player_knife_mask_radio: 10 # > player_mask_radio
 # Bot
 bot_positions_difference_allowed: 5
 
-# Gunss
-pistol_bullet_required: 1
+# Guns
+bullet_max_damage: 10
 
+knife_range: 1.5
+
+pistol_range: 20
+pistol_bullet_required: 1
+pistol_spray: 0.17453
+pistol_std_dev: 0.1
+
+machine_gun_range: 60
 machine_gun_bullet_required: 1
 machine_gun_frecuency: 10
+machine_gun_spray: 0.261799
+machine_gun_std:dev: 0.2
 
+chain_cannon_range: 40
 chain_cannon_bullet_required: 1
 chain_cannon_frecuency: 10
+chain_cannon_spray: 0.349066
+chain_cannon_std_dev: 0.2
 
 rocket_launcher_bullet_required: 5
 

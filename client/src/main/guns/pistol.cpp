@@ -6,6 +6,7 @@
 #include <limits>
 #include <utility>
 
+#include "../../../../common/src/main/config_loader.h"
 #include "../../../../common/src/main/ids/gun_ids.h"
 #include "../casting/ray_casting.h"
 
@@ -13,9 +14,9 @@
 
 Pistol::Pistol()
     : generator(),
-      distribution(1, 10),
-      spray(0.17453, 0.1),
-      Gun(0, 20),
+      distribution(1, CL::bullet_max_dmg),
+      spray(CL::pistol_spray, CL::pistol_std_dev),
+      Gun(0, CL::pistol_range),
       triggered(false) {
   slope = 1 / (min_range - max_range);
   intercept = -slope * max_range;
@@ -81,8 +82,9 @@ Hit Pistol::shoot(Object& player, int& current_bullets, BaseMap& map,
     double base_damage = distribution(generator);
     double dist_modifier =
         std::max(0.0, std::min(1.0, linear_func(closest_obj_dist)));
-    double angle_modifier = std::cos((closest_obj_angle - bullet.get_angle()) *
-                                     (M_PI / (COS_MOD * 0.17453)));
+    double angle_modifier =
+        std::fabs(std::cos((closest_obj_angle - bullet.get_angle()) *
+                           (M_PI / (COS_MOD * CL::pistol_spray))));
     double damage = base_damage * dist_modifier * angle_modifier;
 
     return std::move(Hit(PISTOL_ID, closest_obj->get_id(), damage, true));
