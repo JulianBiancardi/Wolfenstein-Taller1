@@ -60,7 +60,6 @@ void GameSound::play_gun_change(Point point, unsigned char gun_id) {
   } else {
     return;
   }
-
   sound_checker(Mix_SetPosition(channel, 0, map_distance(point)));
   sound_checker(Mix_PlayChannel(channel, sound, 0));
 }
@@ -163,7 +162,7 @@ GameSound::GameSound(const Point& furthest_point) : own_point(0, 0) {
   sounds.insert({SOUND_PISTOL_CHANGE,
                  Mix_LoadWAV("../src/main/sounds/weapons/usp_slideback.wav")});
   sounds.insert({SOUND_MACHINE_GUN_CHANGE,
-                 Mix_LoadWAV("../src/main/sounds/weapons/m4a4_deploy.wav")});
+                 Mix_LoadWAV("../src/main/sounds/weapons/m4a1_deploy.wav")});
   sounds.insert({SOUND_CHAIN_CANNON_CHANGE,
                  Mix_LoadWAV("../src/main/sounds/weapons/m249_chain.wav")});
 
@@ -198,6 +197,9 @@ void GameSound::set_point(const Point& point) {
 
 Uint8 GameSound::map_distance(Point point) {
   double distance = Point::distance(this->own_point, point);
+//  printf("||||||||||||||||||||||Yo(%f, %f)-El(%f, %f)
+//  Dist(%f)||||||||||||||||||||||", own_point.getX(),
+//  own_point.getY(), point.getX(), point.getY(), distance);
   if (distance > 50) return 255;
   double output = round(slope * distance);
   return floor(output + 0.5);

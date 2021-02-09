@@ -26,7 +26,7 @@
 #define KNIFE 30
 #define PISTOL 31
 #define MACHINE_GUN 32
-#define CHAIN_GUN 33
+#define CHAIN_CANNON 33
 #define BAZOOKA 34
 
 // Items
