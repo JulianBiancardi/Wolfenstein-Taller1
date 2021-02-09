@@ -66,6 +66,9 @@ class ConfigLoader {
   static double barrel_radius;
   static double rocket_radius;
   static double rocket_speed;
+  static double rocket_explosion_radius;
+  static double rocket_max_damage;
+  static double rocket_min_damage;
 
   static unsigned int match_length;
   static unsigned int door_timer;

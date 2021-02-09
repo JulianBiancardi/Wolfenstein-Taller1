@@ -51,10 +51,13 @@ class Map : public BaseMap {
   Object* get_object(unsigned int object_id);
 
   /* Returns if it has the object */
-  bool has_object(unsigned int object_id);
+  bool object_exists(unsigned int object_id);
 
   /* Deletes an item */
   void delete_item(unsigned int item_id);
+
+  /* Deletes an object */
+  void delete_object(unsigned int object_id);
 
   /* Returns a reference to the players */
   const std::unordered_map<unsigned int, Player>& get_players() const;

@@ -31,7 +31,7 @@ bool Map::add_player(unsigned int player_id) {
   }
 
   Point spawn = spawn_points[players_joined];
-  Player new_player(spawn, 0);
+  Player new_player(spawn, 0, player_id);
 
   players.insert(std::make_pair(player_id, new_player));
   players_joined++;
@@ -46,20 +46,25 @@ Player& Map::get_player(unsigned int player_id) {
 void Map::delete_player(unsigned int player_id) { players.erase(player_id); }
 
 Item& Map::get_item(unsigned int item_id) {
-  return (Item&)(*items.at(item_id));
+  return (Item&) (*items.at(item_id));
 }
 
 Object* Map::get_object(unsigned int object_id) {
   return objects.at(object_id);
 }
 
-bool Map::has_object(unsigned int object_id) {
+bool Map::object_exists(unsigned int object_id) {
   return objects.find(object_id) != objects.end();
 }
 
 void Map::delete_item(unsigned int item_id) {
   delete items.at(item_id);
   items.erase(item_id);
+}
+
+void Map::delete_object(unsigned int object_id) {
+  delete objects.at(object_id);
+  objects.erase(object_id);
 }
 
 const std::unordered_map<unsigned int, Player>& Map::get_players() const {
@@ -107,8 +112,7 @@ void Map::add_gun_drop(Player& dead_player) {
       items.insert({new_rocket_launcher->get_id(), new_rocket_launcher});
       break;
     }
-    default:
-      break;
+    default:break;
   }
 }
 

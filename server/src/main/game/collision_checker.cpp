@@ -19,9 +19,13 @@ bool CollisionChecker::collides_players(const Point& where) {
   return false;
 }
 
-bool CollisionChecker::collides_sprites(const Point& where) {
+bool CollisionChecker::collides_objects(const Point& where) {
   for (auto& object : objects) {
-    if (object.second->occupies(where)) return true;
+    if (ignored == nullptr || object.second != ignored) {
+      if (object.second->occupies(where)) {
+        return true;
+      }
+    }
   }
 
   return false;
@@ -32,7 +36,7 @@ bool CollisionChecker::is_free(const Point& where) {
 
   if (collides_players(where)) return false;
 
-  if (collides_sprites(where)) return false;
+  if (collides_objects(where)) return false;
 
   return true;
 }
@@ -62,6 +66,20 @@ unsigned int CollisionChecker::grabbed_item(const Player& by_whom) {
   }
 
   return item_id;
+}
+
+std::vector<unsigned int>
+CollisionChecker::get_players_in_radio(const Point& where, double radius) {
+  std::vector<unsigned int> players_in_radio;
+
+  for (const auto& pair : players) {
+    const Player& player = pair.second;
+    if (player.get_position().distance_from(where) <= radius) {
+      players_in_radio.push_back(player.get_id());
+    }
+  }
+
+  return players_in_radio;
 }
 
 int CollisionChecker::get_knife_range_collides_player_id(Point& where,

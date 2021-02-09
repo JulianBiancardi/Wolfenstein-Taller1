@@ -10,6 +10,13 @@ Moveable::Moveable(Point origin, double angle, double speed,
       speed(speed),
       rotation_speed(rotation_speed) {}
 
+Moveable::Moveable(Point origin, double angle, double speed,
+                   double rotation_speed, double radius, unsigned int id)
+    : Object(origin, angle, new CircleMask(radius, position.get_ref_origin()),
+             id),
+      speed(speed),
+      rotation_speed(rotation_speed) {}
+
 Moveable::Moveable(Ray position, double speed, double rotation_speed,
                    double radius)
     : Object(position, new CircleMask(radius, position.get_ref_origin())),

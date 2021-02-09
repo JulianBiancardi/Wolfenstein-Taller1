@@ -111,7 +111,8 @@ unsigned int get_rocket_id(unsigned int rocket_id) {
   return stoul(std::to_string(ROCKET_TYPE) + std::to_string(rocket_id));
 }
 
-void ClockThread::add_rocket_controller(unsigned int rocket_id) {
+void ClockThread::add_rocket_controller(unsigned int rocket_id,
+                                        unsigned int player_id) {
   Lock lock(this->mutex);
   unsigned int id = get_rocket_id(rocket_id);
 
@@ -120,7 +121,8 @@ void ClockThread::add_rocket_controller(unsigned int rocket_id) {
   } else {
     timed_events.insert({id, new RocketController(reception_queue,
                                                   match_id,
-                                                  rocket_id)});
+                                                  rocket_id,
+                                                  player_id)});
   }
 }
 
