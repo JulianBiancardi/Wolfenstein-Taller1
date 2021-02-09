@@ -114,13 +114,13 @@
 32:
   type: 3
   name: "Maching Gun"
-  image: "resources/images/weapons/IMG_Machingun.png"
+  image: "../../res/guns/machine_gun_item.bmp"
   icon: "../resources/images/weapons/IMG_Machingun.png"
   sound: "..."
 33:
   type: 3
   name: "Chain Gun"
-  image: "..."
+  image: "../../res/guns/chain_cannon_item.bmp"
   icon: "../resources/images/weapons/IMG_Chaingun.png"
   sound: "..."
 34:

@@ -35,15 +35,14 @@ void MapLoader::load_map(const std::string& map_name) {
     size_t y = object["y_position"].as<int>();
 
     if (type == GUNS_TYPE || type == SOLID_OBJECTS_TYPE ||
-        type == NON_SOLID_OBJECTS_TYPE) {
+        type == NON_SOLID_OBJECTS_TYPE || type == ITEMS_TYPE) {
       add_object(res_id, Point(x + 0.5, y + 0.5));
     }
   }
 }
 
 void MapLoader::add_object(unsigned char res_id, Point where) {
-  // TODO Correct the id assigned
-  std::shared_ptr<Object> new_object(new Object(res_id, where, 0.0, 0));
+  std::shared_ptr<Object> new_object(new Object(res_id, where, 0.0));
   objects.insert(std::make_pair(new_object->get_id(), new_object));
   objects_and_players.push_back(new_object);
 }
