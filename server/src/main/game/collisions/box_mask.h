@@ -10,9 +10,9 @@ class BoxMask : public Mask {
   double height;
 
  public:
-  BoxMask(double width, double height, const Point& center)
-      : width(width), height(height), Mask(center) {}
+  BoxMask(double width, double height, const Point& center);
 
+  /* Returns if the mask occupies the point sent or not */
   bool occupies(const Point& where) const override;
 };
 
