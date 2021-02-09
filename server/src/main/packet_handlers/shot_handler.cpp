@@ -39,7 +39,7 @@ void ShotHandler::handle(Packet& packet, ClientManager& client_manager,
         // FIXME Remove Consequent grab since it is not POO. Use function or new
         // handler.
         consequent_grab(objective_id, match, client_manager);
-      } else if (match.should_end()) {   // TODO Consider a better name
+      } else if (match.should_end()) {  // TODO Consider a better name
         game_over(match, client_manager);
       }
     }
