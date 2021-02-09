@@ -14,6 +14,56 @@
   name: "Wood Wall"
   image: "../../res/walls/wood_wall.bmp"
   icon: "../resources/images/walls/IMG_WoodWall.png"
+3:
+  type: 1
+  name: "Grey Stone"
+  image: "../../res/walls/grey_stone.bmp"
+  icon: "../resources/images/walls/IMG_WoodWall.png"
+4:
+  type: 1
+  name: "Grey Stone with Swastika"
+  image: "../../res/walls/grey_stone_swastika.bmp"
+  icon: "../resources/images/walls/IMG_WoodWall.png"
+5:
+  type: 1
+  name: "Blue Wall"
+  image: "../../res/walls/blue_wall.bmp"
+  icon: "../resources/images/walls/IMG_WoodWall.png"
+6:
+  type: 1
+  name: "Blue Wall with Hitler"
+  image: "../../res/walls/blue_hitler.bmp"
+  icon: "../resources/images/walls/IMG_WoodWall.png"
+7:
+  type: 1
+  name: "Blue Wall with Banner"
+  image: "../../res/walls/blue_wall_banner.bmp"
+  icon: "../resources/images/walls/IMG_WoodWall.png"
+8:
+  type: 1
+  name: "Rock Wall 1"
+  image: "../../res/walls/rock_wall_1.bmp"
+  icon: "../resources/images/walls/IMG_WoodWall.png"
+9:
+  type: 1
+  name: "Rock Wall 2"
+  image: "../../res/walls/rock_wall_2.bmp"
+  icon: "../resources/images/walls/IMG_WoodWall.png"
+10:
+  type: 1
+  name: "Rock Wall with Banner"
+  image: "../../res/walls/rock_wall_banner.bmp"
+  icon: "../resources/images/walls/IMG_WoodWall.png"
+11:
+  type: 1
+  name: "Rock wall with Swastika"
+  image: "../../res/walls/rock_wall_swastika.bmp"
+  icon: "../resources/images/walls/IMG_WoodWall.png"
+12:
+  type: 1
+  name: "Rock wall with Warning"
+  image: "../../res/walls/rock_wall_warning.bmp"
+  icon: "../resources/images/walls/IMG_WoodWall.png"
 
 # Players
 20:
