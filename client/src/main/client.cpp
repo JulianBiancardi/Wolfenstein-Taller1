@@ -30,6 +30,8 @@ void Client::run_client(int argc, char** argv) {
     return;
   }
 
+  match_selected.print();
+
   Game game(server, match_selected);
   game();
 }

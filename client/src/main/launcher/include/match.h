@@ -28,11 +28,14 @@ class Match {
   void reset();
 
   void set_match_id(unsigned char id);
+  void set_map_name(const char* map_name);
   unsigned char get_match_id() const;
   const char* get_map_name() const;
   unsigned char get_players_joined() const;
   unsigned char get_players_total() const;
   bool get_status() const;
+
+  void print() const;
 
   ~Match();
 };
