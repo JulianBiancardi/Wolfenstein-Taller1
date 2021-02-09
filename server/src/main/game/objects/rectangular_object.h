@@ -6,7 +6,7 @@
 
 class RectangularObject : public Object {
  public:
-  RectangularObject(double width, double depth, Point center)
+  RectangularObject(double width, double depth, const Point& center)
       : Object(center, 0,
                new BoxMask(width, depth, this->position.get_ref_origin())) {}
 };

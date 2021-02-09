@@ -10,15 +10,21 @@ class Object : public Identifiable {
  protected:
   Ray position;
   Mask* mask;
-  Object(Point position, double angle, Mask* mask);
-  Object(Point position, double angle, Mask* mask, int id);
-  Object(Ray position, Mask* mask, int id);
-  Object(Ray position, Mask* mask);
+  Object(const Point& position, double angle, Mask* mask, int id);
+  Object(const Point& position, double angle, Mask* mask);
+  Object(const Ray& position, Mask* mask, int id);
+  Object(const Ray& position, Mask* mask);
 
  public:
   virtual ~Object();
+
+  /* Returns if the object occupies the point received */
   bool occupies(const Point& where) const;
+
+  /* Returns object's position */
   Point get_position() const;
+
+  /* Returns object's angle */
   double get_angle() const;
 };
 
