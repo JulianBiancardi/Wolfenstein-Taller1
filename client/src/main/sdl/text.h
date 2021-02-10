@@ -12,18 +12,14 @@
 class Text {
  private:
   SDL_Renderer* renderer;
-  SDL_Surface* surface;
-  SDL_Texture* texture;
-  TTF_Font* font;
-  SDL_Color& color;
+  Texture texture;
   size_t x_pos;
   size_t y_pos;
 
  public:
   Text(SDL_Renderer* renderer, const std::string& text, size_t size,
-       SDL_Color& color, size_t x, size_t y);
+       TTF_Font* font, SDL_Color& color, size_t x, size_t y);
   ~Text();
-
 };
 
 #endif  // TEXT_H

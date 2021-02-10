@@ -2,8 +2,17 @@
 
 #include "sdl_error.h"
 
-Texture::Texture(SDL_Renderer* renderer, const std::string& file)
-    : surface(file) {
+Texture::Texture(SDL_Renderer* renderer, const std::string& image)
+    : surface(image) {
+  texture = SDL_CreateTextureFromSurface(renderer, surface.get_surface());
+  if (texture == NULL) {
+    throw SDLError("SDLError: failed to create texture - %s\n", SDL_GetError());
+  }
+}
+
+Texture::Texture(SDL_Renderer* renderer, const std::string& text, size_t size,
+                 TTF_Font* font, SDL_Color& color)
+    : surface(text, size, font, color) {
   texture = SDL_CreateTextureFromSurface(renderer, surface.get_surface());
   if (texture == NULL) {
     throw SDLError("SDLError: failed to create texture - %s\n", SDL_GetError());
@@ -16,8 +25,8 @@ Texture::~Texture() {
   }
 }
 
-size_t Texture::get_width() { return surface.get_width(); }
+size_t Texture::get_width() const { return surface.get_width(); }
 
-size_t Texture::get_height() { return surface.get_height(); }
+size_t Texture::get_height() const { return surface.get_height(); }
 
-SDL_Texture* Texture::get_texture() { return texture; }
+SDL_Texture* Texture::get_texture() const { return texture; }

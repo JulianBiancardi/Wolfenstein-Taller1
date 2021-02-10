@@ -4,12 +4,19 @@
 #include "../sdl/image.h"
 #include "../sdl/text.h"
 
+#define FONT_PATH                                                          \
+  "/home/julian/JULIAN/Taller1/Wolfenstein-Taller1/client/src/main/fonts/" \
+  "wolfenstein.ttf"
+
 #define UNIT 3
 #define SCREEN_WIDTH (320 * UNIT)
 #define SCREEN_HEIGHT (200 * UNIT)
 #define BACKGROUND_PATH "../src/main/hud/IMG_HUD_Background.png"
 
-Hud::Hud(SDL_Renderer* renderer) : renderer(renderer) {}
+Hud::Hud(SDL_Renderer* renderer) : renderer(renderer) {
+  size_t font_size = 12;
+  font = TTF_OpenFont(FONT_PATH, font_size);
+}
 
 Hud::~Hud() {}
 
@@ -24,15 +31,15 @@ void Hud::update(const Player& player) const {
   size_t font_size = 12;
   size_t y_center_pos = SCREEN_HEIGHT - 80;
 
-  Text level(renderer, "1", 14, white, 50, y_center_pos);
-  Text points(renderer, std::to_string(player.get_points()), font_size, white,
-              170, y_center_pos);
-  Text lives(renderer, std::to_string(player.get_lives()), font_size, white,
-             320, y_center_pos);
-  Text health(renderer, std::to_string(player.get_health()), font_size, white,
-              500, y_center_pos);
-  Text bullets(renderer, std::to_string(player.get_bullets()), font_size, white,
-               640, y_center_pos);
+  Text level(renderer, "1", font_size, font, white, 50, y_center_pos);
+  Text points(renderer, std::to_string(player.get_points()), font_size, font,
+              white, 170, y_center_pos);
+  Text lives(renderer, std::to_string(player.get_lives()), font_size, font,
+             white, 320, y_center_pos);
+  Text health(renderer, std::to_string(player.get_health()), font_size, font,
+              white, 500, y_center_pos);
+  Text bullets(renderer, std::to_string(player.get_bullets()), font_size, font,
+               white, 640, y_center_pos);
 
   std::string gun_image_path;
   switch (player.get_gun()) {
