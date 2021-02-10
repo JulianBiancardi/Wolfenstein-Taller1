@@ -15,8 +15,8 @@ class Texture {
   /*Constructor for images*/
   Texture(SDL_Renderer* renderer, const std::string& image);
   /*Constructor for text*/
-  Texture(SDL_Renderer* renderer, const std::string& text, size_t size,
-          TTF_Font* font, SDL_Color& color);
+  Texture(SDL_Renderer* renderer, const std::string& text, TTF_Font* font,
+          SDL_Color& color);
 
   ~Texture();
 

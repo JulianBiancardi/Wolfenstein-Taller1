@@ -17,8 +17,8 @@ class Text {
   size_t y_pos;
 
  public:
-  Text(SDL_Renderer* renderer, const std::string& text, size_t size,
-       TTF_Font* font, SDL_Color& color, size_t x, size_t y);
+  Text(SDL_Renderer* renderer, const std::string& text, TTF_Font* font,
+       SDL_Color& color, size_t x, size_t y);
   ~Text();
 };
 

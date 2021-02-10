@@ -10,9 +10,9 @@ Texture::Texture(SDL_Renderer* renderer, const std::string& image)
   }
 }
 
-Texture::Texture(SDL_Renderer* renderer, const std::string& text, size_t size,
+Texture::Texture(SDL_Renderer* renderer, const std::string& text,
                  TTF_Font* font, SDL_Color& color)
-    : surface(text, size, font, color) {
+    : surface(text, font, color) {
   texture = SDL_CreateTextureFromSurface(renderer, surface.get_surface());
   if (texture == NULL) {
     throw SDLError("SDLError: failed to create texture - %s\n", SDL_GetError());

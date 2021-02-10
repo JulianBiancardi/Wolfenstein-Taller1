@@ -15,8 +15,7 @@ class Surface {
   /*Constructor for images*/
   Surface(const std::string& file);
   /*Constructor for text*/
-  Surface(const std::string& text, size_t size, TTF_Font* font,
-          SDL_Color& color);
+  Surface(const std::string& text, TTF_Font* font, SDL_Color& color);
   ~Surface();
 
   size_t get_width() const;

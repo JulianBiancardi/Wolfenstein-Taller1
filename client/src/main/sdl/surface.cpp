@@ -17,8 +17,10 @@ Surface::Surface(const std::string& file) {
   }
 }
 
-Surface::Surface(const std::string& text, size_t size, TTF_Font* font,
-                 SDL_Color& color) {
+Surface::Surface(const std::string& text, TTF_Font* font, SDL_Color& color) {
+  if (font == nullptr) {
+    throw SDLError("SDLError: failed to load font - %s\n", SDL_GetError());
+  }
   surface = TTF_RenderText_Solid(font, text.c_str(), color);
   if (surface == nullptr) {
     throw SDLError("SDLError: failed to load text - %s\n", SDL_GetError());
