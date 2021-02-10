@@ -37,7 +37,7 @@ Game::Game(Server& server, Match& match)
     : player_id(server.get_id()),
       match_id(match.get_match_id()),
       server(server),
-      window(GAME_NAME, SCREEN_WIDTH, SCREEN_HEIGHT),
+      window(GAME_NAME, SCREEN_WIDTH, SCREEN_HEIGHT, false),
       map(match.get_map_name()),
       caster(window, map, player_id),
       is_running(false),

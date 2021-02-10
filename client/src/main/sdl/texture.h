@@ -11,7 +11,7 @@ class Texture {
   Surface surface;
 
  public:
-  Texture(SDL_Renderer* renderer, std::string& file);
+  Texture(SDL_Renderer* renderer, const std::string& file);
   ~Texture();
 
   size_t get_width();

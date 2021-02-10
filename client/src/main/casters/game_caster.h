@@ -5,6 +5,7 @@
 
 #include "../../../../common/src/main/utils/ray.h"
 #include "../casting/collision.h"
+#include "../hud/hud.h"
 #include "../map.h"
 #include "../resource_manager.h"
 #include "../sdl/window.h"
@@ -16,6 +17,7 @@ class GameCaster {
   Window& window;
   ResourceManager res_manager;
   unsigned int player_id;
+  Hud hud;
 
   void draw_background();
 

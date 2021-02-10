@@ -41,6 +41,7 @@ FILE(GLOB ClientFiles
   src/main/casters/*.cpp
   src/main/casting/*.cpp
   src/main/guns/*.cpp
+  src/main/hud/*.cpp
   src/main/packet_handlers/*.cpp
   src/main/sdl/*.cpp
   src/main/threads/*.cpp
@@ -84,6 +85,8 @@ target_link_libraries(
   client
   PRIVATE
   SDL2
+  SDL2_image
+  SDL2_ttf
   SDL2_mixer
   dl
   Qt5::Widgets

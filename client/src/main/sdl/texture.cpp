@@ -2,7 +2,8 @@
 
 #include "sdl_error.h"
 
-Texture::Texture(SDL_Renderer* renderer, std::string& file) : surface(file) {
+Texture::Texture(SDL_Renderer* renderer, const std::string& file)
+    : surface(file) {
   texture = SDL_CreateTextureFromSurface(renderer, surface.get_surface());
   if (texture == NULL) {
     throw SDLError("SDLError: failed to create texture - %s\n", SDL_GetError());
