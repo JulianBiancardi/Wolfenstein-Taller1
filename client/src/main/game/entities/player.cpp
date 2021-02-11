@@ -10,7 +10,7 @@
 #include "../guns/knife.h"
 #include "../guns/machine_gun.h"
 #include "../guns/pistol.h"
-#include "../guns/rocket_launcher.h"
+#include "../guns/rocket_launcher/rocket_launcher.h"
 
 Player::Player(Ray position, unsigned int player_id)
     : guns_bag(), Object(GUARD, position, player_id) {
@@ -142,7 +142,7 @@ void Player::rotate(unsigned char direction) {
 Hit Player::trigger_gun(
     BaseMap& map, const std::vector<std::shared_ptr<Object>>& map_objects) {
   return std::move(
-      guns_bag.at(active_gun)->trigger(*this, bullets, map, map_objects));
+      guns_bag[active_gun]->trigger(*this, bullets, map, map_objects));
 }
 
 void Player::untrigger_gun() { guns_bag[active_gun]->untrigger(); }
@@ -202,8 +202,8 @@ void Player::add_gun(unsigned int gun_id) {
       break;
     }
     case ROCKET_LAUNCHER_ID: {
-      // std::shared_ptr<Gun> rocket_launcher(new RocketLauncher());
-      // guns_bag.insert(std::make_pair(5, std::move(rocket_launcher)));
+      std::shared_ptr<Gun> rocket_launcher(new RocketLauncher());
+      guns_bag.insert(std::make_pair(ROCKET_LAUNCHER_ID,std::move(rocket_launcher)));
       break;
     }
     default:;

@@ -1,6 +1,7 @@
 #include "map.h"
 
 #include "map_loader.h"
+#include "guns/rocket_launcher/rocket.h"
 
 Map::Map(Matrix<int>& map_matrix) : BaseMap(map_matrix) {}
 
@@ -63,4 +64,22 @@ Hit Map::trigger_gun(unsigned int player_id) {
 
 void Map::untrigger_gun(unsigned int player_id) {
   players.at(player_id)->untrigger_gun();
+}
+
+void Map::shoot_rocket(unsigned int player_id, unsigned int rocket_id) {
+  const Point& player_position = players.at(player_id)->get_position();
+  double angle = players.at(player_id)->get_angle();
+
+  double front_x = player_position.getX() + cos(angle) * CL::player_mask_radio;
+  double front_y = player_position.getY() - sin(angle) * CL::player_mask_radio;
+
+  const Point spawn_point(front_x, front_y);
+
+  std::shared_ptr<Rocket> rocket(new Rocket(spawn_point, angle, rocket_id));
+  objects.insert(std::make_pair(rocket_id, std::move(rocket)));
+  objects_and_players.push_back(objects.at(rocket_id));
+}
+
+void Map::move_rocket(unsigned int rocket_id) {
+  ((Rocket*) (objects.at(rocket_id).get()))->move();
 }

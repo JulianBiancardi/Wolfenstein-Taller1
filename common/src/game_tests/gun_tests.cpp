@@ -12,7 +12,7 @@
 #include "gun_tests.h"
 #include "../../../client/src/main/guns/knife.h"
 #include "../../../client/src/main/guns/pistol.h"
-#include "../../../client/src/main/guns/rocket_launcher.h"
+#include "../../../client/src/main/guns/rocket_launcher/rocket_launcher.h"
 #include "../../../client/src/main/guns/chain_cannon.h"
 #include <unordered_map>
 /*
