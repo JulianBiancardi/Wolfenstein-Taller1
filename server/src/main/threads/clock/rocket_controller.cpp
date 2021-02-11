@@ -13,8 +13,7 @@ RocketController::~RocketController() {}
 
 void RocketController::execute() {
   unsigned char data[ROCKET_MOVE_SIZE];
-  size_t size = pack(data, "CICI", ROCKET_MOVE, &rocket_id, &match_id,
-                     &player_id);
+  size_t size = pack(data, "CICI", ROCKET_MOVE, rocket_id, match_id, player_id);
   Packet packet(size, data);
 
   reception_queue.enqueue(packet);

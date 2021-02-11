@@ -1,10 +1,12 @@
 #include "client.h"
 
 #include <QtWidgets/QApplication>
+#include <exception>
 
 #include "../../../common/src/main/config_loader.h"
-#include "game.h"
+#include "game/game.h"
 #include "launcher/include/mainwindow.h"
+#include "launcher/include/match.h"
 #include "server.h"
 
 Client::Client() {}

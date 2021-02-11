@@ -17,7 +17,7 @@
 #include "../main/guns/chain_cannon.h"
 #include "../main/guns/knife.h"
 #include "../main/guns/pistol.h"
-#include "../main/guns/rocket_launcher.h"
+#include "../main/guns/rocket_launcher/rocket_launcher.h"
 #include "gun_tests.h"
 /*
 #include "../../../server/src/main/game/collision_checker.h"
@@ -37,7 +37,7 @@ int static chain_cannon_shoot_get_player_bullets_amount();
 int static chain_cannon_shoot_player2_get_shot();
 
 // TODO Wrong place?
-void fill_data(Matrix<int> &map_data) {
+void fill_data(Matrix<int>& map_data) {
   for (int j = 0; j < map_data.get_rows(); j++) {
     for (int i = 0; i < map_data.get_columns(); i++) {
       if ((j == map_data.get_rows() - 1) || (j == 0) ||
@@ -156,7 +156,7 @@ int static chain_cannon_shoot_get_player_bullets_amount() {
   Player player2(5, 0, 0, 2, chain_cannon);
   // player1.shoot_player(player2, chain_cannon);
   if (player1.has_bullets(CL::player_bullets -
-                          CL::chain_cannon_bullet_required))
+      CL::chain_cannon_bullet_required))
     return NO_ERROR;
   return ERROR;
 }
@@ -172,9 +172,9 @@ int static chain_cannon_shoot_player2_get_shot() {
   std::unordered_map<int, Player> players;
   players.insert({1, player1});
   players.insert({2, player2});
-  std::vector<Object *> objects;
+  std::vector<Object*> objects;
 
-  std::unordered_map<int, Item *> items;
+  std::unordered_map<int, Item*> items;
   CollisionChecker checker(game_map, players, items, objects);
 
   // player1.shoot_player(player2, chain_cannon);
@@ -186,17 +186,17 @@ int static chain_cannon_shoot_player2_get_shot() {
 }
 * /
 
-    /*
-    int static machine_gun_shoot_player2_get_shot() {
-      MachineGun machine_gun;
-      Matrix<int> map_data(640, 640, 0);
-      fill_data(map_data);
-      Map game_map(map_data);
-      Player player1( 0, 0, 0, game_map);
-      Player player2( 5, 0, 0, game_map);
-      player1.shoot(player2, machine_gun);
-      if (player1.has_bullets(CL::player_bullets-
-          CL::machine_gun_bullet_required)) return NO_ERROR;
-      return ERROR;
-    }
-    */
+/*
+int static machine_gun_shoot_player2_get_shot() {
+  MachineGun machine_gun;
+  Matrix<int> map_data(640, 640, 0);
+  fill_data(map_data);
+  Map game_map(map_data);
+  Player player1( 0, 0, 0, game_map);
+  Player player2( 5, 0, 0, game_map);
+  player1.shoot(player2, machine_gun);
+  if (player1.has_bullets(CL::player_bullets-
+      CL::machine_gun_bullet_required)) return NO_ERROR;
+  return ERROR;
+}
+*/

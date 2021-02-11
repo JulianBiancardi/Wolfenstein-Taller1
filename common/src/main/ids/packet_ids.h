@@ -66,6 +66,16 @@
 #define GRAB 13
 #define GRAB_SIZE 5
 
+#define ROCKET_ADD 14
+#define ROCKET_ADD_SIZE 5
+
+#define ROCKET_MOVE 15
+#define ROCKET_MOVE_SIZE 6
+
+#define ROCKET_EXPLODE 16
+#define ROCKET_EXPLODE_MAX_PLAYERS 5
+#define ROCKET_EXPLODE_SIZE 3 + ROCKET_EXPLODE_MAX_PLAYERS * 3
+
 //==============================
 
 #define DOOR_INTERACTION 12
@@ -73,15 +83,6 @@
 
 #define CLOSE_DOOR 13
 #define CLOSE_DOOR_SIZE 5
-
-#define ROCKET_ADD 14
-#define ROCKET_ADD_SIZE 5
-
-#define ROCKET_MOVE 15
-#define ROCKET_MOVE_SIZE 4
-
-#define ROCKET_EXPLODE 16
-#define ROCKET_EXPLODE_SIZE 18
 
 #define GAME_OVER 17
 #define GAME_OVER_SIZE 2
