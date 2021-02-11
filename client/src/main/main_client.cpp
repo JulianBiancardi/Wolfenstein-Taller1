@@ -1,6 +1,8 @@
 #include <syslog.h>
 
+#include <cstdlib>
 #include <exception>
+#include <iostream>  // TODO DElete
 
 #include "client.h"
 int main(int argc, char** argv) {

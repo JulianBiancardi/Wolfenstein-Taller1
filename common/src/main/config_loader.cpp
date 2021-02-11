@@ -10,6 +10,7 @@ std::string CL::sv_port = CL::yaml_file["sv_port"].as<std::string>();
 
 int CL::screen_width = CL::yaml_file["screen_width"].as<int>();
 int CL::screen_height = CL::yaml_file["screen_height"].as<int>();
+int CL::fps = CL::yaml_file["fps"].as<int>();
 
 // Player
 int CL::player_health = CL::yaml_file["player_health"].as<int>();

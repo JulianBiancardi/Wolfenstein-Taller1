@@ -38,14 +38,11 @@ FILE(GLOB QtViewFiles
 
 FILE(GLOB ClientFiles
   src/main/*.cpp
-  src/main/casters/*.cpp
-  src/main/casting/*.cpp
-  src/main/guns/*.cpp
-  src/main/guns/*/*.cpp
+  
+  src/main/game/*.cpp
+  src/main/game/*/*.cpp
+  src/main/game/*/*/*.cpp
   src/main/hud/*.cpp
-  src/main/packet_handlers/*.cpp
-  src/main/sdl/*.cpp
-  src/main/threads/*.cpp
 )
 
 FILE(GLOB ClientTestsFiles

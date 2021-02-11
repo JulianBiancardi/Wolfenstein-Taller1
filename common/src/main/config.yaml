@@ -2,7 +2,8 @@
 sv_host: 'localhost'
 sv_port: '8080'
 
-# Window Options
+# Rendering Options
+fps: 30
 screen_width: 320
 screen_height: 640
 
