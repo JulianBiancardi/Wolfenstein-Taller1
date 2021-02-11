@@ -18,6 +18,7 @@ ChainCannon::ChainCannon()
       distribution(1, CL::bullet_max_dmg),
       spray(CL::chain_cannon_spray, CL::chain_cannon_std_dev),
       Gun(0, CL::chain_cannon_range),
+      last_shot_time(0),
       triggered(false) {}
 
 Hit ChainCannon::shoot(Object& player, int& current_bullets, BaseMap& map,

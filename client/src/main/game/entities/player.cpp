@@ -135,7 +135,7 @@ void Player::rotate(unsigned char direction) {
 Hit Player::trigger_gun(
     BaseMap& map, const std::vector<std::shared_ptr<Object>>& map_objects) {
   return std::move(
-      guns_bag[active_gun]->trigger(*this, bullets, map, map_objects));
+      guns_bag.at(active_gun)->trigger(*this, bullets, map, map_objects));
 }
 
 void Player::untrigger_gun() { guns_bag[active_gun]->untrigger(); }

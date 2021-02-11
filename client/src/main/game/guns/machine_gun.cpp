@@ -17,6 +17,7 @@ MachineGun::MachineGun()
       distribution(1, CL::bullet_max_dmg),
       spray(CL::machine_gun_spray, CL::machine_gun_std_dev),
       Gun(0, CL::machine_gun_range),
+      last_shot_time(0),
       triggered(false) {}
 
 Hit MachineGun::shoot(Object& player, int& current_bullets, BaseMap& map,

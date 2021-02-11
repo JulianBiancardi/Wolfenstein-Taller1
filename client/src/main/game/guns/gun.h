@@ -16,7 +16,7 @@ class Gun {
                     const std::vector<std::shared_ptr<Object>>& objects) = 0;
 
  public:
-  Gun(double min_range, double max_range);
+  explicit Gun(double min_range, double max_range);
   ~Gun();
   virtual Hit trigger(Object& player, int& current_bullets, BaseMap& map,
                       const std::vector<std::shared_ptr<Object>>& objects) = 0;
