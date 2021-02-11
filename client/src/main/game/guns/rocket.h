@@ -1,7 +1,7 @@
 #ifndef ROCKET_H
 #define ROCKET_H
 
-#include "../../object.h"
+#include "../entities/object.h"
 
 class Rocket : public Object {
  public:

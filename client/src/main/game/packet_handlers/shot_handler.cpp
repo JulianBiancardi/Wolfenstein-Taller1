@@ -25,9 +25,7 @@ void ShotHandler::handle(Packet &packet, Map &map, GameSound &sound) {
   }
 
   map.use_bullets(player_id, gun_id);
-  printf("Bullets: %u\n", map.get_player(player_id).get_bullets());
   if (objective_id != 0) {
     map.shoot_player(objective_id, damage);
-    printf("Health: %u\n", map.get_player(objective_id).get_health());
   }
 }

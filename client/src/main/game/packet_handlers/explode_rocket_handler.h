@@ -2,7 +2,7 @@
 #define EXPLODE_ROCKET_HANDLER_H
 
 #include "../../../../common/src/main/packets/packet.h"
-#include "../map.h"
+#include "../map/map.h"
 #include "packet_handler.h"
 
 class ExplodeRocketHandler : public PacketHandler {
