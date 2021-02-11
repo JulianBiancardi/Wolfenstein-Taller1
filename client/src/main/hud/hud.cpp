@@ -34,8 +34,8 @@ void Hud::update(const Player& player) const {
               y_center_pos);
   Text lives(renderer, std::to_string(player.get_lives()), font, white, 320,
              y_center_pos);
-  Text health(renderer, std::to_string(player.get_health()), font, white, 500,
-              y_center_pos);
+  Text health(renderer, std::to_string(player.get_percentage_health()), font,
+              white, 500, y_center_pos);
   Text bullets(renderer, std::to_string(player.get_bullets()), font, white, 640,
                y_center_pos);
 

@@ -63,9 +63,9 @@ void MainWindow::_add_matches() {
 }
 
 void MainWindow::_add_maps() {
-  std::list<std::string> maps = launcher.get_maps_names();
+  std::list<MapOption> maps = launcher.get_maps();
 
-  std::list<std::string>::iterator it;
+  std::list<MapOption>::iterator it;
   for (it = maps.begin(); it != maps.end(); ++it) {
     MapView* map_view = new MapView(nullptr, *it, map_selected);
     ui.mapsLayout->addWidget(map_view);

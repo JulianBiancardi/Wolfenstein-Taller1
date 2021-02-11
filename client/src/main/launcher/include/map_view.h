@@ -3,7 +3,10 @@
 
 #include <QtWidgets/QWidget>
 
+#include "map_option.h"
 #include "ui_map_view.h"
+
+static MapOption map_default;
 
 static std::string default_map_selected;
 
@@ -15,7 +18,7 @@ class MapView : public QWidget {
   std::string& map_selected;
 
  public:
-  MapView(QWidget* parent = nullptr, const std::string& map_name = "",
+  MapView(QWidget* parent = nullptr, const MapOption& map = map_default,
           std::string& map_selected = default_map_selected);
 
   void handleSelectedEvent(QMouseEvent* event);

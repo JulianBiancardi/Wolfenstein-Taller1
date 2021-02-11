@@ -6,12 +6,14 @@
 #include "../../../../common/src/main/packets/packing.h"
 #include "iostream"
 #include "launcher_error.h"
+#include "yaml-cpp/yaml.h"
 
 #define DIR_MAPS_NAMES "../../res/maps"
+#define BASH "../../res/maps/"
 #define YAML_EXTENSION ".yaml"
 #define MAP_NAME_MAX_SIZE 64  // TODO Move somewhere where it belongs
 
-Launcher::Launcher(Server* server) : server(server), maps_names(), matches() {
+Launcher::Launcher(Server* server) : server(server), maps(), matches() {
   obtain_maps_names();
   update_matches();
 }
@@ -28,11 +30,16 @@ void Launcher::obtain_maps_names() {
   while ((ent = readdir(dir)) != NULL) {
     if ((strcmp(ent->d_name, ".") != 0) && (strcmp(ent->d_name, "..") != 0)) {
       std::string name(ent->d_name);
+      YAML::Node yaml_file = YAML::LoadFile(BASH + name);
+      unsigned char max_players = yaml_file["max_players"].as<unsigned char>();
+
       size_t pos = name.find(yaml_extension);
       if (pos != std::string::npos) {
         name.erase(pos, yaml_extension.length());
       }
-      maps_names.push_back(name);
+
+      MapOption map_option(name, max_players);
+      maps.push_back(map_option);
     }
   }
   closedir(dir);
@@ -141,7 +148,6 @@ unsigned char Launcher::receive_join_match_result() {
 }
 
 std::list<Match> Launcher::get_matches() const { return matches; }
-
-std::list<std::string> Launcher::get_maps_names() const { return maps_names; }
+std::list<MapOption> Launcher::get_maps() const { return maps; }
 
 Launcher::~Launcher() {}
