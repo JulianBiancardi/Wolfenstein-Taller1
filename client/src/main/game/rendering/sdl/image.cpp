@@ -3,9 +3,10 @@
 #include "sdl_error.h"
 
 Image::Image(SDL_Renderer* renderer, const std::string& file)
-    : renderer(renderer), texture(renderer, file) {
-  SDL_QueryTexture(texture.get_texture(), nullptr, nullptr, &width, &height);
-}
+    : renderer(renderer),
+      texture(renderer, file),
+      width(texture.get_width()),
+      height(texture.get_height()) {}
 
 Image::~Image() {}
 
