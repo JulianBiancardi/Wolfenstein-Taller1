@@ -2,6 +2,7 @@
 #define WINDOW_H
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 
 #include <string>
 
@@ -10,12 +11,13 @@
 class Window {
  private:
   SDL_Window* window = nullptr;
+  SDL_Surface* window_icon = nullptr;
   SDL_Renderer* renderer = nullptr;
   int width = 320;
   int height = 320;
 
  public:
-  Window(const std::string& title, int width, int height);
+  Window(const std::string& title, int width, int height, bool fullscreen);
 
   Window(const Window&) = delete;              // No copy constructor
   Window& operator=(const Window&) = delete;   // No copy constructor

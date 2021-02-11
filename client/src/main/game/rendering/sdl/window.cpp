@@ -5,9 +5,14 @@
 #define ERROR -1
 #define NO_ERROR 0
 
-Window::Window(const std::string& title, int width, int height)
+Window::Window(const std::string& title, int width, int height, bool fullscreen)
     : width(width), height(height) {
-  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+  if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
+    throw SDLError("SDLError: failed to initialize - %s\n", SDL_GetError());
+  }
+
+  /* Iniciamos el sistema de TTF */
+  if (TTF_Init() == -1) {
     throw SDLError("SDLError: failed to initialize - %s\n", SDL_GetError());
   }
 
@@ -17,6 +22,13 @@ Window::Window(const std::string& title, int width, int height)
                    SDL_GetError());
   }
   SDL_SetWindowTitle(this->window, title.c_str());
+
+  // TODO load the window icon
+  SDL_SetWindowIcon(window, window_icon);
+
+  if (fullscreen) {
+    SDL_SetWindowFullscreen(window, SDL_TRUE);
+  }
 }
 
 Window::~Window() {

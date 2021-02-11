@@ -15,9 +15,10 @@ class Gun;
 
 class Player : public Object {
  private:
+  int lives;
   int health;
   int bullets;
-  int score;
+  int points;
   int keys;
   std::unordered_map<int, std::shared_ptr<Gun>> guns_bag;
   int active_gun;
@@ -34,6 +35,17 @@ class Player : public Object {
 
   ~Player();
 
+  /* Returns the amount of lives owned by the player. */
+  int get_lives() const;
+  /* Returns the health of the player. */
+  int get_health() const;
+  /* Gets the active gun of the player. */
+  int get_gun() const;
+  /* Returns the amount of bullets owned by the player. */
+  int get_bullets() const;
+  /* Returns the amount of points owned by the player. */
+  int get_points() const;
+
   void move(unsigned char direction);
   void rotate(unsigned char direction);
 
@@ -46,19 +58,11 @@ class Player : public Object {
   /* Sets the gun of the player, changing its res_id */
   void set_gun(int gun_num);
 
-  /* Gets the active gun of the player. */
-  int get_gun() const;
-
-  /* Returns the health of the player. */
-  int get_health() const;
   /* Sets the player health to the given amount. */
   void set_health(int health);
 
   // TODO Remove this. It isn't used anywhere other than tests.
   bool has_bullets(int bullets);
-
-  /* Returns the amount of bullets owned by the player. */
-  int get_bullets() const;
 
   /* Decreases the amount of bullets owned by the player. */
   void decrease_bullets(unsigned char gun_id);

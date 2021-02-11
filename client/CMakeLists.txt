@@ -42,6 +42,7 @@ FILE(GLOB ClientFiles
   src/main/game/*.cpp
   src/main/game/*/*.cpp
   src/main/game/*/*/*.cpp
+  src/main/hud/*.cpp
 )
 
 FILE(GLOB ClientTestsFiles
@@ -82,6 +83,8 @@ target_link_libraries(
   client
   PRIVATE
   SDL2
+  SDL2_image
+  SDL2_ttf
   SDL2_mixer
   dl
   Qt5::Widgets

@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 
-#include "../../../../../common/src/main/utils/ray.h"
+#include "../hud/hud.h"
 #include "../map/map.h"
 #include "collision.h"
 #include "resource_manager.h"
@@ -16,6 +16,7 @@ class GameCaster {
   Window& window;
   ResourceManager res_manager;
   unsigned int player_id;
+  Hud hud;
 
   void draw_background();
 

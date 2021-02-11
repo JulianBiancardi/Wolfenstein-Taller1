@@ -32,7 +32,8 @@ GameCaster::GameCaster(Window& window, Map& map, unsigned int player_id)
       map(map),
       window(window),
       res_manager(window),
-      player_id(player_id) {}
+      player_id(player_id),
+      hud(renderer) {}
 
 GameCaster::~GameCaster() {}
 
@@ -40,6 +41,7 @@ void GameCaster::operator()() {
   draw_background();
   std::vector<double> wall_distances = draw_walls();
   draw_objects(wall_distances);
+  hud.update(map.get_player(player_id));
   window.update();
 }
 

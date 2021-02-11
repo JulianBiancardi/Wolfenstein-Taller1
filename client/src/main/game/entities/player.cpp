@@ -14,9 +14,10 @@
 
 Player::Player(Ray position, unsigned int player_id)
     : guns_bag(), Object(GUARD, position, player_id) {
+  lives = CL::player_lives;
   health = CL::player_health;
   bullets = CL::player_bullets;
-  score = 0;
+  points = 0;
   keys = 0;
   std::shared_ptr<Gun> knife(new Knife());
   std::shared_ptr<Gun> pistol(new Pistol());
@@ -81,6 +82,12 @@ Player& Player::operator=(Player&& other) {
 
 Player::~Player() {}
 
+int Player::get_lives() const { return lives; }
+int Player::get_health() const { return health; }
+int Player::get_gun() const { return active_gun; }
+int Player::get_bullets() const { return bullets; }
+int Player::get_points() const { return points; }
+
 void Player::move(unsigned char direction) {
   double movement_angle = position.get_angle();
   switch (direction) {
@@ -140,8 +147,6 @@ Hit Player::trigger_gun(
 
 void Player::untrigger_gun() { guns_bag[active_gun]->untrigger(); }
 
-int Player::get_gun() const { return active_gun; }
-
 void Player::set_gun(int gun_num) {
   if (guns_bag.find(gun_num) != guns_bag.end()) {
     active_gun = gun_num;
@@ -150,11 +155,7 @@ void Player::set_gun(int gun_num) {
 
 void Player::set_health(int health) { this->health = health; }
 
-int Player::get_health() const { return this->health; }
-
 bool Player::has_bullets(int amount) { return (bullets >= amount); }
-
-int Player::get_bullets() const { return bullets; }
 
 void Player::decrease_bullets(unsigned char gun_id) {
   switch (gun_id) {
@@ -226,16 +227,16 @@ void Player::add_item(unsigned int item_id) {
       bullets = std::min(CL::player_max_bullets, bullets + CL::bullets_amount);
       break;
     case CROSS:
-      score += CL::crosses_points;
+      points += CL::crosses_points;
       break;
     case CUP:
-      score += CL::cup_points;
+      points += CL::cup_points;
       break;
     case CHEST:
-      score += CL::chests_points;
+      points += CL::chests_points;
       break;
     case CROWN:
-      score += CL::crown_points;
+      points += CL::crown_points;
       break;
     case KEY:
       keys += 1;
