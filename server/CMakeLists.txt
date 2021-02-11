@@ -27,6 +27,7 @@ FILE(GLOB ServerFiles
         src/main/threads/*.cpp
         src/main/threads/*/*.cpp
         src/main/packet_handlers/*.cpp
+        src/main/packet_handlers/assistants/*.cpp
 
         src/main/bot/*.cpp ##
         src/main/map.cpp # Should be everything different from main_server.cpp

@@ -12,6 +12,7 @@ class PlayerState : public Updateable {
   ~PlayerState();
 
   void update();
+  void move();
 };
 
 #endif

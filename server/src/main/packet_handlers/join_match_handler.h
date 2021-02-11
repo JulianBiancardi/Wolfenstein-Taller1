@@ -3,16 +3,18 @@
 
 #include "../../../../common/src/main/packets/packet.h"
 #include "../managers/client_manager.h"
+#include "../managers/match.h"
 #include "../managers/match_manager.h"
 #include "packet_handler.h"
 
 class JoinMatchHandler : public PacketHandler {
  private:
-  void notify_spawn(unsigned int player_id, unsigned char match_id,
-                    ClientManager& client_manager, MatchManager& match_manager);
-  void notify_all_spawns(unsigned int player_id, unsigned char match_id,
-                         ClientManager& client_manager,
-                         MatchManager& match_manager);
+  void notify_spawn(unsigned int player_id, Match& match,
+                    ClientManager& client_manager);
+  void notify_all_spawns(unsigned int player_id, Match& match,
+                         ClientManager& client_manager);
+  void notify_items(unsigned int player_id, Match& match,
+                    ClientManager& client_manager);
 
  public:
   JoinMatchHandler();

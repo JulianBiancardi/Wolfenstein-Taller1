@@ -6,4 +6,4 @@ PlayerState::~PlayerState() {}
 
 void PlayerState::update() {}
 
-void move() {}
+void PlayerState::move() {}

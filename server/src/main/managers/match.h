@@ -52,6 +52,12 @@ class Match {
   /* Returns a reference to the players */
   const std::unordered_map<unsigned int, Player>& get_players() const;
 
+  /* Returns a reference to the items */
+  const std::unordered_map<unsigned int, Item*>& get_items() const;
+
+  /* Returns a reference to the objects */
+  const std::unordered_map<unsigned int, Object*>& get_objects() const;
+
   /* Returns the match_id */
   unsigned char get_id() const;
 
@@ -100,8 +106,8 @@ class Match {
   bool move_rocket(unsigned int rocket_id);
 
   /* Explodes the rocket and returns players damage and the damage made */
-  std::unordered_map<unsigned int, unsigned char>
-  explode_rocket(unsigned int rocket_id, unsigned int owner_id);
+  std::unordered_map<unsigned int, unsigned char> explode_rocket(
+      unsigned int rocket_id, unsigned int owner_id);
 
   /* Kill a player and respawn him */
   void kill_player(unsigned int player_id);

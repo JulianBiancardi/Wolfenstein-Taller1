@@ -63,16 +63,21 @@
 #define CHANGE_GUN 12
 #define CHANGE_GUN_SIZE 5
 
+// Used to grab items on the client
 #define GRAB 13
 #define GRAB_SIZE 5
 
-#define ROCKET_ADD 14
+// Used to add items on the client
+#define ADD_ITEM 14
+#define ADD_ITEM_SIZE 5
+
+#define ROCKET_ADD 15
 #define ROCKET_ADD_SIZE 5
 
-#define ROCKET_MOVE 15
+#define ROCKET_MOVE 16
 #define ROCKET_MOVE_SIZE 6
 
-#define ROCKET_EXPLODE 16
+#define ROCKET_EXPLODE 17
 #define ROCKET_EXPLODE_MAX_PLAYERS 5
 #define ROCKET_EXPLODE_SIZE 3 + ROCKET_EXPLODE_MAX_PLAYERS * 3
 

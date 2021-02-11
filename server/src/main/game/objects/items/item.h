@@ -1,6 +1,8 @@
 #ifndef ITEMS_H
 #define ITEMS_H
 
+#include "../../../../../../common/src/main/packets/packet.h"
+#include "../../../../../../common/src/main/packets/packing.h"
 #include "../../player.h"
 #include "../object.h"
 
@@ -20,6 +22,9 @@ class Item : public Object {
 
   /* Returns a copy of the element */
   virtual Item* copy() = 0;  // Deep copying
+
+  /* Returns an add_item packet */
+  virtual Packet get_add_item_packet() = 0;
 };
 
 #endif
