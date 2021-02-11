@@ -10,10 +10,12 @@
 #include "../guns/gun.h"
 #include "../guns/hit.h"
 #include "object.h"
+#include "player_state.h"
+#include "updateable.h"
 
 class Gun;
 
-class Player : public Object {
+class Player : public Object, public Updateable {
  private:
   int lives;
   int health;
@@ -22,6 +24,8 @@ class Player : public Object {
   int keys;
   std::unordered_map<int, std::shared_ptr<Gun>> guns_bag;
   int active_gun;
+
+  PlayerState state;
 
   // TODO Make copyable since it is stored in STD Containers
  public:
@@ -78,6 +82,9 @@ class Player : public Object {
 
   /* Unpulls the trigger of the player's gun. */
   void untrigger_gun();
+
+  /* Updates its state */
+  void update();
 };
 
 #endif

@@ -79,7 +79,7 @@
 22:
   type: 2
   name: "Guard"
-  image: "../../res/images/guard/guard_state_1.bmp"
+  image: "../../res/images/enemies/guard/guard_static_1.bmp"
   icon: "../resources/images/enemies/IMG_Guard.png"
 23:
   type: 2
@@ -114,13 +114,13 @@
 32:
   type: 3
   name: "Maching Gun"
-  image: "../../res/images/guns/machine_gun_item.bmp"
+  image: "../../res/images/items/guns/machine_gun.bmp"
   icon: "../resources/images/weapons/IMG_Machingun.png"
   sound: "..."
 33:
   type: 3
   name: "Chain Gun"
-  image: "../../res/images/guns/chain_cannon_item.bmp"
+  image: "../../res/images/items/guns/chain_cannon.bmp"
   icon: "../resources/images/weapons/IMG_Chaingun.png"
   sound: "..."
 34:

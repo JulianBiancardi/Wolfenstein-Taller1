@@ -1,6 +1,6 @@
 #include "explode_rocket_handler.h"
 
-#include "../../../../common/src/main/packets/packing.h"
+#include "../../../../../common/src/main/packets/packing.h"
 
 ExplodeRocketHandler::ExplodeRocketHandler() = default;
 

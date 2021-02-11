@@ -1,7 +1,7 @@
 #ifndef ROCKET_LAUNCHER_H
 #define ROCKET_LAUNCHER_H
 
-#include "../gun.h"
+#include "gun.h"
 
 class RocketLauncher : public Gun {
  private:

@@ -10,7 +10,7 @@
 #include "../guns/knife.h"
 #include "../guns/machine_gun.h"
 #include "../guns/pistol.h"
-#include "../guns/rocket_launcher/rocket_launcher.h"
+#include "../guns/rocket_launcher.h"
 
 Player::Player(Ray position, unsigned int player_id)
     : guns_bag(), Object(GUARD, position, player_id) {
@@ -25,60 +25,6 @@ Player::Player(Ray position, unsigned int player_id)
   guns_bag.insert(std::make_pair(PISTOL_ID, std::move(pistol)));
   active_gun = 2;
 }
-
-/*
-Player::Player(const Player& other) : Object(other) {
-  this->pace = other.pace;
-  this->health = other.health;
-  this->bullets = other.bullets;
-  this->guns_bag = other.guns_bag;
-  this->active_gun = other.active_gun;
-}
-Player& Player::operator=(const Player& other) {
-  if (this != &other) {
-    Object::operator=(other);
-    this->pace = other.pace;
-    this->health = other.health;
-    this->bullets = other.bullets;
-    this->guns_bag = other.guns_bag;
-    this->active_gun = other.active_gun;
-  }
-
-  return *this;
-}
-
-Player::Player(Player&& other) : Object(std::move(other)) {
-  this->pace = other.pace;
-  this->health = other.health;
-  this->bullets = other.bullets;
-  this->guns_bag = std::move(other.guns_bag);
-  this->active_gun = other.active_gun;
-
-  other.pace = 0;
-  other.health = 0;
-  other.bullets = 0;
-  other.active_gun = 0;
-}
-
-Player& Player::operator=(Player&& other) {
-  if (this == &other) {
-    return *this;
-  }
-
-  Object::operator=(std::move(other));
-  this->pace = other.pace;
-  this->health = other.health;
-  this->bullets = other.bullets;
-  this->guns_bag = std::move(other.guns_bag);
-  this->active_gun = other.active_gun;
-
-  other.pace = 0;
-  other.health = 0;
-  other.bullets = 0;
-  other.active_gun = 0;
-
-  return *this;
-}*/
 
 Player::~Player() {}
 
@@ -122,6 +68,7 @@ void Player::move(unsigned char direction) {
       position.get_origin().getY() - sin(movement_angle) * CL::player_speed;
 
   position = Ray(next_x, next_y, position.get_angle());
+  state.move();
 }
 
 void Player::rotate(unsigned char direction) {
@@ -203,7 +150,8 @@ void Player::add_gun(unsigned int gun_id) {
     }
     case ROCKET_LAUNCHER_ID: {
       std::shared_ptr<Gun> rocket_launcher(new RocketLauncher());
-      guns_bag.insert(std::make_pair(ROCKET_LAUNCHER_ID,std::move(rocket_launcher)));
+      guns_bag.insert(
+          std::make_pair(ROCKET_LAUNCHER_ID, std::move(rocket_launcher)));
       break;
     }
     default:;
@@ -243,3 +191,5 @@ void Player::add_item(unsigned int item_id) {
       break;
   }
 }
+
+void Player::update() {}

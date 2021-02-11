@@ -1,6 +1,6 @@
 #include "rocket.h"
 
-#include "../../../../common/src/main/ids/map_ids.h"
+#include "../../../../../common/src/main/ids/map_ids.h"
 
 // TODO Add res_id
 Rocket::Rocket(const Point& position, double angle, unsigned int id)
