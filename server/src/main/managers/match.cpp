@@ -73,10 +73,9 @@ bool Match::start(unsigned int player_id, BlockingQueue<Packet>& queue) {
 }
 
 bool Match::add_player(unsigned int player_id) {
-  /* TODO Once everything is done, remove this so players can't join after start
   if (started) {
     return false;
-  }*/
+  }
   if (map.add_player(player_id)) {
     players_ids.insert(player_id);
     return true;
