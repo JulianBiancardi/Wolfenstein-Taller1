@@ -1,6 +1,7 @@
 #include "hud.h"
 
-#include "../../../../common/src/main/ids/gun_ids.h"
+#include "../../../../../../common/src/main/ids/gun_ids.h"
+#include "../../../../../../common/src/main/utils/rectangle.h"
 #include "../sdl/image.h"
 #include "../sdl/text.h"
 
@@ -9,7 +10,7 @@
 #define UNIT 3
 #define SCREEN_WIDTH (320 * UNIT)
 #define SCREEN_HEIGHT (200 * UNIT)
-#define BACKGROUND_PATH "../src/main/hud/IMG_HUD_Background.png"
+#define BACKGROUND_PATH "../src/main/game/rendering/hud/IMG_HUD_Background.png"
 
 Hud::Hud(SDL_Renderer* renderer) : renderer(renderer) {
   size_t font_size = 12;
@@ -20,10 +21,11 @@ Hud::~Hud() {}
 
 void Hud::update(const Player& player) const {
   // TODO MOVE TO CONFIG
+  // TODO Move to ResourceManager since this is wasting resources
   Image background(renderer, BACKGROUND_PATH);
-  SDL_Rect rect = {0, SCREEN_HEIGHT - (background.get_height() * 3),
-                   SCREEN_WIDTH, background.get_height() * 3};
-  background.draw(&rect, nullptr);
+  Rectangle pos(SCREEN_HEIGHT - (background.get_height() * UNIT), SCREEN_HEIGHT,
+                0, SCREEN_WIDTH);
+  background.draw(pos, nullptr);
 
   SDL_Color white = {255, 255, 255};
   size_t font_size = 12;
@@ -42,23 +44,23 @@ void Hud::update(const Player& player) const {
   std::string gun_image_path;
   switch (player.get_gun()) {
     case KNIFE_ID:
-      gun_image_path = "../src/main/hud/IMG_HUD_Knife.png";
+      gun_image_path = "../src/main/game/rendering/hud/IMG_HUD_Knife.png";
       break;
     case PISTOL_ID:
-      gun_image_path = "../src/main/hud/IMG_HUD_Pistol.png";
+      gun_image_path = "../src/main/game/rendering/hud/IMG_HUD_Pistol.png";
       break;
     case CHAIN_CANNON_ID:
-      gun_image_path = "../src/main/hud/IMG_HUD_ChainCanon.png";
+      gun_image_path = "../src/main/game/rendering/hud/IMG_HUD_ChainCanon.png";
       break;
     case MACHINE_GUN_ID:
-      gun_image_path = "../src/main/hud/IMG_HUD_MachineGun.png";
+      gun_image_path = "../src/main/game/rendering/hud/IMG_HUD_MachineGun.png";
       break;
     default:
       break;
   }
 
   Image gun(renderer, gun_image_path);
-  SDL_Rect rect_gun = {760, SCREEN_HEIGHT - 100, gun.get_width() * 3,
-                       gun.get_height() * 3};
-  gun.draw(&rect_gun, nullptr);
+  Rectangle rect_gun(760, SCREEN_HEIGHT - 100, gun.get_width() * 3,
+                     gun.get_height() * 3);
+  gun.draw(rect_gun, nullptr);
 }

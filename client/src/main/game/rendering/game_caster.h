@@ -3,9 +3,9 @@
 
 #include <SDL2/SDL.h>
 
-#include "../hud/hud.h"
 #include "../map/map.h"
 #include "collision.h"
+#include "hud/hud.h"
 #include "resource_manager.h"
 #include "sdl/window.h"
 
