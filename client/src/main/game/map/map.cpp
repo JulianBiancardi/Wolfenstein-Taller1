@@ -3,14 +3,27 @@
 #include "../entities/rocket.h"
 #include "map_loader.h"
 
-Map::Map(Matrix<int>& map_matrix) : BaseMap(map_matrix) {}
+Map::Map(Matrix<int>& map_matrix)
+    : BaseMap(map_matrix),
+      objects_and_players(),
+      objects(),
+      players(),
+      loader(objects_and_players, objects, players) {}
 
-Map::Map(const std::string& map_name) : BaseMap(map_name) {
-  MapLoader loader(objects_and_players, objects, players);
-  loader.load_map(map_name);
-}
+Map::Map(const std::string& map_name)
+    : BaseMap(map_name),
+      objects_and_players(),
+      objects(),
+      players(),
+      loader(objects_and_players, objects, players) {}
 
 Map::~Map() {}
+
+void Map::add_item(unsigned int item_id, unsigned char item_type, Point pos) {
+  loader.add_item(item_id, item_type, pos);
+  printf("Items Size: %u\n", objects.size());
+  printf("All Size: %u\n", objects_and_players.size());
+}
 
 void Map::add_player(unsigned int player_id, const Ray& position) {
   std::shared_ptr<Player> player(new Player(position, player_id));

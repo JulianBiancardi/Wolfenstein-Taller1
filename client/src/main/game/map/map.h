@@ -11,6 +11,7 @@
 #include "../../../../common/src/main/utils/ray.h"
 #include "../entities/object.h"
 #include "../entities/player.h"
+#include "map_loader.h"
 
 class Map : public BaseMap {
  private:
@@ -19,6 +20,7 @@ class Map : public BaseMap {
   std::vector<std::shared_ptr<Object>> objects_and_players;
   std::unordered_map<unsigned int, std::shared_ptr<Object>> objects;
   std::unordered_map<unsigned int, std::shared_ptr<Player>> players;
+  MapLoader loader;
 
  public:
   explicit Map(Matrix<int>& map_matrix);  // TODO Delete eventually
@@ -33,6 +35,7 @@ class Map : public BaseMap {
   /* Returns a constant reference to a player given its id. */
   const Player& get_player(unsigned int player_id) const;
 
+  void add_item(unsigned int item_id, unsigned char item_type, Point pos);
   void add_player(unsigned int player_id, const Ray& position);
   void move_player(unsigned int player_id, unsigned char direction);
   void rotate_player(unsigned int player_id, unsigned char direction);

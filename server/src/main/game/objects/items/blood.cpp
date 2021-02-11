@@ -24,8 +24,8 @@ Item* Blood::copy() { return new Blood(position.get_origin(), id); }
 
 Packet Blood::get_add_item_packet() {
   unsigned char data[ADD_ITEM_SIZE];
-  size_t size =
-      pack(data, "CICC", ADD_ITEM, id, BLOOD, position.get_origin().getX(),
-           position.get_origin().getY());
+  size_t size = pack(data, "CICCC", ADD_ITEM, id, BLOOD,
+                     (int)position.get_origin().getX(),
+                     (int)position.get_origin().getY());
   return std::move(Packet(size, data));
 }

@@ -23,6 +23,7 @@ class MapLoader {
   ~MapLoader();
 
   void load_map(const std::string& map_name);
+  void add_item(unsigned int item_id, unsigned char item_type, Point pos);
 };
 
 #endif

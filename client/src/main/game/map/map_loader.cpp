@@ -16,6 +16,14 @@ MapLoader::MapLoader(
 
 MapLoader::~MapLoader() {}
 
+void MapLoader::add_item(unsigned int item_id, unsigned char item_type,
+                         Point pos) {
+  std::shared_ptr<Object> new_object(new Object(item_type, pos, 0.0, item_id));
+  objects.insert(std::make_pair(new_object->get_id(), new_object));
+  objects_and_players.push_back(new_object);
+  printf("Adding item: %u\n", item_type);
+}
+
 void MapLoader::load_map(const std::string& map_name) {
   YAML::Node yaml_file = YAML::LoadFile("../../res/maps/" + map_name + ".yaml");
 

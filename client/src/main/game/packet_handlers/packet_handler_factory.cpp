@@ -2,6 +2,7 @@
 
 #include "../../../../../common/src/main/packets/packet.h"
 #include "../../../../../common/src/main/packets/packet_handler_factory_error.h"
+#include "add_item_handler.h"
 #include "add_rocket_handler.h"
 #include "change_gun_handler.h"
 #include "explode_rocket_handler.h"
@@ -33,6 +34,8 @@ PacketHandler* PacketHandlerFactory::build(Packet& packet) {
       return new MoveRocketHandler();
     case ROCKET_EXPLODE:
       return new ExplodeRocketHandler();
+    case ADD_ITEM:
+      return new AddItemHandler();
       /*
       case DOOR_PACKET:
         return new nullptr;  // TODO

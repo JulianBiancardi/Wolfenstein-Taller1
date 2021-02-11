@@ -69,7 +69,7 @@
 
 // Used to add items on the client
 #define ADD_ITEM 14
-#define ADD_ITEM_SIZE 5
+#define ADD_ITEM_SIZE 6
 
 #define ROCKET_ADD 15
 #define ROCKET_ADD_SIZE 5

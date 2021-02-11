@@ -13,7 +13,7 @@ Item* Cup::copy() { return new Cup(position.get_origin(), id); }
 Packet Cup::get_add_item_packet() {
   unsigned char data[ADD_ITEM_SIZE];
   size_t size =
-      pack(data, "CICC", ADD_ITEM, id, CUP, position.get_origin().getX(),
-           position.get_origin().getY());
+      pack(data, "CICCC", ADD_ITEM, id, CUP, (int)position.get_origin().getX(),
+           (int)position.get_origin().getY());
   return std::move(Packet(size, data));
 }

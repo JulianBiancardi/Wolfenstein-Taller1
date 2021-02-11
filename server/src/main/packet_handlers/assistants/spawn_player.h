@@ -8,9 +8,8 @@
 
 class SpawnPlayerAssistant : public PacketHandlerAssistant {
  private:
-  /* data */
  public:
-  SpawnPlayerAssistant(/* args */);
+  SpawnPlayerAssistant();
   ~SpawnPlayerAssistant();
 
   Packet build_packet(unsigned int player_id, Match& match) override;

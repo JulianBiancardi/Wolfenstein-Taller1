@@ -17,7 +17,7 @@ Item* Key::copy() { return new Key(position.get_origin(), id); }
 Packet Key::get_add_item_packet() {
   unsigned char data[ADD_ITEM_SIZE];
   size_t size =
-      pack(data, "CICC", ADD_ITEM, id, KEY, position.get_origin().getX(),
-           position.get_origin().getY());
+      pack(data, "CICCC", ADD_ITEM, id, KEY, (int)position.get_origin().getX(),
+           (int)position.get_origin().getY());
   return std::move(Packet(size, data));
 }

@@ -141,7 +141,6 @@ void GameCaster::draw_object(Object& object, double distance,
 
   const Player& player = map.get_player(player_id);
   // TODO Optimize
-  // printf("Drawing object, type: %u\n", object.get_res_id());
   Image* image = res_manager.get_image(object.get_res_id());
   size_t img_width = image->get_width();
   size_t img_height = image->get_height();

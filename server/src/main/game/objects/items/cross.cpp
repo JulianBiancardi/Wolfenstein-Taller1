@@ -13,8 +13,8 @@ Item* Cross::copy() { return new Cross(position.get_origin(), id); }
 
 Packet Cross::get_add_item_packet() {
   unsigned char data[ADD_ITEM_SIZE];
-  size_t size =
-      pack(data, "CICC", ADD_ITEM, id, CROSS, position.get_origin().getX(),
-           position.get_origin().getY());
+  size_t size = pack(data, "CICCC", ADD_ITEM, id, CROSS,
+                     (int)position.get_origin().getX(),
+                     (int)position.get_origin().getY());
   return std::move(Packet(size, data));
 }
