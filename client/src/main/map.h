@@ -42,6 +42,12 @@ class Map : public BaseMap {
   void pick_item(unsigned int player_id, unsigned int item_id);
   Hit trigger_gun(unsigned int player_id);
   void untrigger_gun(unsigned int player_id);
+
+  /* The player sent launches a rocket, new rocket with sent id is created */
+  void shoot_rocket(unsigned int player_id, unsigned int rocket_id);
+
+  /* Moves the rocket sent */
+  void move_rocket(unsigned int rocket_id);
 };
 
 #endif

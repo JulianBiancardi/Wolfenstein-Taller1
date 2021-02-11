@@ -77,10 +77,10 @@ void Moveable::rotate(int direction) {
 Point Moveable::collision_mask_bound(const Point& next_position) {
   double angle = position.get_origin().angle_to(next_position);
 
-  double front_x =
-      next_position.getX() + cos(angle) * ((CircleMask*) mask)->get_radius();
-  double front_y =
-      next_position.getY() - sin(angle) * ((CircleMask*) mask)->get_radius();
+  double front_x = next_position.getX()
+      + cos(angle) * ((CircleMask*) mask)->get_radius();
+  double front_y = next_position.getY()
+      - sin(angle) * ((CircleMask*) mask)->get_radius();
 
   return Point(front_x, front_y);
 }

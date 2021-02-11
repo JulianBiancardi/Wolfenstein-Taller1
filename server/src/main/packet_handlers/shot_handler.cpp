@@ -25,7 +25,7 @@ void ShotHandler::handle(Packet& packet, ClientManager& client_manager,
     unsigned int rocket_id = match.shoot_rocket(player_id);
 
     unsigned char data[ROCKET_ADD_SIZE];
-    size_t size = pack(data, "CII", ROCKET_ADD, &player_id, &rocket_id);
+    size_t size = pack(data, "CII", ROCKET_ADD, player_id, rocket_id);
     Packet rocket_packet(size, data);
 
     client_manager.send_to_all(clients, rocket_packet);

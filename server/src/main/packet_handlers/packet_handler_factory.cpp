@@ -13,25 +13,19 @@
 #include "request_new_match_handler.h"
 #include "rotation_handler.h"
 #include "shot_handler.h"
+#include "rocket_move_handler.h"
 
 PacketHandler* PacketHandlerFactory::build(Packet& packet) {
   switch (packet.get_type()) {
-    case REQUEST_MATCHES:
-      return new RequestMatchesHandler();
-    case REQUEST_NEW_MATCH:
-      return new RequestNewMatchHandler();
-    case JOIN_MATCH:
-      return new JoinMatchHandler();
-    case MATCH_START:
-      return new MatchStartHandler();
-    case MOVEMENT:
-      return new MovementHandler();
-    case ROTATION:
-      return new RotationHandler();
-    case SHOT:
-      return new ShotHandler();
-    case CHANGE_GUN:
-      return new ChangeGunHandler();
+    case REQUEST_MATCHES: return new RequestMatchesHandler();
+    case REQUEST_NEW_MATCH: return new RequestNewMatchHandler();
+    case JOIN_MATCH: return new JoinMatchHandler();
+    case MATCH_START: return new MatchStartHandler();
+    case MOVEMENT: return new MovementHandler();
+    case ROTATION: return new RotationHandler();
+    case SHOT: return new ShotHandler();
+    case CHANGE_GUN: return new ChangeGunHandler();
+    case ROCKET_MOVE: return new RocketMoveHandler();
       /* Por favor, dejar comentado hasta que se enlace servidor/cliente
       case DOOR_INTERACTION:
       return new DoorInteractionHandler();

@@ -10,7 +10,7 @@
 #include "guns/knife.h"
 #include "guns/machine_gun.h"
 #include "guns/pistol.h"
-#include "guns/rocket_launcher.h"
+#include "guns/rocket_launcher/rocket_launcher.h"
 
 Player::Player(Ray position, unsigned int player_id)
     : guns_bag(), Object(GUARD, position, player_id) {
@@ -91,28 +91,20 @@ int Player::get_points() const { return points; }
 void Player::move(unsigned char direction) {
   double movement_angle = position.get_angle();
   switch (direction) {
-    case UP:
+    case UP:break;
+    case UP_LEFT:movement_angle += (M_PI / 4);
       break;
-    case UP_LEFT:
-      movement_angle += (M_PI / 4);
+    case LEFT:movement_angle += (M_PI / 2);
       break;
-    case LEFT:
-      movement_angle += (M_PI / 2);
+    case DOWN_LEFT:movement_angle += (3 * M_PI / 4);
       break;
-    case DOWN_LEFT:
-      movement_angle += (3 * M_PI / 4);
+    case DOWN:movement_angle += M_PI;
       break;
-    case DOWN:
-      movement_angle += M_PI;
+    case DOWN_RIGHT:movement_angle += (5 * M_PI / 4);
       break;
-    case DOWN_RIGHT:
-      movement_angle += (5 * M_PI / 4);
+    case RIGHT:movement_angle += (3 * M_PI / 2);
       break;
-    case RIGHT:
-      movement_angle += (3 * M_PI / 2);
-      break;
-    case UP_RIGHT:
-      movement_angle += (7 * M_PI / 4);
+    case UP_RIGHT:movement_angle += (7 * M_PI / 4);
       break;
   }
 
@@ -134,8 +126,7 @@ void Player::rotate(unsigned char direction) {
       position = Ray(position.get_origin(),
                      position.get_angle() - CL::player_rotation_speed);
       break;
-    default:
-      break;
+    default:break;
   }
 }
 
@@ -159,20 +150,15 @@ bool Player::has_bullets(int amount) { return (bullets >= amount); }
 
 void Player::decrease_bullets(unsigned char gun_id) {
   switch (gun_id) {
-    case PISTOL_ID:
-      bullets -= CL::pistol_bullet_required;
+    case PISTOL_ID:bullets -= CL::pistol_bullet_required;
       break;
-    case MACHINE_GUN_ID:
-      bullets -= CL::machine_gun_bullet_required;
+    case MACHINE_GUN_ID:bullets -= CL::machine_gun_bullet_required;
       break;
-    case CHAIN_CANNON_ID:
-      bullets -= CL::chain_cannon_bullet_required;
+    case CHAIN_CANNON_ID:bullets -= CL::chain_cannon_bullet_required;
       break;
-    case ROCKET_LAUNCHER_ID:
-      bullets -= CL::rocket_launcher_bullet_required;
+    case ROCKET_LAUNCHER_ID:bullets -= CL::rocket_launcher_bullet_required;
       break;
-    default:
-      break;
+    default:break;
   }
 
   bullets = std::max(bullets, 0);
@@ -180,11 +166,9 @@ void Player::decrease_bullets(unsigned char gun_id) {
 
 void Player::grab_item(Object& item) {
   switch (item.get_type()) {
-    case GUNS_TYPE:
-      add_gun(item.get_res_id());
+    case GUNS_TYPE:add_gun(item.get_res_id());
       break;
-    case ITEMS_TYPE:
-      add_item(item.get_res_id());
+    case ITEMS_TYPE:add_item(item.get_res_id());
       break;
   }
 }
@@ -202,8 +186,9 @@ void Player::add_gun(unsigned int gun_id) {
       break;
     }
     case ROCKET_LAUNCHER_ID: {
-      // std::shared_ptr<Gun> rocket_launcher(new RocketLauncher());
-      // guns_bag.insert(std::make_pair(5, std::move(rocket_launcher)));
+      std::shared_ptr<Gun> rocket_launcher(new RocketLauncher());
+      guns_bag.insert(std::make_pair(ROCKET_LAUNCHER_ID,
+                                     std::move(rocket_launcher)));
       break;
     }
     default:;
@@ -214,32 +199,28 @@ void Player::add_gun(unsigned int gun_id) {
 void Player::add_item(unsigned int item_id) {
   switch (item_id) {
     case FOOD:
-      health = std::min(CL::player_health, health + CL::food_health_recovered);
+      health = std::min(CL::player_health,
+                        health + CL::food_health_recovered);
       break;
     case MEDKIT:
       health =
           std::min(CL::player_health, health + CL::medic_kit_health_recovered);
       break;
-    case BLOOD:
-      health = CL::player_health + CL::blood_health_recovered;
+    case BLOOD:health = CL::player_health + CL::blood_health_recovered;
       break;
     case BULLETS:
-      bullets = std::min(CL::player_max_bullets, bullets + CL::bullets_amount);
+      bullets = std::min(CL::player_max_bullets,
+                         bullets + CL::bullets_amount);
       break;
-    case CROSS:
-      points += CL::crosses_points;
+    case CROSS:points += CL::crosses_points;
       break;
-    case CUP:
-      points += CL::cup_points;
+    case CUP:points += CL::cup_points;
       break;
-    case CHEST:
-      points += CL::chests_points;
+    case CHEST:points += CL::chests_points;
       break;
-    case CROWN:
-      points += CL::crown_points;
+    case CROWN:points += CL::crown_points;
       break;
-    case KEY:
-      keys += 1;
+    case KEY:keys += 1;
       break;
   }
 }

@@ -41,11 +41,9 @@ void Hud::update(const Player& player) const {
 
   std::string gun_image_path;
   switch (player.get_gun()) {
-    case KNIFE_ID:
-      gun_image_path = "../src/main/hud/IMG_HUD_Knife.png";
+    case KNIFE_ID: gun_image_path = "../src/main/hud/IMG_HUD_Knife.png";
       break;
-    case PISTOL_ID:
-      gun_image_path = "../src/main/hud/IMG_HUD_Pistol.png";
+    case PISTOL_ID: gun_image_path = "../src/main/hud/IMG_HUD_Pistol.png";
       break;
     case CHAIN_CANNON_ID:
       gun_image_path = "../src/main/hud/IMG_HUD_ChainCanon.png";
@@ -53,8 +51,10 @@ void Hud::update(const Player& player) const {
     case MACHINE_GUN_ID:
       gun_image_path = "../src/main/hud/IMG_HUD_MachineGun.png";
       break;
-    default:
+    case ROCKET_LAUNCHER_ID:
+      gun_image_path = "../src/main/hud/IMG_HUD_MachineGun.png";
       break;
+    default:break;
   }
 
   Image gun(renderer, gun_image_path);
