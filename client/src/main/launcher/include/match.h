@@ -24,7 +24,6 @@ class Match {
   bool is_running() const;
   bool is_valid() const;
 
-  void copy(const Match& other);
   void reset();
 
   void set_match_id(unsigned char id);

@@ -7,11 +7,13 @@
 #include "../include/event_filter_mapsnames.h"
 #include "../include/map_view.h"
 #include "../include/match_view.h"
+#include "../include/settings_view.h"
 #include "moc_mainwindow.cpp"
 
 #define WINDOW_TITLE "Wolfenstein Launcher"
 #define MATCHLIST_PAGE 0
 #define NEWMATCH_PAGE 1
+#define SETTINGS_PAGE 2
 
 static void _show_error(const QString& message) {
   QMessageBox msgBox;
@@ -21,7 +23,8 @@ static void _show_error(const QString& message) {
   msgBox.exec();
 }
 
-MainWindow::MainWindow(QWidget* parent, Server* server, Match* match_selected)
+MainWindow::MainWindow(QWidget* parent, Server* server, Settings* settings,
+                       Match* match_selected)
     : QMainWindow(parent),
       map_selected(""),
       match_selected(match_selected),
@@ -30,13 +33,18 @@ MainWindow::MainWindow(QWidget* parent, Server* server, Match* match_selected)
   setWindowTitle(WINDOW_TITLE);
   ui.scrollAreaWidgetContents->installEventFilter(new EventFilter());
   ui.scrollAreaWidgetContents_2->installEventFilter(new EventFilterMapsNames());
-  ui.stackedWidget->setCurrentIndex(MATCHLIST_PAGE);
+  ui.stackedWidget->addWidget(new SettingsView(this, settings));
+  set_page(MATCHLIST_PAGE);
   _add_maps();
 }
 
 void MainWindow::update() {
   _remove_matches();
   _add_matches();
+}
+
+void MainWindow::set_page(size_t page_id) {
+  ui.stackedWidget->setCurrentIndex(page_id);
 }
 
 void MainWindow::_remove_matches() {
@@ -63,14 +71,16 @@ void MainWindow::_add_matches() {
 }
 
 void MainWindow::_add_maps() {
-  std::list<std::string> maps = launcher.get_maps_names();
+  std::list<MapOption> maps = launcher.get_maps();
 
-  std::list<std::string>::iterator it;
+  std::list<MapOption>::iterator it;
   for (it = maps.begin(); it != maps.end(); ++it) {
     MapView* map_view = new MapView(nullptr, *it, map_selected);
     ui.mapsLayout->addWidget(map_view);
   }
 }
+
+void MainWindow::on_SettingsButton_clicked() { set_page(SETTINGS_PAGE); }
 
 void MainWindow::on_RefreshButton_clicked() {
   ui.scrollAreaWidgetContents->installEventFilter(new EventFilter());
@@ -94,9 +104,7 @@ void MainWindow::on_JoinButton_clicked() {
   }
 }
 
-void MainWindow::on_NewButton_clicked() {
-  ui.stackedWidget->setCurrentIndex(NEWMATCH_PAGE);
-}
+void MainWindow::on_NewButton_clicked() { set_page(NEWMATCH_PAGE); }
 
 void MainWindow::on_CreateButton_clicked() {
   if (map_selected.empty()) {
@@ -114,9 +122,7 @@ void MainWindow::on_CreateButton_clicked() {
   }
 }
 
-void MainWindow::on_CancelButton_clicked() {
-  ui.stackedWidget->setCurrentIndex(MATCHLIST_PAGE);
-}
+void MainWindow::on_CancelButton_clicked() { set_page(MATCHLIST_PAGE); }
 
 void MainWindow::closeEvent(QCloseEvent* event) { match_selected->reset(); }
 

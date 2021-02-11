@@ -4,12 +4,13 @@
 #include <list>
 
 #include "../../server.h"
+#include "map_option.h"
 #include "match.h"
 
 class Launcher {
  private:
   Server* server;
-  std::list<std::string> maps_names;
+  std::list<MapOption> maps;
   std::list<Match> matches;
 
   /* Obtain all the maps aviables */
@@ -32,7 +33,7 @@ class Launcher {
   explicit Launcher(Server* server);
 
   std::list<Match> get_matches() const;
-  std::list<std::string> get_maps_names() const;
+  std::list<MapOption> get_maps() const;
 
   /* Requests the server for an update on the matches.
    * Clears the matches and fills it with the updated data.

@@ -10,7 +10,7 @@
 #include "../guns/knife.h"
 #include "../guns/machine_gun.h"
 #include "../guns/pistol.h"
-#include "../guns/rocket_launcher/rocket_launcher.h"
+#include "../guns/rocket_launcher.h"
 
 Player::Player(Ray position, unsigned int player_id)
     : guns_bag(), Object(GUARD, position, player_id) {
@@ -84,6 +84,9 @@ Player::~Player() {}
 
 int Player::get_lives() const { return lives; }
 int Player::get_health() const { return health; }
+int Player::get_percentage_health() const {
+  return (health * 100 / CL::player_health);
+}
 int Player::get_gun() const { return active_gun; }
 int Player::get_bullets() const { return bullets; }
 int Player::get_points() const { return points; }
@@ -203,7 +206,8 @@ void Player::add_gun(unsigned int gun_id) {
     }
     case ROCKET_LAUNCHER_ID: {
       std::shared_ptr<Gun> rocket_launcher(new RocketLauncher());
-      guns_bag.insert(std::make_pair(ROCKET_LAUNCHER_ID,std::move(rocket_launcher)));
+      guns_bag.insert(
+          std::make_pair(ROCKET_LAUNCHER_ID, std::move(rocket_launcher)));
       break;
     }
     default:;

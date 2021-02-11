@@ -1,7 +1,7 @@
 #include "map.h"
 
+#include "../guns/rocket.h"
 #include "map_loader.h"
-#include "guns/rocket_launcher/rocket.h"
 
 Map::Map(Matrix<int>& map_matrix) : BaseMap(map_matrix) {}
 
@@ -81,5 +81,5 @@ void Map::shoot_rocket(unsigned int player_id, unsigned int rocket_id) {
 }
 
 void Map::move_rocket(unsigned int rocket_id) {
-  ((Rocket*) (objects.at(rocket_id).get()))->move();
+  ((Rocket*)(objects.at(rocket_id).get()))->move();
 }

@@ -7,6 +7,8 @@
 
 #include "../../server.h"
 #include "launcher.h"
+#include "match.h"
+#include "settings.h"
 #include "ui_mainwindow.h"
 
 class MainWindow : public QMainWindow {
@@ -25,13 +27,16 @@ class MainWindow : public QMainWindow {
 
  public:
   MainWindow(QWidget* parent = nullptr, Server* server = nullptr,
-             Match* match_selected = nullptr);
-
-  void update();
-
+             Settings* settings = nullptr, Match* match_selected = nullptr);
   ~MainWindow();
 
+  /*Update the match list*/
+  void update();
+  /*Set the current page to show*/
+  void set_page(size_t page_id);
+
  private slots:
+  void on_SettingsButton_clicked();
   void on_RefreshButton_clicked();
   void on_JoinButton_clicked();
   void on_NewButton_clicked();

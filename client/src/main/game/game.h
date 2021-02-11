@@ -1,7 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "../launcher/include/match.h"  // TODO Move match smwhere else
+#include "../launcher/include/match.h"     // TODO Move match smwhere else
+#include "../launcher/include/settings.h"  // TODO Move settings smwhere else
 #include "../server.h"
 #include "audio/game_sound.h"
 #include "map/map.h"
@@ -43,7 +44,7 @@ class Game {
   void send_move_packet(unsigned char direction);
 
  public:
-  Game(Server& server, Match& match);
+  Game(Server& server, const Settings& settings, Match& match);
   ~Game();
 
   void operator()();
