@@ -5,21 +5,19 @@
 
 Map::Map(Matrix<int>& map_matrix)
     : BaseMap(map_matrix),
-      objects_and_players(),
+      drawables(),
       ambient_objects(),
       objects(),
       players(),
-      loader(objects_and_players, players_shootable, ambient_objects, objects,
-             players) {}
+      loader(drawables, players_shootable, ambient_objects, objects, players) {}
 
 Map::Map(const std::string& map_name)
     : BaseMap(map_name),
-      objects_and_players(),
+      drawables(),
       ambient_objects(),
       objects(),
       players(),
-      loader(objects_and_players, players_shootable, ambient_objects, objects,
-             players) {
+      loader(drawables, players_shootable, ambient_objects, objects, players) {
   loader.load_map(map_name);
 }
 
@@ -34,17 +32,13 @@ void Map::update() {
 
 void Map::add_item(unsigned int item_id, unsigned char item_type, Point pos) {
   loader.add_item(item_id, item_type, pos);
-  printf("Items Size: %u\n", objects.size());
-  printf("All Size: %u\n", objects_and_players.size());
 }
 
 void Map::add_player(unsigned int player_id, const Ray& position) {
   loader.add_player(player_id, position);
 }
 
-std::vector<std::weak_ptr<Object>>& Map::get_objects_and_players() {
-  return objects_and_players;
-}
+std::vector<std::weak_ptr<Object>>& Map::get_drawables() { return drawables; }
 
 const Player& Map::get_player(unsigned int player_id) const {
   return *(players.at(player_id));
@@ -97,7 +91,7 @@ void Map::shoot_rocket(unsigned int player_id, unsigned int rocket_id) {
 
   std::shared_ptr<Rocket> rocket(new Rocket(spawn_point, angle, rocket_id));
   objects.insert(std::make_pair(rocket_id, std::move(rocket)));
-  objects_and_players.push_back(objects.at(rocket_id));
+  drawables.push_back(objects.at(rocket_id));
 }
 
 void Map::move_rocket(unsigned int rocket_id) {

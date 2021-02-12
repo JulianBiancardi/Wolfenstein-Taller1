@@ -74,7 +74,7 @@
 21:
   type: 2
   name: "Dog"
-  image: "..."
+  image: "../../res/images/enemies/dog/dog_walk1_1.bmp"
   icon: "../resources/images/enemies/IMG_Dog.png"
 22:
   type: 2

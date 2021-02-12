@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 
+#include "../entities/drawable.h"
 #include "../map/map.h"
 #include "collision.h"
 #include "hud/hud.h"

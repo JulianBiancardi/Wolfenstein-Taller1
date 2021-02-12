@@ -15,3 +15,7 @@ void Rocket::move() {
 
   position = Ray(next_x, next_y, angle);
 }
+
+Image* Rocket::get_image(ResourceManager& resource_manager) {
+  return resource_manager.get_image(2);  // TODO Put correct image
+}

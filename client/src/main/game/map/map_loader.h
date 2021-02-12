@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <vector>
 
+#include "../entities/drawable.h"
 #include "../entities/object.h"
 #include "../entities/player.h"
 

@@ -195,3 +195,7 @@ void Player::add_item(unsigned int item_id) {
 }
 
 void Player::update() { state.update(); }
+
+Image* Player::get_image(ResourceManager& resource_manager) {
+  return state.get_image(resource_manager);
+}

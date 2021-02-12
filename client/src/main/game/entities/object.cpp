@@ -32,3 +32,7 @@ unsigned char Object::get_type() const {
     NULL_TYPE;
   }
 }
+
+Image* Object::get_image(ResourceManager& resource_manager) {
+  return resource_manager.get_image(res_id);
+}

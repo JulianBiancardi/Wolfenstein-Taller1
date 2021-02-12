@@ -16,10 +16,7 @@
 
 class Map : public BaseMap {
  private:
-  // TODO Upon deleting an object, make sure to also remove from this vector
-  // with linear search
-  std::vector<std::weak_ptr<Object>>
-      objects_and_players;  // TODO Cambiar nombre a drawables
+  std::vector<std::weak_ptr<Object>> drawables;
   std::vector<std::weak_ptr<IdentifiableObject>> players_shootable;
 
   std::vector<std::shared_ptr<Object>> ambient_objects;
@@ -33,7 +30,7 @@ class Map : public BaseMap {
   ~Map();
 
   /* Returns a reference to all of the drawable objects in the map. */
-  std::vector<std::weak_ptr<Object>>& get_objects_and_players();
+  std::vector<std::weak_ptr<Object>>& get_drawables();
 
   /* Returns a constant reference to a player given its id. */
   const Player& get_player(unsigned int player_id) const;

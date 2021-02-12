@@ -20,3 +20,13 @@ void PlayerState::print() {
   fprintf(stderr, "CS: %d\n", current_state);
   fprintf(stderr, "NS: %d\n", next_state);
 }
+
+Image* PlayerState::get_image(ResourceManager& resource_manager) {
+  if (current_state == moving) {
+    printf("Dog\n");
+    return resource_manager.get_image(21);
+  } else {
+    printf("Guard\n");
+    return resource_manager.get_image(22);
+  }
+}

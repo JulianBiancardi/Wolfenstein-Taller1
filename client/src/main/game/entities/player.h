@@ -90,6 +90,8 @@ class Player : public IdentifiableObject, public Updateable {
 
   /* Updates its state */
   void update();
+
+  Image* get_image(ResourceManager& resource_manager) override;
 };
 
 #endif

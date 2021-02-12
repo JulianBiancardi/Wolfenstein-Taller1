@@ -1,6 +1,7 @@
 #ifndef PLAYER_STATE_H
 #define PLAYER_STATE_H
 
+#include "drawable.h"
 #include "updateable.h"
 
 enum player_state { still, moving, dead };
@@ -18,6 +19,8 @@ class PlayerState : public Updateable {
   void move();
   void kill();
   void print();
+
+  Image* get_image(ResourceManager& resource_manager);
 };
 
 #endif
