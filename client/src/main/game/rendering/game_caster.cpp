@@ -129,7 +129,6 @@ void GameCaster::draw_objects(std::vector<double>& wall_distances) {
   clean_objects(objects);
   sort_objects(objects, object_distances);
 
-  printf("Drawing %u objects\n", objects.size());
   for (int i = 0; i < objects.size(); i++) {
     draw_object(*objects[i].lock(), object_distances[i], wall_distances);
   }
