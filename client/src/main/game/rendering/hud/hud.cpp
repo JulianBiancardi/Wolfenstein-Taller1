@@ -5,12 +5,19 @@
 #include "../sdl/image.h"
 #include "../sdl/text.h"
 
-#define FONT_PATH "../src/main/fonts/PixelOperatorMonoHB.ttf"
-#define BACKGROUND_PATH "../src/main/game/rendering/hud/ParteInferior.png"
+#define FONT_PATH "../../res/fonts/wolfenstein.ttf"
+#define BACKGROUND_PATH "../../res/images/hud/IMG_HUD_Background.png"
+#define FACES_PATH "../../res/images/hud/IMG_HUD_BJFaces.png"
 
 #define BACKGROUND_Y_PERCENTAJE 20
+#define FACE_Y_PERCENTAJE 20
+#define FACE_X_PERCENTAJE 41
 #define GUN_Y_PERCENTAJE 18
 #define GUN_X_PERCENTAJE 80
+
+#define FACE_FRAME_X_COUNT 3
+#define FACE_FRAME_Y_COUNT 7
+#define FACE_SCALE 4
 
 Hud::Hud(SDL_Renderer* renderer) : renderer(renderer) {
   size_t font_size = 12;
@@ -22,12 +29,21 @@ Hud::~Hud() {}
 void Hud::update(const Window& window, const Player& player) const {
   // TODO MOVE TO CONFIG
   // TODO Move to ResourceManager since this is wasting resources
+  _show_background(window);
+  _show_stats(window, player);
+  _show_face(window, player);
+  _show_gun(window, player);
+}
+
+void Hud::_show_background(const Window& window) const {
   Image background(renderer, BACKGROUND_PATH);
   Rectangle pos(window.get_height() -
                     ((window.get_height() * BACKGROUND_Y_PERCENTAJE) / 100),
                 window.get_height(), 0, window.get_width());
   background.draw(pos, nullptr);
+}
 
+void Hud::_show_stats(const Window& window, const Player& player) const {
   SDL_Color white = {255, 255, 255};
   size_t y_center_pos = window.get_height() - 80;
 
@@ -40,23 +56,46 @@ void Hud::update(const Window& window, const Player& player) const {
               white, 500, y_center_pos);
   Text bullets(renderer, std::to_string(player.get_bullets()), font, white, 640,
                y_center_pos);
+}
 
+void Hud::_show_face(const Window& window, const Player& player) const {
+  Image face(renderer, FACES_PATH);
+  size_t frame_width = face.get_width() / FACE_FRAME_X_COUNT;
+  size_t frame_height = face.get_height() / (FACE_FRAME_Y_COUNT + 1);
+  size_t health = player.get_percentage_health();
+
+  Uint32 ticks = SDL_GetTicks();
+  Uint32 seconds = ticks / 1000;
+  Uint32 sprite_x = seconds % FACE_FRAME_X_COUNT;
+  Uint32 sprite_y =
+      ((100 - health) / (FACE_FRAME_Y_COUNT * 2)) % FACE_FRAME_Y_COUNT;
+
+  SDL_Rect rect_face = {
+      ((window.get_width() * FACE_X_PERCENTAJE) / 100),
+      window.get_height() - ((window.get_height() * FACE_Y_PERCENTAJE) / 100),
+      frame_width * FACE_SCALE, frame_height * FACE_SCALE};
+  SDL_Rect rect_slice = {sprite_x * frame_width, sprite_y * frame_height,
+                         frame_width, frame_height};
+  face.draw(&rect_face, &rect_slice);
+}
+
+void Hud::_show_gun(const Window& window, const Player& player) const {
   std::string gun_image_path;
   switch (player.get_gun()) {
     case KNIFE_ID:
-      gun_image_path = "../src/main/game/rendering/hud/IMG_HUD_Knife.png";
+      gun_image_path = "../../res/images/hud/IMG_HUD_Knife.png";
       break;
     case PISTOL_ID:
-      gun_image_path = "../src/main/game/rendering/hud/IMG_HUD_Pistol.png";
+      gun_image_path = "../../res/images/hud/IMG_HUD_Pistol.png";
       break;
     case CHAIN_CANNON_ID:
-      gun_image_path = "../src/main/game/rendering/hud/IMG_HUD_ChainCanon.png";
+      gun_image_path = "../../res/images/hud/IMG_HUD_ChainCanon.png";
       break;
     case MACHINE_GUN_ID:
-      gun_image_path = "../src/main/game/rendering/hud/IMG_HUD_MachineGun.png";
+      gun_image_path = "../../res/images/hud/IMG_HUD_MachineGun.png";
       break;
     default:
-      gun_image_path = "../src/main/game/rendering/hud/IMG_HUD_MachineGun.png";
+      gun_image_path = "../../res/images/hud/IMG_HUD_MachineGun.png";
       break;
   }
 
