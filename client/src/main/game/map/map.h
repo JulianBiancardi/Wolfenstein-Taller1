@@ -38,6 +38,7 @@ class Map : public BaseMap {
   /* Returns a constant reference to a player given its id. */
   const Player& get_player(unsigned int player_id) const;
 
+  void update();
   void add_item(unsigned int item_id, unsigned char item_type, Point pos);
   void add_player(unsigned int player_id, const Ray& position);
   void move_player(unsigned int player_id, unsigned char direction);

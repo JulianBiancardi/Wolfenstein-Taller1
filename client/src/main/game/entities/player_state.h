@@ -3,9 +3,12 @@
 
 #include "updateable.h"
 
+enum player_state { still, moving, dead };
+
 class PlayerState : public Updateable {
  private:
-  bool moving;
+  player_state current_state;
+  player_state next_state;
 
  public:
   PlayerState();
@@ -13,6 +16,8 @@ class PlayerState : public Updateable {
 
   void update();
   void move();
+  void kill();
+  void print();
 };
 
 #endif

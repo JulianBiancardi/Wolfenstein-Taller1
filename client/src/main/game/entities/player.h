@@ -13,6 +13,10 @@
 #include "player_state.h"
 #include "updateable.h"
 
+#define STATIC 0
+#define MOVING 1
+#define DEAD 2
+
 class Gun;
 
 class Player : public IdentifiableObject, public Updateable {
@@ -27,7 +31,6 @@ class Player : public IdentifiableObject, public Updateable {
 
   PlayerState state;
 
-  // TODO Make copyable since it is stored in STD Containers
  public:
   Player(Ray position, unsigned int player_id);
 

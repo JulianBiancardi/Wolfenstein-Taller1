@@ -25,6 +25,13 @@ Map::Map(const std::string& map_name)
 
 Map::~Map() {}
 
+void Map::update() {
+  std::unordered_map<unsigned int, std::shared_ptr<Player>>::iterator iter;
+  for (iter = players.begin(); iter != players.end(); iter++) {
+    iter->second->update();
+  }
+}
+
 void Map::add_item(unsigned int item_id, unsigned char item_type, Point pos) {
   loader.add_item(item_id, item_type, pos);
   printf("Items Size: %u\n", objects.size());

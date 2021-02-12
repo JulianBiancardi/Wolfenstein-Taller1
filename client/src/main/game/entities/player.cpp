@@ -194,4 +194,4 @@ void Player::add_item(unsigned int item_id) {
   }
 }
 
-void Player::update() {}
+void Player::update() { state.update(); }
