@@ -13,7 +13,7 @@
 #include "../guns/rocket_launcher.h"
 
 Player::Player(Ray position, unsigned int player_id)
-    : guns_bag(), Object(GUARD, position, player_id) {
+    : guns_bag(), IdentifiableObject(GUARD, position, player_id) {
   lives = CL::player_lives;
   health = CL::player_health;
   bullets = CL::player_bullets;
@@ -87,9 +87,8 @@ void Player::rotate(unsigned char direction) {
 }
 
 Hit Player::trigger_gun(
-    BaseMap& map, const std::vector<std::shared_ptr<Object>>& map_objects) {
-  return std::move(
-      guns_bag[active_gun]->trigger(*this, bullets, map, map_objects));
+    BaseMap& map, std::vector<std::weak_ptr<IdentifiableObject>>& players) {
+  return std::move(guns_bag[active_gun]->trigger(*this, bullets, map, players));
 }
 
 void Player::untrigger_gun() { guns_bag[active_gun]->untrigger(); }

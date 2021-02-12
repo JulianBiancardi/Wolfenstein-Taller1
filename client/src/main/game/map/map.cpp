@@ -6,16 +6,22 @@
 Map::Map(Matrix<int>& map_matrix)
     : BaseMap(map_matrix),
       objects_and_players(),
+      ambient_objects(),
       objects(),
       players(),
-      loader(objects_and_players, objects, players) {}
+      loader(objects_and_players, players_shootable, ambient_objects, objects,
+             players) {}
 
 Map::Map(const std::string& map_name)
     : BaseMap(map_name),
       objects_and_players(),
+      ambient_objects(),
       objects(),
       players(),
-      loader(objects_and_players, objects, players) {}
+      loader(objects_and_players, players_shootable, ambient_objects, objects,
+             players) {
+  loader.load_map(map_name);
+}
 
 Map::~Map() {}
 
@@ -26,12 +32,10 @@ void Map::add_item(unsigned int item_id, unsigned char item_type, Point pos) {
 }
 
 void Map::add_player(unsigned int player_id, const Ray& position) {
-  std::shared_ptr<Player> player(new Player(position, player_id));
-  players.insert(std::make_pair(player_id, std::move(player)));
-  objects_and_players.push_back(players.at(player_id));
+  loader.add_player(player_id, position);
 }
 
-std::vector<std::shared_ptr<Object>>& Map::get_objects_and_players() {
+std::vector<std::weak_ptr<Object>>& Map::get_objects_and_players() {
   return objects_and_players;
 }
 
@@ -63,16 +67,12 @@ void Map::use_bullets(unsigned int player_id, unsigned char gun_id) {
 void Map::pick_item(unsigned int player_id, unsigned int item_id) {
   Player& player = *(players.at(player_id));
   player.grab_item(*objects.at(item_id));
-  objects_and_players.erase(
-      std::remove(objects_and_players.begin(), objects_and_players.end(),
-                  objects.at(item_id)),
-      objects_and_players.end());
   objects.erase(item_id);
 }
 
 Hit Map::trigger_gun(unsigned int player_id) {
   return std::move(
-      players.at(player_id)->trigger_gun(*this, objects_and_players));
+      players.at(player_id)->trigger_gun(*this, players_shootable));
 }
 
 void Map::untrigger_gun(unsigned int player_id) {

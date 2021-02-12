@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "../../../../../common/src/main/utils/base_map.h"
-#include "../entities/object.h"
+#include "../entities/identifiable_object.h"
 #include "gun.h"
 #include "hit.h"
 
@@ -16,13 +16,13 @@ class Knife : public Gun {
   std::uniform_real_distribution<double> distribution;
   bool triggered;
   Hit shoot(Object& player, int& current_bullets, BaseMap& map,
-            const std::vector<std::shared_ptr<Object>>& objects) override;
+            std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
 
  public:
   Knife();
 
   Hit trigger(Object& player, int& current_bullets, BaseMap& map,
-              const std::vector<std::shared_ptr<Object>>& objects) override;
+              std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
   void untrigger() override;
 };
 

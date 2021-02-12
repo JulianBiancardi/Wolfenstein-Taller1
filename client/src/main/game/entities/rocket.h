@@ -1,9 +1,9 @@
 #ifndef ROCKET_H
 #define ROCKET_H
 
-#include "object.h"
+#include "identifiable_object.h"
 
-class Rocket : public Object {
+class Rocket : public IdentifiableObject {
  public:
   Rocket(const Point& position, double angle, unsigned int id);
 

@@ -4,10 +4,10 @@
 
 // TODO Add res_id
 Rocket::Rocket(const Point& position, double angle, unsigned int id)
-    : Object(GUARD, position, angle, id) {}
+    : IdentifiableObject(GUARD, position, angle, id) {}
 
 void Rocket::move() {
-  const Point& current_position = position.get_ref_origin();
+  const Point& current_position = position.get_origin();
   double angle = position.get_angle();
 
   double next_x = current_position.getX() + cos(angle) * CL::rocket_speed;

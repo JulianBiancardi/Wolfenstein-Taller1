@@ -2,24 +2,8 @@
 
 #include "../../../../../common/src/main/ids/map_ids.h"
 
-Object::Object(unsigned char res_id, double x_pos, double y_pos, double angle)
-    : res_id(res_id), position(x_pos, y_pos, angle) {}
-
-Object::Object(unsigned char res_id, Point position, double angle)
-    : res_id(res_id), position(position, angle) {}
-
 Object::Object(unsigned char res_id, Ray position)
     : res_id(res_id), position(position) {}
-
-Object::Object(unsigned char res_id, double x_pos, double y_pos, double angle,
-               int id)
-    : res_id(res_id), position(x_pos, y_pos, angle), Identifiable(id) {}
-
-Object::Object(unsigned char res_id, Point position, double angle, int id)
-    : res_id(res_id), position(position, angle), Identifiable(id) {}
-
-Object::Object(unsigned char res_id, Ray position, int id)
-    : res_id(res_id), position(position), Identifiable(id) {}
 
 Object::~Object() {}
 

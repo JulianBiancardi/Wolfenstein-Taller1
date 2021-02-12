@@ -31,7 +31,8 @@ class CollisionChecker {
    */
   unsigned int grabbed_item(const Player& by_whom);
 
-  /* Returns a vector with all the players in a distance to where lower than radius. */
+  /* Returns a vector with all the players in a distance to where lower than
+   * radius. */
   std::vector<unsigned int> get_players_in_radius(const Point& where,
                                                   double radius);
 

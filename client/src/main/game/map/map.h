@@ -9,6 +9,7 @@
 #include "../../../../../common/src/main/utils/base_map.h"
 #include "../../../../common/src/main/utils/matrix.h"
 #include "../../../../common/src/main/utils/ray.h"
+#include "../entities/identifiable_object.h"
 #include "../entities/object.h"
 #include "../entities/player.h"
 #include "map_loader.h"
@@ -17,7 +18,11 @@ class Map : public BaseMap {
  private:
   // TODO Upon deleting an object, make sure to also remove from this vector
   // with linear search
-  std::vector<std::shared_ptr<Object>> objects_and_players;
+  std::vector<std::weak_ptr<Object>>
+      objects_and_players;  // TODO Cambiar nombre a drawables
+  std::vector<std::weak_ptr<IdentifiableObject>> players_shootable;
+
+  std::vector<std::shared_ptr<Object>> ambient_objects;
   std::unordered_map<unsigned int, std::shared_ptr<Object>> objects;
   std::unordered_map<unsigned int, std::shared_ptr<Player>> players;
   MapLoader loader;
@@ -27,10 +32,8 @@ class Map : public BaseMap {
   explicit Map(const std::string& map_name);
   ~Map();
 
-  /* Returns a reference to all of the objects in the map.
-   * Deleting objects from the vector might cause problems.
-   */
-  std::vector<std::shared_ptr<Object>>& get_objects_and_players();
+  /* Returns a reference to all of the drawable objects in the map. */
+  std::vector<std::weak_ptr<Object>>& get_objects_and_players();
 
   /* Returns a constant reference to a player given its id. */
   const Player& get_player(unsigned int player_id) const;

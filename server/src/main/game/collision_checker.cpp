@@ -68,8 +68,8 @@ unsigned int CollisionChecker::grabbed_item(const Player& by_whom) {
   return item_id;
 }
 
-std::vector<unsigned int>
-CollisionChecker::get_players_in_radius(const Point& where, double radius) {
+std::vector<unsigned int> CollisionChecker::get_players_in_radius(
+    const Point& where, double radius) {
   std::vector<unsigned int> players_in_radio;
 
   for (const auto& pair : players) {

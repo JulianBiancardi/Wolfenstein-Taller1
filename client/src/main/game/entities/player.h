@@ -9,13 +9,13 @@
 #include "../../../../../common/src/main/utils/ray.h"
 #include "../guns/gun.h"
 #include "../guns/hit.h"
-#include "object.h"
+#include "identifiable_object.h"
 #include "player_state.h"
 #include "updateable.h"
 
 class Gun;
 
-class Player : public Object, public Updateable {
+class Player : public IdentifiableObject, public Updateable {
  private:
   int lives;
   int health;
@@ -78,7 +78,7 @@ class Player : public Object, public Updateable {
    * Returns a Hit object containing the data of the shot attempt.
    */
   Hit trigger_gun(BaseMap& map,
-                  const std::vector<std::shared_ptr<Object>>& map_objects);
+                  std::vector<std::weak_ptr<IdentifiableObject>>& players);
 
   /* Unpulls the trigger of the player's gun. */
   void untrigger_gun();

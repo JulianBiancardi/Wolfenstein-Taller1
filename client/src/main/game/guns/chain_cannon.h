@@ -3,10 +3,10 @@
 
 #include <memory>
 #include <random>
-#include <vector>
+#include <unordered_map>
 
 #include "../../../../../common/src/main/utils/base_map.h"
-#include "../entities/object.h"
+#include "../entities/identifiable_object.h"
 #include "gun.h"
 #include "hit.h"
 #include "spray.h"
@@ -24,14 +24,14 @@ class ChainCannon : public Gun {
   double linear_func(double x);
 
   Hit shoot(Object& player, int& current_bullets, BaseMap& map,
-            const std::vector<std::shared_ptr<Object>>& objects) override;
+            std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
 
  public:
   ChainCannon();
   ~ChainCannon();
 
   Hit trigger(Object& player, int& current_bullets, BaseMap& map,
-              const std::vector<std::shared_ptr<Object>>& objects) override;
+              std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
   void untrigger() override;
 };
 

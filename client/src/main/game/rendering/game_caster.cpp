@@ -122,14 +122,16 @@ void GameCaster::draw_wall(Collision& collision, size_t screen_pos,
 }
 
 void GameCaster::draw_objects(std::vector<double>& wall_distances) {
-  std::vector<std::shared_ptr<Object>>& objects = map.get_objects_and_players();
+  std::vector<std::weak_ptr<Object>>& objects = map.get_objects_and_players();
 
   std::vector<double> object_distances;
 
+  clean_objects(objects);
   sort_objects(objects, object_distances);
 
+  printf("Drawing %u objects\n", objects.size());
   for (int i = 0; i < objects.size(); i++) {
-    draw_object(*objects[i], object_distances[i], wall_distances);
+    draw_object(*objects[i].lock(), object_distances[i], wall_distances);
   }
 }
 
@@ -141,6 +143,7 @@ void GameCaster::draw_object(Object& object, double distance,
 
   const Player& player = map.get_player(player_id);
   // TODO Optimize
+  //  printf("ResID: %u\n", object.get_res_id());
   Image* image = res_manager.get_image(object.get_res_id());
   size_t img_width = image->get_width();
   size_t img_height = image->get_height();
@@ -196,7 +199,20 @@ double GameCaster::get_projected_distance(double ray_angle, double player_angle,
   return collision_distance * cos(ray_offset);
 }
 
-void GameCaster::sort_objects(std::vector<std::shared_ptr<Object>>& objects,
+void GameCaster::clean_objects(std::vector<std::weak_ptr<Object>>& objects) {
+  std::vector<std::weak_ptr<Object>> objects_kept;
+
+  std::vector<std::weak_ptr<Object>>::iterator iter;
+  for (iter = objects.begin(); iter != objects.end(); iter++) {
+    if (!iter->expired()) {
+      objects_kept.push_back(*iter);
+    }
+  }
+
+  std::swap(objects_kept, objects);
+}
+
+void GameCaster::sort_objects(std::vector<std::weak_ptr<Object>>& objects,
                               std::vector<double>& distances) {
   Point player_pos = map.get_player(player_id).get_position();
   size_t size = objects.size();
@@ -204,7 +220,7 @@ void GameCaster::sort_objects(std::vector<std::shared_ptr<Object>>& objects,
   distances.resize(size);
 
   for (size_t i = 0; i < size; i++) {
-    distances[i] = objects[i]->get_position().distance_from(player_pos);
+    distances[i] = objects[i].lock()->get_position().distance_from(player_pos);
   }
 
   /* Insertion sort is used since it is the best algorithm for nearly-sorted

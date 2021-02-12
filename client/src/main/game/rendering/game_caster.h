@@ -30,7 +30,8 @@ class GameCaster {
   double get_projected_distance(double ray_angle, double player_angle,
                                 double collision_distance);
 
-  void sort_objects(std::vector<std::shared_ptr<Object>>& objects,
+  void clean_objects(std::vector<std::weak_ptr<Object>>& objects);
+  void sort_objects(std::vector<std::weak_ptr<Object>>& objects,
                     std::vector<double>& distances);
 
  public:

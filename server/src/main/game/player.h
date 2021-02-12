@@ -5,7 +5,6 @@
 #include <unordered_set>
 
 #include "../../../../common/src/main/config_loader.h"
-#include "collisions/circle_mask.h"  //TODO Is needed?
 #include "moveable.h"
 
 class Player : public Moveable {

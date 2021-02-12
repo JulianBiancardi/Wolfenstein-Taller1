@@ -24,14 +24,14 @@ class MachineGun : public Gun {
   double linear_func(double x);
 
   Hit shoot(Object& player, int& current_bullets, BaseMap& map,
-            const std::vector<std::shared_ptr<Object>>& objects) override;
+            std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
 
  public:
   MachineGun();
   ~MachineGun();
 
   Hit trigger(Object& player, int& current_bullets, BaseMap& map,
-              const std::vector<std::shared_ptr<Object>>& objects) override;
+              std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
   void untrigger() override;
 };
 
