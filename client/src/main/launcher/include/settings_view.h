@@ -12,7 +12,6 @@ class SettingsView : public QWidget {
  private:
   Ui::SettingsView ui;
   Settings* settings;
-  QButtonGroup resolutions_buttongroup;
 
  public:
   SettingsView(QWidget* parent = nullptr, Settings* settings = nullptr);
@@ -20,9 +19,7 @@ class SettingsView : public QWidget {
   ~SettingsView();
 
  private slots:
-  void on_Resolution1_clicked();
-  void on_Resolution2_clicked();
-  void on_ResolutionFullScreen_clicked();
+
   void on_ConfirmButton_clicked();
 };
 #endif  // SETTINGS_VIEW_H

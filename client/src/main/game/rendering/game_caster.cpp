@@ -41,7 +41,7 @@ void GameCaster::operator()() {
   draw_background();
   std::vector<double> wall_distances = draw_walls();
   draw_objects(wall_distances);
-  hud.update(map.get_player(player_id));
+  hud.update(window, map.get_player(player_id));
   window.update();
 }
 

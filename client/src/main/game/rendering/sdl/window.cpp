@@ -67,4 +67,6 @@ int Window::draw_line(int x1, int y1, int x2, int y2) {
 
 void Window::update() { SDL_RenderPresent(renderer); }
 
+int Window::get_width() const { return width; }
+int Window::get_height() const { return height; }
 SDL_Renderer* Window::get_renderer() { return renderer; }

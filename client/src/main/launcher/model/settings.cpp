@@ -1,11 +1,13 @@
 #include "../include/settings.h"
 
+#include "../../../../../common/src/main/config_loader.h"
+
 Settings::Settings()
-    : screen_width(320),
-      screen_height(200),
-      fullscreen(false),
-      music_volume(50),
-      effect_volume(50) {}
+    : screen_width(CL::screen_width),
+      screen_height(CL::screen_height),
+      fullscreen(CL::fullscreen),
+      music_volume(CL::music_volume),
+      effect_volume(CL::effect_volume) {}
 
 Settings::~Settings() {}
 

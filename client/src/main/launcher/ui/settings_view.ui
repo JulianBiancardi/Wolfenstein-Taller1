@@ -36,29 +36,43 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <widget class="QComboBox" name="ResolutionBox">
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
      <item>
-      <widget class="QPushButton" name="Resolution1">
-       <property name="text">
-        <string>320 x 200</string>
-       </property>
-      </widget>
+      <property name="text">
+       <string>320x200</string>
+      </property>
      </item>
      <item>
-      <widget class="QPushButton" name="Resolution2">
-       <property name="text">
-        <string>640 x 400</string>
-       </property>
-      </widget>
+      <property name="text">
+       <string>640x400</string>
+      </property>
      </item>
      <item>
-      <widget class="QPushButton" name="ResolutionFullScreen">
-       <property name="text">
-        <string>Fullscreen</string>
-       </property>
-      </widget>
+      <property name="text">
+       <string>980x600</string>
+      </property>
      </item>
-    </layout>
+     <item>
+      <property name="text">
+       <string>1300x800</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>1620x1000</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="FullscreenCheckBox">
+     <property name="text">
+      <string>Fullscreen</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="Line" name="line">

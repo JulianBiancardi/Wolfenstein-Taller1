@@ -5,6 +5,7 @@
 #include <SDL2/SDL_ttf.h>
 
 #include "../../entities/player.h"
+#include "../sdl/window.h"
 
 class Hud {
  private:
@@ -15,7 +16,7 @@ class Hud {
   Hud(SDL_Renderer *renderer);
   ~Hud();
 
-  void update(const Player &player) const;
+  void update(const Window &window, const Player &player) const;
 };
 
 #endif  // HUD_H

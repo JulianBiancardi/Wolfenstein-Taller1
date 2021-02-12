@@ -47,6 +47,8 @@ class Window {
   /* Manually update the rendering. */
   void update();
 
+  int get_width() const;
+  int get_height() const;
   SDL_Renderer* get_renderer();
 };
 
