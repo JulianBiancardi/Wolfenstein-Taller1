@@ -13,8 +13,8 @@ class Window {
   SDL_Window* window = nullptr;
   SDL_Surface* window_icon = nullptr;
   SDL_Renderer* renderer = nullptr;
-  int width = 320;
-  int height = 320;
+  int width = 980;
+  int height = 600;
 
  public:
   Window(const std::string& title, int width, int height, bool fullscreen);
