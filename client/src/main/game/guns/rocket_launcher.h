@@ -1,7 +1,6 @@
 #ifndef ROCKET_LAUNCHER_H
 #define ROCKET_LAUNCHER_H
 
-<<<<<<< HEAD:client/src/main/game/guns/rocket_launcher.h
 #include <memory>
 #include <vector>
 
@@ -9,9 +8,6 @@
 #include "../entities/identifiable_object.h"
 #include "gun.h"
 #include "hit.h"
-=======
-#include "gun.h"
->>>>>>> c45cc697f4d5663c99645f75f2a74d9b0743ad6b:client/src/main/guns/rocket_launcher/rocket_launcher.h
 
 class RocketLauncher : public Gun {
  private:
