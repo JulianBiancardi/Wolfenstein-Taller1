@@ -2,12 +2,13 @@
 
 #include "moc_map_view.cpp"
 
-MapView::MapView(QWidget* parent, const std::string& map_name,
+MapView::MapView(QWidget* parent, const MapOption& map,
                  std::string& map_selected)
     : QWidget(parent), map_selected(map_selected) {
   ui.setupUi(this);
-  ui.Name->setText(QString(map_name.c_str()));
-  ui.Capacity->setText("5");
+  ui.Name->setText(QString(map.get_map_name().c_str()));
+  ui.Capacity->setText(
+      QString(std::to_string(map.get_players_total()).c_str()));
 }
 
 void MapView::handleSelectedEvent(QMouseEvent* event) {

@@ -8,9 +8,17 @@ YAML::Node CL::yaml_file = YAML::LoadFile("../../common/src/main/config.yaml");
 std::string CL::sv_host = CL::yaml_file["sv_host"].as<std::string>();
 std::string CL::sv_port = CL::yaml_file["sv_port"].as<std::string>();
 
+// Render
 int CL::screen_width = CL::yaml_file["screen_width"].as<int>();
 int CL::screen_height = CL::yaml_file["screen_height"].as<int>();
+bool CL::fullscreen = CL::yaml_file["fullscreen"].as<bool>();
 int CL::fps = CL::yaml_file["fps"].as<int>();
+
+// Sound
+unsigned int CL::music_volume =
+    CL::yaml_file["music_volume"].as<unsigned int>();
+unsigned int CL::effect_volume =
+    CL::yaml_file["effect_volume"].as<unsigned int>();
 
 // Player
 int CL::player_health = CL::yaml_file["player_health"].as<int>();

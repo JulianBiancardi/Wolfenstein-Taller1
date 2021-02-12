@@ -43,6 +43,8 @@ class Player : public IdentifiableObject, public Updateable {
   int get_lives() const;
   /* Returns the health of the player. */
   int get_health() const;
+  /* Returns the percentage health of the player. */
+  int get_percentage_health() const;
   /* Gets the active gun of the player. */
   int get_gun() const;
   /* Returns the amount of bullets owned by the player. */

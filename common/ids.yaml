@@ -89,7 +89,6 @@
 24:
   type: 2
   name: "Officer"
-  #image: "/home/santiagoczop/Taller/tps/tp4/res/officer/officer1.bmp"
   image: "../../res/images/officer/officer1.bmp"
   icon: "../resources/images/enemies/IMG_Officer.png"
 25:
@@ -119,7 +118,7 @@
   sound: "..."
 33:
   type: 3
-  name: "Chain Gun"
+  name: "Chain Cannon"
   image: "../../res/images/items/guns/chain_cannon.bmp"
   icon: "../resources/images/weapons/IMG_Chaingun.png"
   sound: "..."
@@ -134,12 +133,12 @@
 40:
   type: 4
   name: "Food"
-  image: ""
+  image: "../../res/images/items/items/food.bmp"
   icon: "../resources/images/items/IMG_Food.png"
 41:
   type: 4
   name: "MedKit"
-  image: ""
+  image: "../../res/images/items/items/medkit.bmp"
   icon: "../resources/images/items/IMG_MedKit.png"
 42:
   type: 4
@@ -149,50 +148,54 @@
 43:
   type: 4
   name: "Bullets"
-  image: ""
+  image: "../../res/images/items/items/bullets.bmp"
   icon: "../resources/images/items/IMG_Bullets.png"
 44:
   type: 4
   name: "Cross"
-  image: ""
+  image: "../../res/images/items/treasures/cross.bmp"
   icon: "../resources/images/items/IMG_Cross.png"
 45:
   type: 4
   name: "Cup"
-  image: ""
+  image: "../../res/images/items/treasures/cup.bmp"
   icon: "../resources/images/items/IMG_Treasure_Cup.png"
 46:
   type: 4
   name: "Chest"
-  image: ""
+  image: "../../res/images/items/treasures/chest.bmp"
   icon: "../resources/images/items/IMG_Treasure_Chest.png"
 47:
   type: 4
   name: "Crown"
-  image: ""
+  image: "../../res/images/items/treasures/crown.bmp"
   icon: "../resources/images/items/IMG_Treasure_Crown.png"
 48:
   type: 4
   name: "Key"
-  image: ""
+  image: "../../res/images/items/items/key.bmp"
   icon: "../resources/images/items/IMG_Key.png"
 
 # Solid Objects
 50:
   type: 5
   name: "Pillar"
-  #image: "/home/santiagoczop/Taller/tps/tp4/res/ambient/IMG_Pilar.bmp"
   image: "../../res/images/ambient/pillar.bmp"
   icon: "../resources/images/objects/IMG_Pillar.png"
 51:
   type: 5
-  name: "Table"
-  image: "..."
+  name: "Table 1"
+  image: "../../res/images/ambient/table1.bmp"
   icon: "../resources/images/objects/IMG_Table.png"
 52:
   type: 5
+  name: "Table 2"
+  image: "../../res/images/ambient/table2.bmp"
+  icon: "../resources/images/objects/IMG_Table.png"
+53:
+  type: 5
   name: "Barrel"
-  image: "..."
+  image: "../../res/images/ambient/barrel1.bmp"
   icon: "../resources/images/objects/IMG_Barrel.png"
 
 # Non-solid Objects

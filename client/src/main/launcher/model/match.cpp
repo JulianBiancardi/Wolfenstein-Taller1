@@ -27,13 +27,6 @@ bool Match::is_running() const { return (status == IN_GAME); }
 
 bool Match::is_valid() const { return match_id != INVALID_ID; }
 
-void Match::copy(const Match& other) {
-  this->match_id = other.match_id;
-  memcpy(this->map_name, other.map_name, strlen(other.map_name) + 1);
-  this->players_joined = other.players_joined;
-  this->players_total = other.players_total;
-  this->status = other.status;
-}
 void Match::reset() {
   match_id = INVALID_ID;
   map_name[0] = '\0';

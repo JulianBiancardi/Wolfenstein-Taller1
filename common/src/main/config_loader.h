@@ -23,7 +23,11 @@ class ConfigLoader {
 
   static int screen_width;
   static int screen_height;
+  static bool fullscreen;
   static int fps;
+
+  static unsigned int music_volume;
+  static unsigned int effect_volume;
 
   static int player_health;
   static int player_bullets;

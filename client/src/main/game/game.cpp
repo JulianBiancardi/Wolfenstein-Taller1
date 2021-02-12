@@ -33,11 +33,12 @@
 
 #define FLAGS (ENTER_FLAG + 1)
 
-Game::Game(Server& server, Match& match)
+Game::Game(Server& server, const Settings& settings, Match& match)
     : player_id(server.get_id()),
       match_id(match.get_match_id()),
       server(server),
-      window(GAME_NAME, SCREEN_WIDTH, SCREEN_HEIGHT, false),
+      window(GAME_NAME, settings.get_screen_width(),
+             settings.get_screen_height(), settings.is_fullscreen()),
       map(match.get_map_name()),
       caster(window, map, player_id),
       is_running(false),

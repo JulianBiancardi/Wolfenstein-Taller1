@@ -30,6 +30,9 @@ Player::~Player() {}
 
 int Player::get_lives() const { return lives; }
 int Player::get_health() const { return health; }
+int Player::get_percentage_health() const {
+  return (health * 100 / CL::player_health);
+}
 int Player::get_gun() const { return active_gun; }
 int Player::get_bullets() const { return bullets; }
 int Player::get_points() const { return points; }
