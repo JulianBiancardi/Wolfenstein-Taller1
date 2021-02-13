@@ -4,11 +4,8 @@
 #include "item.h"
 
 class RocketLauncherItem : public Item {
- private:
-  RocketLauncherItem(const Point& center, int id);
-
  public:
-  explicit RocketLauncherItem(const Point& center);
+  RocketLauncherItem(const Point& center, unsigned int id);
 
   /* Item gets used by the player */
   void use(Player& user) override;

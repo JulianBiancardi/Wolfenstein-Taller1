@@ -5,11 +5,10 @@
 
 class Food : public Item {
  private:
-  Food(const Point& center, int id);
   int health_recovered;
 
  public:
-  explicit Food(const Point& center);
+  Food(const Point& center, unsigned int id);
 
   /* Item gets used by the player */
   void use(Player& user) override;

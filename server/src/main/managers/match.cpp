@@ -40,10 +40,6 @@ const std::unordered_map<unsigned int, Item*>& Match::get_items() const {
   return map.get_items();
 }
 
-const std::unordered_map<unsigned int, Object*>& Match::get_objects() const {
-  return map.get_objects();
-}
-
 unsigned char Match::get_id() const { return match_id; }
 
 const std::string& Match::get_map_name() const { return map.get_name(); }
@@ -60,10 +56,9 @@ bool Match::start(unsigned int player_id, BlockingQueue<Packet>& queue) {
       auto clock = new ClockThread(CL::match_length, queue, match_id);
       threads.insert({CLOCK_KEY, clock});
 
-
-      for (int i = players_ids.size() + 1;
-            i < players_ids.size() + 1 + BOT_QUANTITY; i++) {
-        if (this->add_bot(i)){
+      for (unsigned int i = players_ids.size() + 1;
+           i < players_ids.size() + 1 + BOT_QUANTITY; i++) {
+        if (this->add_bot(i)) {
           auto bot = new BotThread(checker, map, i, queue, this);
           threads.insert({i, bot});
         }
@@ -90,6 +85,7 @@ bool Match::add_bot(unsigned int player_id) {
     return false;
   }
 }
+
 bool Match::add_player(unsigned int player_id) {
   if (started) {
     return false;
@@ -273,7 +269,7 @@ unsigned int Match::shoot_rocket(unsigned int player_id) {
   double spawn_angle = shooter.get_angle();
 
   unsigned int rocket_id = map.add_rocket(spawn_point, spawn_angle);
-  ((ClockThread*)threads.at(CLOCK_KEY))
+  ((ClockThread*) threads.at(CLOCK_KEY))
       ->add_rocket_controller(rocket_id, player_id);
 
   return rocket_id;
@@ -285,7 +281,7 @@ bool Match::move_rocket(unsigned int rocket_id) {
                      rocket_id);
   }
 
-  auto rocket = (Moveable*)map.get_object(rocket_id);
+  auto rocket = (Moveable*) map.get_object(rocket_id);
 
   Point next_position = rocket->next_position(UP);
   if (checker.can_move(next_position, *rocket)) {
@@ -308,10 +304,10 @@ unsigned char calculate_damage(Moveable& rocket, Player& player) {
    * Damage(CL::rocket_explosion_radius) = CL::rocket_min_damage
    */
   double b = CL::rocket_min_damage * CL::rocket_explosion_radius /
-             (CL::rocket_max_damage - CL::rocket_min_damage);
+      (CL::rocket_max_damage - CL::rocket_min_damage);
   double a = CL::rocket_max_damage * b;
 
-  return (unsigned char)(a / (distance + b));
+  return (unsigned char) (a / (distance + b));
 }
 
 std::unordered_map<unsigned int, unsigned char> Match::explode_rocket(
@@ -321,7 +317,7 @@ std::unordered_map<unsigned int, unsigned char> Match::explode_rocket(
                      rocket_id);
   }
 
-  auto rocket = (Moveable*)map.get_object(rocket_id);
+  auto rocket = (Moveable*) map.get_object(rocket_id);
 
   Point next_position = rocket->next_position(UP);
   std::vector<unsigned int> players_exploded =
@@ -339,7 +335,7 @@ std::unordered_map<unsigned int, unsigned char> Match::explode_rocket(
   }
 
   map.delete_object(rocket_id);
-  ((ClockThread*)threads.at(CLOCK_KEY))->delete_rocket_controller(rocket_id);
+  ((ClockThread*) threads.at(CLOCK_KEY))->delete_rocket_controller(rocket_id);
 
   return return_map;
 }
@@ -393,11 +389,11 @@ bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
     throw MatchError("Failed to find door. Door %u doesn't exist.", door_id);
   }
 
-  auto door = (Door*)map.get_object(door_id);
+  auto door = (Door*) map.get_object(door_id);
 
   if (door->interact(player, checker)) {
     if (door->is_open()) {
-      ((ClockThread*)threads.at(CLOCK_KEY))->add_door_timer(door_id);
+      ((ClockThread*) threads.at(CLOCK_KEY))->add_door_timer(door_id);
     }
     return true;
   } else {
@@ -410,12 +406,12 @@ bool Match::close_door(unsigned int door_id) {
     throw MatchError("Failed to find door. Door %u doesn't exist.", door_id);
   }
 
-  auto door = (Door*)map.get_object(door_id);
+  auto door = (Door*) map.get_object(door_id);
 
   door->close(checker);
 
   if (!door->is_open()) {
-    ((ClockThread*)threads.at(CLOCK_KEY))->delete_door_timer(door_id);
+    ((ClockThread*) threads.at(CLOCK_KEY))->delete_door_timer(door_id);
     return true;
   } else {
     return false;
@@ -439,9 +435,9 @@ void Match::end() {
     return;
   }
 
-  ((ClockThread*)threads.at(CLOCK_KEY))->force_stop();
+  ((ClockThread*) threads.at(CLOCK_KEY))->force_stop();
 //  threads.at(CLOCK_KEY)->join();
-  for(auto thread: threads){
+  for (auto thread: threads) {
     thread.second->join();
   }
   // Force_stop and join other threads

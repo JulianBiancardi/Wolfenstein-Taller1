@@ -4,11 +4,8 @@
 #include "item.h"
 
 class MachineGunItem : public Item {
- private:
-  MachineGunItem(const Point& center, int id);
-
  public:
-  explicit MachineGunItem(const Point& center);
+  MachineGunItem(const Point& center, unsigned int id);
 
   /* Item gets used by the player */
   void use(Player& user) override;

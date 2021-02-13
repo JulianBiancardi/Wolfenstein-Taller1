@@ -5,7 +5,7 @@
 
 class NormalDoor : public Door {
  public:
-  explicit NormalDoor(const Point& center);
+  NormalDoor(const Point& center, unsigned int id);
 
   /* Returns if the door state changed */
   bool interact(Player& who, CollisionChecker& checker) override;

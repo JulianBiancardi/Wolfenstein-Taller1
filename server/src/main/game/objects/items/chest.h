@@ -4,11 +4,8 @@
 #include "point_item.h"
 
 class Chest : public PointItem {
- private:
-  Chest(const Point& center, int id);
-
  public:
-  explicit Chest(const Point& center);
+  Chest(const Point& center, unsigned int id);
 
   /* Returns a copy of the element */
   Item* copy() override;

@@ -5,9 +5,9 @@
 #include "../../player.h"
 #include "../object.h"
 
-class Door : public Object {
+class Door : public Object, public Identifiable {
  protected:
-  explicit Door(const Point& center);
+  Door(const Point& center, unsigned int id);
   void change_state(CollisionChecker& checker);
 
  public:

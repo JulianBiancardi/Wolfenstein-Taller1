@@ -5,7 +5,7 @@
 #include "../../../../common/src/main/utils/ray.h"
 #include "objects/object.h"
 
-class Moveable : public Object {
+class Moveable : public Object, public Identifiable {
  private:
   double speed;
   double rotation_speed;
@@ -13,15 +13,14 @@ class Moveable : public Object {
   Point next_position(double direction_angle);
 
  public:
-  Moveable(Point origin, double angle, double speed, double rotation_speed,
-           double radius);
-  Moveable(Point origin, double angle, double speed, double rotation_speed,
-           double radius, unsigned int id);
-  Moveable(Ray position, double speed, double rotation_speed, double radius);
   Moveable(double x, double y, double angle, double speed,
-           double rotation_speed, double radius);
+           double rotation_speed, double radius, unsigned int id);
+  Moveable(const Point& origin, double angle, double speed,
+           double rotation_speed, double radius, unsigned int id);
+  Moveable(const Ray& position, double speed, double rotation_speed,
+           double radius, unsigned int id);
+
   Moveable(const Moveable& other);
-  // TODO Add constructor with ID and also to player
   ~Moveable();
 
   /* Returns the next position given a direction */

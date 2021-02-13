@@ -11,9 +11,11 @@
 
 class MapLoader {
  private:
+  unsigned int& next_id;
   std::unordered_map<unsigned int, Player>& players;
   std::unordered_map<unsigned int, Item*>& items;
-  std::unordered_map<unsigned int, Object*>& solid_objects;
+  std::unordered_map<unsigned int, Object*>& identifiable_objects;
+  std::vector<Object*>& unidentifiable_objects;
   std::vector<Point>& spawn_points;
   std::vector<Point>& dogs;
 
@@ -47,9 +49,11 @@ class MapLoader {
   void add_locked_door(const Point& where);
 
  public:
-  MapLoader(std::unordered_map<unsigned int, Player>& players,
+  MapLoader(unsigned int& next_id,
+            std::unordered_map<unsigned int, Player>& players,
             std::unordered_map<unsigned int, Item*>& items,
-            std::unordered_map<unsigned int, Object*>& solid_objects,
+            std::unordered_map<unsigned int, Object*>& identifiable_objects,
+            std::vector<Object*>& unidentifiable_objects,
             std::vector<Point>& spawn_points,
             std::vector<Point>& dogs);
   ~MapLoader();

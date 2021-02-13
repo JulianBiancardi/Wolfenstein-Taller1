@@ -8,8 +8,7 @@ class PointItem : public Item {
   int points_given;
 
  protected:
-  PointItem(const Point& center, int points_given);
-  PointItem(const Point& center, int points_given, int id);
+  PointItem(const Point& center, unsigned int id, int points_given);
 
  public:
   /* Item gets used by the player */

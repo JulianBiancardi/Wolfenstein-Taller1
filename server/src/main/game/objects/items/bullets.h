@@ -5,11 +5,10 @@
 
 class Bullets : public Item {
  private:
-  Bullets(const Point& center, int amount, int id);
   int amount;
 
  public:
-  Bullets(const Point& center, int amount);
+  Bullets(const Point& center, int amount, unsigned int id);
 
   /* Item gets used by the player */
   void use(Player& user) override;

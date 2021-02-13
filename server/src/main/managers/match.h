@@ -60,9 +60,6 @@ class Match {
   /* Returns a reference to the items */
   const std::unordered_map<unsigned int, Item*>& get_items() const;
 
-  /* Returns a reference to the objects */
-  const std::unordered_map<unsigned int, Object*>& get_objects() const;
-
   /* Returns the match_id */
   unsigned char get_id() const;
 

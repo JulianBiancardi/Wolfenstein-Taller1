@@ -15,8 +15,11 @@
 
 class Map : public BaseMap {
  private:
+  unsigned int next_id;
+
   std::unordered_map<unsigned int, Item*> items;
-  std::unordered_map<unsigned int, Object*> objects;
+  std::unordered_map<unsigned int, Object*> identifiable_objects;
+  std::vector<Object*> unidentifiable_objects;
   std::unordered_map<unsigned int, Player> players;
   std::vector<Point> dogs;
   std::vector<Point> spawn_points;
@@ -30,7 +33,6 @@ class Map : public BaseMap {
 
  public:
   explicit Map(std::string& map_name);
-
   explicit Map(Matrix<int>& map_matrix);
 
   ~Map();
@@ -72,8 +74,12 @@ class Map : public BaseMap {
   /* Returns a reference to the items */
   const std::unordered_map<unsigned int, Item*>& get_items() const;
 
-  /* Returns a reference to the objects */
-  const std::unordered_map<unsigned int, Object*>& get_objects() const;
+  /* Returns a reference to the objects with id */
+  const std::unordered_map<unsigned int, Object*>& get_identifiable_objects()
+  const;
+
+  /* Returns a reference to the objects without id */
+  const std::vector<Object*>& get_unidentifiable_objects() const;
 
   /* Returns if only has one player or not */
   bool has_one_player() const;
