@@ -23,7 +23,7 @@ void AcceptClientsThread::run() {
     while (allowed_to_run) {
       Socket peer_socket = acceptor_socket.accept();
       client_manager.add_client(peer_socket);
-      client_manager.clear();
+      //client_manager.clear();
     }
   } catch (const SocketError& e) {
     // Expected error when using force_stop()

@@ -18,38 +18,29 @@ find_package(Lua 5.4)
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".so")
 
 FILE(GLOB ServerFiles
-        # src/main/client.cpp
-        src/main/client_manager.cpp
-        src/main/client.cpp
         src/main/server.cpp
-        src/main/match_manager.cpp
-        src/main/match_manager_error.cpp
 
-        src/main/threads/*.cpp
-        src/main/threads/*/*.cpp
-        src/main/packet_handlers/*.cpp
-        src/main/packet_handlers/assistants/*.cpp
-
-        src/main/bot/*.cpp ##
-        src/main/map.cpp # Should be everything different from main_server.cpp
-        src/main/map_loader.cpp
-        src/main/game/*.cpp
-        src/main/game/*/*.cpp
-        src/main/game/*/*/*.cpp
-        
         src/main/managers/*.cpp
 
         src/main/threads/*.cpp
-        )
+        src/main/threads/*/*.cpp
+
+        src/main/packet_handlers/*.cpp
+        src/main/packet_handlers/*/*.cpp
+
+        src/main/bot/*.cpp
+
+        src/main/game/*.cpp
+        src/main/game/*/*.cpp
+        src/main/game/*/*/*.cpp
+
+        src/main/managers/*.cpp
+
+        src/main/threads/*.cpp)
 
 FILE(GLOB ServerTestsFiles
-        src/tests/client_mock.cpp
-        src/tests/player_test.cpp
-        src/tests/match_tests.cpp
-        src/tests/clock/clock_tests.cpp
-        src/tests/bot_test.cpp
-        #src/tests/*/*.cpp
-        src/tests/tests_setup.cpp)
+        src/tests/*.cpp
+        src/tests/*/*.cpp)
 
 FILE(GLOB CommonFiles
         ../common/src/main/*/*.cpp

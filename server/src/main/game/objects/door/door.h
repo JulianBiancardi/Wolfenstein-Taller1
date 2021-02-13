@@ -1,8 +1,8 @@
 #ifndef DOOR_H
 #define DOOR_H
 
-#include "../../collision_checker.h"
-#include "../../player.h"
+#include "../../collisions/collision_checker.h"
+#include "../player.h"
 #include "../object.h"
 
 class Door : public Object, public Identifiable {

@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-#include "collisions/circle_mask.h"
+#include "../collisions/circle_mask.h"
 
 Moveable::Moveable(double x, double y, double angle, double speed,
                    double rotation_speed, double radius, unsigned int id)

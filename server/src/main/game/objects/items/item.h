@@ -3,7 +3,7 @@
 
 #include "../../../../../../common/src/main/packets/packet.h"
 #include "../../../../../../common/src/main/packets/packing.h"
-#include "../../player.h"
+#include "../player.h"
 #include "../object.h"
 
 class Item : public Object, public Identifiable {

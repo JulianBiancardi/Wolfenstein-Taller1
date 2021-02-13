@@ -3,7 +3,9 @@
 #include "../../../common/src/tests/tests_setup.h"
 #include "../main/managers/match.h"
 #include "../../../common/src/main/ids/gun_ids.h"
-#include "client_mock.h"
+#include "common_tools.h"
+
+#define EPSILON 0.1
 
 #define MOVEMENT_MAP "test_map_movement"
 #define ITEMS_MAP "test_map_items"
@@ -99,7 +101,7 @@ int static can_move_up_player() {
   match.end();
 
   if (double_compare(final_position.getX(),
-                     initial_position.getX() + CL::player_speed)
+                     initial_position.getX() + CL::player_speed, EPSILON)
       && initial_position.getY() == final_position.getY())
     return NO_ERROR;
 
@@ -125,7 +127,7 @@ int static can_move_up_player_two_times() {
   match.end();
 
   if (double_compare(final_position.getX(),
-                     initial_position.getX() + 2 * CL::player_speed)
+                     initial_position.getX() + 2 * CL::player_speed, EPSILON)
       && initial_position.getY() == final_position.getY())
     return NO_ERROR;
 
@@ -153,7 +155,7 @@ int static can_move_up_until_wall() {
 
   if (double_compare(final_position.getX(),
                      initial_position.getX()
-                         + movements_made * CL::player_speed)
+                         + movements_made * CL::player_speed, EPSILON)
       && initial_position.getY() == final_position.getY())
     return NO_ERROR;
 
@@ -451,7 +453,7 @@ int static player_kills_enemy_and_it_is_no_longer_in_the_map() {
   while (match.move_player(1, RIGHT));
 
   if (!double_compare(match.get_players().at(1).get_position().getY(),
-                      10 - 1 - CL::player_mask_radio))
+                      10 - 1 - CL::player_mask_radio, EPSILON))
     return ERROR;
 
   match.end();

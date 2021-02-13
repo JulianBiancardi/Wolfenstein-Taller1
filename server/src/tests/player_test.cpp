@@ -1,11 +1,12 @@
 #include "player_test.h"
 
-#include "../main/game/player.h"
+#include "../main/game/objects/player.h"
 #include "../../../common/src/main/ids/gun_ids.h"
 #include "../main/game/objects/door/door.h"
-#include "client_mock.h"
 #include "tests_setup.h"
+#include "common_tools.h"
 
+#define EPSILON 0.1
 #define TEST_MAP_SIZE 10
 
 #define TEST_MAP_MOVEMENT "test_map_movement"
@@ -174,7 +175,7 @@ int static walks_and_collides_wall() {
   } while (previous_x != map.get_player(1).get_position().getX());
 
   if (double_compare(map.get_player(1).get_position().getX(),
-                     TEST_MAP_SIZE - 1 - CL::player_mask_radio) &&
+                     TEST_MAP_SIZE - 1 - CL::player_mask_radio, EPSILON) &&
       map.get_player(1).get_position().getY() == initial_y)
     return NO_ERROR;
 
@@ -217,9 +218,9 @@ int static complete_path_correctly() {
   }
 
   if (double_compare(map.get_player(1).get_position().getX(),
-                     2 + 40 * CL::player_speed) &&
+                     2 + 40 * CL::player_speed, EPSILON) &&
       double_compare(map.get_player(1).get_position().getY(),
-                     2 + 40 * CL::player_speed))
+                     2 + 40 * CL::player_speed, EPSILON))
     return NO_ERROR;
 
   return ERROR;
@@ -237,10 +238,10 @@ int static walk_diagonally() {
 
   if (double_compare(map.get_player(1).get_position().getX(),
                      map.get_player(1).get_position().getX()
-                         + CL::player_speed * cos(7 * M_PI / 4))
+                         + CL::player_speed * cos(7 * M_PI / 4), EPSILON)
       && double_compare(map.get_player(1).get_position().getY(),
                         map.get_player(1).get_position().getY()
-                            - CL::player_speed * sin(7 * M_PI / 4)))
+                            - CL::player_speed * sin(7 * M_PI / 4), EPSILON))
     return NO_ERROR;
 
   return ERROR;
@@ -263,9 +264,9 @@ int static complete_difficult_path_correctly() {
   }
 
   if (double_compare(map.get_player(1).get_position().getX(),
-                     TEST_MAP_SIZE - 1 - CL::player_mask_radio) &&
+                     TEST_MAP_SIZE - 1 - CL::player_mask_radio, EPSILON) &&
       double_compare(map.get_player(1).get_position().getY(),
-                     2 + 10 * CL::player_speed))
+                     2 + 10 * CL::player_speed, EPSILON))
     return NO_ERROR;
 
   return ERROR;
@@ -284,9 +285,9 @@ int static check_collisions() {
   }
 
   if (!double_compare(map.get_player(1).get_position().getX(),
-                      TEST_MAP_SIZE - 1 - CL::player_mask_radio) ||
+                      TEST_MAP_SIZE - 1 - CL::player_mask_radio, EPSILON) ||
       !double_compare(map.get_player(1).get_position().getY(),
-                      2))
+                      2, EPSILON))
     return ERROR;
 
   for (int i = 0; i < 140; i++) {
@@ -294,9 +295,9 @@ int static check_collisions() {
   }
 
   if (!double_compare(map.get_player(1).get_position().getX(),
-                      TEST_MAP_SIZE - 1 - CL::player_mask_radio) ||
+                      TEST_MAP_SIZE - 1 - CL::player_mask_radio, EPSILON) ||
       !double_compare(map.get_player(1).get_position().getY(),
-                      TEST_MAP_SIZE - 1 - CL::player_mask_radio))
+                      TEST_MAP_SIZE - 1 - CL::player_mask_radio, EPSILON))
     return ERROR;
 
   for (int i = 0; i < 200; i++) {
@@ -304,9 +305,9 @@ int static check_collisions() {
   }
 
   if (!double_compare(map.get_player(1).get_position().getX(),
-                      1 + CL::player_mask_radio) ||
+                      1 + CL::player_mask_radio, EPSILON) ||
       !double_compare(map.get_player(1).get_position().getY(),
-                      TEST_MAP_SIZE - 1 - CL::player_mask_radio))
+                      TEST_MAP_SIZE - 1 - CL::player_mask_radio, EPSILON))
     return ERROR;
 
   for (int i = 0; i < 200; i++) {
@@ -314,9 +315,9 @@ int static check_collisions() {
   }
 
   if (!double_compare(map.get_player(1).get_position().getX(),
-                      1 + CL::player_mask_radio) ||
+                      1 + CL::player_mask_radio, EPSILON) ||
       !double_compare(map.get_player(1).get_position().getY(),
-                      1 + CL::player_mask_radio))
+                      1 + CL::player_mask_radio, EPSILON))
     return ERROR;
 
   return NO_ERROR;
@@ -336,10 +337,10 @@ int static player_collides_against_other_player() {
     move_right(map.get_player(1), checker);
   }
 
-  if (double_compare(map.get_player(1).get_position().getX(), 2) &&
+  if (double_compare(map.get_player(1).get_position().getX(), 2, EPSILON) &&
       double_compare(map.get_player(1).get_position().getY(),
                      map.get_player(2).get_position().getY()
-                         - 2 * CL::player_mask_radio))
+                         - 2 * CL::player_mask_radio, EPSILON))
     return NO_ERROR;
 
   return ERROR;
@@ -365,8 +366,8 @@ int static another_player_collides_against_other_player() {
 
   if (double_compare(map.get_player(2).get_position().getX(),
                      map.get_player(1).get_position().getX()
-                         + 2 * CL::player_mask_radio) &&
-      double_compare(map.get_player(2).get_position().getY(), 7))
+                         + 2 * CL::player_mask_radio, EPSILON) &&
+      double_compare(map.get_player(2).get_position().getY(), 7, EPSILON))
     return NO_ERROR;
 
   return ERROR;
@@ -386,7 +387,7 @@ int static player_collides_against_table_from_side() {
 
   if (double_compare(map.get_player(1).get_position().getX(),
                      5.5 - CL::table_width / 2 - CL::player_mask_radio
-                         - CL::player_speed)
+                         - CL::player_speed, EPSILON)
       && map.get_player(1).get_position().getY() == 5.5)
     return NO_ERROR;
 
@@ -408,7 +409,7 @@ int static player_collides_against_table_from_another_side() {
   if (map.get_player(1).get_position().getX() == 5.5 &&
       double_compare(map.get_player(1).get_position().getY(),
                      5.5 - CL::table_depth / 2 - CL::player_mask_radio
-                         - CL::player_speed))
+                         - CL::player_speed, EPSILON))
     return NO_ERROR;
 
   return ERROR;
@@ -488,7 +489,8 @@ int static player_collides_against_door() {
   }
 
   if (double_compare(map.get_player(1).get_position().getX(),
-                     5.5 - 0.5 - CL::player_mask_radio - CL::player_speed)
+                     5.5 - 0.5 - CL::player_mask_radio - CL::player_speed,
+                     EPSILON)
       && map.get_player(1).get_position().getY() == 5.5)
     return NO_ERROR;
 
@@ -509,7 +511,7 @@ int static player_walks_through_door() {
     move_up(map.get_player(1), checker);
   }
 
-  if (double_compare(map.get_player(1).get_position().getX(), 8)
+  if (double_compare(map.get_player(1).get_position().getX(), 8, EPSILON)
       && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
@@ -529,7 +531,8 @@ int static player_tries_to_pass_door_opens_it_and_does_it() {
   }
 
   if (double_compare(map.get_player(1).get_position().getX(),
-                     5 - 0.5 - CL::player_mask_radio - CL::player_speed)
+                     5 - 0.5 - CL::player_mask_radio - CL::player_speed,
+                     EPSILON)
       && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
@@ -542,7 +545,7 @@ int static player_tries_to_pass_door_opens_it_and_does_it() {
   }
 
   if (double_compare(map.get_player(1).get_position().getX(),
-                     previous.getX() + 2)
+                     previous.getX() + 2, EPSILON)
       && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
@@ -564,7 +567,8 @@ int static player_tries_to_open_locked_door_with_no_key() {
   }
 
   if (double_compare(map.get_player(1).get_position().getX(),
-                     5.5 - 0.5 - CL::player_mask_radio - CL::player_speed)
+                     5.5 - 0.5 - CL::player_mask_radio - CL::player_speed,
+                     EPSILON)
       && map.get_player(1).get_position().getY() == 5.5)
     return NO_ERROR;
 
@@ -586,7 +590,7 @@ int static player_opens_door_with_key() {
     move_up(map.get_player(1), checker);
   }
 
-  if (double_compare(map.get_player(1).get_position().getX(), 8)
+  if (double_compare(map.get_player(1).get_position().getX(), 8, EPSILON)
       && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
@@ -611,7 +615,7 @@ int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
     move_up(map.get_player(1), checker);
   }
 
-  if (double_compare(map.get_player(1).get_position().getX(), 8)
+  if (double_compare(map.get_player(1).get_position().getX(), 8, EPSILON)
       && map.get_player(1).get_position().getY() == 5)
     return NO_ERROR;
 
@@ -649,7 +653,7 @@ int static player_cannot_close_door_if_it_is_under_it() {
   }
 
   if (double_compare(map.get_player(1).get_position().getX(),
-                     previous.getX() + 2)
+                     previous.getX() + 2, EPSILON)
       && map.get_player(1).get_position().getY() == 5.5)
     return NO_ERROR;
 
