@@ -8,14 +8,8 @@
 
 class IdentifiableObject : public Identifiable, public Object {
  public:
-  IdentifiableObject(unsigned char res_id, double x_pos, double y_pos,
-                     double angle, int id);
-  IdentifiableObject(unsigned char res_id, Point position, double angle,
-                     int id);
-  IdentifiableObject(unsigned char res_id, Ray position, int id);
+  IdentifiableObject(const Ray& position, int id);
   ~IdentifiableObject();
-
-  void domr();
 };
 
 #endif

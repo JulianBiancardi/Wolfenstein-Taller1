@@ -32,7 +32,7 @@ class Player : public IdentifiableObject, public Updateable {
   PlayerState state;
 
  public:
-  Player(Ray position, unsigned int player_id);
+  Player(const Ray& position, unsigned int player_id);
 
   Player(const Player& other) = delete;
   Player& operator=(const Player&) = delete;
@@ -75,9 +75,6 @@ class Player : public IdentifiableObject, public Updateable {
 
   /* Decreases the amount of bullets owned by the player. */
   void decrease_bullets(unsigned char gun_id);
-
-  /* Grabs an item. */
-  void grab_item(Object& item);
 
   /* Pulls the trigger of the player's gun.
    * Returns a Hit object containing the data of the shot attempt.

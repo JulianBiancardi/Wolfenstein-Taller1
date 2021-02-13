@@ -36,7 +36,8 @@ class Map : public BaseMap {
   const Player& get_player(unsigned int player_id) const;
 
   void update();
-  void add_item(unsigned int item_id, unsigned char item_type, Point pos);
+  void add_item(unsigned int item_id, const Ray& position,
+                unsigned char item_type);
   void add_player(unsigned int player_id, const Ray& position);
   void move_player(unsigned int player_id, unsigned char direction);
   void rotate_player(unsigned int player_id, unsigned char direction);

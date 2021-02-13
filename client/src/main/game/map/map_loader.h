@@ -17,7 +17,7 @@ class MapLoader {
   std::unordered_map<unsigned int, std::shared_ptr<Object>>& objects;
   std::unordered_map<unsigned int, std::shared_ptr<Player>>& players;
 
-  void add_object(unsigned char res_id, Ray position);
+  void add_object(Ray& position);
 
  public:
   MapLoader(std::vector<std::weak_ptr<Object>>& drawables,
@@ -28,8 +28,9 @@ class MapLoader {
   ~MapLoader();
 
   void load_map(const std::string& map_name);
-  void add_player(unsigned int player_id, Ray position);
-  void add_item(unsigned int item_id, unsigned char item_type, Point pos);
+  void add_player(const Ray& position, unsigned int player_id);
+  void add_item(const Ray& position, unsigned int item_id,
+                unsigned char map_id);
 };
 
 #endif

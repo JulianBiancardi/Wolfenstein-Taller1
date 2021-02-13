@@ -12,8 +12,8 @@
 #include "../guns/pistol.h"
 #include "../guns/rocket_launcher.h"
 
-Player::Player(Ray position, unsigned int player_id)
-    : guns_bag(), IdentifiableObject(GUARD, position, player_id) {
+Player::Player(const Ray& position, unsigned int player_id)
+    : guns_bag(), IdentifiableObject(position, player_id) {
   lives = CL::player_lives;
   health = CL::player_health;
   bullets = CL::player_bullets;
@@ -125,17 +125,6 @@ void Player::decrease_bullets(unsigned char gun_id) {
   }
 
   bullets = std::max(bullets, 0);
-}
-
-void Player::grab_item(Object& item) {
-  switch (item.get_type()) {
-    case GUNS_TYPE:
-      add_gun(item.get_res_id());
-      break;
-    case ITEMS_TYPE:
-      add_item(item.get_res_id());
-      break;
-  }
 }
 
 void Player::add_gun(unsigned int gun_id) {

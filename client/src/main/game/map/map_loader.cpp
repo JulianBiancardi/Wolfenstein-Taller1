@@ -21,17 +21,17 @@ MapLoader::MapLoader(
 
 MapLoader::~MapLoader() {}
 
-void MapLoader::add_player(unsigned int player_id, Ray position) {
+void MapLoader::add_player(const Ray& position, unsigned int player_id) {
   std::shared_ptr<Player> new_player(new Player(position, player_id));
   players.insert(std::make_pair(player_id, new_player));
   players_shootable.push_back(new_player);
   drawables.push_back(new_player);
 }
 
-void MapLoader::add_item(unsigned int item_id, unsigned char item_type,
-                         Point pos) {
+void MapLoader::add_item(const Ray& position, unsigned int item_id,
+                         unsigned char map_id) {
   std::shared_ptr<IdentifiableObject> new_object(
-      new IdentifiableObject(item_type, pos, 0.0, item_id));
+      new IdentifiableObject(position, item_id));
   objects.insert(std::make_pair(new_object->get_id(), new_object));
   drawables.push_back(new_object);
 }
@@ -53,13 +53,14 @@ void MapLoader::load_map(const std::string& map_name) {
     int res_id = object["id"].as<int>();
     size_t x = object["x_position"].as<int>();
     size_t y = object["y_position"].as<int>();
+    Ray position(x + 0.5, y + 0.5, 0.0);
 
-    add_object(res_id, Ray(x + 0.5, y + 0.5, 0.0));
+    add_object(position);
   }
 }
 
-void MapLoader::add_object(unsigned char res_id, Ray position) {
-  std::shared_ptr<Object> new_object(new Object(res_id, position));
+void MapLoader::add_object(Ray& position) {
+  std::shared_ptr<Object> new_object(new Object(position));
   std::weak_ptr<Object> object_weak_ptr(new_object);
   ambient_objects.push_back(new_object);
   drawables.push_back(object_weak_ptr);

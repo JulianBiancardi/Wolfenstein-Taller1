@@ -30,12 +30,13 @@ void Map::update() {
   }
 }
 
-void Map::add_item(unsigned int item_id, unsigned char item_type, Point pos) {
-  loader.add_item(item_id, item_type, pos);
+void Map::add_item(unsigned int item_id, const Ray& position,
+                   unsigned char item_type) {
+  loader.add_item(position, item_id, item_type);
 }
 
 void Map::add_player(unsigned int player_id, const Ray& position) {
-  loader.add_player(player_id, position);
+  loader.add_player(position, player_id);
 }
 
 std::vector<std::weak_ptr<Object>>& Map::get_drawables() { return drawables; }
@@ -67,7 +68,8 @@ void Map::use_bullets(unsigned int player_id, unsigned char gun_id) {
 
 void Map::pick_item(unsigned int player_id, unsigned int item_id) {
   Player& player = *(players.at(player_id));
-  player.grab_item(*objects.at(item_id));
+  // player.grab_item(*objects.at(item_id));
+  // TODO Invert order
   objects.erase(item_id);
 }
 
@@ -87,9 +89,9 @@ void Map::shoot_rocket(unsigned int player_id, unsigned int rocket_id) {
   double front_x = player_position.getX() + cos(angle) * CL::player_mask_radio;
   double front_y = player_position.getY() - sin(angle) * CL::player_mask_radio;
 
-  const Point spawn_point(front_x, front_y);
+  Ray spawn_point(front_x, front_y, 0.0);
 
-  std::shared_ptr<Rocket> rocket(new Rocket(spawn_point, angle, rocket_id));
+  std::shared_ptr<Rocket> rocket(new Rocket(spawn_point, rocket_id));
   objects.insert(std::make_pair(rocket_id, std::move(rocket)));
   drawables.push_back(objects.at(rocket_id));
 }
