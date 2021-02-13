@@ -32,7 +32,7 @@
 6:
   type: 1
   name: "Blue Wall with Hitler"
-  image: "../../res/images/walls/blue_hitler.bmp"
+  image: "../../res/images/walls/blue_wall_hitler.bmp"
   icon: "../../../../res/images/walls/blue_wall_hitler.bmp"
 7:
   type: 1
@@ -143,7 +143,7 @@
 42:
   type: 4
   name: "Blood"
-  image: "..."
+  image: "../../res/images/items/items/blood.bmp"
   icon: "../resources/images/items/IMG_Blood.png"
 43:
   type: 4

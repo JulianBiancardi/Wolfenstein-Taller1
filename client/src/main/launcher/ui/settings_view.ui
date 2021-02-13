@@ -52,17 +52,17 @@
      </item>
      <item>
       <property name="text">
-       <string>980x600</string>
+       <string>960x600</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>1300x800</string>
+       <string>1280x800</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>1620x1000</string>
+       <string>1600x1000</string>
       </property>
      </item>
     </widget>

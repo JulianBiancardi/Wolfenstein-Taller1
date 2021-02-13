@@ -42,8 +42,9 @@
 
 // Solid Objects
 #define PILLAR 50
-#define TABLE 51
-#define BARREL 52
+#define LARGE_TABLE 51
+#define ROUND_TABLE 52
+#define BARREL 53
 
 // Define Non-Solid Objects
 #define WATER 60

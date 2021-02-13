@@ -13,7 +13,7 @@ class Window {
   SDL_Window* window = nullptr;
   SDL_Surface* window_icon = nullptr;
   SDL_Renderer* renderer = nullptr;
-  int width = 980;
+  int width = 960;
   int height = 600;
 
  public:
