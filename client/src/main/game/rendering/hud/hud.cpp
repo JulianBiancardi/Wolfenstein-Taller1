@@ -1,7 +1,6 @@
 #include "hud.h"
 
 #include "../../../../../../common/src/main/ids/gun_ids.h"
-#include "../../../../../../common/src/main/utils/rectangle.h"
 #include "../sdl/image.h"
 #include "../sdl/text.h"
 
@@ -76,9 +75,10 @@ void Hud::_show_face(const Window& window, const Player& player) const {
   SDL_Rect rect_face = {
       ((window.get_width() * FACE_X_PERCENTAJE) / 100),
       window.get_height() - ((window.get_height() * FACE_Y_PERCENTAJE) / 100),
-      frame_width * FACE_SCALE, frame_height * FACE_SCALE};
-  SDL_Rect rect_slice = {sprite_x * frame_width, sprite_y * frame_height,
-                         frame_width, frame_height};
+      (int)(frame_width * FACE_SCALE), (int)(frame_height * FACE_SCALE)};
+  SDL_Rect rect_slice = {(int)(sprite_x * frame_width),
+                         (int)(sprite_y * frame_height), (int)frame_width,
+                         (int)frame_height};
   face.draw(&rect_face, &rect_slice);
 }
 

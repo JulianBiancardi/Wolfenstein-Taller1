@@ -6,7 +6,6 @@
 
 #include <string>
 
-#include "../../../../common/src/main/utils/rectangle.h"
 #include "texture.h"
 
 class Text {
