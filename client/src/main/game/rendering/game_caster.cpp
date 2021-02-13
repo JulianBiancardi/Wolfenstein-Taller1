@@ -167,7 +167,7 @@ void GameCaster::draw_object(Object& object, double distance,
   // TODO Move to constants
   if (x > SCREEN_WIDTH * 1.2 || x < -0.2 * SCREEN_WIDTH) return;
   // printf("center: %d\n", x);
-  int x0 = x - sprite_size / 2 - 1;
+  int x0 = x - (sprite_size / 2) - 1;
   // printf("x0: %d\n", x0);
 
   for (int i = 0; i < sprite_size; i++) {
