@@ -37,5 +37,5 @@ void Image::draw(SDL_Rect* position, SDL_Rect* img_slice) {
   SDL_RenderCopy(renderer, texture.get_texture(), img_slice, position);
 }
 
-size_t Image::get_width() { return width; }
-size_t Image::get_height() { return height; }
+size_t Image::get_width() const { return width; }
+size_t Image::get_height() const { return height; }

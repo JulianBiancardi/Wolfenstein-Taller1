@@ -20,8 +20,8 @@ Player::Player(const Ray& position, unsigned int player_id)
   points = 0;
   keys = 0;
   guns_bag.reserve(GUN_AMOUNT);
-  std::unique_ptr<Gun> knife = std::make_unique<Knife>();
-  std::unique_ptr<Gun> pistol = std::make_unique<Pistol>();
+  Gun* knife = new Knife();
+  Gun* pistol = new Pistol();
   guns_bag.insert(std::make_pair(KNIFE_ID, std::move(knife)));
   guns_bag.insert(std::make_pair(PISTOL_ID, std::move(pistol)));
   active_gun = PISTOL_ID;
@@ -129,17 +129,17 @@ void Player::decrease_bullets(unsigned char gun_id) {
 void Player::add_gun(unsigned int gun_id) {
   switch (gun_id) {
     case MACHINE_GUN_ID: {
-      std::unique_ptr<Gun> machine_gun = std::make_unique<MachineGun>();
+      Gun* machine_gun = new MachineGun();
       guns_bag.insert(std::make_pair(MACHINE_GUN_ID, std::move(machine_gun)));
       break;
     }
     case CHAIN_CANNON_ID: {
-      std::unique_ptr<Gun> chain_cannon = std::make_unique<ChainCannon>();
+      Gun* chain_cannon = new ChainCannon();
       guns_bag.insert(std::make_pair(CHAIN_CANNON_ID, std::move(chain_cannon)));
       break;
     }
     case ROCKET_LAUNCHER_ID: {
-      std::unique_ptr<Gun> rocket_launcher = std::make_unique<RocketLauncher>();
+      Gun* rocket_launcher = new RocketLauncher();
       guns_bag.insert(
           std::make_pair(ROCKET_LAUNCHER_ID, std::move(rocket_launcher)));
       break;
