@@ -66,8 +66,7 @@ void Map::use_bullets(unsigned int player_id, unsigned char gun_id) {
 
 void Map::pick_item(unsigned int player_id, unsigned int item_id) {
   Player& player = *(players.at(player_id));
-  // player.grab_item(*objects.at(item_id));
-  // TODO Invert order
+  items.at(item_id)->use_on(player);
   items.erase(item_id);
 }
 

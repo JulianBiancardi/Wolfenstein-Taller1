@@ -100,7 +100,6 @@ void Player::untrigger_gun() { guns_bag[active_gun]->untrigger(); }
 void Player::set_gun(int gun_num) {
   if (guns_bag.find(gun_num) != guns_bag.end()) {
     active_gun = gun_num;
-    printf("setting gun\n");
   }
 }
 
@@ -129,12 +128,12 @@ void Player::decrease_bullets(unsigned char gun_id) {
 
 void Player::add_gun(unsigned int gun_id) {
   switch (gun_id) {
-    case MACHINE_GUN: {
+    case MACHINE_GUN_ID: {
       std::unique_ptr<Gun> machine_gun = std::make_unique<MachineGun>();
       guns_bag.insert(std::make_pair(MACHINE_GUN_ID, std::move(machine_gun)));
       break;
     }
-    case CHAIN_CANNON: {
+    case CHAIN_CANNON_ID: {
       std::unique_ptr<Gun> chain_cannon = std::make_unique<ChainCannon>();
       guns_bag.insert(std::make_pair(CHAIN_CANNON_ID, std::move(chain_cannon)));
       break;
