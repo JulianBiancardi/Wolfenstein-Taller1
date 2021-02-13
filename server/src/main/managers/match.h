@@ -6,9 +6,9 @@
 #include "../../../../common/src/main/data_structures/blocking_queue.h"
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/threads/thread.h"
-#include "../game/collision_checker.h"
-#include "../game/player.h"
-#include "../map.h"
+#include "../game/collisions/collision_checker.h"
+#include "../game/objects/player.h"
+#include "../game/map/map.h"
 
 class Match {
  private:

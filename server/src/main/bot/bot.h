@@ -14,8 +14,8 @@
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/packets/packing.h"
 
-#include "../game/collision_checker.h"
-#include "../game/player.h"
+#include "../game/collisions/collision_checker.h"
+#include "../game/objects/player.h"
 #include "../../main/managers/match.h"
 
 extern "C" {

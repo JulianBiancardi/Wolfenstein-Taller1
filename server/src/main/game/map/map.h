@@ -5,13 +5,13 @@
 #include <unordered_map>
 #include <vector>
 
-#include "../../../../common/src/main/utils/base_map.h"
-#include "../../../../common/src/main/utils/matrix.h"
-#include "../../../../common/src/main/utils/point.h"
-#include "game/moveable.h"
-#include "game/objects/items/item.h"
-#include "game/objects/object.h"
-#include "game/player.h"
+#include "../../../../../common/src/main/utils/base_map.h"
+#include "../../../../../common/src/main/utils/matrix.h"
+#include "../../../../../common/src/main/utils/point.h"
+#include "../objects/moveable.h"
+#include "../objects/items/item.h"
+#include "../objects/object.h"
+#include "../objects/player.h"
 
 class Map : public BaseMap {
  private:

@@ -5,9 +5,9 @@
 #include <unordered_map>
 #include <vector>
 
-#include "game/objects/items/item.h"
-#include "game/objects/object.h"
-#include "game/player.h"
+#include "../objects/items/item.h"
+#include "../objects/object.h"
+#include "../objects/player.h"
 
 class MapLoader {
  private:

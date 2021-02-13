@@ -1,11 +1,11 @@
 #include "map.h"
 
-#include "../../../common/src/main/ids/gun_ids.h"
-#include "game/objects/items/bullets.h"
-#include "game/objects/items/chain_cannon_item.h"
-#include "game/objects/items/key.h"
-#include "game/objects/items/machine_gun_item.h"
-#include "game/objects/items/rocket_launcher_item.h"
+#include "../../../../../common/src/main/ids/gun_ids.h"
+#include "../objects/items/bullets.h"
+#include "../objects/items/chain_cannon_item.h"
+#include "../objects/items/key.h"
+#include "../objects/items/machine_gun_item.h"
+#include "../objects/items/rocket_launcher_item.h"
 #include "map_loader.h"
 
 Map::Map(std::string& map_name)

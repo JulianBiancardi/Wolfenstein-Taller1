@@ -4,7 +4,7 @@
 #include <iostream>
 #include <unordered_set>
 
-#include "../../../../common/src/main/config_loader.h"
+#include "../../../../../common/src/main/config_loader.h"
 #include "moveable.h"
 
 class Player : public Moveable {

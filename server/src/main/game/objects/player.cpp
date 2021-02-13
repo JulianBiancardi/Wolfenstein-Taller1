@@ -1,7 +1,7 @@
 #include "player.h"
 
-#include "../../../../common/src/main/ids/gun_ids.h"
-#include "collisions/circle_mask.h"
+#include "../../../../../common/src/main/ids/gun_ids.h"
+#include "../collisions/circle_mask.h"
 
 Player::Player(double x, double y, double angle, unsigned int id)
     : shot_bullets(0),

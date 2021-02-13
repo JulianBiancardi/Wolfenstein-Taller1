@@ -1,10 +1,10 @@
 #ifndef COLLISION_CHECKER_H
 #define COLLISION_CHECKER_H
 
-#include "../map.h"
-#include "objects/items/item.h"
-#include "objects/object.h"
-#include "player.h"
+#include "../map/map.h"
+#include "../objects/items/item.h"
+#include "../objects/object.h"
+#include "../objects/player.h"
 
 class CollisionChecker {
  private:
