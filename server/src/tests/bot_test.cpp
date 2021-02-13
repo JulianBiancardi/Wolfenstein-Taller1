@@ -51,7 +51,7 @@ int static can_walk_around_alone() {
   CollisionChecker checker(map);
 
   BlockingQueue<Packet> queue;
-  Match match(1, 1, map_name);
+  Match * match = new Match(1, 1, map_name);
   Bot bot(checker, map, 3, queue, match);
 
   for (int j = 0; j < map.get_rows(); j++) {
@@ -64,7 +64,7 @@ int static can_walk_around_alone() {
     bot.execute();
     bot.update_player();
   }
-
+  delete match;
   if ((map.get_player(3).get_position().getX() > 26
       && map.get_player(3).get_position().getX() < 38)
       && (map.get_player(3).get_position().getY() > 26
@@ -73,7 +73,6 @@ int static can_walk_around_alone() {
     return NO_ERROR;
 
   return ERROR;
-
 }
 
 int static can_kill_a_player(){
@@ -84,7 +83,7 @@ int static can_kill_a_player(){
 
   CollisionChecker checker(map);
   BlockingQueue<Packet> queue;
-  Match match(2, 1, map_name);
+  Match * match = new Match(2, 1, map_name);
   Bot bot(checker, map, 4, queue, match);
 
 
@@ -98,7 +97,7 @@ int static can_kill_a_player(){
     bot.execute();
     bot.update_player();
   }
-
+  delete match;
   if (map.get_player(5).is_dead())
     return NO_ERROR;
 
@@ -115,7 +114,7 @@ int static can_kill_two_players() {
 
   CollisionChecker checker(map);
   BlockingQueue<Packet> queue;
-  Match match(3, 1, map_name);
+  Match * match = new Match(3, 1, map_name);
   Bot bot(checker, map, 6, queue, match);
 
   for (int j = 0; j < map.get_rows(); j++) {
@@ -127,6 +126,7 @@ int static can_kill_two_players() {
     bot.execute();
     bot.update_player();
   }
+  delete match;
   if (map.get_player(7).is_dead() && map.get_player(8).is_dead())
     return NO_ERROR;
   return ERROR;
@@ -141,7 +141,7 @@ int static can_kill_one_diagonal_player() {
 
   CollisionChecker checker(map);
   BlockingQueue<Packet> queue;
-  Match match(4, 1, map_name);
+  Match * match = new Match(4, 1, map_name);
   Bot bot(checker, map, 9, queue, match);
 
   for (int j = 0; j < map.get_rows(); j++) {
@@ -153,6 +153,7 @@ int static can_kill_one_diagonal_player() {
     bot.execute();
     bot.update_player();
   }
+  delete match;
   if (map.get_player(10).is_dead())
     return NO_ERROR;
   return ERROR;
@@ -167,7 +168,7 @@ int static can_kill_one_diagonal_and_then_walk_a_lot() {
 
   CollisionChecker checker(map);
   BlockingQueue<Packet> queue;
-  Match match(5, 1, map_name);
+  Match * match = new Match(5, 1, map_name);
   Bot bot(checker, map, 11, queue, match);
 
   for (int j = 0; j < map.get_rows(); j++) {
@@ -179,6 +180,7 @@ int static can_kill_one_diagonal_and_then_walk_a_lot() {
     bot.execute();
     bot.update_player();
   }
+  delete match;
   if (map.get_player(12).is_dead())
     return NO_ERROR;
   return ERROR;
@@ -192,7 +194,7 @@ int static can_kill_one_far_player(){
 
   CollisionChecker checker(map);
   BlockingQueue<Packet> queue;
-  Match match(6, 1, map_name);
+  Match * match = new Match(6, 1, map_name);
   Bot bot(checker, map, 13, queue, match);
 
   for (int j = 0; j < map.get_rows(); j++) {
@@ -205,6 +207,7 @@ int static can_kill_one_far_player(){
     bot.execute();
     bot.update_player();
   }
+  delete match;
   if (map.get_player(14).is_dead())
     return NO_ERROR;
   return ERROR;
@@ -222,7 +225,7 @@ int static can_kill_multiple_players_in_high_positions() {
 
   CollisionChecker checker(map);
   BlockingQueue<Packet> queue;
-  Match match(7, 1, map_name);
+  Match * match = new Match(7, 1, map_name);
   Bot bot(checker, map, 15, queue, match);
 
   for (int j = 0; j < map.get_rows(); j++) {
@@ -234,6 +237,7 @@ int static can_kill_multiple_players_in_high_positions() {
     bot.execute();
     bot.update_player();
   }
+  delete match;
   if ((map.get_player(16).is_dead()) &&
       (map.get_player(17).is_dead()) &&
       (map.get_player(18).is_dead()) &&
@@ -254,7 +258,7 @@ int static can_kill_multiple_players_in_different_positions() {
 
   CollisionChecker checker(map);
   BlockingQueue<Packet> queue;
-  Match match(8, 1, map_name);
+  Match * match = new Match(8, 1, map_name);
   Bot bot(checker, map, 20, queue, match);
 
   for (int j = 0; j < map.get_rows(); j++) {
@@ -266,8 +270,11 @@ int static can_kill_multiple_players_in_different_positions() {
     bot.execute();
     bot.update_player();
   }
-   if ((map.get_player(21).is_dead()) && (map.get_player(22).is_dead())
-      && (map.get_player(23).is_dead()) && (map.get_player(24).is_dead()))
+  delete match;
+  if ((map.get_player(21).is_dead()) &&
+      (map.get_player(22).is_dead()) &&
+      (map.get_player(23).is_dead()) &&
+      (map.get_player(24).is_dead()))
     return NO_ERROR;
   return ERROR;
 }

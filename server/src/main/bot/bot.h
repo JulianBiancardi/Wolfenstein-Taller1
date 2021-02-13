@@ -32,7 +32,7 @@ extern "C" {
 class Bot {
  public:
   Bot(CollisionChecker& checker, Map& map, unsigned int id_at_players,
-      BlockingQueue<Packet>& queue, Match& match);
+      BlockingQueue<Packet>& queue, Match * match);
 
   ~Bot();
   void execute();
@@ -52,7 +52,7 @@ class Bot {
   std::list<int> attacked_players;
   Player* player_goal;
   Map& map;
-  Match& match;
+  Match* match;
   void lua_checker(int status);
   void lua_push_table_number(const char* key, const auto value);
   void send_movement_package(unsigned char direction);

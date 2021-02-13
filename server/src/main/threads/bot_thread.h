@@ -5,11 +5,14 @@
 #include "../bot/bot.h"
 class BotThread: public Thread {
  private:
-  Bot &bot;
+  Bot bot;
   bool running;
 
  public:
-  BotThread(Bot &bot);
+  BotThread(CollisionChecker& collision_checker, Map& map,
+            unsigned int player_id,
+            BlockingQueue<Packet>& blocking_queue,
+            Match* match );
   ~BotThread();
   void run() override;
 };

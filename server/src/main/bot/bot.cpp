@@ -7,7 +7,7 @@
 #include "../../../../common/src/main/ids/gun_ids.h"
 
 Bot::Bot(CollisionChecker& checker, Map& map, unsigned int id_at_players,
-         BlockingQueue<Packet>& queue, Match& match)
+         BlockingQueue<Packet>& queue, Match* match)
     : checker(checker), map(map), id_at_players(id_at_players),
     player_goal(nullptr), queue(queue), match(match) {
   map.get_player(id_at_players).change_gun(KNIFE_ID);  //TODO should not be here.
@@ -149,6 +149,7 @@ void Bot::execute() {
 void Bot::update_player() {
   lua_checker(lua_getglobal(this->state, "updatePlayer"));
   lua_newtable(this->state);
+
   lua_push_table_number("posX", map.get_player(id_at_players).
                                                 get_position().getX());
   lua_push_table_number("posY", map.get_player(id_at_players).
@@ -190,7 +191,7 @@ void Bot::lua_push_table_number(const char *key, const auto value) {
 void Bot::send_movement_package(unsigned char direction) {
   unsigned char data[MOVEMENT_SIZE];
   size_t size = pack(data, "CICC", MOVEMENT, id_at_players,
-              (unsigned char)match.get_id(), direction);
+              (unsigned char)match->get_id(), direction);
   queue.enqueue(Packet(size, data));
 }
 
@@ -199,14 +200,14 @@ void Bot::send_rotation_package() {
       angle_to(player_goal->get_position());
   unsigned char data[ROTATION_SIZE];
   size_t size = pack(data, "CICC", ROTATION, id_at_players,
-                     (unsigned char) match.get_id(), angle);
+                     (unsigned char) match->get_id(), angle);
   queue.enqueue(Packet(size, data));
 }
 
 void Bot::send_damage_package(unsigned int damage) {
   unsigned char data[SHOT_SIZE];
   size_t size = pack(data, "CICCC", SHOT, id_at_players,
-                     (unsigned char) match.get_id(), damage,
+                     (unsigned char) match->get_id(), damage,
                      player_goal->get_id());
   queue.enqueue(Packet(size, data));
 }
@@ -214,7 +215,7 @@ void Bot::send_damage_package(unsigned int damage) {
 void Bot::send_set_gun_package() {
   unsigned char data[CHANGE_GUN_SIZE];
   size_t size = pack(data, "CICC", CHANGE_GUN, id_at_players,
-                     (unsigned char)match.get_id(), KNIFE_ID);
+                     (unsigned char)match->get_id(), KNIFE_ID);
   queue.enqueue(Packet(size, data));
   map.get_player(id_at_players).get_active_gun();
 
