@@ -72,7 +72,7 @@ unsigned char Launcher::get_amount_of_matches() {
 
   if (packet.get_type() != MATCH_AMOUNT ||
       packet.get_size() != MATCH_AMOUNT_SIZE) {
-    throw LauncherError("Failed to receive %u packet.", MATCH_AMOUNT);
+    throw LauncherError("Failed to receive packet %u.", MATCH_AMOUNT);
   }
 
   unsigned char type;
@@ -89,7 +89,7 @@ void Launcher::receive_match() {
   reception_queue.dequeue(packet);
 
   if (packet.get_type() != MATCH_DATA) {
-    throw LauncherError("Failed to receive %u packet.", MATCH_DATA);
+    throw LauncherError("Failed to receive packet %u.", MATCH_DATA);
   }
 
   unsigned char type;
@@ -136,7 +136,7 @@ unsigned char Launcher::receive_join_match_result() {
   Packet packet;
   reception_queue.dequeue(packet);
   if (packet.get_type() != JOIN_MATCH) {
-    throw LauncherError("Failed to receive %u packet.", JOIN_MATCH);
+    throw LauncherError("Failed to receive packet %u.", JOIN_MATCH);
   }
 
   unsigned char type;

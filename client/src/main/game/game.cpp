@@ -347,6 +347,7 @@ void Game::update() {
       syslog(LOG_ERR, "Packet received hasn't got a valid type.");
     }
   }
+  map.update();
 }
 
 void Game::render() { caster(); }

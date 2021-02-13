@@ -51,7 +51,7 @@ void ProcessorThread::run() {
 
   } catch (const std::exception& e) {
     syslog(LOG_ERR, "[Error] ProcessorThread - Error: %s", e.what());
-    printf("Error: %s\n", e.what());  // TODO Remove
+    printf("ProcessorThread: %s\n", e.what());  // TODO DELETE
   } catch (...) {
     syslog(LOG_ERR, "[Error] ProcessorThread - Unknown error");
   }

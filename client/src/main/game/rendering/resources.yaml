@@ -1,0 +1,49 @@
+# Walls
+0: "..." # AIR
+1: "../../res/images/walls/grey_brick_wall.bmp"
+2: "../../res/images/walls/wood_wall.bmp"
+3: "../../res/images/walls/grey_stone.bmp"
+4: "../../res/images/walls/grey_stone_swastika.bmp"
+5: "../../res/images/walls/blue_wall.bmp"
+6: "../../res/images/walls/blue_hitler.bmp"
+7: "../../res/images/walls/blue_wall_banner.bmp"
+8: "../../res/images/walls/rock_wall_1.bmp"
+9: "../../res/images/walls/rock_wall_2.bmp"
+10: "../../res/images/walls/rock_wall_banner.bmp"
+11: "../../res/images/walls/rock_wall_swastika.bmp"
+12: "../../res/images/walls/rock_wall_warning.bmp"
+# Players
+20: "..." # SPAWN 
+21: "../../res/images/enemies/dog/dog_walk1_1.bmp"
+22: "../../res/images/enemies/guard/guard_static_1.bmp"
+23: "..." # SS
+24: "../../res/images/officer/officer1.bmp"
+25: "..." # Mutant
+# Guns
+30: "..." # Knife 
+31: "..." # Pistol
+32: "../../res/images/items/guns/machine_gun.bmp"
+33: "../../res/images/items/guns/chain_cannon.bmp"
+34: "resources/images/weapons/IMG_Bazooka.png"
+# Items
+40: "../../res/images/items/items/food.bmp"
+41: "../../res/images/items/items/medkit.bmp"
+42: "..." # BLOOD
+43: "../../res/images/items/items/bullets.bmp"
+44: "../../res/images/items/treasures/cross.bmp"
+45: "../../res/images/items/treasures/cup.bmp"
+46: "../../res/images/items/treasures/chest.bmp"
+47: "../../res/images/items/treasures/crown.bmp"
+48: "../../res/images/items/items/key.bmp"
+# Solid Objects
+50: "../../res/images/ambient/pillar.bmp"
+51: "../../res/images/ambient/table1.bmp"
+52: "../../res/images/ambient/table2.bmp"
+53: "../../res/images/ambient/barrel1.bmp"
+# Non-solid Objects
+60: "..." # Water
+61: "..." # Floor Blood
+# Doors
+70: "..." # Normal
+71: "..." # Locked
+...

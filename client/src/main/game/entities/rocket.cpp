@@ -3,8 +3,8 @@
 #include "../../../../../common/src/main/ids/map_ids.h"
 
 // TODO Add res_id
-Rocket::Rocket(const Point& position, double angle, unsigned int id)
-    : IdentifiableObject(GUARD, position, angle, id) {}
+Rocket::Rocket(Ray& position, unsigned int id)
+    : IdentifiableObject(position, 1, id) {}
 
 void Rocket::move() {
   const Point& current_position = position.get_origin();
@@ -14,4 +14,8 @@ void Rocket::move() {
   double next_y = current_position.getY() - sin(angle) * CL::rocket_speed;
 
   position = Ray(next_x, next_y, angle);
+}
+
+Image* Rocket::get_image(ResourceManager& resource_manager) {
+  return resource_manager.get_image(1);  // TODO Put correct image
 }

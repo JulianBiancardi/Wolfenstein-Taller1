@@ -10,20 +10,22 @@
 #include "../../../../common/src/main/utils/matrix.h"
 #include "../../../../common/src/main/utils/ray.h"
 #include "../entities/identifiable_object.h"
+#include "../entities/items/item.h"
 #include "../entities/object.h"
 #include "../entities/player.h"
+#include "../entities/rocket.h"
 #include "map_loader.h"
 
 class Map : public BaseMap {
  private:
-  // TODO Upon deleting an object, make sure to also remove from this vector
-  // with linear search
-  std::vector<std::weak_ptr<Object>>
-      objects_and_players;  // TODO Cambiar nombre a drawables
+  std::vector<std::weak_ptr<Object>> drawables;
   std::vector<std::weak_ptr<IdentifiableObject>> players_shootable;
+  // TODO this could be maybe reduced by means of
 
+  // shared_ptrs are used since they must also be kept in drawables
   std::vector<std::shared_ptr<Object>> ambient_objects;
-  std::unordered_map<unsigned int, std::shared_ptr<Object>> objects;
+  std::unordered_map<unsigned int, std::shared_ptr<Rocket>> rockets;
+  std::unordered_map<unsigned int, std::shared_ptr<Item>> items;
   std::unordered_map<unsigned int, std::shared_ptr<Player>> players;
   MapLoader loader;
 
@@ -33,12 +35,14 @@ class Map : public BaseMap {
   ~Map();
 
   /* Returns a reference to all of the drawable objects in the map. */
-  std::vector<std::weak_ptr<Object>>& get_objects_and_players();
+  std::vector<std::weak_ptr<Object>>& get_drawables();
 
   /* Returns a constant reference to a player given its id. */
   const Player& get_player(unsigned int player_id) const;
 
-  void add_item(unsigned int item_id, unsigned char item_type, Point pos);
+  void update();
+  void add_item(unsigned int item_id, const Ray& position,
+                unsigned char item_type);
   void add_player(unsigned int player_id, const Ray& position);
   void move_player(unsigned int player_id, unsigned char direction);
   void rotate_player(unsigned int player_id, unsigned char direction);

@@ -22,7 +22,7 @@ Item* RocketLauncherItem::copy() {
 
 Packet RocketLauncherItem::get_add_item_packet() {
   unsigned char data[ADD_ITEM_SIZE];
-  size_t size = pack(data, "CICCC", ADD_ITEM, id, BAZOOKA,
+  size_t size = pack(data, "CICC", ADD_ITEM, id, ROCKET_LAUNCHER,
                      (int)position.get_origin().getX(),
                      (int)position.get_origin().getY());
   return std::move(Packet(size, data));

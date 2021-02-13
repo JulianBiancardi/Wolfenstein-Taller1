@@ -11,25 +11,27 @@
 #include "../guns/hit.h"
 #include "identifiable_object.h"
 #include "player_state.h"
-#include "updateable.h"
+
+#define STATIC 0
+#define MOVING 1
+#define DEAD 2
 
 class Gun;
 
-class Player : public IdentifiableObject, public Updateable {
+class Player : public IdentifiableObject {
  private:
   int lives;
   int health;
   int bullets;
   int points;
   int keys;
-  std::unordered_map<int, std::shared_ptr<Gun>> guns_bag;
+  std::unordered_map<int, std::unique_ptr<Gun>> guns_bag;
   int active_gun;
 
   PlayerState state;
 
-  // TODO Make copyable since it is stored in STD Containers
  public:
-  Player(Ray position, unsigned int player_id);
+  Player(const Ray& position, unsigned int player_id);
 
   Player(const Player& other) = delete;
   Player& operator=(const Player&) = delete;
@@ -58,8 +60,20 @@ class Player : public IdentifiableObject, public Updateable {
   /* Receives a gun id and adds it to the guns bag. */
   void add_gun(unsigned int gun_id);
 
-  /* Receives an item ids and adds it to the player. */
-  void add_item(unsigned int item_id);
+  /* Adds points to the player. */
+  void add_points(unsigned int added_points);
+
+  /* Adds health to the player. */
+  void add_health(unsigned int added_health);
+
+  /* Adds bullets to the player. */
+  void add_bullets(unsigned int added_bullets);
+
+  /* Adds a key to the player. */
+  void add_key();
+
+  /* Removes health from the player. */
+  void decrease_health(unsigned int lost_health);
 
   /* Sets the gun of the player, changing its res_id */
   void set_gun(int gun_num);
@@ -73,9 +87,6 @@ class Player : public IdentifiableObject, public Updateable {
   /* Decreases the amount of bullets owned by the player. */
   void decrease_bullets(unsigned char gun_id);
 
-  /* Grabs an item. */
-  void grab_item(Object& item);
-
   /* Pulls the trigger of the player's gun.
    * Returns a Hit object containing the data of the shot attempt.
    */
@@ -87,6 +98,8 @@ class Player : public IdentifiableObject, public Updateable {
 
   /* Updates its state */
   void update();
+
+  virtual Image* get_image(ResourceManager& resource_manager) override;
 };
 
 #endif

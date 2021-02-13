@@ -87,9 +87,9 @@ int CL::bullets_respawn_amount =
 double CL::drop_distance_from_dead_player =
     CL::yaml_file["drop_distance_from_dead_player"].as<double>();
 
-int CL::crosses_points = CL::yaml_file["crosses_points"].as<int>();
+int CL::cross_points = CL::yaml_file["cross_points"].as<int>();
 int CL::cup_points = CL::yaml_file["cup_points"].as<int>();
-int CL::chests_points = CL::yaml_file["chests_points"].as<int>();
+int CL::chest_points = CL::yaml_file["chest_points"].as<int>();
 int CL::crown_points = CL::yaml_file["crown_points"].as<int>();
 
 // Solid Objects

@@ -23,7 +23,7 @@ void AcceptClientsThread::run() {
     while (allowed_to_run) {
       Socket peer_socket = acceptor_socket.accept();
       client_manager.add_client(peer_socket);
-      // client_manager.clear();
+      client_manager.clear();
     }
   } catch (const SocketError& e) {
     // Expected error when using force_stop()
@@ -31,6 +31,7 @@ void AcceptClientsThread::run() {
            e.what());
   } catch (const std::exception& e) {
     syslog(LOG_ERR, "[Error] AcceptSocketsThread - Error: %s", e.what());
+    printf("AcceptClientsThread: %s\n", e.what());  // TODO DELETE
   } catch (...) {
     syslog(LOG_ERR, "[Error] AcceptSocketsThread - Unknown error");
   }

@@ -13,5 +13,5 @@ void AddItemHandler::handle(Packet& packet, Map& map, GameSound& sound) {
   unsigned char posX;
   unsigned char posY;
   unpack(packet.get_data(), "CICCC", &type, &item_id, &item_type, &posX, &posY);
-  map.add_item(item_id, item_type, Point(posX + 0.5, posY + 0.5));
+  map.add_item(item_id, Ray(posX + 0.5, posY + 0.5, 0.0), item_type);
 }

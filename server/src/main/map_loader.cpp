@@ -66,7 +66,7 @@ void MapLoader::load_map(std::string& map_name) {
       case CHAIN_CANNON:
         add_chain_cannon(Point(x, y));
         break;
-      case BAZOOKA:
+      case ROCKET_LAUNCHER:
         add_rocket_launcher(Point(x, y));
         break;
       case FOOD:
@@ -97,10 +97,14 @@ void MapLoader::load_map(std::string& map_name) {
         add_key(Point(x, y));
         break;
       case PILLAR:
+        // TODO Change to add round and add square
         add_pillar(Point(x, y));
         break;
-      case TABLE:
+      case LARGE_TABLE:
         add_table(Point(x, y));
+        break;
+      case ROUND_TABLE:
+        add_barrel(Point(x, y));
         break;
       case BARREL:
         add_barrel(Point(x, y));

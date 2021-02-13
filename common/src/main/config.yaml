@@ -3,7 +3,7 @@ sv_host: 'localhost'
 sv_port: '8080'
 
 # Rendering Options
-screen_width: 980
+screen_width: 960
 screen_height: 600
 fullscreen: false
 fps: 30
@@ -61,9 +61,9 @@ bullets_amount: 5
 bullets_respawn_amount: 10
 drop_distance_from_dead_player: 2
 
-crosses_points: 10
+cross_points: 10
 cup_points: 50
-chests_points: 100
+chest_points: 100
 crown_points: 200
 
 # Solid Objects

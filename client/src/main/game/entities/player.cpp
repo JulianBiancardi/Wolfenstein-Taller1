@@ -12,18 +12,19 @@
 #include "../guns/pistol.h"
 #include "../guns/rocket_launcher.h"
 
-Player::Player(Ray position, unsigned int player_id)
-    : guns_bag(), IdentifiableObject(GUARD, position, player_id) {
+Player::Player(const Ray& position, unsigned int player_id)
+    : guns_bag(), IdentifiableObject(position, 1, player_id) {
   lives = CL::player_lives;
   health = CL::player_health;
   bullets = CL::player_bullets;
   points = 0;
   keys = 0;
-  std::shared_ptr<Gun> knife(new Knife());
-  std::shared_ptr<Gun> pistol(new Pistol());
+  guns_bag.reserve(GUN_AMOUNT);
+  std::unique_ptr<Gun> knife = std::make_unique<Knife>();
+  std::unique_ptr<Gun> pistol = std::make_unique<Pistol>();
   guns_bag.insert(std::make_pair(KNIFE_ID, std::move(knife)));
   guns_bag.insert(std::make_pair(PISTOL_ID, std::move(pistol)));
-  active_gun = 2;
+  active_gun = PISTOL_ID;
 }
 
 Player::~Player() {}
@@ -102,8 +103,6 @@ void Player::set_gun(int gun_num) {
   }
 }
 
-void Player::set_health(int health) { this->health = health; }
-
 bool Player::has_bullets(int amount) { return (bullets >= amount); }
 
 void Player::decrease_bullets(unsigned char gun_id) {
@@ -127,31 +126,20 @@ void Player::decrease_bullets(unsigned char gun_id) {
   bullets = std::max(bullets, 0);
 }
 
-void Player::grab_item(Object& item) {
-  switch (item.get_type()) {
-    case GUNS_TYPE:
-      add_gun(item.get_res_id());
-      break;
-    case ITEMS_TYPE:
-      add_item(item.get_res_id());
-      break;
-  }
-}
-
 void Player::add_gun(unsigned int gun_id) {
   switch (gun_id) {
-    case MACHINE_GUN: {
-      std::shared_ptr<Gun> machine_gun(new MachineGun());
+    case MACHINE_GUN_ID: {
+      std::unique_ptr<Gun> machine_gun = std::make_unique<MachineGun>();
       guns_bag.insert(std::make_pair(MACHINE_GUN_ID, std::move(machine_gun)));
       break;
     }
-    case CHAIN_CANNON: {
-      std::shared_ptr<Gun> chain_cannon(new ChainCannon());
+    case CHAIN_CANNON_ID: {
+      std::unique_ptr<Gun> chain_cannon = std::make_unique<ChainCannon>();
       guns_bag.insert(std::make_pair(CHAIN_CANNON_ID, std::move(chain_cannon)));
       break;
     }
     case ROCKET_LAUNCHER_ID: {
-      std::shared_ptr<Gun> rocket_launcher(new RocketLauncher());
+      std::unique_ptr<Gun> rocket_launcher = std::make_unique<RocketLauncher>();
       guns_bag.insert(
           std::make_pair(ROCKET_LAUNCHER_ID, std::move(rocket_launcher)));
       break;
@@ -161,37 +149,24 @@ void Player::add_gun(unsigned int gun_id) {
   }
 }
 
-void Player::add_item(unsigned int item_id) {
-  switch (item_id) {
-    case FOOD:
-      health = std::min(CL::player_health, health + CL::food_health_recovered);
-      break;
-    case MEDKIT:
-      health =
-          std::min(CL::player_health, health + CL::medic_kit_health_recovered);
-      break;
-    case BLOOD:
-      health = CL::player_health + CL::blood_health_recovered;
-      break;
-    case BULLETS:
-      bullets = std::min(CL::player_max_bullets, bullets + CL::bullets_amount);
-      break;
-    case CROSS:
-      points += CL::crosses_points;
-      break;
-    case CUP:
-      points += CL::cup_points;
-      break;
-    case CHEST:
-      points += CL::chests_points;
-      break;
-    case CROWN:
-      points += CL::crown_points;
-      break;
-    case KEY:
-      keys += 1;
-      break;
-  }
+void Player::add_points(unsigned int added_points) { points += added_points; }
+
+void Player::add_health(unsigned int added_health) {
+  health = std::min(CL::player_health, (int)(health + added_health));
 }
 
-void Player::update() {}
+void Player::add_bullets(unsigned int added_bullets) {
+  bullets = std::min(CL::player_max_bullets, (int)(bullets + added_bullets));
+}
+
+void Player::decrease_health(unsigned int lost_health) {
+  health = std::max(0, (int)(health - lost_health));
+}
+
+void Player::add_key() { keys++; }
+
+void Player::update() { state.update(); }
+
+Image* Player::get_image(ResourceManager& resource_manager) {
+  return state.get_image(resource_manager);
+}
