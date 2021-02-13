@@ -64,10 +64,13 @@ void Map::use_bullets(unsigned int player_id, unsigned char gun_id) {
   players.at(player_id)->decrease_bullets(gun_id);
 }
 
-void Map::pick_item(unsigned int player_id, unsigned int item_id) {
+int Map::pick_item(unsigned int player_id, unsigned int item_id) {
   Player& player = *(players.at(player_id));
-  items.at(item_id)->use_on(player);
+  std::shared_ptr<Item> item = items.at(item_id);
+  int res_id = item->get_res_id();
+  item->use_on(player);
   items.erase(item_id);
+  return res_id;
 }
 
 Hit Map::trigger_gun(unsigned int player_id) {

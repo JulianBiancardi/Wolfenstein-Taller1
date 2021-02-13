@@ -21,8 +21,8 @@ class Image {
 
   void draw(SDL_Rect* position, SDL_Rect* img_slice);
 
-  size_t get_width();
-  size_t get_height();
+  size_t get_width() const;
+  size_t get_height() const;
 };
 
 #endif

@@ -4,6 +4,7 @@ project(YamlExample)
 add_subdirectory(../common/third-party/yaml-cpp build) # This is one way of referencing another
 # CMake project
 
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "-DDEBUG -ggdb3 -O0 -g")
 add_definitions("-DDEBUG -ggdb3 -O0 -g ")
 

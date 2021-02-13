@@ -27,7 +27,6 @@ class Settings {
 
   size_t get_screen_width() const;
   size_t get_screen_height() const;
-  /*Returns if is fullscreen is setted*/
   bool is_fullscreen() const;
   size_t get_music_volume() const;
   size_t get_effect_volume() const;

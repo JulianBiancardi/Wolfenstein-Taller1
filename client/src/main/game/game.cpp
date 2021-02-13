@@ -43,7 +43,9 @@ Game::Game(Server& server, const Settings& settings, Match& match)
       caster(window, map, player_id),
       is_running(false),
       input_flags(FLAGS, false),
-      gamesound(GameSound(Point(map.get_rows(), map.get_columns()))) {}
+      gamesound(GameSound(Point(map.get_rows(), map.get_columns()),
+                          settings.get_music_volume(),
+                          settings.get_effect_volume())) {}
 
 Game::~Game() {}
 

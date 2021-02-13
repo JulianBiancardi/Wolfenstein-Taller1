@@ -53,6 +53,8 @@ class Player : public IdentifiableObject {
   int get_bullets() const;
   /* Returns the amount of points owned by the player. */
   int get_points() const;
+  /* Returns if the player has keys*/
+  bool has_key() const;
 
   void move(unsigned char direction);
   void rotate(unsigned char direction);
