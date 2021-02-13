@@ -11,8 +11,9 @@
 #include "map_loader.h"
 
 Map::Map(std::string& map_name)
-    : items(), objects(), players(), players_joined(0), BaseMap(map_name) {
-  MapLoader loader(players, items, objects, spawn_points);
+    : items(), objects(), players(), players_joined(0), dogs_joined(0),
+    BaseMap(map_name) {
+  MapLoader loader(players, items, objects, spawn_points, dogs);
   loader.load_map(map_name);
 }
 
@@ -37,6 +38,20 @@ bool Map::add_player(unsigned int player_id) {
   players_joined++;
 
   return true;
+}
+
+bool Map::add_bot(unsigned int player_id) {
+  if (dogs_joined >= dogs.size() || players.find(player_id) != players.end()) {
+    return false;
+  }
+
+    Point dog_point = dogs[dogs_joined];
+    Player new_player(dog_point, 0, player_id);
+
+    players.insert(std::make_pair(player_id, new_player));
+    dogs_joined++;
+
+    return true;
 }
 
 Player& Map::get_player(unsigned int player_id) {

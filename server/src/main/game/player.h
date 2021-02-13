@@ -22,8 +22,6 @@ class Player : public Moveable {
   int lives;
   int players_killed;
   int keys;
-  // FIXME Review this, doesn't seem right
-  Mask* knife_mask;
 
   void remove_guns_to_respawn();
 
@@ -77,10 +75,6 @@ class Player : public Moveable {
 
   /* Returns if the player is using a rocket launcher */
   bool is_using_rocket_launcher() const;
-
-  Point knife_collision_mask_bound(const Point& next_position) const;
-
-  bool knife_mask_bound_occupies(const Point& where) const;
 
   /* Adders */
   void add_bullets(int amount);

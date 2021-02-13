@@ -21,6 +21,11 @@ class Match {
   CollisionChecker checker;
   std::map<int, Thread*> threads;
 
+  /* Creates and adds a new bot to the match with the given id.
+   * Returns true on success, false otherwise
+   */
+  bool add_bot(unsigned int player_id);
+
  public:
   explicit Match(unsigned int host_id, unsigned char match_id,
                  std::string& map_name);

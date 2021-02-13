@@ -2,10 +2,11 @@
 
 #include "../game/objects/door/door.h"
 #include "../threads/clock/clock_thread.h"
+#include "../threads/bot_thread.h"
 #include "match_error.h"
 
 #define CLOCK_KEY 0
-
+#define BOT_QUANTITY 1 //todo should not be here
 Match::Match(unsigned int host_id, unsigned char match_id,
              std::string& map_name)
     : host_id(host_id),
@@ -59,6 +60,15 @@ bool Match::start(unsigned int player_id, BlockingQueue<Packet>& queue) {
       auto clock = new ClockThread(CL::match_length, queue, match_id);
       threads.insert({CLOCK_KEY, clock});
 
+
+      for (int i = players_ids.size() + 1;
+            i < players_ids.size() + 1 + BOT_QUANTITY; i++) {
+        if (this->add_bot(i)){
+          auto bot = new BotThread(checker, map, i, queue, this);
+          threads.insert({i, bot});
+        }
+      }
+
       for (auto thread : threads) {
         thread.second->start();
       }
@@ -72,6 +82,14 @@ bool Match::start(unsigned int player_id, BlockingQueue<Packet>& queue) {
   }
 }
 
+bool Match::add_bot(unsigned int player_id) {
+  if (map.add_bot(player_id)) {
+    players_ids.insert(player_id);
+    return true;
+  } else {
+    return false;
+  }
+}
 bool Match::add_player(unsigned int player_id) {
   if (started) {
     return false;
@@ -422,7 +440,10 @@ void Match::end() {
   }
 
   ((ClockThread*)threads.at(CLOCK_KEY))->force_stop();
-  threads.at(CLOCK_KEY)->join();
+//  threads.at(CLOCK_KEY)->join();
+  for(auto thread: threads){
+    thread.second->join();
+  }
   // Force_stop and join other threads
 
   ended = true;

@@ -85,16 +85,13 @@ std::vector<unsigned int> CollisionChecker::get_players_in_radius(
 int CollisionChecker::get_knife_range_collides_player_id(Point& where,
                                                          Player& who) {
   ignored = &who;
-  Point mask_checking_point = who.knife_collision_mask_bound(where);
   int id_found = 0;
   for (auto& player : players) {
-    if (&player.second != ignored) {
-      player.second.knife_collision_mask_bound(where);
-      if ((player.second.knife_mask_bound_occupies(mask_checking_point)) &&
-          (!player.second.is_dead())) {
+      if ( (&player.second != ignored)
+          && (!player.second.is_dead())
+          && (player.second.get_position().distance_from(where) <=
+          CL::player_knife_mask_radio))
         id_found = player.second.get_id();
-      }
-    }
   }
   ignored = nullptr;
   return id_found;

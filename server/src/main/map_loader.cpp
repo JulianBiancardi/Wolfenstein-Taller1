@@ -24,11 +24,13 @@
 MapLoader::MapLoader(std::unordered_map<unsigned int, Player>& players,
                      std::unordered_map<unsigned int, Item*>& items,
                      std::unordered_map<unsigned int, Object*>& solid_objects,
-                     std::vector<Point>& spawn_points)
+                     std::vector<Point>& spawn_points,
+                     std::vector<Point>& dogs)
     : players(players),
       items(items),
       solid_objects(solid_objects),
-      spawn_points(spawn_points) {}
+      spawn_points(spawn_points),
+      dogs(dogs){}
 
 MapLoader::~MapLoader() {}
 
@@ -54,6 +56,9 @@ void MapLoader::load_map(std::string& map_name) {
     switch (id) {
       case SPAWN_POINT:
         add_spawn_point(Point(x, y));
+        break;
+      case DOG:
+        add_dog(Point(x, y));
         break;
       case MACHINE_GUN:
         add_machine_gun(Point(x, y));
@@ -121,7 +126,9 @@ void MapLoader::load_map(std::string& map_name) {
 void MapLoader::add_spawn_point(const Point& where) {
   spawn_points.push_back(where);
 }
-
+void MapLoader::add_dog(const Point &where) {
+  dogs.push_back(where);
+}
 void MapLoader::add_machine_gun(const Point& where) {
   MachineGunItem* new_machine_gun = new MachineGunItem(where);
   items.insert({new_machine_gun->get_id(), new_machine_gun});

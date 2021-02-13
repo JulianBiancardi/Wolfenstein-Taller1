@@ -18,9 +18,11 @@ class Map : public BaseMap {
   std::unordered_map<unsigned int, Item*> items;
   std::unordered_map<unsigned int, Object*> objects;
   std::unordered_map<unsigned int, Player> players;
+  std::vector<Point> dogs;
   std::vector<Point> spawn_points;
 
   unsigned char players_joined;
+  unsigned char dogs_joined;
 
   void add_bullets_drop(Player& dead_player);
   void add_gun_drop(Player& dead_player);
@@ -32,6 +34,11 @@ class Map : public BaseMap {
   explicit Map(Matrix<int>& map_matrix);
 
   ~Map();
+
+  /* Creates and adds a bot to the map.
+   * Returns true on success, false otherwise
+   */
+  bool add_bot(unsigned int player_id);
 
   /* Creates and adds a player to the map.
    * Returns true on success, false otherwise
