@@ -4,11 +4,8 @@
 #include "point_item.h"
 
 class Cup : public PointItem {
- private:
-  Cup(const Point& center, int id);
-
  public:
-  explicit Cup(const Point& center);
+  Cup(const Point& center, unsigned int id);
 
   /* Returns a copy of the element */
   Item* copy() override;

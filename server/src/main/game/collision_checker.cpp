@@ -4,7 +4,8 @@ CollisionChecker::CollisionChecker(Map& map)
     : map(map),
       players(map.get_players()),
       items(map.get_items()),
-      objects(map.get_objects()),
+      identifiable_objects(map.get_identifiable_objects()),
+      unidentifiable_objects(map.get_unidentifiable_objects()),
       ignored(nullptr) {}
 
 bool CollisionChecker::collides_players(const Point& where) {
@@ -20,11 +21,18 @@ bool CollisionChecker::collides_players(const Point& where) {
 }
 
 bool CollisionChecker::collides_objects(const Point& where) {
-  for (auto& object : objects) {
+  for (auto& object : identifiable_objects) {
     if (ignored == nullptr || object.second != ignored) {
       if (object.second->occupies(where)) {
         return true;
       }
+    }
+  }
+
+  // PRECONDITION: Unidentifiable objects cannot move.
+  for (auto& object : unidentifiable_objects) {
+    if (object->occupies(where)) {
+      return true;
     }
   }
 
@@ -87,11 +95,11 @@ int CollisionChecker::get_knife_range_collides_player_id(Point& where,
   ignored = &who;
   int id_found = 0;
   for (auto& player : players) {
-      if ( (&player.second != ignored)
-          && (!player.second.is_dead())
-          && (player.second.get_position().distance_from(where) <=
-          CL::player_knife_mask_radio))
-        id_found = player.second.get_id();
+    if ((&player.second != ignored)
+        && (!player.second.is_dead())
+        && (player.second.get_position().distance_from(where) <=
+            CL::player_knife_mask_radio))
+      id_found = player.second.get_id();
   }
   ignored = nullptr;
   return id_found;

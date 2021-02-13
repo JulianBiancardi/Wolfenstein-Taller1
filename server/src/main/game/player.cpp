@@ -3,11 +3,11 @@
 #include "../../../../common/src/main/ids/gun_ids.h"
 #include "collisions/circle_mask.h"
 
-Player::Player(const Point& origin, double angle)
+Player::Player(double x, double y, double angle, unsigned int id)
     : shot_bullets(0),
       points(0),
       guns_bag{KNIFE_ID, PISTOL_ID},
-      spawn_point(origin),
+      spawn_point(x, y),
       players_killed(0),
       keys(0),
       active_gun(PISTOL_ID),
@@ -16,8 +16,8 @@ Player::Player(const Point& origin, double angle)
       max_bullets(CL::player_max_bullets),
       bullets(CL::player_bullets),
       lives(CL::player_lives),
-      Moveable(origin, angle, CL::player_speed, CL::player_rotation_speed,
-               CL::player_mask_radio) {}
+      Moveable(x, y, angle, CL::player_speed, CL::player_rotation_speed,
+               CL::player_mask_radio, id) {}
 
 Player::Player(const Point& origin, double angle, unsigned int id)
     : shot_bullets(0),
@@ -35,11 +35,11 @@ Player::Player(const Point& origin, double angle, unsigned int id)
       Moveable(origin, angle, CL::player_speed, CL::player_rotation_speed,
                CL::player_mask_radio, id) {}
 
-Player::Player(double x, double y, double angle)
+Player::Player(const Ray& position, unsigned int id)
     : shot_bullets(0),
       points(0),
       guns_bag{KNIFE_ID, PISTOL_ID},
-      spawn_point(x, y),
+      spawn_point(position.get_ref_origin()),
       players_killed(0),
       keys(0),
       active_gun(PISTOL_ID),
@@ -48,27 +48,25 @@ Player::Player(double x, double y, double angle)
       max_bullets(CL::player_max_bullets),
       bullets(CL::player_bullets),
       lives(CL::player_lives),
-      Moveable(x, y, angle, CL::player_speed, CL::player_rotation_speed,
-               CL::player_mask_radio) {}
+      Moveable(position, CL::player_speed, CL::player_rotation_speed,
+               CL::player_mask_radio, id) {}
 
-Player::Player(const Player& player)
-    : shot_bullets(player.shot_bullets),
-      points(player.points),
-      // guns_bag{KNIFE_ID, PISTOL_ID},
-      spawn_point(player.get_position()),
-      players_killed(player.players_killed),
-      keys(player.keys),
-      active_gun(PISTOL_ID),
-      Moveable(player) {
-  max_bullets = player.max_bullets;
-  bullets = player.bullets;
-  max_health = player.max_health;
-  health = player.health;
-  lives = player.lives;
-  guns_bag = player.guns_bag;
-}
+Player::Player(const Player& other)
+    : shot_bullets(other.shot_bullets),
+      points(other.points),
+      guns_bag(other.guns_bag),
+      spawn_point(other.spawn_point),
+      players_killed(other.players_killed),
+      keys(other.keys),
+      active_gun(other.active_gun),
+      max_health(other.max_health),
+      health(other.health),
+      max_bullets(other.max_bullets),
+      bullets(other.bullets),
+      lives(other.lives),
+      Moveable(other) {}
 
-Player::~Player() { }
+Player::~Player() = default;
 
 void Player::remove_guns_to_respawn() {
   auto it = guns_bag.begin();
@@ -112,23 +110,17 @@ bool Player::shoot() {
   int bullets_shot;
 
   switch (active_gun) {
-    case PISTOL_ID:
-      bullets_shot = CL::pistol_bullet_required;
+    case PISTOL_ID:bullets_shot = CL::pistol_bullet_required;
       break;
-    case MACHINE_GUN_ID:
-      bullets_shot = CL::machine_gun_bullet_required;
+    case MACHINE_GUN_ID:bullets_shot = CL::machine_gun_bullet_required;
       break;
-    case CHAIN_CANNON_ID:
-      bullets_shot = CL::chain_cannon_bullet_required;
+    case CHAIN_CANNON_ID:bullets_shot = CL::chain_cannon_bullet_required;
       break;
-    case KNIFE_ID:
-      bullets_shot = 0;
+    case KNIFE_ID:bullets_shot = 0;
       break;
-    case ROCKET_LAUNCHER_ID:
-      bullets_shot = CL::rocket_launcher_bullet_required;
+    case ROCKET_LAUNCHER_ID:bullets_shot = CL::rocket_launcher_bullet_required;
       break;
-    default:
-      return false;
+    default:return false;
   }
 
   if (bullets - bullets_shot < 0) {

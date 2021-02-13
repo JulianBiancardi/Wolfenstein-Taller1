@@ -11,7 +11,8 @@ class CollisionChecker {
   Map& map;
   const std::unordered_map<unsigned int, Player>& players;
   const std::unordered_map<unsigned int, Item*>& items;
-  const std::unordered_map<unsigned int, Object*>& objects;
+  const std::unordered_map<unsigned int, Object*>& identifiable_objects;
+  const std::vector<Object*>& unidentifiable_objects;
   Moveable* ignored;
 
   bool collides_objects(const Point& where);
@@ -31,7 +32,7 @@ class CollisionChecker {
    */
   unsigned int grabbed_item(const Player& by_whom);
 
-  /* Returns a vector with all the players in a distance to where lower than
+  /* Returns a vector with all the players in a distance to where less than
    * radius. */
   std::vector<unsigned int> get_players_in_radius(const Point& where,
                                                   double radius);

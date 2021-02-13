@@ -2,19 +2,14 @@
 #define IDENTIFIABLE_H
 
 class Identifiable {
- private:
-  static int next_id;
-
  protected:
-  int const id;
+  const unsigned int id;
 
  public:
-  Identifiable();
-  explicit Identifiable(int id);
-  void static reset_id();  // Only used for testing
+  explicit Identifiable(unsigned int id);
 
-  int get_id() const;
-  static void increase_id();
+  /* Returns the id */
+  unsigned int get_id() const;
 };
 
 #endif

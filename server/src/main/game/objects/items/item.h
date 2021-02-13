@@ -6,12 +6,11 @@
 #include "../../player.h"
 #include "../object.h"
 
-class Item : public Object {
+class Item : public Object, public Identifiable {
  protected:
-  Item(const Point& center, int id);
+  Item(const Point& center, unsigned int id);
 
  public:
-  explicit Item(const Point& center);
   ~Item() override;
 
   /* Item gets used by the player */

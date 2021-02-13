@@ -4,11 +4,8 @@
 #include "item.h"
 
 class Key : public Item {
- private:
-  Key(const Point& center, int id);
-
  public:
-  explicit Key(const Point& center);
+  Key(const Point& center, unsigned int id);
 
   /* Item gets used by the player */
   void use(Player& user) override;

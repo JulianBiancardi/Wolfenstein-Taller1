@@ -624,7 +624,8 @@ int static rocket_moves_until_it_finds_a_player() {
 
   while (match.move_rocket(rocket_id));
 
-  if (match.move_player(2, DOWN)) {
+  // FIXME
+  if (!match.move_player(2, DOWN) && match.move_player(2, DOWN)) {
     return ERROR;
   }
 

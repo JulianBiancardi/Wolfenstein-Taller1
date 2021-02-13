@@ -2,7 +2,8 @@
 
 #include "../../collisions/switch_mask.h"
 
-LockedDoor::LockedDoor(const Point& center) : Door(center), locked(true) {}
+LockedDoor::LockedDoor(const Point& center, unsigned int id)
+    : Door(center, id), locked(true) {}
 
 bool LockedDoor::interact(Player& who, CollisionChecker& checker) {
   if (locked) {

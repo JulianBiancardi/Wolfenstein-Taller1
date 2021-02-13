@@ -441,7 +441,7 @@ int static diagonal_collision_with_table() {
 }
 
 int static player_kills_are_correct() {
-  Player player(5, 5, 0);
+  Player player(5, 5, 0, 1);
 
   player.add_kill();
 
@@ -451,7 +451,7 @@ int static player_kills_are_correct() {
 }
 
 int static player_respawns_correctly() {
-  Player player(5, 5, 0);
+  Player player(5, 5, 0, 1);
 
   player.add_gun(MACHINE_GUN_ID);
   player.add_gun(ROCKET_LAUNCHER_ID);
@@ -496,8 +496,6 @@ int static player_collides_against_door() {
 }
 
 int static player_walks_through_door() {
-  Identifiable::reset_id();
-
   std::string map_name(TEST_MAP_WITH_DOOR);
   Map map(map_name);
   map.add_player(1);
@@ -519,8 +517,6 @@ int static player_walks_through_door() {
 }
 
 int static player_tries_to_pass_door_opens_it_and_does_it() {
-  Identifiable::reset_id();
-
   std::string map_name(TEST_MAP_WITH_DOOR);
   Map map(map_name);
   map.add_player(1);
@@ -554,8 +550,6 @@ int static player_tries_to_pass_door_opens_it_and_does_it() {
 }
 
 int static player_tries_to_open_locked_door_with_no_key() {
-  Identifiable::reset_id();
-
   std::string map_name(TEST_MAP_WITH_LOCKED_DOOR);
   Map map(map_name);
   map.add_player(1);
@@ -578,8 +572,6 @@ int static player_tries_to_open_locked_door_with_no_key() {
 }
 
 int static player_opens_door_with_key() {
-  Identifiable::reset_id();
-
   std::string map_name(TEST_MAP_WITH_LOCKED_DOOR);
   Map map(map_name);
   map.add_player(1);
@@ -602,8 +594,6 @@ int static player_opens_door_with_key() {
 }
 
 int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
-  Identifiable::reset_id();
-
   std::string map_name(TEST_MAP_WITH_LOCKED_DOOR);
   Map map(map_name);
   map.add_player(1);
@@ -629,8 +619,6 @@ int static player_opens_door_with_key_then_closes_it_and_other_opens_it() {
 }
 
 int static player_cannot_close_door_if_it_is_under_it() {
-  Identifiable::reset_id();
-
   std::string map_name(TEST_MAP_WITH_DOOR);
   Map map(map_name);
   map.add_player(1);

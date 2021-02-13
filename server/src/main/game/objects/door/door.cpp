@@ -3,10 +3,11 @@
 #include "../../collisions/box_mask.h"
 #include "../../collisions/switch_mask.h"
 
-Door::Door(const Point& center)
+Door::Door(const Point& center, unsigned int id)
     : Object(center, 0,
              new SwitchMask(new BoxMask(1, 1,
-                                        this->position.get_ref_origin()))) {}
+                                        this->position.get_ref_origin()))),
+      Identifiable(id) {}
 
 void Door::change_state(CollisionChecker& checker) {
   if (!is_open() || checker.is_free(position.get_ref_origin())) {

@@ -5,10 +5,8 @@
 #include "../../../../../../common/src/main/ids/map_ids.h"
 #include "../../../../common/src/main/ids/gun_ids.h"
 
-MachineGunItem::MachineGunItem(const Point& center, int id)
+MachineGunItem::MachineGunItem(const Point& center, unsigned int id)
     : Item(center, id) {}
-
-MachineGunItem::MachineGunItem(const Point& center) : Item(center) {}
 
 void MachineGunItem::use(Player& user) { user.add_gun(MACHINE_GUN_ID); }
 
@@ -23,7 +21,7 @@ Item* MachineGunItem::copy() {
 Packet MachineGunItem::get_add_item_packet() {
   unsigned char data[ADD_ITEM_SIZE];
   size_t size = pack(data, "CICCC", ADD_ITEM, id, MACHINE_GUN,
-                     (int)position.get_origin().getX(),
-                     (int)position.get_origin().getY());
+                     (int) position.get_origin().getX(),
+                     (int) position.get_origin().getY());
   return std::move(Packet(size, data));
 }

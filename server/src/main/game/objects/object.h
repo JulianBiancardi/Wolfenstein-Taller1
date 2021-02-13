@@ -6,13 +6,12 @@
 #include "../../../../common/src/main/utils/ray.h"
 #include "../collisions/mask.h"
 
-class Object : public Identifiable {
+class Object {
  protected:
   Ray position;
   Mask* mask;
-  Object(const Point& position, double angle, Mask* mask, int id);
+
   Object(const Point& position, double angle, Mask* mask);
-  Object(const Ray& position, Mask* mask, int id);
   Object(const Ray& position, Mask* mask);
 
  public:

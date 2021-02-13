@@ -5,11 +5,10 @@
 
 class MedicKit : public Item {
  private:
-  MedicKit(const Point& center, int id);
   int health_recovered;
 
  public:
-  MedicKit(const Point& center);
+  MedicKit(const Point& center, unsigned int id);
 
   /* Item gets used by the player */
   void use(Player& user) override;

@@ -4,13 +4,8 @@
 
 #include "../../../../../../common/src/main/ids/map_ids.h"
 
-MedicKit::MedicKit(const Point& center, int id) : Item(center, id) {
-  health_recovered = ConfigLoader::medic_kit_health_recovered;
-}
-
-MedicKit::MedicKit(const Point& center) : Item(center) {
-  health_recovered = ConfigLoader::medic_kit_health_recovered;
-}
+MedicKit::MedicKit(const Point& center, unsigned int id)
+    : Item(center, id), health_recovered(CL::medic_kit_health_recovered) {}
 
 void MedicKit::use(Player& user) { user.add_health(health_recovered); }
 
@@ -23,7 +18,7 @@ Item* MedicKit::copy() { return new MedicKit(position.get_origin(), id); }
 Packet MedicKit::get_add_item_packet() {
   unsigned char data[ADD_ITEM_SIZE];
   size_t size = pack(data, "CICCC", ADD_ITEM, id, MEDKIT,
-                     (int)position.get_origin().getX(),
-                     (int)position.get_origin().getY());
+                     (int) position.get_origin().getX(),
+                     (int) position.get_origin().getY());
   return std::move(Packet(size, data));
 }

@@ -5,12 +5,11 @@
 
 class Blood : public Item {
  private:
-  Blood(const Point& center, int id);
   int health_recovered;
   int less_than;
 
  public:
-  explicit Blood(const Point& center);
+  Blood(const Point& center, unsigned int id);
 
   /* Item gets used by the player */
   void use(Player& user) override;

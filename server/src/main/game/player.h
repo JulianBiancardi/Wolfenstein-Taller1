@@ -17,7 +17,6 @@ class Player : public Moveable {
   int points;
   std::unordered_set<int> guns_bag;
   int active_gun;
-  // TODO Check how it copies
   const Point spawn_point;
   int lives;
   int players_killed;
@@ -26,12 +25,11 @@ class Player : public Moveable {
   void remove_guns_to_respawn();
 
  public:
-  Player(const Point& origin, double angle);
+  Player(double x, double y, double angle, unsigned int id);
   Player(const Point& origin, double angle, unsigned int id);
-  Player(double x, double y, double angle);
-  Player(const Player& player);
-  // TODO Define copy constructor so they can be put in storages. UPDATE:
-  // DEFINED
+  Player(const Ray& position, unsigned int id);
+
+  Player(const Player& other);
   ~Player();
 
   /* Damages the player, health gets to 0 if killed */

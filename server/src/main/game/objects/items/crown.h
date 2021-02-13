@@ -4,11 +4,8 @@
 #include "point_item.h"
 
 class Crown : public PointItem {
- private:
-  Crown(const Point& center, int id);
-
  public:
-  explicit Crown(const Point& center);
+  Crown(const Point& center, unsigned int id);
 
   /* Returns a copy of the element */
   Item* copy() override;
