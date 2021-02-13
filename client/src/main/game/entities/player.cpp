@@ -37,6 +37,7 @@ int Player::get_percentage_health() const {
 int Player::get_gun() const { return active_gun; }
 int Player::get_bullets() const { return bullets; }
 int Player::get_points() const { return points; }
+bool Player::has_key() const { return keys > 0; }
 
 void Player::move(unsigned char direction) {
   double movement_angle = position.get_angle();

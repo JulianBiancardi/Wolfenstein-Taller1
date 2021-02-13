@@ -9,6 +9,7 @@
 #define FONT_PATH "../../res/fonts/wolfenstein.ttf"
 #define BACKGROUND_PATH "../../res/images/hud/IMG_HUD_Background.png"
 #define BJ_FACES_PATH "../../res/images/hud/IMG_HUD_BJFaces.png"
+#define KEY_PATH "../../res/images/hud/IMG_HUD_Key1.png"
 
 #define PIXEL 1
 
@@ -32,7 +33,8 @@
 Hud::Hud(SDL_Renderer* renderer)
     : renderer(renderer),
       background(renderer, BACKGROUND_PATH),
-      bj_faces(renderer, BJ_FACES_PATH) {
+      bj_faces(renderer, BJ_FACES_PATH),
+      key(renderer, KEY_PATH) {
   size_t font_size = 12;
   font = TTF_OpenFont(FONT_PATH, font_size);
 }
@@ -45,6 +47,7 @@ void Hud::update(const Window& window, const Player& player) {
   _show_background(window);
   _show_stats(window, player);
   _show_face(window, player);
+  _show_key(window, player);
   _show_gun(window, player);
 }
 
@@ -97,6 +100,16 @@ void Hud::_show_face(const Window& window, const Player& player) {
                          sprite_y * (frame_height + PIXEL), frame_width,
                          frame_height};
   bj_faces.draw(&rect_face, &rect_slice);
+}
+
+void Hud::_show_key(const Window& window, const Player& player) {
+  if (player.has_key()) {
+    Rectangle rect_key(
+        window.get_height() - ((window.get_height() * GUN_Y_PERCENTAJE) / 100),
+        window.get_height(), ((window.get_width() * GUN_X_PERCENTAJE) / 100),
+        window.get_width());
+    key.draw(rect_key, nullptr);
+  }
 }
 
 void Hud::_show_gun(const Window& window, const Player& player) const {
