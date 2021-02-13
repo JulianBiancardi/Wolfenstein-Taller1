@@ -22,9 +22,8 @@ void RequestMatchesHandler::handle(Packet& packet,
   const std::unordered_map<unsigned char, std::shared_ptr<Match>>& matches =
       match_manager.get_matches();
 
-  unsigned char matches_amount = matches.size();
   unsigned char buf[MATCH_AMOUNT_SIZE];
-  size_t size = pack(buf, "CIC", MATCH_AMOUNT, player_id, matches_amount);
+  size_t size = pack(buf, "CIC", MATCH_AMOUNT, player_id, matches.size());
   Packet matches_amount_packet(size, buf);
 
   client_manager.send_to(player_id, matches_amount_packet);

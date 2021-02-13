@@ -34,7 +34,7 @@ void RequestNewMatchHandler::handle(Packet& packet,
 
       SpawnPlayerAssistant assistant;
       Packet spawn_player_packet(assistant.build_packet(player_id, match));
-      client_manager.send_to_all(spawn_player_packet);
+      client_manager.send_to(player_id, spawn_player_packet);
 
       const std::unordered_map<unsigned int, Item*>& items = match.get_items();
       std::unordered_map<unsigned int, Item*>::const_iterator iter;
