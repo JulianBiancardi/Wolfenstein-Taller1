@@ -92,6 +92,8 @@ void GameSound::_load_items_sounds() {
       {CHAIN_CANNON, Mix_LoadWAV("../../res/audio/items/chaincannon.wav")});
   sounds.insert(
       {MACHINE_GUN, Mix_LoadWAV("../../res/audio/items/machinegun.wav")});
+  sounds.insert(
+      {ROCKET_LAUNCHER, Mix_LoadWAV("../../res/audio/items/machinegun.wav")});
   sounds.insert({BULLETS, Mix_LoadWAV("../../res/audio/items/bullets.wav")});
   sounds.insert({FOOD, Mix_LoadWAV("../../res/audio/items/food.wav")});
   sounds.insert({MEDKIT, Mix_LoadWAV("../../res/audio/items/medikit.wav")});

@@ -109,7 +109,7 @@ void Hud::_show_face(const Window& window, const Player& player) {
 
 void Hud::_show_key(const Window& window, const Player& player) {
   if (player.has_key()) {
-    /*
+    /* TODO Delete
     Rectangle rect_key(
         window.get_height() - ((window.get_height() * GUN_Y_PERCENTAJE) / 100),
         window.get_height(), ((window.get_width() * GUN_X_PERCENTAJE) / 100),
@@ -143,8 +143,7 @@ void Hud::_show_gun(const Window& window, const Player& player) const {
       gun_image_path = "../../res/images/hud/IMG_HUD_RocketLauncher.png";
       break;
     default:
-      gun_image_path = "../../res/images/hud/IMG_HUD_MachineGun.png";
-      break;
+      return;
   }
 
   Image gun(renderer, gun_image_path);
