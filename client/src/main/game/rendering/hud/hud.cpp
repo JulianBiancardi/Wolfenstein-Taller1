@@ -37,10 +37,13 @@ void Hud::update(const Window& window, const Player& player) const {
 
 void Hud::_show_background(const Window& window) const {
   Image background(renderer, BACKGROUND_PATH);
-  Rectangle pos(window.get_height() -
-                    ((window.get_height() * BACKGROUND_Y_PERCENTAJE) / 100),
-                window.get_height(), 0, window.get_width());
-  background.draw(pos, nullptr);
+  SDL_Rect position = {
+      0,
+      window.get_height() -
+          ((window.get_height() * BACKGROUND_Y_PERCENTAJE) / 100),
+      window.get_width(),
+      ((window.get_height() * BACKGROUND_Y_PERCENTAJE) / 100)};
+  background.draw(&position, nullptr);
 }
 
 void Hud::_show_stats(const Window& window, const Player& player) const {
@@ -100,9 +103,10 @@ void Hud::_show_gun(const Window& window, const Player& player) const {
   }
 
   Image gun(renderer, gun_image_path);
-  Rectangle rect_gun(
+  SDL_Rect rect_gun = {
+      ((window.get_width() * GUN_X_PERCENTAJE) / 100),
       window.get_height() - ((window.get_height() * GUN_Y_PERCENTAJE) / 100),
-      window.get_height(), ((window.get_width() * GUN_X_PERCENTAJE) / 100),
-      window.get_width());
-  gun.draw(rect_gun, nullptr);
+      window.get_width() - ((window.get_width() * GUN_X_PERCENTAJE) / 100),
+      ((window.get_height() * GUN_Y_PERCENTAJE) / 100)};
+  gun.draw(&rect_gun, nullptr);
 }

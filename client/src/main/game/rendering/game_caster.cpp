@@ -4,7 +4,6 @@
 
 #include "../../../../../common/src/main/utils/angle.h"
 #include "../../../../../common/src/main/utils/point.h"
-#include "../../../../../common/src/main/utils/rectangle.h"
 #include "../entities/object.h"
 #include "../entities/player.h"
 #include "ray_casting.h"
@@ -99,26 +98,23 @@ void GameCaster::draw_wall(Collision& collision, size_t screen_pos,
       collision.get_distance_from_src());
   int wall_size = SCALING_FACTOR / (projected_distance * image->get_height());
 
-  Rectangle pos(SCREEN_HEIGHT_HALF - (wall_size / 2),
-                SCREEN_HEIGHT_HALF + (wall_size / 2), screen_pos,
-                screen_pos + 1);
-
   size_t img_width = image->get_width();
   size_t img_height = image->get_height();
-  Rectangle slice(0, 0, 0, 0);
+  int line = 0;
   if (collision.is_x_collision()) {
     double tmp;
     double y_offset = std::modf(collision.get_collision_point().getY(), &tmp);
-    slice = Rectangle(0, img_height, y_offset * img_width,
-                      y_offset * img_height + 1);
+    line = y_offset * img_width;
   } else {
     double tmp;
     double x_offset = std::modf(collision.get_collision_point().getX(), &tmp);
-    slice = Rectangle(0, img_height, x_offset * img_width,
-                      x_offset * img_height + 1);
+    line = x_offset * img_width;
   }
 
-  image->draw(pos, &slice);
+  SDL_Rect pos = {(int)screen_pos, SCREEN_HEIGHT_HALF - (wall_size / 2), 1,
+                  wall_size};
+  SDL_Rect slice = {line, 0, 1, (int)img_height};
+  image->draw(&pos, &slice);
 }
 
 void GameCaster::draw_objects(std::vector<double>& wall_distances) {
@@ -186,11 +182,10 @@ void GameCaster::draw_object(Object& object, double distance,
       continue;
     }
 
-    Rectangle pos(SCREEN_HEIGHT_HALF - sprite_size / 2,
-                  SCREEN_HEIGHT_HALF + sprite_size / 2, x0, x0 + 1);
-    Rectangle slice(0, sprite_size, (i * img_width) / sprite_size,
-                    ((i * img_width) / sprite_size) + 1);
-    image->draw(pos, &slice);
+    SDL_Rect pos = {x0, SCREEN_HEIGHT_HALF - sprite_size / 2, 1, sprite_size};
+    SDL_Rect slice = {(int)(i * img_width) / sprite_size, 0, 1,
+                      (int)img_height};
+    image->draw(&pos, &slice);
   }
 }
 

@@ -13,7 +13,7 @@ class Rectangle {
   size_t bot;
 
  public:
-  Rectangle(size_t top, size_t bot, size_t left, size_t right);
+  Rectangle(size_t top, size_t left, size_t width, size_t height);
   ~Rectangle();
   size_t get_left();
   size_t get_right();
