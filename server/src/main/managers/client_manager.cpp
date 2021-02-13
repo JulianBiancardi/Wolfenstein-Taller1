@@ -15,23 +15,26 @@ BlockingQueue<Packet>& ClientManager::get_reception_queue() {
 }
 
 void ClientManager::add_client(Socket& client_socket) {
-  std::shared_ptr<Client> client(
-      new Client(next_id, client_socket, reception_queue));
+  std::unique_ptr<Client> client =
+      std::make_unique<Client>(next_id, client_socket, reception_queue);
   clients.insert(std::make_pair(next_id, std::move(client)));
   next_id++;
 }
 
 void ClientManager::clear() {
-  std::unordered_map<unsigned int, std::shared_ptr<Client>> clients_kept;
+  std::vector<unsigned int> clients_erased;
 
-  std::unordered_map<unsigned int, std::shared_ptr<Client>>::iterator iter;
+  std::unordered_map<unsigned int, std::unique_ptr<Client>>::iterator iter;
   for (iter = clients.begin(); iter != clients.end(); iter++) {
-    if (iter->second->is_active()) {
-      clients_kept.insert(*iter);
+    if (!(iter->second->is_active())) {
+      clients_erased.push_back(iter->first);
     }
   }
 
-  clients.swap(clients_kept);
+  std::vector<unsigned int>::iterator iter2;
+  for (iter2 = clients_erased.begin(); iter2 != clients_erased.end(); iter2++) {
+    clients.erase(*iter2);
+  }
 }
 
 void ClientManager::send_to(unsigned int id, Packet& packet) {
@@ -49,7 +52,7 @@ void ClientManager::send_to_all(const std::unordered_set<unsigned int>& ids,
 }
 
 void ClientManager::send_to_all(Packet& packet) {
-  std::unordered_map<unsigned int, std::shared_ptr<Client>>::iterator iter;
+  std::unordered_map<unsigned int, std::unique_ptr<Client>>::iterator iter;
   for (iter = clients.begin(); iter != clients.end(); iter++) {
     iter->second->send(packet);
   }
@@ -66,7 +69,7 @@ void ClientManager::end_connection(unsigned int id) {
 }
 
 void ClientManager::end_all_connections() {
-  std::unordered_map<unsigned int, std::shared_ptr<Client>>::iterator iter;
+  std::unordered_map<unsigned int, std::unique_ptr<Client>>::iterator iter;
   for (iter = clients.begin(); iter != clients.end(); iter++) {
     unsigned char data[END_OF_CONNECTION_SIZE];
     size_t size = pack(data, "CI", END_OF_CONNECTION, iter->first);

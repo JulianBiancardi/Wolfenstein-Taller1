@@ -34,9 +34,10 @@ MapLoader::MapLoader(
 MapLoader::~MapLoader() {}
 
 void MapLoader::add_player(const Ray& position, unsigned int player_id) {
-  std::shared_ptr<Player> new_player(new Player(position, player_id));
-  players.insert(std::make_pair(player_id, new_player));
+  std::shared_ptr<Player> new_player =
+      std::make_shared<Player>(position, player_id);
   std::weak_ptr<Object> player_weak_ptr(new_player);
+  players.insert(std::make_pair(player_id, std::move(new_player)));
   players_shootable.push_back(new_player);
   drawables.push_back(player_weak_ptr);
 }
@@ -107,13 +108,12 @@ void MapLoader::load_map(const std::string& map_name) {
     int resource_id = object["id"].as<int>();
     size_t x = object["x_position"].as<int>();
     size_t y = object["y_position"].as<int>();
-    Ray position(x + 0.5, y + 0.5, 0.0);
 
-    add_object(position, resource_id);
+    add_object(Ray(x + 0.5, y + 0.5, 0.0), resource_id);
   }
 }
 
-void MapLoader::add_object(Ray& position, unsigned int resource_id) {
+void MapLoader::add_object(const Ray& position, unsigned int resource_id) {
   std::shared_ptr<Object> new_object =
       std::make_shared<Object>(position, resource_id);
   std::weak_ptr<Object> object_weak_ptr(new_object);

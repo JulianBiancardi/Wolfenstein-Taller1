@@ -25,7 +25,7 @@ class Player : public IdentifiableObject {
   int bullets;
   int points;
   int keys;
-  std::unordered_map<int, std::shared_ptr<Gun>> guns_bag;
+  std::unordered_map<int, std::unique_ptr<Gun>> guns_bag;
   int active_gun;
 
   PlayerState state;
