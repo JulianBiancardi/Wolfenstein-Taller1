@@ -7,7 +7,6 @@ PlayerState::PlayerState() : current_state(still), next_state(still) {}
 PlayerState::~PlayerState() {}
 
 void PlayerState::update() {
-  print();
   current_state = next_state;
   next_state = still;
 }

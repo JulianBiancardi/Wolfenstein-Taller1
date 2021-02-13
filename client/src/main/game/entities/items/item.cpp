@@ -1,5 +1,6 @@
 #include "item.h"
 
-Item::Item() {}
+Item::Item(const Ray& position, unsigned int resource_id, unsigned int id)
+    : IdentifiableObject(position, resource_id, id) {}
 
 Item::~Item() {}

@@ -5,9 +5,9 @@
 #include "../../../../../../common/src/main/ids/map_ids.h"
 
 Cross::Cross(const Point& center, int id)
-    : PointItem(center, CL::crosses_points, id) {}
+    : PointItem(center, CL::cross_points, id) {}
 
-Cross::Cross(const Point& center) : PointItem(center, CL::crosses_points) {}
+Cross::Cross(const Point& center) : PointItem(center, CL::cross_points) {}
 
 Item* Cross::copy() { return new Cross(position.get_origin(), id); }
 

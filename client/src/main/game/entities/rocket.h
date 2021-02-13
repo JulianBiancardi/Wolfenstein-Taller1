@@ -10,7 +10,7 @@ class Rocket : public IdentifiableObject {
   /* Moves the rocket */
   void move();
 
-  Image* get_image(ResourceManager& resource_manager) override;
+  virtual Image* get_image(ResourceManager& resource_manager) override;
 };
 
 #endif

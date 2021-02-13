@@ -4,7 +4,7 @@
 
 // TODO Add res_id
 Rocket::Rocket(Ray& position, unsigned int id)
-    : IdentifiableObject(position, id) {}
+    : IdentifiableObject(position, 1, id) {}
 
 void Rocket::move() {
   const Point& current_position = position.get_origin();
@@ -17,5 +17,5 @@ void Rocket::move() {
 }
 
 Image* Rocket::get_image(ResourceManager& resource_manager) {
-  return resource_manager.get_image(2);  // TODO Put correct image
+  return resource_manager.get_image(1);  // TODO Put correct image
 }

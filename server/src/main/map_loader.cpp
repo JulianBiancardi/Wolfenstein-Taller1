@@ -61,7 +61,7 @@ void MapLoader::load_map(std::string& map_name) {
       case CHAIN_CANNON:
         add_chain_cannon(Point(x, y));
         break;
-      case BAZOOKA:
+      case ROCKET_LAUNCHER:
         add_rocket_launcher(Point(x, y));
         break;
       case FOOD:

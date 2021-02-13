@@ -10,17 +10,22 @@
 #include "../../../../common/src/main/utils/matrix.h"
 #include "../../../../common/src/main/utils/ray.h"
 #include "../entities/identifiable_object.h"
+#include "../entities/items/item.h"
 #include "../entities/object.h"
 #include "../entities/player.h"
+#include "../entities/rocket.h"
 #include "map_loader.h"
 
 class Map : public BaseMap {
  private:
   std::vector<std::weak_ptr<Object>> drawables;
   std::vector<std::weak_ptr<IdentifiableObject>> players_shootable;
+  // TODO this could be maybe reduced by means of
 
+  // shared_ptrs are used since they must also be kept in drawables
   std::vector<std::shared_ptr<Object>> ambient_objects;
-  std::unordered_map<unsigned int, std::shared_ptr<Object>> objects;
+  std::unordered_map<unsigned int, std::shared_ptr<Rocket>> rockets;
+  std::unordered_map<unsigned int, std::shared_ptr<Item>> items;
   std::unordered_map<unsigned int, std::shared_ptr<Player>> players;
   MapLoader loader;
 

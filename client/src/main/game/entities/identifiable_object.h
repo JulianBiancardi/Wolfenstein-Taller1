@@ -8,7 +8,8 @@
 
 class IdentifiableObject : public Identifiable, public Object {
  public:
-  IdentifiableObject(const Ray& position, int id);
+  IdentifiableObject(const Ray& position, unsigned int resource_id,
+                     unsigned int id);
   ~IdentifiableObject();
 };
 

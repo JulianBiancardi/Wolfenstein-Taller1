@@ -2,11 +2,10 @@
 #define PLAYER_STATE_H
 
 #include "drawable.h"
-#include "updateable.h"
 
 enum player_state { still, moving, dead };
 
-class PlayerState : public Updateable {
+class PlayerState {
  private:
   player_state current_state;
   player_state next_state;

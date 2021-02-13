@@ -125,6 +125,7 @@ void GameCaster::draw_objects(std::vector<double>& wall_distances) {
   std::vector<std::weak_ptr<Object>>& objects = map.get_drawables();
 
   std::vector<double> object_distances;
+  printf("Drawing %d objects\n", objects.size());
 
   clean_objects(objects);
   sort_objects(objects, object_distances);
@@ -142,7 +143,7 @@ void GameCaster::draw_object(Object& object, double distance,
 
   const Player& player = map.get_player(player_id);
   // TODO Optimize
-  //  printf("ResID: %u\n", object.get_res_id());
+  printf("ResID: %u\n", object.get_res_id());
   Image* image = object.get_image(res_manager);
   size_t img_width = image->get_width();
   size_t img_height = image->get_height();

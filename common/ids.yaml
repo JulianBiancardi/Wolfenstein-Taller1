@@ -125,7 +125,7 @@
 34:
   type: 3
   name: "Bazooka"
-  image: "resources/images/weapons/IMG_Bazooka.png"
+  image: "../../res/images/items/guns/rocket_launcher_item.png"
   icon: "../resources/images/weapons/IMG_Bazooka.png"
   sound: ""
 

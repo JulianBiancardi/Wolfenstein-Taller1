@@ -73,9 +73,9 @@ class ConfigLoader {
   static int bullets_respawn_amount;
   static double drop_distance_from_dead_player;
 
-  static int crosses_points;
+  static int cross_points;
   static int cup_points;
-  static int chests_points;
+  static int chest_points;
   static int crown_points;
 
   static double pillar_radius;

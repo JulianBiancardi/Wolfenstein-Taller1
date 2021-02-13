@@ -13,7 +13,7 @@
 #include "../guns/rocket_launcher.h"
 
 Player::Player(const Ray& position, unsigned int player_id)
-    : guns_bag(), IdentifiableObject(position, player_id) {
+    : guns_bag(), IdentifiableObject(position, 1, player_id) {
   lives = CL::player_lives;
   health = CL::player_health;
   bullets = CL::player_bullets;
@@ -102,8 +102,6 @@ void Player::set_gun(int gun_num) {
   }
 }
 
-void Player::set_health(int health) { this->health = health; }
-
 bool Player::has_bullets(int amount) { return (bullets >= amount); }
 
 void Player::decrease_bullets(unsigned char gun_id) {
@@ -150,38 +148,21 @@ void Player::add_gun(unsigned int gun_id) {
   }
 }
 
-void Player::add_item(unsigned int item_id) {
-  switch (item_id) {
-    case FOOD:
-      health = std::min(CL::player_health, health + CL::food_health_recovered);
-      break;
-    case MEDKIT:
-      health =
-          std::min(CL::player_health, health + CL::medic_kit_health_recovered);
-      break;
-    case BLOOD:
-      health = CL::player_health + CL::blood_health_recovered;
-      break;
-    case BULLETS:
-      bullets = std::min(CL::player_max_bullets, bullets + CL::bullets_amount);
-      break;
-    case CROSS:
-      points += CL::crosses_points;
-      break;
-    case CUP:
-      points += CL::cup_points;
-      break;
-    case CHEST:
-      points += CL::chests_points;
-      break;
-    case CROWN:
-      points += CL::crown_points;
-      break;
-    case KEY:
-      keys += 1;
-      break;
-  }
+void Player::add_points(unsigned int added_points) { points += added_points; }
+
+void Player::add_health(unsigned int added_health) {
+  health = std::min(CL::player_health, (int)(health + added_health));
 }
+
+void Player::add_bullets(unsigned int added_bullets) {
+  bullets = std::min(CL::player_max_bullets, (int)(bullets + added_bullets));
+}
+
+void Player::decrease_health(unsigned int lost_health) {
+  health = std::max(0, (int)(health - lost_health));
+}
+
+void Player::add_key() { keys++; }
 
 void Player::update() { state.update(); }
 

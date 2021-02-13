@@ -1,12 +1,13 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include "../identifiable_object.h"
 #include "../player.h"
 
-class Item {
+class Item : public IdentifiableObject {
  private:
  public:
-  Item();
+  Item(const Ray& position, unsigned int resource_id, unsigned int id);
   ~Item();
 
   virtual void use_on(Player& player) = 0;

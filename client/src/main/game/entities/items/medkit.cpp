@@ -1,17 +1,13 @@
 #include "medkit.h"
 
+#include "../../../../../../common/src/main/config_loader.h"
 #include "../../../../../../common/src/main/ids/map_ids.h"
 
-Medkit::Medkit(Ray& position, unsigned int id)
-    : IdentifiableObject(position, id) {}
+Medkit::Medkit(const Ray& position, unsigned int resource_id, unsigned int id)
+    : Item(position, resource_id, id) {}
 
 Medkit::~Medkit() {}
 
-Image* Medkit::get_image(ResourceManager& resource_manager) {
-  return resource_manager.get_image(MEDKIT);
-}
-
-void use_on(Player& player) {
-  player.set_health(std::min(
-      CL::player_health, player.get_health() + CL::medic_kit_health_recovered));
+void Medkit::use_on(Player& player) {
+  player.add_health(CL::medic_kit_health_recovered);
 }
