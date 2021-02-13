@@ -1,6 +1,8 @@
 #ifndef SEND_TO_PEER_THREAD_H
 #define SEND_TO_PEER_THREAD_H
 
+#include <atomic>
+
 #include "../../../../common/src/main/data_structures/blocking_queue.h"
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/socket/socket.h"
@@ -11,8 +13,8 @@ class SendToPeerThread : public Thread {
   unsigned int client_id;
   Socket& connected_socket;
   BlockingQueue<Packet>& sending_queue;
-  bool allowed_to_run;
-  bool running;
+  std::atomic<bool> allowed_to_run;
+  std::atomic<bool> running;
   void run() override;
 
  public:

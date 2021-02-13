@@ -36,4 +36,4 @@ void Client::sync() {
 
 void Client::send(Packet& packet) { sending_queue.enqueue(packet); }
 
-bool Client::is_active() { return receiving_thread.is_running(); }
+bool Client::is_active() { return receiving_thread.is_active(); }

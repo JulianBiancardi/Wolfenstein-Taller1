@@ -30,6 +30,8 @@ void ReceiveFromPeerThread::set_id(unsigned int id) { client_id = id; }
 
 bool ReceiveFromPeerThread::is_running() { return running; }
 
+bool ReceiveFromPeerThread::is_active() { return allowed_to_run; }
+
 void ReceiveFromPeerThread::force_stop() {
   allowed_to_run = false;
   connected_socket.shutdown(SHUT_RD);

@@ -165,6 +165,8 @@ void GameCaster::draw_object(Object& object, double distance,
   int sprite_size = SCALING_FACTOR / (projected_distance * img_height);
   // printf("sprite_size: %d\n", sprite_size);
 
+  // TODO Putting a cos here keeps them well in place when looking at 0.0, but
+  // they dont leave the screen
   int x = sin(sprite_angle) * (-SCREEN_WIDTH) + SCREEN_WIDTH_HALF;
   // TODO Move to constants
   if (x > SCREEN_WIDTH * 1.2 || x < -0.2 * SCREEN_WIDTH) return;

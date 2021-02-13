@@ -1,6 +1,8 @@
 #ifndef RECEIVE_FROM_PEER_THREAD_H
 #define RECEIVE_FROM_PEER_THREAD_H
 
+#include <atomic>
+
 #include "../../../../common/src/main/data_structures/blocking_queue.h"
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/socket/socket.h"
@@ -11,8 +13,9 @@ class ReceiveFromPeerThread : public Thread {
   unsigned int client_id;
   Socket& connected_socket;
   BlockingQueue<Packet>& reception_queue;
-  bool allowed_to_run;
-  bool running;
+  std::atomic<bool> allowed_to_run;
+  std::atomic<bool> running;
+  void run() override;
 
  public:
   explicit ReceiveFromPeerThread(Socket& connected_socket,
@@ -23,8 +26,8 @@ class ReceiveFromPeerThread : public Thread {
   ~ReceiveFromPeerThread();
 
   void set_id(unsigned int id);
-  void run() override;
   bool is_running();
+  bool is_active();
   void force_stop();
 };
 
