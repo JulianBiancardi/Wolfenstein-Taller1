@@ -11,16 +11,18 @@
 class Hud {
  private:
   SDL_Renderer *renderer;
+  int scale_x;
+  int scale_y;
   TTF_Font *font;
   Image background;
   Image bj_faces;
   Image key;
 
-  void _show_background(const Window &window) const;
-  void _show_stats(const Window &window, const Player &player) const;
+  void _show_background(const Window &window);
+  void _show_stats(const Window &window, const Player &player);
   void _show_face(const Window &window, const Player &player);
   void _show_key(const Window &window, const Player &player);
-  void _show_gun(const Window &window, const Player &player) const;
+  void _show_gun(const Window &window, const Player &player);
 
  public:
   Hud(SDL_Renderer *renderer);

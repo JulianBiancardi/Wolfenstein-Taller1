@@ -11,7 +11,6 @@ Window::Window(const std::string& title, int width, int height, bool fullscreen)
     throw SDLError("SDLError: failed to initialize - %s\n", SDL_GetError());
   }
 
-  /* Iniciamos el sistema de TTF */
   if (TTF_Init() == -1) {
     throw SDLError("SDLError: failed to initialize - %s\n", SDL_GetError());
   }
@@ -34,6 +33,7 @@ Window::Window(const std::string& title, int width, int height, bool fullscreen)
 Window::~Window() {
   SDL_DestroyRenderer(this->renderer);
   SDL_DestroyWindow(this->window);
+  TTF_Quit();
   SDL_Quit();
 }
 
