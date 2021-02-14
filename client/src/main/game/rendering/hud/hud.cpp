@@ -8,27 +8,26 @@
 #define BACKGROUND_PATH "../../res/images/hud/IMG_HUD_Background.png"
 #define BJ_FACES_PATH "../../res/images/hud/IMG_HUD_BJFaces.png"
 #define KEY_PATH "../../res/images/hud/IMG_HUD_Key1.png"
+#define NUMBER_PATH "../../res/images/hud/IMG_HUD_Numbers.png"
 
 #define PREFEER_WIDTH 320
 #define PREFEER_HEIGHT 200
 
 #define PIXEL 1
-#define KEY_PIXEL 8
+// Number 8x16
 
-#define STATS_Y_POS 12
+#define STATS_Y_POS 16
 
 #define LEVEL_X_POS 20
-#define POINTS_X_POS 76
-#define LIVES_X_POS 110
+#define POINTS_X_POS 88
+#define LIVES_X_POS 112
 #define FACE_X_POS 136
-#define HEALTH_X_POS 170
-#define BULLETS_X_POS 220
+#define HEALTH_X_POS 184
+#define BULLETS_X_POS 226
 #define KEY_X_POS 240
 #define GUN_X_POS 256
 
-#define KEY_X_PERCENTAJE 76
-#define KEY_Y_PERCENTAJE 18
-
+#define NUMBER_FRAME_X_COUNT 10
 #define FACE_FRAME_X_COUNT 3
 #define FACE_FRAME_Y_COUNT 7
 
@@ -36,7 +35,11 @@ Hud::Hud(SDL_Renderer* renderer)
     : renderer(renderer),
       background(renderer, BACKGROUND_PATH),
       bj_faces(renderer, BJ_FACES_PATH),
-      key(renderer, KEY_PATH) {
+      key(renderer, KEY_PATH),
+      numbers(renderer, NUMBER_PATH) {
+  number_frame_w = (numbers.get_width() - 2 * PIXEL) / NUMBER_FRAME_X_COUNT;
+  number_frame_h = numbers.get_height();
+
   size_t font_size = 12;
   font = TTF_OpenFont(FONT_PATH, font_size);
 }
@@ -53,6 +56,10 @@ void Hud::update(const Window& window, const Player& player) {
 
   _show_background(window);
   _show_stats(window, player);
+  _show_lives(window, player);
+  _show_points(window, player);
+  _show_health(window, player);
+  _show_bullets(window, player);
   _show_face(window, player);
   _show_key(window, player);
   _show_gun(window, player);
@@ -68,33 +75,124 @@ void Hud::_show_background(const Window& window) {
 }
 
 void Hud::_show_stats(const Window& window, const Player& player) {
-  SDL_Color white = {255, 255, 255};
-  size_t y_center_pos =
-      window.get_height() - ((window.get_height() * STATS_Y_POS) / 100);
+  /*
+    rect_pos.x = LEVEL_X_POS * scale_x;
+    Text level(renderer, "1", font, white, &rect_pos);
+
+    rect_pos.x = POINTS_X_POS * scale_x;
+    Text points(renderer, std::to_string(player.get_points()), font, white,
+                &rect_pos);
+
+    rect_pos.x = LIVES_X_POS * scale_x;
+    Text lives(renderer, std::to_string(player.get_lives()), font, white,
+               &rect_pos);
+
+    rect_pos.x = HEALTH_X_POS * scale_x;
+    Text health(renderer, std::to_string(player.get_percentage_health()),
+    font, white, &rect_pos);
+
+    rect_pos.x = BULLETS_X_POS * scale_x;
+    Text bullets(renderer, std::to_string(player.get_bullets()), font,
+    white, &rect_pos);*/
+}
+
+void Hud::_show_lives(const Window& window, const Player& player) {
+  int lives = player.get_lives();
+
+  int unidades = lives;
 
   SDL_Rect rect_pos;
-  rect_pos.y = y_center_pos;
-  rect_pos.w = 50;
-  rect_pos.h = 50;
-
-  rect_pos.x = LEVEL_X_POS * scale_x;
-  Text level(renderer, "1", font, white, &rect_pos);
-
-  rect_pos.x = POINTS_X_POS * scale_x;
-  Text points(renderer, std::to_string(player.get_points()), font, white,
-              &rect_pos);
+  rect_pos.x = LIVES_X_POS * scale_x;
+  rect_pos.y = window.get_height() -
+               ((background.get_height() - STATS_Y_POS * PIXEL) * scale_y);
+  rect_pos.w = number_frame_w * scale_x;
+  rect_pos.h = number_frame_h * scale_y;
 
   rect_pos.x = LIVES_X_POS * scale_x;
-  Text lives(renderer, std::to_string(player.get_lives()), font, white,
-             &rect_pos);
+  _show_number(unidades, &rect_pos);
+}
+
+void Hud::_show_points(const Window& window, const Player& player) {
+  int points = player.get_points();
+
+  int millares = points / 1000;
+  int centenas = (points - (millares * 1000)) / 100;
+  int decenas = (points - (millares * 1000 + centenas * 100)) / 10;
+  int unidades = points - (millares * 1000 + centenas * 100 + decenas * 10);
+
+  SDL_Rect rect_pos;
+  rect_pos.x = POINTS_X_POS * scale_x;
+  rect_pos.y = window.get_height() -
+               ((background.get_height() - STATS_Y_POS * PIXEL) * scale_y);
+  rect_pos.w = number_frame_w * scale_x;
+  rect_pos.h = number_frame_h * scale_y;
+
+  rect_pos.x = POINTS_X_POS * scale_x;
+  _show_number(unidades, &rect_pos);
+
+  rect_pos.x = (POINTS_X_POS - 1 * (number_frame_w + PIXEL)) * scale_x;
+  _show_number(decenas, &rect_pos);
+
+  rect_pos.x = (POINTS_X_POS - 2 * (number_frame_w + PIXEL)) * scale_x;
+  _show_number(centenas, &rect_pos);
+
+  rect_pos.x = (POINTS_X_POS - 3 * (number_frame_w + PIXEL)) * scale_x;
+  _show_number(millares, &rect_pos);
+}
+
+void Hud::_show_health(const Window& window, const Player& player) {
+  int health = player.get_percentage_health();
+
+  int centenas = health / 100;
+  int decenas = (health - (centenas * 100)) / 10;
+  int unidades = health - (centenas * 100 + decenas * 10);
+
+  SDL_Rect rect_pos;
+  rect_pos.x = HEALTH_X_POS * scale_x;
+  rect_pos.y = window.get_height() -
+               ((background.get_height() - STATS_Y_POS * PIXEL) * scale_y);
+  rect_pos.w = number_frame_w * scale_x;
+  rect_pos.h = number_frame_h * scale_y;
 
   rect_pos.x = HEALTH_X_POS * scale_x;
-  Text health(renderer, std::to_string(player.get_percentage_health()), font,
-              white, &rect_pos);
+  _show_number(unidades, &rect_pos);
+
+  rect_pos.x = (HEALTH_X_POS - 1 * (number_frame_w + PIXEL)) * scale_x;
+  _show_number(decenas, &rect_pos);
+
+  rect_pos.x = (HEALTH_X_POS - 2 * (number_frame_w + PIXEL)) * scale_x;
+  _show_number(centenas, &rect_pos);
+}
+
+void Hud::_show_bullets(const Window& window, const Player& player) {
+  int bullets = player.get_bullets();
+
+  int centenas = bullets / 100;
+  int decenas = (bullets - (centenas * 100)) / 10;
+  int unidades = bullets - (centenas * 100 + decenas * 10);
+
+  SDL_Rect rect_pos;
+  rect_pos.x = BULLETS_X_POS * scale_x;
+  rect_pos.y = window.get_height() -
+               ((background.get_height() - STATS_Y_POS * PIXEL) * scale_y);
+  rect_pos.w = number_frame_w * scale_x;
+  rect_pos.h = number_frame_h * scale_y;
 
   rect_pos.x = BULLETS_X_POS * scale_x;
-  Text bullets(renderer, std::to_string(player.get_bullets()), font, white,
-               &rect_pos);
+  _show_number(unidades, &rect_pos);
+
+  rect_pos.x = (BULLETS_X_POS - 1 * (number_frame_w + PIXEL)) * scale_x;
+  _show_number(decenas, &rect_pos);
+
+  rect_pos.x = (BULLETS_X_POS - 2 * (number_frame_w + PIXEL)) * scale_x;
+  _show_number(centenas, &rect_pos);
+}
+
+void Hud::_show_number(int number, SDL_Rect* position) {
+  int sprite_x = number % NUMBER_FRAME_X_COUNT;
+  SDL_Rect rect_slice = {(sprite_x * (number_frame_w + PIXEL)), 0,
+                         number_frame_w, number_frame_h};
+  numbers.draw(position, &rect_slice);
 }
 
 void Hud::_show_face(const Window& window, const Player& player) {

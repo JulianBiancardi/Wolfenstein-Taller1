@@ -17,12 +17,22 @@ class Hud {
   Image background;
   Image bj_faces;
   Image key;
+  Image numbers;
+  int number_frame_w;
+  int number_frame_h;
 
   void _show_background(const Window &window);
   void _show_stats(const Window &window, const Player &player);
+  void _show_lives(const Window &window, const Player &player);
+  void _show_points(const Window &window, const Player &player);
+  void _show_health(const Window &window, const Player &player);
+  void _show_bullets(const Window &window, const Player &player);
   void _show_face(const Window &window, const Player &player);
   void _show_key(const Window &window, const Player &player);
   void _show_gun(const Window &window, const Player &player);
+
+  /*Show the number at position.The number must be betwen 0 to 9*/
+  void _show_number(int number, SDL_Rect *position);
 
  public:
   Hud(SDL_Renderer *renderer);
