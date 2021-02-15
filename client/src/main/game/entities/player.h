@@ -27,8 +27,13 @@ class Player : public IdentifiableObject {
   int keys;
   std::unordered_map<int, std::unique_ptr<Gun>> guns_bag;
   int active_gun;
+  const Point spawn_point;
+  unsigned int players_killed;
 
   PlayerState state;
+
+  /* Removes all guns that disappear after being killed */
+  void remove_guns_to_respawn();
 
  public:
   Player(const Ray& position, unsigned int player_id);
@@ -88,6 +93,18 @@ class Player : public IdentifiableObject {
 
   /* Decreases the amount of bullets owned by the player. */
   void decrease_bullets(unsigned char gun_id);
+
+  /* Returns if the player is dead or not. */
+  bool is_dead();
+
+  /* Returns if the player has lives left or is in his last life. */
+  bool has_lives_left();
+
+  /* Moves the player and takes lost stuff. */
+  void respawn();
+
+  /* Adds a kill to the kill count. */
+  void add_kill();
 
   /* Pulls the trigger of the player's gun.
    * Returns a Hit object containing the data of the shot attempt.
