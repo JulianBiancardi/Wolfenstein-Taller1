@@ -10,8 +10,18 @@
 #include "sdl/image.h"
 
 #define SCALING_FACTOR 70
-#define FOV_DEG 60
+#define FOV_DEG 70
 #define FOV (FOV_DEG * M_PI / 180)
+
+/* Receives an angle and returns where it should be on screen,
+ * where 0 is the left-most of the screen and 1 the right-most edge.
+ */
+double static fov_scale(double angle) {
+  if (angle > M_PI) {
+    angle -= 2 * M_PI;
+  }
+  return (-1.0 / FOV) * angle + 0.5;
+}
 
 GameCaster::GameCaster(Window& window, Map& map, unsigned int player_id)
     : renderer(window.get_renderer()),
@@ -127,11 +137,9 @@ void GameCaster::draw_object(Object& object, double distance,
   const Player& player = map.get_player(player_id);
   double player_angle = player.get_angle();
   // TODO Optimize
-  // printf("ResID: %u\n", object.get_res_id());
   Image* image = object.get_image(res_manager);
   SDL_Rect* slice = object.get_slice(&player_angle);
   size_t img_width = slice->w;
-  // printf("IMG W %d\n", img_width);
   size_t img_height = slice->h;
 
   double x_relative =
@@ -143,27 +151,13 @@ void GameCaster::draw_object(Object& object, double distance,
   double sprite_angle_rel = atan2(y_relative, x_relative);
   double sprite_angle = Angle::normalize(sprite_angle_rel - player.get_angle());
 
-  // printf("sprite_angle_rel: %f\n", sprite_angle_rel);
-  // printf("sprite_angle: %f\n", sprite_angle);
-  // printf("player_angle: %f\n", player.get_angle());
-
   double projected_distance = distance * cos(sprite_angle);
-  // printf("proj_dist: %f\n", projected_distance);
   int sprite_size =
       (SCALING_FACTOR * window.get_height()) / (projected_distance * img_width);
-  // printf("sprite_size: %d\n", sprite_size);
 
-  // TODO Putting a cos here keeps them well in place when looking at 0.0, but
-  // they dont leave the screen
-  int x = sin(sprite_angle) * (-window.get_width()) + (window.get_width() / 2);
-  // TODO Move to constants
+  int x = fov_scale(sprite_angle) * window.get_width();
   if (x > window.get_width() * 1.2 || x < -0.2 * window.get_width()) return;
-  // printf("center: %d\n", x);
   int x0 = x - (sprite_size / 2) - 1;
-  // printf("x0: %d\n", x0);
-
-  // slice->x += (int)(i * img_width / sprite_size);
-  // slice->w = 1;
 
   for (int i = 0; i < sprite_size; i++) {
     x0 = x0 + 1;
