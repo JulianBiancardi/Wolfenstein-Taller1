@@ -2,30 +2,43 @@
 
 #include <iostream>
 
-PlayerState::PlayerState() : current_state(still), next_state(still) {}
+#include "../../../../../common/src/main/config_loader.h"
+#include "../../../../../common/src/main/ids/gun_ids.h"
+#include "../../../../../common/src/main/ids/map_ids.h"
+
+#define RESET_AGE 1
+
+PlayerState::PlayerState() : age(0), state(stand), moving(false) {}
 
 PlayerState::~PlayerState() {}
 
+void PlayerState::move() { moving = true; }
+
 void PlayerState::update() {
-  current_state = next_state;
-  next_state = still;
-}
-
-void PlayerState::move() { next_state = moving; }
-
-void PlayerState::kill() { next_state = dead; }
-
-void PlayerState::print() {
-  fprintf(stderr, "CS: %d\n", current_state);
-  fprintf(stderr, "NS: %d\n", next_state);
-}
-
-Image* PlayerState::get_image(ResourceManager& resource_manager) {
-  if (current_state == moving) {
-    printf("Dog\n");
-    return resource_manager.get_image(21);
-  } else {
-    printf("Guard\n");
-    return resource_manager.get_image(22);
+  if (state == stand && moving == false) {
+    return;
+  } else if (state == path && moving == true) {
+    age++;
+    moving = false;
+    return;
+  } else if (state == stand && moving == true) {
+    state = path;
+    moving = false;
+    return;
+  } else if (state == path && moving == false) {
+    if (age > RESET_AGE) {  // Allows to show extra frames of moving
+      state = stand;
+      age = 0;
+      return;
+    }
+    age++;
+    return;
   }
+}
+
+void PlayerState::set_slice(SDL_Rect& slice, double angle) {
+  slice.x = ((int)((angle / (M_PI / 4)) + 4) % 8) * 64;
+  slice.y = ((age / 2) % 4 + state) * 64;
+  slice.w = 64;
+  slice.h = 64;
 }

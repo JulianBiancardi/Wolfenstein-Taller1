@@ -27,7 +27,6 @@ class Player : public IdentifiableObject {
   int keys;
   std::unordered_map<int, std::unique_ptr<Gun>> guns_bag;
   int active_gun;
-
   PlayerState state;
 
  public:
@@ -102,6 +101,8 @@ class Player : public IdentifiableObject {
   void update();
 
   virtual Image* get_image(ResourceManager& resource_manager) override;
+
+  virtual SDL_Rect* get_slice(void* extra) override;
 };
 
 #endif

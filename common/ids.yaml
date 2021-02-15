@@ -74,27 +74,27 @@
 21:
   type: 2
   name: "Dog"
-  image: "../../res/images/enemies/dog/dog_walk1_1.bmp"
+  image: "../../res/images/enemies/dog.png"
   icon: "../resources/images/enemies/IMG_Dog.png"
 22:
   type: 2
   name: "Guard"
-  image: "../../res/images/enemies/guard/guard_static_1.bmp"
+  image: "../../res/images/enemies/guard.png"
   icon: "../resources/images/enemies/IMG_Guard.png"
 23:
   type: 2
   name: "Schutzstaffel"
-  image: "..."
+  image: "../../res/images/enemies/ss.png"
   icon: "../resources/images/enemies/IMG_SS.png"
 24:
   type: 2
   name: "Officer"
-  image: "../../res/images/officer/officer1.bmp"
+  image: "../../res/images/enemies/officer.png"
   icon: "../resources/images/enemies/IMG_Officer.png"
 25:
   type: 2
   name: "Mutant"
-  image: "..."
+  image: "../../res/images/enemies/mutant.png"
   icon: "../resources/images/enemies/IMG_Mutant.png"
 
 # Guns

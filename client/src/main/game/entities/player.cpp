@@ -169,5 +169,25 @@ void Player::add_key() { keys++; }
 void Player::update() { state.update(); }
 
 Image* Player::get_image(ResourceManager& resource_manager) {
-  return state.get_image(resource_manager);
+  switch (active_gun) {
+    case KNIFE_ID:
+      return resource_manager.get_image(DOG);
+    case PISTOL_ID:
+      return resource_manager.get_image(GUARD);
+    case MACHINE_GUN_ID:
+      return resource_manager.get_image(SCHUTZSTAFFEL);
+    case CHAIN_CANNON_ID:
+      return resource_manager.get_image(OFFICER);
+    case ROCKET_LAUNCHER_ID:
+      return resource_manager.get_image(MUTANT);
+    default:
+      return nullptr;
+  }
+}
+
+SDL_Rect* Player::get_slice(void* extra) {
+  double angle_of_perception =
+      Angle::normalize(*(double*)extra - position.get_angle() + M_PI / 8);
+  state.set_slice(slice, angle_of_perception);
+  return &slice;
 }

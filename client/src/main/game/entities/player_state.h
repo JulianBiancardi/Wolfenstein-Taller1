@@ -1,25 +1,29 @@
 #ifndef PLAYER_STATE_H
 #define PLAYER_STATE_H
 
-#include "drawable.h"
+#include <SDL2/SDL.h>
 
-enum player_state { still, moving, dead };
+enum player_state { stand, path };
 
 class PlayerState {
  private:
-  player_state current_state;
-  player_state next_state;
+  long age;
+  player_state state;
+  bool moving;
 
  public:
   PlayerState();
+  explicit PlayerState(long age, player_state state, bool moving);
   ~PlayerState();
 
+  /* Updates the state. */
   void update();
-  void move();
-  void kill();
-  void print();
 
-  Image* get_image(ResourceManager& resource_manager);
+  /* Updates the slice */
+  void set_slice(SDL_Rect& slice, double angle);
+
+  /* Sets the state to moving. */
+  void move();
 };
 
 #endif

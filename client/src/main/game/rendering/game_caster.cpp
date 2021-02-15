@@ -137,11 +137,14 @@ void GameCaster::draw_object(Object& object, double distance,
   }
 
   const Player& player = map.get_player(player_id);
+  double player_angle = player.get_angle();
   // TODO Optimize
   // printf("ResID: %u\n", object.get_res_id());
   Image* image = object.get_image(res_manager);
-  size_t img_width = image->get_width();
-  size_t img_height = image->get_height();
+  SDL_Rect* slice = object.get_slice(&player_angle);
+  size_t img_width = slice->w;
+  // printf("IMG W %d\n", img_width);
+  size_t img_height = slice->h;
 
   double x_relative =
       object.get_position().getX() - player.get_position().getX();
@@ -170,6 +173,9 @@ void GameCaster::draw_object(Object& object, double distance,
   int x0 = x - (sprite_size / 2) - 1;
   // printf("x0: %d\n", x0);
 
+  // slice->x += (int)(i * img_width / sprite_size);
+  // slice->w = 1;
+
   for (int i = 0; i < sprite_size; i++) {
     x0 = x0 + 1;
     if (x0 < 0) {
@@ -183,9 +189,17 @@ void GameCaster::draw_object(Object& object, double distance,
     }
 
     SDL_Rect pos = {x0, SCREEN_HEIGHT_HALF - sprite_size / 2, 1, sprite_size};
-    SDL_Rect slice = {(int)(i * img_width) / sprite_size, 0, 1,
-                      (int)img_height};
-    image->draw(&pos, &slice);
+
+    //    printf("X: %d\nY: %d\nW: %d\nH: %d\n", slice->x, slice->y, slice->w,
+    // slice->h);
+
+    SDL_Rect* slice = object.get_slice(&player_angle);
+    slice->x += (int)(i * img_width) / sprite_size;
+    slice->w = 1;
+    // SDL_Rect slice = {(int)(i * img_width) / sprite_size, 0, 1,
+    //                  (int)img_height};
+    // printf("%d\n", slice->x);
+    image->draw(&pos, slice);
   }
 }
 
