@@ -13,8 +13,6 @@ std::shared_ptr<IdentifiableObject> Gun::trayectory(
   double wall_distance =
       RayCasting::get_collision(map, bullet).get_distance_from_src();
 
-  printf("Players: %u\n", players.size());
-
   std::shared_ptr<IdentifiableObject> closest_obj(nullptr);
   double closest_obj_dist = std::numeric_limits<double>::infinity();
 
@@ -22,17 +20,12 @@ std::shared_ptr<IdentifiableObject> Gun::trayectory(
 
   std::vector<std::weak_ptr<IdentifiableObject>>::const_iterator iter;
   for (iter = players.begin(); iter != players.end(); iter++) {
-    printf("A\n");
     if (iter->expired()) {
-      printf("Expired\n");
       continue;
     }
-    printf("B\n");
 
     kept_players.push_back(*iter);
     std::shared_ptr<IdentifiableObject> object = iter->lock();
-
-    printf("C\n");
 
     double object_distance =
         object->get_position().distance_from(bullet.get_origin());
@@ -41,8 +34,6 @@ std::shared_ptr<IdentifiableObject> Gun::trayectory(
         object_distance == 0) {
       continue;
     }
-
-    printf("D\n");
 
     // As a decision of implementation design, solid objects have same radius
     // TODO Change number 0.5 to use ConfigLoader and use the actual size of
@@ -70,18 +61,13 @@ std::shared_ptr<IdentifiableObject> Gun::trayectory(
       hit = bullet_angle >= right_angle || bullet_angle <= left_angle;
     }
 
-    printf("E\n");
-
     if (hit) {
-      printf("F\n");
       closest_obj = object;
       closest_obj_dist = object_distance;
     }
   }
 
   std::swap(kept_players, players);
-
-  printf("G\n");
 
   return std::move(closest_obj);
 }

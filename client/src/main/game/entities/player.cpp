@@ -20,8 +20,8 @@ Player::Player(const Ray& position, unsigned int player_id)
   points = 0;
   keys = 0;
   guns_bag.reserve(GUN_AMOUNT);
-  Gun* knife = new Knife();
-  Gun* pistol = new Pistol();
+  std::unique_ptr<Gun> knife(new Knife());
+  std::unique_ptr<Gun> pistol(new Pistol());
   guns_bag.insert(std::make_pair(KNIFE_ID, std::move(knife)));
   guns_bag.insert(std::make_pair(PISTOL_ID, std::move(pistol)));
   active_gun = PISTOL_ID;
