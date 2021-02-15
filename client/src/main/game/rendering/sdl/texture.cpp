@@ -15,7 +15,7 @@ Texture::Texture(SDL_Renderer* renderer, const std::string& text,
     : surface(text, font, color) {
   texture = SDL_CreateTextureFromSurface(renderer, surface.get_surface());
   if (texture == NULL) {
-    throw SDLError("SDLError: failed to create texture - %s\n", SDL_GetError());
+    throw SDLError("SDLError: failed to create texture - %s\n", TTF_GetError());
   }
 }
 

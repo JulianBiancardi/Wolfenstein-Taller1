@@ -9,21 +9,8 @@
 #include "ray_casting.h"
 #include "sdl/image.h"
 
-#define UNIT 3
-#define SCREEN_WIDTH (320 * UNIT)
-#define SCREEN_HEIGHT (200 * UNIT)
-#define SCREEN_WIDTH_HALF (SCREEN_WIDTH / 2)
-#define SCREEN_HEIGHT_HALF (SCREEN_HEIGHT / 2)
-
-#define SCALING_FACTOR (64 * SCREEN_HEIGHT)
-#define WALL 1
-#define RED_WALL 2
-#define GREEN_WALL 3
-#define BLUE_WALL 4
-#define YELLOW_WALL 5
-#define CYAN_WALL 6
-#define PINK_WALL 7
-#define FOV_DEG 70
+#define SCALING_FACTOR 70
+#define FOV_DEG 60
 #define FOV (FOV_DEG * M_PI / 180)
 
 GameCaster::GameCaster(Window& window, Map& map, unsigned int player_id)
@@ -32,7 +19,7 @@ GameCaster::GameCaster(Window& window, Map& map, unsigned int player_id)
       window(window),
       res_manager(window),
       player_id(player_id),
-      hud(renderer) {}
+      hud(renderer, window) {}
 
 GameCaster::~GameCaster() {}
 
@@ -40,7 +27,7 @@ void GameCaster::operator()() {
   draw_background();
   std::vector<double> wall_distances = draw_walls();
   draw_objects(wall_distances);
-  hud.update(window, map.get_player(player_id));
+  hud.update(map.get_player(player_id));
   window.update();
 }
 
@@ -51,28 +38,28 @@ void GameCaster::draw_background() {
   SDL_Rect top_half;
   top_half.x = 0;
   top_half.y = 0;
-  top_half.w = SCREEN_WIDTH;
-  top_half.h = SCREEN_HEIGHT_HALF;
+  top_half.w = window.get_width();
+  top_half.h = window.get_height() / 2;
   SDL_RenderFillRect(renderer, &top_half);
 
   window.set_draw_color(112, 112, 112, 255);
   SDL_Rect bot_half;
   bot_half.x = 0;
-  bot_half.y = SCREEN_HEIGHT_HALF;
-  bot_half.w = SCREEN_WIDTH;
-  bot_half.h = SCREEN_HEIGHT_HALF;
+  bot_half.y = window.get_height() / 2;
+  bot_half.w = window.get_width();
+  bot_half.h = window.get_height() / 2;
   SDL_RenderFillRect(renderer, &bot_half);
 }
 
 std::vector<double> GameCaster::draw_walls() {
   std::vector<double> wall_collisions;
-  wall_collisions.reserve(SCREEN_WIDTH);
+  wall_collisions.reserve(window.get_width());
 
   const Player& player = map.get_player(player_id);
   double ray_angle = player.get_angle() + FOV / 2;
 
-  double angle_step = FOV / SCREEN_WIDTH;
-  for (int i = 0; i < SCREEN_WIDTH;) {
+  double angle_step = FOV / window.get_width();
+  for (int i = 0; i < window.get_width();) {
     Ray ray(player.get_position(), ray_angle);
 
     Collision wall_collision = RayCasting::get_collision(map, ray);
@@ -96,7 +83,8 @@ void GameCaster::draw_wall(Collision& collision, size_t screen_pos,
   double projected_distance = GameCaster::get_projected_distance(
       ray_angle, map.get_player(player_id).get_angle(),
       collision.get_distance_from_src());
-  int wall_size = SCALING_FACTOR / (projected_distance * image->get_height());
+  int wall_size = (SCALING_FACTOR * window.get_height()) /
+                  (projected_distance * image->get_height());
 
   size_t img_width = image->get_width();
   size_t img_height = image->get_height();
@@ -111,8 +99,8 @@ void GameCaster::draw_wall(Collision& collision, size_t screen_pos,
     line = x_offset * img_width;
   }
 
-  SDL_Rect pos = {(int)screen_pos, SCREEN_HEIGHT_HALF - (wall_size / 2), 1,
-                  wall_size};
+  SDL_Rect pos = {(int)screen_pos, (window.get_height() / 2) - (wall_size / 2),
+                  1, wall_size};
   SDL_Rect slice = {line, 0, 1, (int)img_height};
   image->draw(&pos, &slice);
 }
@@ -161,14 +149,15 @@ void GameCaster::draw_object(Object& object, double distance,
 
   double projected_distance = distance * cos(sprite_angle);
   // printf("proj_dist: %f\n", projected_distance);
-  int sprite_size = SCALING_FACTOR / (projected_distance * img_height);
+  int sprite_size =
+      (SCALING_FACTOR * window.get_height()) / (projected_distance * img_width);
   // printf("sprite_size: %d\n", sprite_size);
 
   // TODO Putting a cos here keeps them well in place when looking at 0.0, but
   // they dont leave the screen
-  int x = sin(sprite_angle) * (-SCREEN_WIDTH) + SCREEN_WIDTH_HALF;
+  int x = sin(sprite_angle) * (-window.get_width()) + (window.get_width() / 2);
   // TODO Move to constants
-  if (x > SCREEN_WIDTH * 1.2 || x < -0.2 * SCREEN_WIDTH) return;
+  if (x > window.get_width() * 1.2 || x < -0.2 * window.get_width()) return;
   // printf("center: %d\n", x);
   int x0 = x - (sprite_size / 2) - 1;
   // printf("x0: %d\n", x0);
@@ -181,24 +170,19 @@ void GameCaster::draw_object(Object& object, double distance,
     if (x0 < 0) {
       continue;
     }
-    if (x0 > SCREEN_WIDTH) {
+    if (x0 > window.get_width()) {
       break;
     }
     if (wall_distances[x0] < projected_distance) {
       continue;
     }
 
-    SDL_Rect pos = {x0, SCREEN_HEIGHT_HALF - sprite_size / 2, 1, sprite_size};
-
-    //    printf("X: %d\nY: %d\nW: %d\nH: %d\n", slice->x, slice->y, slice->w,
-    // slice->h);
-
+    SDL_Rect pos = {x0, (window.get_height() / 2) - (sprite_size / 2), 1,
+                    sprite_size};
     SDL_Rect* slice = object.get_slice(&player_angle);
     slice->x += (int)(i * img_width) / sprite_size;
     slice->w = 1;
-    // SDL_Rect slice = {(int)(i * img_width) / sprite_size, 0, 1,
-    //                  (int)img_height};
-    // printf("%d\n", slice->x);
+
     image->draw(&pos, slice);
   }
 }

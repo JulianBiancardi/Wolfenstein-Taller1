@@ -18,6 +18,7 @@ player_bullets: 80
 player_max_bullets: 100
 player_mask_radio: 0.4
 player_lives: 3
+player_max_points: 999999
 player_respawn_bullets: 8
 player_speed: 0.1
 player_rotation_speed: 0.1
@@ -64,7 +65,7 @@ drop_distance_from_dead_player: 2
 cross_points: 10
 cup_points: 50
 chest_points: 100
-crown_points: 200
+crown_points: 100000 #200
 
 # Solid Objects
 pillar_radius: 0.5

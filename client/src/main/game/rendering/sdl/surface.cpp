@@ -8,6 +8,7 @@ Surface::Surface(const std::string& file) {
     throw SDLError("SDLError: failed to load image '%s' - %s\n", file.c_str(),
                    SDL_GetError());
   }
+
   if (surface->format != nullptr) {
     if (SDL_SetColorKey(surface, SDL_TRUE,
                         SDL_MapRGB(surface->format, 152, 00, 136))) {

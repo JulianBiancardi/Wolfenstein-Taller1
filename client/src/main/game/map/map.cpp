@@ -52,8 +52,22 @@ void Map::rotate_player(unsigned int player_id, unsigned char direction) {
   players.at(player_id)->rotate(direction);
 }
 
-void Map::shoot_player(unsigned int player_id, unsigned char damage) {
-  players.at(player_id)->decrease_health(damage);
+void Map::shoot_player(unsigned int player_id, unsigned char damage,
+                       unsigned int damager_id) {
+  auto player = players.at(player_id);
+  auto damager = players.at(damager_id);
+
+  player->decrease_health(damage);
+
+  if (player->is_dead()) {
+    damager->add_kill();
+    if (player->has_lives_left()) {
+      player->respawn();
+      // TODO Add items
+    } else {
+      // TODO Ghost mode?
+    }
+  }
 }
 
 void Map::change_gun(unsigned int player_id, unsigned char gun_id) {
@@ -83,17 +97,6 @@ void Map::untrigger_gun(unsigned int player_id) {
 }
 
 void Map::shoot_rocket(unsigned int player_id, unsigned int rocket_id) {
-  /* FIXME Instead of using player_id, create rocket from a position, since this
-   * can bring syncronization problems on the client.
-   * Example:
-   *  A-> Sends Move Packet
-   *  A-> Sends Shoot Rocket Packet
-   *  A-> Receives Move
-   *  A-> Receives Shoot Rocket Packet
-   *  The rocket made by A is now further from his position during shoot
-   *  This can scale very badly if the player moves a lot between send and
-   * receive
-   */
   const Point& player_position = players.at(player_id)->get_position();
   double angle = players.at(player_id)->get_angle();
 
@@ -103,9 +106,13 @@ void Map::shoot_rocket(unsigned int player_id, unsigned int rocket_id) {
   Ray spawn_point(front_x, front_y, 0.0);
 
   std::shared_ptr<Rocket> rocket =
-      std::make_shared<Rocket>(spawn_point, rocket_id);
+      std::make_shared<Rocket>(spawn_point, rocket_id, player_id);
   rockets.insert(std::make_pair(rocket_id, rocket));
   drawables.push_back(rocket);
 }
 
 void Map::move_rocket(unsigned int rocket_id) { rockets.at(rocket_id)->move(); }
+
+unsigned int Map::get_rocket_owner_id(unsigned int rocket_id) {
+  return rockets.at(rocket_id)->get_owner_id();
+}

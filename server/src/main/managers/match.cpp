@@ -108,6 +108,10 @@ bool Match::move_player(unsigned int player_id, unsigned char direction) {
                      player_id);
   }
 
+  if (is_dead(player_id)) {
+    return false;
+  }
+
   Player& player = map.get_player(player_id);
   Point requested_position = player.next_position(direction);
 
@@ -130,6 +134,10 @@ bool Match::rotate_player(unsigned int player_id, unsigned char direction) {
                      player_id);
   }
 
+  if (is_dead(player_id)) {
+    return false;
+  }
+
   map.get_player(player_id).rotate(direction);
 
   return true;
@@ -139,6 +147,10 @@ unsigned int Match::grab_item(unsigned int player_id) {
   if (!player_exists(player_id)) {
     throw MatchError("Failed to grab item. Player %u doesn't exist.",
                      player_id);
+  }
+
+  if (is_dead(player_id)) {
+    return 0;
   }
 
   Player& player = map.get_player(player_id);
@@ -168,6 +180,10 @@ bool Match::change_gun(unsigned int player_id, unsigned char gun_id) {
                      player_id);
   }
 
+  if (is_dead(player_id)) {
+    return false;
+  }
+
   // TODO Check if he has enough bullets to wield it
   return map.get_player(player_id).change_gun(gun_id);
 }
@@ -188,11 +204,11 @@ void Match::damage_player(unsigned int player_id, unsigned int damager_id,
                      damager_id);
   }
 
-  Player& player = map.get_player(player_id);
-
-  if (player.is_dead()) {
-    throw MatchError("Failed to damage player. Player %u is dead.", player_id);
+  if (is_dead(player_id)) {
+    return;
   }
+
+  Player& player = map.get_player(player_id);
 
   player.receive_damage(damage);
 
@@ -217,6 +233,10 @@ void Match::shoot_gun(unsigned int player_id, unsigned int objective_id,
   if (objective_id != 0 && !player_exists(objective_id)) {
     throw MatchError("Failed to shoot at player. Player %u doesn't exist.",
                      objective_id);
+  }
+
+  if (is_dead(player_id)) {
+    return;
   }
 
   Player& shooter = map.get_player(player_id);
@@ -246,6 +266,10 @@ bool Match::is_using_rocket_launcher(unsigned int player_id) {
         player_id);
   }
 
+  if (is_dead(player_id)) {
+    return false;
+  }
+
   Player& player = map.get_player(player_id);
 
   return player.is_using_rocket_launcher();
@@ -255,6 +279,10 @@ unsigned int Match::shoot_rocket(unsigned int player_id) {
   if (!player_exists(player_id)) {
     throw MatchError("Failed to create rocket. Player %u doesn't exist.",
                      player_id);
+  }
+
+  if (is_dead(player_id)) {
+    return false;
   }
 
   Player& shooter = map.get_player(player_id);
@@ -357,6 +385,10 @@ void Match::kill_player(unsigned int player_id) {
                      player_id);
   }
 
+  if (is_dead(player_id)) {
+    return;
+  }
+
   Player& player = map.get_player(player_id);
 
   map.add_drop(player);
@@ -374,6 +406,10 @@ bool Match::has_lives(unsigned int player_id) {
                      player_id);
   }
 
+  if (is_dead(player_id)) {
+    return false;
+  }
+
   return map.get_player(player_id).has_extra_lives();
 }
 
@@ -381,6 +417,10 @@ bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
   if (!player_exists(player_id)) {
     throw MatchError("Failed to find door interactor. Player %u doesn't exist.",
                      player_id);
+  }
+
+  if (is_dead(player_id)) {
+    return false;
   }
 
   Player& player = map.get_player(player_id);
@@ -425,7 +465,7 @@ void Match::delete_player(unsigned int player_id) {
   }
 
   map.delete_player(player_id);
-  players_ids.erase(player_id);
+  //players_ids.erase(player_id);
 }
 
 bool Match::should_end() const { return map.has_one_player(); }

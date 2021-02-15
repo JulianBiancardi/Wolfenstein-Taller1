@@ -46,7 +46,8 @@ class Map : public BaseMap {
   void add_player(unsigned int player_id, const Ray& position);
   void move_player(unsigned int player_id, unsigned char direction);
   void rotate_player(unsigned int player_id, unsigned char direction);
-  void shoot_player(unsigned int player_id, unsigned char damage);
+  void shoot_player(unsigned int player_id, unsigned char damage,
+                    unsigned int damager_id);
   void change_gun(unsigned int player_id, unsigned char gun_id);
   void use_bullets(unsigned int player_id, unsigned char gun_id);
   int pick_item(unsigned int player_id, unsigned int item_id);
@@ -58,6 +59,9 @@ class Map : public BaseMap {
 
   /* Moves the rocket sent */
   void move_rocket(unsigned int rocket_id);
+
+  /* Returns the rocket's owner id */
+  unsigned int get_rocket_owner_id(unsigned int rocket_id);
 };
 
 #endif
