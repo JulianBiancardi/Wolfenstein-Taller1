@@ -168,6 +168,8 @@ void Player::add_gun(unsigned int gun_id) {
 void Player::add_points(unsigned int added_points) {
   if ((points + added_points) <= CL::player_max_points) {
     points += added_points;
+  } else {
+    points = CL::player_max_points;
   }
 }
 

@@ -14,7 +14,6 @@
 
 #define PREFEER_WIDTH 320
 #define PREFEER_HEIGHT 200
-
 #define PIXEL 1
 
 #define STATS_Y_POS 16
@@ -32,8 +31,11 @@
 #define FACE_FRAME_X_COUNT 3
 #define FACE_FRAME_Y_COUNT 7
 
-Hud::Hud(SDL_Renderer* renderer)
+Hud::Hud(SDL_Renderer* renderer, const Window& window)
     : renderer(renderer),
+      window(window),
+      scale_x(window.get_width() / PREFEER_WIDTH),
+      scale_y(window.get_height() / PREFEER_HEIGHT),
       background(renderer, BACKGROUND_PATH),
       bj_faces(renderer, BJ_FACES_PATH),
       key(renderer, KEY_PATH),
@@ -47,26 +49,21 @@ Hud::Hud(SDL_Renderer* renderer)
 
 Hud::~Hud() {}
 
-void Hud::update(const Window& window, const Player& player) {
+void Hud::update(const Player& player) {
   // TODO MOVE TO CONFIG
   // TODO Move to ResourceManager since this is wasting resources
-
-  // Get the scale factor
-  scale_x = window.get_width() / PREFEER_WIDTH;
-  scale_y = window.get_height() / PREFEER_HEIGHT;
-
-  _show_background(window);
-  _show_lives(window, player);
-  _show_points(window, player);
-  _show_health(window, player);
-  _show_bullets(window, player);
-  _show_face(window, player);
-  _show_key(window, player);
-  _show_gun(window, player);
-  _show_player_gun(window, player);
+  _show_background();
+  _show_lives(player);
+  _show_points(player);
+  _show_health(player);
+  _show_bullets(player);
+  _show_face(player);
+  _show_key(player);
+  _show_gun(player);
+  _show_player_gun(player);
 }
 
-void Hud::_show_background(const Window& window) {
+void Hud::_show_background() {
   SDL_Rect rect_pos;
   rect_pos.x = 0;
   rect_pos.y = window.get_height() - (background.get_height() * scale_y);
@@ -75,7 +72,7 @@ void Hud::_show_background(const Window& window) {
   background.draw(&rect_pos, nullptr);
 }
 
-void Hud::_show_lives(const Window& window, const Player& player) {
+void Hud::_show_lives(const Player& player) {
   int lives = player.get_lives();
 
   int unidades = lives;
@@ -91,15 +88,19 @@ void Hud::_show_lives(const Window& window, const Player& player) {
   _show_number(unidades, &rect_pos);
 }
 
-void Hud::_show_points(const Window& window, const Player& player) {
-  // TODO FIX THIS to reach 999999 points
+void Hud::_show_points(const Player& player) {
   int points = player.get_points();
 
-  int dec_mil = points / 10000;
-  int millares = (points - (dec_mil * 10000)) / 1000;
-  int centenas = (points - (millares * 1000)) / 100;
-  int decenas = (points - (millares * 1000 + centenas * 100)) / 10;
-  int unidades = points - (millares * 1000 + centenas * 100 + decenas * 10);
+  int cent_mil = points / 100000;
+  int dec_mil = (points - (cent_mil * 100000)) / 10000;
+  int mil = (points - (cent_mil * 100000 + dec_mil * 10000)) / 1000;
+  int centenas =
+      (points - (cent_mil * 100000 + dec_mil * 10000 + mil * 1000)) / 100;
+  int decenas = (points - (cent_mil * 100000 + dec_mil * 10000 + mil * 1000 +
+                           centenas * 100)) /
+                10;
+  int unidades = points - (cent_mil * 100000 + dec_mil * 10000 + mil * 1000 +
+                           centenas * 100 + decenas * 10);
 
   SDL_Rect rect_pos;
   rect_pos.x = POINTS_X_POS * scale_x;
@@ -118,13 +119,16 @@ void Hud::_show_points(const Window& window, const Player& player) {
   _show_number(centenas, &rect_pos);
 
   rect_pos.x = (POINTS_X_POS - 3 * (number_frame_w + PIXEL)) * scale_x;
-  _show_number(millares, &rect_pos);
+  _show_number(mil, &rect_pos);
 
   rect_pos.x = (POINTS_X_POS - 4 * (number_frame_w + PIXEL)) * scale_x;
   _show_number(dec_mil, &rect_pos);
+
+  rect_pos.x = (POINTS_X_POS - 5 * (number_frame_w + PIXEL)) * scale_x;
+  _show_number(cent_mil, &rect_pos);
 }
 
-void Hud::_show_health(const Window& window, const Player& player) {
+void Hud::_show_health(const Player& player) {
   int health = player.get_percentage_health();
 
   int centenas = health / 100;
@@ -144,11 +148,13 @@ void Hud::_show_health(const Window& window, const Player& player) {
   rect_pos.x = (HEALTH_X_POS - 1 * (number_frame_w + PIXEL)) * scale_x;
   _show_number(decenas, &rect_pos);
 
-  rect_pos.x = (HEALTH_X_POS - 2 * (number_frame_w + PIXEL)) * scale_x;
-  _show_number(centenas, &rect_pos);
+  if (centenas != 0) {
+    rect_pos.x = (HEALTH_X_POS - 2 * (number_frame_w + PIXEL)) * scale_x;
+    _show_number(centenas, &rect_pos);
+  }
 }
 
-void Hud::_show_bullets(const Window& window, const Player& player) {
+void Hud::_show_bullets(const Player& player) {
   int bullets = player.get_bullets();
 
   int centenas = bullets / 100;
@@ -168,8 +174,10 @@ void Hud::_show_bullets(const Window& window, const Player& player) {
   rect_pos.x = (BULLETS_X_POS - 1 * (number_frame_w + PIXEL)) * scale_x;
   _show_number(decenas, &rect_pos);
 
-  rect_pos.x = (BULLETS_X_POS - 2 * (number_frame_w + PIXEL)) * scale_x;
-  _show_number(centenas, &rect_pos);
+  if (centenas != 0) {
+    rect_pos.x = (BULLETS_X_POS - 2 * (number_frame_w + PIXEL)) * scale_x;
+    _show_number(centenas, &rect_pos);
+  }
 }
 
 void Hud::_show_number(int number, SDL_Rect* position) {
@@ -179,7 +187,7 @@ void Hud::_show_number(int number, SDL_Rect* position) {
   numbers.draw(position, &rect_slice);
 }
 
-void Hud::_show_face(const Window& window, const Player& player) {
+void Hud::_show_face(const Player& player) {
   int frame_width = (bj_faces.get_width() - 2 * PIXEL) / FACE_FRAME_X_COUNT;
   int frame_height =
       (bj_faces.get_height() - 7 * PIXEL) / (FACE_FRAME_Y_COUNT + 1);
@@ -204,7 +212,7 @@ void Hud::_show_face(const Window& window, const Player& player) {
   bj_faces.draw(&rect_face, &rect_slice);
 }
 
-void Hud::_show_key(const Window& window, const Player& player) {
+void Hud::_show_key(const Player& player) {
   if (player.has_key()) {
     SDL_Rect rect_key;
     rect_key.x = KEY_X_POS * scale_x;
@@ -216,7 +224,7 @@ void Hud::_show_key(const Window& window, const Player& player) {
   }
 }
 
-void Hud::_show_gun(const Window& window, const Player& player) {
+void Hud::_show_gun(const Player& player) {
   std::string gun_image_path;
   switch (player.get_gun()) {
     case KNIFE_ID:
@@ -249,7 +257,7 @@ void Hud::_show_gun(const Window& window, const Player& player) {
   gun.draw(&rect_gun, nullptr);
 }
 
-void Hud::_show_player_gun(const Window& window, const Player& player) {
+void Hud::_show_player_gun(const Player& player) {
   // TODO MOVE THIS TO WHERE ITS BELONGS
   std::string gun_image_path;
   switch (player.get_gun()) {
@@ -279,11 +287,11 @@ void Hud::_show_player_gun(const Window& window, const Player& player) {
   Uint32 sprite_x = 0;
 
   SDL_Rect rect_gun;
-  rect_gun.x = (window.get_width() / 2) - (frame_width / 2 * scale_x);
+  rect_gun.x = (window.get_width() / 2) - (frame_width * scale_x);
   rect_gun.y = window.get_height() -
-               ((background.get_height() + frame_height) * scale_y);
-  rect_gun.w = frame_width * scale_x;
-  rect_gun.h = frame_height * scale_y;
+               ((background.get_height() + frame_height * 2) * scale_y);
+  rect_gun.w = frame_width * 2 * scale_x;
+  rect_gun.h = frame_height * 2 * scale_y;
 
   SDL_Rect rect_slice = {(sprite_x * (frame_width + PIXEL)), 0, frame_width,
                          frame_height};
