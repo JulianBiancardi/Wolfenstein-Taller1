@@ -150,7 +150,11 @@ void Player::add_gun(unsigned int gun_id) {
   }
 }
 
-void Player::add_points(unsigned int added_points) { points += added_points; }
+void Player::add_points(unsigned int added_points) {
+  if ((points + added_points) <= CL::player_max_points) {
+    points += added_points;
+  }
+}
 
 void Player::add_health(unsigned int added_health) {
   health = std::min(CL::player_health, (int)(health + added_health));

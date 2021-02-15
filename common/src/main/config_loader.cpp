@@ -26,6 +26,7 @@ int CL::player_bullets = CL::yaml_file["player_bullets"].as<int>();
 int CL::player_max_bullets = CL::yaml_file["player_max_bullets"].as<int>();
 double CL::player_mask_radio = CL::yaml_file["player_mask_radio"].as<double>();
 int CL::player_lives = CL::yaml_file["player_lives"].as<int>();
+int CL::player_max_points = CL::yaml_file["player_max_points"].as<int>();
 int CL::player_respawn_bullets =
     CL::yaml_file["player_respawn_bullets"].as<int>();
 double CL::player_speed = CL::yaml_file["player_speed"].as<double>();

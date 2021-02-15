@@ -22,7 +22,6 @@ class Hud {
   int number_frame_h;
 
   void _show_background(const Window &window);
-  void _show_stats(const Window &window, const Player &player);
   void _show_lives(const Window &window, const Player &player);
   void _show_points(const Window &window, const Player &player);
   void _show_health(const Window &window, const Player &player);
@@ -30,6 +29,7 @@ class Hud {
   void _show_face(const Window &window, const Player &player);
   void _show_key(const Window &window, const Player &player);
   void _show_gun(const Window &window, const Player &player);
+  void _show_player_gun(const Window &window, const Player &player);
 
   /*Show the number at position.The number must be betwen 0 to 9*/
   void _show_number(int number, SDL_Rect *position);

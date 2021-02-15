@@ -1,5 +1,7 @@
 #include "hud.h"
 
+#include <string>
+
 #include "../../../../../../common/src/main/ids/gun_ids.h"
 #include "../sdl/image.h"
 #include "../sdl/text.h"
@@ -14,7 +16,6 @@
 #define PREFEER_HEIGHT 200
 
 #define PIXEL 1
-// Number 8x16
 
 #define STATS_Y_POS 16
 
@@ -37,7 +38,7 @@ Hud::Hud(SDL_Renderer* renderer)
       bj_faces(renderer, BJ_FACES_PATH),
       key(renderer, KEY_PATH),
       numbers(renderer, NUMBER_PATH) {
-  number_frame_w = (numbers.get_width() - 2 * PIXEL) / NUMBER_FRAME_X_COUNT;
+  number_frame_w = (numbers.get_width() - 9 * PIXEL) / NUMBER_FRAME_X_COUNT;
   number_frame_h = numbers.get_height();
 
   size_t font_size = 12;
@@ -55,7 +56,6 @@ void Hud::update(const Window& window, const Player& player) {
   scale_y = window.get_height() / PREFEER_HEIGHT;
 
   _show_background(window);
-  _show_stats(window, player);
   _show_lives(window, player);
   _show_points(window, player);
   _show_health(window, player);
@@ -63,6 +63,7 @@ void Hud::update(const Window& window, const Player& player) {
   _show_face(window, player);
   _show_key(window, player);
   _show_gun(window, player);
+  _show_player_gun(window, player);
 }
 
 void Hud::_show_background(const Window& window) {
@@ -72,28 +73,6 @@ void Hud::_show_background(const Window& window) {
   rect_pos.w = background.get_width() * scale_x;
   rect_pos.h = background.get_height() * scale_y;
   background.draw(&rect_pos, nullptr);
-}
-
-void Hud::_show_stats(const Window& window, const Player& player) {
-  /*
-    rect_pos.x = LEVEL_X_POS * scale_x;
-    Text level(renderer, "1", font, white, &rect_pos);
-
-    rect_pos.x = POINTS_X_POS * scale_x;
-    Text points(renderer, std::to_string(player.get_points()), font, white,
-                &rect_pos);
-
-    rect_pos.x = LIVES_X_POS * scale_x;
-    Text lives(renderer, std::to_string(player.get_lives()), font, white,
-               &rect_pos);
-
-    rect_pos.x = HEALTH_X_POS * scale_x;
-    Text health(renderer, std::to_string(player.get_percentage_health()),
-    font, white, &rect_pos);
-
-    rect_pos.x = BULLETS_X_POS * scale_x;
-    Text bullets(renderer, std::to_string(player.get_bullets()), font,
-    white, &rect_pos);*/
 }
 
 void Hud::_show_lives(const Window& window, const Player& player) {
@@ -113,9 +92,11 @@ void Hud::_show_lives(const Window& window, const Player& player) {
 }
 
 void Hud::_show_points(const Window& window, const Player& player) {
+  // TODO FIX THIS to reach 999999 points
   int points = player.get_points();
 
-  int millares = points / 1000;
+  int dec_mil = points / 10000;
+  int millares = (points - (dec_mil * 10000)) / 1000;
   int centenas = (points - (millares * 1000)) / 100;
   int decenas = (points - (millares * 1000 + centenas * 100)) / 10;
   int unidades = points - (millares * 1000 + centenas * 100 + decenas * 10);
@@ -138,6 +119,9 @@ void Hud::_show_points(const Window& window, const Player& player) {
 
   rect_pos.x = (POINTS_X_POS - 3 * (number_frame_w + PIXEL)) * scale_x;
   _show_number(millares, &rect_pos);
+
+  rect_pos.x = (POINTS_X_POS - 4 * (number_frame_w + PIXEL)) * scale_x;
+  _show_number(dec_mil, &rect_pos);
 }
 
 void Hud::_show_health(const Window& window, const Player& player) {
@@ -263,4 +247,46 @@ void Hud::_show_gun(const Window& window, const Player& player) {
   rect_gun.h = gun.get_height() * scale_y;
 
   gun.draw(&rect_gun, nullptr);
+}
+
+void Hud::_show_player_gun(const Window& window, const Player& player) {
+  // TODO MOVE THIS TO WHERE ITS BELONGS
+  std::string gun_image_path;
+  switch (player.get_gun()) {
+    case KNIFE_ID:
+      gun_image_path = "../../res/images/guns/knife_shoot.png";
+      break;
+    case PISTOL_ID:
+      gun_image_path = "../../res/images/guns/pistol_shoot.png";
+      break;
+    case CHAIN_CANNON_ID:
+      gun_image_path = "../../res/images/guns/chaincannon_shoot.png";
+      break;
+    case MACHINE_GUN_ID:
+      gun_image_path = "../../res/images/guns/machinegun_shoot.png";
+      break;
+    case ROCKET_LAUNCHER_ID:
+      gun_image_path = "../../res/images/guns/knife_shoot.png";
+      break;
+    default:
+      return;
+  }
+
+  Image player_gun(renderer, gun_image_path);
+  int frame_width = (player_gun.get_width() - 4 * PIXEL) / 5;
+  int frame_height = player_gun.get_height();
+
+  Uint32 sprite_x = 0;
+
+  SDL_Rect rect_gun;
+  rect_gun.x = (window.get_width() / 2) - (frame_width / 2 * scale_x);
+  rect_gun.y = window.get_height() -
+               ((background.get_height() + frame_height) * scale_y);
+  rect_gun.w = frame_width * scale_x;
+  rect_gun.h = frame_height * scale_y;
+
+  SDL_Rect rect_slice = {(sprite_x * (frame_width + PIXEL)), 0, frame_width,
+                         frame_height};
+
+  player_gun.draw(&rect_gun, &rect_slice);
 }
