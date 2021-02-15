@@ -22,6 +22,7 @@ Pistol::Pistol()
 
 Hit Pistol::shoot(Object& player, int& current_bullets, BaseMap& map,
                   std::vector<std::weak_ptr<IdentifiableObject>>& players) {
+  printf("SHOOT\n");
   Ray bullet(player.get_position(), player.get_angle() + spray());
 
   std::shared_ptr<IdentifiableObject> target = trayectory(bullet, map, players);
@@ -29,6 +30,8 @@ Hit Pistol::shoot(Object& player, int& current_bullets, BaseMap& map,
   if (target == nullptr) {
     return std::move(Hit(PISTOL_ID, 0, 0, true));
   }
+
+  printf("A\n");
 
   double target_dist =
       target->get_position().distance_from(player.get_position());
@@ -46,7 +49,9 @@ Hit Pistol::shoot(Object& player, int& current_bullets, BaseMap& map,
 
 Hit Pistol::trigger(Object& player, int& current_bullets, BaseMap& map,
                     std::vector<std::weak_ptr<IdentifiableObject>>& players) {
+  printf("TRIGGER\n");
   if (triggered || current_bullets == 0) {
+    printf("DO NOTHING\n");
     return std::move(Hit(PISTOL_ID, 0, 0, false));
   } else {
     triggered = true;

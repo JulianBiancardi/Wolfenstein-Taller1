@@ -37,8 +37,9 @@ void MapLoader::add_player(const Ray& position, unsigned int player_id) {
   std::shared_ptr<Player> new_player =
       std::make_shared<Player>(position, player_id);
   std::weak_ptr<Object> player_weak_ptr(new_player);
+  std::weak_ptr<IdentifiableObject> player_id_weak_ptr(new_player);
   players.insert(std::make_pair(player_id, std::move(new_player)));
-  players_shootable.push_back(new_player);
+  players_shootable.push_back(player_id_weak_ptr);
   drawables.push_back(player_weak_ptr);
 }
 
