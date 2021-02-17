@@ -15,6 +15,7 @@ class Knife : public Gun {
   std::default_random_engine generator;
   std::uniform_real_distribution<double> distribution;
   bool triggered;
+
   Hit shoot(Object& player, int& current_bullets, BaseMap& map,
             std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
 
@@ -24,6 +25,9 @@ class Knife : public Gun {
   Hit trigger(Object& player, int& current_bullets, BaseMap& map,
               std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
   void untrigger() override;
+
+  Image* get_image(ResourceManager& resource_manager) override;
+  SDL_Rect* get_slice(void* extra) override;
 };
 
 #endif

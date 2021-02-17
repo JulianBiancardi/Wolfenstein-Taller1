@@ -62,3 +62,25 @@ double MachineGun::linear_func(double x) { return slope * x + intercept; }
 void MachineGun::untrigger() {}
 
 MachineGun::~MachineGun() {}
+
+Image* MachineGun::get_image(ResourceManager& resource_manager) {}
+
+SDL_Rect* MachineGun::get_slice(void* extra) {
+  // TODO OPTIMIZE THIS
+  Image* image = (Image*)extra;
+  int frame_width = (image->get_width() - 4 * PIXEL) / 5;
+  int frame_height = image->get_height();
+
+  Uint32 sprite_x;
+  Uint32 ticks = SDL_GetTicks();
+  Uint32 seconds = ticks / 1000;
+
+  if (!triggered) {
+    sprite_x = 0;
+  } else {
+    sprite_x = seconds % 5;
+  }
+
+  slice = {(sprite_x * (frame_width + PIXEL)), 0, frame_width, frame_height};
+  return &slice;
+}

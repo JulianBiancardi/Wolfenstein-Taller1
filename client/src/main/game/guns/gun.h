@@ -5,13 +5,21 @@
 #include <unordered_map>
 
 #include "../../../../../common/src/main/utils/base_map.h"
+#include "../entities/drawable.h"
 #include "../entities/identifiable_object.h"
 #include "hit.h"
 
-class Gun {
+#define PIXEL 1
+
+enum animation_state { stop, play };
+
+class Gun : public Drawable {
  protected:
   double max_range;
   double min_range;
+  animation_state animation = stop;
+  Uint32 sprite_x = 0;
+
   virtual Hit shoot(
       Object& player, int& current_bullets, BaseMap& map,
       std::vector<std::weak_ptr<IdentifiableObject>>& players) = 0;

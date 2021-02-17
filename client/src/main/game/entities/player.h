@@ -60,6 +60,8 @@ class Player : public IdentifiableObject {
   int get_points() const;
   /* Returns if the player has keys*/
   bool has_key() const;
+  /* Gets the active gun of the player. */
+  Gun* get_active_gun() const;
 
   void move(unsigned char direction);
   void rotate(unsigned char direction);
