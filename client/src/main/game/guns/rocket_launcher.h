@@ -22,6 +22,9 @@ class RocketLauncher : public Gun {
 
   Hit update(Object& player, bool trigger, BaseMap& map,
              std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
+
+  Image* get_image(ResourceManager& resource_manager) override;
+  SDL_Rect* get_slice(void* extra) override;
 };
 
 #endif

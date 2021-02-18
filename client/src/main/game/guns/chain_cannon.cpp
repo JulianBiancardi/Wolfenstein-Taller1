@@ -10,8 +10,6 @@
 #include "../../../../../common/src/main/config_loader.h"
 #include "../../../../../common/src/main/ids/gun_ids.h"
 
-#define COS_MOD 3
-
 ChainCannon::ChainCannon()
     : generator(),
       distribution(1, CL::bullet_max_dmg),
@@ -52,14 +50,21 @@ Hit ChainCannon::update(
     Object& player, bool trigger, BaseMap& map,
     std::vector<std::weak_ptr<IdentifiableObject>>& players) {
   if (!trigger) {
+    state.update(false);
     return std::move(Hit(CHAIN_CANNON_ID, 0, 0, false));
   }
 
   Uint32 now = SDL_GetTicks();
   if (now - last_shot_time < CL::chain_cannon_frequency) {
+    state.update(false);
     return std::move(Hit(CHAIN_CANNON_ID, 0, 0, false));
   }
 
   last_shot_time = now;
+  state.update(true);
   return std::move(shoot(player, map, players));
 }
+
+Image* ChainCannon::get_image(ResourceManager& resource_manager) {}
+
+SDL_Rect* ChainCannon::get_slice(void* extra) { return &slice; }

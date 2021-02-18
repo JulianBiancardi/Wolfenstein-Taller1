@@ -8,6 +8,7 @@
 
 #define FONT_PATH "../../res/fonts/wolfenstein.ttf"
 #define BACKGROUND_PATH "../../res/images/hud/IMG_HUD_Background.png"
+#define BACKGROUND_PATH2 "/var/tp/"
 #define BJ_FACES_PATH "../../res/images/hud/IMG_HUD_BJFaces.png"
 #define KEY_PATH "../../res/images/hud/IMG_HUD_Key1.png"
 #define NUMBER_PATH "../../res/images/hud/IMG_HUD_Numbers.png"
@@ -259,6 +260,7 @@ void Hud::_show_gun(const Player& player) {
 
 void Hud::_show_player_gun(const Player& player) {
   // TODO MOVE THIS TO WHERE ITS BELONGS
+
   std::string gun_image_path;
   switch (player.get_gun()) {
     case KNIFE_ID:
@@ -296,5 +298,5 @@ void Hud::_show_player_gun(const Player& player) {
   SDL_Rect rect_slice = {(sprite_x * (frame_width + PIXEL)), 0, frame_width,
                          frame_height};
 
-  player_gun.draw(&rect_gun, &rect_slice);
+  player_gun.draw(&rect_gun, player.get_active_gun()->get_slice(&player_gun));
 }

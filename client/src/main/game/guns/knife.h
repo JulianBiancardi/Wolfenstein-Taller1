@@ -9,6 +9,7 @@
 #include "../entities/identifiable_object.h"
 #include "gun.h"
 #include "hit.h"
+#include "gun_state.h"
 
 class Knife : public Gun {
  private:
@@ -17,6 +18,7 @@ class Knife : public Gun {
   Hit shoot(Object& player, BaseMap& map,
             std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
   bool shot;
+  GunState state;
 
  public:
   Knife();
@@ -29,6 +31,9 @@ class Knife : public Gun {
    */
   Hit update(Object& player, bool trigger, BaseMap& map,
              std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
+
+  Image* get_image(ResourceManager& resource_manager) override;
+  SDL_Rect* get_slice(void* extra) override;
 };
 
 #endif

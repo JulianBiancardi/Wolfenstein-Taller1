@@ -8,6 +8,7 @@
 #include "../../../../../common/src/main/utils/base_map.h"
 #include "../entities/object.h"
 #include "gun.h"
+#include "gun_state.h"
 #include "hit.h"
 #include "spray.h"
 
@@ -21,6 +22,7 @@ class MachineGun : public Gun {
   long last_shot_time;
   long last_burst_time;
   char bullet_count;
+  GunState state;
 
   double linear_func(double x);
 
@@ -39,6 +41,9 @@ class MachineGun : public Gun {
    */
   Hit update(Object& player, bool trigger, BaseMap& map,
              std::vector<std::weak_ptr<IdentifiableObject>>& players);
+
+  Image* get_image(ResourceManager& resource_manager) override;
+  SDL_Rect* get_slice(void* extra) override;
 };
 
 #endif
