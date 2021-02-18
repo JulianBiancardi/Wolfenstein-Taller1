@@ -234,7 +234,7 @@ void Hud::_show_gun(const Player& player) {
       gun_image_path = "../../res/images/hud/IMG_HUD_Pistol.png";
       break;
     case CHAIN_CANNON_ID:
-      gun_image_path = "../../res/images/hud/IMG_HUD_ChainCanon.png";
+      gun_image_path = "../../res/images/hud/IMG_HUD_ChainCannon.png";
       break;
     case MACHINE_GUN_ID:
       gun_image_path = "../../res/images/hud/IMG_HUD_MachineGun.png";
