@@ -87,13 +87,9 @@ int Map::pick_item(unsigned int player_id, unsigned int item_id) {
   return res_id;
 }
 
-Hit Map::trigger_gun(unsigned int player_id) {
+Hit Map::update_gun(unsigned int player_id, bool trigger) {
   return std::move(
-      players.at(player_id)->trigger_gun(*this, players_shootable));
-}
-
-void Map::untrigger_gun(unsigned int player_id) {
-  players.at(player_id)->untrigger_gun();
+      players.at(player_id)->update_gun(*this, trigger, players_shootable));
 }
 
 void Map::shoot_rocket(unsigned int player_id, unsigned int rocket_id) {

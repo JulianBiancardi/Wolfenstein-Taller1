@@ -6,6 +6,7 @@
 
 #include "../../../../common/src/main/config_loader.h"
 #include "../../../../common/src/main/ids/gun_ids.h"
+#include "../entities/player.h"
 #include "../rendering/ray_casting.h"
 
 #define COS_MOD 3
@@ -15,12 +16,12 @@ Pistol::Pistol()
       distribution(1, CL::bullet_max_dmg),
       spray(CL::pistol_spray, CL::pistol_std_dev),
       Gun(0, CL::pistol_range),
-      triggered(false) {
+      shot(false) {
   slope = 1 / (min_range - max_range);
   intercept = -slope * max_range;
 }
 
-Hit Pistol::shoot(Object& player, int& current_bullets, BaseMap& map,
+Hit Pistol::shoot(Object& player, BaseMap& map,
                   std::vector<std::weak_ptr<IdentifiableObject>>& players) {
   Ray bullet(player.get_position(), player.get_angle() + spray());
 
@@ -44,17 +45,20 @@ Hit Pistol::shoot(Object& player, int& current_bullets, BaseMap& map,
   return std::move(Hit(PISTOL_ID, target->get_id(), damage, true));
 }
 
-Hit Pistol::trigger(Object& player, int& current_bullets, BaseMap& map,
-                    std::vector<std::weak_ptr<IdentifiableObject>>& players) {
-  if (triggered || current_bullets == 0) {
+Hit Pistol::update(Object& player, bool trigger, BaseMap& map,
+                   std::vector<std::weak_ptr<IdentifiableObject>>& players) {
+  if (!trigger) {
+    shot = false;
     return std::move(Hit(PISTOL_ID, 0, 0, false));
-  } else {
-    triggered = true;
-    return std::move(shoot(player, current_bullets, map, players));
   }
-}
 
-void Pistol::untrigger() { triggered = false; }
+  if (shot) {
+    return std::move(Hit(PISTOL_ID, 0, 0, false));
+  }
+
+  shot = true;
+  return std::move(shoot(player, map, players));
+}
 
 double Pistol::linear_func(double x) { return slope * x + intercept; }
 

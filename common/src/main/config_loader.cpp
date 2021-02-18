@@ -53,8 +53,10 @@ double CL::pistol_std_dev = CL::yaml_file["pistol_std_dev"].as<double>();
 int CL::machine_gun_range = CL::yaml_file["machine_gun_range"].as<int>();
 int CL::machine_gun_bullet_required =
     CL::yaml_file["machine_gun_bullet_required"].as<int>();
-uint32_t CL::machine_gun_frecuency =
-    CL::yaml_file["machine_gun_frecuency"].as<uint32_t>();
+uint32_t CL::machine_gun_burst_frequency =
+    CL::yaml_file["machine_gun_burst_frequency"].as<uint32_t>();
+uint32_t CL::machine_gun_shot_frequency =
+    CL::yaml_file["machine_gun_shot_frequency"].as<uint32_t>();
 double CL::machine_gun_spray = CL::yaml_file["machine_gun_spray"].as<double>();
 double CL::machine_gun_std_dev =
     CL::yaml_file["machine_gun_std_dev"].as<double>();
@@ -62,8 +64,8 @@ double CL::machine_gun_std_dev =
 int CL::chain_cannon_range = CL::yaml_file["chain_cannon_range"].as<int>();
 int CL::chain_cannon_bullet_required =
     CL::yaml_file["chain_cannon_bullet_required"].as<int>();
-uint32_t CL::chain_cannon_frecuency =
-    CL::yaml_file["chain_cannon_frecuency"].as<uint32_t>();
+uint32_t CL::chain_cannon_frequency =
+    CL::yaml_file["chain_cannon_frequency"].as<uint32_t>();
 double CL::chain_cannon_spray =
     CL::yaml_file["chain_cannon_spray"].as<double>();
 double CL::chain_cannon_std_dev =

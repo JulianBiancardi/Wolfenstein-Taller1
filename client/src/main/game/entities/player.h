@@ -106,14 +106,8 @@ class Player : public IdentifiableObject {
   /* Adds a kill to the kill count. */
   void add_kill();
 
-  /* Pulls the trigger of the player's gun.
-   * Returns a Hit object containing the data of the shot attempt.
-   */
-  Hit trigger_gun(BaseMap& map,
-                  std::vector<std::weak_ptr<IdentifiableObject>>& players);
-
-  /* Unpulls the trigger of the player's gun. */
-  void untrigger_gun();
+  Hit update_gun(BaseMap& map, bool trigger,
+                 std::vector<std::weak_ptr<IdentifiableObject>>& players);
 
   /* Updates its state */
   void update();

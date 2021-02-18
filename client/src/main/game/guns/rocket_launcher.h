@@ -11,18 +11,17 @@
 
 class RocketLauncher : public Gun {
  private:
-  bool triggered;
+  bool shot;
 
-  Hit shoot(Object& player, int& current_bullets, BaseMap& map,
+  Hit shoot(Object& player, BaseMap& map,
             std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
 
  public:
   RocketLauncher();
   ~RocketLauncher();
 
-  Hit trigger(Object& player, int& current_bullets, BaseMap& map,
-              std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
-  void untrigger() override;
+  Hit update(Object& player, bool trigger, BaseMap& map,
+             std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
 };
 
 #endif

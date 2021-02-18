@@ -14,16 +14,21 @@ class Knife : public Gun {
  private:
   std::default_random_engine generator;
   std::uniform_real_distribution<double> distribution;
-  bool triggered;
-  Hit shoot(Object& player, int& current_bullets, BaseMap& map,
+  Hit shoot(Object& player, BaseMap& map,
             std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
+  bool shot;
 
  public:
   Knife();
 
-  Hit trigger(Object& player, int& current_bullets, BaseMap& map,
-              std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
-  void untrigger() override;
+  /* Updates the gun appropriately and returns a Hit instance with
+   * any relevant information.
+   * Receives a player (or an object with his location), a bool indicating
+   * whether the gun trigger is being pressed, a map valid for RayCasting and a
+   * list of all the players.
+   */
+  Hit update(Object& player, bool trigger, BaseMap& map,
+             std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
 };
 
 #endif

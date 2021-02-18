@@ -17,11 +17,12 @@ ChainCannon::ChainCannon()
       distribution(1, CL::bullet_max_dmg),
       spray(CL::chain_cannon_spray, CL::chain_cannon_std_dev),
       Gun(0, CL::chain_cannon_range),
-      last_shot_time(0),
-      triggered(false) {}
+      last_shot_time(0) {}
+
+ChainCannon::~ChainCannon() {}
 
 Hit ChainCannon::shoot(
-    Object& player, int& current_bullets, BaseMap& map,
+    Object& player, BaseMap& map,
     std::vector<std::weak_ptr<IdentifiableObject>>& players) {
   Ray bullet(player.get_position(), player.get_angle() + spray());
 
@@ -45,21 +46,20 @@ Hit ChainCannon::shoot(
   return std::move(Hit(CHAIN_CANNON_ID, target->get_id(), damage, true));
 }
 
-Hit ChainCannon::trigger(
-    Object& player, int& current_bullets, BaseMap& map,
-    std::vector<std::weak_ptr<IdentifiableObject>>& players) {
-  Uint32 now_time = SDL_GetTicks();
-  if (current_bullets == 0 ||
-      (now_time - last_shot_time) < CL::machine_gun_frecuency) {
-    return std::move(Hit(CHAIN_CANNON_ID, 0, 0, false));
-  } else {
-    last_shot_time = SDL_GetTicks();
-    return std::move(shoot(player, current_bullets, map, players));
-  }
-}
-
 double ChainCannon::linear_func(double x) { return slope * x + intercept; }
 
-void ChainCannon::untrigger() {}
+Hit ChainCannon::update(
+    Object& player, bool trigger, BaseMap& map,
+    std::vector<std::weak_ptr<IdentifiableObject>>& players) {
+  if (!trigger) {
+    return std::move(Hit(CHAIN_CANNON_ID, 0, 0, false));
+  }
 
-ChainCannon::~ChainCannon() {}
+  Uint32 now = SDL_GetTicks();
+  if (now - last_shot_time < CL::chain_cannon_frequency) {
+    return std::move(Hit(CHAIN_CANNON_ID, 0, 0, false));
+  }
+
+  last_shot_time = now;
+  return std::move(shoot(player, map, players));
+}

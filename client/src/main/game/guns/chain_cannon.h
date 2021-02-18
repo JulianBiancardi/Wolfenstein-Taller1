@@ -19,20 +19,24 @@ class ChainCannon : public Gun {
   double slope;
   double intercept;
   long last_shot_time;
-  bool triggered;
 
   double linear_func(double x);
 
-  Hit shoot(Object& player, int& current_bullets, BaseMap& map,
+  Hit shoot(Object& player, BaseMap& map,
             std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
 
  public:
   ChainCannon();
   ~ChainCannon();
 
-  Hit trigger(Object& player, int& current_bullets, BaseMap& map,
-              std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
-  void untrigger() override;
+  /* Updates the gun appropriately and returns a Hit instance with
+   * any relevant information.
+   * Receives a player (or an object with his location), a bool indicating
+   * whether the gun trigger is being pressed, a map valid for RayCasting and a
+   * list of all the players.
+   */
+  Hit update(Object& player, bool trigger, BaseMap& map,
+             std::vector<std::weak_ptr<IdentifiableObject>>& players);
 };
 
 #endif

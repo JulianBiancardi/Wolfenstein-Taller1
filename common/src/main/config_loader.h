@@ -53,13 +53,14 @@ class ConfigLoader {
 
   static int machine_gun_range;
   static int machine_gun_bullet_required;
-  static uint32_t machine_gun_frecuency;
+  static uint32_t machine_gun_burst_frequency;
+  static uint32_t machine_gun_shot_frequency;
   static double machine_gun_spray;
   static double machine_gun_std_dev;
 
   static int chain_cannon_range;
   static int chain_cannon_bullet_required;
-  static uint32_t chain_cannon_frecuency;
+  static uint32_t chain_cannon_frequency;
   static double chain_cannon_spray;
   static double chain_cannon_std_dev;
 

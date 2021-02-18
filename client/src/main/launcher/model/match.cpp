@@ -48,9 +48,4 @@ unsigned char Match::get_players_total() const { return players_total; }
 
 bool Match::get_status() const { return status; }
 
-void Match::print() const {
-  printf("Match_id: %u\n", match_id);
-  printf("Map_name: %s\n", map_name);
-}
-
 Match::~Match() {}

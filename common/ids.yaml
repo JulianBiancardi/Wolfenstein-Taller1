@@ -112,7 +112,7 @@
   sound: "..."
 32:
   type: 3
-  name: "Maching Gun"
+  name: "Machine Gun"
   image: "../../res/images/items/guns/machine_gun.bmp"
   icon: "../resources/images/weapons/IMG_Machingun.png"
   sound: "..."
@@ -124,7 +124,7 @@
   sound: "..."
 34:
   type: 3
-  name: "Bazooka"
+  name: "Rocket Launcher"
   image: "../../res/images/items/guns/rocket_launcher_item.png"
   icon: "../resources/images/weapons/IMG_Bazooka.png"
   sound: ""

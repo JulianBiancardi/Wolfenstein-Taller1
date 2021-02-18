@@ -18,9 +18,12 @@ MachineGun::MachineGun()
       spray(CL::machine_gun_spray, CL::machine_gun_std_dev),
       Gun(0, CL::machine_gun_range),
       last_shot_time(0),
-      triggered(false) {}
+      last_burst_time(0),
+      bullet_count(0) {}
 
-Hit MachineGun::shoot(Object& player, int& current_bullets, BaseMap& map,
+MachineGun::~MachineGun() {}
+
+Hit MachineGun::shoot(Object& player, BaseMap& map,
                       std::vector<std::weak_ptr<IdentifiableObject>>& players) {
   Ray bullet(player.get_position(), player.get_angle() + spray());
 
@@ -44,21 +47,36 @@ Hit MachineGun::shoot(Object& player, int& current_bullets, BaseMap& map,
   return std::move(Hit(MACHINE_GUN_ID, target->get_id(), damage, true));
 }
 
-Hit MachineGun::trigger(
-    Object& player, int& current_bullets, BaseMap& map,
+Hit MachineGun::update(
+    Object& player, bool trigger, BaseMap& map,
     std::vector<std::weak_ptr<IdentifiableObject>>& players) {
-  Uint32 now_time = SDL_GetTicks();
-  if (current_bullets == 0 ||
-      (now_time - last_shot_time) < CL::machine_gun_frecuency) {
+  // Not in burst, not triggered
+  if (bullet_count == 0 && !trigger) {
     return std::move(Hit(MACHINE_GUN_ID, 0, 0, false));
-  } else {
-    last_shot_time = SDL_GetTicks();
-    return std::move(shoot(player, current_bullets, map, players));
   }
+
+  long now = SDL_GetTicks();
+  // Not in burst, triggered
+  if (bullet_count == 0 && trigger &&
+      now - last_burst_time > CL::machine_gun_burst_frequency) {
+    bullet_count++;
+    last_shot_time = now;
+    last_burst_time = now;
+    return std::move(shoot(player, map, players));
+  }
+
+  // In burst
+  if (bullet_count > 0 &&
+      now - last_shot_time > CL::machine_gun_shot_frequency) {
+    bullet_count++;
+    last_shot_time = now;
+    if (bullet_count == 5) {
+      bullet_count = 0;
+    }
+    return std::move(shoot(player, map, players));
+  }
+
+  return std::move(Hit(MACHINE_GUN_ID, 0, 0, false));
 }
 
 double MachineGun::linear_func(double x) { return slope * x + intercept; }
-
-void MachineGun::untrigger() {}
-
-MachineGun::~MachineGun() {}

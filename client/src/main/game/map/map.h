@@ -51,8 +51,7 @@ class Map : public BaseMap {
   void change_gun(unsigned int player_id, unsigned char gun_id);
   void use_bullets(unsigned int player_id, unsigned char gun_id);
   int pick_item(unsigned int player_id, unsigned int item_id);
-  Hit trigger_gun(unsigned int player_id);
-  void untrigger_gun(unsigned int player_id);
+  Hit update_gun(unsigned int player_id, bool trigger);
 
   /* The player sent launches a rocket, new rocket with sent id is created */
   void shoot_rocket(unsigned int player_id, unsigned int rocket_id);

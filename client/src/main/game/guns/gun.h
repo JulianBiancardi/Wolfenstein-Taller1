@@ -13,7 +13,7 @@ class Gun {
   double max_range;
   double min_range;
   virtual Hit shoot(
-      Object& player, int& current_bullets, BaseMap& map,
+      Object& player, BaseMap& map,
       std::vector<std::weak_ptr<IdentifiableObject>>& players) = 0;
   std::shared_ptr<IdentifiableObject> trayectory(
       Ray& bullet, BaseMap& map,
@@ -22,10 +22,16 @@ class Gun {
  public:
   explicit Gun(double min_range, double max_range);
   ~Gun();
-  virtual Hit trigger(
-      Object& player, int& current_bullets, BaseMap& map,
+
+  /* Updates the gun appropriately and returns a Hit instance with
+   * any relevant information.
+   * Receives a player (or an object with his location),
+   * his bullets, a bool indicating whether the gun trigger is being pressed, a
+   * map valid for RayCasting and a list of all the players.
+   */
+  virtual Hit update(
+      Object& player, bool trigger, BaseMap& map,
       std::vector<std::weak_ptr<IdentifiableObject>>& players) = 0;
-  virtual void untrigger() = 0;
 };
 
 #endif

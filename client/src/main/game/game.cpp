@@ -294,20 +294,29 @@ void Game::process_rotation() {
 }
 
 void Game::process_trigger() {
-  if (input_flags[SHOOT_FLAG]) {
-    Hit hit = map.trigger_gun(player_id);
-    if (!hit.is_shot()) {
-      return;
-    }
-
-    unsigned char data[SHOT_SIZE];
-    size_t size = pack(data, "CICCCC", SHOT, player_id, match_id,
-                       hit.get_object_id(), hit.get_damage(), hit.get_gun_id());
-    Packet shot_packet(size, data);
-    server.send(shot_packet);
-  } else {
-    map.untrigger_gun(player_id);
+  Hit hit = map.update_gun(player_id, input_flags[SHOOT_FLAG]);
+  if (!hit.is_shot()) {
+    return;
   }
+
+  unsigned char data[SHOT_SIZE];
+  size_t size = pack(data, "CICCCC", SHOT, player_id, match_id,
+                     hit.get_object_id(), hit.get_damage(), hit.get_gun_id());
+  Packet shot_packet(size, data);
+  server.send(shot_packet);
+  /*if (input_flags[SHOOT_FLAG]) {
+      Hit hit = map.trigger_gun(player_id);
+      if (!hit.is_shot()) {
+        return;
+      }
+
+      unsigned char data[SHOT_SIZE];
+      size_t size = pack(data, "CICCCC", SHOT, player_id, match_id,
+                         hit.get_object_id(), hit.get_damage(),
+    hit.get_gun_id()); Packet shot_packet(size, data); server.send(shot_packet);
+    } else {
+      map.untrigger_gun(player_id);
+    }*/
 }
 
 void Game::process_gun_changes() {

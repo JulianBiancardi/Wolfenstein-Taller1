@@ -13,7 +13,7 @@ Knife::Knife()
       generator(),
       distribution(1, CL::bullet_max_dmg) {}
 
-Hit Knife::shoot(Object& player, int& current_bullets, BaseMap& map,
+Hit Knife::shoot(Object& player, BaseMap& map,
                  std::vector<std::weak_ptr<IdentifiableObject>>& players) {
   Ray bullet(player.get_position(), player.get_angle());
 
@@ -28,14 +28,17 @@ Hit Knife::shoot(Object& player, int& current_bullets, BaseMap& map,
   return std::move(Hit(KNIFE_ID, target->get_id(), damage, true));
 }
 
-Hit Knife::trigger(Object& player, int& current_bullets, BaseMap& map,
-                   std::vector<std::weak_ptr<IdentifiableObject>>& players) {
-  if (triggered) {
+Hit Knife::update(Object& player, bool trigger, BaseMap& map,
+                  std::vector<std::weak_ptr<IdentifiableObject>>& players) {
+  if (!trigger) {
+    shot = false;
     return std::move(Hit(KNIFE_ID, 0, 0, false));
-  } else {
-    triggered = true;
-    return std::move(shoot(player, current_bullets, map, players));
   }
-}
 
-void Knife::untrigger() { triggered = false; }
+  if (shot) {
+    return std::move(Hit(KNIFE_ID, 0, 0, false));
+  }
+
+  shot = true;
+  return std::move(shoot(player, map, players));
+}
