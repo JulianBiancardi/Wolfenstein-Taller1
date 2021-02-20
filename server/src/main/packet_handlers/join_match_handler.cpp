@@ -22,7 +22,6 @@ void JoinMatchHandler::handle(Packet& packet, ClientManager& client_manager,
     client_manager.send_to(player_id, packet);
     notify_spawn(player_id, match, client_manager);
     notify_all_spawns(player_id, match, client_manager);
-    notify_items(player_id, match, client_manager);
   } else {
     pack(packet.get_data(), "CIC", type, player_id, 0);
     client_manager.send_to(player_id, packet);
@@ -50,15 +49,5 @@ void JoinMatchHandler::notify_all_spawns(unsigned int player_id, Match& match,
     SpawnPlayerAssistant assistant;
     Packet spawn_player_packet = assistant.build_packet(id, match);
     client_manager.send_to(player_id, spawn_player_packet);
-  }
-}
-
-void JoinMatchHandler::notify_items(unsigned int player_id, Match& match,
-                                    ClientManager& client_manager) {
-  const std::unordered_map<unsigned int, Item*>& items = match.get_items();
-  std::unordered_map<unsigned int, Item*>::const_iterator iter;
-  for (iter = items.begin(); iter != items.end(); iter++) {
-    Packet add_item_packet = iter->second->get_add_item_packet();
-    client_manager.send_to(player_id, add_item_packet);
   }
 }

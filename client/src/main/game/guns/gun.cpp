@@ -1,6 +1,7 @@
 #include "gun.h"
 
 #include "../rendering/ray_casting.h"
+#include "../entities/player.h"
 
 Gun::Gun(double min_range, double max_range)
     : min_range(min_range), max_range(max_range) {}
@@ -26,6 +27,10 @@ std::shared_ptr<IdentifiableObject> Gun::trayectory(
 
     kept_players.push_back(*iter);
     std::shared_ptr<IdentifiableObject> object = iter->lock();
+
+    if (std::static_pointer_cast<Player>(object)->is_dead()) {
+      continue;
+    }
 
     double object_distance =
         object->get_position().distance_from(bullet.get_origin());

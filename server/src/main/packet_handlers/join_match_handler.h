@@ -13,8 +13,6 @@ class JoinMatchHandler : public PacketHandler {
                     ClientManager& client_manager);
   void notify_all_spawns(unsigned int player_id, Match& match,
                          ClientManager& client_manager);
-  void notify_items(unsigned int player_id, Match& match,
-                    ClientManager& client_manager);
 
  public:
   JoinMatchHandler();

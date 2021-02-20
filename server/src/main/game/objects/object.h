@@ -14,6 +14,8 @@ class Object {
   Object(const Point& position, double angle, Mask* mask);
   Object(const Ray& position, Mask* mask);
 
+  Object(const Object& other);
+
  public:
   virtual ~Object();
 

@@ -23,6 +23,7 @@ player_respawn_bullets: 8
 player_speed: 0.1
 player_rotation_speed: 0.1
 player_knife_mask_radio: 10 # > player_mask_radio
+player_ghost_speed: 0.2
 
 # Bot
 bot_positions_difference_allowed: 5
@@ -61,7 +62,7 @@ blood_health_recovered: 1
 blood_health_recovered_if_less_than: 11
 bullets_amount: 5
 bullets_respawn_amount: 10
-drop_distance_from_dead_player: 2
+drop_distance_from_dead_player: 1
 
 cross_points: 10
 cup_points: 50
@@ -80,5 +81,6 @@ rocket_max_damage: 30
 rocket_min_damage: 1
 
 # Other
+first_id: 1
 match_length: 300
 door_timer: 5

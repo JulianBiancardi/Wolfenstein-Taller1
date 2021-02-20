@@ -11,3 +11,7 @@ bool BoxMask::occupies(const Point& where) const {
 
   return (delta_x <= width / 2 && delta_y <= height / 2);
 }
+
+Mask* BoxMask::get_copy(const Point& center) {
+  return new BoxMask(width, height, center);
+}

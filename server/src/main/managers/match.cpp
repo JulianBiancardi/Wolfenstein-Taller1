@@ -108,10 +108,6 @@ bool Match::move_player(unsigned int player_id, unsigned char direction) {
                      player_id);
   }
 
-  if (is_dead(player_id)) {
-    return false;
-  }
-
   Player& player = map.get_player(player_id);
   Point requested_position = player.next_position(direction);
 
@@ -132,10 +128,6 @@ bool Match::rotate_player(unsigned int player_id, unsigned char direction) {
   if (!player_exists(player_id)) {
     throw MatchError("Failed to rotate player. Player %u doesn't exist.",
                      player_id);
-  }
-
-  if (is_dead(player_id)) {
-    return false;
   }
 
   map.get_player(player_id).rotate(direction);
@@ -282,7 +274,7 @@ unsigned int Match::shoot_rocket(unsigned int player_id) {
   }
 
   if (is_dead(player_id)) {
-    return false;
+    return 0;
   }
 
   Player& shooter = map.get_player(player_id);
@@ -385,10 +377,6 @@ void Match::kill_player(unsigned int player_id) {
                      player_id);
   }
 
-  if (is_dead(player_id)) {
-    return;
-  }
-
   Player& player = map.get_player(player_id);
 
   map.add_drop(player);
@@ -396,7 +384,7 @@ void Match::kill_player(unsigned int player_id) {
   if (player.has_extra_lives()) {
     player.respawn();
   } else {
-    delete_player(player_id);
+    player.respawn_as_ghost();
   }
 }
 
