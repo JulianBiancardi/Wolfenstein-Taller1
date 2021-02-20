@@ -101,14 +101,14 @@ class Match {
   /* Returns if the player is using a rocket launcher */
   bool is_using_rocket_launcher(unsigned int player_id);
 
-  /* Adds rocket from player's position, returns its id */
-  unsigned int shoot_rocket(unsigned int player_id);
+  /* Adds rocket from player's position */
+  void shoot_rocket(unsigned int player_id);
 
   /* Returns if the rocket can be moved */
   bool move_rocket(unsigned int rocket_id);
 
   /* Explodes the rocket and returns players damage and the damage made */
-  std::unordered_map<unsigned int, unsigned char> explode_rocket(
+  std::map<unsigned int, unsigned char> explode_rocket(
       unsigned int rocket_id, unsigned int owner_id);
 
   /* Kill a player and respawn him */

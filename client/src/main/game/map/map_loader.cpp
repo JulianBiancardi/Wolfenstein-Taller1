@@ -17,20 +17,21 @@
 #include "../entities/items/machine_gun_item.h"
 #include "../entities/items/medkit.h"
 #include "../entities/items/rocket_launcher_item.h"
-#include "../entities/object.h"
 
 MapLoader::MapLoader(
     std::vector<std::weak_ptr<Object>>& drawables,
     std::vector<std::weak_ptr<IdentifiableObject>>& players_shootable,
     std::vector<std::shared_ptr<Object>>& ambient_objects,
     std::unordered_map<unsigned int, std::shared_ptr<Item>>& items,
-    std::unordered_map<unsigned int, std::shared_ptr<Player>>& players)
+    std::unordered_map<unsigned int, std::shared_ptr<Player>>& players,
+    std::unordered_map<unsigned int, std::shared_ptr<Rocket>>& rockets)
     : next_id(CL::first_id),
       drawables(drawables),
       players_shootable(players_shootable),
       ambient_objects(ambient_objects),
       items(items),
-      players(players) {}
+      players(players),
+      rockets(rockets) {}
 
 MapLoader::~MapLoader() {}
 
@@ -120,4 +121,11 @@ void MapLoader::add_object(const Ray& position, unsigned int resource_id) {
   std::weak_ptr<Object> object_weak_ptr(new_object);
   ambient_objects.push_back(new_object);
   drawables.push_back(object_weak_ptr);
+}
+
+void MapLoader::add_rocket(const Ray& position, unsigned int player_id) {
+  std::shared_ptr<Rocket> rocket =
+      std::make_shared<Rocket>(position, next_id++, player_id);
+  rockets.insert(std::make_pair(rocket->get_id(), rocket));
+  drawables.push_back(rocket);
 }

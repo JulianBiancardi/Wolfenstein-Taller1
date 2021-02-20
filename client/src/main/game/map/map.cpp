@@ -10,7 +10,8 @@ Map::Map(Matrix<int>& map_matrix)
       ambient_objects(),
       items(),
       players(),
-      loader(drawables, players_shootable, ambient_objects, items, players) {}
+      loader(drawables, players_shootable, ambient_objects, items, players,
+             rockets) {}
 
 Map::Map(const std::string& map_name)
     : BaseMap(map_name),
@@ -18,7 +19,8 @@ Map::Map(const std::string& map_name)
       ambient_objects(),
       items(),
       players(),
-      loader(drawables, players_shootable, ambient_objects, items, players) {
+      loader(drawables, players_shootable, ambient_objects, items, players,
+             rockets) {
   loader.load_map(map_name);
 }
 
@@ -98,25 +100,30 @@ Hit Map::update_gun(unsigned int player_id, bool trigger) {
   return std::move(player->update_gun(*this, trigger, players_shootable));
 }
 
-void Map::shoot_rocket(unsigned int player_id, unsigned int rocket_id) {
-  const Point& player_position = players.at(player_id)->get_position();
-  double angle = players.at(player_id)->get_angle();
+void Map::shoot_rocket(unsigned int player_id) {
+  use_bullets(player_id, ROCKET_LAUNCHER_ID);
+  auto player = players.at(player_id);
+
+  const Point& player_position = player->get_position();
+  double angle = player->get_angle();
 
   double front_x = player_position.getX() + cos(angle) * CL::player_mask_radio;
   double front_y = player_position.getY() - sin(angle) * CL::player_mask_radio;
 
-  Ray spawn_point(front_x, front_y, 0.0);
+  Ray spawn_point(front_x, front_y, angle);
 
-  std::shared_ptr<Rocket> rocket =
-      std::make_shared<Rocket>(spawn_point, rocket_id, player_id);
-  rockets.insert(std::make_pair(rocket_id, rocket));
-  drawables.push_back(rocket);
+  loader.add_rocket(spawn_point, player_id);
 }
 
 void Map::move_rocket(unsigned int rocket_id) { rockets.at(rocket_id)->move(); }
 
 unsigned int Map::get_rocket_owner_id(unsigned int rocket_id) {
   return rockets.at(rocket_id)->get_owner_id();
+}
+
+void Map::explode_rocket(unsigned int rocket_id) {
+  // Show animation here
+  rockets.erase(rocket_id);
 }
 
 void Map::add_bullets_drop(std::shared_ptr<Player>& dead_player) {

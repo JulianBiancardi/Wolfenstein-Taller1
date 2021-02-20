@@ -74,11 +74,11 @@ pillar_radius: 0.5
 table_width: 1.0
 table_depth: 1.0
 barrel_radius: 0.5
-rocket_radius: 0.15
+rocket_radius: 0.1
 rocket_speed: 0.2
 rocket_explosion_radius: 2.0
-rocket_max_damage: 30
-rocket_min_damage: 1
+rocket_max_damage: 40
+rocket_min_damage: 10
 
 # Other
 first_id: 1

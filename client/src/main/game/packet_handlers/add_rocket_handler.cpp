@@ -9,8 +9,7 @@ AddRocketHandler::~AddRocketHandler() = default;
 void AddRocketHandler::handle(Packet& packet, Map& map, GameSound& sound) {
   unsigned char type;
   unsigned int player_id;
-  unsigned int rocket_id;
-  unpack(packet.get_data(), "CII", &type, &player_id, &rocket_id);
-  map.shoot_rocket(player_id, rocket_id);
+  unpack(packet.get_data(), "CI", &type, &player_id);
+  map.shoot_rocket(player_id);
   // TODO Play sound
 }

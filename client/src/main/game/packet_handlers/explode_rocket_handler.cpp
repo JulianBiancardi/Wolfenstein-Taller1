@@ -20,5 +20,7 @@ void ExplodeRocketHandler::handle(Packet& packet, Map& map, GameSound& sound) {
     map.shoot_player(player_id, damage, map.get_rocket_owner_id(rocket_id));
   }
 
+  map.explode_rocket(rocket_id);
+
   // TODO Play sound
 }

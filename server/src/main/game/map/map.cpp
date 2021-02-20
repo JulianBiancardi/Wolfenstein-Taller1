@@ -9,7 +9,8 @@
 #include "map_loader.h"
 
 Map::Map(std::string& map_name)
-    : next_id(1), players_joined(0), dogs_joined(0), BaseMap(map_name) {
+    : next_id(CL::first_id), players_joined(0), dogs_joined(0),
+      BaseMap(map_name) {
   MapLoader loader(next_id, players, items, identifiable_objects,
                    unidentifiable_objects, spawn_points, dogs);
   loader.load_map(map_name);
@@ -163,8 +164,7 @@ void Map::add_drop(Player& dead_player) {
 
 unsigned int Map::add_rocket(const Point& where, double angle) {
   auto new_rocket = new Moveable(where, angle, CL::rocket_speed, 0,
-                                 CL::rocket_radius, next_id);
+                                 CL::rocket_radius, next_id++);
   identifiable_objects.insert({new_rocket->get_id(), new_rocket});
-  next_id++;
   return new_rocket->get_id();
 }

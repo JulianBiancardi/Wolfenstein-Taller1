@@ -72,7 +72,7 @@
 #define ADD_ITEM_SIZE 6
 
 #define ROCKET_ADD 15
-#define ROCKET_ADD_SIZE 5
+#define ROCKET_ADD_SIZE 3
 
 #define ROCKET_MOVE 16
 #define ROCKET_MOVE_SIZE 6

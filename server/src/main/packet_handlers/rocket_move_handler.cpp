@@ -21,16 +21,16 @@ void RocketMoveHandler::handle(Packet& packet, ClientManager& client_manager,
   client_manager.send_to_all(clients, packet);
 
   if (!match.move_rocket(rocket_id)) {
-    std::unordered_map<unsigned int, unsigned char> players_exploded =
+    std::map<unsigned int, unsigned char> players_exploded =
         match.explode_rocket(rocket_id, player_id);
 
     unsigned char data[ROCKET_EXPLODE_SIZE];
     size_t size = pack(data, "CI", ROCKET_EXPLODE, rocket_id);
 
     int players_amount = players_exploded.size();
+    auto it = players_exploded.begin();
     for (int i = 0; i < std::min(ROCKET_EXPLODE_MAX_PLAYERS, players_amount);
          i++) {
-      auto it = players_exploded.begin();
       size += pack(data + i * 3 + 3, "IC", it->first, it->second);
       it++;
     }

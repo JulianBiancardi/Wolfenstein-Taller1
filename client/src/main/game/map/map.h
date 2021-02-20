@@ -56,14 +56,17 @@ class Map : public BaseMap {
   int pick_item(unsigned int player_id, unsigned int item_id);
   Hit update_gun(unsigned int player_id, bool trigger);
 
-  /* The player sent launches a rocket, new rocket with sent id is created */
-  void shoot_rocket(unsigned int player_id, unsigned int rocket_id);
+  /* The player sent launches a rocket, new rocket is created */
+  void shoot_rocket(unsigned int player_id);
 
   /* Moves the rocket sent */
   void move_rocket(unsigned int rocket_id);
 
   /* Returns the rocket's owner id */
   unsigned int get_rocket_owner_id(unsigned int rocket_id);
+
+  /* Explodes the rocket */
+  void explode_rocket(unsigned int rocket_id);
 
   /* Adds player's death drop */
   void add_drop(unsigned int player_id);
