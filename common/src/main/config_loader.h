@@ -92,6 +92,7 @@ class ConfigLoader {
 
   static unsigned int match_length;
   static unsigned int door_timer;
+  static double door_speed;
 };
 
 #endif

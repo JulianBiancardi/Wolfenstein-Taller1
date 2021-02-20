@@ -4,11 +4,13 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
+#include <utility>
 #include <vector>
 
 #include "../../../../../common/src/main/utils/base_map.h"
 #include "../../../../common/src/main/utils/matrix.h"
 #include "../../../../common/src/main/utils/ray.h"
+#include "../entities/door/door.h"
 #include "../entities/identifiable_object.h"
 #include "../entities/items/item.h"
 #include "../entities/object.h"
@@ -27,6 +29,9 @@ class Map : public BaseMap {
   std::unordered_map<unsigned int, std::shared_ptr<Rocket>> rockets;
   std::unordered_map<unsigned int, std::shared_ptr<Item>> items;
   std::unordered_map<unsigned int, std::shared_ptr<Player>> players;
+  std::unordered_map<std::pair<unsigned int, unsigned int>,
+                     std::shared_ptr<Door>, pairHasher>
+      doors;
   MapLoader loader;
 
  public:

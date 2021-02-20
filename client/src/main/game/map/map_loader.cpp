@@ -24,12 +24,15 @@ MapLoader::MapLoader(
     std::vector<std::weak_ptr<IdentifiableObject>>& players_shootable,
     std::vector<std::shared_ptr<Object>>& ambient_objects,
     std::unordered_map<unsigned int, std::shared_ptr<Item>>& items,
-    std::unordered_map<unsigned int, std::shared_ptr<Player>>& players)
+    std::unordered_map<unsigned int, std::shared_ptr<Player>>& players,
+    std::unordered_map<std::pair<unsigned int, unsigned int>,
+                       std::shared_ptr<Door>, pairHasher>& doors)
     : drawables(drawables),
       players_shootable(players_shootable),
       ambient_objects(ambient_objects),
       items(items),
-      players(players) {}
+      players(players),
+      doors(doors) {}
 
 MapLoader::~MapLoader() {}
 

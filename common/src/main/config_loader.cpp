@@ -111,6 +111,7 @@ double CL::rocket_min_damage = CL::yaml_file["rocket_min_damage"].as<double>();
 unsigned int CL::match_length =
     CL::yaml_file["match_length"].as<unsigned int>();
 unsigned int CL::door_timer = CL::yaml_file["door_timer"].as<unsigned int>();
+double CL::door_speed = CL::yaml_file["door_speed"].as<double>();
 
 ConfigLoader::ConfigLoader() = default;
 
