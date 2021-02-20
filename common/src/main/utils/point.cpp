@@ -48,8 +48,8 @@ bool are_equals(double first_number, double second_number) {
 }
 
 int Point::movement_direction(const Point& next_point) {
-  // printf("-(%f, %f)(%f, %f)-", this->getX(), this->getY(), next_point.getX(),
-  // next_point.getY());
+   printf("-(%f, %f)(%f, %f)-", this->getX(), this->getY(), next_point.getX(),
+   next_point.getY());
   if (are_equals(this->getX() - CL::player_speed * sqrt(2) / 2,
                  next_point.getX()) &&
       are_equals(this->getY() - CL::player_speed * sqrt(2) / 2,

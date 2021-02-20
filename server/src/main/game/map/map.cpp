@@ -168,3 +168,5 @@ unsigned int Map::add_rocket(const Point& where, double angle) {
   next_id++;
   return new_rocket->get_id();
 }
+
+unsigned int Map::get_dogs_amount() const { return dogs.size(); }

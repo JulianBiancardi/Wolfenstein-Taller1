@@ -11,7 +11,8 @@ class PacketHandlerAssistant {
   PacketHandlerAssistant();
   ~PacketHandlerAssistant();
 
-  virtual Packet build_packet(unsigned int player_id, Match& match) = 0;
+  virtual Packet build_packet(unsigned int player_id, unsigned char initial_gun,
+                              Match& match) = 0;
 };
 
 #endif

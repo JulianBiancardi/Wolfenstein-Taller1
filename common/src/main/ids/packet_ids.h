@@ -37,11 +37,11 @@
 
 // Used to join a match and notify the result
 #define JOIN_MATCH 6
-#define JOIN_MATCH_SIZE 4
+#define JOIN_MATCH_SIZE 5
 
 // Used to spawn a player on match start or as respawn
 #define SPAWN_PLAYER 7
-#define SPAWN_PLAYER_SIZE 5
+#define SPAWN_PLAYER_SIZE 6
 
 // Used to start a match being the host or notify the rest
 #define MATCH_START 8

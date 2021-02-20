@@ -4,6 +4,7 @@
 
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/packets/packing.h"
+#include "../../../../common/src/main/ids/map_ids.h"
 #include "iostream"
 #include "launcher_error.h"
 #include "yaml-cpp/yaml.h"
@@ -126,7 +127,8 @@ unsigned char Launcher::join_match(unsigned char match_id) {
 
 void Launcher::request_join_match(unsigned char match_id) {
   unsigned char packet[JOIN_MATCH_SIZE];
-  size_t size = pack(packet, "CIC", JOIN_MATCH, server->get_id(), match_id);
+  size_t size = pack(packet, "CICC", JOIN_MATCH, server->get_id(),
+                     PISTOL, match_id);
   Packet join_match_packet(size, packet);
   server->send(join_match_packet);
 }
@@ -141,8 +143,9 @@ unsigned char Launcher::receive_join_match_result() {
 
   unsigned char type;
   unsigned int client_id;
+  unsigned char player_gun;
   unsigned char match_id;
-  unpack(packet.get_data(), "CIC", &type, &client_id, &match_id);
+  unpack(packet.get_data(), "CICC", &type, &client_id, &player_gun, &match_id);
 
   return match_id;
 }

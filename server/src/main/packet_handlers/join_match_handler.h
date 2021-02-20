@@ -9,10 +9,10 @@
 
 class JoinMatchHandler : public PacketHandler {
  private:
-  void notify_spawn(unsigned int player_id, Match& match,
-                    ClientManager& client_manager);
-  void notify_all_spawns(unsigned int player_id, Match& match,
-                         ClientManager& client_manager);
+  void notify_spawn(unsigned int player_id, unsigned char player_gun,
+                    Match& match, ClientManager& client_manager);
+  void notify_all_spawns(unsigned int player_id, unsigned char player_gun,
+                         Match& match, ClientManager& client_manager);
   void notify_items(unsigned int player_id, Match& match,
                     ClientManager& client_manager);
 

@@ -6,7 +6,6 @@
 #include "match_error.h"
 
 #define CLOCK_KEY 0
-#define BOT_QUANTITY 1 //todo should not be here
 Match::Match(unsigned int host_id, unsigned char match_id,
              std::string& map_name)
     : host_id(host_id),
@@ -57,7 +56,7 @@ bool Match::start(unsigned int player_id, BlockingQueue<Packet>& queue) {
       threads.insert({CLOCK_KEY, clock});
 
       for (unsigned int i = players_ids.size() + 1;
-           i < players_ids.size() + 1 + BOT_QUANTITY; i++) {
+           i < players_ids.size() + 1 + map.get_dogs_amount(); i++) {
         if (this->add_bot(i)) {
           auto bot = new BotThread(checker, map, i, queue, this);
           threads.insert({i, bot});

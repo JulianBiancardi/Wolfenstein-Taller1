@@ -21,7 +21,12 @@ end
 
 function loadMap(x, y, value)
     if map[x] == nil then map[x] = {} end --???
+
+    if value ~= 0 and value ~= 1 then
+        value = 1
+    end
     map[x][y] = value
+    --print(x,y,value)
 end
 
 function updatePlayer(currentPlayer, goal)
@@ -92,10 +97,10 @@ function is_position_updated()
     if prev_node == nil then
         return true
     end
---[[    local x_info = math.abs(prev_node.x - player.posX)
-            / prev_node.x * 100
-    local y_info = math.abs(prev_node.y - player.posY)
-            / prev_node.y * 100]]
+    --[[    local x_info = math.abs(prev_node.x - player.posX)
+                / prev_node.x * 100
+        local y_info = math.abs(prev_node.y - player.posY)
+                / prev_node.y * 100]]
     local x_info = math.abs(prev_node.x - player.posX)
     local y_info = math.abs(prev_node.y - player.posY)
 
@@ -188,6 +193,10 @@ function canMove()
 end
 
 function random_movement()
+
+    return position
+    --remove above
+    --[[
     local rand = randomize(1,8)
 
     if rand == 1 then
@@ -213,13 +222,12 @@ function random_movement()
     else
         return random_movement()
     end
-
+]]
 end
 function execute(playerX, playerY, playerID)
     --print("ATACAR A: ")
     --print(playerID)
     --print(" ")
-
     local Grid = require ('jumper.grid')
     local Pathfinder = require ('jumper.pathfinder')
     local grid = Grid(map)
@@ -227,12 +235,11 @@ function execute(playerX, playerY, playerID)
     setHeuristic('DIAGONAL'):
     setMode('DIAGONAL')
 
-    --[]io.write("...El bot piensa que estoy en:".. round(player.posX,0)..";"..round(player.posY,0).." ......")
-
     path = myFinder:getPath(round(player.posX,0),
         round(player.posY,0),
         round(playerX, 0),
         round(playerY,0))
+
     if path then
         player.moving = 1
         prev_node = nil
@@ -253,7 +260,7 @@ function decision()
     end
     if enemy.health == 0 or
             (player.moving == 0 and player.killing == 0) then
-        --[]io.write("---"..enemy.health.." "..player.moving.." "..player.killing.."---")
+        --io.write("---"..enemy.health.." "..player.moving.." "..player.killing.."---")
         resetPlayer()
         return 1
     end

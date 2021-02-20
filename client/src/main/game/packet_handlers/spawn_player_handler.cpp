@@ -9,9 +9,11 @@ SpawnPlayerHandler::~SpawnPlayerHandler() {}
 void SpawnPlayerHandler::handle(Packet &packet, Map &map, GameSound &sound) {
   unsigned char type;
   unsigned int player_id;
+  unsigned char player_gun;
   unsigned char x_pos;
   unsigned char y_pos;
-  unpack(packet.get_data(), "CICC", &type, &player_id, &x_pos, &y_pos);
-
+  unpack(packet.get_data(), "CICCC", &type, &player_id, &player_gun,
+         &x_pos, &y_pos);
+  printf("TEST %d", player_id);
   map.add_player(player_id, Ray(x_pos + 0.5, y_pos + 0.5, 0));
 }

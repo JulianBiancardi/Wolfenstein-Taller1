@@ -89,6 +89,9 @@ class Map : public BaseMap {
 
   /* Adds a new rocket at the given position */
   unsigned int add_rocket(const Point& where, double angle);
+
+  /* Returns dogs amount in map */
+  unsigned int get_dogs_amount() const;
 };
 
 #endif

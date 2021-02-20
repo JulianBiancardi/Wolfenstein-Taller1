@@ -2,23 +2,23 @@ width: 20
 height: 20
 objects:
   - type: 1
-    id: 6
+    id: 1
     x_position: 0
     y_position: 0
   - type: 1
-    id: 4
+    id: 1
     x_position: 1
     y_position: 0
   - type: 1
-    id: 4
+    id: 1
     x_position: 2
     y_position: 0
   - type: 1
-    id: 4
+    id: 1
     x_position: 3
     y_position: 0
   - type: 1
-    id: 4
+    id: 1
     x_position: 4
     y_position: 0
   - type: 1
@@ -162,7 +162,7 @@ objects:
     x_position: 0
     y_position: 10
   - type: 2
-    id: 21
+    id: 20
     x_position: 16
     y_position: 10
   - type: 1
@@ -265,4 +265,4 @@ objects:
     id: 5
     x_position: 19
     y_position: 13
-max_players: 1
+max_players: 2

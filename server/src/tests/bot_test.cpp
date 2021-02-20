@@ -13,6 +13,8 @@ int static can_kill_one_diagonal_and_then_walk_a_lot();
 int static can_kill_one_far_player();
 int static can_kill_multiple_players_in_high_positions();
 int static can_kill_multiple_players_in_different_positions();
+int static can_kill_real_map();
+
 void bot_tests() {
   // Tests are not shown using std::cout, use printf instead
   begin_tests("BOT");
@@ -40,6 +42,10 @@ void bot_tests() {
 
   print_test("El bot mata a varios jugadores en distintos lugares",
                can_kill_multiple_players_in_different_positions, NO_ERROR);
+
+  print_test("El bot mata en mapa real",
+             can_kill_real_map, NO_ERROR);
+
   end_tests();
 }
 
@@ -277,4 +283,35 @@ int static can_kill_multiple_players_in_different_positions() {
       (map.get_player(24).is_dead()))
     return NO_ERROR;
   return ERROR;
+}
+
+int static can_kill_real_map(){
+  //std::string map_name("test_map_dog");
+  std::string map_name("map_bot_new");
+  Map map(map_name);
+  map.add_player(25);
+  map.add_player(26);
+
+  CollisionChecker checker(map);
+  BlockingQueue<Packet> queue;
+  Match * match = new Match(2, 1, map_name);
+  Bot bot(checker, map, 25, queue, match);
+
+
+  for (int j = 0; j < map.get_rows(); j++) {
+    for (int i = 0; i < map.get_columns(); i++) {
+      bot.load_map(j,i,  map(j, i));
+    }
+  }
+
+  for (int i = 0; i < 500; ++i) {
+    bot.execute();
+    bot.update_player();
+  }
+  delete match;
+  if (map.get_player(26).is_dead())
+    return NO_ERROR;
+
+  return ERROR;
+
 }

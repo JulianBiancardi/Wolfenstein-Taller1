@@ -63,9 +63,6 @@ void Game::operator()() {
     update();
     render();
     frame_limiter.sleep();
-    // gamesound.set_point(map.get_player(player_id).get_position());
-    // Point punto(0,0);
-    // gamesound.play_shoot(punto);
   }
 }
 

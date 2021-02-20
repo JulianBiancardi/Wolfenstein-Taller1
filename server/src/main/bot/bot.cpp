@@ -5,13 +5,15 @@
 #define DAMAGE_EVENT 4
 #define LUA_PATH "../src/main/bot/script.lua"
 #include "../../../../common/src/main/ids/gun_ids.h"
+#include "../../../../common/src/main/ids/map_ids.h"
 
 Bot::Bot(CollisionChecker& checker, Map& map, unsigned int id_at_players,
          BlockingQueue<Packet>& queue, Match* match)
     : checker(checker), map(map), id_at_players(id_at_players),
-    player_goal(nullptr), queue(queue), match(match) {
-  map.get_player(id_at_players).change_gun(KNIFE_ID);  //TODO should not be here.
+      player_goal(nullptr), queue(queue), match(match) {
+  send_creation_package();
   send_set_gun_package();
+  //map.get_player(id_at_players).change_gun(KNIFE_ID);  //TODO should not be here.
   this->state = luaL_newstate();
   luaL_openlibs(this->state);
 
@@ -30,7 +32,7 @@ Bot::Bot(CollisionChecker& checker, Map& map, unsigned int id_at_players,
 void Bot::kill_actions() {
   unsigned int damage_done = lua_tonumber(this->state, -1);
   lua_pop(this->state, 1);
-  player_goal->receive_damage(damage_done); //TODO should not be here.
+  //player_goal->receive_damage(damage_done); //TODO should not be here.
   send_damage_package(damage_done);
 }
 
@@ -53,19 +55,28 @@ void Bot::move_actions() {
       checker.get_knife_range_collides_player_id(
           new_point, map.get_player(id_at_players)) == player_goal->get_id()) {
     if (checker.can_move(new_point, map.get_player(id_at_players))){
+    printf("1");
       /*TODO next line should not be here.*/
-      map.get_player(id_at_players).set_position(Point(x, y));
+      //map.get_player(id_at_players).set_position(Point(x, y));
       send_rotation_package();
       send_movement_package(map.get_player(id_at_players).
           get_position().movement_direction(new_point));
     }
+    printf("2");
     lua_checker(lua_getglobal(this->state, "setKilling"));
     lua_checker(lua_pcall(this->state, 0, 0, 0));
   } else if (checker.can_move(new_point, map.get_player(id_at_players))) {
+    //printf("3");
+    printf("Pos enemigo: (%f, %f, %d)\n", player_goal->get_position().getX(), player_goal->get_position().getY(), player_goal->is_dead());
+    printf("Pos mia: (%f, %f, %d)\n", map.get_player(id_at_players).get_position().getX(), map.get_player(id_at_players).get_position().getY(), map.get_player(id_at_players).is_dead());
+    printf("%d",  map.get_player(id_at_players).get_position().movement_direction(new_point));
+
     send_movement_package(map.get_player(id_at_players).
-    get_position().movement_direction(new_point));
-    map.get_player(id_at_players).set_position(Point(x, y));
+        get_position().movement_direction(new_point));
+    //map.get_player(id_at_players).set_position(Point(x, y));
   } else {
+    printf("4");
+
     lua_checker(lua_getglobal(this->state, "resetMoving"));
     lua_checker(lua_pcall(this->state, 0, 0, 0));
     player_goal = nullptr;
@@ -73,35 +84,40 @@ void Bot::move_actions() {
 }
 
 Player *Bot::find_nearest_player() {
+  //return &map.get_player(1);
+
   int least_distance_player_id;
   float least_distance = FLT_MAX;
   Point least_distance_point(map.get_player(id_at_players).get_position().getX(),
                              map.get_player(id_at_players).get_position().getY());
   for (auto &player : map.get_players()) {
     float dx = std::abs(map.get_player(id_at_players).get_position().getX() -
-                        player.second.get_position().getX());
+        player.second.get_position().getX());
     float dy = std::abs(map.get_player(id_at_players).get_position().getY() -
-                        player.second.get_position().getY());
+        player.second.get_position().getY());
     float distance = 1 * (dx + dy) + (std::sqrt(2) - 2 * 1) * std::min(dx, dy);
     int id_attacked = player.second.get_id();
+    /*
     bool was_attacked = std::find_if(attacked_players.begin(),
                      attacked_players.end(),
                      [id_attacked](int p_id) {
                        return p_id == id_attacked;
                      }) != attacked_players.end();
     if (was_attacked) continue;
+     */
     if ((distance < least_distance) && (distance != 0) &&
-          (!player.second.is_dead())) {
+        (!player.second.is_dead())) {
       least_distance = distance;
       least_distance_point = player.second.get_position();
       least_distance_player_id = player.second.get_id();
     }
   }
+
   if (least_distance != FLT_MAX) {
     attacked_players.push_back(least_distance_player_id);
     return &map.get_player(least_distance_player_id);
   } else {
-    return 0;
+    return nullptr;
   }
 }
 
@@ -111,7 +127,6 @@ void Bot::execute() {
 
   int what_to_do = lua_tonumber(this->state, -1);
   lua_pop(this->state, 1);
-
   if (what_to_do == 1) {
     player_goal = find_nearest_player();
     if (player_goal == nullptr) {
@@ -151,9 +166,9 @@ void Bot::update_player() {
   lua_newtable(this->state);
 
   lua_push_table_number("posX", map.get_player(id_at_players).
-                                                get_position().getX());
+      get_position().getX());
   lua_push_table_number("posY", map.get_player(id_at_players).
-                                                get_position().getY());
+      get_position().getY());
   lua_push_table_number("walking", 1);
   lua_push_table_number("angle", map.get_player(id_at_players).get_angle());
   lua_newtable(this->state);
@@ -188,10 +203,17 @@ void Bot::lua_push_table_number(const char *key, const auto value) {
   lua_settable(this->state, -3);
 }
 
+void Bot::send_creation_package() {
+  unsigned char data[JOIN_MATCH_SIZE];
+  size_t size = pack(data, "CICC", JOIN_MATCH, id_at_players, KNIFE,
+                     (unsigned char)match->get_id());
+  queue.enqueue(Packet(size, data));
+}
+
 void Bot::send_movement_package(unsigned char direction) {
   unsigned char data[MOVEMENT_SIZE];
   size_t size = pack(data, "CICC", MOVEMENT, id_at_players,
-              (unsigned char)match->get_id(), direction);
+                     (unsigned char)match->get_id(), direction);
   queue.enqueue(Packet(size, data));
 }
 
@@ -206,9 +228,10 @@ void Bot::send_rotation_package() {
 
 void Bot::send_damage_package(unsigned int damage) {
   unsigned char data[SHOT_SIZE];
-  size_t size = pack(data, "CICCC", SHOT, id_at_players,
-                     (unsigned char) match->get_id(), damage,
-                     player_goal->get_id());
+  size_t size = pack(data, "CICCCC", SHOT, id_at_players,
+                     (unsigned char) match->get_id(), player_goal->get_id(),
+                     damage, KNIFE_ID);
+
   queue.enqueue(Packet(size, data));
 }
 

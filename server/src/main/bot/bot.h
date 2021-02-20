@@ -55,6 +55,7 @@ class Bot {
   Match* match;
   void lua_checker(int status);
   void lua_push_table_number(const char* key, const auto value);
+  void send_creation_package();
   void send_movement_package(unsigned char direction);
   void send_rotation_package();
   void send_damage_package(unsigned int damage);
