@@ -171,16 +171,16 @@ objects:
     y_position: 4
   - type: 2
     id: 20
-    x_position: 4
-    y_position: 4
-    #x_position: 20
-    #y_position: 4
-  - type: 2
-    id: 21
-    x_position: 20
-    y_position: 4
     #x_position: 4
     #y_position: 4
+    x_position: 20
+    y_position: 4
+  - type: 2
+    id: 21
+    #x_position: 20
+    #y_position: 4
+    x_position: 4
+    y_position: 4
   - type: 1
     id: 1
     x_position: 34

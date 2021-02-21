@@ -38,6 +38,7 @@ class Bot {
   void execute();
   void update_player();
   void load_map(int x, int y, int value /*todo change?*/);
+  void rotate_actions();
   void move_actions();
   void kill_actions();
   void rotate_to_player_goal();
@@ -57,7 +58,7 @@ class Bot {
   void lua_push_table_number(const char* key, const auto value);
   void send_creation_package();
   void send_movement_package(unsigned char direction);
-  void send_rotation_package();
+  void send_rotation_package(unsigned char direction);
   void send_damage_package(unsigned int damage);
   void send_set_gun_package();
 };

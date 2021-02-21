@@ -1,7 +1,7 @@
 #include "bot.h"
 
 #define MOVE_EVENT 2
-//#define GRAB 3
+#define ROTATE_EVENT 3
 #define DAMAGE_EVENT 4
 #define LUA_PATH "../src/main/bot/script.lua"
 #include "../../../../common/src/main/ids/gun_ids.h"
@@ -12,7 +12,6 @@ Bot::Bot(CollisionChecker& checker, Map& map, unsigned int id_at_players,
     : checker(checker), map(map), id_at_players(id_at_players),
       player_goal(nullptr), queue(queue), match(match) {
   send_creation_package();
-  send_set_gun_package();
   //map.get_player(id_at_players).change_gun(KNIFE_ID);  //TODO should not be here.
   this->state = luaL_newstate();
   luaL_openlibs(this->state);
@@ -24,17 +23,38 @@ Bot::Bot(CollisionChecker& checker, Map& map, unsigned int id_at_players,
   lua_newtable(this->state);
   lua_push_table_number("move", MOVE_EVENT);
   lua_push_table_number("damage", DAMAGE_EVENT);
+  lua_push_table_number("rotate", ROTATE_EVENT);
 
   lua_pushnumber(this->state, ConfigLoader::player_speed);
   lua_pushnumber(this->state, ConfigLoader::bot_positions_difference_allowed);
-  lua_checker(lua_pcall(this->state, 3, 0, 0));
+  lua_pushnumber(this->state, ConfigLoader::player_rotation_speed);
+  lua_checker(lua_pcall(this->state, 4, 0, 0));
+}
+void Bot::rotate_actions() {
+  int rotate_direction = lua_tonumber(this->state, -1);
+  lua_pop(this->state, 1);
+  //player_goal->receive_damage(damage_done); //TODO should not be here.
+  send_rotation_package((unsigned char) rotate_direction);
 }
 void Bot::kill_actions() {
   unsigned int damage_done = lua_tonumber(this->state, -1);
   lua_pop(this->state, 1);
   //player_goal->receive_damage(damage_done); //TODO should not be here.
-  send_damage_package(damage_done);
+
+  //player.second.get_position().distance_from(where) <=
+//  CL::knife_range
+
+  if (player_goal != nullptr && player_goal->get_position().
+        distance_from(map.get_player(id_at_players).get_position())<=
+      CL::knife_range) {
+    send_damage_package(damage_done);
+  }else{
+    lua_checker(lua_getglobal(this->state, "resetPlayer"));
+    lua_checker(lua_pcall(this->state, 0, 0, 0));
+    player_goal = nullptr;
+  }
 }
+
 
 void Bot::move_actions() {
   float x, y;
@@ -60,31 +80,24 @@ void Bot::move_actions() {
       checker.get_knife_range_collides_player_id(
           new_point, map.get_player(id_at_players)) == player_goal->get_id()) {
     if (checker.can_move(new_point, map.get_player(id_at_players))){
-    printf("1");
       /*TODO next line should not be here.*/
       //map.get_player(id_at_players).set_position(Point(x, y));
-      send_rotation_package();
+      //send_rotation_package(); was here
       send_movement_package(map.get_player(id_at_players).
           get_position().movement_direction(new_point));
     }
-    printf("2");
     lua_checker(lua_getglobal(this->state, "setKilling"));
     lua_checker(lua_pcall(this->state, 0, 0, 0));
   } else if (checker.can_move(new_point, map.get_player(id_at_players))) {
     //printf("3");
-    //map.get_player(id_at_players).rotate(3.14/2);
-    send_rotation_package();
-    printf("Pos enemigo: (%f, %f, %d)\n", player_goal->get_position().getX(), player_goal->get_position().getY(), player_goal->is_dead());
-    //printf("Pos mia: (%f, %f, %d) Angulo: %f\n", map.get_player(id_at_players).get_position().getX(), map.get_player(id_at_players).get_position().getY(), map.get_player(id_at_players).is_dead(), map.get_player((id_at_players)).get_angle());
-    printf("Pos mia: (%f, %f, %d)\n", map.get_player(id_at_players).get_position().getX(), map.get_player(id_at_players).get_position().getY(), map.get_player(id_at_players).is_dead());
-    //printf("%d",  map.get_player(id_at_players).get_position().movement_direction(new_point));
-    //printf("|direction: %d|", direction);
-//send_movement_package(map.get_player(id_at_players).     get_position().movement_direction(new_point));
-    //send_movement_package(direction);
+    //printf("Pos enemigo: (%f, %f, %d)\n", player_goal->get_position().getX(), player_goal->get_position().getY(), player_goal->is_dead());
+    //printf("Pos mia: (%f, %f, %d)\n", map.get_player(id_at_players).get_position().getX(), map.get_player(id_at_players).get_position().getY(), map.get_player(id_at_players).is_dead());
+    //printf("Dir: (%d)\n", direction);
+
+    send_movement_package(1); //check direction
+
     //map.get_player(id_at_players).set_position(Point(x, y));
   } else {
-    printf("4");
-
     lua_checker(lua_getglobal(this->state, "resetMoving"));
     lua_checker(lua_pcall(this->state, 0, 0, 0));
     player_goal = nullptr;
@@ -92,8 +105,6 @@ void Bot::move_actions() {
 }
 
 Player *Bot::find_nearest_player() {
-  //return &map.get_player(1);
-
   int least_distance_player_id;
   float least_distance = FLT_MAX;
   Point least_distance_point(map.get_player(id_at_players).get_position().getX(),
@@ -130,6 +141,8 @@ Player *Bot::find_nearest_player() {
 }
 
 void Bot::execute() {
+  if (map.get_player(id_at_players).get_active_gun() != KNIFE_ID)
+    send_set_gun_package();
   lua_checker(lua_getglobal(this->state, "decision"));
   lua_checker(lua_pcall(this->state, 0, 1, 0));
 
@@ -155,7 +168,11 @@ void Bot::execute() {
     lua_pushnumber(this->state, player_goal->get_position().getX());
     lua_pushnumber(this->state, player_goal->get_position().getY());
     lua_pushnumber(this->state, player_goal->get_id());
+
     lua_checker(lua_pcall(this->state, 3, 2, 0));
+  } else if (what_to_do == 4){
+    lua_checker(lua_getglobal(this->state, "rotate"));
+    lua_checker(lua_pcall(this->state, 0, 2, 0));
   }
   int type = lua_tonumber(this->state, -1);
   lua_pop(this->state, 1);
@@ -166,6 +183,9 @@ void Bot::execute() {
       break;
     case DAMAGE_EVENT:
       kill_actions();
+      break;
+    case ROTATE_EVENT:
+      rotate_actions();
       break;
   }
 }
@@ -183,8 +203,10 @@ void Bot::update_player() {
   lua_newtable(this->state);
 
   if (player_goal != nullptr) {
-    Point own_position = map.get_player(id_at_players).get_position();
     lua_push_table_number("health", player_goal->get_health());
+    lua_push_table_number("angleToGoal", map.get_player(id_at_players).
+          get_position().angle_to(player_goal->get_position()));
+
   }
   lua_checker(lua_pcall(this->state, 2, 0, 0));
 }
@@ -214,7 +236,7 @@ void Bot::lua_push_table_number(const char *key, const auto value) {
 
 void Bot::send_creation_package() {
   unsigned char data[JOIN_MATCH_SIZE];
-  size_t size = pack(data, "CICC", JOIN_MATCH, id_at_players, KNIFE,
+  size_t size = pack(data, "CICC", JOIN_MATCH, id_at_players, KNIFE_ID,
                      (unsigned char)match->get_id());
   queue.enqueue(Packet(size, data));
 }
@@ -226,63 +248,10 @@ void Bot::send_movement_package(unsigned char direction) {
   queue.enqueue(Packet(size, data));
 }
 
-void Bot::send_rotation_package() {
-  /*
-  double angle = map.get_player(id_at_players).get_position().
-      angle_to(player_goal->get_position());
+void Bot::send_rotation_package(unsigned char direction) {
   unsigned char data[ROTATION_SIZE];
-  int direction;
-
-  printf("%f", angle);
-
-  if ((angle < M_PI/8 && angle > 0) || (angle > 15*M_PI/8 && angle < 2*M_PI)) {
-    //printf("DERECHA");
-    printf("ARRIBA");
-    direction = UP;
-  }else if(angle >= M_PI/8 && angle < 3*M_PI/8){
-    //printf("ARRIBA DERECHA");
-    printf("ARRIBA IZQ");
-    direction = UP_LEFT;
-  }else if(angle >= 3*M_PI/8 && angle < 5*M_PI/8){
-    //printf("ARRIBA");
-    printf("IZQUIERDA");
-    direction = LEFT;
-  }else if(angle >= 5*M_PI/8 && angle < 7*M_PI/8){
-    //printf("ARRIBA IZQ");
-    printf("ABAJO IZQUIERDA");
-    direction = DOWN_LEFT;
-  }else if(angle >= 7*M_PI/8 && angle < 9*M_PI/8){
-    //printf("IZQ"); SEGURO
-    printf("ABAJO");
-    direction = DOWN;
-  }else if(angle >= 9*M_PI/8 && angle < 11*M_PI/8){
-    //printf("ABAJO IZQ");
-    printf("ABAJO DERECHA");
-    direction = DOWN_RIGHT;
-  }else if(angle >= 11*M_PI/8 && angle < 13*M_PI/8){
-    //printf("ABAJO");
-    printf("DERECHA");
-    direction = RIGHT;
-  }else if(angle >= 13*M_PI/8 && angle < 15*M_PI/8){
-    //printf("ABAJO DER");
-    printf("ARRIBA DERECHA");
-    direction = UP_RIGHT;
-  }else{
-    printf("ERROR");
-  }
   size_t size = pack(data, "CICC", ROTATION, id_at_players,
-                     (unsigned char) match->get_id(), "LEFT");
-  queue.enqueue(Packet(size, data));
-   */
-  double angle_to_goal = map.get_player(id_at_players).get_position().
-      angle_to(player_goal->get_position());
-  double own_angle = map.get_player(id_at_players).get_angle();
-  printf("|%f||%f|", angle_to_goal, own_angle);
-  printf("|%f|", abs(angle_to_goal - own_angle));
-  unsigned char data[ROTATION_SIZE];
-  int direction;
-  size_t size = pack(data, "CICC", ROTATION, id_at_players,
-                     (unsigned char) match->get_id(), "LEFT");
+                     (unsigned char) match->get_id(), direction);
   queue.enqueue(Packet(size, data));
 
 }
