@@ -34,6 +34,8 @@ double CL::player_rotation_speed =
     CL::yaml_file["player_rotation_speed"].as<double>();
 int CL::player_knife_mask_radio =
     CL::yaml_file["player_knife_mask_radio"].as<int>();
+double CL::player_ghost_speed =
+    CL::yaml_file["player_ghost_speed"].as<double>();
 
 // Bot
 int CL::bot_positions_difference_allowed =
@@ -108,6 +110,7 @@ double CL::rocket_max_damage = CL::yaml_file["rocket_max_damage"].as<double>();
 double CL::rocket_min_damage = CL::yaml_file["rocket_min_damage"].as<double>();
 
 // Other
+unsigned int CL::first_id = CL::yaml_file["first_id"].as<unsigned int>();
 unsigned int CL::match_length =
     CL::yaml_file["match_length"].as<unsigned int>();
 unsigned int CL::door_timer = CL::yaml_file["door_timer"].as<unsigned int>();

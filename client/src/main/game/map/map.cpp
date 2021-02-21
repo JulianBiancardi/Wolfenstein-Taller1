@@ -1,6 +1,8 @@
 #include "map.h"
 
 #include "map_loader.h"
+#include "../../../../common/src/main/ids/map_ids.h"
+#include "../../../../../common/src/main/ids/gun_ids.h"
 
 Map::Map(Matrix<int>& map_matrix)
     : BaseMap(map_matrix),
@@ -8,7 +10,8 @@ Map::Map(Matrix<int>& map_matrix)
       ambient_objects(),
       items(),
       players(),
-      loader(drawables, players_shootable, ambient_objects, items, players) {}
+      loader(drawables, players_shootable, ambient_objects, items, players,
+             rockets) {}
 
 Map::Map(const std::string& map_name)
     : BaseMap(map_name),
@@ -16,7 +19,8 @@ Map::Map(const std::string& map_name)
       ambient_objects(),
       items(),
       players(),
-      loader(drawables, players_shootable, ambient_objects, items, players) {
+      loader(drawables, players_shootable, ambient_objects, items, players,
+             rockets) {
   loader.load_map(map_name);
 }
 
@@ -29,9 +33,8 @@ void Map::update() {
   }
 }
 
-void Map::add_item(unsigned int item_id, const Ray& position,
-                   unsigned char item_type) {
-  loader.add_item(position, item_type, item_id);
+void Map::add_item(unsigned char item_type, const Ray& position) {
+  loader.add_item(position, item_type);
 }
 
 void Map::add_player(unsigned int player_id, const Ray& position) {
@@ -61,11 +64,11 @@ void Map::shoot_player(unsigned int player_id, unsigned char damage,
 
   if (player->is_dead()) {
     damager->add_kill();
+    add_drop(player_id);
     if (player->has_lives_left()) {
       player->respawn();
-      // TODO Add items
     } else {
-      // TODO Ghost mode?
+      player->respawn_as_ghost();
     }
   }
 }
@@ -88,27 +91,81 @@ int Map::pick_item(unsigned int player_id, unsigned int item_id) {
 }
 
 Hit Map::update_gun(unsigned int player_id, bool trigger) {
-  return std::move(
-      players.at(player_id)->update_gun(*this, trigger, players_shootable));
+  auto player = players.at(player_id);
+
+  if (player->is_dead()) {
+    return std::move(Hit(0, 0, 0, false));
+  }
+
+  return std::move(player->update_gun(*this, trigger, players_shootable));
 }
 
-void Map::shoot_rocket(unsigned int player_id, unsigned int rocket_id) {
-  const Point& player_position = players.at(player_id)->get_position();
-  double angle = players.at(player_id)->get_angle();
+void Map::shoot_rocket(unsigned int player_id) {
+  use_bullets(player_id, ROCKET_LAUNCHER_ID);
+  auto player = players.at(player_id);
+
+  const Point& player_position = player->get_position();
+  double angle = player->get_angle();
 
   double front_x = player_position.getX() + cos(angle) * CL::player_mask_radio;
   double front_y = player_position.getY() - sin(angle) * CL::player_mask_radio;
 
-  Ray spawn_point(front_x, front_y, 0.0);
+  Ray spawn_point(front_x, front_y, angle);
 
-  std::shared_ptr<Rocket> rocket =
-      std::make_shared<Rocket>(spawn_point, rocket_id, player_id);
-  rockets.insert(std::make_pair(rocket_id, rocket));
-  drawables.push_back(rocket);
+  loader.add_rocket(spawn_point, player_id);
 }
 
 void Map::move_rocket(unsigned int rocket_id) { rockets.at(rocket_id)->move(); }
 
 unsigned int Map::get_rocket_owner_id(unsigned int rocket_id) {
   return rockets.at(rocket_id)->get_owner_id();
+}
+
+void Map::explode_rocket(unsigned int rocket_id) {
+  // Show animation here
+  rockets.erase(rocket_id);
+}
+
+void Map::add_bullets_drop(std::shared_ptr<Player>& dead_player) {
+  Ray where(dead_player->get_position().getX(),
+            dead_player->get_position().getY(), 0);
+
+  add_item(BULLETS, where);
+}
+
+void Map::add_gun_drop(std::shared_ptr<Player>& dead_player) {
+  Ray where(dead_player->get_position().getX() +
+                CL::drop_distance_from_dead_player * CL::items_mask_radio,
+            dead_player->get_position().getY(), 0);
+
+  switch (dead_player->get_gun()) {
+    case MACHINE_GUN_ID: add_item(MACHINE_GUN, where);
+      break;
+    case CHAIN_CANNON_ID: add_item(CHAIN_CANNON, where);
+      break;
+    case ROCKET_LAUNCHER_ID: add_item(ROCKET_LAUNCHER, where);
+      break;
+    default: break;
+  }
+}
+
+void Map::add_key_drop(std::shared_ptr<Player>& dead_player) {
+  Ray where(dead_player->get_position().getX() -
+                CL::drop_distance_from_dead_player * CL::items_mask_radio,
+            dead_player->get_position().getY(), 0);
+
+  add_item(KEY, where);
+}
+
+void Map::add_drop(unsigned int player_id) {
+  auto dead_player = players.at(player_id);
+  add_bullets_drop(dead_player);
+
+  if (dead_player->has_droppable_gun()) {
+    add_gun_drop(dead_player);
+  }
+
+  if (dead_player->has_keys()) {
+    add_key_drop(dead_player);
+  }
 }

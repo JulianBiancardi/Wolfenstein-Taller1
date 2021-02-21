@@ -573,7 +573,7 @@ int static rocket_spawns_where_it_should() {
 
   while (match.move_player(1, UP) && match.grab_item(1) == 0);
 
-  unsigned int rocket_id = match.shoot_rocket(1);
+  match.shoot_rocket(1);
 
   if (match.move_player(1, UP)) {
     return ERROR;
@@ -595,9 +595,9 @@ int static rocket_moves_once_correctly() {
 
   while (match.move_player(1, UP) && match.grab_item(1) == 0);
 
-  unsigned int rocket_id = match.shoot_rocket(1);
+  match.shoot_rocket(1);
 
-  if (!match.move_rocket(rocket_id)) {
+  if (!match.move_rocket(3)) {
     return ERROR;
   }
 
@@ -622,9 +622,9 @@ int static rocket_moves_until_it_finds_a_player() {
 
   while (match.move_player(1, UP) && match.grab_item(1) == 0);
 
-  unsigned int rocket_id = match.shoot_rocket(1);
+  match.shoot_rocket(1);
 
-  while (match.move_rocket(rocket_id));
+  while (match.move_rocket(3));
 
   // FIXME
   if (!match.move_player(2, DOWN) && match.move_player(2, DOWN)) {
@@ -648,12 +648,11 @@ int static rocket_explodes_and_damages_player() {
 
   while (match.move_player(1, UP) && match.grab_item(1) == 0);
 
-  unsigned int rocket_id = match.shoot_rocket(1);
+  match.shoot_rocket(1);
 
-  while (match.move_rocket(rocket_id));
+  while (match.move_rocket(3));
 
-  std::unordered_map<unsigned int, unsigned char>
-      damages = match.explode_rocket(rocket_id, 1);
+  std::map<unsigned int, unsigned char> damages = match.explode_rocket(3, 1);
 
   if (match.get_players().at(2).get_health() == CL::player_health) {
     return ERROR;
@@ -685,12 +684,11 @@ int static rocket_explodes_and_damages_multiple_players() {
 
   while (match.move_player(1, UP) && match.grab_item(1) == 0);
 
-  unsigned int rocket_id = match.shoot_rocket(1);
+  match.shoot_rocket(1);
 
-  while (match.move_rocket(rocket_id));
+  while (match.move_rocket(3));
 
-  std::unordered_map<unsigned int, unsigned char>
-      damages = match.explode_rocket(rocket_id, 1);
+  std::map<unsigned int, unsigned char> damages = match.explode_rocket(3, 1);
 
   if (match.get_players().at(2).get_health() == CL::player_health) {
     return ERROR;

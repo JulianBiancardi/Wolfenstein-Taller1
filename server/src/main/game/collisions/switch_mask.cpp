@@ -17,3 +17,9 @@ bool SwitchMask::occupies(const Point& where) const {
     return false;
   }
 }
+
+Mask* SwitchMask::get_copy(const Point& center) {
+  return new SwitchMask(mask->get_copy(center));
+}
+
+Mask* SwitchMask::get_mask() const { return mask; }

@@ -14,6 +14,9 @@ class BoxMask : public Mask {
 
   /* Returns if the mask occupies the point sent or not */
   bool occupies(const Point& where) const override;
+
+  /* Returns a copy */
+  Mask* get_copy(const Point& center) override;
 };
 
 #endif

@@ -107,10 +107,6 @@ bool Match::move_player(unsigned int player_id, unsigned char direction) {
                      player_id);
   }
 
-  if (is_dead(player_id)) {
-    return false;
-  }
-
   Player& player = map.get_player(player_id);
   Point requested_position = player.next_position(direction);
 
@@ -131,10 +127,6 @@ bool Match::rotate_player(unsigned int player_id, unsigned char direction) {
   if (!player_exists(player_id)) {
     throw MatchError("Failed to rotate player. Player %u doesn't exist.",
                      player_id);
-  }
-
-  if (is_dead(player_id)) {
-    return false;
   }
 
   map.get_player(player_id).rotate(direction);
@@ -274,14 +266,14 @@ bool Match::is_using_rocket_launcher(unsigned int player_id) {
   return player.is_using_rocket_launcher();
 }
 
-unsigned int Match::shoot_rocket(unsigned int player_id) {
+void Match::shoot_rocket(unsigned int player_id) {
   if (!player_exists(player_id)) {
     throw MatchError("Failed to create rocket. Player %u doesn't exist.",
                      player_id);
   }
 
   if (is_dead(player_id)) {
-    return false;
+    return;
   }
 
   Player& shooter = map.get_player(player_id);
@@ -292,14 +284,12 @@ unsigned int Match::shoot_rocket(unsigned int player_id) {
         player_id);
   }
 
-  Point spawn_point = shooter.collision_mask_bound(shooter.get_position());
+  Point spawn_point = shooter.collision_mask_bound(shooter.next_position(UP));
   double spawn_angle = shooter.get_angle();
 
   unsigned int rocket_id = map.add_rocket(spawn_point, spawn_angle);
   ((ClockThread*) threads.at(CLOCK_KEY))
       ->add_rocket_controller(rocket_id, player_id);
-
-  return rocket_id;
 }
 
 bool Match::move_rocket(unsigned int rocket_id) {
@@ -327,17 +317,18 @@ unsigned char calculate_damage(Moveable& rocket, Player& player) {
   double distance = rocket_center.distance_from(player_center);
 
   /* Damage(distance) = a / distance + b
-   * Damage(0) = CL::rocket_max_damage
+   * Damage(CL::player_mask_radio) = CL::rocket_max_damage
    * Damage(CL::rocket_explosion_radius) = CL::rocket_min_damage
    */
-  double b = CL::rocket_min_damage * CL::rocket_explosion_radius /
-      (CL::rocket_max_damage - CL::rocket_min_damage);
-  double a = CL::rocket_max_damage * b;
+  double b = (CL::rocket_min_damage * CL::rocket_explosion_radius
+      - CL::rocket_max_damage * CL::player_mask_radio)
+      / (CL::rocket_max_damage - CL::rocket_min_damage);
+  double a = CL::rocket_max_damage * (CL::player_mask_radio + b);
 
   return (unsigned char) (a / (distance + b));
 }
 
-std::unordered_map<unsigned int, unsigned char> Match::explode_rocket(
+std::map<unsigned int, unsigned char> Match::explode_rocket(
     unsigned int rocket_id, unsigned int owner_id) {
   if (!map.object_exists(rocket_id)) {
     throw MatchError("Failed to explode rocket. Rocket %u doesn't exist.",
@@ -350,7 +341,7 @@ std::unordered_map<unsigned int, unsigned char> Match::explode_rocket(
   std::vector<unsigned int> players_exploded =
       checker.get_players_in_radius(next_position, CL::rocket_explosion_radius);
 
-  std::unordered_map<unsigned int, unsigned char> return_map;
+  std::map<unsigned int, unsigned char> return_map;
 
   for (auto id : players_exploded) {
     Player& player = map.get_player(id);
@@ -358,7 +349,7 @@ std::unordered_map<unsigned int, unsigned char> Match::explode_rocket(
 
     damage_player(id, owner_id, damage);
 
-    return_map.insert({id, damage});
+    return_map.insert(std::make_pair(id, damage));
   }
 
   map.delete_object(rocket_id);
@@ -384,10 +375,6 @@ void Match::kill_player(unsigned int player_id) {
                      player_id);
   }
 
-  if (is_dead(player_id)) {
-    return;
-  }
-
   Player& player = map.get_player(player_id);
 
   map.add_drop(player);
@@ -395,7 +382,7 @@ void Match::kill_player(unsigned int player_id) {
   if (player.has_extra_lives()) {
     player.respawn();
   } else {
-    delete_player(player_id);
+    player.respawn_as_ghost();
   }
 }
 

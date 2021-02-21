@@ -29,7 +29,7 @@ GameCaster::GameCaster(Window& window, Map& map, unsigned int player_id)
       window(window),
       res_manager(window),
       player_id(player_id),
-      hud(renderer, window) {}
+      hud(window, res_manager) {}
 
 GameCaster::~GameCaster() {}
 

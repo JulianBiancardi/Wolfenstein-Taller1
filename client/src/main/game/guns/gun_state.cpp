@@ -21,3 +21,10 @@ void GunState::update(bool shot) {
     return;
   }
 }
+
+void GunState::set_slice(SDL_Rect& slice, double angle) {
+  slice.x = 0;
+  slice.y = 0;
+  slice.w = 64;
+  slice.h = 64;
+}

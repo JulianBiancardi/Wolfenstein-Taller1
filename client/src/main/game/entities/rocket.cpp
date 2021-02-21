@@ -3,7 +3,7 @@
 #include "../../../../../common/src/main/ids/map_ids.h"
 
 // TODO Add res_id
-Rocket::Rocket(Ray& position, unsigned int id, unsigned int owner_id)
+Rocket::Rocket(const Ray& position, unsigned int id, unsigned int owner_id)
     : IdentifiableObject(position, 1, id), owner_id(owner_id) {}
 
 void Rocket::move() {

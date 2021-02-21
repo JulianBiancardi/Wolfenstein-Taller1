@@ -8,7 +8,7 @@ class Rocket : public IdentifiableObject {
   unsigned int owner_id;
 
  public:
-  Rocket(Ray& position, unsigned int id, unsigned int owner_id);
+  Rocket(const Ray& position, unsigned int id, unsigned int owner_id);
 
   /* Moves the rocket */
   void move();

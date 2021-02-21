@@ -16,6 +16,9 @@ class Mask {
 
   /* Returns mask's center */
   const Point& get_center() { return center; }
+
+  /* Returns a copy */
+  virtual Mask* get_copy(const Point& center) = 0;
 };
 
 #endif

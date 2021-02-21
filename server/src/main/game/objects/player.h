@@ -74,6 +74,9 @@ class Player : public Moveable {
   /* Returns if the player is using a rocket launcher */
   bool is_using_rocket_launcher() const;
 
+  /* Player is respawned as a ghost */
+  void respawn_as_ghost();
+
   /* Adders */
   void add_bullets(int amount);
   void add_points(int amount);

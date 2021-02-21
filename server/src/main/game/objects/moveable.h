@@ -7,10 +7,12 @@
 
 class Moveable : public Object, public Identifiable {
  private:
-  double speed;
   double rotation_speed;
 
   Point next_position(double direction_angle);
+
+ protected:
+  double speed;
 
  public:
   Moveable(double x, double y, double angle, double speed,

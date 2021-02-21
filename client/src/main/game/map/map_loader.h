@@ -9,14 +9,18 @@
 #include "../entities/items/item.h"
 #include "../entities/object.h"
 #include "../entities/player.h"
+#include "../entities/rocket.h"
 
 class MapLoader {
  private:
+  unsigned int next_id;
+
   std::vector<std::weak_ptr<Object>>& drawables;
   std::vector<std::weak_ptr<IdentifiableObject>>& players_shootable;
   std::vector<std::shared_ptr<Object>>& ambient_objects;
   std::unordered_map<unsigned int, std::shared_ptr<Item>>& items;
   std::unordered_map<unsigned int, std::shared_ptr<Player>>& players;
+  std::unordered_map<unsigned int, std::shared_ptr<Rocket>>& rockets;
 
   void add_object(const Ray& position, unsigned int resource_id);
 
@@ -25,13 +29,14 @@ class MapLoader {
             std::vector<std::weak_ptr<IdentifiableObject>>& players_shootable,
             std::vector<std::shared_ptr<Object>>& ambient_objects,
             std::unordered_map<unsigned int, std::shared_ptr<Item>>& items,
-            std::unordered_map<unsigned int, std::shared_ptr<Player>>& players);
+            std::unordered_map<unsigned int, std::shared_ptr<Player>>& players,
+            std::unordered_map<unsigned int, std::shared_ptr<Rocket>>& rockets);
   ~MapLoader();
 
   void load_map(const std::string& map_name);
   void add_player(const Ray& position, unsigned int player_id);
-  void add_item(const Ray& position, unsigned int resource_id,
-                unsigned int item_id);
+  void add_item(const Ray& position, unsigned int resource_id);
+  void add_rocket(const Ray& position, unsigned int player_id);
 };
 
 #endif

@@ -2,34 +2,35 @@
 
 #include <cmath>
 
+#include "../collisions/switch_mask.h"
 #include "../collisions/circle_mask.h"
 
 Moveable::Moveable(double x, double y, double angle, double speed,
                    double rotation_speed, double radius, unsigned int id)
     : Object(Point(x, y), angle,
-             new CircleMask(radius, position.get_ref_origin())),
+             new SwitchMask(new CircleMask(radius, position.get_ref_origin()))),
       Identifiable(id),
       speed(speed),
       rotation_speed(rotation_speed) {}
 
 Moveable::Moveable(const Point& origin, double angle, double speed,
                    double rotation_speed, double radius, unsigned int id)
-    : Object(origin, angle, new CircleMask(radius, position.get_ref_origin())),
+    : Object(origin, angle,
+             new SwitchMask(new CircleMask(radius, position.get_ref_origin()))),
       Identifiable(id),
       speed(speed),
       rotation_speed(rotation_speed) {}
 
 Moveable::Moveable(const Ray& position, double speed, double rotation_speed,
                    double radius, unsigned int id)
-    : Object(position, new CircleMask(radius, position.get_ref_origin())),
+    : Object(position,
+             new SwitchMask(new CircleMask(radius, position.get_ref_origin()))),
       Identifiable(id),
       speed(speed),
       rotation_speed(rotation_speed) {}
 
 Moveable::Moveable(const Moveable& other)
-    : Object(other.position,
-             new CircleMask(((CircleMask*) other.mask)->get_radius(),
-                            position.get_ref_origin())),
+    : Object(other),
       Identifiable(other.id),
       speed(other.speed),
       rotation_speed(other.rotation_speed) {}
@@ -72,11 +73,11 @@ void Moveable::rotate(int direction) {
 
 Point Moveable::collision_mask_bound(const Point& next_position) {
   double angle = position.get_origin().angle_to(next_position);
+  double mask_radius = ((CircleMask*) (((SwitchMask*) mask)->get_mask()))
+      ->get_radius();
 
-  double front_x = next_position.getX()
-      + cos(angle) * ((CircleMask*) mask)->get_radius();
-  double front_y = next_position.getY()
-      - sin(angle) * ((CircleMask*) mask)->get_radius();
+  double front_x = next_position.getX() + cos(angle) * mask_radius;
+  double front_y = next_position.getY() - sin(angle) * mask_radius;
 
   return Point(front_x, front_y);
 }

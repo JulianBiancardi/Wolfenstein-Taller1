@@ -6,6 +6,10 @@ Object::Object(const Point& center, double angle, Mask* mask)
 Object::Object(const Ray& position, Mask* mask)
     : position(position), mask(mask) {}
 
+Object::Object(const Object& other)
+    : position(other.position),
+      mask(other.mask->get_copy(position.get_ref_origin())) {}
+
 Object::~Object() { delete mask; }
 
 bool Object::occupies(const Point& where) const {

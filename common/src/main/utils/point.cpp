@@ -14,13 +14,13 @@ Point& Point::operator=(const Point& other) {
   return *this;
 }
 
-Point::~Point() {}
+Point::~Point() = default;
 
-bool Point::operator==(const Point& other) {
+bool Point::operator==(const Point& other) const {
   return (this->x == other.x && this->y == other.y);
 }
 
-bool Point::operator!=(const Point& other) {
+bool Point::operator!=(const Point& other) const {
   return (this->x != other.x || this->y != other.y);
 }
 
@@ -57,31 +57,31 @@ int Point::movement_direction(const Point& next_point) {
                  next_point.getY())) {
     return UP_LEFT;
   } else if (are_equals(this->getX(), next_point.getX()) &&
-             are_equals(this->getY() - CL::player_speed, next_point.getY())) {
+      are_equals(this->getY() - CL::player_speed, next_point.getY())) {
     return UP;
   } else if (are_equals(this->getX() + CL::player_speed * sqrt(2) / 2,
                         next_point.getX()) &&
-             are_equals(this->getY() - CL::player_speed * sqrt(2) / 2,
-                        next_point.getY())) {
+      are_equals(this->getY() - CL::player_speed * sqrt(2) / 2,
+                 next_point.getY())) {
     return UP_RIGHT;
   } else if (are_equals(this->getX() + CL::player_speed, next_point.getX()) &&
-             are_equals(this->getY(), next_point.getY())) {
+      are_equals(this->getY(), next_point.getY())) {
     return RIGHT;
   } else if (are_equals(this->getX() + CL::player_speed * sqrt(2) / 2,
                         next_point.getX()) &&
-             are_equals(this->getY() + CL::player_speed * sqrt(2) / 2,
-                        next_point.getY())) {
+      are_equals(this->getY() + CL::player_speed * sqrt(2) / 2,
+                 next_point.getY())) {
     return DOWN_RIGHT;
   } else if (are_equals(this->getX(), next_point.getX()) &&
-             are_equals(this->getY() + CL::player_speed, next_point.getY())) {
+      are_equals(this->getY() + CL::player_speed, next_point.getY())) {
     return DOWN;
   } else if (are_equals(this->getX() - CL::player_speed * sqrt(2) / 2,
                         next_point.getX()) &&
-             are_equals(this->getY() + CL::player_speed * sqrt(2) / 2,
-                        next_point.getY())) {
+      are_equals(this->getY() + CL::player_speed * sqrt(2) / 2,
+                 next_point.getY())) {
     return DOWN_LEFT;
   } else if (are_equals(this->getX() - CL::player_speed, next_point.getX()) &&
-             are_equals(this->getY(), next_point.getY())) {
+      are_equals(this->getY(), next_point.getY())) {
     return LEFT;
   } else {
     return INVALID_MOVEMENT;
