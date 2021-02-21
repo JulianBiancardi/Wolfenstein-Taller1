@@ -45,8 +45,8 @@ void Bot::kill_actions() {
       get_player(id_at_players).get_position())<=CL::knife_range) ) {
     send_damage_package(damage_done);
   }else{
-    printf("%f", player_goal->get_position().distance_from(map.
-      get_player(id_at_players).get_position()));
+    //printf("%f", player_goal->get_position().distance_from(map.
+      //get_player(id_at_players).get_position()));
     lua_checker(lua_getglobal(this->state, "resetPlayer"));
     lua_checker(lua_pcall(this->state, 0, 0, 0));
     player_goal = nullptr;
@@ -186,8 +186,6 @@ void Bot::execute() {
     case ROTATE_EVENT:
       rotate_actions();
       break;
-    default:
-      printf("|%d|", type);
   }
 }
 void Bot::update_player() {
