@@ -82,7 +82,7 @@ class Map : public BaseMap {
   const std::vector<Object*>& get_unidentifiable_objects() const;
 
   /* Returns if only has one player or not */
-  bool has_one_player() const;
+  bool has_one_player_alive() const;
 
   /* Adds player's death drop */
   void add_drop(Player& dead_player);

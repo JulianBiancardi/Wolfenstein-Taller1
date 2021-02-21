@@ -23,7 +23,7 @@ void PacketHandler::game_over(Match& match, ClientManager& client_manager) {
   unsigned char match_id = match.get_id();
 
   unsigned char data[GAME_OVER_SIZE];
-  size_t size = pack(data, "CC", GAME_OVER, match_id);
+  size_t size = pack(data, "CI", GAME_OVER, match_id);
   Packet packet(size, data);
 
   BlockingQueue<Packet>& reception_queue = client_manager.get_reception_queue();

@@ -4,7 +4,6 @@
 #include <iostream>
 #include "door_timer.h"
 #include "rocket_controller.h"
-#include "lock.h"
 #include "../../../../common/src/main/packets/packing.h"
 
 #define SECONDS_PER_TICS 1 / TICS_PER_SECOND
@@ -28,7 +27,7 @@ ClockThread::~ClockThread() {
 }
 
 void ClockThread::update_timed_events() {
-  Lock lock(this->mutex);
+  const std::lock_guard<std::mutex> lock(this->mutex);
   for (auto it = timed_events.begin(); it != timed_events.end();) {
     (*it).second->update();
 
@@ -43,7 +42,7 @@ void ClockThread::update_timed_events() {
 
 void ClockThread::end_game() {
   unsigned char data[GAME_OVER_SIZE];
-  size_t size = pack(data, "CC", GAME_OVER, &match_id);
+  size_t size = pack(data, "CI", GAME_OVER, match_id);
   Packet packet(size, data);
 
   reception_queue.enqueue(packet);
@@ -86,7 +85,7 @@ unsigned int get_door_id(unsigned int door_id) {
 }
 
 void ClockThread::add_door_timer(unsigned int door_id) {
-  Lock lock(this->mutex);
+  const std::lock_guard<std::mutex> lock(this->mutex);
   unsigned int id = get_door_id(door_id);
 
   if (timed_event_exist(id)) {
@@ -98,7 +97,7 @@ void ClockThread::add_door_timer(unsigned int door_id) {
 }
 
 void ClockThread::delete_door_timer(unsigned int door_id) {
-  Lock lock(this->mutex);
+  const std::lock_guard<std::mutex> lock(this->mutex);
   unsigned int id = get_door_id(door_id);
 
   if (timed_event_exist(id)) {
@@ -113,7 +112,7 @@ unsigned int get_rocket_id(unsigned int rocket_id) {
 
 void ClockThread::add_rocket_controller(unsigned int rocket_id,
                                         unsigned int player_id) {
-  Lock lock(this->mutex);
+  const std::lock_guard<std::mutex> lock(this->mutex);
   unsigned int id = get_rocket_id(rocket_id);
 
   if (timed_event_exist(id)) {
@@ -127,7 +126,7 @@ void ClockThread::add_rocket_controller(unsigned int rocket_id,
 }
 
 void ClockThread::delete_rocket_controller(unsigned int rocket_id) {
-  Lock lock(this->mutex);
+  const std::lock_guard<std::mutex> lock(this->mutex);
   unsigned int id = get_rocket_id(rocket_id);
 
   if (timed_event_exist(id)) {

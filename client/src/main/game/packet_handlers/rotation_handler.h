@@ -12,7 +12,8 @@ class RotationHandler : public PacketHandler {
   RotationHandler();
   ~RotationHandler();
 
-  void handle(Packet &packet, Map &map, GameSound &sound) override;
+  /* Returns if game should continue or not */
+  bool handle(Packet& packet, Map& map, GameSound& sound) override;
 };
 
 #endif

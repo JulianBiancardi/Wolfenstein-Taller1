@@ -6,7 +6,7 @@ GrabHandler::GrabHandler() {}
 
 GrabHandler::~GrabHandler() {}
 
-void GrabHandler::handle(Packet &packet, Map &map, GameSound &sound) {
+bool GrabHandler::handle(Packet& packet, Map& map, GameSound& sound) {
   unsigned char type;
   unsigned int player_id;
   unsigned int item_id;
@@ -14,4 +14,6 @@ void GrabHandler::handle(Packet &packet, Map &map, GameSound &sound) {
 
   int res_id = map.pick_item(player_id, item_id);
   sound.play_item_grab(map.get_player(player_id).get_position(), res_id);
+
+  return true;
 }

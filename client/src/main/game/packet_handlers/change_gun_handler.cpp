@@ -6,7 +6,7 @@ ChangeGunHandler::ChangeGunHandler() {}
 
 ChangeGunHandler::~ChangeGunHandler() {}
 
-void ChangeGunHandler::handle(Packet &packet, Map &map, GameSound &sound) {
+bool ChangeGunHandler::handle(Packet& packet, Map& map, GameSound& sound) {
   unsigned char type;
   unsigned int player_id;
   unsigned char match_id;
@@ -17,4 +17,6 @@ void ChangeGunHandler::handle(Packet &packet, Map &map, GameSound &sound) {
     map.change_gun(player_id, gun_id);
     sound.play_gun_change(map.get_player(player_id).get_position(), gun_id);
   }
+
+  return true;
 }

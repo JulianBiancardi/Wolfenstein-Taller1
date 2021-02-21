@@ -121,6 +121,9 @@ class Player : public IdentifiableObject {
   /* Returns if it has key */
   bool has_keys() const;
 
+  /* Returns player's amount of killed enemies */
+  unsigned int get_kills() const;
+
   /* Updates its state */
   void update();
 

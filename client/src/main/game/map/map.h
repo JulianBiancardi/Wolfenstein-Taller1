@@ -44,6 +44,9 @@ class Map : public BaseMap {
   /* Returns a constant reference to a player given its id. */
   const Player& get_player(unsigned int player_id) const;
 
+  /* Returns players as vector. */
+  std::vector<std::shared_ptr<Player>> get_players() const;
+
   void update();
   void add_item(unsigned char item_type, const Ray& position);
   void add_player(unsigned int player_id, const Ray& position);

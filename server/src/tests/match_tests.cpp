@@ -98,8 +98,6 @@ int static can_move_up_player() {
 
   Point final_position = match.get_players().at(1).get_position();
 
-  match.end();
-
   if (double_compare(final_position.getX(),
                      initial_position.getX() + CL::player_speed, EPSILON)
       && initial_position.getY() == final_position.getY())
@@ -123,8 +121,6 @@ int static can_move_up_player_two_times() {
   match.move_player(1, UP);
 
   Point final_position = match.get_players().at(1).get_position();
-
-  match.end();
 
   if (double_compare(final_position.getX(),
                      initial_position.getX() + 2 * CL::player_speed, EPSILON)
@@ -151,8 +147,6 @@ int static can_move_up_until_wall() {
 
   Point final_position = match.get_players().at(1).get_position();
 
-  match.end();
-
   if (double_compare(final_position.getX(),
                      initial_position.getX()
                          + movements_made * CL::player_speed, EPSILON)
@@ -172,8 +166,6 @@ int static grabs_medic_kit_and_restores_all_health() {
   match.start(1, queue_mock);
 
   while (match.move_player(1, UP) && match.grab_item(1) == 0);
-
-  match.end();
 
   if (match.get_players().at(1).is_full_health())
     return NO_ERROR;
@@ -195,8 +187,6 @@ int static grabs_medic_kit_and_restores_health_correctly() {
 
   // Walks until wall
   while (match.move_player(1, UP) && match.grab_item(1) == 0);
-
-  match.end();
 
   if (match.get_players().at(1).get_health() == CL::player_health - 1)
     return NO_ERROR;
@@ -229,8 +219,6 @@ int static grabs_blood_only_when_health_is_less_than_eleven() {
   // Walks until blood
   while (match.move_player(1, DOWN) && match.grab_item(1) == 0);
 
-  match.end();
-
   if (match.get_players().at(1).get_health() == 10 + CL::blood_health_recovered)
     return NO_ERROR;
 
@@ -259,8 +247,6 @@ int static medic_kit_disappears_after_grabbing_it() {
   // Walks until medic kit
   while (match.move_player(1, DOWN) && match.grab_item(1) == 0);
 
-  match.end();
-
   if (match.get_players().at(1).get_health()
       == 5 + CL::medic_kit_health_recovered)
     return NO_ERROR;
@@ -287,8 +273,6 @@ int static player_shoots_enemy() {
       != CL::player_bullets - CL::pistol_bullet_required)
     return ERROR;
 
-  match.end();
-
   return NO_ERROR;
 }
 
@@ -309,8 +293,6 @@ int static player_shoots_nobody() {
   if (match.get_players().at(1).get_bullets()
       != CL::player_bullets - CL::pistol_bullet_required)
     return ERROR;
-
-  match.end();
 
   return NO_ERROR;
 }
@@ -352,8 +334,6 @@ int static player_shoots_enemy_over_blood_and_grabs_it() {
       != CL::player_bullets - CL::pistol_bullet_required)
     return ERROR;
 
-  match.end();
-
   return NO_ERROR;
 }
 
@@ -375,8 +355,6 @@ int static player_grabs_bullets() {
   if (match.get_players().at(1).get_bullets()
       != CL::player_bullets + CL::bullets_amount)
     return ERROR;
-
-  match.end();
 
   return NO_ERROR;
 }
@@ -405,8 +383,6 @@ int static player_changes_gun() {
   if (match.get_players().at(1).get_active_gun() != MACHINE_GUN_ID)
     return ERROR;
 
-  match.end();
-
   return NO_ERROR;
 }
 
@@ -427,8 +403,6 @@ int static player_kills_enemy_and_it_respawns() {
   }
 
   match.shoot_gun(1, 2, CL::player_health + 1);
-
-  match.end();
 
   if (match.get_players().at(2).get_position() == initial_position)
     return NO_ERROR;
@@ -456,12 +430,7 @@ int static player_kills_enemy_and_it_is_no_longer_in_the_map() {
                       10 - 1 - CL::player_mask_radio, EPSILON))
     return ERROR;
 
-  match.end();
-
-  if (match.get_players().size() == 1)
-    return NO_ERROR;
-
-  return ERROR;
+  return NO_ERROR;
 }
 
 int static player_cannot_grab_gun() {
@@ -489,8 +458,6 @@ int static player_cannot_grab_gun() {
     if (match.grab_item(1) != 0)
       return ERROR;
   }
-
-  match.end();
 
   return NO_ERROR;
 }
@@ -536,8 +503,6 @@ int static player_kills_enemy_and_grabs_drop() {
       != CL::player_bullets + CL::bullets_respawn_amount)
     return ERROR;
 
-  match.end();
-
   return NO_ERROR;
 }
 
@@ -556,8 +521,6 @@ int static player_grabs_point_items() {
   if (match.get_players().at(1).get_points()
       != CL::crown_points + CL::cup_points)
     return ERROR;
-
-  match.end();
 
   return NO_ERROR;
 }
@@ -579,8 +542,6 @@ int static rocket_spawns_where_it_should() {
     return ERROR;
   }
 
-  match.end();
-
   return NO_ERROR;
 }
 
@@ -597,15 +558,13 @@ int static rocket_moves_once_correctly() {
 
   match.shoot_rocket(1);
 
-  if (!match.move_rocket(3)) {
+  if (!match.move_rocket(2)) {
     return ERROR;
   }
 
   if (match.move_player(1, UP) && !match.move_player(1, UP)) {
     return ERROR;
   }
-
-  match.end();
 
   return NO_ERROR;
 }
@@ -624,14 +583,12 @@ int static rocket_moves_until_it_finds_a_player() {
 
   match.shoot_rocket(1);
 
-  while (match.move_rocket(3));
+  while (match.move_rocket(2));
 
   // FIXME
   if (!match.move_player(2, DOWN) && match.move_player(2, DOWN)) {
     return ERROR;
   }
-
-  match.end();
 
   return NO_ERROR;
 }
@@ -650,9 +607,9 @@ int static rocket_explodes_and_damages_player() {
 
   match.shoot_rocket(1);
 
-  while (match.move_rocket(3));
+  while (match.move_rocket(2));
 
-  std::map<unsigned int, unsigned char> damages = match.explode_rocket(3, 1);
+  std::map<unsigned int, unsigned char> damages = match.explode_rocket(2, 1);
 
   if (match.get_players().at(2).get_health() == CL::player_health) {
     return ERROR;
@@ -665,8 +622,6 @@ int static rocket_explodes_and_damages_player() {
   if (damages.size() != 1) {
     return ERROR;
   }
-
-  match.end();
 
   return NO_ERROR;
 }
@@ -686,9 +641,9 @@ int static rocket_explodes_and_damages_multiple_players() {
 
   match.shoot_rocket(1);
 
-  while (match.move_rocket(3));
+  while (match.move_rocket(2));
 
-  std::map<unsigned int, unsigned char> damages = match.explode_rocket(3, 1);
+  std::map<unsigned int, unsigned char> damages = match.explode_rocket(2, 1);
 
   if (match.get_players().at(2).get_health() == CL::player_health) {
     return ERROR;
@@ -714,8 +669,6 @@ int static rocket_explodes_and_damages_multiple_players() {
   if (damages.size() != 2) {
     return ERROR;
   }
-
-  match.end();
 
   return NO_ERROR;
 }

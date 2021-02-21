@@ -118,6 +118,8 @@ bool Player::has_droppable_gun() {
 
 bool Player::has_keys() const { return keys != 0; }
 
+unsigned int Player::get_kills() const { return players_killed; }
+
 void Player::set_gun(int gun_num) {
   if (guns_bag.find(gun_num) != guns_bag.end()) {
     active_gun = gun_num;

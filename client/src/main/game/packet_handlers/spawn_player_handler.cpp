@@ -6,7 +6,7 @@ SpawnPlayerHandler::SpawnPlayerHandler() {}
 
 SpawnPlayerHandler::~SpawnPlayerHandler() {}
 
-void SpawnPlayerHandler::handle(Packet &packet, Map &map, GameSound &sound) {
+bool SpawnPlayerHandler::handle(Packet& packet, Map& map, GameSound& sound) {
   unsigned char type;
   unsigned int player_id;
   unsigned char x_pos;
@@ -14,4 +14,6 @@ void SpawnPlayerHandler::handle(Packet &packet, Map &map, GameSound &sound) {
   unpack(packet.get_data(), "CICC", &type, &player_id, &x_pos, &y_pos);
 
   map.add_player(player_id, Ray(x_pos + 0.5, y_pos + 0.5, 0));
+
+  return true;
 }
