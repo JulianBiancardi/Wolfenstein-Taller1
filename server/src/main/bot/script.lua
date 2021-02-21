@@ -314,7 +314,7 @@ end
 
 function shouldRotate()
     local difference = enemy.angleToGoal - player.angle
-    if  math.abs(difference) < 0.5 then
+    if  math.abs(difference) < 0.25 then --0.5 ideal
         return false
     else
         return true
@@ -331,26 +331,23 @@ function rotate(--[[angleToGoal]])
     ]]
     local difference = enemy.angleToGoal - player.angle
     if shouldRotate(enemy.angleToGoal) then
-        if player.angle + rotationSpeed > player.angle - rotationSpeed then
-            print("A")
-            return 2, packets.rotate --change 1
+        local add = player.angle + rotationSpeed
+        local substract = player.angle - rotationSpeed
+        local next_difference_add = enemy.angleToGoal - add
+        local next_difference_subtract = enemy.angleToGoal - substract
+
+        if math.abs(next_difference_add) > math.abs(next_difference_subtract) then
+            --print("A")
+            return 1, packets.rotate --change 1
         else
-            print("B")
-            return 1, packets.rotate --change 2
+            --print("B")
+            return 2, packets.rotate --change 2
         end
     else
         player.rotating = 0
         player.moving = 1
         return 0, 25 --No hago nada. Se pierde una iteración . TODO CHECK
     end
-
-    --[[
-    //double angle_to_goal = map.get_player(id_at_players).get_position().
-//  angle_to(player_goal->get_position());
-    //double own_angle = map.get_player(id_at_players).get_angle();
-    //printf("|%f||%f|", angle_to_goal, own_angle);
-    //printf("|%f|", abs(angle_to_goal - own_angle));
-]]
 end
 
 function decision()

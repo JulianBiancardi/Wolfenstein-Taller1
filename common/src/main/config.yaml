@@ -31,7 +31,7 @@ bot_positions_difference_allowed: 1 #less than knife_range
 # Guns
 bullet_max_damage: 10
 
-knife_range: 1.5
+knife_range: 1.6
 
 pistol_range: 20
 pistol_bullet_required: 1

@@ -40,15 +40,13 @@ void Bot::kill_actions() {
   unsigned int damage_done = lua_tonumber(this->state, -1);
   lua_pop(this->state, 1);
   //player_goal->receive_damage(damage_done); //TODO should not be here.
-
-  //player.second.get_position().distance_from(where) <=
-//  CL::knife_range
-
-  if (player_goal != nullptr && player_goal->get_position().
-        distance_from(map.get_player(id_at_players).get_position())<=
-      CL::knife_range) {
+  if ((player_goal != nullptr) && (!player_goal->is_dead()) &&
+      (player_goal->get_position().distance_from(map.
+      get_player(id_at_players).get_position())<=CL::knife_range) ) {
     send_damage_package(damage_done);
   }else{
+    printf("%f", player_goal->get_position().distance_from(map.
+      get_player(id_at_players).get_position()));
     lua_checker(lua_getglobal(this->state, "resetPlayer"));
     lua_checker(lua_pcall(this->state, 0, 0, 0));
     player_goal = nullptr;
@@ -79,12 +77,13 @@ void Bot::move_actions() {
   if (player_goal != nullptr &&
       checker.get_knife_range_collides_player_id(
           new_point, map.get_player(id_at_players)) == player_goal->get_id()) {
+
     if (checker.can_move(new_point, map.get_player(id_at_players))){
       /*TODO next line should not be here.*/
       //map.get_player(id_at_players).set_position(Point(x, y));
       //send_rotation_package(); was here
-      send_movement_package(map.get_player(id_at_players).
-          get_position().movement_direction(new_point));
+      //send_movement_package(map.get_player(id_at_players).
+        //  get_position().movement_direction(new_point)); //todo this was here check.
     }
     lua_checker(lua_getglobal(this->state, "setKilling"));
     lua_checker(lua_pcall(this->state, 0, 0, 0));
