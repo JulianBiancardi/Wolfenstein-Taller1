@@ -1,6 +1,7 @@
 #include "door.h"
 
-Door::Door() {}
+Door::Door(size_t x, size_t y, unsigned int resource_id)
+    : x_pos(x), y_pos(y), resource_id(resource_id) {}
 
 Door::~Door() {}
 

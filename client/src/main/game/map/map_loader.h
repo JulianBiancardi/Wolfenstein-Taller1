@@ -19,8 +19,9 @@ class MapLoader {
   std::unordered_map<unsigned int, std::shared_ptr<Item>>& items;
   std::unordered_map<unsigned int, std::shared_ptr<Player>>& players;
   std::unordered_map<std::pair<unsigned int, unsigned int>,
-                     std::shared_ptr<Door>, pairHasher>& doors;
+                     std::unique_ptr<Door>, pairHasher>& doors;
 
+  void add_door(unsigned int x, unsigned int y, unsigned int resource_id);
   void add_object(const Ray& position, unsigned int resource_id);
 
  public:
@@ -30,7 +31,7 @@ class MapLoader {
             std::unordered_map<unsigned int, std::shared_ptr<Item>>& items,
             std::unordered_map<unsigned int, std::shared_ptr<Player>>& players,
             std::unordered_map<std::pair<unsigned int, unsigned int>,
-                               std::shared_ptr<Door>, pairHasher>& doors);
+                               std::unique_ptr<Door>, pairHasher>& doors);
   ~MapLoader();
 
   void load_map(const std::string& map_name);

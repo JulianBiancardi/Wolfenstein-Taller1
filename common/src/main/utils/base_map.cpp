@@ -1,7 +1,7 @@
 #include "base_map.h"
 
 #define AIR 0  // TODO Remove this and ask in Config
-
+#include "../ids/map_ids.h"
 #include "yaml-cpp/yaml.h"
 
 // TODO Eventually remove
@@ -29,7 +29,7 @@ void BaseMap::load_map_matrix() {
     const YAML::Node& object = *iter;
 
     int type = object["type"].as<int>();
-    if (type != 1) {
+    if (type != WALLS_TYPE && type != DOORS_TYPE) {
       continue;
     }
 
@@ -52,11 +52,14 @@ const std::string& BaseMap::get_name() const { return map_name; }
 
 unsigned char BaseMap::get_capacity() const { return player_capacity; }
 
+bool BaseMap::is_air(size_t x, size_t y) { return map_matrix(x, y) == AIR; }
+
 bool BaseMap::is_wall(size_t x, size_t y) {
-  if (map_matrix(x, y) != AIR) {
-    return true;
-  }
-  return false;
+  return !is_air(x, y) && !is_door(x, y);
+}
+
+bool BaseMap::is_door(size_t x, size_t y) {
+  return (map_matrix(x, y) == DOOR || map_matrix(x, y) == LOCKED_DOOR);
 }
 
 int BaseMap::operator()(size_t x, size_t y) { return map_matrix(x, y); }

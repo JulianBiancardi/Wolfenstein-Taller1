@@ -6,11 +6,13 @@
 
 class Door : public Drawable {
  private:
+  size_t x_pos;
+  size_t y_pos;
   unsigned int resource_id;
   DoorState state;
 
  public:
-  Door();
+  Door(size_t x, size_t y, unsigned int resource_id);
   ~Door();
 
   void open();

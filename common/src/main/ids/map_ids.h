@@ -8,6 +8,7 @@
 #define ITEMS_TYPE 4
 #define SOLID_OBJECTS_TYPE 5
 #define NON_SOLID_OBJECTS_TYPE 6
+#define DOORS_TYPE 7
 
 // Walls
 #define AIR 0

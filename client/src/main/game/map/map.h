@@ -30,7 +30,7 @@ class Map : public BaseMap {
   std::unordered_map<unsigned int, std::shared_ptr<Item>> items;
   std::unordered_map<unsigned int, std::shared_ptr<Player>> players;
   std::unordered_map<std::pair<unsigned int, unsigned int>,
-                     std::shared_ptr<Door>, pairHasher>
+                     std::unique_ptr<Door>, pairHasher>
       doors;
   MapLoader loader;
 

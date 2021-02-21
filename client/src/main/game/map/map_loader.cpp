@@ -26,7 +26,7 @@ MapLoader::MapLoader(
     std::unordered_map<unsigned int, std::shared_ptr<Item>>& items,
     std::unordered_map<unsigned int, std::shared_ptr<Player>>& players,
     std::unordered_map<std::pair<unsigned int, unsigned int>,
-                       std::shared_ptr<Door>, pairHasher>& doors)
+                       std::unique_ptr<Door>, pairHasher>& doors)
     : drawables(drawables),
       players_shootable(players_shootable),
       ambient_objects(ambient_objects),
@@ -105,7 +105,8 @@ void MapLoader::load_map(const std::string& map_name) {
     const YAML::Node& object = *iter;
 
     int type = object["type"].as<int>();
-    if (!(type == SOLID_OBJECTS_TYPE || type == NON_SOLID_OBJECTS_TYPE)) {
+    if (!(type == SOLID_OBJECTS_TYPE || type == NON_SOLID_OBJECTS_TYPE ||
+          type == DOORS_TYPE)) {
       continue;
     }
 
@@ -113,7 +114,11 @@ void MapLoader::load_map(const std::string& map_name) {
     size_t x = object["x_position"].as<int>();
     size_t y = object["y_position"].as<int>();
 
-    add_object(Ray(x + 0.5, y + 0.5, 0.0), resource_id);
+    if (type == DOORS_TYPE) {
+      add_door(x, y, resource_id);
+    } else {
+      add_object(Ray(x + 0.5, y + 0.5, 0.0), resource_id);
+    }
   }
 }
 
@@ -123,4 +128,10 @@ void MapLoader::add_object(const Ray& position, unsigned int resource_id) {
   std::weak_ptr<Object> object_weak_ptr(new_object);
   ambient_objects.push_back(new_object);
   drawables.push_back(object_weak_ptr);
+}
+
+void MapLoader::add_door(unsigned int x, unsigned int y,
+                         unsigned int resource_id) {
+  std::unique_ptr<Door> door(new Door(x, y, resource_id));
+  doors.insert(std::make_pair(std::make_pair(x, y), door));
 }

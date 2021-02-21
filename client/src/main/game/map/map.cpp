@@ -8,7 +8,8 @@ Map::Map(Matrix<int>& map_matrix)
       ambient_objects(),
       items(),
       players(),
-      loader(drawables, players_shootable, ambient_objects, items, players) {}
+      loader(drawables, players_shootable, ambient_objects, items, players,
+             doors) {}
 
 Map::Map(const std::string& map_name)
     : BaseMap(map_name),
@@ -16,7 +17,8 @@ Map::Map(const std::string& map_name)
       ambient_objects(),
       items(),
       players(),
-      loader(drawables, players_shootable, ambient_objects, items, players) {
+      loader(drawables, players_shootable, ambient_objects, items, players,
+             doors) {
   loader.load_map(map_name);
 }
 
