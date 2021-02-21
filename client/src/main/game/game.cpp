@@ -15,10 +15,8 @@
 #include "packet_handlers/packet_handler.h"
 #include "packet_handlers/packet_handler_factory.h"
 #include "rendering/frame_limiter.h"
+#include "rendering/laderboard/laderboard.h"
 
-#define UNIT 3
-#define SCREEN_WIDTH (320 * UNIT)
-#define SCREEN_HEIGHT (200 * UNIT)
 #define GAME_NAME "Wolfenstein 3D"
 
 #define FORWARD_FLAG 0

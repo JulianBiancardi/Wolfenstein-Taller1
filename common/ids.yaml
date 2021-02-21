@@ -221,4 +221,56 @@
   name: "Locked Door"
   image: "..."
   icon: "..."
+
+#HUD
+100:
+  type: 0
+  name: "HUD Background"
+  image: "../../res/images/hud/IMG_HUD_Background.png"
+  icon: "..."
+101:
+  type: 0
+  name: "HUD BJ faces"
+  image: "../../res/images/hud/IMG_HUD_BJFaces.png"
+  icon: "..."
+102:
+  type: 0
+  name: "HUD Number"
+  image: "../../res/images/hud/IMG_HUD_Numbers.png"
+  icon: "..." 
+103:
+  type: 0
+  name: "HUD Key"
+  image: "../../res/images/hud/IMG_HUD_Key1.png"
+  icon: "..."  
+104:
+  type: 0
+  name: "HUD Knife"
+  image: "../../res/images/hud/IMG_HUD_Knife.png"
+  icon: "..."  
+105:
+  type: 0
+  name: "HUD Pistol"
+  image: "../../res/images/hud/IMG_HUD_Pistol.png"
+  icon: "..." 
+106:
+  type: 0
+  name: "HUD ChainCannon"
+  image: "../../res/images/hud/IMG_HUD_ChainCannon.png"
+  icon: "..." 
+107:
+  type: 0
+  name: "HUD Machine gun"
+  image: "../../res/images/hud/IMG_HUD_MachineGun.png"
+  icon: "..." 
+108:
+  type: 0
+  name: "HUD Rocket Launcher"
+  image: "../../res/images/hud/IMG_HUD_RocketLauncher.png"
+  icon: "..." 
+109:
+  type: 0
+  name: "HUD Death text"
+  image: "../../res/images/hud/IMG_HUD_Death.png"
+  icon: "..." 
 ...
