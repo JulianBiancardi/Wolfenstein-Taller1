@@ -142,10 +142,6 @@ function is_position_updated()
     if prev_node == nil then
         return true
     end
-    --[[    local x_info = math.abs(prev_node.x - player.posX)
-                / prev_node.x * 100
-        local y_info = math.abs(prev_node.y - player.posY)
-                / prev_node.y * 100]]
     local x_info = math.abs(prev_node.x - player.posX)
     local y_info = math.abs(prev_node.y - player.posY)
 
@@ -335,18 +331,15 @@ function rotate(--[[angleToGoal]])
         local substract = player.angle - rotationSpeed
         local next_difference_add = enemy.angleToGoal - add
         local next_difference_subtract = enemy.angleToGoal - substract
-
         if math.abs(next_difference_add) > math.abs(next_difference_subtract) then
-            --print("A")
             return 1, packets.rotate --change 1
         else
-            --print("B")
             return 2, packets.rotate --change 2
         end
     else
         player.rotating = 0
         player.moving = 1
-        return 0, 25 --No hago nada. Se pierde una iteración . TODO CHECK
+        return 0, 0
     end
 end
 

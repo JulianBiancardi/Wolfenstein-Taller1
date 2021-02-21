@@ -186,6 +186,8 @@ void Bot::execute() {
     case ROTATE_EVENT:
       rotate_actions();
       break;
+    default:
+      printf("|%d|", type);
   }
 }
 void Bot::update_player() {
