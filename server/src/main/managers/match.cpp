@@ -12,11 +12,16 @@ Match::Match(unsigned int host_id, unsigned char match_id,
       map(map_name),
       checker(map),
       started(false),
-      ended(false),
       match_id(match_id) {}
 
 Match::~Match() {
-  end();
+  if (started) {
+    ((ClockThread*) threads.at(CLOCK_KEY))->force_stop();
+
+    for (auto thread : threads) {
+      thread.second->join();
+    }
+  }
 
   for (auto thread : threads) {
     delete thread.second;
@@ -454,19 +459,4 @@ void Match::delete_player(unsigned int player_id) {
   //players_ids.erase(player_id);
 }
 
-bool Match::should_end() const { return map.has_one_player(); }
-
-void Match::end() {
-  if (ended || !started) {
-    return;
-  }
-
-  ((ClockThread*) threads.at(CLOCK_KEY))->force_stop();
-//  threads.at(CLOCK_KEY)->join();
-  for (auto thread: threads) {
-    thread.second->join();
-  }
-  // Force_stop and join other threads
-
-  ended = true;
-}
+bool Match::should_end() const { return map.has_one_player_alive(); }

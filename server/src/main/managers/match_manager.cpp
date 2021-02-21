@@ -19,7 +19,7 @@ MatchManager::get_matches() {
 
 Match& MatchManager::get_match(unsigned char match_id) {
   if (!match_exists(match_id)) {
-    throw MatchManagerError("Failed to get match. The match %u doesn't exist.",
+    throw MatchManagerError("Failed to get match. Match %u doesn't exist.",
                             match_id);
   }
 
@@ -47,4 +47,13 @@ unsigned char MatchManager::find_match_of_player(unsigned int player_id) {
     }
   }
   return 0;
+}
+
+void MatchManager::delete_match(unsigned char match_id) {
+  if (!match_exists(match_id)) {
+    throw MatchManagerError("Failed to delete match. Match %u doesn't exist.",
+                            match_id);
+  }
+
+  matches.erase(match_id);
 }

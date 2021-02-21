@@ -12,7 +12,8 @@ class ShotHandler : public PacketHandler {
   ShotHandler();
   ~ShotHandler();
 
-  void handle(Packet &packet, Map &map, GameSound &sound) override;
+  /* Returns if game should continue or not */
+  bool handle(Packet& packet, Map& map, GameSound& sound) override;
 };
 
 #endif

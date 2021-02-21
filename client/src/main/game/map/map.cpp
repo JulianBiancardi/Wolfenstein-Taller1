@@ -47,6 +47,16 @@ const Player& Map::get_player(unsigned int player_id) const {
   return *(players.at(player_id));
 }
 
+std::vector<std::shared_ptr<Player>> Map::get_players() const {
+  std::vector<std::shared_ptr<Player>> players_vector;
+
+  for (const auto& player : players) {
+    players_vector.push_back(player.second);
+  }
+
+  return players_vector;
+}
+
 void Map::move_player(unsigned int player_id, unsigned char direction) {
   players.at(player_id)->move(direction);
 }

@@ -6,7 +6,7 @@ SpawnPlayerHandler::SpawnPlayerHandler() {}
 
 SpawnPlayerHandler::~SpawnPlayerHandler() {}
 
-void SpawnPlayerHandler::handle(Packet &packet, Map &map, GameSound &sound) {
+bool SpawnPlayerHandler::handle(Packet& packet, Map& map, GameSound& sound) {
   unsigned char type;
   unsigned int player_id;
   unsigned char player_gun;
@@ -16,4 +16,6 @@ void SpawnPlayerHandler::handle(Packet &packet, Map &map, GameSound &sound) {
          &x_pos, &y_pos);
   printf("TEST %d", player_id);
   map.add_player(player_id, Ray(x_pos + 0.5, y_pos + 0.5, 0));
+
+  return true;
 }

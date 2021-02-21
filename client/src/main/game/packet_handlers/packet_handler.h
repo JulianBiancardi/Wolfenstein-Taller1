@@ -12,7 +12,8 @@ class PacketHandler {
   PacketHandler();
   ~PacketHandler();
 
-  virtual void handle(Packet &packet, Map &map, GameSound &sound) = 0;
+  /* Returns if game should continue or not */
+  virtual bool handle(Packet& packet, Map& map, GameSound& sound) = 0;
 };
 
 #endif

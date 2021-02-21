@@ -3,8 +3,8 @@
 TimedEvent::TimedEvent(unsigned int duration,
                        BlockingQueue<Packet>& queue,
                        unsigned char match_id)
-    : initial_time(duration * TICS_PER_SECOND),
-      remaining_time(duration * TICS_PER_SECOND),
+    : initial_time(duration),
+      remaining_time(duration),
       reception_queue(queue),
       match_id(match_id),
       should_delete(false) {}

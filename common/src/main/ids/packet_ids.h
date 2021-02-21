@@ -81,6 +81,9 @@
 #define ROCKET_EXPLODE_MAX_PLAYERS 5
 #define ROCKET_EXPLODE_SIZE 3 + ROCKET_EXPLODE_MAX_PLAYERS * 3
 
+#define GAME_OVER 18
+#define GAME_OVER_SIZE 3
+
 //==============================
 
 #define DOOR_INTERACTION 12
@@ -88,8 +91,5 @@
 
 #define CLOSE_DOOR 13
 #define CLOSE_DOOR_SIZE 5
-
-#define GAME_OVER 17
-#define GAME_OVER_SIZE 2
 
 #endif

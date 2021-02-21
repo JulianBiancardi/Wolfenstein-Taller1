@@ -6,7 +6,7 @@ RotationHandler::RotationHandler() {}
 
 RotationHandler::~RotationHandler() {}
 
-void RotationHandler::handle(Packet &packet, Map &map, GameSound &sound) {
+bool RotationHandler::handle(Packet& packet, Map& map, GameSound& sound) {
   unsigned char type;
   unsigned int player_id;
   unsigned char match_id;
@@ -14,4 +14,6 @@ void RotationHandler::handle(Packet &packet, Map &map, GameSound &sound) {
   unpack(packet.get_data(), "CICC", &type, &player_id, &match_id, &direction);
 
   map.rotate_player(player_id, direction);
+
+  return true;
 }

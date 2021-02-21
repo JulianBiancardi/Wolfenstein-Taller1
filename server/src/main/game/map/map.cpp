@@ -97,7 +97,17 @@ const std::vector<Object*>& Map::get_unidentifiable_objects() const {
   return unidentifiable_objects;
 }
 
-bool Map::has_one_player() const { return players.size() == 1; }
+bool Map::has_one_player_alive() const {
+  unsigned int players_alive = 0;
+
+  for (auto player : players) {
+    if (!player.second.is_dead()) {
+      players_alive += 1;
+    }
+  }
+
+  return players_alive == 1;
+}
 
 // Where is dropped was arbitrary chosen
 void Map::add_bullets_drop(Player& dead_player) {

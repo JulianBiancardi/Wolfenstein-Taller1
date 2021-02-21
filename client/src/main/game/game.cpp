@@ -16,6 +16,7 @@
 #include "packet_handlers/packet_handler_factory.h"
 #include "rendering/frame_limiter.h"
 #include "rendering/laderboard/laderboard.h"
+#include "leaderboard.h"
 
 #define GAME_NAME "Wolfenstein 3D"
 
@@ -62,6 +63,9 @@ void Game::operator()() {
     render();
     frame_limiter.sleep();
   }
+
+  Leaderboard leaderboard(std::move(map.get_players()));
+  leaderboard.show();
 }
 
 void Game::spawn_self() {
@@ -81,89 +85,65 @@ void Game::handle_events() {
   SDL_Event event;
   while (SDL_PollEvent(&event)) {
     switch (event.type) {
-      case SDL_QUIT:
-        this->is_running = false;
+      case SDL_QUIT: this->is_running = false;
         break;
-      case SDL_KEYDOWN:
-        handle_key_press(event.key.keysym.sym);
+      case SDL_KEYDOWN: handle_key_press(event.key.keysym.sym);
         break;
-      case SDL_KEYUP:
-        handle_key_release(event.key.keysym.sym);
+      case SDL_KEYUP: handle_key_release(event.key.keysym.sym);
         break;
-      case SDL_MOUSEBUTTONDOWN:
-        handle_click(event.button);
+      case SDL_MOUSEBUTTONDOWN: handle_click(event.button);
         break;
-      case SDL_MOUSEBUTTONUP:
-        handle_unclick(event.button);
+      case SDL_MOUSEBUTTONUP: handle_unclick(event.button);
         break;
-      default:
-        break;
+      default:break;
     }
   }
 }
 
 void Game::handle_key_press(SDL_Keycode& key) {
   switch (key) {
-    case SDLK_w:
-      input_flags[FORWARD_FLAG] = true;
+    case SDLK_w: input_flags[FORWARD_FLAG] = true;
       break;
-    case SDLK_s:
-      input_flags[BACKWARD_FLAG] = true;
+    case SDLK_s: input_flags[BACKWARD_FLAG] = true;
       break;
-    case SDLK_a:
-      input_flags[LEFT_FLAG] = true;
+    case SDLK_a: input_flags[LEFT_FLAG] = true;
       break;
-    case SDLK_d:
-      input_flags[RIGHT_FLAG] = true;
+    case SDLK_d: input_flags[RIGHT_FLAG] = true;
       break;
-    case SDLK_e:
-      input_flags[ROTATE_RIGHT_FLAG] = true;
+    case SDLK_e: input_flags[ROTATE_RIGHT_FLAG] = true;
       break;
-    case SDLK_q:
-      input_flags[ROTATE_LEFT_FLAG] = true;
+    case SDLK_q: input_flags[ROTATE_LEFT_FLAG] = true;
       break;
-    case SDLK_1:
-      input_flags[GUN_CHANGE_FLAG] = KNIFE_ID;
+    case SDLK_1: input_flags[GUN_CHANGE_FLAG] = KNIFE_ID;
       break;
-    case SDLK_2:
-      input_flags[GUN_CHANGE_FLAG] = PISTOL_ID;
+    case SDLK_2: input_flags[GUN_CHANGE_FLAG] = PISTOL_ID;
       break;
-    case SDLK_3:
-      input_flags[GUN_CHANGE_FLAG] = MACHINE_GUN_ID;
+    case SDLK_3: input_flags[GUN_CHANGE_FLAG] = MACHINE_GUN_ID;
       break;
-    case SDLK_4:
-      input_flags[GUN_CHANGE_FLAG] = CHAIN_CANNON_ID;
+    case SDLK_4: input_flags[GUN_CHANGE_FLAG] = CHAIN_CANNON_ID;
       break;
-    case SDLK_5:
-      input_flags[GUN_CHANGE_FLAG] = ROCKET_LAUNCHER_ID;
+    case SDLK_5: input_flags[GUN_CHANGE_FLAG] = ROCKET_LAUNCHER_ID;
       break;
     case SDLK_RETURN:  // Enter
       input_flags[ENTER_FLAG] = true;
       break;
-    default:
-      break;
+    default:break;
   }
 }
 
 void Game::handle_key_release(SDL_Keycode& key) {
   switch (key) {
-    case SDLK_w:
-      input_flags[FORWARD_FLAG] = false;
+    case SDLK_w: input_flags[FORWARD_FLAG] = false;
       break;
-    case SDLK_s:
-      input_flags[BACKWARD_FLAG] = false;
+    case SDLK_s: input_flags[BACKWARD_FLAG] = false;
       break;
-    case SDLK_a:
-      input_flags[LEFT_FLAG] = false;
+    case SDLK_a: input_flags[LEFT_FLAG] = false;
       break;
-    case SDLK_d:
-      input_flags[RIGHT_FLAG] = false;
+    case SDLK_d: input_flags[RIGHT_FLAG] = false;
       break;
-    case SDLK_e:
-      input_flags[ROTATE_RIGHT_FLAG] = false;
+    case SDLK_e: input_flags[ROTATE_RIGHT_FLAG] = false;
       break;
-    case SDLK_q:
-      input_flags[ROTATE_LEFT_FLAG] = false;
+    case SDLK_q: input_flags[ROTATE_LEFT_FLAG] = false;
       break;
     case SDLK_1:
       if (input_flags[GUN_CHANGE_FLAG] == KNIFE_ID) {
@@ -190,11 +170,9 @@ void Game::handle_key_release(SDL_Keycode& key) {
         input_flags[GUN_CHANGE_FLAG] = false;
       }
       break;
-    case SDLK_RETURN:
-      input_flags[ENTER_FLAG] = false;
+    case SDLK_RETURN:input_flags[ENTER_FLAG] = false;
       break;
-    default:
-      break;
+    default:break;
   }
 }
 
@@ -348,7 +326,7 @@ void Game::update() {
     try {
       std::unique_ptr<PacketHandler> handler(
           PacketHandlerFactory::build(packet));
-      handler->handle(packet, map, gamesound);
+      is_running = handler->handle(packet, map, gamesound);
     } catch (const PacketHandlerFactoryError& e) {
       syslog(LOG_ERR, "Packet received hasn't got a valid type.");
     }

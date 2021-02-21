@@ -31,6 +31,11 @@ class MatchManager {
 
   /* Finds and returns the match id of the player */
   unsigned char find_match_of_player(unsigned int player_id);
+
+  /* Deletes a match.
+   * Throws MatchManagerError if the id doesn't match any match.
+   */
+  void delete_match(unsigned char match_id);
 };
 
 #endif

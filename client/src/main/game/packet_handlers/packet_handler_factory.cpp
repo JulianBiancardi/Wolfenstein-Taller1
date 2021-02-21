@@ -11,6 +11,7 @@
 #include "rotation_handler.h"
 #include "shot_handler.h"
 #include "spawn_player_handler.h"
+#include "game_over_handler.h"
 
 PacketHandler* PacketHandlerFactory::build(Packet& packet) {
   switch (packet.get_type()) {
@@ -24,6 +25,7 @@ PacketHandler* PacketHandlerFactory::build(Packet& packet) {
     case ROCKET_ADD: return new AddRocketHandler();
     case ROCKET_MOVE: return new MoveRocketHandler();
     case ROCKET_EXPLODE: return new ExplodeRocketHandler();
+    case GAME_OVER: return new GameOverHandler();
       /*
       case DOOR_PACKET:
         return new nullptr;  // TODO
