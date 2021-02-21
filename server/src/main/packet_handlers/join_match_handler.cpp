@@ -1,5 +1,6 @@
 #include "join_match_handler.h"
 
+#include "../../../../common/src/main/ids/gun_ids.h"
 #include "../../../../common/src/main/packets/packing.h"
 #include "../../../../common/src/main/utils/point.h"
 #include "../managers/match.h"
@@ -19,7 +20,7 @@ void JoinMatchHandler::handle(Packet& packet, ClientManager& client_manager,
 
   Match& match = match_manager.get_match(match_id);
 
-  if (player_gun == KNIFE) {
+  if (player_gun == KNIFE_ID) {
     client_manager.send_to(player_id, packet);
     notify_spawn(player_id, player_gun, match, client_manager);
     notify_all_spawns(player_id, player_gun, match, client_manager);
