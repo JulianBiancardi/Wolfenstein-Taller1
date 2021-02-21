@@ -14,7 +14,7 @@ BotThread::BotThread(CollisionChecker& collision_checker, Map& map,
 
 void BotThread::run() {
   while (this->running){
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(50)); //100
     this->bot.execute();
     this->bot.update_player();
   }

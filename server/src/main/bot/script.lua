@@ -1,6 +1,6 @@
 map = {}
 player = {killing = 0, moving = 0, inited = false }
-position = {x=0, y=0}
+position = {x=0, y=0, direction = 0 }
 enemy = {id = 0, health = -1}
 pace = 1
 differenceAllowed = 5
@@ -57,40 +57,57 @@ end
 
 function move()
     player.moving = 1
+    --return position, packets.move
     return position, packets.move
 end
 
 function move_up_left()
     position.x = player.posX - 1 * math.sqrt(2)/2 * pace
     position.y = player.posY - 1 * math.sqrt(2)/2 * pace
+    --print("UP_LEFT 2")
+    position.direction = 2
 end
 function move_up()
     position.x = player.posX
     position.y = player.posY - 1 * pace
+    --print("UP 1")
+    position.direction = 1
 end
 function move_up_right()
     position.x = player.posX + 1 * math.sqrt(2)/2 * pace
     position.y = player.posY - 1 * math.sqrt(2)/2 * pace
+    --print("UP RIGHT 8")
+    position.direction = 8
 end
 function move_right()
     position.x = player.posX + 1 * pace
     position.y = player.posY
+    --print("RIGHT 7")
+    position.direction = 7
 end
 function move_down_right()
     position.x = player.posX + 1 * math.sqrt(2)/2 * pace
     position.y = player.posY + 1 * math.sqrt(2)/2 * pace
+    --print("DOWN RIGHT 6")
+    position.direction = 6
 end
 function move_down()
     position.x = player.posX
     position.y = player.posY + 1 * pace
+    --print("DOWN 5")
+    position.direction = 5
 end
 function move_down_left()
     position.x = player.posX - 1 * math.sqrt(2)/2 * pace
     position.y = player.posY + 1 * math.sqrt(2)/2 * pace
+    --print("DOWN_LEFT 4")
+    position.direction = 4
 end
 function move_left()
     position.x = player.posX - 1 * pace
     position.y = player.posY
+    --print("LEFT 3")
+    position.direction = 3
 end
 
 function is_position_updated()
