@@ -455,8 +455,7 @@ void Match::delete_player(unsigned int player_id) {
                      player_id);
   }
 
-  map.delete_player(player_id);
-  //players_ids.erase(player_id);
+  players_ids.erase(player_id);
 }
 
 bool Match::should_end() const { return map.has_one_player_alive(); }

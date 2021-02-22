@@ -95,7 +95,7 @@ void GameCaster::draw_wall(Collision& collision, size_t screen_pos,
       ray_angle, map.get_player(player_id).get_angle(),
       collision.get_distance_from_src());
   int wall_size = (SCALING_FACTOR * window.get_height()) /
-                  (projected_distance * image->get_height());
+      (projected_distance * image->get_height());
 
   size_t img_width = image->get_width();
   size_t img_height = image->get_height();
@@ -110,9 +110,9 @@ void GameCaster::draw_wall(Collision& collision, size_t screen_pos,
     line = x_offset * img_width;
   }
 
-  SDL_Rect pos = {(int)screen_pos, (window.get_height() / 2) - (wall_size / 2),
+  SDL_Rect pos = {(int) screen_pos, (window.get_height() / 2) - (wall_size / 2),
                   1, wall_size};
-  SDL_Rect slice = {line, 0, 1, (int)img_height};
+  SDL_Rect slice = {line, 0, 1, (int) img_height};
   image->draw(&pos, &slice);
 }
 
@@ -165,7 +165,7 @@ void GameCaster::draw_object(Object& object, double distance,
     if (x0 < 0) {
       continue;
     }
-    if (x0 > window.get_width()) {
+    if (x0 >= window.get_width()) {
       break;
     }
     if (wall_distances[x0] < projected_distance) {
@@ -175,7 +175,7 @@ void GameCaster::draw_object(Object& object, double distance,
     SDL_Rect pos = {x0, (window.get_height() / 2) - (sprite_size / 2), 1,
                     sprite_size};
     SDL_Rect* slice = object.get_slice(&player_angle);
-    slice->x += (int)(i * img_width) / sprite_size;
+    slice->x += (int) (i * img_width) / sprite_size;
     slice->w = 1;
 
     image->draw(&pos, slice);

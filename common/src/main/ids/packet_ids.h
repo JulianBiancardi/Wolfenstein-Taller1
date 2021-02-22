@@ -84,6 +84,9 @@
 #define GAME_OVER 18
 #define GAME_OVER_SIZE 3
 
+#define EXIT_MATCH 19
+#define EXIT_MATCH_SIZE 4
+
 //==============================
 
 #define DOOR_INTERACTION 12
