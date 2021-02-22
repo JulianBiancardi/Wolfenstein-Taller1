@@ -9,8 +9,7 @@ class HorizontalDoor : public BaseDoor {
   HorizontalDoor(size_t x, size_t y, unsigned int resource_id);
   ~HorizontalDoor();
 
-  Point get_collision_point(double x, double y, double angle) override;
-  bool is_open_at(const Point& point) override;
+  bool update_collision(Collision& collision, double angle) override;
 };
 
 #endif

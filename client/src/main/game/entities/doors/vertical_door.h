@@ -9,8 +9,7 @@ class VerticalDoor : public BaseDoor {
   VerticalDoor(size_t x, size_t y, unsigned int resource_id);
   ~VerticalDoor();
 
-  Point get_collision_point(double x, double y, double angle) override;
-  bool is_open_at(const Point& point) override;
+  // Point get_collision_point(double x, double y, double angle) override;
 };
 
 #endif

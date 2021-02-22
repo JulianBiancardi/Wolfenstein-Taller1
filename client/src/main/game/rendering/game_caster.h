@@ -22,7 +22,7 @@ class GameCaster {
   void draw_background();
 
   std::vector<double> draw_walls();
-  void draw_wall(Collision& collision, size_t screen_pos, double ray_angle);
+  double draw_wall(Collision& collision, size_t screen_pos, double ray_angle);
 
   void draw_objects(std::vector<double>& wall_distances);
   void draw_object(Object& object, double distance,

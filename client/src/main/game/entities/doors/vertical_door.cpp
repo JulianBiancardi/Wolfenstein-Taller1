@@ -5,6 +5,7 @@ VerticalDoor::VerticalDoor(size_t x, size_t y, unsigned int resource_id)
 
 VerticalDoor::~VerticalDoor() {}
 
+/*
 Point VerticalDoor::get_collision_point(double x, double y, double angle) {
   if (angle == 0) {
     return Point(x + 0.5, y);
@@ -41,8 +42,4 @@ Point VerticalDoor::get_collision_point(double x, double y, double angle) {
   } else {
     throw 1;
   }
-}
-
-bool VerticalDoor::is_open_at(const Point& point) {
-  return state.is_open_by(std::fmod(point.getY(), 1));
-}
+}*/

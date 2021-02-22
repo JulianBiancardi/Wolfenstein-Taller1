@@ -15,6 +15,4 @@ Point Collision::get_collision_point() { return collision_point; }
 
 double Collision::get_distance_from_src() { return distance_from_src; }
 
-void Collision::add_distance(double dst) { distance_from_src += dst; }
-
 bool Collision::is_x_collision() { return x_collision; }

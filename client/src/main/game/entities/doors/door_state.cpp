@@ -1,6 +1,6 @@
 #include "door_state.h"
 
-DoorState::DoorState() : openness(0), speed(0.0) {}
+DoorState::DoorState() : openness(20), speed(0.0) {}
 
 DoorState::~DoorState() {}
 
@@ -12,7 +12,9 @@ void DoorState::update() {
   openness = std::max(0.0, std::max(64.0, openness += speed));
 }
 
-bool DoorState::is_open_by(double amount) { amount > (openness - 64) / 64; }
+bool DoorState::is_open_by(double amount) {
+  return amount > 1 - (openness) / 64;
+}
 
 void DoorState::set_slice(SDL_Rect& slice) {
   slice.x = (int)openness;

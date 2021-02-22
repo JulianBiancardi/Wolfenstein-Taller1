@@ -2,6 +2,7 @@
 #define BASE_DOOR_H
 
 #include "../../../../../common/src/main/utils/point.h"
+#include "../../rendering/collision.h"
 #include "../drawable.h"
 #include "door_state.h"
 
@@ -20,8 +21,7 @@ class BaseDoor : public Drawable {
   void close();
   void update();
 
-  virtual Point get_collision_point(double x, double y, double angle) = 0;
-  virtual bool is_open_at(const Point& point) = 0;
+  virtual bool update_collision(Collision& collision, double angle) = 0;
 
   virtual Image* get_image(ResourceManager& resource_manager) override;
   virtual SDL_Rect* get_slice(void* extra) override;

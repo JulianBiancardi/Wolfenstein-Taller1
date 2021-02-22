@@ -221,4 +221,9 @@
   name: "Locked Door"
   image: "..."
   icon: "..."
+72: 
+  type: 7
+  name: "Side Door"
+  image: "../../res/images/doors/side_door.png"
+  icon: "..."
 ...
