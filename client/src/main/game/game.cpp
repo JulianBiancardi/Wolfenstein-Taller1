@@ -65,7 +65,7 @@ void Game::operator()() {
   }
 
   Leaderboard leaderboard(window, res_manager);
-  leaderboard.showTop5(std::move(map.get_players()));
+  leaderboard.showTop5(std::move(map.get_players()), player_id);
 }
 
 void Game::spawn_self() {

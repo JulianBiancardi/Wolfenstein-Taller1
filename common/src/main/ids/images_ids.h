@@ -3,6 +3,16 @@
 
 #define NULL_IMAGE 0
 
+#define PREFEER_WIDTH 320
+#define PREFEER_HEIGHT 200
+#define PIXEL 1
+
+#define NUMBER_FRAME_X_COUNT 10
+#define FACE_FRAME_X_COUNT 3
+#define FACE_FRAME_Y_COUNT 7
+
+#define GREEN_NUMBERS 90
+
 // HUD
 #define HUD_BACKGROUND 100
 #define HUD_BJ_FACES 101

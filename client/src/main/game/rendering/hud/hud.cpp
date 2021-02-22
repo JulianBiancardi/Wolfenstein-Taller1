@@ -4,12 +4,6 @@
 
 #include "../../../../../../common/src/main/ids/gun_ids.h"
 #include "../../../../../../common/src/main/ids/images_ids.h"
-#include "../sdl/image.h"
-#include "../sdl/text.h"
-
-#define PREFEER_WIDTH 320
-#define PREFEER_HEIGHT 200
-#define PIXEL 1
 
 #define STATS_Y_POS 16
 
@@ -21,10 +15,6 @@
 #define BULLETS_X_POS 226
 #define KEY_X_POS 240
 #define GUN_X_POS 256
-
-#define NUMBER_FRAME_X_COUNT 10
-#define FACE_FRAME_X_COUNT 3
-#define FACE_FRAME_Y_COUNT 7
 
 Hud::Hud(const Window& window, ResourceManager& res_manager)
     : window(window),

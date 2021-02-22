@@ -228,6 +228,14 @@
   image: "..."
   icon: "..."
 
+
+#HUD
+90:
+  type: 0
+  name: "Green Numbers"
+  image: "../../res/images/font/IMG_Green_Numbers.png"
+  icon: "..."
+
 #HUD
 100:
   type: 0
