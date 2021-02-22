@@ -59,9 +59,8 @@ bool Match::start(unsigned int player_id, BlockingQueue<Packet>& queue) {
 
       auto clock = new ClockThread(CL::match_length, queue, match_id);
       threads.insert({CLOCK_KEY, clock});
-
-      for (unsigned int i = players_ids.size() + 1;
-           i < players_ids.size() + 1 + map.get_dogs_amount(); i++) {
+      for (unsigned int i = players_ids.size() + host_id;
+           i < players_ids.size() + host_id + map.get_dogs_amount(); i++) {
         if (this->add_bot(i)) {
           auto bot = new BotThread(checker, map, i, queue, this);
           threads.insert({i, bot});
