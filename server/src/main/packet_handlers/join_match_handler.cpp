@@ -5,6 +5,7 @@
 #include "../../../../common/src/main/utils/point.h"
 #include "../managers/match.h"
 #include "assistants/spawn_player.h"
+#include "../managers/match_manager_error.h"
 
 JoinMatchHandler::JoinMatchHandler() {}
 
@@ -18,17 +19,18 @@ void JoinMatchHandler::handle(Packet& packet, ClientManager& client_manager,
   unsigned char match_id;
   unpack(packet.get_data(), "CICC", &type, &player_id, &player_gun, &match_id);
 
-  Match& match = match_manager.get_match(match_id);
+  try {
+    Match& match = match_manager.get_match(match_id);
 
-  if (player_gun == KNIFE_ID) {
-    client_manager.send_to(player_id, packet);
-    notify_spawn(player_id, player_gun, match, client_manager);
-    notify_all_spawns(player_id, player_gun, match, client_manager);
-  }else if (match.add_player(player_id)) {
-    client_manager.send_to(player_id, packet);
-    notify_spawn(player_id, player_gun, match, client_manager);
-    notify_all_spawns(player_id, player_gun, match, client_manager);
-  } else {
+    if (player_gun == KNIFE_ID || match.add_player(player_id)) {
+      client_manager.send_to(player_id, packet);
+      notify_spawn(player_id, player_gun, match, client_manager);
+      notify_all_spawns(player_id, player_gun, match, client_manager);
+    } else {
+      pack(packet.get_data(), "CICC", type, player_id, player_gun, 0);
+      client_manager.send_to(player_id, packet);
+    }
+  } catch (const MatchManagerError& e) {
     pack(packet.get_data(), "CICC", type, player_id, player_gun, 0);
     client_manager.send_to(player_id, packet);
   }
@@ -47,9 +49,9 @@ void JoinMatchHandler::notify_spawn(unsigned int player_id,
 void JoinMatchHandler::notify_all_spawns(unsigned int player_id,
                                          unsigned char player_gun,
                                          Match& match,
-                                         ClientManager& client_manager){
+                                         ClientManager& client_manager) {
 
-const std::unordered_map<unsigned int, Player>& players = match.get_players();
+  const std::unordered_map<unsigned int, Player>& players = match.get_players();
   std::unordered_map<unsigned int, Player>::const_iterator iter;
   for (iter = players.begin(); iter != players.end(); iter++) {
     const unsigned int id = iter->first;
@@ -58,7 +60,7 @@ const std::unordered_map<unsigned int, Player>& players = match.get_players();
     }
 
     SpawnPlayerAssistant assistant;
-Packet spawn_player_packet = assistant.build_packet(id, player_gun, match);
+    Packet spawn_player_packet = assistant.build_packet(id, player_gun, match);
     client_manager.send_to(player_id, spawn_player_packet);
   }
 }
