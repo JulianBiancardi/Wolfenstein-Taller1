@@ -162,10 +162,9 @@ void Player::add_kill() { players_killed++; }
 
 void Player::respawn_as_ghost() {
   lives--;
-  //guns_bag.clear();
-  active_gun = PISTOL_ID;
+  state.become_ghost();
   keys = 0;
-  bullets = 10;
+  bullets = 0;
   position = Ray(spawn_point, 0);
   speed = CL::player_ghost_speed;
 }
@@ -219,11 +218,11 @@ void Player::update() { state.update(); }
 
 Image* Player::get_image(ResourceManager& resource_manager) {
   switch (active_gun) {
-    case KNIFE_ID:return resource_manager.get_image(DOG);
-    case PISTOL_ID:return resource_manager.get_image(GUARD);
-    case MACHINE_GUN_ID:return resource_manager.get_image(SCHUTZSTAFFEL);
-    case CHAIN_CANNON_ID:return resource_manager.get_image(OFFICER);
-    case ROCKET_LAUNCHER_ID:return resource_manager.get_image(MUTANT);
+    case KNIFE_ID: return resource_manager.get_image(DOG);
+    case PISTOL_ID: return resource_manager.get_image(GUARD);
+    case MACHINE_GUN_ID: return resource_manager.get_image(SCHUTZSTAFFEL);
+    case CHAIN_CANNON_ID: return resource_manager.get_image(OFFICER);
+    case ROCKET_LAUNCHER_ID: return resource_manager.get_image(MUTANT);
     default:return nullptr;
   }
 }
