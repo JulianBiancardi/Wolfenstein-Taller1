@@ -61,6 +61,13 @@ function installDependencies() {
     echo ">> Instalando 'libsdl2-mixer-dev'..."
     sudo apt-get install libsdl2-mixer-dev
     echo ""
+    echo ">> Instalando 'libyaml-cpp-dev'..."
+    sudo apt install libyaml-cpp-dev
+    echo ""
+    echo ">> Instalando 'qt5'..."
+    sudo apt-get install qtcreator
+    sudo apt-get install qt5-default
+    echo ""
     echo "Instalación de dependencias finalizada."
     echo ""
 }

@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 project(wolfenstein3D)
 
-add_subdirectory(common/third-party/yaml-cpp build) 
 
 #------------------------------------------------------------------------------
 # Estándar a utilizar
@@ -16,6 +15,11 @@ set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 #------------------------------------------------------------------------------
 
+#---------------------------------------------------------  QT5    ---------------------------------------------------------#
+find_package(Qt5Widgets)
+
+#---------------------------------------------------------  QT5    ---------------------------------------------------------#
+
 #------------------------------------------------------------------------------
 # ARCHIVOS FUENTE
 
@@ -27,11 +31,11 @@ FILE(GLOB_RECURSE server_src "server/src/*.cpp")
 #------------------------------------------------------------------------------
 # Common
 add_library(common SHARED ${common_src})
-target_link_libraries(common Threads::Threads yaml-cpp)
+target_link_libraries(common yaml-cpp)
 
 # Client
 add_executable(wolfenstein3D ${client_src})
-target_link_libraries(wolfenstein3D common SDL2 SDL2_image SDL2_ttf SDL2_mixer yaml-cpp)
+target_link_libraries(wolfenstein3D common SDL2 SDL2_image SDL2_ttf SDL2_mixer yaml-cpp Qt5::Widgets)
 
 # Server
 add_executable(server ${server_src})
