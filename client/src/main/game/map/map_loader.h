@@ -1,11 +1,12 @@
 #ifndef MAP_LOADER_H
 #define MAP_LOADER_H
 
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
-#include "../entities/door/door.h"
+#include "../entities/doors/base_door.h"
 #include "../entities/drawable.h"
 #include "../entities/items/item.h"
 #include "../entities/object.h"
@@ -19,7 +20,7 @@ class MapLoader {
   std::unordered_map<unsigned int, std::shared_ptr<Item>>& items;
   std::unordered_map<unsigned int, std::shared_ptr<Player>>& players;
   std::unordered_map<std::pair<unsigned int, unsigned int>,
-                     std::unique_ptr<Door>, pairHasher>& doors;
+                     std::unique_ptr<BaseDoor>, PairHasher>& doors;
 
   void add_door(unsigned int x, unsigned int y, unsigned int resource_id);
   void add_object(const Ray& position, unsigned int resource_id);
@@ -31,7 +32,7 @@ class MapLoader {
             std::unordered_map<unsigned int, std::shared_ptr<Item>>& items,
             std::unordered_map<unsigned int, std::shared_ptr<Player>>& players,
             std::unordered_map<std::pair<unsigned int, unsigned int>,
-                               std::unique_ptr<Door>, pairHasher>& doors);
+                               std::unique_ptr<BaseDoor>, PairHasher>& doors);
   ~MapLoader();
 
   void load_map(const std::string& map_name);

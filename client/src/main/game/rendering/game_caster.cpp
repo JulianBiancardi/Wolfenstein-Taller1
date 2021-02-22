@@ -73,6 +73,7 @@ std::vector<double> GameCaster::draw_walls() {
     Ray ray(player.get_position(), ray_angle);
 
     Collision wall_collision = RayCasting::get_collision(map, ray);
+
     draw_wall(wall_collision, i, ray_angle);
 
     double projectected_dist = get_projected_distance(
@@ -93,19 +94,47 @@ void GameCaster::draw_wall(Collision& collision, size_t screen_pos,
   double projected_distance = GameCaster::get_projected_distance(
       ray_angle, map.get_player(player_id).get_angle(),
       collision.get_distance_from_src());
+
+  double collision_x = collision.get_collision_point().getX();
+  double collision_y = collision.get_collision_point().getY();
+
+  if (map.is_door(std::make_pair((int)collision_x, (int)collision_y))) {
+    printf("DOOR\n");
+    // Calculate real point of collision and update collision.
+    const std::unique_ptr<BaseDoor>& door =
+        map.get_door(std::make_pair(collision_x, collision_y));
+    Point door_collision =
+        door->get_collision_point(collision_x, collision_y, ray_angle);
+
+    collision.add_distance(
+        door_collision.distance_from(collision.get_collision_point()));
+    collision_x = door_collision.getX();
+    collision_y = door_collision.getY();
+
+    // Raycast again from the door
+    if (door->is_open_at(door_collision)) {
+      Ray behind_ray(collision_x, collision_y, ray_angle);
+      Collision behind_collision = RayCasting::get_collision(map, behind_ray);
+
+      behind_collision.add_distance(collision.get_distance_from_src());
+
+      draw_wall(behind_collision, screen_pos, ray_angle);
+    }
+  }
+
   int wall_size = (SCALING_FACTOR * window.get_height()) /
                   (projected_distance * image->get_height());
 
-  size_t img_width = image->get_width();
-  size_t img_height = image->get_height();
+  size_t img_width = 64;  // TODO Remove hardcoding
+  size_t img_height = 64;
   int line = 0;
   if (collision.is_x_collision()) {
     double tmp;
-    double y_offset = std::modf(collision.get_collision_point().getY(), &tmp);
+    double y_offset = std::modf(collision_y, &tmp);
     line = y_offset * img_width;
   } else {
     double tmp;
-    double x_offset = std::modf(collision.get_collision_point().getX(), &tmp);
+    double x_offset = std::modf(collision_x, &tmp);
     line = x_offset * img_width;
   }
 

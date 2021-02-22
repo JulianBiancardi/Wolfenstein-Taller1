@@ -214,7 +214,7 @@
 70:
   type: 7
   name: "Door"
-  image: "..."
+  image: "../../res/images/doors/door.png"
   icon: "..."
 71:
   type: 7

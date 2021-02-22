@@ -22,6 +22,11 @@ class DoorState {
   void close();
   void update();
   void set_slice(SDL_Rect& slice);
+
+  /* Receives a percentage of openness and returns true if the door is open by
+   * at least that much, false otherwise. The percentage must be between 0
+   * and 1. */
+  bool is_open_by(double open_percentaje);
 };
 
 #endif

@@ -2,8 +2,12 @@
 
 #include <yaml-cpp/yaml.h>
 
+#include <utility>
+
 #include "../../../../../common/src/main/config_loader.h"
 #include "../../../../../common/src/main/ids/map_ids.h"
+#include "../entities/doors/horizontal_door.h"
+#include "../entities/doors/vertical_door.h"
 #include "../entities/identifiable_object.h"
 #include "../entities/items/blood.h"
 #include "../entities/items/bullets.h"
@@ -26,7 +30,7 @@ MapLoader::MapLoader(
     std::unordered_map<unsigned int, std::shared_ptr<Item>>& items,
     std::unordered_map<unsigned int, std::shared_ptr<Player>>& players,
     std::unordered_map<std::pair<unsigned int, unsigned int>,
-                       std::unique_ptr<Door>, pairHasher>& doors)
+                       std::unique_ptr<BaseDoor>, PairHasher>& doors)
     : drawables(drawables),
       players_shootable(players_shootable),
       ambient_objects(ambient_objects),
@@ -132,6 +136,7 @@ void MapLoader::add_object(const Ray& position, unsigned int resource_id) {
 
 void MapLoader::add_door(unsigned int x, unsigned int y,
                          unsigned int resource_id) {
-  std::unique_ptr<Door> door(new Door(x, y, resource_id));
-  doors.insert(std::make_pair(std::make_pair(x, y), door));
+  std::unique_ptr<BaseDoor> door(new HorizontalDoor(x, y, resource_id));
+  std::pair<unsigned int, unsigned int> key(x, y);
+  doors.insert(std::make_pair(key, std::move(door)));
 }

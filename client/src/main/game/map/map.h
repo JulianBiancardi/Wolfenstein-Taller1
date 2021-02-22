@@ -10,7 +10,7 @@
 #include "../../../../../common/src/main/utils/base_map.h"
 #include "../../../../common/src/main/utils/matrix.h"
 #include "../../../../common/src/main/utils/ray.h"
-#include "../entities/door/door.h"
+#include "../entities/doors/base_door.h"
 #include "../entities/identifiable_object.h"
 #include "../entities/items/item.h"
 #include "../entities/object.h"
@@ -30,7 +30,7 @@ class Map : public BaseMap {
   std::unordered_map<unsigned int, std::shared_ptr<Item>> items;
   std::unordered_map<unsigned int, std::shared_ptr<Player>> players;
   std::unordered_map<std::pair<unsigned int, unsigned int>,
-                     std::unique_ptr<Door>, pairHasher>
+                     std::unique_ptr<BaseDoor>, PairHasher>
       doors;
   MapLoader loader;
 
@@ -44,6 +44,13 @@ class Map : public BaseMap {
 
   /* Returns a constant reference to a player given its id. */
   const Player& get_player(unsigned int player_id) const;
+
+  /* Returns a constant reference to a door given its cell. */
+  const std::unique_ptr<BaseDoor>& get_door(
+      const std::pair<unsigned int, unsigned int>& cell);
+
+  /* Returns true if there is a door in the cell, false otherwise. */
+  bool is_door(const std::pair<unsigned int, unsigned int>& cell) const;
 
   void update();
   void add_item(unsigned int item_id, const Ray& position,

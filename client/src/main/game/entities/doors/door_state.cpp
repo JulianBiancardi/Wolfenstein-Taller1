@@ -12,6 +12,8 @@ void DoorState::update() {
   openness = std::max(0.0, std::max(64.0, openness += speed));
 }
 
+bool DoorState::is_open_by(double amount) { amount > (openness - 64) / 64; }
+
 void DoorState::set_slice(SDL_Rect& slice) {
   slice.x = (int)openness;
   slice.y = 0;

@@ -17,6 +17,7 @@ class Collision {
   int get_collided_obj_id();
   Point get_collision_point();
   double get_distance_from_src();
+  void add_distance(double dst);
   bool is_x_collision();
 };
 

@@ -46,6 +46,15 @@ const Player& Map::get_player(unsigned int player_id) const {
   return *(players.at(player_id));
 }
 
+const std::unique_ptr<BaseDoor>& Map::get_door(
+    const std::pair<unsigned int, unsigned int>& cell) {
+  return doors.at(cell);
+}
+
+bool Map::is_door(const std::pair<unsigned int, unsigned int>& cell) const {
+  return doors.find(cell) != doors.end();
+}
+
 void Map::move_player(unsigned int player_id, unsigned char direction) {
   players.at(player_id)->move(direction);
 }
