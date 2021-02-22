@@ -284,49 +284,42 @@ void Hud::_show_gun(const Player& player) {
 }
 
 void Hud::_show_player_gun(const Player& player) {
-  // TODO MOVE THIS TO WHERE ITS BELONGS
-  /*
-    std::string gun_image_path;
-    switch (player.get_gun()) {
-      case KNIFE_ID:
-        gun_image_path = "../../res/images/guns/knife_shoot.png";
-        break;
-      case PISTOL_ID:
-        gun_image_path = "../../res/images/guns/pistol_shoot.png";
-        break;
-      case CHAIN_CANNON_ID:
-        gun_image_path = "../../res/images/guns/chaincannon_shoot.png";
-        break;
-      case MACHINE_GUN_ID:
-        gun_image_path = "../../res/images/guns/machinegun_shoot.png";
-        break;
-      case ROCKET_LAUNCHER_ID:
-        gun_image_path = "../../res/images/guns/knife_shoot.png";
-        break;
-      default:
-        return;
-    }
+  int id = 0;
+  switch (player.get_gun()) {
+    case KNIFE_ID:
+      id = HUD_KNIFE_SHOOT;
+      break;
+    case PISTOL_ID:
+      id = HUD_PISTOL_SHOOT;
+      break;
+    case CHAIN_CANNON_ID:
+      id = HUD_CHAINCANNON_SHOOT;
+      break;
+    case MACHINE_GUN_ID:
+      id = HUD_MACHINEGUN_SHOOT;
+      break;
+    case ROCKET_LAUNCHER_ID:
+      id = HUD_ROCKETLAUNCHER_SHOOT;
+      break;
+    default:
+      return;
+  }
 
-    Image player_gun(renderer, gun_image_path);
-    int frame_width = (player_gun.get_width() - 4 * PIXEL) / 5;
-    int frame_height = player_gun.get_height();
+  Image* gun_animation = res_manager.get_image(id);
+  int frame_width = (gun_animation->get_width() - 4 * PIXEL) / 5;
+  int frame_height = gun_animation->get_height();
 
-    Uint32 sprite_x = 0;
+  SDL_Rect rect_gun;
+  rect_gun.x = (window.get_width() / 2) - (frame_width * scale_x);
+  rect_gun.y = window.get_height() -
+               ((res_manager.get_image(HUD_BACKGROUND)->get_height() +
+                 frame_height * 2) *
+                scale_y);
+  rect_gun.w = frame_width * 2 * scale_x;
+  rect_gun.h = frame_height * 2 * scale_y;
 
-    SDL_Rect rect_gun;
-    rect_gun.x = (window.get_width() / 2) - (frame_width * scale_x);
-    rect_gun.y = window.get_height() -
-                 ((res_manager.get_image(HUD_BACKGROUND)->get_height() +
-                   frame_height * 2) *
-                  scale_y);
-    rect_gun.w = frame_width * 2 * scale_x;
-    rect_gun.h = frame_height * 2 * scale_y;
-
-    SDL_Rect rect_slice = {(sprite_x * (frame_width + PIXEL)), 0, frame_width,
-                           frame_height};
-
-    player_gun.draw(&rect_gun,
-    player.get_active_gun()->get_slice(&player_gun));*/
+  // gun_animation->draw(&rect_gun,
+  // player.get_active_gun()->get_slice(&gun_animation));
 }
 
 void Hud::_show_death_text() {

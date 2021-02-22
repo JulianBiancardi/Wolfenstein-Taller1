@@ -287,11 +287,53 @@
   name: "HUD Death text"
   image: "../../res/images/hud/IMG_HUD_Death.png"
   icon: "..." 
+110:
+  type: 0
+  name: "Knife shoot"
+  image: "../../res/images/guns/knife_shoot.png"
+  icon: "..."
+111:
+  type: 0
+  name: "Pistol shoot"
+  image: "../../res/images/guns/pistol_shoot.png"
+  icon: "..."
+112:
+  type: 0
+  name: "ChainCannon shoot"
+  image: "../../res/images/guns/chaincannon_shoot.png"
+  icon: "..."
+113:
+  type: 0
+  name: "Machine gun shoot"
+  image: "../../res/images/guns/machinegun_shoot.png"
+  icon: "..."
+114:
+  type: 0
+  name: "Rocket Launcher shoot"
+  image: "../../res/images/guns/knife_shoot.png"
+  icon: "..."
+
 
 #Leaderboard
 200:
   type: 0
   name: "Leaderboard Background"
   image: "../../res/images/leaderboard/IMG_LB_Background.png"
+  icon: "..."
+201:
+  type: 0
+  name: "Leaderboard Bottom Banner"
+  image: "../../res/images/leaderboard/IMG_LB_BottomBanner.png"
+  icon: "..."
+
+203:
+  type: 0
+  name: "Leaderboard Victory"
+  image: "../../res/images/leaderboard/IMG_LB_Victory.png"
+  icon: "..."
+204:
+  type: 0
+  name: "Leaderboard Defeat"
+  image: "../../res/images/leaderboard/IMG_LB_Defeat.png"
   icon: "..."
 ...

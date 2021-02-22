@@ -64,8 +64,8 @@ void Game::operator()() {
     frame_limiter.sleep();
   }
 
-  Leaderboard leaderboard(window, res_manager);
-  leaderboard.showTop5(std::move(map.get_players()), player_id);
+  Leaderboard leaderboard(window, res_manager, player_id);
+  leaderboard.showTop5(std::move(map.get_players()));
 }
 
 void Game::spawn_self() {
