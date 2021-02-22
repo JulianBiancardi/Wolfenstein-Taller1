@@ -39,9 +39,8 @@ class BaseMap {
   /* Returns the amount of rows in the matrix. */
   size_t get_rows();
 
-/* Returns the amount of columns in the matrix. */
+  /* Returns the amount of columns in the matrix. */
   size_t get_columns();
-
 };
 
 #endif
