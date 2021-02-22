@@ -82,5 +82,5 @@ rocket_min_damage: 10
 
 # Other
 first_id: 1
-match_length: 300
+match_length: 40
 door_timer: 5

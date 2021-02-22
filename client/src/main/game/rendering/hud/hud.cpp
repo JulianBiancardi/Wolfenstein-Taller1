@@ -3,7 +3,7 @@
 #include <string>
 
 #include "../../../../../../common/src/main/ids/gun_ids.h"
-#include "../../../../../../common/src/main/ids/map_ids.h"
+#include "../../../../../../common/src/main/ids/images_ids.h"
 #include "../sdl/image.h"
 #include "../sdl/text.h"
 
@@ -40,16 +40,15 @@ Hud::Hud(const Window& window, ResourceManager& res_manager)
 Hud::~Hud() {}
 
 void Hud::update(const Player& player) {
-  // TODO MOVE TO CONFIG
-  // TODO Move to ResourceManager since this is wasting resources
   _show_background();
   _show_lives(player);
   _show_points(player);
-  _show_face(player);
   _show_health(player);
   if (player.is_dead()) {
+    _show_death_face();
     _show_death_text();
   } else {
+    _show_face(player);
     _show_key(player);
     _show_bullets(player);
     _show_gun(player);
@@ -219,6 +218,30 @@ void Hud::_show_face(const Player& player) {
   bj_faces->draw(&rect_face, &rect_slice);
 }
 
+void Hud::_show_death_face() {
+  Image* bj_faces = res_manager.get_image(HUD_BJ_FACES);
+  int frame_width = (bj_faces->get_width() - 2 * PIXEL) / FACE_FRAME_X_COUNT;
+  int frame_height =
+      (bj_faces->get_height() - 7 * PIXEL) / (FACE_FRAME_Y_COUNT + 1);
+
+  Uint32 sprite_x = 1;
+  Uint32 sprite_y = 7;
+
+  SDL_Rect rect_face;
+  rect_face.x = FACE_X_POS * scale_x;
+  rect_face.y =
+      window.get_height() -
+      ((res_manager.get_image(HUD_BACKGROUND)->get_height() - 4 * PIXEL) *
+       scale_y);
+  rect_face.w = frame_width * scale_x;
+  rect_face.h = frame_height * scale_y;
+
+  SDL_Rect rect_slice = {(sprite_x * (frame_width + PIXEL)),
+                         (sprite_y * (frame_height + PIXEL)), frame_width,
+                         frame_height};
+  bj_faces->draw(&rect_face, &rect_slice);
+}
+
 void Hud::_show_key(const Player& player) {
   if (player.has_key()) {
     Image* key_image = res_manager.get_image(HUD_KEY);
@@ -253,7 +276,7 @@ void Hud::_show_gun(const Player& player) {
       id = HUD_ROCKETLAUNCHER;
       break;
     default:
-      id = AIR;
+      id = NULL_IMAGE;
       return;
   }
 

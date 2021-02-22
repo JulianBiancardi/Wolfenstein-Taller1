@@ -23,11 +23,12 @@ double static fov_scale(double angle) {
   return (-1.0 / FOV) * angle + 0.5;
 }
 
-GameCaster::GameCaster(Window& window, Map& map, unsigned int player_id)
+GameCaster::GameCaster(Window& window, ResourceManager& res_manager, Map& map,
+                       unsigned int player_id)
     : renderer(window.get_renderer()),
       map(map),
       window(window),
-      res_manager(window),
+      res_manager(res_manager),
       player_id(player_id),
       hud(window, res_manager) {}
 

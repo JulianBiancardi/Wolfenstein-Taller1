@@ -273,4 +273,11 @@
   name: "HUD Death text"
   image: "../../res/images/hud/IMG_HUD_Death.png"
   icon: "..." 
+
+#Leaderboard
+200:
+  type: 0
+  name: "Leaderboard Background"
+  image: "../../res/images/leaderboard/IMG_LB_Background.png"
+  icon: "..."
 ...

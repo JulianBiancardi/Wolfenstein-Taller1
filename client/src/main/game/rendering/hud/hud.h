@@ -26,6 +26,7 @@ class Hud {
   void _show_key(const Player &player);
   void _show_gun(const Player &player);
   void _show_player_gun(const Player &player);
+  void _show_death_face();
   void _show_death_text();
 
   /*Show the number at position.The number must be betwen 0 to 9*/
