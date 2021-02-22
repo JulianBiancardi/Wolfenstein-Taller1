@@ -1,6 +1,6 @@
 #include "door_state.h"
 
-DoorState::DoorState() : openness(20), speed(0.0) {}
+DoorState::DoorState() : openness(0.0), speed(0.0) {}
 
 DoorState::~DoorState() {}
 
@@ -9,7 +9,7 @@ void DoorState::open() { speed = CL::door_speed / CL::fps; }
 void DoorState::close() { speed = -CL::door_speed / CL::fps; }
 
 void DoorState::update() {
-  openness = std::max(0.0, std::max(64.0, openness += speed));
+  openness = std::max(0.0, std::min(64.0, openness += speed));
 }
 
 bool DoorState::is_open_by(double amount) {

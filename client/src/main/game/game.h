@@ -39,6 +39,7 @@ class Game {
   void process_rotation();
   void process_trigger();
   void process_gun_changes();
+  void process_key_uses();
   void process_match_start();
 
   void send_move_packet(unsigned char direction);

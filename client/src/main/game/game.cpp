@@ -29,6 +29,7 @@
 #define ROTATE_RIGHT_FLAG (ROTATE_LEFT_FLAG + 1)
 #define SHOOT_FLAG (ROTATE_RIGHT_FLAG + 1)
 #define GUN_CHANGE_FLAG (SHOOT_FLAG + 1)
+#define DOORWAY_INTERACTION_FLAG (GUN_CHANGE_FLAG + 1)
 #define ENTER_FLAG (GUN_CHANGE_FLAG + 1)
 
 #define FLAGS (ENTER_FLAG + 1)
@@ -142,6 +143,9 @@ void Game::handle_key_press(SDL_Keycode& key) {
     case SDLK_5:
       input_flags[GUN_CHANGE_FLAG] = ROCKET_LAUNCHER_ID;
       break;
+    case SDLK_f:
+      input_flags[DOORWAY_INTERACTION_FLAG] = true;
+      break;
     case SDLK_RETURN:  // Enter
       input_flags[ENTER_FLAG] = true;
       break;
@@ -195,6 +199,9 @@ void Game::handle_key_release(SDL_Keycode& key) {
         input_flags[GUN_CHANGE_FLAG] = false;
       }
       break;
+    case SDLK_f:
+      input_flags[DOORWAY_INTERACTION_FLAG] = false;
+      break;
     case SDLK_RETURN:
       input_flags[ENTER_FLAG] = false;
       break;
@@ -220,6 +227,7 @@ void Game::process_events() {
   process_rotation();
   process_trigger();
   process_gun_changes();
+  process_key_uses();
   process_match_start();
 }
 
@@ -333,6 +341,17 @@ void Game::process_gun_changes() {
                      input_flags[GUN_CHANGE_FLAG]);
   Packet change_gun_packet(size, data);
   server.send(change_gun_packet);
+}
+
+void Game::process_key_uses() {
+  if (!input_flags[DOORWAY_INTERACTION_FLAG]) {
+    return;
+  }
+
+  unsigned char data[DOORWAY_INTERACTION_SIZE];
+  size_t size = pack(data, "CIC", DOORWAY_INTERACTION, player_id, match_id);
+  Packet doorway_interaction_packet(size, data);
+  server.send(doorway_interaction_packet);
 }
 
 void Game::process_match_start() {

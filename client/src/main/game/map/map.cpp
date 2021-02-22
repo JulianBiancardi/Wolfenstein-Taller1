@@ -25,9 +25,18 @@ Map::Map(const std::string& map_name)
 Map::~Map() {}
 
 void Map::update() {
-  std::unordered_map<unsigned int, std::shared_ptr<Player>>::iterator iter;
-  for (iter = players.begin(); iter != players.end(); iter++) {
-    iter->second->update();
+  std::unordered_map<unsigned int, std::shared_ptr<Player>>::iterator
+      players_iter;
+  for (players_iter = players.begin(); players_iter != players.end();
+       players_iter++) {
+    players_iter->second->update();
+  }
+
+  std::unordered_map<std::pair<unsigned int, unsigned int>,
+                     std::unique_ptr<BaseDoor>, PairHasher>::iterator
+      doors_iter;
+  for (doors_iter = doors.begin(); doors_iter != doors.end(); doors_iter++) {
+    doors_iter->second->update();
   }
 }
 
