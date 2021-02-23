@@ -382,6 +382,7 @@ void Game::process_match_exit() {
 void Game::update() {
   BlockingQueue<Packet>& reception_queue = server.get_reception_queue();
   Packet packet;
+  gamesound.set_point(map.get_player(player_id).get_position());
   while (reception_queue.poll(packet)) {
     try {
       std::unique_ptr<PacketHandler> handler(
