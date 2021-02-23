@@ -82,7 +82,7 @@ rocket_min_damage: 10
 
 # Other
 first_id: 1
-match_length: 120    
+match_length: 300    
 leaderboard: 10
 door_interaction_range: 0.5
 door_timer: 5

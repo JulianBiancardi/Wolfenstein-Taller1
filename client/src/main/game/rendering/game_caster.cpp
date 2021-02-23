@@ -76,11 +76,9 @@ std::vector<double> GameCaster::draw_walls() {
 
     Collision wall_collision = RayCasting::get_collision(map, ray);
 
-    draw_wall(wall_collision, i, ray_angle);
+    double distance = draw_wall(wall_collision, i, ray_angle);
 
-    double projectected_dist = get_projected_distance(
-        ray_angle, player.get_angle(), wall_collision.get_distance_from_src());
-    wall_collisions.push_back(projectected_dist);
+    wall_collisions.push_back(distance);
 
     i++;
     ray_angle = Angle::normalize(ray_angle - angle_step);
