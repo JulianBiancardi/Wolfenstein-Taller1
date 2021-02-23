@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 
-enum player_state { stand, path, ghost, dying, death };
+enum player_state { stand, path, ghost };
 
 class PlayerState {
  private:
