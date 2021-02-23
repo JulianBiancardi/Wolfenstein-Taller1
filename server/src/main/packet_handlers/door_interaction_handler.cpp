@@ -12,12 +12,11 @@ void DoorInteractionHandler::handle(Packet& packet,
   unsigned char type;
   unsigned int player_id;
   unsigned char match_id;
-  unsigned int door_id;
-  unpack(packet.get_data(), "CICI", &type, &player_id, &match_id, &door_id);
+  unpack(packet.get_data(), "CIC", &type, &player_id, &match_id);
 
   Match& match = match_manager.get_match(match_id);
 
-  if (match.interact_with_door(player_id, door_id)) {
+  if (match.interact_with_door(player_id)) {
     const std::unordered_set<unsigned int>& clients = match.get_players_ids();
     client_manager.send_to_all(clients, packet);
   }
