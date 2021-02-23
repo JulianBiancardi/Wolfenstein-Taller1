@@ -14,7 +14,8 @@ void BaseDoor::close() { state.close(); }
 void BaseDoor::update() { state.update(); }
 
 bool BaseDoor::requires_key() {
-  resource_id == HORIZONTAL_LOCKED_DOOR || resource_id == VERTICAL_LOCKED_DOOR;
+  return (resource_id == HORIZONTAL_LOCKED_DOOR ||
+          resource_id == VERTICAL_LOCKED_DOOR);
 }
 
 Image* BaseDoor::get_image(ResourceManager& resource_manager) {
