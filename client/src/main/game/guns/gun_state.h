@@ -18,7 +18,7 @@ class GunState {
   void update(bool trigger);
 
   /* Updates the slice */
-  void set_slice(SDL_Rect& slice, double angle);
+  void set_slice(SDL_Rect& slice);
 };
 
 #endif

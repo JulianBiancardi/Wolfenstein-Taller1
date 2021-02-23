@@ -27,6 +27,7 @@ class Player : public IdentifiableObject {
   int keys;
   std::unordered_map<int, std::unique_ptr<Gun>> guns_bag;
   int active_gun;
+  int previous_gun;
   const Point spawn_point;
   unsigned int players_killed;
   double speed;
@@ -49,20 +50,28 @@ class Player : public IdentifiableObject {
 
   /* Returns the amount of lives owned by the player. */
   int get_lives() const;
+
   /* Returns the health of the player. */
   int get_health() const;
+
   /* Returns the percentage health of the player. */
   int get_percentage_health() const;
+
   /* Gets the active gun of the player. */
   int get_gun() const;
+
   /* Returns the amount of bullets owned by the player. */
   int get_bullets() const;
+
   /* Returns the amount of points owned by the player. */
   int get_points() const;
+
   /* Returns if the player has keys*/
   bool has_key() const;
+
   /* Gets the active gun of the player. */
-  std::unique_ptr<Gun>& get_active_gun();
+  // TODO CHANGE THIS
+  Gun* get_active_gun() const;
 
   void move(unsigned char direction);
   void rotate(unsigned char direction);
@@ -126,6 +135,15 @@ class Player : public IdentifiableObject {
 
   /* Returns player's amount of killed enemies */
   unsigned int get_kills() const;
+
+  /* Returns if player's has bullets to use active gun */
+  bool has_bullets_to_shoot_gun() const;
+
+  /* Saves gun being used */
+  void remember_gun();
+
+  /* Changes gun to previous one */
+  void use_previous_gun_if_has_to();
 
   /* Updates its state */
   void update();

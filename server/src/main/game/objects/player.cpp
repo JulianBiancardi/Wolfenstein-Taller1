@@ -11,6 +11,7 @@ Player::Player(double x, double y, double angle, unsigned int id)
       players_killed(0),
       keys(0),
       active_gun(PISTOL_ID),
+      previous_gun(0),
       max_health(CL::player_health),
       health(max_health),
       max_bullets(CL::player_max_bullets),
@@ -27,6 +28,7 @@ Player::Player(const Point& origin, double angle, unsigned int id)
       players_killed(0),
       keys(0),
       active_gun(PISTOL_ID),
+      previous_gun(0),
       max_health(CL::player_health),
       health(max_health),
       max_bullets(CL::player_max_bullets),
@@ -43,6 +45,7 @@ Player::Player(const Ray& position, unsigned int id)
       players_killed(0),
       keys(0),
       active_gun(PISTOL_ID),
+      previous_gun(0),
       max_health(CL::player_health),
       health(max_health),
       max_bullets(CL::player_max_bullets),
@@ -59,6 +62,7 @@ Player::Player(const Player& other)
       players_killed(other.players_killed),
       keys(other.keys),
       active_gun(other.active_gun),
+      previous_gun(other.previous_gun),
       max_health(other.max_health),
       health(other.health),
       max_bullets(other.max_bullets),
@@ -102,7 +106,16 @@ bool Player::change_gun(int gun_id) {
     return false;
   }
 
+  previous_gun = active_gun;
   active_gun = gun_id;
+
+  if (!has_bullets_to_shoot_gun()) {
+    active_gun = previous_gun;
+    previous_gun = 0;
+    return false;
+  }
+
+  previous_gun = 0;
   return true;
 }
 
@@ -171,6 +184,34 @@ void Player::respawn_as_ghost() {
   speed = CL::player_ghost_speed;
   ((SwitchMask*) mask)->switch_mask();
   position = Ray(spawn_point, 0);
+}
+
+bool Player::has_bullets_to_shoot_gun() const {
+  switch (active_gun) {
+    case KNIFE_ID: return true;
+    case ROCKET_LAUNCHER_ID:
+      return bullets >= CL::rocket_launcher_bullet_required;
+    case PISTOL_ID:return bullets >= CL::pistol_bullet_required;
+    case MACHINE_GUN_ID:return bullets >= CL::machine_gun_bullet_required;
+    case CHAIN_CANNON_ID:return bullets >= CL::chain_cannon_bullet_required;
+    default: return false;
+  }
+}
+
+void Player::remember_gun() {
+  previous_gun = active_gun;
+}
+
+void Player::use_previous_gun_if_has_to() {
+  if (previous_gun != 0) {
+    active_gun = previous_gun;
+
+    if (!has_bullets_to_shoot_gun()) {
+      active_gun = KNIFE_ID;
+    } else {
+      previous_gun = 0;
+    }
+  }
 }
 
 void Player::add_bullets(int amount) {
