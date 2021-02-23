@@ -42,7 +42,7 @@ bool CollisionChecker::collides_objects(const Point& where) {
 
 bool CollisionChecker::collides_doors(const Point& where) {
   std::pair<unsigned int, unsigned int> cell(where.getX(), where.getY());
-  return doors.find(cell) != doors.end();
+  return (doors.find(cell) != doors.end() && !doors.at(cell)->is_open());
 }
 
 bool CollisionChecker::is_free(const Point& where) {

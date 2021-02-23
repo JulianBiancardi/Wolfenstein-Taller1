@@ -14,8 +14,16 @@ void DoorInteractionHandler::handle(Packet& packet,
 
   Match& match = match_manager.get_match(match_id);
 
-  if (match.open_door(player_id)) {
+  std::shared_ptr<Door> door_opened = match.open_door(player_id);
+  if (door_opened != nullptr) {
     const std::unordered_set<unsigned int>& clients = match.get_players_ids();
-    client_manager.send_to_all(clients, packet);
+
+    unsigned char data[DOOR_UPDATE_SIZE];
+    size_t size =
+        pack(data, "CICIIC", DOOR_UPDATE, player_id, match_id,
+             (int)door_opened->get_position().getX(),
+             (int)door_opened->get_position().getY(), door_opened->is_open());
+    Packet door_update_packet(size, data);
+    client_manager.send_to_all(clients, door_update_packet);
   }
 }

@@ -90,7 +90,7 @@
 
 /* Used to open or close a door on the client. */
 #define DOOR_UPDATE 19
-#define DOOR_UPDATE_SIZE 8
+#define DOOR_UPDATE_SIZE 9
 
 /* Used to close a door on the server. */
 #define CLOSE_DOOR 20

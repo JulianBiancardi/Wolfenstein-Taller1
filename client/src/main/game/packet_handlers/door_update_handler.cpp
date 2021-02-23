@@ -13,7 +13,7 @@ bool DoorUpdateHandler::handle(Packet& packet, Map& map, GameSound& sound) {
   unsigned int x_pos;
   unsigned int y_pos;
   bool state;
-  unpack(packet.get_data(), "CICII", &type, &player_id, &match_id, &x_pos,
+  unpack(packet.get_data(), "CICIIC", &type, &player_id, &match_id, &x_pos,
          &y_pos, &state);
 
   if (map.set_door_state(std::make_pair(x_pos, y_pos), state)) {

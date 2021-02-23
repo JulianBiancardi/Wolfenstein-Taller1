@@ -404,7 +404,7 @@ bool Match::has_lives(unsigned int player_id) {
   return map.get_player(player_id).has_extra_lives();
 }
 
-bool Match::open_door(unsigned int player_id) {
+std::shared_ptr<Door> Match::open_door(unsigned int player_id) {
   if (!player_exists(player_id)) {
     throw MatchError(
         "Failed to find player opening door. Player %u doesn't exist.",
@@ -412,27 +412,26 @@ bool Match::open_door(unsigned int player_id) {
   }
 
   if (is_dead(player_id)) {
-    return false;
+    return nullptr;
   }
 
   Player& player = map.get_player(player_id);
 
-  Point forward = player.next_position(UP);
+  Point forward = player.next_position(UP, CL::door_interaction_range);
   std::pair<unsigned int, unsigned int> cell(forward.getX(), forward.getY());
 
   if (!map.is_door(cell)) {
     throw MatchError(
         "Failed to find door. There is no door in front of the player.");
   }
-
   std::shared_ptr<Door>& door = map.get_door(cell);
 
   if (door->open(player)) {
     ((ClockThread*)threads.at(CLOCK_KEY))->add_door_timer(door->get_id(), cell);
-    return true;
+    return door;
   }
 
-  return false;
+  return nullptr;
 }
 
 bool Match::close_door(const std::pair<unsigned int, unsigned int>& cell) {

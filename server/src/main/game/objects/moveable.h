@@ -9,7 +9,7 @@ class Moveable : public Object, public Identifiable {
  private:
   double rotation_speed;
 
-  Point next_position(double direction_angle);
+  Point _next_position(double direction_angle, double speed);
 
  protected:
   double speed;
@@ -25,13 +25,17 @@ class Moveable : public Object, public Identifiable {
   Moveable(const Moveable& other);
   ~Moveable();
 
-  /* Returns the next position given a direction */
+  /* Returns the next position given a direction. */
   Point next_position(int direction);
+
+  /* Returns the next position given a direction and speed. */
+  Point next_position(int direction, double speed);
 
   /* Rotates the moveable in the given direction */
   void rotate(int direction);
 
-  /* Returns the point in bound of the mask in the direction of the position sent  */
+  /* Returns the point in bound of the mask in the direction of the position
+   * sent  */
   Point collision_mask_bound(const Point& next_position) const;
 
   /* Sets moveable position */
