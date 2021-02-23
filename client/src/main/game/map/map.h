@@ -88,6 +88,9 @@ class Map : public BaseMap {
 
   /* Adds player's death drop */
   void add_drop(unsigned int player_id);
+
+  /* Player saves its previous gun */
+  void make_player_remember_gun(unsigned int player_id);
 };
 
 #endif

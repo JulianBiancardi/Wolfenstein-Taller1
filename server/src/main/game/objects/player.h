@@ -17,6 +17,7 @@ class Player : public Moveable {
   int points;
   std::unordered_set<int> guns_bag;
   int active_gun;
+  int previous_gun;
   const Point spawn_point;
   int lives;
   int players_killed;
@@ -76,6 +77,15 @@ class Player : public Moveable {
 
   /* Player is respawned as a ghost */
   void respawn_as_ghost();
+
+  /* Returns if has bullets to shoot active gun */
+  bool has_bullets_to_shoot_gun() const;
+
+  /* Saves active gun */
+  void remember_gun();
+
+  /* Changes gun to previous one if has bullets to wield it */
+  void use_previous_gun_if_has_to();
 
   /* Adders */
   void add_bullets(int amount);
