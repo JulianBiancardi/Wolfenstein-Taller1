@@ -40,16 +40,16 @@ FILE(GLOB ServerFiles
 
         src/main/threads/*.cpp)
 
-FILE(GLOB ServerTestsFiles
-        src/tests/*.cpp
-        src/tests/*/*.cpp)
+#FILE(GLOB ServerTestsFiles
+#        src/tests/*.cpp
+#        src/tests/*/*.cpp)
 
 FILE(GLOB CommonFiles
         ../common/src/main/*/*.cpp
         ../common/src/main/*.cpp)
 
 FILE(GLOB ServerMain src/main/main_server.cpp)
-FILE(GLOB ServerTests src/tests/main_tests.cpp)
+#FILE(GLOB ServerTests src/tests/main_tests.cpp)
 
 add_executable(
         server_main
@@ -67,19 +67,19 @@ target_link_libraries(
         dl
 )
 
-add_executable(
-        server_tests
-        ${ServerTests}
-        ${ServerTestsFiles}
-        ${ServerFiles}
-        ${CommonFiles}
-)
+#add_executable(
+#        server_tests
+#        ${ServerTests}
+#        ${ServerTestsFiles}
+#        ${ServerFiles}
+#        ${CommonFiles}
+#)
 
-target_link_libraries(
-        server_tests
-        PRIVATE
-        Threads::Threads
-        yaml-cpp
-        lua
-        dl
-)
+#target_link_libraries(
+#        server_tests
+#        PRIVATE
+#        Threads::Threads
+#        yaml-cpp
+#        lua
+#        dl
+#)

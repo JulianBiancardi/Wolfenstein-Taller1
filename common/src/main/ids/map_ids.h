@@ -8,6 +8,7 @@
 #define ITEMS_TYPE 4
 #define SOLID_OBJECTS_TYPE 5
 #define NON_SOLID_OBJECTS_TYPE 6
+#define DOORS_TYPE 7
 
 // Walls
 #define AIR 0
@@ -28,6 +29,7 @@
 #define MACHINE_GUN 32
 #define CHAIN_CANNON 33
 #define ROCKET_LAUNCHER 34
+#define ROCKET 35
 
 // Items
 #define FOOD 40
@@ -51,19 +53,9 @@
 #define FLOOR_BLOOD 61
 
 // Doors
-#define DOOR 70
-#define LOCKED_DOOR 71
-
-// HUD
-#define HUD_BACKGROUND 100
-#define HUD_BJ_FACES 101
-#define HUD_NUMBER 102
-#define HUD_KEY 103
-#define HUD_KNIFE 104
-#define HUD_PISTOL 105
-#define HUD_CHAINCANNON 106
-#define HUD_MACHINEGUN 107
-#define HUD_ROCKETLAUNCHER 108
-#define HUD_DEATH_TEXT 109
+#define HORIZONTAL_DOOR 70
+#define VERTICAL_DOOR 71
+#define HORIZONTAL_LOCKED_DOOR 72
+#define VERTICAL_LOCKED_DOOR 73
 
 #endif

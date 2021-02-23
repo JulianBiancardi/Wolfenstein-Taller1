@@ -8,8 +8,9 @@
 #include "../../../../../common/src/main/utils/base_map.h"
 #include "../../../../../common/src/main/utils/matrix.h"
 #include "../../../../../common/src/main/utils/point.h"
-#include "../objects/moveable.h"
+#include "../objects/door/door.h"
 #include "../objects/items/item.h"
+#include "../objects/moveable.h"
 #include "../objects/object.h"
 #include "../objects/player.h"
 
@@ -21,6 +22,8 @@ class Map : public BaseMap {
   std::unordered_map<unsigned int, Object*> identifiable_objects;
   std::vector<Object*> unidentifiable_objects;
   std::unordered_map<unsigned int, Player> players;
+  std::unordered_map<std::pair<unsigned int, unsigned int>,
+                     std::shared_ptr<Door>, PairHasher> doors;
   std::vector<Point> dogs;
   std::vector<Point> spawn_points;
 
@@ -58,6 +61,9 @@ class Map : public BaseMap {
 
   /* Returns a pointer to an object */
   Object* get_object(unsigned int object_id);
+
+  /* Returns the requested shared_ptr<Door>. */
+  std::shared_ptr<Door>& get_door(std::pair<unsigned int, unsigned int>& cell);
 
   /* Returns if it has the object */
   bool object_exists(unsigned int object_id);

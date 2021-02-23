@@ -3,13 +3,7 @@
 #include <string>
 
 #include "../../../../../../common/src/main/ids/gun_ids.h"
-#include "../../../../../../common/src/main/ids/map_ids.h"
-#include "../sdl/image.h"
-#include "../sdl/text.h"
-
-#define PREFEER_WIDTH 320
-#define PREFEER_HEIGHT 200
-#define PIXEL 1
+#include "../../../../../../common/src/main/ids/images_ids.h"
 
 #define STATS_Y_POS 16
 
@@ -21,10 +15,6 @@
 #define BULLETS_X_POS 226
 #define KEY_X_POS 240
 #define GUN_X_POS 256
-
-#define NUMBER_FRAME_X_COUNT 10
-#define FACE_FRAME_X_COUNT 3
-#define FACE_FRAME_Y_COUNT 7
 
 Hud::Hud(const Window& window, ResourceManager& res_manager)
     : window(window),
@@ -40,16 +30,15 @@ Hud::Hud(const Window& window, ResourceManager& res_manager)
 Hud::~Hud() {}
 
 void Hud::update(const Player& player) {
-  // TODO MOVE TO CONFIG
-  // TODO Move to ResourceManager since this is wasting resources
   _show_background();
   _show_lives(player);
   _show_points(player);
-  _show_face(player);
   _show_health(player);
   if (player.is_dead()) {
+    _show_death_face();
     _show_death_text();
   } else {
+    _show_face(player);
     _show_key(player);
     _show_bullets(player);
     _show_gun(player);
@@ -219,6 +208,30 @@ void Hud::_show_face(const Player& player) {
   bj_faces->draw(&rect_face, &rect_slice);
 }
 
+void Hud::_show_death_face() {
+  Image* bj_faces = res_manager.get_image(HUD_BJ_FACES);
+  int frame_width = (bj_faces->get_width() - 2 * PIXEL) / FACE_FRAME_X_COUNT;
+  int frame_height =
+      (bj_faces->get_height() - 7 * PIXEL) / (FACE_FRAME_Y_COUNT + 1);
+
+  Uint32 sprite_x = 1;
+  Uint32 sprite_y = 7;
+
+  SDL_Rect rect_face;
+  rect_face.x = FACE_X_POS * scale_x;
+  rect_face.y =
+      window.get_height() -
+      ((res_manager.get_image(HUD_BACKGROUND)->get_height() - 4 * PIXEL) *
+       scale_y);
+  rect_face.w = frame_width * scale_x;
+  rect_face.h = frame_height * scale_y;
+
+  SDL_Rect rect_slice = {(sprite_x * (frame_width + PIXEL)),
+                         (sprite_y * (frame_height + PIXEL)), frame_width,
+                         frame_height};
+  bj_faces->draw(&rect_face, &rect_slice);
+}
+
 void Hud::_show_key(const Player& player) {
   if (player.has_key()) {
     Image* key_image = res_manager.get_image(HUD_KEY);
@@ -253,7 +266,7 @@ void Hud::_show_gun(const Player& player) {
       id = HUD_ROCKETLAUNCHER;
       break;
     default:
-      id = AIR;
+      id = NULL_IMAGE;
       return;
   }
 
@@ -271,49 +284,42 @@ void Hud::_show_gun(const Player& player) {
 }
 
 void Hud::_show_player_gun(const Player& player) {
-  // TODO MOVE THIS TO WHERE ITS BELONGS
-  /*
-    std::string gun_image_path;
-    switch (player.get_gun()) {
-      case KNIFE_ID:
-        gun_image_path = "../../res/images/guns/knife_shoot.png";
-        break;
-      case PISTOL_ID:
-        gun_image_path = "../../res/images/guns/pistol_shoot.png";
-        break;
-      case CHAIN_CANNON_ID:
-        gun_image_path = "../../res/images/guns/chaincannon_shoot.png";
-        break;
-      case MACHINE_GUN_ID:
-        gun_image_path = "../../res/images/guns/machinegun_shoot.png";
-        break;
-      case ROCKET_LAUNCHER_ID:
-        gun_image_path = "../../res/images/guns/knife_shoot.png";
-        break;
-      default:
-        return;
-    }
+  int id = 0;
+  switch (player.get_gun()) {
+    case KNIFE_ID:
+      id = HUD_KNIFE_SHOOT;
+      break;
+    case PISTOL_ID:
+      id = HUD_PISTOL_SHOOT;
+      break;
+    case CHAIN_CANNON_ID:
+      id = HUD_CHAINCANNON_SHOOT;
+      break;
+    case MACHINE_GUN_ID:
+      id = HUD_MACHINEGUN_SHOOT;
+      break;
+    case ROCKET_LAUNCHER_ID:
+      id = HUD_ROCKETLAUNCHER_SHOOT;
+      break;
+    default:
+      return;
+  }
 
-    Image player_gun(renderer, gun_image_path);
-    int frame_width = (player_gun.get_width() - 4 * PIXEL) / 5;
-    int frame_height = player_gun.get_height();
+  Image* gun_animation = res_manager.get_image(id);
+  int frame_width = (gun_animation->get_width() - 4 * PIXEL) / 5;
+  int frame_height = gun_animation->get_height();
 
-    Uint32 sprite_x = 0;
+  SDL_Rect rect_gun;
+  rect_gun.x = (window.get_width() / 2) - (frame_width * scale_x);
+  rect_gun.y = window.get_height() -
+               ((res_manager.get_image(HUD_BACKGROUND)->get_height() +
+                 frame_height * 2) *
+                scale_y);
+  rect_gun.w = frame_width * 2 * scale_x;
+  rect_gun.h = frame_height * 2 * scale_y;
 
-    SDL_Rect rect_gun;
-    rect_gun.x = (window.get_width() / 2) - (frame_width * scale_x);
-    rect_gun.y = window.get_height() -
-                 ((res_manager.get_image(HUD_BACKGROUND)->get_height() +
-                   frame_height * 2) *
-                  scale_y);
-    rect_gun.w = frame_width * 2 * scale_x;
-    rect_gun.h = frame_height * 2 * scale_y;
-
-    SDL_Rect rect_slice = {(sprite_x * (frame_width + PIXEL)), 0, frame_width,
-                           frame_height};
-
-    player_gun.draw(&rect_gun,
-    player.get_active_gun()->get_slice(&player_gun));*/
+  // gun_animation->draw(&rect_gun,
+  // player.get_active_gun()->get_slice(&gun_animation));
 }
 
 void Hud::_show_death_text() {

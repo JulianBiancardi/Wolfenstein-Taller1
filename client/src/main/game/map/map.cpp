@@ -1,8 +1,8 @@
 #include "map.h"
 
-#include "map_loader.h"
-#include "../../../../common/src/main/ids/map_ids.h"
 #include "../../../../../common/src/main/ids/gun_ids.h"
+#include "../../../../common/src/main/ids/map_ids.h"
+#include "map_loader.h"
 
 Map::Map(Matrix<int>& map_matrix)
     : BaseMap(map_matrix),
@@ -11,7 +11,7 @@ Map::Map(Matrix<int>& map_matrix)
       items(),
       players(),
       loader(drawables, players_shootable, ambient_objects, items, players,
-             rockets) {}
+             doors, rockets) {}
 
 Map::Map(const std::string& map_name)
     : BaseMap(map_name),
@@ -20,16 +20,25 @@ Map::Map(const std::string& map_name)
       items(),
       players(),
       loader(drawables, players_shootable, ambient_objects, items, players,
-             rockets) {
+             doors, rockets) {
   loader.load_map(map_name);
 }
 
 Map::~Map() {}
 
 void Map::update() {
-  std::unordered_map<unsigned int, std::shared_ptr<Player>>::iterator iter;
-  for (iter = players.begin(); iter != players.end(); iter++) {
-    iter->second->update();
+  std::unordered_map<unsigned int, std::shared_ptr<Player>>::iterator
+      players_iter;
+  for (players_iter = players.begin(); players_iter != players.end();
+       players_iter++) {
+    players_iter->second->update();
+  }
+
+  std::unordered_map<std::pair<unsigned int, unsigned int>,
+                     std::unique_ptr<BaseDoor>, PairHasher>::iterator
+      doors_iter;
+  for (doors_iter = doors.begin(); doors_iter != doors.end(); doors_iter++) {
+    doors_iter->second->update();
   }
 }
 
@@ -45,6 +54,15 @@ std::vector<std::weak_ptr<Object>>& Map::get_drawables() { return drawables; }
 
 const Player& Map::get_player(unsigned int player_id) const {
   return *(players.at(player_id));
+}
+
+const std::unique_ptr<BaseDoor>& Map::get_door(
+    const std::pair<unsigned int, unsigned int>& cell) {
+  return doors.at(cell);
+}
+
+bool Map::is_door(const std::pair<unsigned int, unsigned int>& cell) const {
+  return doors.find(cell) != doors.end();
 }
 
 std::vector<std::shared_ptr<Player>> Map::get_players() const {
@@ -149,13 +167,17 @@ void Map::add_gun_drop(std::shared_ptr<Player>& dead_player) {
             dead_player->get_position().getY(), 0);
 
   switch (dead_player->get_gun()) {
-    case MACHINE_GUN_ID: add_item(MACHINE_GUN, where);
+    case MACHINE_GUN_ID:
+      add_item(MACHINE_GUN, where);
       break;
-    case CHAIN_CANNON_ID: add_item(CHAIN_CANNON, where);
+    case CHAIN_CANNON_ID:
+      add_item(CHAIN_CANNON, where);
       break;
-    case ROCKET_LAUNCHER_ID: add_item(ROCKET_LAUNCHER, where);
+    case ROCKET_LAUNCHER_ID:
+      add_item(ROCKET_LAUNCHER, where);
       break;
-    default: break;
+    default:
+      break;
   }
 }
 

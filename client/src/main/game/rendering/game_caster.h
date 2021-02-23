@@ -15,14 +15,14 @@ class GameCaster {
   SDL_Renderer* renderer;
   Map& map;
   Window& window;
-  ResourceManager res_manager;
+  ResourceManager& res_manager;
   unsigned int player_id;
   Hud hud;
 
   void draw_background();
 
   std::vector<double> draw_walls();
-  void draw_wall(Collision& collision, size_t screen_pos, double ray_angle);
+  double draw_wall(Collision& collision, size_t screen_pos, double ray_angle);
 
   void draw_objects(std::vector<double>& wall_distances);
   void draw_object(Object& object, double distance,
@@ -36,7 +36,8 @@ class GameCaster {
                     std::vector<double>& distances);
 
  public:
-  GameCaster(Window& window, Map& map, unsigned int player_id);
+  GameCaster(Window& window, ResourceManager& res_manager, Map& map,
+             unsigned int player_id);
   ~GameCaster();
 
   void operator()();

@@ -10,11 +10,16 @@
 
 class Text {
  private:
+  SDL_Renderer* renderer;
   Texture texture;
+  SDL_Rect position;
 
  public:
   Text(SDL_Renderer* renderer, const std::string& text, TTF_Font* font,
-       SDL_Color& color, SDL_Rect* pos);
+       SDL_Color& color);
+
+  void draw(int x_pos, int y_pos);
+
   ~Text();
 };
 

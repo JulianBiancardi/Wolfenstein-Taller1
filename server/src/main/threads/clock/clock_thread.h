@@ -2,8 +2,8 @@
 #define CLOCK_THREAD_H
 
 #include <atomic>
-#include <unordered_map>
 #include <mutex>
+#include <unordered_map>
 
 #include "../../../../../common/src/main/threads/thread.h"
 #include "timed_event.h"
@@ -24,8 +24,7 @@ class ClockThread : public Thread {
 
  public:
   /* Match length is in seconds */
-  explicit ClockThread(unsigned int match_length,
-                       BlockingQueue<Packet>& queue,
+  explicit ClockThread(unsigned int match_length, BlockingQueue<Packet>& queue,
                        unsigned char match_id);
 
   ClockThread(const ClockThread&) = delete;
@@ -39,7 +38,8 @@ class ClockThread : public Thread {
   void force_stop();
 
   /* Adds door automatic close timer, if it already exists, it is reset */
-  void add_door_timer(unsigned int door_id);
+  void add_door_timer(unsigned int door_id,
+                      const std::pair<unsigned int, unsigned int>& cell);
 
   /* Deletes door automatic close timer */
   void delete_door_timer(unsigned int door_id);

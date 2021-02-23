@@ -1,8 +1,8 @@
 #include "match.h"
 
 #include "../game/objects/door/door.h"
-#include "../threads/clock/clock_thread.h"
 #include "../threads/bot_thread.h"
+#include "../threads/clock/clock_thread.h"
 #include "match_error.h"
 
 #define CLOCK_KEY 0
@@ -324,9 +324,9 @@ unsigned char calculate_damage(Moveable& rocket, Player& player) {
    * Damage(CL::player_mask_radio) = CL::rocket_max_damage
    * Damage(CL::rocket_explosion_radius) = CL::rocket_min_damage
    */
-  double b = (CL::rocket_min_damage * CL::rocket_explosion_radius
-      - CL::rocket_max_damage * CL::player_mask_radio)
-      / (CL::rocket_max_damage - CL::rocket_min_damage);
+  double b = (CL::rocket_min_damage * CL::rocket_explosion_radius -
+      CL::rocket_max_damage * CL::player_mask_radio) /
+      (CL::rocket_max_damage - CL::rocket_min_damage);
   double a = CL::rocket_max_damage * (CL::player_mask_radio + b);
 
   return (unsigned char) (a / (distance + b));
@@ -403,7 +403,7 @@ bool Match::has_lives(unsigned int player_id) {
   return map.get_player(player_id).has_extra_lives();
 }
 
-bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
+bool Match::open_door(unsigned int player_id) {
   if (!player_exists(player_id)) {
     throw MatchError("Failed to find door interactor. Player %u doesn't exist.",
                      player_id);
@@ -415,33 +415,25 @@ bool Match::interact_with_door(unsigned int player_id, unsigned int door_id) {
 
   Player& player = map.get_player(player_id);
 
-  if (!map.object_exists(door_id)) {
-    throw MatchError("Failed to find door. Door %u doesn't exist.", door_id);
-  }
+  Point forward = player.next_position(UP);
+  std::pair<unsigned int, unsigned int> cell(forward.getX(), forward.getY());
+  std::shared_ptr<Door>& door = map.get_door(cell);
 
-  auto door = (Door*) map.get_object(door_id);
-
-  if (door->interact(player, checker)) {
-    if (door->is_open()) {
-      ((ClockThread*) threads.at(CLOCK_KEY))->add_door_timer(door_id);
-    }
+  if (door->open(player)) {
+    ((ClockThread*) threads.at(CLOCK_KEY))->add_door_timer(door->get_id(),
+                                                           cell);
     return true;
   } else {
     return false;
   }
 }
 
-bool Match::close_door(unsigned int door_id) {
-  if (!map.object_exists(door_id)) {
-    throw MatchError("Failed to find door. Door %u doesn't exist.", door_id);
-  }
+bool Match::close_door(std::pair<unsigned int, unsigned int> cell) {
+  auto door = map.get_door(cell);
 
-  auto door = (Door*) map.get_object(door_id);
-
-  door->close(checker);
-
-  if (!door->is_open()) {
-    ((ClockThread*) threads.at(CLOCK_KEY))->delete_door_timer(door_id);
+  if (checker.is_free(door->get_position())) {
+    door->close();
+    ((ClockThread*) threads.at(CLOCK_KEY))->delete_door_timer(door->get_id());
     return true;
   } else {
     return false;
@@ -454,8 +446,7 @@ void Match::delete_player(unsigned int player_id) {
                      player_id);
   }
 
-  map.delete_player(player_id);
-  //players_ids.erase(player_id);
+  players_ids.erase(player_id);
 }
 
 bool Match::should_end() const { return map.has_one_player_alive(); }

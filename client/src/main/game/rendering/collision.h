@@ -5,14 +5,14 @@
 
 class Collision {
  private:
+ public:
+  Collision(int id, Point point, double distance_from_src, bool x_collision);
+  ~Collision();
+
   int collided_obj_id;
   Point collision_point;
   double distance_from_src;
   bool x_collision;
-
- public:
-  Collision(int id, Point point, double distance_from_src, bool x_collision);
-  ~Collision();
 
   int get_collided_obj_id();
   Point get_collision_point();

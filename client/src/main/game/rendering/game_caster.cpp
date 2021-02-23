@@ -23,11 +23,12 @@ double static fov_scale(double angle) {
   return (-1.0 / FOV) * angle + 0.5;
 }
 
-GameCaster::GameCaster(Window& window, Map& map, unsigned int player_id)
+GameCaster::GameCaster(Window& window, ResourceManager& res_manager, Map& map,
+                       unsigned int player_id)
     : renderer(window.get_renderer()),
       map(map),
       window(window),
-      res_manager(window),
+      res_manager(res_manager),
       player_id(player_id),
       hud(window, res_manager) {}
 
@@ -66,13 +67,14 @@ std::vector<double> GameCaster::draw_walls() {
   wall_collisions.reserve(window.get_width());
 
   const Player& player = map.get_player(player_id);
-  double ray_angle = player.get_angle() + FOV / 2;
+  double ray_angle = Angle::normalize(player.get_angle() + FOV / 2);
 
   double angle_step = FOV / window.get_width();
   for (int i = 0; i < window.get_width();) {
     Ray ray(player.get_position(), ray_angle);
 
     Collision wall_collision = RayCasting::get_collision(map, ray);
+
     draw_wall(wall_collision, i, ray_angle);
 
     double projectected_dist = get_projected_distance(
@@ -80,39 +82,93 @@ std::vector<double> GameCaster::draw_walls() {
     wall_collisions.push_back(projectected_dist);
 
     i++;
-    ray_angle -= angle_step;
+    ray_angle = Angle::normalize(ray_angle - angle_step);
   }
 
   return std::move(wall_collisions);
 }
 
-void GameCaster::draw_wall(Collision& collision, size_t screen_pos,
-                           double ray_angle) {
+static void set_slice(SDL_Rect* slice, int x, int y, int w, int h) {
+  slice->x = x;
+  slice->y = y;
+  slice->w = w;
+  slice->h = h;
+}
+
+double GameCaster::draw_wall(Collision& collision, size_t screen_pos,
+                             double ray_angle) {
+  double collision_x = collision.get_collision_point().getX();
+  double collision_y = collision.get_collision_point().getY();
+
+  SDL_Rect wall_slice = {0, 0, 0, 0};
+  SDL_Rect* slice = &wall_slice;
+
+  bool is_door =
+      map.is_door(std::make_pair((int)collision_x, (int)collision_y));
+
+  if (is_door) {
+    // Calculate real point of collision and update collision.
+    const std::unique_ptr<BaseDoor>& door =
+        map.get_door(std::make_pair(collision_x, collision_y));
+
+    is_door = door->update_collision(collision, ray_angle);
+    /*if ((int)collision_x == 27 && (int)collision_y == 12) {
+      printf("ISDOOR: %d\n", is_door);
+    }*/ // TODO Delete
+    if (is_door) {
+      // printf("%d\n", collision.get_collided_obj_id());
+      collision_x = collision.get_collision_point().getX();
+      collision_y = collision.get_collision_point().getY();
+      slice = door->get_slice(nullptr);
+    } else {
+      // Raycast again from the door, ignore this raycast.
+      Ray behind_ray(collision_x, collision_y, ray_angle);
+      Collision behind_collision = RayCasting::get_collision(map, behind_ray);
+
+      behind_collision.distance_from_src += collision.get_distance_from_src();
+
+      return draw_wall(behind_collision, screen_pos, ray_angle);
+    }
+  }
+
   Image* image = res_manager.get_image(collision.get_collided_obj_id());
 
   double projected_distance = GameCaster::get_projected_distance(
       ray_angle, map.get_player(player_id).get_angle(),
       collision.get_distance_from_src());
-  int wall_size = (SCALING_FACTOR * window.get_height()) /
-                  (projected_distance * image->get_height());
 
-  size_t img_width = image->get_width();
-  size_t img_height = image->get_height();
+  int wall_size = (SCALING_FACTOR * window.get_height()) /
+      (projected_distance * image->get_height());
+
+  size_t img_width = 64;  // TODO Remove hardcoding
+  size_t img_height = 64;
   int line = 0;
   if (collision.is_x_collision()) {
     double tmp;
-    double y_offset = std::modf(collision.get_collision_point().getY(), &tmp);
+    double y_offset = std::modf(collision_y, &tmp);
     line = y_offset * img_width;
   } else {
     double tmp;
-    double x_offset = std::modf(collision.get_collision_point().getX(), &tmp);
+    double x_offset = std::modf(collision_x, &tmp);
     line = x_offset * img_width;
   }
 
-  SDL_Rect pos = {(int)screen_pos, (window.get_height() / 2) - (wall_size / 2),
+  SDL_Rect pos = {(int) screen_pos, (window.get_height() / 2) - (wall_size / 2),
                   1, wall_size};
-  SDL_Rect slice = {line, 0, 1, (int)img_height};
+<<<<<<< HEAD
+  if (is_door) {
+    slice->x += line;
+    slice->w = 1;
+  } else {
+    set_slice(slice, line, 0, 1, (int)img_height);
+  }
+  image->draw(&pos, slice);
+
+  return projected_distance;
+=======
+  SDL_Rect slice = {line, 0, 1, (int) img_height};
   image->draw(&pos, &slice);
+>>>>>>> 07075208c1dc9c4d85f5a4a5529185e136da6892
 }
 
 void GameCaster::draw_objects(std::vector<double>& wall_distances) {
@@ -164,7 +220,7 @@ void GameCaster::draw_object(Object& object, double distance,
     if (x0 < 0) {
       continue;
     }
-    if (x0 > window.get_width()) {
+    if (x0 >= window.get_width()) {
       break;
     }
     if (wall_distances[x0] < projected_distance) {
@@ -174,7 +230,7 @@ void GameCaster::draw_object(Object& object, double distance,
     SDL_Rect pos = {x0, (window.get_height() / 2) - (sprite_size / 2), 1,
                     sprite_size};
     SDL_Rect* slice = object.get_slice(&player_angle);
-    slice->x += (int)(i * img_width) / sprite_size;
+    slice->x += (int) (i * img_width) / sprite_size;
     slice->w = 1;
 
     image->draw(&pos, slice);

@@ -9,15 +9,16 @@
 #include "map_loader.h"
 
 Map::Map(std::string& map_name)
-    : next_id(CL::first_id), players_joined(0), dogs_joined(0),
+    : next_id(CL::first_id),
+      players_joined(0),
+      dogs_joined(0),
       BaseMap(map_name) {
   MapLoader loader(next_id, players, items, identifiable_objects,
-                   unidentifiable_objects, spawn_points, dogs);
+                   unidentifiable_objects, spawn_points, dogs, doors);
   loader.load_map(map_name);
 }
 
-Map::Map(Matrix<int>& map_matrix)
-    : players_joined(0), BaseMap(map_matrix) {}
+Map::Map(Matrix<int>& map_matrix) : players_joined(0), BaseMap(map_matrix) {}
 
 Map::~Map() {
   for (auto item : items) delete item.second;
@@ -68,6 +69,11 @@ Object* Map::get_object(unsigned int object_id) {
   return identifiable_objects.at(object_id);
 }
 
+std::shared_ptr<Door>& Map::get_door(
+    std::pair<unsigned int, unsigned int>& cell) {
+  return doors.at(cell);
+}
+
 bool Map::object_exists(unsigned int object_id) {
   return identifiable_objects.find(object_id) != identifiable_objects.end();
 }
@@ -90,8 +96,10 @@ const std::unordered_map<unsigned int, Item*>& Map::get_items() const {
   return items;
 }
 
-const std::unordered_map<unsigned int, Object*>&
-Map::get_identifiable_objects() const { return identifiable_objects; }
+const std::unordered_map<unsigned int, Object*>& Map::get_identifiable_objects()
+const {
+  return identifiable_objects;
+}
 
 const std::vector<Object*>& Map::get_unidentifiable_objects() const {
   return unidentifiable_objects;
@@ -144,7 +152,7 @@ void Map::add_gun_drop(Player& dead_player) {
       next_id++;
       break;
     }
-    default: break;
+    default:break;
   }
 }
 

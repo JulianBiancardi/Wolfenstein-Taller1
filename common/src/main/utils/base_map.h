@@ -30,8 +30,14 @@ class BaseMap {
   /* Returns the player capacity */
   unsigned char get_capacity() const;
 
+  /* Return true if the point x,y is air, false otherwise. */
+  bool is_air(size_t x, size_t y);
+
   /* Returns true if the point x,y is a wall, false otherwise. */
   bool is_wall(size_t x, size_t y);
+
+  /* Returns true if the point x,y is a door, false otherwise. */
+  bool is_door(size_t x, size_t y);
 
   /* Returns a copy of the value in the point x,y. */
   int operator()(size_t x, size_t y);
@@ -39,9 +45,8 @@ class BaseMap {
   /* Returns the amount of rows in the matrix. */
   size_t get_rows();
 
-/* Returns the amount of columns in the matrix. */
+  /* Returns the amount of columns in the matrix. */
   size_t get_columns();
-
 };
 
 #endif

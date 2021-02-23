@@ -1,10 +1,12 @@
 #ifndef MAP_LOADER_H
 #define MAP_LOADER_H
 
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
+#include "../entities/doors/base_door.h"
 #include "../entities/drawable.h"
 #include "../entities/items/item.h"
 #include "../entities/object.h"
@@ -20,8 +22,11 @@ class MapLoader {
   std::vector<std::shared_ptr<Object>>& ambient_objects;
   std::unordered_map<unsigned int, std::shared_ptr<Item>>& items;
   std::unordered_map<unsigned int, std::shared_ptr<Player>>& players;
+  std::unordered_map<std::pair<unsigned int, unsigned int>,
+                     std::unique_ptr<BaseDoor>, PairHasher>& doors;
   std::unordered_map<unsigned int, std::shared_ptr<Rocket>>& rockets;
 
+  void add_door(unsigned int x, unsigned int y, unsigned int resource_id);
   void add_object(const Ray& position, unsigned int resource_id);
 
  public:
@@ -30,6 +35,8 @@ class MapLoader {
             std::vector<std::shared_ptr<Object>>& ambient_objects,
             std::unordered_map<unsigned int, std::shared_ptr<Item>>& items,
             std::unordered_map<unsigned int, std::shared_ptr<Player>>& players,
+            std::unordered_map<std::pair<unsigned int, unsigned int>,
+                               std::unique_ptr<BaseDoor>, PairHasher>& doors,
             std::unordered_map<unsigned int, std::shared_ptr<Rocket>>& rockets);
   ~MapLoader();
 

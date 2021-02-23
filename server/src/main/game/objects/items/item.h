@@ -18,12 +18,6 @@ class Item : public Object, public Identifiable {
 
   /* Returns if the player can use the item */
   virtual bool can_be_used_by(const Player& whom) = 0;
-
-  /* Returns a copy of the element */
-  virtual Item* copy() = 0;  // Deep copying
-
-  /* Returns an add_item packet */
-  virtual Packet get_add_item_packet() = 0;
 };
 
 #endif

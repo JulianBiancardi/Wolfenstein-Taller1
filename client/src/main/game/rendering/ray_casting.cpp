@@ -66,7 +66,7 @@ Collision RayCasting::horizontal_axis(BaseMap& map, Ray& ray) {
 
     while (true) {
       try {
-        if (map.is_wall(x, y)) {
+        if (!map.is_air(x, y)) {
           Point collision_point(x, y);
           double distance = Point::distance(origin, collision_point);
           return Collision(map(x, y), collision_point, distance, true);
@@ -87,7 +87,7 @@ Collision RayCasting::horizontal_axis(BaseMap& map, Ray& ray) {
 
     while (true) {
       try {
-        if (map.is_wall(x, y)) {
+        if (!map.is_air(x, y)) {
           Point collision_point(x, y);
           double distance = Point::distance(origin, collision_point);
           return Collision(map(x, y), collision_point, distance, true);
@@ -116,7 +116,7 @@ Collision RayCasting::vertical_axis(BaseMap& map, Ray& ray) {
 
     while (true) {
       try {
-        if (map.is_wall(x, y)) {
+        if (!map.is_air(x, y)) {
           Point collision_point(x, y);
           double distance = Point::distance(origin, collision_point);
           return Collision(map(x, y), collision_point, distance, true);
@@ -137,7 +137,7 @@ Collision RayCasting::vertical_axis(BaseMap& map, Ray& ray) {
 
     while (true) {
       try {
-        if (map.is_wall(x, y)) {
+        if (!map.is_air(x, y)) {
           Point collision_point(x, y);
           double distance = Point::distance(origin, collision_point);
           return Collision(map(x, y), collision_point, distance, true);
@@ -189,7 +189,7 @@ Point first_quad_x(BaseMap& map, const Point& origin, double tg) {
   while (true) {
     Point x_intersection(x, y);
     try {
-      if (map.is_wall(x, y)) {
+      if (!map.is_air(x, y)) {
         return x_intersection;
       }
     } catch (const RangeError& e) {
@@ -215,7 +215,7 @@ Point first_quad_y(BaseMap& map, const Point& origin, double tg) {
   while (true) {
     Point y_intersection(x, y);
     try {
-      if (map.is_wall(x, y)) {
+      if (!map.is_air(x, y)) {
         return y_intersection;
       }
     } catch (const RangeError& e) {
@@ -262,7 +262,7 @@ Point second_quad_x(BaseMap& map, const Point& origin, double tg) {
   while (true) {
     Point x_intersection(x, y);
     try {
-      if (map.is_wall(x, y)) {
+      if (!map.is_air(x, y)) {
         return x_intersection;
       }
     } catch (const RangeError& e) {
@@ -288,7 +288,7 @@ Point second_quad_y(BaseMap& map, const Point& origin, double tg) {
   while (true) {
     Point y_intersection(x, y);
     try {
-      if (map.is_wall(x, y)) {
+      if (!map.is_air(x, y)) {
         return y_intersection;
       }
     } catch (const RangeError& e) {
@@ -336,7 +336,7 @@ Point third_quad_x(BaseMap& map, const Point& origin, double tg) {
   while (true) {
     Point x_intersection(x, y);
     try {
-      if (map.is_wall(x, y)) {
+      if (!map.is_air(x, y)) {
         return x_intersection;
       }
     } catch (const RangeError& e) {
@@ -362,7 +362,7 @@ Point third_quad_y(BaseMap& map, const Point& origin, double tg) {
   while (true) {
     Point y_intersection(x, y);
     try {
-      if (map.is_wall(x, y)) {
+      if (!map.is_air(x, y)) {
         return y_intersection;
       }
     } catch (const RangeError& e) {
@@ -409,7 +409,7 @@ Point forth_quad_x(BaseMap& map, const Point& origin, double tg) {
   while (true) {
     Point x_intersection(x, y);
     try {
-      if (map.is_wall(x, y)) {
+      if (!map.is_air(x, y)) {
         return x_intersection;
       }
     } catch (const RangeError& e) {
@@ -435,7 +435,7 @@ Point forth_quad_y(BaseMap& map, const Point& origin, double tg) {
   while (true) {
     Point y_intersection(x, y);
     try {
-      if (map.is_wall(x, y)) {
+      if (!map.is_air(x, y)) {
         return y_intersection;
       }
     } catch (const RangeError& e) {

@@ -62,7 +62,7 @@ class Player : public IdentifiableObject {
   /* Returns if the player has keys*/
   bool has_key() const;
   /* Gets the active gun of the player. */
-  Gun* get_active_gun() const;
+  std::unique_ptr<Gun>& get_active_gun();
 
   void move(unsigned char direction);
   void rotate(unsigned char direction);

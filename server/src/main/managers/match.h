@@ -7,8 +7,8 @@
 #include "../../../../common/src/main/packets/packet.h"
 #include "../../../../common/src/main/threads/thread.h"
 #include "../game/collisions/collision_checker.h"
-#include "../game/objects/player.h"
 #include "../game/map/map.h"
+#include "../game/objects/player.h"
 
 class Match {
  private:
@@ -107,8 +107,8 @@ class Match {
   bool move_rocket(unsigned int rocket_id);
 
   /* Explodes the rocket and returns players damage and the damage made */
-  std::map<unsigned int, unsigned char> explode_rocket(
-      unsigned int rocket_id, unsigned int owner_id);
+  std::map<unsigned int, unsigned char> explode_rocket(unsigned int rocket_id,
+                                                       unsigned int owner_id);
 
   /* Kill a player and respawn him */
   void kill_player(unsigned int player_id);
@@ -120,10 +120,10 @@ class Match {
   bool has_lives(unsigned int player_id);
 
   /* Returns if the door state changes */
-  bool interact_with_door(unsigned int player_id, unsigned int door_id);
+  bool open_door(unsigned int player_id);
 
   /* Closes the door, returns if could do it */
-  bool close_door(unsigned int door_id);
+  bool close_door(std::pair<unsigned int, unsigned int> cell);
 
   /* Delete player from the match */
   void delete_player(unsigned int player_id);
