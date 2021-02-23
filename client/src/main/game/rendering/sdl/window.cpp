@@ -5,8 +5,9 @@
 #define ERROR -1
 #define NO_ERROR 0
 
-Window::Window(const std::string& title, int width, int height, bool fullscreen)
-    : width(width), height(height) {
+Window::Window(const std::string& title, int width, int height, bool fullscreen,
+               const std::string& icon_path)
+    : width(width), window_icon(icon_path), height(height) {
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
     throw SDLError("SDLError: failed to initialize - %s\n", SDL_GetError());
   }
@@ -21,9 +22,7 @@ Window::Window(const std::string& title, int width, int height, bool fullscreen)
                    SDL_GetError());
   }
   SDL_SetWindowTitle(this->window, title.c_str());
-
-  // TODO load the window icon
-  SDL_SetWindowIcon(window, window_icon);
+  SDL_SetWindowIcon(window, window_icon.get_surface());
 
   if (fullscreen) {
     SDL_SetWindowFullscreen(window, SDL_TRUE);

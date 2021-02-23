@@ -129,7 +129,7 @@
   icon: "../resources/images/weapons/IMG_Bazooka.png"
   sound: ""
 35:
-  type: 3
+  type: 0
   name: "Rocket"
   image: "../../res/images/rocket/rocket.png"
   icon: "..."

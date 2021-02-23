@@ -104,7 +104,7 @@ function updatePath(playerX, playerY, playerID)
 end
 function kill()
     player.killing = 1
-    return randomize(1,10), packets.damage
+    return randomize(1,2), packets.damage
 end
 
 function setKilling()

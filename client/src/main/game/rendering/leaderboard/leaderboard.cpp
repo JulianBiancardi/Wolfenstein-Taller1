@@ -65,7 +65,7 @@ void Leaderboard::showTop5(std::vector<std::shared_ptr<Player>>&& players) {
   _show_game_result();
 
   window.update();
-  SDL_Delay(10 * 1000);
+  SDL_Delay(CL::leaderboard * 1000);
 }
 
 void Leaderboard::_show_background() {

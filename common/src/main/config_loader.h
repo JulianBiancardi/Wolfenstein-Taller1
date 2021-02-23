@@ -93,10 +93,11 @@ class ConfigLoader {
 
   static unsigned int first_id;
   static unsigned int match_length;
-  static unsigned int leaderboard_length;
+  static int leaderboard;
   static unsigned int door_timer;
   static double door_interaction_range;
   static double door_speed;
+  static int kill_points;
 };
 
 #endif

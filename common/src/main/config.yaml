@@ -82,8 +82,9 @@ rocket_min_damage: 10
 
 # Other
 first_id: 1
-match_length: 120     #seconds
-#leaderboard_lenght: 10 #seconds
+match_length: 120    
+leaderboard: 10
 door_interaction_range: 0.5
 door_timer: 5
 door_speed: 1.0 
+kill_points: 100

@@ -6,18 +6,21 @@
 
 #include <string>
 
+#include "surface.h"
+
 // TODO https:// github.com/Taller-de-Programacion/valgrind-supp-parser
 
 class Window {
  private:
   SDL_Window* window = nullptr;
-  SDL_Surface* window_icon = nullptr;
+  Surface window_icon;
   SDL_Renderer* renderer = nullptr;
   int width = 960;
   int height = 600;
 
  public:
-  Window(const std::string& title, int width, int height, bool fullscreen);
+  Window(const std::string& title, int width, int height, bool fullscreen,
+         const std::string& icon_path);
 
   Window(const Window&) = delete;              // No copy constructor
   Window& operator=(const Window&) = delete;   // No copy constructor

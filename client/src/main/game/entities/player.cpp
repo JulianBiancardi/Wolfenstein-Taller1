@@ -172,7 +172,10 @@ void Player::respawn() {
   position = Ray(spawn_point, 0);
 }
 
-void Player::add_kill() { players_killed++; }
+void Player::add_kill() {
+  players_killed++;
+  add_points(CL::kill_points);
+}
 
 void Player::respawn_as_ghost() {
   lives--;

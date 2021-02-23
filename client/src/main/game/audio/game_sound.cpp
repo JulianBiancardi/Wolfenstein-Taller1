@@ -213,18 +213,15 @@ void GameSound::sound_checker(int status, bool error_on_null) {
   }
 }
 
-void GameSound::set_point(const Point& point) {
-  this->own_point = point;
-  // printf("(%f, %f)", own_point.getX(), own_point.getY());
-  // std::cout<<std::endl;
-}
+void GameSound::set_point(const Point& point) { this->own_point = point; }
 
 Uint8 GameSound::map_distance(Point point) {
   double distance = Point::distance(this->own_point, point);
-  //  printf("||||||||||||||||||||||Yo(%f, %f)-El(%f, %f)
-  //  Dist(%f)||||||||||||||||||||||", own_point.getX(),
-  //  own_point.getY(), point.getX(), point.getY(), distance);
+  printf("(%f , %f)  (%f , %f\n", own_point.getX(), own_point.getY(),
+         point.getX(), point.getY());
+  printf(" distance = %f\n", distance);
   if (distance > 50) return 255;
+
   double output = round(slope * distance);
   return floor(output + 0.5);
 }
