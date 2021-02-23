@@ -3,14 +3,13 @@
 #include <cstdlib>
 
 #include "server.h"
-
+#include "../../../common/src/main/config_loader.h"
 #define PORT 1
 
 int main(int argc, char **argv) {
   try {
-    std::string port(argv[PORT]);
     Server server;
-    server.run_server(port);
+    server.run_server(CL::sv_port);
     return EXIT_SUCCESS;
   } catch (const std::exception &e) {
     syslog(LOG_ERR, "[Error] Server Main Thread - Error: %s\n", e.what());
