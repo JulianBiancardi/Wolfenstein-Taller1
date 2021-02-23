@@ -6,6 +6,7 @@ CollisionChecker::CollisionChecker(Map& map)
       items(map.get_items()),
       identifiable_objects(map.get_identifiable_objects()),
       unidentifiable_objects(map.get_unidentifiable_objects()),
+      doors(map.get_doors()),
       ignored(nullptr) {}
 
 bool CollisionChecker::collides_players(const Point& where) {
@@ -39,12 +40,19 @@ bool CollisionChecker::collides_objects(const Point& where) {
   return false;
 }
 
+bool CollisionChecker::collides_doors(const Point& where) {
+  std::pair<unsigned int, unsigned int> cell(where.getX(), where.getY());
+  return doors.find(cell) != doors.end();
+}
+
 bool CollisionChecker::is_free(const Point& where) {
   if (map.is_wall(where.getX(), where.getY())) return false;
 
   if (collides_players(where)) return false;
 
   if (collides_objects(where)) return false;
+
+  if (collides_doors(where)) return false;
 
   return true;
 }

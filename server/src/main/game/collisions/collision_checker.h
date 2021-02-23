@@ -2,6 +2,7 @@
 #define COLLISION_CHECKER_H
 
 #include "../map/map.h"
+#include "../objects/door/door.h"
 #include "../objects/items/item.h"
 #include "../objects/object.h"
 #include "../objects/player.h"
@@ -12,10 +13,13 @@ class CollisionChecker {
   const std::unordered_map<unsigned int, Player>& players;
   const std::unordered_map<unsigned int, Item*>& items;
   const std::unordered_map<unsigned int, Object*>& identifiable_objects;
+  const std::unordered_map<std::pair<unsigned int, unsigned int>,
+                           std::shared_ptr<Door>, PairHasher>& doors;
   const std::vector<Object*>& unidentifiable_objects;
   Moveable* ignored;
 
   bool collides_objects(const Point& where);
+  bool collides_doors(const Point& where);
 
  public:
   explicit CollisionChecker(Map& map);

@@ -67,6 +67,10 @@ class Map : public BaseMap {
   std::shared_ptr<Door>& get_door(
       const std::pair<unsigned int, unsigned int>& cell);
 
+  const std::unordered_map<std::pair<unsigned int, unsigned int>,
+                           std::shared_ptr<Door>, PairHasher>&
+  get_doors() const;
+
   /* Returns true if the cell is a door, otherwise false. */
   bool is_door(const std::pair<unsigned int, unsigned int>& cell);
 

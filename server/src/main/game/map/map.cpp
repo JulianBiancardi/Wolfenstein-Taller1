@@ -74,6 +74,12 @@ std::shared_ptr<Door>& Map::get_door(
   return doors.at(cell);
 }
 
+const std::unordered_map<std::pair<unsigned int, unsigned int>,
+                         std::shared_ptr<Door>, PairHasher>&
+Map::get_doors() const {
+  return doors;
+}
+
 bool Map::is_door(const std::pair<unsigned int, unsigned int>& cell) {
   return doors.find(cell) != doors.end();
 }
