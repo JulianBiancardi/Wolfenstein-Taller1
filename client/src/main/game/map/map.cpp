@@ -101,6 +101,15 @@ void Map::shoot_player(unsigned int player_id, unsigned char damage,
   }
 }
 
+bool Map::set_door_state(const std::pair<unsigned int, unsigned int>& cell,
+                         bool state) {
+  if (state) {
+    doors.at(cell)->open();
+  } else {
+    doors.at(cell)->close();
+  }
+}
+
 void Map::change_gun(unsigned int player_id, unsigned char gun_id) {
   players.at(player_id)->set_gun(gun_id);
 }

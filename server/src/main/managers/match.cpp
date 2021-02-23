@@ -404,10 +404,11 @@ bool Match::has_lives(unsigned int player_id) {
   return map.get_player(player_id).has_extra_lives();
 }
 
-bool Match::interact_with_door(unsigned int player_id) {
+bool Match::open_door(unsigned int player_id) {
   if (!player_exists(player_id)) {
-    throw MatchError("Failed to find door interactor. Player %u doesn't exist.",
-                     player_id);
+    throw MatchError(
+        "Failed to find player opening door. Player %u doesn't exist.",
+        player_id);
   }
 
   if (is_dead(player_id)) {
@@ -420,18 +421,14 @@ bool Match::interact_with_door(unsigned int player_id) {
   std::pair<unsigned int, unsigned int> cell(forward.getX(), forward.getY());
   std::shared_ptr<Door>& door = map.get_door(cell);
 
-  if (!checker.is_free(door->get_position())) {
-    return false;
-  }
-
-  if (door->interact(player, checker)) {
+  if (door->open(player)) {
     if (door->is_open()) {
       ((ClockThread*)threads.at(CLOCK_KEY))->add_door_timer(cell);
     }
     return true;
-  } else {
-    return false;
   }
+
+  return false;
 }
 
 bool Match::close_door(unsigned int door_id) {
@@ -441,7 +438,10 @@ bool Match::close_door(unsigned int door_id) {
 
   auto door = (Door*)map.get_object(door_id);
 
-  door->close(checker);
+  if (checker.is_free(door->get_position()))
+    ;
+
+  door->close();
 
   if (!door->is_open()) {
     ((ClockThread*)threads.at(CLOCK_KEY))->delete_door_timer(door_id);

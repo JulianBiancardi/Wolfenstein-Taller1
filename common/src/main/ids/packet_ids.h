@@ -84,10 +84,13 @@
 #define DOORWAY_INTERACTION 18
 #define DOORWAY_INTERACTION_SIZE 4
 
-#define GAME_OVER 19
+#define DOOR_UPDATE 19
+#define DOOR_UPDATE_SIZE 8
+
+#define GAME_OVER 20
 #define GAME_OVER_SIZE 3
 
-#define EXIT_MATCH 20
+#define EXIT_MATCH 21
 #define EXIT_MATCH_SIZE 4
 
 //==============================

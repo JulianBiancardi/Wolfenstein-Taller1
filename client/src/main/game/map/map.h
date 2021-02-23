@@ -70,6 +70,9 @@ class Map : public BaseMap {
   int pick_item(unsigned int player_id, unsigned int item_id);
   Hit update_gun(unsigned int player_id, bool trigger);
 
+  bool set_door_state(const std::pair<unsigned int, unsigned int>& cell,
+                      bool state);
+
   /* The player sent launches a rocket, new rocket is created */
   void shoot_rocket(unsigned int player_id);
 

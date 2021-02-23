@@ -10,8 +10,8 @@ class Door : public Object, public Identifiable {
   void change_state();
 
  public:
-  /* Returns if the door state changed */
-  virtual bool interact(Player& who) = 0;
+  /* Returns true if the door was opened, false otherwise. */
+  virtual bool open(Player& who) = 0;
 
   /* Returns if the door is open or not */
   bool is_open() const;
