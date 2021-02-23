@@ -38,6 +38,7 @@ class Bot {
   void kill_actions();
   void rotate_to_player_goal();
   Player* find_nearest_player();
+  bool is_dead();
 
  private:
   BlockingQueue<Packet>& queue;
@@ -45,7 +46,6 @@ class Bot {
   lua_State* state;
   int id_at_players;
   CollisionChecker& checker;
-  std::list<int> attacked_players;
   Player* player_goal;
   Map& map;
   Match* match;

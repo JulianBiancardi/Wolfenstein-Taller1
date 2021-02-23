@@ -64,16 +64,10 @@ void Bot::move_actions() {
       next_position(GO_AHEAD), map.get_player(id_at_players))) {
     send_movement_package(GO_AHEAD);
   } else {
-    printf("RESETMOVING||RESETMOVING||RESETMOVING||RESETMOVING||");
-    printf("RESETMOVING||RESETMOVING||RESETMOVING||RESETMOVING||");
-    printf("RESETMOVING||RESETMOVING||RESETMOVING||RESETMOVING||");
-    printf("RESETMOVING||RESETMOVING||REMOVING||RESETMOVING||");
-    printf("RESETMOVING||RESETMOVING||RESETMOVING||RESETMOVING||");
     lua_checker(lua_getglobal(this->state, "resetPlayer"));
     lua_checker(lua_pcall(this->state, 0, 0, 0));
     player_goal = nullptr;
   }
-
 }
 
 Player *Bot::find_nearest_player() {
@@ -88,14 +82,6 @@ Player *Bot::find_nearest_player() {
         player.second.get_position().getY());
     float distance = 1 * (dx + dy) + (std::sqrt(2) - 2 * 1) * std::min(dx, dy);
     int id_attacked = player.second.get_id();
-    /*
-    bool was_attacked = std::find_if(attacked_players.begin(),
-                     attacked_players.end(),
-                     [id_attacked](int p_id) {
-                       return p_id == id_attacked;
-                     }) != attacked_players.end();
-    if (was_attacked) continue;
-     */
     if ((distance < least_distance) && (distance != 0) &&
         (!player.second.is_dead())) {
       least_distance = distance;
@@ -103,9 +89,7 @@ Player *Bot::find_nearest_player() {
       least_distance_player_id = player.second.get_id();
     }
   }
-
   if (least_distance != FLT_MAX) {
-    attacked_players.push_back(least_distance_player_id);
     return &map.get_player(least_distance_player_id);
   } else {
     return nullptr;
@@ -193,10 +177,8 @@ void Bot::load_map(int x, int y, int value) {
   lua_checker(lua_pcall(this->state, 3, 0, 0));
 }
 
-Bot::~Bot() {
-  if (this->state) lua_close(this->state);
-}
-
+Bot::~Bot() {if (this->state) lua_close(this->state);}
+bool Bot::is_dead() {return map.get_player(id_at_players).is_dead();}
 void Bot::lua_checker(const int status) {
   if (status > 0)
     std::cout << lua_tostring(this->state, -1) << std::endl;

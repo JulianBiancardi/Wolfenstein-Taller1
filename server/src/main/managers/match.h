@@ -128,8 +128,11 @@ class Match {
   /* Delete player from the match */
   void delete_player(unsigned int player_id);
 
-  /* Returns if match should end (does not check time) */
-  bool should_end() const;
+  /* Returns if match has only one player alive left */
+  bool has_one_player_alive() const;
+
+  /* Makes player save active gun */
+  void make_player_remember_gun(unsigned int player_id);
 };
 
 #endif

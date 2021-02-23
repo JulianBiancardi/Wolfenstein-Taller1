@@ -102,12 +102,28 @@ objects:
     x_position: 0
     y_position: 1
   - type: 1
+    id: 7
+    x_position: 7
+    y_position: 1
+  - type: 1
+    id: 5
+    x_position: 12
+    y_position: 1
+  - type: 1
     id: 1
     x_position: 23
     y_position: 1
   - type: 1
     id: 1
     x_position: 0
+    y_position: 2
+  - type: 1
+    id: 7
+    x_position: 7
+    y_position: 2
+  - type: 1
+    id: 5
+    x_position: 12
     y_position: 2
   - type: 1
     id: 1
@@ -120,6 +136,14 @@ objects:
   - type: 2
     id: 20
     x_position: 3
+    y_position: 3
+  - type: 1
+    id: 7
+    x_position: 7
+    y_position: 3
+  - type: 1
+    id: 5
+    x_position: 12
     y_position: 3
   - type: 2
     id: 21
@@ -134,6 +158,14 @@ objects:
     x_position: 0
     y_position: 4
   - type: 1
+    id: 7
+    x_position: 7
+    y_position: 4
+  - type: 1
+    id: 5
+    x_position: 12
+    y_position: 4
+  - type: 1
     id: 1
     x_position: 23
     y_position: 4
@@ -142,6 +174,26 @@ objects:
     x_position: 0
     y_position: 5
   - type: 1
+    id: 7
+    x_position: 7
+    y_position: 5
+  - type: 1
+    id: 5
+    x_position: 12
+    y_position: 5
+  - type: 1
+    id: 5
+    x_position: 18
+    y_position: 5
+  - type: 1
+    id: 5
+    x_position: 19
+    y_position: 5
+  - type: 1
+    id: 5
+    x_position: 20
+    y_position: 5
+  - type: 1
     id: 1
     x_position: 23
     y_position: 5
@@ -150,6 +202,14 @@ objects:
     x_position: 0
     y_position: 6
   - type: 1
+    id: 5
+    x_position: 12
+    y_position: 6
+  - type: 1
+    id: 5
+    x_position: 18
+    y_position: 6
+  - type: 1
     id: 1
     x_position: 23
     y_position: 6
@@ -158,6 +218,42 @@ objects:
     x_position: 0
     y_position: 7
   - type: 1
+    id: 7
+    x_position: 1
+    y_position: 7
+  - type: 1
+    id: 7
+    x_position: 2
+    y_position: 7
+  - type: 1
+    id: 7
+    x_position: 3
+    y_position: 7
+  - type: 1
+    id: 7
+    x_position: 4
+    y_position: 7
+  - type: 1
+    id: 7
+    x_position: 5
+    y_position: 7
+  - type: 1
+    id: 7
+    x_position: 6
+    y_position: 7
+  - type: 1
+    id: 7
+    x_position: 7
+    y_position: 7
+  - type: 1
+    id: 5
+    x_position: 12
+    y_position: 7
+  - type: 1
+    id: 5
+    x_position: 18
+    y_position: 7
+  - type: 1
     id: 1
     x_position: 23
     y_position: 7
@@ -166,6 +262,34 @@ objects:
     x_position: 0
     y_position: 8
   - type: 1
+    id: 5
+    x_position: 12
+    y_position: 8
+  - type: 1
+    id: 5
+    x_position: 13
+    y_position: 8
+  - type: 1
+    id: 5
+    x_position: 14
+    y_position: 8
+  - type: 1
+    id: 5
+    x_position: 15
+    y_position: 8
+  - type: 1
+    id: 5
+    x_position: 16
+    y_position: 8
+  - type: 1
+    id: 5
+    x_position: 17
+    y_position: 8
+  - type: 1
+    id: 5
+    x_position: 18
+    y_position: 8
+  - type: 1
     id: 1
     x_position: 23
     y_position: 8
@@ -214,6 +338,10 @@ objects:
     x_position: 0
     y_position: 14
   - type: 1
+    id: 10
+    x_position: 9
+    y_position: 14
+  - type: 1
     id: 1
     x_position: 23
     y_position: 14
@@ -222,6 +350,10 @@ objects:
     x_position: 0
     y_position: 15
   - type: 1
+    id: 10
+    x_position: 9
+    y_position: 15
+  - type: 1
     id: 1
     x_position: 23
     y_position: 15
@@ -230,6 +362,14 @@ objects:
     x_position: 0
     y_position: 16
   - type: 1
+    id: 10
+    x_position: 9
+    y_position: 16
+  - type: 1
+    id: 9
+    x_position: 18
+    y_position: 16
+  - type: 1
     id: 1
     x_position: 23
     y_position: 16
@@ -238,6 +378,34 @@ objects:
     x_position: 0
     y_position: 17
   - type: 1
+    id: 10
+    x_position: 9
+    y_position: 17
+  - type: 1
+    id: 9
+    x_position: 13
+    y_position: 17
+  - type: 1
+    id: 9
+    x_position: 14
+    y_position: 17
+  - type: 1
+    id: 9
+    x_position: 15
+    y_position: 17
+  - type: 1
+    id: 9
+    x_position: 16
+    y_position: 17
+  - type: 1
+    id: 9
+    x_position: 17
+    y_position: 17
+  - type: 1
+    id: 9
+    x_position: 18
+    y_position: 17
+  - type: 1
     id: 1
     x_position: 23
     y_position: 17
@@ -246,6 +414,30 @@ objects:
     x_position: 0
     y_position: 18
   - type: 1
+    id: 10
+    x_position: 3
+    y_position: 18
+  - type: 1
+    id: 10
+    x_position: 4
+    y_position: 18
+  - type: 1
+    id: 10
+    x_position: 5
+    y_position: 18
+  - type: 1
+    id: 10
+    x_position: 6
+    y_position: 18
+  - type: 1
+    id: 10
+    x_position: 9
+    y_position: 18
+  - type: 1
+    id: 9
+    x_position: 18
+    y_position: 18
+  - type: 1
     id: 1
     x_position: 23
     y_position: 18
@@ -254,12 +446,28 @@ objects:
     x_position: 0
     y_position: 19
   - type: 1
+    id: 10
+    x_position: 9
+    y_position: 19
+  - type: 1
+    id: 9
+    x_position: 18
+    y_position: 19
+  - type: 1
     id: 1
     x_position: 23
     y_position: 19
   - type: 1
     id: 1
     x_position: 0
+    y_position: 20
+  - type: 1
+    id: 10
+    x_position: 9
+    y_position: 20
+  - type: 1
+    id: 9
+    x_position: 18
     y_position: 20
   - type: 1
     id: 1
@@ -274,12 +482,28 @@ objects:
     x_position: 3
     y_position: 21
   - type: 1
+    id: 10
+    x_position: 9
+    y_position: 21
+  - type: 1
+    id: 9
+    x_position: 18
+    y_position: 21
+  - type: 1
     id: 1
     x_position: 23
     y_position: 21
   - type: 1
     id: 1
     x_position: 0
+    y_position: 22
+  - type: 1
+    id: 10
+    x_position: 9
+    y_position: 22
+  - type: 1
+    id: 9
+    x_position: 18
     y_position: 22
   - type: 1
     id: 1
