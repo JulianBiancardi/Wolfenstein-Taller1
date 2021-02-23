@@ -131,7 +131,7 @@ void GameSound::play_gun_change(Point point, unsigned char gun_id) {
   } else if (gun_id == CHAIN_CANNON_ID) {
     sound = sounds.at(SOUND_CHAIN_CANNON_CHANGE);
   } else if (gun_id == ROCKET_LAUNCHER_ID) {
-    return;  // TODO Add sound
+    return;  // TODO Add sound. We couldn't find any good sample online.
   } else {
     return;
   }
@@ -173,7 +173,7 @@ void GameSound::play_shoot(Point point, unsigned char gun_id) {
   } else if (gun_id == CHAIN_CANNON_ID) {
     sound = sounds.at(SOUND_CHAIN_CANNON_SHOOT);
   } else if (gun_id == ROCKET_LAUNCHER_ID) {
-    return;  // TODO Add sound
+    return;  // TODO Add sound. We couldn't find any online.
   } else {
     return;
   }
