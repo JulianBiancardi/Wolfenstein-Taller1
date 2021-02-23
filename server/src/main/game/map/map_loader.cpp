@@ -6,6 +6,7 @@
 #include "../objects/circular_object.h"
 #include "../objects/door/locked_door.h"
 #include "../objects/door/normal_door.h"
+#include "../objects/door/passage.h"
 #include "../objects/items/blood.h"
 #include "../objects/items/bullets.h"
 #include "../objects/items/chain_cannon_item.h"
@@ -59,73 +60,55 @@ void MapLoader::load_map(std::string& map_name) {
     double y = object["y_position"].as<int>() + 0.5;
 
     switch (id) {
-      case SPAWN_POINT:
-        add_spawn_point(Point(x, y));
+      case SPAWN_POINT:add_spawn_point(Point(x, y));
         break;
-      case DOG:
-        add_dog(Point(x, y));
+      case DOG:add_dog(Point(x, y));
         break;
-      case MACHINE_GUN:
-        add_machine_gun(Point(x, y));
+      case MACHINE_GUN:add_machine_gun(Point(x, y));
         break;
-      case CHAIN_CANNON:
-        add_chain_cannon(Point(x, y));
+      case CHAIN_CANNON:add_chain_cannon(Point(x, y));
         break;
-      case ROCKET_LAUNCHER:
-        add_rocket_launcher(Point(x, y));
+      case ROCKET_LAUNCHER:add_rocket_launcher(Point(x, y));
         break;
-      case FOOD:
-        add_food(Point(x, y));
+      case FOOD:add_food(Point(x, y));
         break;
-      case MEDKIT:
-        add_medic_kit(Point(x, y));
+      case MEDKIT:add_medic_kit(Point(x, y));
         break;
-      case BLOOD:
-        add_blood(Point(x, y));
+      case BLOOD:add_blood(Point(x, y));
         break;
-      case BULLETS:
-        add_bullets(Point(x, y));
+      case BULLETS:add_bullets(Point(x, y));
         break;
-      case CROSS:
-        add_cross(Point(x, y));
+      case CROSS:add_cross(Point(x, y));
         break;
-      case CUP:
-        add_cup(Point(x, y));
+      case CUP:add_cup(Point(x, y));
         break;
-      case CHEST:
-        add_chest(Point(x, y));
+      case CHEST:add_chest(Point(x, y));
         break;
-      case CROWN:
-        add_crown(Point(x, y));
+      case CROWN:add_crown(Point(x, y));
         break;
-      case KEY:
-        add_key(Point(x, y));
+      case KEY:add_key(Point(x, y));
         break;
       case PILLAR:
         // TODO Change to add round and add square
         add_pillar(Point(x, y));
         break;
-      case LARGE_TABLE:
-        add_table(Point(x, y));
+      case LARGE_TABLE:add_table(Point(x, y));
         break;
-      case ROUND_TABLE:
-        add_barrel(Point(x, y));
+      case ROUND_TABLE:add_barrel(Point(x, y));
         break;
-      case BARREL:
-        add_barrel(Point(x, y));
+      case BARREL:add_barrel(Point(x, y));
         break;
       case HORIZONTAL_DOOR:
-      case VERTICAL_DOOR:
+      case VERTICAL_DOOR:add_normal_door(Point(x, y));
+        break;
+      case HORIZONTAL_LOCKED_DOOR:
+      case VERTICAL_LOCKED_DOOR:add_locked_door(Point(x, y));
+        break;
       case GREY_BRICK_PASSAGE:
       case WOOD_WALL_PASSAGE:
       case GREY_STONE_PASSAGE:
       case BLUE_WALL_PASSAGE:
-      case ROCK_WALL_PASSAGE:
-        add_normal_door(Point(x, y));
-        break;
-      case HORIZONTAL_LOCKED_DOOR:
-      case VERTICAL_LOCKED_DOOR:
-        add_locked_door(Point(x, y));
+      case ROCK_WALL_PASSAGE:add_passage(Point(x, y));
         break;
     }
   }
@@ -235,4 +218,10 @@ void MapLoader::add_locked_door(const Point& where) {
   auto new_door = new LockedDoor(where, door_id++);
   doors.insert(
       std::make_pair(std::make_pair(where.getX(), where.getY()), new_door));
+}
+
+void MapLoader::add_passage(const Point& where) {
+  auto new_passage = new Passage(where, door_id++);
+  doors.insert(
+      std::make_pair(std::make_pair(where.getX(), where.getY()), new_passage));
 }

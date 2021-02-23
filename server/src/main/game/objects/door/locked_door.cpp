@@ -22,3 +22,7 @@ bool LockedDoor::open(Player& who) {
     return true;
   }
 }
+
+bool LockedDoor::should_close_automatically() const {
+  return true;
+}
