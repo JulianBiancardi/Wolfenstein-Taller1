@@ -71,7 +71,7 @@ void Moveable::rotate(int direction) {
   }
 }
 
-Point Moveable::collision_mask_bound(const Point& next_position) {
+Point Moveable::collision_mask_bound(const Point& next_position) const {
   double angle = position.get_origin().angle_to(next_position);
   double mask_radius = ((CircleMask*) (((SwitchMask*) mask)->get_mask()))
       ->get_radius();

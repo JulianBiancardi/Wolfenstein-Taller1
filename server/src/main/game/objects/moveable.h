@@ -32,7 +32,7 @@ class Moveable : public Object, public Identifiable {
   void rotate(int direction);
 
   /* Returns the point in bound of the mask in the direction of the position sent  */
-  Point collision_mask_bound(const Point& next_position);
+  Point collision_mask_bound(const Point& next_position) const;
 
   /* Sets moveable position */
   void set_position(const Point& new_origin);
