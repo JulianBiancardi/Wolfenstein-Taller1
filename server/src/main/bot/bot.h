@@ -32,7 +32,7 @@ class Bot {
   ~Bot();
   void execute();
   void update_player();
-  void load_map(int x, int y, int value /*todo change?*/);
+  void load_map(int x, int y, int value);
   void rotate_actions();
   void move_actions();
   void kill_actions();
