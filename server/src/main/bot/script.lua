@@ -1,9 +1,6 @@
 map = {}
-player = {killing = 0, moving = 0, rotating = 0, inited = false }
-position = {x=0, y=0, direction = 0 }
-enemy = {id = 0, health = -1}
-pace = 1
-differenceAllowed = 5
+player = {killing = 0, moving = 0, rotating = 0, inited = false, working = false }
+enemy = {id = 0, health = -1 }
 
 function init(packetsReceived, paceReceived, differenceAllowedReceived, rotationSpeedReceived)
     packets = packetsReceived
@@ -17,18 +14,18 @@ function resetPlayer()
     player.moving = 0
     player.rotating = 0
     enemy.health = -1
-    enemy.id = 0
     path = nil
 end
 
 function loadMap(x, y, value)
-    if map[x] == nil then map[x] = {} end --???
-
-    if value ~= 0 and value ~= 1 then
-        value = 1
+    if map[y+1] == nil then
+        map[y+1] = {}
     end
-    map[x][y] = value
-    --print(x,y,value)
+    if value == 0 then
+        map[y+1][x+1] = 0
+    else
+        map[y+1][x+1] = 1
+    end
 end
 
 function updatePlayer(currentPlayer, goal)
@@ -36,10 +33,6 @@ function updatePlayer(currentPlayer, goal)
     for key, value in pairs(currentPlayer) do
         player[key] = value
     end
-    --if player.moving == 1 and prev_node ~=nil and (prev_node.x ~= player.posX or prev_node.y ~= player.posY) then
-    --player.moving = 0
-    --end
-    --print(player.angle)
     if player.killing == 1 then
         prev_node = nil
     end
@@ -52,167 +45,83 @@ function round(num, numDecimalPlaces)
     local mult = 10^(numDecimalPlaces or 0)
     return math.floor(num * mult + 0.5) / mult
 end
-
 function randomize(first, second)
     math.randomseed(os.clock()*100000000000)
     return math.random(first, second)
 end
-
 function move()
+    print(player.posX)
+    print(player.posY)
     player.moving = 1
-    --return position, packets.move
-    return position, packets.move
+    return 0, packets.move
 end
-
-function move_up_left()
-    position.x = player.posX - 1 * math.sqrt(2)/2 * pace
-    position.y = player.posY - 1 * math.sqrt(2)/2 * pace
-    --print("UP_LEFT 2")
-    --position.direction = 2
-    --print("UP RIGHT 8")
-    position.direction = 8
-end
-function move_up()
-    position.x = player.posX
-    position.y = player.posY - 1 * pace
-    --print("UP 1")
-    --position.direction = 1
-    --print("LEFT 3")
-    --position.direction = 3
-    --print("RIGHT 7")
-    position.direction = 7
-end
-function move_up_right()
-    position.x = player.posX + 1 * math.sqrt(2)/2 * pace
-    position.y = player.posY - 1 * math.sqrt(2)/2 * pace
-    --print("UP RIGHT 8")
-    --position.direction = 8
-    --print("DOWN_LEFT 4")
-    --position.direction = 4
-    --print("DOWN RIGHT 6")
-    position.direction = 6
-end
-function move_right()
-    position.x = player.posX + 1 * pace
-    position.y = player.posY
-    --print("RIGHT 7")
-    --position.direction = 7
-    --print("DOWN 5")
-    position.direction = 5
-end
-function move_down_right()
-    position.x = player.posX + 1 * math.sqrt(2)/2 * pace
-    position.y = player.posY + 1 * math.sqrt(2)/2 * pace
-    --print("DOWN RIGHT 6")
-    --position.direction = 6
-    --print("DOWN_LEFT 4")
-    position.direction = 4
-end
-function move_down()
-    position.x = player.posX
-    position.y = player.posY + 1 * pace
-    --print("DOWN 5")
-    --position.direction = 5
-    --print("RIGHT 7")
-    --position.direction = 7
-    --print("LEFT 3")
-    position.direction = 3
-end
-function move_down_left()
-    position.x = player.posX - 1 * math.sqrt(2)/2 * pace
-    position.y = player.posY + 1 * math.sqrt(2)/2 * pace
-    --print("DOWN_LEFT 4")
-    --position.direction = 4
-    --print("UP RIGHT 8")
-    --position.direction = 8
-    --print("UP_LEFT 2")
-    position.direction = 2
-
-end
-function move_left()
-    position.x = player.posX - 1 * pace
-    position.y = player.posY
-    --print("LEFT 3")
-    --position.direction = 3
-    --print("UP 1")
-    position.direction = 1
-end
-
-function is_position_updated()
-    if prev_node == nil then
-        return true
-    end
-    local x_info = math.abs(prev_node.x - player.posX)
-    local y_info = math.abs(prev_node.y - player.posY)
-
+function isEnemyInPath(node)
+    local x_info = math.abs(node.x - 1 + 0.5 - enemy.posX)
+    local y_info = math.abs(node.y - 1 + 0.5 - enemy.posY)
     local is_ok = ( (x_info <= differenceAllowed)
             and (y_info <= differenceAllowed) )
     return ( is_ok )
 end
 
-function updatePath(playerX, playerY, playerID)
-    if not is_position_updated() then
-        find_best_path(playerX, playerY, playerID)
-        if path then
-            --player.moving = 1
-            player.rotating = 1
-            prev_node = nil
-            enemy.id = playerID
-        else
-            return random_movement()
-        end
-
-
-        --return execute(playerX, playerY, playerID)
+function isDistanceLessThanEpsilon(node)
+    if node == nil then
+        return false
     end
-
+    local x_info = math.abs(node.x - 1 + 0.5 - player.posX)
+    local y_info = math.abs(node.y - 1 + 0.5 - player.posY)
+    local is_ok = ( (x_info <= 0.15)
+            and (y_info <= 0.15) )
+    return ( is_ok )
+end
+function updatePath(playerX, playerY, playerID)
+    print("Z")
     if path then
-        for node in path:nodes() do
-            if (prev_node == nil)
-                    or (prev_node.x == node.x
-                    and prev_node.y == node.y) then
-                prev_node = node
-            else
-                if prev_node.x == (node.x+1)
-                        and prev_node.y == (node.y+1) then
-                    move_up_left()
-                elseif prev_node.x == node.x
-                        and prev_node.y == (node.y+1) then
-                    move_up()
-                elseif prev_node.x == (node.x-1)
-                        and prev_node.y == (node.y+1) then
-                    move_up_right()
-                elseif prev_node.x == (node.x-1)
-                        and prev_node.y == node.y then
-                    move_right()
-                elseif prev_node.x == (node.x-1)
-                        and prev_node.y == (node.y-1) then
-                    move_down_right()
-                elseif prev_node.x == node.x
-                        and prev_node.y == (node.y-1) then
-                    move_down()
-                elseif prev_node.x == (node.x+1)
-                        and prev_node.y == (node.y-1) then
-                    move_down_left()
-                elseif prev_node.x == (node.x+1)
-                        and prev_node.y == node.y then
-                    move_left()
-                else
-                    io.write("ERROR en updatePath")
-                end
-                --[]io.write("PrevNode("..prev_node.x.." "..prev_node.y..")".."Node("..node.x.." "..node.y..")".."\n")
-                prev_node = node
-                break
-            end
+        print("ZZ")
+        local node = path[1]
+        if node == nil then
+            resetMoving()
+            return 0,0
         end
-        table.remove(path, 1) --todo low efficience ?...
+        print(player.posX)
+        print(player.posY)
+        print(node.x - 1 + 0.5)
+        print(node.y - 1 + 0.5)
+        local next_pos_angle = angleTo(player.posX, player.posY, node.x - 1 + 0.5, node.y - 1 + 0.5)
+        print("ZZZZ")
+        if shouldRotate(next_pos_angle, player.angle) then
+            print("A")
+            player.moving = 0
+            player.rotating = 1
+            return 0, 0
+        end
+        if not isDistanceLessThanEpsilon(node) then
+            print("B")
+            return move()
+        end
+        print("ZZZZZ")
+        table.remove(path, 1)
+        if not isEnemyInPath(path[#path]) then
+            print("C")
+            return resetPlayer()
+        end
+        if player.rotating == 0 then
+            print("D")
+            return move()
+        else
+            print("E")
+            return 0,0
+        end
         --for node, count in path:nodes() do
         --print(('Step: %d - x: %d - y: %d'):format(count, node.x, node.y))
         --end
-        return move()
+    else
+        print("F")
+        resetMoving()
+        return 0,0
     end
-end
+    print("ZZZZZZZZ")
 
+end
 function kill()
     player.killing = 1
     return randomize(1,10), packets.damage
@@ -226,55 +135,8 @@ function resetMoving()
     player.moving = 0
 end
 
-function canMove()
-    if map[round(position.x, 0)] == nil or
-            map[round(position.x, 0)]
-            [round(position.y, 0)] == nil then
-        return false
-    end
-
-    if map[round(position.x, 0)]
-    [round(position.y, 0)] == 1 then
-        return false
-    end
-    if map[round(position.x, 0)]
-    [round(position.y, 0)] == 0 then
-        return true
-    end
-    return false
-end
-
 function random_movement()
-
-    return position
-    --remove above
-    --[[
-    local rand = randomize(1,8)
-
-    if rand == 1 then
-        move_up_left()
-    elseif rand == 2 then
-        move_up()
-    elseif rand == 3 then
-        move_up_right()
-    elseif rand == 4 then
-        move_right()
-    elseif rand == 5 then
-        move_down_right()
-    elseif rand == 6 then
-        move_down()
-    elseif rand == 7 then
-        move_down_left()
-    elseif rand == 8 then
-        move_left()
-    end
-
-    if canMove() then
-        return position, packets.move--move()
-    else
-        return random_movement()
-    end
-]]
+    return 0
 end
 function find_best_path(playerX, playerY, playerID)
     local Grid = require ('jumper.grid')
@@ -282,61 +144,76 @@ function find_best_path(playerX, playerY, playerID)
     local grid = Grid(map)
     local myFinder = Pathfinder(grid, 'ASTAR', 0):
     setHeuristic('DIAGONAL'):
-    setMode('DIAGONAL')
-
-    path = myFinder:getPath(round(player.posX,0),
-        round(player.posY,0),
-        round(playerX, 0),
-        round(playerY,0))
-    --return path
+    setMode('ORTHOGONAL')    --setMode('DIAGONAL')
+    path = myFinder:getPath(math.floor(player.posX)+1,
+                math.floor(player.posY)+1,
+                math.floor(playerX)+1,
+                math.floor(playerY)+1)
+    table.remove(path, 1) --Remuevo la posición actual
+    for node, count in path:nodes() do
+        print(('Step: %d - x: %d - y: %d'):format(count, node.x - 1, node.y - 1))
+    end
 end
 function execute(playerX, playerY, playerID)
-    --print("ATACAR A: ")
-    --print(playerID)
-    --print(" ")
     find_best_path(playerX, playerY, playerID)
     if path then
-        --player.moving = 1
-        player.rotating = 1
+        player.moving = 1
         prev_node = nil
-        enemy.id = playerID
     else
         return random_movement()
     end
-    --if player.moving == 1 then
-      --  return updatePath(playerX, playerY, playerID)
-    --end
+    return 0
 end
 
-function shouldRotate()
-    local difference = enemy.angleToGoal - player.angle
-    if  math.abs(difference) < 0.25 then --0.5 ideal
+function angleTo(firstX, firstY, secondX, secondY)
+    local angle = math.atan2(firstY - secondY, secondX - firstX)
+    if angle >= 2 * math.pi then
+        repeat
+            angle = angle - 2 * math.pi
+        until angle <= 2 * math.pi
+    end
+    if angle < 0 then
+        repeat
+            angle = angle + 2 * math.pi
+        until angle >= 0
+    end
+    return angle
+end
+
+function shouldRotate(firstAngle, secondAngle)
+    local difference = firstAngle - secondAngle
+    if math.abs(difference) < 0.5 then --0.5 ideal? 0.25 funca bien
         return false
     else
         return true
     end
 end
-
-
-function rotate(--[[angleToGoal]])
-    --[[
-    // Rotating directions:
-    #define INVALID_ROTATION 0
-    #define RIGHT_ROTATION 1
-    #define LEFT_ROTATION 2
-    ]]
-    local difference = enemy.angleToGoal - player.angle
-    if shouldRotate(enemy.angleToGoal) then
+function rotate()
+    local next_pos_angle
+    local node_local
+    if path then
+        local node = path[1]
+        next_pos_angle = angleTo(player.posX, player.posY, node.x - 1 + 0.5, node.y - 1 + 0.5)
+        node_local = node
+    end
+    if shouldRotate(next_pos_angle, player.angle) then
         local add = player.angle + rotationSpeed
         local substract = player.angle - rotationSpeed
-        local next_difference_add = enemy.angleToGoal - add
-        local next_difference_subtract = enemy.angleToGoal - substract
+        local next_difference_add = next_pos_angle - add
+        local next_difference_subtract = next_pos_angle - substract
         if math.abs(next_difference_add) > math.abs(next_difference_subtract) then
-            return 1, packets.rotate --change 1
+            --return 1, packets.rotate --1 Right Rotation
         else
-            return 2, packets.rotate --change 2
+            return 2, packets.rotate --2 Left Rotation
         end
     else
+        print("A")
+        print(player.posX)
+        print(player.posY)
+        print(node_local.x - 1 + 0.5)
+        print(node_local.y - 1 + 0.5)
+        print(next_pos_angle)
+        print("A")
         player.rotating = 0
         player.moving = 1
         return 0, 0
@@ -345,30 +222,32 @@ end
 
 function decision()
     if(not player.inited) then
-        --[]io.write("jugador no inicializado")
+        --print(0)
         return 0
     end
+    --print()
+    --print(player.moving)
+    --print(player.rotating)
+    --print()
+
     if enemy.health == 0 or
             (player.moving == 0 and player.killing == 0 and player.rotating == 0) then
-        --io.write("---"..enemy.health.." "..player.moving.." "..player.killing.."---")
         resetPlayer()
+        --print(1)
         return 1
     end
-    if shouldRotate() then
-        player.rotate = 1
-        --print("TENES QUE ROTAR CHE")
-        return 4
-    else
-        --print("no rotes")
-    end
     if player.killing == 1 then
+        --print(2)
         return 2
     end
     if player.moving == 1 then
+        --print(3)
         return 3
     end
     if player.rotating == 1 then
+        --print(4)
         return 4
     end
-    return -1
+    --print(0)
+    return 0
 end

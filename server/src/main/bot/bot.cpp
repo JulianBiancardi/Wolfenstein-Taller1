@@ -1,5 +1,7 @@
 #include "bot.h"
 
+#define GO_AHEAD 1
+
 #define MOVE_EVENT 2
 #define ROTATE_EVENT 3
 #define DAMAGE_EVENT 4
@@ -12,7 +14,7 @@ Bot::Bot(CollisionChecker& checker, Map& map, unsigned int id_at_players,
     : checker(checker), map(map), id_at_players(id_at_players),
       player_goal(nullptr), queue(queue), match(match) {
   send_creation_package();
-  //map.get_player(id_at_players).change_gun(KNIFE_ID);  //TODO should not be here.
+  //map.get_player(id_at_players).change_gun(KNIFE_ID); //For testing purposes
   this->state = luaL_newstate();
   luaL_openlibs(this->state);
 
@@ -33,20 +35,18 @@ Bot::Bot(CollisionChecker& checker, Map& map, unsigned int id_at_players,
 void Bot::rotate_actions() {
   int rotate_direction = lua_tonumber(this->state, -1);
   lua_pop(this->state, 1);
-  //player_goal->receive_damage(damage_done); //TODO should not be here.
+  //player_goal->receive_damage(damage_done); //For testing purposes
   send_rotation_package((unsigned char) rotate_direction);
 }
 void Bot::kill_actions() {
   unsigned int damage_done = lua_tonumber(this->state, -1);
   lua_pop(this->state, 1);
-  //player_goal->receive_damage(damage_done); //TODO should not be here.
+  //player_goal->receive_damage(damage_done); //For testing purposes
   if ((player_goal != nullptr) && (!player_goal->is_dead()) &&
       (player_goal->get_position().distance_from(map.
       get_player(id_at_players).get_position())<=CL::knife_range) ) {
     send_damage_package(damage_done);
   }else{
-    //printf("%f", player_goal->get_position().distance_from(map.
-      //get_player(id_at_players).get_position()));
     lua_checker(lua_getglobal(this->state, "resetPlayer"));
     lua_checker(lua_pcall(this->state, 0, 0, 0));
     player_goal = nullptr;
@@ -55,52 +55,25 @@ void Bot::kill_actions() {
 
 
 void Bot::move_actions() {
-  float x, y;
-  int direction;
-  if (lua_istable(this->state, -1)) {
-    lua_pushstring(this->state, "x");
-    lua_gettable(this->state, -2);
-    x = lua_tonumber(this->state, -1);
-    lua_pop(this->state, 1);
-
-    lua_pushstring(this->state, "y");
-    lua_gettable(this->state, -2);
-    y = lua_tonumber(this->state, -1);
-    lua_pop(this->state, 1);
-
-    lua_pushstring(this->state, "direction");
-    lua_gettable(this->state, -2);
-    direction = lua_tonumber(this->state, -1);
-    lua_pop(this->state, 1);
-  }
-  Point new_point(x, y);
   if (player_goal != nullptr &&
-      checker.get_knife_range_collides_player_id(
-          new_point, map.get_player(id_at_players)) == player_goal->get_id()) {
-
-    if (checker.can_move(new_point, map.get_player(id_at_players))){
-      /*TODO next line should not be here.*/
-      //map.get_player(id_at_players).set_position(Point(x, y));
-      //send_rotation_package(); was here
-      //send_movement_package(map.get_player(id_at_players).
-        //  get_position().movement_direction(new_point)); //todo this was here check.
-    }
+      (player_goal->get_position().distance_from(map.
+          get_player(id_at_players).get_position())<=CL::knife_range)) {
     lua_checker(lua_getglobal(this->state, "setKilling"));
     lua_checker(lua_pcall(this->state, 0, 0, 0));
-  } else if (checker.can_move(new_point, map.get_player(id_at_players))) {
-    //printf("3");
-    //printf("Pos enemigo: (%f, %f, %d)\n", player_goal->get_position().getX(), player_goal->get_position().getY(), player_goal->is_dead());
-    //printf("Pos mia: (%f, %f, %d)\n", map.get_player(id_at_players).get_position().getX(), map.get_player(id_at_players).get_position().getY(), map.get_player(id_at_players).is_dead());
-    //printf("Dir: (%d)\n", direction);
-
-    send_movement_package(1); //check direction
-
-    //map.get_player(id_at_players).set_position(Point(x, y));
+  }else if (checker.can_move(map.get_player(id_at_players).
+      next_position(GO_AHEAD), map.get_player(id_at_players))) {
+    send_movement_package(GO_AHEAD);
   } else {
-    lua_checker(lua_getglobal(this->state, "resetMoving"));
+    printf("RESETMOVING||RESETMOVING||RESETMOVING||RESETMOVING||");
+    printf("RESETMOVING||RESETMOVING||RESETMOVING||RESETMOVING||");
+    printf("RESETMOVING||RESETMOVING||RESETMOVING||RESETMOVING||");
+    printf("RESETMOVING||RESETMOVING||REMOVING||RESETMOVING||");
+    printf("RESETMOVING||RESETMOVING||RESETMOVING||RESETMOVING||");
+    lua_checker(lua_getglobal(this->state, "resetPlayer"));
     lua_checker(lua_pcall(this->state, 0, 0, 0));
     player_goal = nullptr;
   }
+
 }
 
 Player *Bot::find_nearest_player() {
@@ -140,6 +113,7 @@ Player *Bot::find_nearest_player() {
 }
 
 void Bot::execute() {
+
   if (map.get_player(id_at_players).get_active_gun() != KNIFE_ID)
     send_set_gun_package();
   lua_checker(lua_getglobal(this->state, "decision"));
@@ -147,15 +121,15 @@ void Bot::execute() {
 
   int what_to_do = lua_tonumber(this->state, -1);
   lua_pop(this->state, 1);
+  printf("WTD %d\n", what_to_do);
   if (what_to_do == 1) {
     player_goal = find_nearest_player();
-    if (player_goal == nullptr) {
-      lua_checker(lua_getglobal(this->state, "random_movement"));
-      lua_checker(lua_pcall(this->state, 0, 2, 0));
-    } else {
+    if (player_goal != nullptr) {
       lua_checker(lua_getglobal(this->state, "execute"));
       lua_pushnumber(this->state, player_goal->get_position().getX());
       lua_pushnumber(this->state, player_goal->get_position().getY());
+      printf("En X: %f", player_goal->get_position().getX());
+      printf("En Y: %f", player_goal->get_position().getY());
       lua_pushnumber(this->state, player_goal->get_id());
       lua_checker(lua_pcall(this->state, 3, 2, 0));
     }
@@ -167,7 +141,6 @@ void Bot::execute() {
     lua_pushnumber(this->state, player_goal->get_position().getX());
     lua_pushnumber(this->state, player_goal->get_position().getY());
     lua_pushnumber(this->state, player_goal->get_id());
-
     lua_checker(lua_pcall(this->state, 3, 2, 0));
   } else if (what_to_do == 4){
     lua_checker(lua_getglobal(this->state, "rotate"));
@@ -175,7 +148,7 @@ void Bot::execute() {
   }
   int type = lua_tonumber(this->state, -1);
   lua_pop(this->state, 1);
-
+  printf("Type %d\n\n", type);
   switch (type) {
     case MOVE_EVENT:
       move_actions();
@@ -188,24 +161,20 @@ void Bot::execute() {
       break;
   }
 }
+
 void Bot::update_player() {
   lua_checker(lua_getglobal(this->state, "updatePlayer"));
   lua_newtable(this->state);
-
   lua_push_table_number("posX", map.get_player(id_at_players).
       get_position().getX());
   lua_push_table_number("posY", map.get_player(id_at_players).
       get_position().getY());
-
-  lua_push_table_number("walking", 1);
   lua_push_table_number("angle", map.get_player(id_at_players).get_angle());
   lua_newtable(this->state);
-
   if (player_goal != nullptr) {
     lua_push_table_number("health", player_goal->get_health());
-    lua_push_table_number("angleToGoal", map.get_player(id_at_players).
-          get_position().angle_to(player_goal->get_position()));
-
+    lua_push_table_number("posX", player_goal->get_position().getX());
+    lua_push_table_number("posY", player_goal->get_position().getY());
   }
   lua_checker(lua_pcall(this->state, 2, 0, 0));
 }
