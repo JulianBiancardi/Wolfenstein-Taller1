@@ -22,6 +22,7 @@ class BaseDoor : public Drawable {
   void update();
 
   virtual bool update_collision(Collision& collision, double angle) = 0;
+  bool requires_key();
 
   virtual Image* get_image(ResourceManager& resource_manager) override;
   virtual SDL_Rect* get_slice(void* extra) override;
