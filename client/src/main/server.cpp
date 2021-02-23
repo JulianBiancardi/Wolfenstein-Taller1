@@ -1,6 +1,5 @@
 #include "server.h"
 
-#include <iostream>  //TODO DELETE
 #include <utility>
 
 #include "../../../common/src/main/config_loader.h"

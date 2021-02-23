@@ -208,13 +208,14 @@
 60:
   type: 6
   name: "Water"
-  image: "..."
-  icon: "..."
+  image: ../../res/images/ambient/water.png"
+  icon: "../../../../res/images/ambient/water.png"
+
 61:
   type: 6
   name: "Floor Blood"
-  image: "..."
-  icon: "..."
+  image: "../../res/images/items/items/blood.bmp"
+  icon: "../resources/images/items/IMG_Blood.png"
 
 # Doors
 70:

@@ -69,7 +69,6 @@ class Player : public IdentifiableObject {
   bool has_key() const;
 
   /* Gets the active gun of the player. */
-  // TODO CHANGE THIS
   Gun* get_active_gun() const;
 
   void move(unsigned char direction);
@@ -101,9 +100,6 @@ class Player : public IdentifiableObject {
 
   /* Sets the player health to the given amount. */
   void set_health(int health);
-
-  // TODO Remove this. It isn't used anywhere other than tests.
-  bool has_bullets(int bullets) const;
 
   /* Decreases the amount of bullets owned by the player. */
   void decrease_bullets(unsigned char gun_id);

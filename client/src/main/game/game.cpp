@@ -84,7 +84,6 @@ void Game::spawn_self() {
 }
 
 void Game::handle_events() {
-  // TODO Check how to move everything into a flags vector
   SDL_Event event;
   while (SDL_PollEvent(&event)) {
     switch (event.type) {

@@ -22,7 +22,6 @@ class Map : public BaseMap {
  private:
   std::vector<std::weak_ptr<Object>> drawables;
   std::vector<std::weak_ptr<IdentifiableObject>> players_shootable;
-  // TODO this could be maybe reduced by means of
 
   // shared_ptrs are used since they must also be kept in drawables
   std::vector<std::shared_ptr<Object>> ambient_objects;

@@ -16,7 +16,6 @@
 
 PacketHandler* PacketHandlerFactory::build(Packet& packet) {
   switch (packet.get_type()) {
-    // TODO FIX This once all have been defined
     case MOVEMENT:
       return new MovementHandler();
     case ROTATION:
@@ -39,16 +38,7 @@ PacketHandler* PacketHandlerFactory::build(Packet& packet) {
       return new GameOverHandler();
     case DOOR_UPDATE:
       return new DoorUpdateHandler();
-    /*
-    case DOOR_PACKET:
-      return new nullptr;  // TODO
-    case DAMAGE_PACKET:
-      return new DamageHandler(who, enemy_hit,
-    event.data.shot.damage_done); case GAME_OVER_PACKET: return new
-    GameOverHandler();
-      */
     default:
-      printf("Undetected Packet Type: %u\n", packet.get_type());
       throw PacketHandlerFactoryError("Packet type is not valid. Type is %u.",
                                       packet.get_type());
       break;

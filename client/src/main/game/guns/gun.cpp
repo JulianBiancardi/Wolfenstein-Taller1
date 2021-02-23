@@ -41,8 +41,6 @@ std::shared_ptr<IdentifiableObject> Gun::trayectory(
     }
 
     // As a decision of implementation design, solid objects have same radius
-    // TODO Change number 0.5 to use ConfigLoader and use the actual size of
-    // things, or pick a better number later.
     double half_angular_diameter = atan(0.5 / object_distance);
     double object_angle = bullet.get_origin().angle_to(object->get_position());
 
