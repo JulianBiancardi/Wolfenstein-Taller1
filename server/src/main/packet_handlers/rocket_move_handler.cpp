@@ -20,6 +20,8 @@ void RocketMoveHandler::handle(Packet& packet, ClientManager& client_manager,
 
   client_manager.send_to_all(clients, packet);
 
+  bool end_match = false;
+
   if (!match.move_rocket(rocket_id)) {
     std::map<unsigned int, unsigned char> players_exploded =
         match.explode_rocket(rocket_id, player_id);
@@ -32,11 +34,22 @@ void RocketMoveHandler::handle(Packet& packet, ClientManager& client_manager,
     for (int i = 0; i < std::min(ROCKET_EXPLODE_MAX_PLAYERS, players_amount);
          i++) {
       size += pack(data + i * 3 + 3, "IC", it->first, it->second);
+
+      if (!match.is_dead(it->first)) {
+        consequent_grab(it->first, match, client_manager);
+      } else if (match.has_one_player_alive()) {
+        end_match = true;
+      }
+
       it++;
     }
 
     Packet explosion_packet(size, data);
 
     client_manager.send_to_all(clients, explosion_packet);
+
+    if (end_match) {
+      game_over(match, client_manager);
+    }
   }
 }

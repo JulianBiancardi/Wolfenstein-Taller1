@@ -25,6 +25,12 @@ bool ShotHandler::handle(Packet& packet, Map& map, GameSound& sound) {
   }
 
   map.use_bullets(player_id, gun_id);
+
+  if (!map.get_player(player_id).has_bullets_to_shoot_gun()) {
+    map.make_player_remember_gun(player_id);
+    map.change_gun(player_id, KNIFE_ID);
+  }
+
   if (objective_id != 0) {
     map.shoot_player(objective_id, damage, player_id);
   }

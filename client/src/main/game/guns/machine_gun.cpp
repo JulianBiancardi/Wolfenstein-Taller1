@@ -12,11 +12,11 @@
 
 #define COS_MOD 3
 
-MachineGun::MachineGun()
+MachineGun::MachineGun(unsigned int resource_id)
     : generator(),
       distribution(1, CL::bullet_max_dmg),
       spray(CL::machine_gun_spray, CL::machine_gun_std_dev),
-      Gun(0, CL::machine_gun_range),
+      Gun(0, CL::machine_gun_range, resource_id),
       last_shot_time(0),
       last_burst_time(0),
       bullet_count(0) {
@@ -43,8 +43,8 @@ Hit MachineGun::shoot(Object& player, BaseMap& map,
 
   double base_dmg = distribution(generator);
   double dist_modifier = std::max(0.0, std::min(1.0, linear_func(target_dist)));
-  double angle_modifier =
-      std::fabs(std::cos(target_angle * (M_PI / (3 * CL::machine_gun_spray))));
+  double angle_modifier = std::fabs(
+      std::cos(target_angle * (M_PI / (1.5 * CL::machine_gun_spray))));
   double damage = base_dmg * dist_modifier * angle_modifier;
 
   return std::move(Hit(MACHINE_GUN_ID, target->get_id(), damage, true));
@@ -88,21 +88,7 @@ Hit MachineGun::update(
 
 double MachineGun::linear_func(double x) { return slope * x + intercept; }
 
-Image* MachineGun::get_image(ResourceManager& resource_manager) {}
-
 SDL_Rect* MachineGun::get_slice(void* extra) {
-  // TODO OPTIMIZE THIS
-  /*
-  Image* image = (Image*)extra;
-  int frame_width = (image->get_width() - 4 * PIXEL) / 5;
-  int frame_height = image->get_height();
-
-  Uint32 sprite_x;
-  Uint32 ticks = SDL_GetTicks();
-  Uint32 seconds = ticks / 1000;
-
-  sprite_x = bullet_count;
-
-  slice = {(sprite_x * (frame_width + PIXEL)), 0, frame_width, frame_height};*/
+  state.set_slice(slice);
   return &slice;
 }

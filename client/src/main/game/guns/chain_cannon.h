@@ -20,7 +20,6 @@ class ChainCannon : public Gun {
   double slope;
   double intercept;
   long last_shot_time;
-  GunState state;
 
   double linear_func(double x);
 
@@ -28,7 +27,7 @@ class ChainCannon : public Gun {
             std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
 
  public:
-  ChainCannon();
+  explicit ChainCannon(unsigned int resource_id);
   ~ChainCannon();
 
   /* Updates the gun appropriately and returns a Hit instance with
@@ -39,8 +38,6 @@ class ChainCannon : public Gun {
    */
   Hit update(Object& player, bool trigger, BaseMap& map,
              std::vector<std::weak_ptr<IdentifiableObject>>& players);
-
-  Image* get_image(ResourceManager& resource_manager) override;
 
   SDL_Rect* get_slice(void* extra) override;
 };

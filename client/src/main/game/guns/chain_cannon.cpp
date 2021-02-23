@@ -10,11 +10,11 @@
 #include "../../../../../common/src/main/config_loader.h"
 #include "../../../../../common/src/main/ids/gun_ids.h"
 
-ChainCannon::ChainCannon()
+ChainCannon::ChainCannon(unsigned int resource_id)
     : generator(),
       distribution(1, CL::bullet_max_dmg),
       spray(CL::chain_cannon_spray, CL::chain_cannon_std_dev),
-      Gun(0, CL::chain_cannon_range),
+      Gun(0, CL::chain_cannon_range, resource_id),
       last_shot_time(0) {
   slope = 1 / (min_range - max_range);
   intercept = -slope * max_range;
@@ -40,8 +40,8 @@ Hit ChainCannon::shoot(
 
   double base_dmg = distribution(generator);
   double dist_modifier = std::max(0.0, std::min(1.0, linear_func(target_dist)));
-  double angle_modifier =
-      std::fabs(std::cos(target_angle * (M_PI / (3 * CL::chain_cannon_spray))));
+  double angle_modifier = std::fabs(
+      std::cos(target_angle * (M_PI / (1.5 * CL::chain_cannon_spray))));
   double damage = base_dmg * dist_modifier * angle_modifier;
 
   return std::move(Hit(CHAIN_CANNON_ID, target->get_id(), damage, true));
@@ -68,6 +68,7 @@ Hit ChainCannon::update(
   return std::move(shoot(player, map, players));
 }
 
-Image* ChainCannon::get_image(ResourceManager& resource_manager) {}
-
-SDL_Rect* ChainCannon::get_slice(void* extra) { return &slice; }
+SDL_Rect* ChainCannon::get_slice(void* extra) {
+  state.set_slice(slice);
+  return &slice;
+}

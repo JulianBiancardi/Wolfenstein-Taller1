@@ -4,6 +4,7 @@
 #include <utility>
 
 #include "../../../../../common/src/main/ids/gun_ids.h"
+#include "../../../../../common/src/main/ids/images_ids.h"
 #include "../../../../../common/src/main/ids/map_ids.h"
 #include "../guns/chain_cannon.h"
 #include "../guns/knife.h"
@@ -21,11 +22,12 @@ Player::Player(const Ray& position, unsigned int player_id)
   points = 0;
   keys = 0;
   guns_bag.reserve(GUN_AMOUNT);
-  std::unique_ptr<Gun> knife(new Knife());
-  std::unique_ptr<Gun> pistol(new Pistol());
+  std::unique_ptr<Gun> knife(new Knife(HUD_KNIFE_SHOOT));
+  std::unique_ptr<Gun> pistol(new Pistol(HUD_PISTOL_SHOOT));
   guns_bag.insert(std::make_pair(KNIFE_ID, std::move(knife)));
   guns_bag.insert(std::make_pair(PISTOL_ID, std::move(pistol)));
   active_gun = PISTOL_ID;
+  previous_gun = 0;
   players_killed = 0;
   speed = CL::player_speed;
 }
@@ -53,36 +55,26 @@ int Player::get_bullets() const { return bullets; }
 int Player::get_points() const { return points; }
 bool Player::has_key() const { return keys > 0; }
 // TODO Fix this. This is bad, very bad.
-std::unique_ptr<Gun>& Player::get_active_gun() {
-  return guns_bag.at(active_gun);
-}
+Gun* Player::get_active_gun() const { return guns_bag.at(active_gun).get(); }
 
 void Player::move(unsigned char direction) {
   double movement_angle = position.get_angle();
 
   switch (direction) {
-    case UP:
+    case UP:break;
+    case UP_LEFT:movement_angle += (M_PI / 4);
       break;
-    case UP_LEFT:
-      movement_angle += (M_PI / 4);
+    case LEFT:movement_angle += (M_PI / 2);
       break;
-    case LEFT:
-      movement_angle += (M_PI / 2);
+    case DOWN_LEFT:movement_angle += (3 * M_PI / 4);
       break;
-    case DOWN_LEFT:
-      movement_angle += (3 * M_PI / 4);
+    case DOWN:movement_angle += M_PI;
       break;
-    case DOWN:
-      movement_angle += M_PI;
+    case DOWN_RIGHT:movement_angle += (5 * M_PI / 4);
       break;
-    case DOWN_RIGHT:
-      movement_angle += (5 * M_PI / 4);
+    case RIGHT:movement_angle += (3 * M_PI / 2);
       break;
-    case RIGHT:
-      movement_angle += (3 * M_PI / 2);
-      break;
-    case UP_RIGHT:
-      movement_angle += (7 * M_PI / 4);
+    case UP_RIGHT:movement_angle += (7 * M_PI / 4);
       break;
   }
 
@@ -103,8 +95,7 @@ void Player::rotate(unsigned char direction) {
       position = Ray(position.get_origin(),
                      position.get_angle() - CL::player_rotation_speed);
       break;
-    default:
-      break;
+    default:break;
   }
 }
 
@@ -139,20 +130,15 @@ bool Player::has_bullets(int amount) const { return (bullets >= amount); }
 
 void Player::decrease_bullets(unsigned char gun_id) {
   switch (gun_id) {
-    case PISTOL_ID:
-      bullets -= CL::pistol_bullet_required;
+    case PISTOL_ID:bullets -= CL::pistol_bullet_required;
       break;
-    case MACHINE_GUN_ID:
-      bullets -= CL::machine_gun_bullet_required;
+    case MACHINE_GUN_ID:bullets -= CL::machine_gun_bullet_required;
       break;
-    case CHAIN_CANNON_ID:
-      bullets -= CL::chain_cannon_bullet_required;
+    case CHAIN_CANNON_ID:bullets -= CL::chain_cannon_bullet_required;
       break;
-    case ROCKET_LAUNCHER_ID:
-      bullets -= CL::rocket_launcher_bullet_required;
+    case ROCKET_LAUNCHER_ID:bullets -= CL::rocket_launcher_bullet_required;
       break;
-    default:
-      break;
+    default:break;
   }
 
   bullets = std::max(bullets, 0);
@@ -186,17 +172,17 @@ void Player::respawn_as_ghost() {
 void Player::add_gun(unsigned int gun_id) {
   switch (gun_id) {
     case MACHINE_GUN_ID: {
-      Gun* machine_gun = new MachineGun();
+      Gun* machine_gun = new MachineGun(HUD_MACHINEGUN_SHOOT);
       guns_bag.insert(std::make_pair(MACHINE_GUN_ID, std::move(machine_gun)));
       break;
     }
     case CHAIN_CANNON_ID: {
-      Gun* chain_cannon = new ChainCannon();
+      Gun* chain_cannon = new ChainCannon(HUD_CHAINCANNON_SHOOT);
       guns_bag.insert(std::make_pair(CHAIN_CANNON_ID, std::move(chain_cannon)));
       break;
     }
     case ROCKET_LAUNCHER_ID: {
-      Gun* rocket_launcher = new RocketLauncher();
+      Gun* rocket_launcher = new RocketLauncher(HUD_ROCKETLAUNCHER_SHOOT);
       guns_bag.insert(
           std::make_pair(ROCKET_LAUNCHER_ID, std::move(rocket_launcher)));
       break;
@@ -215,43 +201,65 @@ void Player::add_points(unsigned int added_points) {
 }
 
 void Player::add_health(unsigned int added_health) {
-  health = std::min(CL::player_health, (int)(health + added_health));
+  health = std::min(CL::player_health, (int) (health + added_health));
 }
 
 void Player::add_bullets(unsigned int added_bullets) {
-  bullets = std::min(CL::player_max_bullets, (int)(bullets + added_bullets));
+  bullets = std::min(CL::player_max_bullets, (int) (bullets + added_bullets));
 }
 
 void Player::decrease_health(unsigned int lost_health) {
-  health = std::max(0, (int)(health - lost_health));
+  health = std::max(0, (int) (health - lost_health));
 }
 
 void Player::add_key() { keys++; }
 
 void Player::use_key() { keys--; }
 
+bool Player::has_bullets_to_shoot_gun() const {
+  switch (active_gun) {
+    case KNIFE_ID:return true;
+    case PISTOL_ID:return bullets >= CL::pistol_bullet_required;
+    case MACHINE_GUN_ID:return bullets >= CL::machine_gun_bullet_required;
+    case CHAIN_CANNON_ID:return bullets >= CL::chain_cannon_bullet_required;
+    case ROCKET_LAUNCHER_ID:
+      return bullets >= CL::rocket_launcher_bullet_required;
+    default:return false;
+  }
+}
+
+void Player::remember_gun() {
+  previous_gun = active_gun;
+}
+
+void Player::use_previous_gun_if_has_to() {
+  if (previous_gun != 0) {
+    active_gun = previous_gun;
+
+    if (!has_bullets_to_shoot_gun()) {
+      active_gun = KNIFE_ID;
+    } else {
+      previous_gun = 0;
+    }
+  }
+}
+
 void Player::update() { state.update(); }
 
 Image* Player::get_image(ResourceManager& resource_manager) {
   switch (active_gun) {
-    case KNIFE_ID:
-      return resource_manager.get_image(DOG);
-    case PISTOL_ID:
-      return resource_manager.get_image(GUARD);
-    case MACHINE_GUN_ID:
-      return resource_manager.get_image(SCHUTZSTAFFEL);
-    case CHAIN_CANNON_ID:
-      return resource_manager.get_image(OFFICER);
-    case ROCKET_LAUNCHER_ID:
-      return resource_manager.get_image(MUTANT);
-    default:
-      return nullptr;
+    case KNIFE_ID:return resource_manager.get_image(DOG);
+    case PISTOL_ID:return resource_manager.get_image(GUARD);
+    case MACHINE_GUN_ID:return resource_manager.get_image(SCHUTZSTAFFEL);
+    case CHAIN_CANNON_ID:return resource_manager.get_image(OFFICER);
+    case ROCKET_LAUNCHER_ID:return resource_manager.get_image(MUTANT);
+    default:return nullptr;
   }
 }
 
 SDL_Rect* Player::get_slice(void* extra) {
   double angle_of_perception =
-      Angle::normalize(*(double*)extra - position.get_angle() + M_PI / 8);
+      Angle::normalize(*(double*) extra - position.get_angle() + M_PI / 8);
   state.set_slice(slice, angle_of_perception);
   return &slice;
 }

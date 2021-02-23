@@ -1,6 +1,7 @@
 #include "shot_handler.h"
 
 #include "../../../../common/src/main/packets/packing.h"
+#include "../../../../common/src/main/ids/gun_ids.h"
 
 ShotHandler::ShotHandler() {}
 
@@ -37,10 +38,15 @@ void ShotHandler::handle(Packet& packet, ClientManager& client_manager,
     if (objective_id != 0) {
       if (!match.is_dead(objective_id)) {
         consequent_grab(objective_id, match, client_manager);
-      } else if (match.should_end()) {  // TODO Consider a better name
+      } else if (match.has_one_player_alive()) {
         game_over(match, client_manager);
       }
     }
+  }
+
+  if (!match.get_players().at(player_id).has_bullets_to_shoot_gun()) {
+    match.make_player_remember_gun(player_id);
+    match.change_gun(player_id, KNIFE_ID);
   }
 
   consequent_grab(player_id, match, client_manager);
