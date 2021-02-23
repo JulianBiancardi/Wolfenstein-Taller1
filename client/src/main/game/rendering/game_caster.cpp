@@ -134,8 +134,8 @@ double GameCaster::draw_wall(Collision& collision, size_t screen_pos,
       ray_angle, map.get_player(player_id).get_angle(),
       collision.get_distance_from_src());
 
-  int wall_size = (SCALING_FACTOR * window.get_height()) /
-                  (projected_distance * image->get_height());
+  int wall_size =
+      (SCALING_FACTOR * window.get_height()) / (projected_distance * IMG_DIM);
 
   size_t img_width = IMG_DIM;
   size_t img_height = IMG_DIM;

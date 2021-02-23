@@ -111,3 +111,8 @@ bool VerticalDoor::update_collision(Collision& collision, double angle) {
     return false;
   }
 }
+
+SDL_Rect* VerticalDoor::get_slice(void* extra) {
+  slice.x = (int)(state.get_openness());
+  return &slice;
+}

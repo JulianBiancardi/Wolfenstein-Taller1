@@ -51,6 +51,7 @@ class MapLoader {
 
   void add_normal_door(const Point& where);
   void add_locked_door(const Point& where);
+  void add_passage(const Point& where);
 
  public:
   MapLoader(unsigned int& next_id,

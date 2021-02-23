@@ -21,7 +21,7 @@ void GunState::update(bool shot) {
 }
 
 void GunState::set_slice(SDL_Rect& slice) {
-  slice.x = frame_count * (PIXEL + 64);
+  slice.x = frame_count * 64;
   slice.y = 0;
   slice.w = 64;
   slice.h = 64;

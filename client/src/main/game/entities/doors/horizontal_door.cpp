@@ -115,3 +115,8 @@ bool HorizontalDoor::update_collision(Collision& collision, double angle) {
   }
   return false;
 }
+
+SDL_Rect* HorizontalDoor::get_slice(void* extra) {
+  slice.x = (int)(state.get_openness());
+  return &slice;
+}

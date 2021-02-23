@@ -61,7 +61,10 @@ bool BaseMap::is_wall(size_t x, size_t y) {
 bool BaseMap::is_door(size_t x, size_t y) {
   int value = map_matrix(x, y);
   return (value == HORIZONTAL_DOOR || value == VERTICAL_DOOR ||
-          value == VERTICAL_LOCKED_DOOR || value == HORIZONTAL_LOCKED_DOOR);
+          value == VERTICAL_LOCKED_DOOR || value == HORIZONTAL_LOCKED_DOOR ||
+          value == GREY_BRICK_PASSAGE || value == GREY_STONE_PASSAGE ||
+          value == BLUE_WALL_PASSAGE || value == ROCK_WALL_PASSAGE ||
+          value == WOOD_WALL_PASSAGE);
 }
 
 int BaseMap::operator()(size_t x, size_t y) { return map_matrix(x, y); }

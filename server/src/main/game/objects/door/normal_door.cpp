@@ -11,3 +11,7 @@ bool NormalDoor::open(Player& who) {
     return true;
   }
 }
+
+bool NormalDoor::should_close_automatically() const {
+  return true;
+}
