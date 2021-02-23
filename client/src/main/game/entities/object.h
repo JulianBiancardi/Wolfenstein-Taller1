@@ -14,6 +14,7 @@ class Object : public Drawable {
   Object(const Ray& position, unsigned int resource_id);
   ~Object();
 
+  int get_res_id() { return resource_id; }
   Point get_position() const;
   double get_angle() const;
   virtual Image* get_image(ResourceManager& resource_manager) override;
