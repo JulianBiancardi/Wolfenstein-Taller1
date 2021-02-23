@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 
-enum gun_state { ready, aim, shoot };
+enum gun_state { ready, shoot };
 
 class GunState {
  private:
