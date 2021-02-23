@@ -2,8 +2,8 @@
 
 #include <cstdlib>
 
-#include "server.h"
 #include "../../../common/src/main/config_loader.h"
+#include "server.h"
 #define PORT 1
 
 int main(int argc, char **argv) {
