@@ -1,11 +1,11 @@
-#ifndef NORMAL_DOOR_H
-#define NORMAL_DOOR_H
+#ifndef PASSAGE_H
+#define PASSAGE_H
 
 #include "door.h"
 
-class NormalDoor : public Door {
+class Passage : public Door {
  public:
-  NormalDoor(const Point& center, unsigned int id);
+  Passage(const Point& center, unsigned int id);
 
   /* Returns if the door state changed */
   bool open(Player& who) override;

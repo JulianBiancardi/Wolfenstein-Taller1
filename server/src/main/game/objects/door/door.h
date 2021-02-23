@@ -18,6 +18,9 @@ class Door : public Object, public Identifiable {
 
   /* Returns if the door is open or not */
   bool is_open() const;
+
+  /* Returns if the door should be automatically closed */
+  virtual bool should_close_automatically() const = 0;
 };
 
 class PairHasher {
