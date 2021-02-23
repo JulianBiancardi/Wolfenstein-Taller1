@@ -3,8 +3,6 @@
 #include "../../../../common/src/main/packets/packet_error.h"
 #include "../../../../common/src/main/packets/packet_handler_factory_error.h"
 #include "change_gun_handler.h"
-//#include "close_door_handler.h"
-//#include "door_interaction_handler.h"
 #include "join_match_handler.h"
 #include "match_start_handler.h"
 #include "movement_handler.h"
@@ -15,6 +13,8 @@
 #include "rocket_move_handler.h"
 #include "game_over_handler.h"
 #include "exit_match_handler.h"
+#include "door_interaction_handler.h"
+#include "close_door_handler.h"
 
 PacketHandler* PacketHandlerFactory::build(Packet& packet) {
   switch (packet.get_type()) {
@@ -29,6 +29,8 @@ PacketHandler* PacketHandlerFactory::build(Packet& packet) {
     case ROCKET_MOVE: return new RocketMoveHandler();
     case GAME_OVER: return new GameOverHandler();
     case EXIT_MATCH: return new ExitMatchHandler();
+    case DOORWAY_INTERACTION: return new DoorInteractionHandler();
+    case CLOSE_DOOR: return new CloseDoorHandler();
       /* Por favor, dejar comentado hasta que se enlace servidor/cliente
       case DOOR_INTERACTION:
       return new DoorInteractionHandler();

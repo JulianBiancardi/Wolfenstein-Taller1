@@ -10,6 +10,7 @@ class LockedDoor : public Door {
  public:
   LockedDoor(const Point& center, unsigned int id);
 
+  /* Returns if the door state changed */
   bool open(Player& who) override;
 };
 

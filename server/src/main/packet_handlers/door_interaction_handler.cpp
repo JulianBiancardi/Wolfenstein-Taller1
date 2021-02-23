@@ -1,7 +1,5 @@
 #include "door_interaction_handler.h"
 
-#include "../../../../common/src/main/packets/packing.h"
-
 DoorInteractionHandler::DoorInteractionHandler() {}
 
 DoorInteractionHandler::~DoorInteractionHandler() {}

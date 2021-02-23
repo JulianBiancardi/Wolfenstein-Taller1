@@ -49,7 +49,7 @@ FILE(GLOB CommonFiles
         ../common/src/main/*.cpp)
 
 FILE(GLOB ServerMain src/main/main_server.cpp)
-FILE(GLOB ServerTests src/tests/main_tests.cpp)
+#FILE(GLOB ServerTests src/tests/main_tests.cpp)
 
 add_executable(
         server_main

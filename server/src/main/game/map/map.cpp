@@ -14,7 +14,7 @@ Map::Map(std::string& map_name)
       dogs_joined(0),
       BaseMap(map_name) {
   MapLoader loader(next_id, players, items, identifiable_objects,
-                   unidentifiable_objects, spawn_points, dogs);
+                   unidentifiable_objects, spawn_points, dogs, doors);
   loader.load_map(map_name);
 }
 
@@ -70,7 +70,7 @@ Object* Map::get_object(unsigned int object_id) {
 }
 
 std::shared_ptr<Door>& Map::get_door(
-    std::pair<unsigned int, unsigned int>& cell) {
+    const std::pair<unsigned int, unsigned int>& cell) {
   return doors.at(cell);
 }
 

@@ -8,16 +8,20 @@
 #include "../objects/items/item.h"
 #include "../objects/object.h"
 #include "../objects/player.h"
+#include "../objects/door/door.h"
 
 class MapLoader {
  private:
   unsigned int& next_id;
+  unsigned int door_id;
   std::unordered_map<unsigned int, Player>& players;
   std::unordered_map<unsigned int, Item*>& items;
   std::unordered_map<unsigned int, Object*>& identifiable_objects;
   std::vector<Object*>& unidentifiable_objects;
   std::vector<Point>& spawn_points;
   std::vector<Point>& dogs;
+  std::unordered_map<std::pair<unsigned int, unsigned int>,
+                     std::shared_ptr<Door>, PairHasher>& doors;
 
   void add_spawn_point(const Point& where);
   void add_dog(const Point& where);
@@ -55,7 +59,9 @@ class MapLoader {
             std::unordered_map<unsigned int, Object*>& identifiable_objects,
             std::vector<Object*>& unidentifiable_objects,
             std::vector<Point>& spawn_points,
-            std::vector<Point>& dogs);
+            std::vector<Point>& dogs,
+            std::unordered_map<std::pair<unsigned int, unsigned int>,
+                               std::shared_ptr<Door>, PairHasher>& doors);
   ~MapLoader();
 
   void load_map(std::string& map_name);

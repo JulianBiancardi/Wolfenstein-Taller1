@@ -422,29 +422,19 @@ bool Match::open_door(unsigned int player_id) {
   std::shared_ptr<Door>& door = map.get_door(cell);
 
   if (door->open(player)) {
-    if (door->is_open()) {
-      ((ClockThread*)threads.at(CLOCK_KEY))->add_door_timer(cell);
-    }
+    ((ClockThread*)threads.at(CLOCK_KEY))->add_door_timer(door->get_id(), cell);
     return true;
   }
 
   return false;
 }
 
-bool Match::close_door(unsigned int door_id) {
-  if (!map.object_exists(door_id)) {
-    throw MatchError("Failed to find door. Door %u doesn't exist.", door_id);
-  }
+bool Match::close_door(const std::pair<unsigned int, unsigned int>& cell) {
+  auto door = map.get_door(cell);
 
-  auto door = (Door*)map.get_object(door_id);
-
-  if (checker.is_free(door->get_position()))
-    ;
-
-  door->close();
-
-  if (!door->is_open()) {
-    ((ClockThread*)threads.at(CLOCK_KEY))->delete_door_timer(door_id);
+  if (checker.is_free(door->get_position())) {
+    door->close();
+    ((ClockThread*)threads.at(CLOCK_KEY))->delete_door_timer(door->get_id());
     return true;
   } else {
     return false;

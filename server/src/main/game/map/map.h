@@ -64,7 +64,8 @@ class Map : public BaseMap {
   Object* get_object(unsigned int object_id);
 
   /* Returns the requested shared_ptr<Door>. */
-  std::shared_ptr<Door>& get_door(std::pair<unsigned int, unsigned int>& cell);
+  std::shared_ptr<Door>& get_door(
+      const std::pair<unsigned int, unsigned int>& cell);
 
   /* Returns if it has the object */
   bool object_exists(unsigned int object_id);

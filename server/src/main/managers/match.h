@@ -123,7 +123,7 @@ class Match {
   bool open_door(unsigned int player_id);
 
   /* Closes the door, returns if could do it */
-  bool close_door(unsigned int door_id);
+  bool close_door(const std::pair<unsigned int, unsigned int>& cell);
 
   /* Delete player from the match */
   void delete_player(unsigned int player_id);

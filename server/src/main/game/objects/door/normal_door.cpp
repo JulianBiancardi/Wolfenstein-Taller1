@@ -6,8 +6,8 @@ NormalDoor::NormalDoor(const Point& center, unsigned int id)
 bool NormalDoor::open(Player& who) {
   if (is_open()) {
     return false;
+  } else {
+    change_state();
+    return true;
   }
-
-  change_state();
-  return true;
 }
