@@ -1,5 +1,5 @@
 map = {}
-player = {killing = 0, moving = 0, rotating = 0, inited = false, working = false }
+player = {killing = 0, moving = 0, rotating = 0, rotation_orientation = 0, inited = false, working = false }
 enemy = {id = 0, health = -1 }
 
 function init(packetsReceived, paceReceived, differenceAllowedReceived, rotationSpeedReceived)
@@ -201,19 +201,27 @@ function rotate()
         local substract = player.angle - rotationSpeed
         local next_difference_add = next_pos_angle - add
         local next_difference_subtract = next_pos_angle - substract
-        if math.abs(next_difference_add) > math.abs(next_difference_subtract) then
-            --return 1, packets.rotate --1 Right Rotation
+        print()
+        print()
+        --print(math.abs(next_difference_add - player.angle))
+        --print(math.abs(next_difference_subtract - player.angle))
+        print(math.abs(next_pos_angle - player.angle + rotationSpeed))
+        print(math.abs(next_pos_angle - player.angle - rotationSpeed))
+        print(player.rotation_orientation)
+        if player.rotation_orientation ~= 0 then
+            return player.rotation_orientation, packets.rotate
+        end
+        if math.abs(next_difference_add - player.angle) > math.abs(next_difference_subtract - player.angle) then
+            player.rotation_orientation = 1
+            return 1, packets.rotate --1 Right Rotation
         else
+            player.rotation_orientation = 2
             return 2, packets.rotate --2 Left Rotation
         end
+        print()
+        print()
     else
-        print("A")
-        print(player.posX)
-        print(player.posY)
-        print(node_local.x - 1 + 0.5)
-        print(node_local.y - 1 + 0.5)
-        print(next_pos_angle)
-        print("A")
+        player.rotation_orientation = 0
         player.rotating = 0
         player.moving = 1
         return 0, 0
