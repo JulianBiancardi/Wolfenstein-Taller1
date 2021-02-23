@@ -104,15 +104,12 @@ void Bot::execute() {
   lua_checker(lua_pcall(this->state, 0, 1, 0));
   int type_packet = 0, what_to_do = lua_tonumber(this->state, -1);
   lua_pop(this->state, 1);
-  printf("WTD %d\n", what_to_do);
   if (what_to_do == 1) {
     player_goal = find_nearest_player();
     if (player_goal != nullptr) {
       lua_checker(lua_getglobal(this->state, "execute"));
       lua_pushnumber(this->state, player_goal->get_position().getX());
       lua_pushnumber(this->state, player_goal->get_position().getY());
-      printf("En X: %f", player_goal->get_position().getX());
-      printf("En Y: %f", player_goal->get_position().getY());
       lua_pushnumber(this->state, player_goal->get_id());
       lua_checker(lua_pcall(this->state, 3, 2, 0));
       type_packet = lua_tonumber(this->state, -1);
@@ -128,7 +125,7 @@ void Bot::execute() {
     lua_pushnumber(this->state, player_goal->get_position().getX());
     lua_pushnumber(this->state, player_goal->get_position().getY());
     lua_pushnumber(this->state, player_goal->get_id());
-    lua_checker(lua_pcall(this->state, 3, 2, 0));
+    lua_checker(lua_pcall(this->state, 3, 1, 0));
     type_packet = lua_tonumber(this->state, -1);
     lua_pop(this->state, 1);
   } else if (what_to_do == 4){
@@ -137,8 +134,6 @@ void Bot::execute() {
     type_packet = lua_tonumber(this->state, -1);
     lua_pop(this->state, 1);
   }
-
-  printf("Type %d\n\n", type_packet);
   switch (type_packet) {
     case MOVE_EVENT:
       move_actions();
