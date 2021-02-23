@@ -205,9 +205,19 @@ function rotate()
         print()
         --print(math.abs(next_difference_add - player.angle))
         --print(math.abs(next_difference_subtract - player.angle))
-        print(math.abs(next_pos_angle - player.angle + rotationSpeed))
-        print(math.abs(next_pos_angle - player.angle - rotationSpeed))
-        print(player.rotation_orientation)
+        --[[
+        if (other.angle - me.angle < M_PI) rotate left
+            else if (other.angle - me.angle > M_PI) rotate_right
+            else: nothing
+        ]]
+        if next_pos_angle - player.angle < math.pi then
+            print("LEFT")
+        else
+            print("RIGHT")
+        end
+        --print(math.abs(next_pos_angle - player.angle + rotationSpeed))
+        --print(math.abs(next_pos_angle - player.angle - rotationSpeed))
+        --print(player.rotation_orientation)
         if player.rotation_orientation ~= 0 then
             return player.rotation_orientation, packets.rotate
         end
