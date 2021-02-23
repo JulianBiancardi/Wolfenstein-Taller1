@@ -9,14 +9,16 @@
 #include "map_loader.h"
 
 Map::Map(std::string& map_name)
-    : next_id(1), players_joined(0), dogs_joined(0), BaseMap(map_name) {
+    : next_id(CL::first_id),
+      players_joined(0),
+      dogs_joined(0),
+      BaseMap(map_name) {
   MapLoader loader(next_id, players, items, identifiable_objects,
                    unidentifiable_objects, spawn_points, dogs);
   loader.load_map(map_name);
 }
 
-Map::Map(Matrix<int>& map_matrix)
-    : players_joined(0), BaseMap(map_matrix) {}
+Map::Map(Matrix<int>& map_matrix) : players_joined(0), BaseMap(map_matrix) {}
 
 Map::~Map() {
   for (auto item : items) delete item.second;
@@ -60,11 +62,16 @@ Player& Map::get_player(unsigned int player_id) {
 void Map::delete_player(unsigned int player_id) { players.erase(player_id); }
 
 Item& Map::get_item(unsigned int item_id) {
-  return (Item&) (*items.at(item_id));
+  return (Item&)(*items.at(item_id));
 }
 
 Object* Map::get_object(unsigned int object_id) {
   return identifiable_objects.at(object_id);
+}
+
+std::shared_ptr<Door>& Map::get_door(
+    std::pair<unsigned int, unsigned int>& cell) {
+  return doors.at(cell);
 }
 
 bool Map::object_exists(unsigned int object_id) {
@@ -89,14 +96,26 @@ const std::unordered_map<unsigned int, Item*>& Map::get_items() const {
   return items;
 }
 
-const std::unordered_map<unsigned int, Object*>&
-Map::get_identifiable_objects() const { return identifiable_objects; }
+const std::unordered_map<unsigned int, Object*>& Map::get_identifiable_objects()
+    const {
+  return identifiable_objects;
+}
 
 const std::vector<Object*>& Map::get_unidentifiable_objects() const {
   return unidentifiable_objects;
 }
 
-bool Map::has_one_player() const { return players.size() == 1; }
+bool Map::has_one_player_alive() const {
+  unsigned int players_alive = 0;
+
+  for (auto player : players) {
+    if (!player.second.is_dead()) {
+      players_alive += 1;
+    }
+  }
+
+  return players_alive == 1;
+}
 
 // Where is dropped was arbitrary chosen
 void Map::add_bullets_drop(Player& dead_player) {
@@ -133,7 +152,8 @@ void Map::add_gun_drop(Player& dead_player) {
       next_id++;
       break;
     }
-    default: break;
+    default:
+      break;
   }
 }
 
@@ -163,8 +183,9 @@ void Map::add_drop(Player& dead_player) {
 
 unsigned int Map::add_rocket(const Point& where, double angle) {
   auto new_rocket = new Moveable(where, angle, CL::rocket_speed, 0,
-                                 CL::rocket_radius, next_id);
+                                 CL::rocket_radius, next_id++);
   identifiable_objects.insert({new_rocket->get_id(), new_rocket});
-  next_id++;
   return new_rocket->get_id();
 }
+
+unsigned int Map::get_dogs_amount() const { return dogs.size(); }

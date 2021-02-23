@@ -2,10 +2,10 @@
 
 #include <chrono>
 #include <iostream>
+
+#include "../../../../common/src/main/packets/packing.h"
 #include "door_timer.h"
 #include "rocket_controller.h"
-#include "lock.h"
-#include "../../../../common/src/main/packets/packing.h"
 
 #define SECONDS_PER_TICS 1 / TICS_PER_SECOND
 
@@ -15,20 +15,18 @@
 using namespace std::chrono;
 
 ClockThread::ClockThread(unsigned int match_length,
-                         BlockingQueue<Packet>& queue,
-                         unsigned char match_id)
+                         BlockingQueue<Packet>& queue, unsigned char match_id)
     : remaining_tics(match_length * TICS_PER_SECOND),
       reception_queue(queue),
       match_id(match_id),
       allowed_to_run(true) {}
 
 ClockThread::~ClockThread() {
-  for (auto event : timed_events)
-    delete event.second;
+  for (auto event : timed_events) delete event.second;
 }
 
 void ClockThread::update_timed_events() {
-  Lock lock(this->mutex);
+  const std::lock_guard<std::mutex> lock(this->mutex);
   for (auto it = timed_events.begin(); it != timed_events.end();) {
     (*it).second->update();
 
@@ -43,7 +41,7 @@ void ClockThread::update_timed_events() {
 
 void ClockThread::end_game() {
   unsigned char data[GAME_OVER_SIZE];
-  size_t size = pack(data, "CC", GAME_OVER, &match_id);
+  size_t size = pack(data, "CI", GAME_OVER, match_id);
   Packet packet(size, data);
 
   reception_queue.enqueue(packet);
@@ -65,8 +63,8 @@ void ClockThread::run() {
     double tics_spent = seconds_spent * TICS_PER_SECOND;
 
     if (tics_spent >= 1) {
-      remaining_tics -= (int) tics_spent;
-      tics_spent = tics_spent - (int) tics_spent;
+      remaining_tics -= (int)tics_spent;
+      tics_spent = tics_spent - (int)tics_spent;
     }
 
     double seconds_to_sleep = (1 - tics_spent) * SECONDS_PER_TICS;
@@ -85,20 +83,19 @@ unsigned int get_door_id(unsigned int door_id) {
   return stoul(std::to_string(DOOR_TYPE) + std::to_string(door_id));
 }
 
-void ClockThread::add_door_timer(unsigned int door_id) {
-  Lock lock(this->mutex);
-  unsigned int id = get_door_id(door_id);
+void ClockThread::add_door_timer(std::pair<unsigned int, unsigned int> cell) {
+  const std::lock_guard<std::mutex> lock(this->mutex);
+  unsigned int id = get_door_id(0);  // FIXME Do something here
 
   if (timed_event_exist(id)) {
     timed_events.at(id)->reset();
   } else {
-    timed_events.insert({id,
-                         new DoorTimer(reception_queue, match_id, door_id)});
-  }
+    timed_events.insert({id, new DoorTimer(reception_queue, match_id, 0)});
+  }  // FIXME It said door_id where it now says 0
 }
 
 void ClockThread::delete_door_timer(unsigned int door_id) {
-  Lock lock(this->mutex);
+  const std::lock_guard<std::mutex> lock(this->mutex);
   unsigned int id = get_door_id(door_id);
 
   if (timed_event_exist(id)) {
@@ -113,21 +110,19 @@ unsigned int get_rocket_id(unsigned int rocket_id) {
 
 void ClockThread::add_rocket_controller(unsigned int rocket_id,
                                         unsigned int player_id) {
-  Lock lock(this->mutex);
+  const std::lock_guard<std::mutex> lock(this->mutex);
   unsigned int id = get_rocket_id(rocket_id);
 
   if (timed_event_exist(id)) {
     timed_events.at(id)->reset();
   } else {
-    timed_events.insert({id, new RocketController(reception_queue,
-                                                  match_id,
-                                                  rocket_id,
-                                                  player_id)});
+    timed_events.insert({id, new RocketController(reception_queue, match_id,
+                                                  rocket_id, player_id)});
   }
 }
 
 void ClockThread::delete_rocket_controller(unsigned int rocket_id) {
-  Lock lock(this->mutex);
+  const std::lock_guard<std::mutex> lock(this->mutex);
   unsigned int id = get_rocket_id(rocket_id);
 
   if (timed_event_exist(id)) {

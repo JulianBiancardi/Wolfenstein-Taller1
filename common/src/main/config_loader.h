@@ -39,6 +39,7 @@ class ConfigLoader {
   static double player_speed;
   static double player_rotation_speed;
   static int player_knife_mask_radio;
+  static double player_ghost_speed;
 
   static int bot_positions_difference_allowed;
 
@@ -90,6 +91,7 @@ class ConfigLoader {
   static double rocket_max_damage;
   static double rocket_min_damage;
 
+  static unsigned int first_id;
   static unsigned int match_length;
   static unsigned int door_timer;
   static double door_speed;

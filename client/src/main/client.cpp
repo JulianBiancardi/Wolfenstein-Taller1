@@ -19,21 +19,23 @@ void Client::run_client(int argc, char** argv) {
   Settings settings;
   Match match_selected;
 
-  try {
-    QApplication main_app(argc, argv);
-    MainWindow main_window(nullptr, &server, &settings, &match_selected);
-    main_window.show();
-    main_window.update();
-    main_app.exec();
+  while (true) {
+    try {
+      QApplication launcher_app(argc, argv);
+      MainWindow launcher(nullptr, &server, &settings, &match_selected);
+      launcher.show();
+      launcher.update();
+      launcher_app.exec();
 
-  } catch (const std::exception& e) {
-    std::cerr << e.what() << '\n';
+    } catch (const std::exception& e) {
+      std::cerr << e.what() << '\n';
+    }
+
+    if (!match_selected.is_valid()) {
+      break;
+    }
+
+    Game game(server, settings, match_selected);
+    game();
   }
-
-  if (!match_selected.is_valid()) {
-    return;
-  }
-
-  Game game(server, settings, match_selected);
-  game();
 }

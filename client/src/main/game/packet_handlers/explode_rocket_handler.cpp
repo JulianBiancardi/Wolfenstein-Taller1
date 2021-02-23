@@ -6,7 +6,7 @@ ExplodeRocketHandler::ExplodeRocketHandler() = default;
 
 ExplodeRocketHandler::~ExplodeRocketHandler() = default;
 
-void ExplodeRocketHandler::handle(Packet& packet, Map& map, GameSound& sound) {
+bool ExplodeRocketHandler::handle(Packet& packet, Map& map, GameSound& sound) {
   unsigned char type;
   unsigned int rocket_id;
   unpack(packet.get_data(), "CI", &type, &rocket_id);
@@ -20,5 +20,9 @@ void ExplodeRocketHandler::handle(Packet& packet, Map& map, GameSound& sound) {
     map.shoot_player(player_id, damage, map.get_rocket_owner_id(rocket_id));
   }
 
+  map.explode_rocket(rocket_id);
+
   // TODO Play sound
+
+  return true;
 }

@@ -11,8 +11,14 @@ class CircleMask : public Mask {
  public:
   CircleMask(double radius, const Point& center);
 
+  /* Returns if the mask occupies the point sent or not */
   bool occupies(const Point& where) const override;
+
+  /* Returns mask's radius */
   double get_radius() const;
+
+  /* Returns a copy */
+  Mask* get_copy(const Point& center) override;
 };
 
 #endif

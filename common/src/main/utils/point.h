@@ -15,8 +15,8 @@ class Point {
   Point& operator=(const Point& other);
   ~Point();
 
-  bool operator==(const Point& other);
-  bool operator!=(const Point& other);
+  bool operator==(const Point& other) const;
+  bool operator!=(const Point& other) const;
 
   // Returns the X coordinate of the point.
   double getX() const;

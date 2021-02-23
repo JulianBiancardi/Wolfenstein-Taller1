@@ -37,11 +37,11 @@
 
 // Used to join a match and notify the result
 #define JOIN_MATCH 6
-#define JOIN_MATCH_SIZE 4
+#define JOIN_MATCH_SIZE 5
 
 // Used to spawn a player on match start or as respawn
 #define SPAWN_PLAYER 7
-#define SPAWN_PLAYER_SIZE 5
+#define SPAWN_PLAYER_SIZE 6
 
 // Used to start a match being the host or notify the rest
 #define MATCH_START 8
@@ -72,7 +72,7 @@
 #define ADD_ITEM_SIZE 6
 
 #define ROCKET_ADD 15
-#define ROCKET_ADD_SIZE 5
+#define ROCKET_ADD_SIZE 3
 
 #define ROCKET_MOVE 16
 #define ROCKET_MOVE_SIZE 6
@@ -84,6 +84,12 @@
 #define DOORWAY_INTERACTION 18
 #define DOORWAY_INTERACTION_SIZE 4
 
+#define GAME_OVER 19
+#define GAME_OVER_SIZE 3
+
+#define EXIT_MATCH 20
+#define EXIT_MATCH_SIZE 4
+
 //==============================
 
 #define DOOR_INTERACTION 12
@@ -91,8 +97,5 @@
 
 #define CLOSE_DOOR 13
 #define CLOSE_DOOR_SIZE 5
-
-#define GAME_OVER 17
-#define GAME_OVER_SIZE 2
 
 #endif

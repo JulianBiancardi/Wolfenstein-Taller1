@@ -1,7 +1,7 @@
 #include "player.h"
 
 #include "../../../../../common/src/main/ids/gun_ids.h"
-#include "../collisions/circle_mask.h"
+#include "../collisions/switch_mask.h"
 
 Player::Player(double x, double y, double angle, unsigned int id)
     : shot_bullets(0),
@@ -110,23 +110,17 @@ bool Player::shoot() {
   int bullets_shot;
 
   switch (active_gun) {
-    case PISTOL_ID:
-      bullets_shot = CL::pistol_bullet_required;
+    case PISTOL_ID:bullets_shot = CL::pistol_bullet_required;
       break;
-    case MACHINE_GUN_ID:
-      bullets_shot = CL::machine_gun_bullet_required;
+    case MACHINE_GUN_ID:bullets_shot = CL::machine_gun_bullet_required;
       break;
-    case CHAIN_CANNON_ID:
-      bullets_shot = CL::chain_cannon_bullet_required;
+    case CHAIN_CANNON_ID:bullets_shot = CL::chain_cannon_bullet_required;
       break;
-    case KNIFE_ID:
-      bullets_shot = 0;
+    case KNIFE_ID:bullets_shot = 0;
       break;
-    case ROCKET_LAUNCHER_ID:
-      bullets_shot = CL::rocket_launcher_bullet_required;
+    case ROCKET_LAUNCHER_ID:bullets_shot = CL::rocket_launcher_bullet_required;
       break;
-    default:
-      return false;
+    default:return false;
   }
 
   if (bullets - bullets_shot < 0) {
@@ -166,6 +160,17 @@ void Player::respawn() {
 
 bool Player::is_using_rocket_launcher() const {
   return active_gun == ROCKET_LAUNCHER_ID;
+}
+
+void Player::respawn_as_ghost() {
+  lives--;
+  keys = 0;
+  bullets = 0;
+  active_gun = PISTOL_ID;
+  //guns_bag.clear();
+  speed = CL::player_ghost_speed;
+  ((SwitchMask*) mask)->switch_mask();
+  position = Ray(spawn_point, 0);
 }
 
 void Player::add_bullets(int amount) {

@@ -36,9 +36,18 @@ void PlayerState::update() {
   }
 }
 
+void PlayerState::become_ghost() {
+  state = ghost;
+}
+
 void PlayerState::set_slice(SDL_Rect& slice, double angle) {
-  slice.x = ((int)((angle / (M_PI / 4)) + 4) % 8) * 64;
-  slice.y = ((age / 2) % 4 + state) * 64;
+  if (state == ghost) {
+    slice.x = 5 * 64; // Check if this cannot be hardcoded
+    slice.y = 5 * 64;
+  } else {
+    slice.x = ((int) ((angle / (M_PI / 4)) + 4) % 8) * 64;
+    slice.y = ((age / 2) % 4 + state) * 64;
+  }
   slice.w = 64;
   slice.h = 64;
 }

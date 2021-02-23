@@ -29,6 +29,7 @@ class Player : public IdentifiableObject {
   int active_gun;
   const Point spawn_point;
   unsigned int players_killed;
+  double speed;
 
   PlayerState state;
 
@@ -61,7 +62,7 @@ class Player : public IdentifiableObject {
   /* Returns if the player has keys*/
   bool has_key() const;
   /* Gets the active gun of the player. */
-  Gun* get_active_gun() const;
+  std::unique_ptr<Gun>& get_active_gun();
 
   void move(unsigned char direction);
   void rotate(unsigned char direction);
@@ -91,16 +92,16 @@ class Player : public IdentifiableObject {
   void set_health(int health);
 
   // TODO Remove this. It isn't used anywhere other than tests.
-  bool has_bullets(int bullets);
+  bool has_bullets(int bullets) const;
 
   /* Decreases the amount of bullets owned by the player. */
   void decrease_bullets(unsigned char gun_id);
 
   /* Returns if the player is dead or not. */
-  bool is_dead();
+  bool is_dead() const;
 
   /* Returns if the player has lives left or is in his last life. */
-  bool has_lives_left();
+  bool has_lives_left() const;
 
   /* Moves the player and takes lost stuff. */
   void respawn();
@@ -108,8 +109,20 @@ class Player : public IdentifiableObject {
   /* Adds a kill to the kill count. */
   void add_kill();
 
+  /* Respawns player as a ghost */
+  void respawn_as_ghost();
+
   Hit update_gun(BaseMap& map, bool trigger,
                  std::vector<std::weak_ptr<IdentifiableObject>>& players);
+
+  /* Returns if has a gun that can be dropped when dead */
+  bool has_droppable_gun();
+
+  /* Returns if it has key */
+  bool has_keys() const;
+
+  /* Returns player's amount of killed enemies */
+  unsigned int get_kills() const;
 
   /* Updates its state */
   void update();

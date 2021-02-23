@@ -6,7 +6,7 @@ MoveRocketHandler::MoveRocketHandler() = default;
 
 MoveRocketHandler::~MoveRocketHandler() = default;
 
-void MoveRocketHandler::handle(Packet& packet, Map& map, GameSound& sound) {
+bool MoveRocketHandler::handle(Packet& packet, Map& map, GameSound& sound) {
   unsigned char type;
   unsigned int rocket_id;
   unsigned char match_id;
@@ -15,4 +15,6 @@ void MoveRocketHandler::handle(Packet& packet, Map& map, GameSound& sound) {
 
   map.move_rocket(rocket_id);
   // TODO Play sound
+
+  return true;
 }

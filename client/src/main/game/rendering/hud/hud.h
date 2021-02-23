@@ -10,15 +10,10 @@
 
 class Hud {
  private:
-  SDL_Renderer *renderer;
   const Window &window;
+  ResourceManager &res_manager;
   int scale_x;
   int scale_y;
-  TTF_Font *font;
-  Image background;
-  Image bj_faces;
-  Image key;
-  Image numbers;
   int number_frame_w;
   int number_frame_h;
 
@@ -31,12 +26,14 @@ class Hud {
   void _show_key(const Player &player);
   void _show_gun(const Player &player);
   void _show_player_gun(const Player &player);
+  void _show_death_face();
+  void _show_death_text();
 
   /*Show the number at position.The number must be betwen 0 to 9*/
   void _show_number(int number, SDL_Rect *position);
 
  public:
-  Hud(SDL_Renderer *renderer, const Window &window);
+  Hud(const Window &window, ResourceManager &res_manager);
   ~Hud();
 
   void update(const Player &player);

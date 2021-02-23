@@ -15,10 +15,8 @@
 #include "packet_handlers/packet_handler.h"
 #include "packet_handlers/packet_handler_factory.h"
 #include "rendering/frame_limiter.h"
+#include "rendering/leaderboard/leaderboard.h"
 
-#define UNIT 3
-#define SCREEN_WIDTH (320 * UNIT)
-#define SCREEN_HEIGHT (200 * UNIT)
 #define GAME_NAME "Wolfenstein 3D"
 
 #define FORWARD_FLAG 0
@@ -31,8 +29,9 @@
 #define GUN_CHANGE_FLAG (SHOOT_FLAG + 1)
 #define DOORWAY_INTERACTION_FLAG (GUN_CHANGE_FLAG + 1)
 #define ENTER_FLAG (GUN_CHANGE_FLAG + 1)
+#define EXIT_FLAG (ENTER_FLAG + 1)
 
-#define FLAGS (ENTER_FLAG + 1)
+#define FLAGS (EXIT_FLAG + 1)
 
 Game::Game(Server& server, const Settings& settings, Match& match)
     : player_id(server.get_id()),
@@ -40,8 +39,9 @@ Game::Game(Server& server, const Settings& settings, Match& match)
       server(server),
       window(GAME_NAME, settings.get_screen_width(),
              settings.get_screen_height(), settings.is_fullscreen()),
+      res_manager(window),
       map(match.get_map_name()),
-      caster(window, map, player_id),
+      caster(window, res_manager, map, player_id),
       is_running(false),
       input_flags(FLAGS, false),
       gamesound(GameSound(Point(map.get_rows(), map.get_columns()),
@@ -64,10 +64,10 @@ void Game::operator()() {
     update();
     render();
     frame_limiter.sleep();
-    // gamesound.set_point(map.get_player(player_id).get_position());
-    // Point punto(0,0);
-    // gamesound.play_shoot(punto);
   }
+
+  Leaderboard leaderboard(window, res_manager, player_id);
+  leaderboard.showTop5(std::move(map.get_players()));
 }
 
 void Game::spawn_self() {
@@ -88,7 +88,7 @@ void Game::handle_events() {
   while (SDL_PollEvent(&event)) {
     switch (event.type) {
       case SDL_QUIT:
-        this->is_running = false;
+        input_flags[EXIT_FLAG] = true;
         break;
       case SDL_KEYDOWN:
         handle_key_press(event.key.keysym.sym);
@@ -229,6 +229,7 @@ void Game::process_events() {
   process_gun_changes();
   process_key_uses();
   process_match_start();
+  process_match_exit();
 }
 
 void Game::process_movement() {
@@ -365,6 +366,19 @@ void Game::process_match_start() {
   server.send(match_start_packet);
 }
 
+void Game::process_match_exit() {
+  if (!input_flags[EXIT_FLAG]) {
+    return;
+  }
+
+  is_running = false;
+
+  unsigned char data[EXIT_MATCH_SIZE];
+  size_t size = pack(data, "CIC", EXIT_MATCH, player_id, match_id);
+  Packet exit_match_packet(size, data);
+  server.send(exit_match_packet);
+}
+
 void Game::update() {
   BlockingQueue<Packet>& reception_queue = server.get_reception_queue();
   Packet packet;
@@ -372,7 +386,7 @@ void Game::update() {
     try {
       std::unique_ptr<PacketHandler> handler(
           PacketHandlerFactory::build(packet));
-      handler->handle(packet, map, gamesound);
+      is_running = handler->handle(packet, map, gamesound);
     } catch (const PacketHandlerFactoryError& e) {
       syslog(LOG_ERR, "Packet received hasn't got a valid type.");
     }

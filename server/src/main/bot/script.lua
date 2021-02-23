@@ -1,19 +1,21 @@
 map = {}
-player = {killing = 0, moving = 0, inited = false }
-position = {x=0, y=0}
+player = {killing = 0, moving = 0, rotating = 0, inited = false }
+position = {x=0, y=0, direction = 0 }
 enemy = {id = 0, health = -1}
 pace = 1
 differenceAllowed = 5
 
-function init(packetsReceived, paceReceived, differenceAllowedReceived)
+function init(packetsReceived, paceReceived, differenceAllowedReceived, rotationSpeedReceived)
     packets = packetsReceived
     pace = paceReceived
     differenceAllowed = differenceAllowedReceived
+    rotationSpeed = rotationSpeedReceived
 end
 
 function resetPlayer()
     player.killing = 0
     player.moving = 0
+    player.rotating = 0
     enemy.health = -1
     enemy.id = 0
     path = nil
@@ -21,7 +23,12 @@ end
 
 function loadMap(x, y, value)
     if map[x] == nil then map[x] = {} end --???
+
+    if value ~= 0 and value ~= 1 then
+        value = 1
+    end
     map[x][y] = value
+    --print(x,y,value)
 end
 
 function updatePlayer(currentPlayer, goal)
@@ -32,6 +39,7 @@ function updatePlayer(currentPlayer, goal)
     --if player.moving == 1 and prev_node ~=nil and (prev_node.x ~= player.posX or prev_node.y ~= player.posY) then
     --player.moving = 0
     --end
+    --print(player.angle)
     if player.killing == 1 then
         prev_node = nil
     end
@@ -52,50 +60,88 @@ end
 
 function move()
     player.moving = 1
+    --return position, packets.move
     return position, packets.move
 end
 
 function move_up_left()
     position.x = player.posX - 1 * math.sqrt(2)/2 * pace
     position.y = player.posY - 1 * math.sqrt(2)/2 * pace
+    --print("UP_LEFT 2")
+    --position.direction = 2
+    --print("UP RIGHT 8")
+    position.direction = 8
 end
 function move_up()
     position.x = player.posX
     position.y = player.posY - 1 * pace
+    --print("UP 1")
+    --position.direction = 1
+    --print("LEFT 3")
+    --position.direction = 3
+    --print("RIGHT 7")
+    position.direction = 7
 end
 function move_up_right()
     position.x = player.posX + 1 * math.sqrt(2)/2 * pace
     position.y = player.posY - 1 * math.sqrt(2)/2 * pace
+    --print("UP RIGHT 8")
+    --position.direction = 8
+    --print("DOWN_LEFT 4")
+    --position.direction = 4
+    --print("DOWN RIGHT 6")
+    position.direction = 6
 end
 function move_right()
     position.x = player.posX + 1 * pace
     position.y = player.posY
+    --print("RIGHT 7")
+    --position.direction = 7
+    --print("DOWN 5")
+    position.direction = 5
 end
 function move_down_right()
     position.x = player.posX + 1 * math.sqrt(2)/2 * pace
     position.y = player.posY + 1 * math.sqrt(2)/2 * pace
+    --print("DOWN RIGHT 6")
+    --position.direction = 6
+    --print("DOWN_LEFT 4")
+    position.direction = 4
 end
 function move_down()
     position.x = player.posX
     position.y = player.posY + 1 * pace
+    --print("DOWN 5")
+    --position.direction = 5
+    --print("RIGHT 7")
+    --position.direction = 7
+    --print("LEFT 3")
+    position.direction = 3
 end
 function move_down_left()
     position.x = player.posX - 1 * math.sqrt(2)/2 * pace
     position.y = player.posY + 1 * math.sqrt(2)/2 * pace
+    --print("DOWN_LEFT 4")
+    --position.direction = 4
+    --print("UP RIGHT 8")
+    --position.direction = 8
+    --print("UP_LEFT 2")
+    position.direction = 2
+
 end
 function move_left()
     position.x = player.posX - 1 * pace
     position.y = player.posY
+    --print("LEFT 3")
+    --position.direction = 3
+    --print("UP 1")
+    position.direction = 1
 end
 
 function is_position_updated()
     if prev_node == nil then
         return true
     end
---[[    local x_info = math.abs(prev_node.x - player.posX)
-            / prev_node.x * 100
-    local y_info = math.abs(prev_node.y - player.posY)
-            / prev_node.y * 100]]
     local x_info = math.abs(prev_node.x - player.posX)
     local y_info = math.abs(prev_node.y - player.posY)
 
@@ -106,7 +152,18 @@ end
 
 function updatePath(playerX, playerY, playerID)
     if not is_position_updated() then
-        return execute(playerX, playerY, playerID)
+        find_best_path(playerX, playerY, playerID)
+        if path then
+            --player.moving = 1
+            player.rotating = 1
+            prev_node = nil
+            enemy.id = playerID
+        else
+            return random_movement()
+        end
+
+
+        --return execute(playerX, playerY, playerID)
     end
 
     if path then
@@ -188,6 +245,10 @@ function canMove()
 end
 
 function random_movement()
+
+    return position
+    --remove above
+    --[[
     local rand = randomize(1,8)
 
     if rand == 1 then
@@ -213,13 +274,9 @@ function random_movement()
     else
         return random_movement()
     end
-
+]]
 end
-function execute(playerX, playerY, playerID)
-    --print("ATACAR A: ")
-    --print(playerID)
-    --print(" ")
-
+function find_best_path(playerX, playerY, playerID)
     local Grid = require ('jumper.grid')
     local Pathfinder = require ('jumper.pathfinder')
     local grid = Grid(map)
@@ -227,24 +284,64 @@ function execute(playerX, playerY, playerID)
     setHeuristic('DIAGONAL'):
     setMode('DIAGONAL')
 
-    --[]io.write("...El bot piensa que estoy en:".. round(player.posX,0)..";"..round(player.posY,0).." ......")
-
     path = myFinder:getPath(round(player.posX,0),
         round(player.posY,0),
         round(playerX, 0),
         round(playerY,0))
+    --return path
+end
+function execute(playerX, playerY, playerID)
+    --print("ATACAR A: ")
+    --print(playerID)
+    --print(" ")
+    find_best_path(playerX, playerY, playerID)
     if path then
-        player.moving = 1
+        --player.moving = 1
+        player.rotating = 1
         prev_node = nil
         enemy.id = playerID
     else
         return random_movement()
     end
-    if player.moving == 1 then
-        return updatePath(playerX, playerY, playerID)
+    --if player.moving == 1 then
+      --  return updatePath(playerX, playerY, playerID)
+    --end
+end
+
+function shouldRotate()
+    local difference = enemy.angleToGoal - player.angle
+    if  math.abs(difference) < 0.25 then --0.5 ideal
+        return false
+    else
+        return true
     end
 end
 
+
+function rotate(--[[angleToGoal]])
+    --[[
+    // Rotating directions:
+    #define INVALID_ROTATION 0
+    #define RIGHT_ROTATION 1
+    #define LEFT_ROTATION 2
+    ]]
+    local difference = enemy.angleToGoal - player.angle
+    if shouldRotate(enemy.angleToGoal) then
+        local add = player.angle + rotationSpeed
+        local substract = player.angle - rotationSpeed
+        local next_difference_add = enemy.angleToGoal - add
+        local next_difference_subtract = enemy.angleToGoal - substract
+        if math.abs(next_difference_add) > math.abs(next_difference_subtract) then
+            return 1, packets.rotate --change 1
+        else
+            return 2, packets.rotate --change 2
+        end
+    else
+        player.rotating = 0
+        player.moving = 1
+        return 0, 0
+    end
+end
 
 function decision()
     if(not player.inited) then
@@ -252,16 +349,26 @@ function decision()
         return 0
     end
     if enemy.health == 0 or
-            (player.moving == 0 and player.killing == 0) then
-        --[]io.write("---"..enemy.health.." "..player.moving.." "..player.killing.."---")
+            (player.moving == 0 and player.killing == 0 and player.rotating == 0) then
+        --io.write("---"..enemy.health.." "..player.moving.." "..player.killing.."---")
         resetPlayer()
         return 1
+    end
+    if shouldRotate() then
+        player.rotate = 1
+        --print("TENES QUE ROTAR CHE")
+        return 4
+    else
+        --print("no rotes")
     end
     if player.killing == 1 then
         return 2
     end
     if player.moving == 1 then
         return 3
+    end
+    if player.rotating == 1 then
+        return 4
     end
     return -1
 end

@@ -29,6 +29,7 @@
 #define MACHINE_GUN 32
 #define CHAIN_CANNON 33
 #define ROCKET_LAUNCHER 34
+#define ROCKET 35
 
 // Items
 #define FOOD 40

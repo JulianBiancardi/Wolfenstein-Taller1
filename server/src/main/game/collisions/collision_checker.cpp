@@ -96,10 +96,10 @@ int CollisionChecker::get_knife_range_collides_player_id(Point& where,
   int id_found = 0;
   for (auto& player : players) {
     if ((&player.second != ignored) && (!player.second.is_dead()) &&
-        (player.second.get_position().distance_from(where) <=
-         CL::player_knife_mask_radio))
+        (player.second.get_position().distance_from(where) <= CL::knife_range))
       id_found = player.second.get_id();
   }
+
   ignored = nullptr;
   return id_found;
 }

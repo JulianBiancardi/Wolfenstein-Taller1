@@ -7,7 +7,7 @@ ShotHandler::ShotHandler() {}
 
 ShotHandler::~ShotHandler() {}
 
-void ShotHandler::handle(Packet& packet, Map& map, GameSound& sound) {
+bool ShotHandler::handle(Packet& packet, Map& map, GameSound& sound) {
   unsigned char type;
   unsigned int player_id;
   unsigned char match_id;
@@ -28,4 +28,6 @@ void ShotHandler::handle(Packet& packet, Map& map, GameSound& sound) {
   if (objective_id != 0) {
     map.shoot_player(objective_id, damage, player_id);
   }
+
+  return true;
 }

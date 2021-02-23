@@ -15,7 +15,7 @@ class GameCaster {
   SDL_Renderer* renderer;
   Map& map;
   Window& window;
-  ResourceManager res_manager;
+  ResourceManager& res_manager;
   unsigned int player_id;
   Hud hud;
 
@@ -36,7 +36,8 @@ class GameCaster {
                     std::vector<double>& distances);
 
  public:
-  GameCaster(Window& window, Map& map, unsigned int player_id);
+  GameCaster(Window& window, ResourceManager& res_manager, Map& map,
+             unsigned int player_id);
   ~GameCaster();
 
   void operator()();

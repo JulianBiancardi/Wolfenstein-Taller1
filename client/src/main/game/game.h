@@ -7,6 +7,7 @@
 #include "audio/game_sound.h"
 #include "map/map.h"
 #include "rendering/game_caster.h"
+#include "rendering/resource_manager.h"
 #include "rendering/sdl/window.h"
 
 class Game {
@@ -15,6 +16,7 @@ class Game {
   unsigned char match_id;
   Server& server;
   Window window;
+  ResourceManager res_manager;
   Map map;
   GameCaster caster;
   GameSound gamesound;
@@ -41,6 +43,7 @@ class Game {
   void process_gun_changes();
   void process_key_uses();
   void process_match_start();
+  void process_match_exit();
 
   void send_move_packet(unsigned char direction);
 

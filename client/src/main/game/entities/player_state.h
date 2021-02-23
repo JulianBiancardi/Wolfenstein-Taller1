@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 
-enum player_state { stand, path };
+enum player_state { stand, path, ghost };
 
 class PlayerState {
  private:
@@ -18,6 +18,9 @@ class PlayerState {
 
   /* Updates the state. */
   void update();
+
+  /* Enters ghost state, only a transparent image is drawn. */
+  void become_ghost();
 
   /* Updates the slice */
   void set_slice(SDL_Rect& slice, double angle);

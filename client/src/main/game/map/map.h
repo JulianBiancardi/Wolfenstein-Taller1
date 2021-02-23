@@ -34,6 +34,10 @@ class Map : public BaseMap {
       doors;
   MapLoader loader;
 
+  void add_bullets_drop(std::shared_ptr<Player>& dead_player);
+  void add_gun_drop(std::shared_ptr<Player>& dead_player);
+  void add_key_drop(std::shared_ptr<Player>& dead_player);
+
  public:
   explicit Map(Matrix<int>& map_matrix);  // TODO Delete eventually
   explicit Map(const std::string& map_name);
@@ -51,10 +55,11 @@ class Map : public BaseMap {
 
   /* Returns true if there is a door in the cell, false otherwise. */
   bool is_door(const std::pair<unsigned int, unsigned int>& cell) const;
+  /* Returns players as vector. */
+  std::vector<std::shared_ptr<Player>> get_players() const;
 
   void update();
-  void add_item(unsigned int item_id, const Ray& position,
-                unsigned char item_type);
+  void add_item(unsigned char item_type, const Ray& position);
   void add_player(unsigned int player_id, const Ray& position);
   void move_player(unsigned int player_id, unsigned char direction);
   void rotate_player(unsigned int player_id, unsigned char direction);
@@ -65,14 +70,20 @@ class Map : public BaseMap {
   int pick_item(unsigned int player_id, unsigned int item_id);
   Hit update_gun(unsigned int player_id, bool trigger);
 
-  /* The player sent launches a rocket, new rocket with sent id is created */
-  void shoot_rocket(unsigned int player_id, unsigned int rocket_id);
+  /* The player sent launches a rocket, new rocket is created */
+  void shoot_rocket(unsigned int player_id);
 
   /* Moves the rocket sent */
   void move_rocket(unsigned int rocket_id);
 
   /* Returns the rocket's owner id */
   unsigned int get_rocket_owner_id(unsigned int rocket_id);
+
+  /* Explodes the rocket */
+  void explode_rocket(unsigned int rocket_id);
+
+  /* Adds player's death drop */
+  void add_drop(unsigned int player_id);
 };
 
 #endif

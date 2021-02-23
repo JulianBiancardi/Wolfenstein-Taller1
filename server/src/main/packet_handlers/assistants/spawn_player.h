@@ -12,7 +12,9 @@ class SpawnPlayerAssistant : public PacketHandlerAssistant {
   SpawnPlayerAssistant();
   ~SpawnPlayerAssistant();
 
-  Packet build_packet(unsigned int player_id, Match& match) override;
+  Packet build_packet(unsigned int player_id, unsigned char player_gun,
+                      Match& match) override;
+
 };
 
 #endif

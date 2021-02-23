@@ -8,3 +8,7 @@ bool CircleMask::occupies(const Point& where) const {
 }
 
 double CircleMask::get_radius() const { return radius; };
+
+Mask* CircleMask::get_copy(const Point& center) {
+  return new CircleMask(radius, center);
+}

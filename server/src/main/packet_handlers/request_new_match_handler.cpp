@@ -3,6 +3,7 @@
 #include <string>
 
 #include "../../../../common/src/main/packets/packing.h"
+#include "../../../../common/src/main/ids/map_ids.h"
 #include "../managers/match.h"
 #include "assistants/spawn_player.h"
 
@@ -24,8 +25,7 @@ void RequestNewMatchHandler::handle(Packet& packet,
     unsigned char match_id = match_manager.create_match(player_id, file_name);
 
     unsigned char buf[JOIN_MATCH_SIZE];
-    size_t size = pack(buf, "CIC", JOIN_MATCH, player_id, match_id);
-    Packet join_match_packet(size, buf);
+    size_t size = pack(buf, "CICC", JOIN_MATCH, player_id, PISTOL, match_id);    Packet join_match_packet(size, buf);
     client_manager.send_to(player_id, join_match_packet);
 
     if (match_id != 0) {
@@ -33,15 +33,8 @@ void RequestNewMatchHandler::handle(Packet& packet,
       match.add_player(player_id);
 
       SpawnPlayerAssistant assistant;
-      Packet spawn_player_packet(assistant.build_packet(player_id, match));
+      Packet spawn_player_packet(assistant.build_packet(player_id, PISTOL, match));
       client_manager.send_to(player_id, spawn_player_packet);
-
-      const std::unordered_map<unsigned int, Item*>& items = match.get_items();
-      std::unordered_map<unsigned int, Item*>::const_iterator iter;
-      for (iter = items.begin(); iter != items.end(); iter++) {
-        Packet add_item_packet = iter->second->get_add_item_packet();
-        client_manager.send_to(player_id, add_item_packet);
-      }
     }
   }
 }

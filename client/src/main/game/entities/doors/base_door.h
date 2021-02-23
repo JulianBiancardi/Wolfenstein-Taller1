@@ -27,30 +27,6 @@ class BaseDoor : public Drawable {
   virtual SDL_Rect* get_slice(void* extra) override;
 };
 
-/*
-struct CoordsKey {
-  unsigned int x;
-  unsigned int y;
-
-  bool operator==(const CoordsKey& other) const {
-    return (x == other.x && y == other.y);
-  }
-}; */
-
-/*
-namespace std {
-
-template <>
-struct hash<CoordsKey> {
-  std::size_t operator()(const CoordsKey& k) const {
-    size_t hash = (43 * k.x) % 1013 + (136 * k.y) % 1013;
-    return hash;
-  }
-};
-
-}  // namespace std
-*/
-
 class PairHasher {
  private:
  public:
