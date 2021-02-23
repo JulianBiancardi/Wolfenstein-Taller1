@@ -320,7 +320,7 @@
 114:
   type: 0
   name: "Rocket Launcher shoot"
-  image: "../../res/images/guns/knife_shoot.png"
+  image: "../../res/images/guns/rocketlauncher_shoot.png"
   icon: "..."
 
 
