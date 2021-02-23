@@ -14,7 +14,6 @@ int main(int argc, char **argv) {
     return EXIT_SUCCESS;
   } catch (const std::exception &e) {
     syslog(LOG_ERR, "[Error] Server Main Thread - Error: %s\n", e.what());
-    printf("ServerMainThread: %s\n", e.what());  // TODO DELETE
     return EXIT_FAILURE;
   } catch (...) {
     syslog(LOG_ERR, "[Error] Server Main Thread - Unknown error\n");

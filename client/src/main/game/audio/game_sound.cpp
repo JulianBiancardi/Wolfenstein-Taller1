@@ -217,9 +217,6 @@ void GameSound::set_point(const Point& point) { this->own_point = point; }
 
 Uint8 GameSound::map_distance(Point point) {
   double distance = Point::distance(this->own_point, point);
-  printf("(%f , %f)  (%f , %f\n", own_point.getX(), own_point.getY(),
-         point.getX(), point.getY());
-  printf(" distance = %f\n", distance);
   if (distance > 50) return 255;
 
   double output = round(slope * distance);
