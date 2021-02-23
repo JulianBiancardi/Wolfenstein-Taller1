@@ -10,6 +10,8 @@ class HorizontalDoor : public BaseDoor {
   ~HorizontalDoor();
 
   bool update_collision(Collision& collision, double angle) override;
+
+  virtual SDL_Rect* get_slice(void* extra) override;
 };
 
 #endif

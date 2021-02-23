@@ -13,12 +13,8 @@ void DoorState::update() {
 }
 
 bool DoorState::is_open_by(double amount) {
-  return amount > 1 - (openness) / 64;
+  printf("%f > %f ?\n", amount, (1.0 - (openness) / 64.0));
+  return amount >= (1.0 - (openness) / 64.0);
 }
 
-void DoorState::set_slice(SDL_Rect& slice) {
-  slice.x = (int)openness;
-  slice.y = 0;
-  slice.h = 64;
-  slice.w = 64;
-}
+double DoorState::get_openness() { return openness; }

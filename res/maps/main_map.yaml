@@ -609,6 +609,10 @@ objects:
     id: 34
     x_position: 2
     y_position: 14
+  - type: 7
+    id: 78
+    x_position: 27
+    y_position: 14
   - type: 1
     id: 12
     x_position: 34

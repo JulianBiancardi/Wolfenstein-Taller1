@@ -6,7 +6,7 @@
   icon: ""
 1:
   type: 1
-  name: "Rock Wall"
+  name: "Grey Brick"
   image: "../../res/images/walls/grey_brick_wall.bmp"
   icon: "../../../../res/images/walls/grey_brick_wall.bmp"
 2:
@@ -237,7 +237,31 @@
   name: "Vertical Locked Door"
   image: "../../res/images/doors/locked_door.png"
   icon: "..."
-
+74:
+  type: 7
+  name: "Grey Brick Passage"
+  image: "../../res/images/doors/grey_brick_passage.png"
+  icon: "../../../../res/images/walls/grey_brick_wall.bmp"
+75:
+  type: 7
+  name: "Wood Wall Passage"
+  image: "../../res/images/doors/wood_wall_passage.png"
+  icon: "../../../../res/images/walls/wood_wall.bmp"
+76:
+  type: 7
+  name: "Grey Stone Passage"
+  image: "../../res/images/doors/grey_stone_passage.png"
+  icon: "../../../../res/images/walls/grey_stone.bmp"
+77:
+  type: 7
+  name: "Blue Wall Passage"
+  image: "../../res/images/doors/blue_wall_passage.png"
+  icon: "../../../../res/images/walls/blue_wall.bmp"
+78:
+  type: 7
+  name: "Rock Wall Passage"
+  image: "../../res/images/doors/rock_wall_passage.png"
+  icon: "../../../../res/images/walls/rock_wall_1.bmp"
 
 #HUD
 90:

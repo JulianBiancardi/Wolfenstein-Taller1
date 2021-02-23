@@ -25,7 +25,6 @@ class BaseDoor : public Drawable {
   bool requires_key();
 
   virtual Image* get_image(ResourceManager& resource_manager) override;
-  virtual SDL_Rect* get_slice(void* extra) override;
 };
 
 class PairHasher {

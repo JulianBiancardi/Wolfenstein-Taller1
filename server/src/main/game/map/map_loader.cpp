@@ -116,6 +116,11 @@ void MapLoader::load_map(std::string& map_name) {
         break;
       case HORIZONTAL_DOOR:
       case VERTICAL_DOOR:
+      case GREY_BRICK_PASSAGE:
+      case WOOD_WALL_PASSAGE:
+      case GREY_STONE_PASSAGE:
+      case BLUE_WALL_PASSAGE:
+      case ROCK_WALL_PASSAGE:
         add_normal_door(Point(x, y));
         break;
       case HORIZONTAL_LOCKED_DOOR:

@@ -7,6 +7,7 @@
 #include "../../../../../common/src/main/config_loader.h"
 #include "../../../../../common/src/main/ids/map_ids.h"
 #include "../entities/doors/horizontal_door.h"
+#include "../entities/doors/passage.h"
 #include "../entities/doors/vertical_door.h"
 #include "../entities/identifiable_object.h"
 #include "../entities/items/blood.h"
@@ -141,6 +142,10 @@ void MapLoader::add_door(unsigned int x, unsigned int y,
   } else if (resource_id == VERTICAL_DOOR ||
              resource_id == VERTICAL_LOCKED_DOOR) {
     std::unique_ptr<BaseDoor> door(new VerticalDoor(x, y, resource_id));
+    std::pair<unsigned int, unsigned int> key(x, y);
+    doors.insert(std::make_pair(key, std::move(door)));
+  } else {
+    std::unique_ptr<BaseDoor> door(new Passage(x, y, resource_id));
     std::pair<unsigned int, unsigned int> key(x, y);
     doors.insert(std::make_pair(key, std::move(door)));
   }
