@@ -70,7 +70,8 @@ class Player : public IdentifiableObject {
   bool has_key() const;
 
   /* Gets the active gun of the player. */
-  std::unique_ptr<Gun>& get_active_gun();
+  // TODO CHANGE THIS
+  Gun* get_active_gun() const;
 
   void move(unsigned char direction);
   void rotate(unsigned char direction);

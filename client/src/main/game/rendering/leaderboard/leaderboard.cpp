@@ -3,6 +3,7 @@
 #include <iostream>
 #include <utility>
 
+#include "../../../../../../common/src/main/config_loader.h"
 #include "../../../../../../common/src/main/ids/images_ids.h"
 #include "../sdl/text.h"
 
@@ -64,7 +65,7 @@ void Leaderboard::showTop5(std::vector<std::shared_ptr<Player>>&& players) {
   _show_game_result();
 
   window.update();
-  SDL_Delay(8000);
+  SDL_Delay(10 * 1000);
 }
 
 void Leaderboard::_show_background() {

@@ -284,7 +284,7 @@ void Hud::_show_gun(const Player& player) {
 }
 
 void Hud::_show_player_gun(const Player& player) {
-  int id = 0;
+  unsigned int id = 0;
   switch (player.get_gun()) {
     case KNIFE_ID:
       id = HUD_KNIFE_SHOOT;
@@ -318,8 +318,8 @@ void Hud::_show_player_gun(const Player& player) {
   rect_gun.w = frame_width * 2 * scale_x;
   rect_gun.h = frame_height * 2 * scale_y;
 
-  // gun_animation->draw(&rect_gun,
-  // player.get_active_gun()->get_slice(&gun_animation));
+  gun_animation->draw(&rect_gun,
+                      player.get_active_gun()->get_slice(&gun_animation));
 }
 
 void Hud::_show_death_text() {
