@@ -174,17 +174,13 @@ void Map::add_gun_drop(std::shared_ptr<Player>& dead_player) {
             dead_player->get_position().getY(), 0);
 
   switch (dead_player->get_gun()) {
-    case MACHINE_GUN_ID:
-      add_item(MACHINE_GUN, where);
+    case MACHINE_GUN_ID:add_item(MACHINE_GUN, where);
       break;
-    case CHAIN_CANNON_ID:
-      add_item(CHAIN_CANNON, where);
+    case CHAIN_CANNON_ID:add_item(CHAIN_CANNON, where);
       break;
-    case ROCKET_LAUNCHER_ID:
-      add_item(ROCKET_LAUNCHER, where);
+    case ROCKET_LAUNCHER_ID:add_item(ROCKET_LAUNCHER, where);
       break;
-    default:
-      break;
+    default:break;
   }
 }
 
@@ -204,7 +200,7 @@ void Map::add_drop(unsigned int player_id) {
     add_gun_drop(dead_player);
   }
 
-  if (dead_player->has_keys()) {
+  if (dead_player->has_key()) {
     add_key_drop(dead_player);
   }
 }
