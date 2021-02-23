@@ -419,6 +419,12 @@ bool Match::open_door(unsigned int player_id) {
 
   Point forward = player.next_position(UP);
   std::pair<unsigned int, unsigned int> cell(forward.getX(), forward.getY());
+
+  if (!map.is_door(cell)) {
+    throw MatchError(
+        "Failed to find door. There is no door in front of the player.");
+  }
+
   std::shared_ptr<Door>& door = map.get_door(cell);
 
   if (door->open(player)) {

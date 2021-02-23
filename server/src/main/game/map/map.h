@@ -67,6 +67,9 @@ class Map : public BaseMap {
   std::shared_ptr<Door>& get_door(
       const std::pair<unsigned int, unsigned int>& cell);
 
+  /* Returns true if the cell is a door, otherwise false. */
+  bool is_door(const std::pair<unsigned int, unsigned int>& cell);
+
   /* Returns if it has the object */
   bool object_exists(unsigned int object_id);
 

@@ -74,6 +74,10 @@ std::shared_ptr<Door>& Map::get_door(
   return doors.at(cell);
 }
 
+bool Map::is_door(const std::pair<unsigned int, unsigned int>& cell) {
+  return doors.find(cell) != doors.end();
+}
+
 bool Map::object_exists(unsigned int object_id) {
   return identifiable_objects.find(object_id) != identifiable_objects.end();
 }
