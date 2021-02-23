@@ -19,7 +19,10 @@ MachineGun::MachineGun()
       Gun(0, CL::machine_gun_range),
       last_shot_time(0),
       last_burst_time(0),
-      bullet_count(0) {}
+      bullet_count(0) {
+  slope = 1 / (min_range - max_range);
+  intercept = -slope * max_range;
+}
 
 MachineGun::~MachineGun() {}
 

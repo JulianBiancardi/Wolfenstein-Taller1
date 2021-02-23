@@ -15,7 +15,10 @@ ChainCannon::ChainCannon()
       distribution(1, CL::bullet_max_dmg),
       spray(CL::chain_cannon_spray, CL::chain_cannon_std_dev),
       Gun(0, CL::chain_cannon_range),
-      last_shot_time(0) {}
+      last_shot_time(0) {
+  slope = 1 / (min_range - max_range);
+  intercept = -slope * max_range;
+}
 
 ChainCannon::~ChainCannon() {}
 
