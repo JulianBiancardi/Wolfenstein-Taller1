@@ -11,11 +11,11 @@
 
 #define COS_MOD 3
 
-Pistol::Pistol()
+Pistol::Pistol(unsigned int resource_id)
     : generator(),
       distribution(1, CL::bullet_max_dmg),
       spray(CL::pistol_spray, CL::pistol_std_dev),
-      Gun(0, CL::pistol_range),
+      Gun(0, CL::pistol_range, resource_id),
       shot(false) {
   slope = 1 / (min_range - max_range);
   intercept = -slope * max_range;
@@ -66,8 +66,6 @@ Hit Pistol::update(Object& player, bool trigger, BaseMap& map,
 }
 
 double Pistol::linear_func(double x) { return slope * x + intercept; }
-
-Image* Pistol::get_image(ResourceManager& resource_manager) {}
 
 SDL_Rect* Pistol::get_slice(void* extra) {
   state.set_slice(slice);

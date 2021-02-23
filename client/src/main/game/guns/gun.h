@@ -7,14 +7,16 @@
 #include "../../../../../common/src/main/utils/base_map.h"
 #include "../entities/drawable.h"
 #include "../entities/identifiable_object.h"
+#include "gun_state.h"
 #include "hit.h"
-
 #define PIXEL 1
 
 class Gun : public Drawable {
  protected:
   double max_range;
   double min_range;
+  unsigned int resource_id;
+  GunState state;
 
   virtual Hit shoot(
       Object& player, BaseMap& map,
@@ -24,7 +26,7 @@ class Gun : public Drawable {
       std::vector<std::weak_ptr<IdentifiableObject>>& players);
 
  public:
-  explicit Gun(double min_range, double max_range);
+  explicit Gun(double min_range, double max_range, unsigned int resource_id);
   ~Gun();
 
   /* Updates the gun appropriately and returns a Hit instance with
@@ -36,6 +38,8 @@ class Gun : public Drawable {
   virtual Hit update(
       Object& player, bool trigger, BaseMap& map,
       std::vector<std::weak_ptr<IdentifiableObject>>& players) = 0;
+
+  Image* get_image(ResourceManager& resource_manager) override;
 };
 
 #endif

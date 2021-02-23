@@ -31,7 +31,6 @@ class Player : public IdentifiableObject {
   const Point spawn_point;
   unsigned int players_killed;
   double speed;
-
   PlayerState state;
 
   /* Removes all guns that disappear after being killed */

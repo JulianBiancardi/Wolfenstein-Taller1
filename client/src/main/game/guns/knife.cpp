@@ -8,8 +8,8 @@
 #include "../../../../../common/src/main/ids/gun_ids.h"
 #include "../rendering/ray_casting.h"
 
-Knife::Knife()
-    : Gun(0, CL::knife_range),
+Knife::Knife(unsigned int resource_id)
+    : Gun(0, CL::knife_range, resource_id),
       generator(),
       distribution(1, CL::bullet_max_dmg) {}
 
@@ -45,8 +45,6 @@ Hit Knife::update(Object& player, bool trigger, BaseMap& map,
   state.update(true);
   return std::move(shoot(player, map, players));
 }
-
-Image* Knife::get_image(ResourceManager& resource_manager) {}
 
 SDL_Rect* Knife::get_slice(void* extra) {
   state.set_slice(slice);

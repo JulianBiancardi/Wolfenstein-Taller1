@@ -17,7 +17,6 @@ class Pistol : public Gun {
   std::default_random_engine generator;
   std::uniform_real_distribution<double> distribution;
   Spray spray;
-  GunState state;
 
   double linear_func(double x);
   double slope;
@@ -28,7 +27,7 @@ class Pistol : public Gun {
             std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
 
  public:
-  Pistol();
+  explicit Pistol(unsigned int resource_id);
   ~Pistol();
 
   /* Updates the gun appropriately and returns a Hit instance with
@@ -39,8 +38,6 @@ class Pistol : public Gun {
    */
   Hit update(Object& player, bool trigger, BaseMap& map,
              std::vector<std::weak_ptr<IdentifiableObject>>& players);
-
-  Image* get_image(ResourceManager& resource_manager) override;
 
   SDL_Rect* get_slice(void* extra) override;
 };

@@ -1,10 +1,10 @@
 #include "gun.h"
 
-#include "../rendering/ray_casting.h"
 #include "../entities/player.h"
+#include "../rendering/ray_casting.h"
 
-Gun::Gun(double min_range, double max_range)
-    : min_range(min_range), max_range(max_range) {}
+Gun::Gun(double min_range, double max_range, unsigned int resource_id)
+    : min_range(min_range), max_range(max_range), resource_id(resource_id) {}
 
 Gun::~Gun() {}
 
@@ -75,4 +75,8 @@ std::shared_ptr<IdentifiableObject> Gun::trayectory(
   std::swap(kept_players, players);
 
   return std::move(closest_obj);
+}
+
+Image* Gun::get_image(ResourceManager& resource_manager) {
+  return resource_manager.get_image(resource_id);
 }

@@ -4,6 +4,7 @@
 #include <utility>
 
 #include "../../../../../common/src/main/ids/gun_ids.h"
+#include "../../../../../common/src/main/ids/images_ids.h"
 #include "../../../../../common/src/main/ids/map_ids.h"
 #include "../guns/chain_cannon.h"
 #include "../guns/knife.h"
@@ -21,8 +22,8 @@ Player::Player(const Ray& position, unsigned int player_id)
   points = 0;
   keys = 0;
   guns_bag.reserve(GUN_AMOUNT);
-  std::unique_ptr<Gun> knife(new Knife());
-  std::unique_ptr<Gun> pistol(new Pistol());
+  std::unique_ptr<Gun> knife(new Knife(HUD_KNIFE_SHOOT));
+  std::unique_ptr<Gun> pistol(new Pistol(HUD_PISTOL_SHOOT));
   guns_bag.insert(std::make_pair(KNIFE_ID, std::move(knife)));
   guns_bag.insert(std::make_pair(PISTOL_ID, std::move(pistol)));
   active_gun = PISTOL_ID;
@@ -171,17 +172,17 @@ void Player::respawn_as_ghost() {
 void Player::add_gun(unsigned int gun_id) {
   switch (gun_id) {
     case MACHINE_GUN_ID: {
-      Gun* machine_gun = new MachineGun();
+      Gun* machine_gun = new MachineGun(HUD_MACHINEGUN_SHOOT);
       guns_bag.insert(std::make_pair(MACHINE_GUN_ID, std::move(machine_gun)));
       break;
     }
     case CHAIN_CANNON_ID: {
-      Gun* chain_cannon = new ChainCannon();
+      Gun* chain_cannon = new ChainCannon(HUD_CHAINCANNON_SHOOT);
       guns_bag.insert(std::make_pair(CHAIN_CANNON_ID, std::move(chain_cannon)));
       break;
     }
     case ROCKET_LAUNCHER_ID: {
-      Gun* rocket_launcher = new RocketLauncher();
+      Gun* rocket_launcher = new RocketLauncher(HUD_ROCKETLAUNCHER_SHOOT);
       guns_bag.insert(
           std::make_pair(ROCKET_LAUNCHER_ID, std::move(rocket_launcher)));
       break;
