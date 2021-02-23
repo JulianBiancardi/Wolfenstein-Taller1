@@ -213,17 +213,22 @@
 # Doors
 70:
   type: 7
-  name: "Door"
+  name: "Horizontal Door"
   image: "../../res/images/doors/door.png"
   icon: "..."
 71:
   type: 7
-  name: "Locked Door"
-  image: "..."
+  name: "Vertical Door"
+  image: "../../res/images/doors/door.png"
   icon: "..."
-72: 
+72:
   type: 7
-  name: "Side Door"
-  image: "../../res/images/doors/side_door.png"
+  name: "Horizontal Locked Door"
+  image: "../../res/images/doors/locked_door.png"
+  icon: "..."
+73:
+  type: 7
+  name: "Vertical Locked Door"
+  image: "../../res/images/doors/locked_door.png"
   icon: "..."
 ...

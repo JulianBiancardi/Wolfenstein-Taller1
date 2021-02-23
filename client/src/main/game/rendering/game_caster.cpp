@@ -66,7 +66,7 @@ std::vector<double> GameCaster::draw_walls() {
   wall_collisions.reserve(window.get_width());
 
   const Player& player = map.get_player(player_id);
-  double ray_angle = player.get_angle() + FOV / 2;
+  double ray_angle = Angle::normalize(player.get_angle() + FOV / 2);
 
   double angle_step = FOV / window.get_width();
   for (int i = 0; i < window.get_width();) {
@@ -81,7 +81,7 @@ std::vector<double> GameCaster::draw_walls() {
     wall_collisions.push_back(projectected_dist);
 
     i++;
-    ray_angle -= angle_step;
+    ray_angle = Angle::normalize(ray_angle - angle_step);
   }
 
   return std::move(wall_collisions);
@@ -111,7 +111,11 @@ double GameCaster::draw_wall(Collision& collision, size_t screen_pos,
         map.get_door(std::make_pair(collision_x, collision_y));
 
     is_door = door->update_collision(collision, ray_angle);
+    /*if ((int)collision_x == 27 && (int)collision_y == 12) {
+      printf("ISDOOR: %d\n", is_door);
+    }*/ // TODO Delete
     if (is_door) {
+      // printf("%d\n", collision.get_collided_obj_id());
       collision_x = collision.get_collision_point().getX();
       collision_y = collision.get_collision_point().getY();
       slice = door->get_slice(nullptr);

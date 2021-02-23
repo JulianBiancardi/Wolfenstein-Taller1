@@ -136,7 +136,16 @@ void MapLoader::add_object(const Ray& position, unsigned int resource_id) {
 
 void MapLoader::add_door(unsigned int x, unsigned int y,
                          unsigned int resource_id) {
-  std::unique_ptr<BaseDoor> door(new HorizontalDoor(x, y, resource_id));
-  std::pair<unsigned int, unsigned int> key(x, y);
-  doors.insert(std::make_pair(key, std::move(door)));
+  printf("Adding door of type: %d\n", resource_id);
+  if (resource_id == HORIZONTAL_DOOR || resource_id == HORIZONTAL_LOCKED_DOOR) {
+    std::unique_ptr<BaseDoor> door(new HorizontalDoor(x, y, resource_id));
+    std::pair<unsigned int, unsigned int> key(x, y);
+    doors.insert(std::make_pair(key, std::move(door)));
+  } else if (resource_id == VERTICAL_DOOR ||
+             resource_id == VERTICAL_LOCKED_DOOR) {
+    printf("Added door\n");
+    std::unique_ptr<BaseDoor> door(new VerticalDoor(x, y, resource_id));
+    std::pair<unsigned int, unsigned int> key(x, y);
+    doors.insert(std::make_pair(key, std::move(door)));
+  }
 }

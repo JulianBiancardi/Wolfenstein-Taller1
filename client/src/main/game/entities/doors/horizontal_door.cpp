@@ -113,6 +113,5 @@ bool HorizontalDoor::update_collision(Collision& collision, double angle) {
     collision.distance_from_src += extra_dist;
     return true;
   }
-  printf("Denormalized angle\n");  // TODO REMOVE
   return false;
 }

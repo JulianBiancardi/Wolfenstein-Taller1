@@ -52,7 +52,9 @@
 #define FLOOR_BLOOD 61
 
 // Doors
-#define DOOR 70
-#define LOCKED_DOOR 71
+#define HORIZONTAL_DOOR 70
+#define VERTICAL_DOOR 71
+#define HORIZONTAL_LOCKED_DOOR 72
+#define VERTICAL_LOCKED_DOOR 73
 
 #endif
