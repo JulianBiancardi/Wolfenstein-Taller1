@@ -13,6 +13,7 @@ class BotThread: public Thread {
             unsigned int player_id,
             BlockingQueue<Packet>& blocking_queue,
             Match* match );
+  void force_stop();
   ~BotThread();
   void run() override;
 };

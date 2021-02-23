@@ -17,7 +17,10 @@ Match::Match(unsigned int host_id, unsigned char match_id,
 Match::~Match() {
   if (started) {
     ((ClockThread*)threads.at(CLOCK_KEY))->force_stop();
-
+    for (auto thread : threads) {
+      if (thread.first != CLOCK_KEY)
+        ((BotThread*)thread.second)->force_stop();
+    }
     for (auto thread : threads) {
       thread.second->join();
     }
