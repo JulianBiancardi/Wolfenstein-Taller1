@@ -12,11 +12,11 @@
 
 #define COS_MOD 3
 
-MachineGun::MachineGun()
+MachineGun::MachineGun(unsigned int resource_id)
     : generator(),
       distribution(1, CL::bullet_max_dmg),
       spray(CL::machine_gun_spray, CL::machine_gun_std_dev),
-      Gun(0, CL::machine_gun_range),
+      Gun(0, CL::machine_gun_range, resource_id),
       last_shot_time(0),
       last_burst_time(0),
       bullet_count(0) {}
@@ -84,8 +84,6 @@ Hit MachineGun::update(
 }
 
 double MachineGun::linear_func(double x) { return slope * x + intercept; }
-
-Image* MachineGun::get_image(ResourceManager& resource_manager) {}
 
 SDL_Rect* MachineGun::get_slice(void* extra) {
   state.set_slice(slice);

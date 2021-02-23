@@ -17,13 +17,12 @@ class RocketLauncher : public Gun {
             std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
 
  public:
-  RocketLauncher();
+  explicit RocketLauncher(unsigned int resource_id);
   ~RocketLauncher();
 
   Hit update(Object& player, bool trigger, BaseMap& map,
              std::vector<std::weak_ptr<IdentifiableObject>>& players) override;
 
-  Image* get_image(ResourceManager& resource_manager) override;
   SDL_Rect* get_slice(void* extra) override;
 };
 

@@ -10,11 +10,11 @@
 #include "../../../../../common/src/main/config_loader.h"
 #include "../../../../../common/src/main/ids/gun_ids.h"
 
-ChainCannon::ChainCannon()
+ChainCannon::ChainCannon(unsigned int resource_id)
     : generator(),
       distribution(1, CL::bullet_max_dmg),
       spray(CL::chain_cannon_spray, CL::chain_cannon_std_dev),
-      Gun(0, CL::chain_cannon_range),
+      Gun(0, CL::chain_cannon_range, resource_id),
       last_shot_time(0) {}
 
 ChainCannon::~ChainCannon() {}
@@ -64,8 +64,6 @@ Hit ChainCannon::update(
   state.update(true);
   return std::move(shoot(player, map, players));
 }
-
-Image* ChainCannon::get_image(ResourceManager& resource_manager) {}
 
 SDL_Rect* ChainCannon::get_slice(void* extra) {
   state.set_slice(slice);

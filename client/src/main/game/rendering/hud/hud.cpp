@@ -284,28 +284,7 @@ void Hud::_show_gun(const Player& player) {
 }
 
 void Hud::_show_player_gun(const Player& player) {
-  unsigned int id = 0;
-  switch (player.get_gun()) {
-    case KNIFE_ID:
-      id = HUD_KNIFE_SHOOT;
-      break;
-    case PISTOL_ID:
-      id = HUD_PISTOL_SHOOT;
-      break;
-    case CHAIN_CANNON_ID:
-      id = HUD_CHAINCANNON_SHOOT;
-      break;
-    case MACHINE_GUN_ID:
-      id = HUD_MACHINEGUN_SHOOT;
-      break;
-    case ROCKET_LAUNCHER_ID:
-      id = HUD_ROCKETLAUNCHER_SHOOT;
-      break;
-    default:
-      return;
-  }
-
-  Image* gun_animation = res_manager.get_image(id);
+  Image* gun_animation = player.get_active_gun()->get_image(res_manager);
   int frame_width = (gun_animation->get_width() - 4 * PIXEL) / 5;
   int frame_height = gun_animation->get_height();
 
