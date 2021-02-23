@@ -9,6 +9,7 @@
 #include "ray_casting.h"
 #include "sdl/image.h"
 
+#define IMG_DIM 64
 #define SCALING_FACTOR 70
 #define FOV_DEG 70
 #define FOV (FOV_DEG * M_PI / 180)
@@ -112,11 +113,7 @@ double GameCaster::draw_wall(Collision& collision, size_t screen_pos,
         map.get_door(std::make_pair(collision_x, collision_y));
 
     is_door = door->update_collision(collision, ray_angle);
-    /*if ((int)collision_x == 27 && (int)collision_y == 12) {
-      printf("ISDOOR: %d\n", is_door);
-    }*/ // TODO Delete
     if (is_door) {
-      // printf("%d\n", collision.get_collided_obj_id());
       collision_x = collision.get_collision_point().getX();
       collision_y = collision.get_collision_point().getY();
       slice = door->get_slice(nullptr);
@@ -140,8 +137,8 @@ double GameCaster::draw_wall(Collision& collision, size_t screen_pos,
   int wall_size = (SCALING_FACTOR * window.get_height()) /
                   (projected_distance * image->get_height());
 
-  size_t img_width = 64;  // TODO Remove hardcoding
-  size_t img_height = 64;
+  size_t img_width = IMG_DIM;
+  size_t img_height = IMG_DIM;
   int line = 0;
   if (collision.is_x_collision()) {
     double tmp;
