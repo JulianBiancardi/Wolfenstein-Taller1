@@ -113,10 +113,12 @@ double CL::rocket_min_damage = CL::yaml_file["rocket_min_damage"].as<double>();
 unsigned int CL::first_id = CL::yaml_file["first_id"].as<unsigned int>();
 unsigned int CL::match_length =
     CL::yaml_file["match_length"].as<unsigned int>();
+int CL::leaderboard = CL::yaml_file["leaderboard"].as<int>();
 unsigned int CL::door_timer = CL::yaml_file["door_timer"].as<unsigned int>();
 double CL::door_speed = CL::yaml_file["door_speed"].as<double>();
 double CL::door_interaction_range =
     CL::yaml_file["door_interaction_range"].as<double>();
+int CL::kill_points = CL::yaml_file["kill_points"].as<int>();
 
 ConfigLoader::ConfigLoader() = default;
 

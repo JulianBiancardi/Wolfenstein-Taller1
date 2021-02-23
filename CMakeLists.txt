@@ -23,9 +23,9 @@ find_package(Qt5Widgets)
 #------------------------------------------------------------------------------
 # ARCHIVOS FUENTE
 
-FILE(GLOB_RECURSE common_src "common/src/*.cpp")
-FILE(GLOB_RECURSE client_src "client/src/*.cpp")
-FILE(GLOB_RECURSE server_src "server/src/*.cpp")
+FILE(GLOB_RECURSE common_src "common/src/**/*.cpp")
+FILE(GLOB_RECURSE client_src "client/src/**/*.cpp")
+FILE(GLOB_RECURSE server_src "server/src/**/*.cpp")
 #------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------
