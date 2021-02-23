@@ -67,4 +67,7 @@ Hit ChainCannon::update(
 
 Image* ChainCannon::get_image(ResourceManager& resource_manager) {}
 
-SDL_Rect* ChainCannon::get_slice(void* extra) { return &slice; }
+SDL_Rect* ChainCannon::get_slice(void* extra) {
+  state.set_slice(slice);
+  return &slice;
+}
