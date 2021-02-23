@@ -21,6 +21,9 @@ class BaseDoor : public Drawable {
   void close();
   void update();
 
+  /* Receives a collision and updates it accordingly to the door and angle.
+   * Returns true if the door is hit, false otherwise.
+   */
   virtual bool update_collision(Collision& collision, double angle) = 0;
   bool requires_key();
 
