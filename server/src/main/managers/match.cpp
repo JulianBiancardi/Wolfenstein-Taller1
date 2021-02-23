@@ -16,7 +16,7 @@ Match::Match(unsigned int host_id, unsigned char match_id,
 
 Match::~Match() {
   if (started) {
-    ((ClockThread*)threads.at(CLOCK_KEY))->force_stop();
+    ((ClockThread*) threads.at(CLOCK_KEY))->force_stop();
 
     for (auto thread : threads) {
       thread.second->join();
@@ -293,7 +293,7 @@ void Match::shoot_rocket(unsigned int player_id) {
   double spawn_angle = shooter.get_angle();
 
   unsigned int rocket_id = map.add_rocket(spawn_point, spawn_angle);
-  ((ClockThread*)threads.at(CLOCK_KEY))
+  ((ClockThread*) threads.at(CLOCK_KEY))
       ->add_rocket_controller(rocket_id, player_id);
 }
 
@@ -303,7 +303,7 @@ bool Match::move_rocket(unsigned int rocket_id) {
                      rocket_id);
   }
 
-  auto rocket = (Moveable*)map.get_object(rocket_id);
+  auto rocket = (Moveable*) map.get_object(rocket_id);
 
   Point next_position = rocket->next_position(UP);
   if (checker.can_move(next_position, *rocket)) {
@@ -326,11 +326,11 @@ unsigned char calculate_damage(Moveable& rocket, Player& player) {
    * Damage(CL::rocket_explosion_radius) = CL::rocket_min_damage
    */
   double b = (CL::rocket_min_damage * CL::rocket_explosion_radius -
-              CL::rocket_max_damage * CL::player_mask_radio) /
-             (CL::rocket_max_damage - CL::rocket_min_damage);
+      CL::rocket_max_damage * CL::player_mask_radio) /
+      (CL::rocket_max_damage - CL::rocket_min_damage);
   double a = CL::rocket_max_damage * (CL::player_mask_radio + b);
 
-  return (unsigned char)(a / (distance + b));
+  return (unsigned char) (a / (distance + b));
 }
 
 std::map<unsigned int, unsigned char> Match::explode_rocket(
@@ -340,7 +340,7 @@ std::map<unsigned int, unsigned char> Match::explode_rocket(
                      rocket_id);
   }
 
-  auto rocket = (Moveable*)map.get_object(rocket_id);
+  auto rocket = (Moveable*) map.get_object(rocket_id);
 
   Point next_position = rocket->next_position(UP);
   std::vector<unsigned int> players_exploded =
@@ -358,7 +358,7 @@ std::map<unsigned int, unsigned char> Match::explode_rocket(
   }
 
   map.delete_object(rocket_id);
-  ((ClockThread*)threads.at(CLOCK_KEY))->delete_rocket_controller(rocket_id);
+  ((ClockThread*) threads.at(CLOCK_KEY))->delete_rocket_controller(rocket_id);
 
   return return_map;
 }
@@ -404,7 +404,7 @@ bool Match::has_lives(unsigned int player_id) {
   return map.get_player(player_id).has_extra_lives();
 }
 
-bool Match::interact_with_door(unsigned int player_id) {
+bool Match::open_door(unsigned int player_id) {
   if (!player_exists(player_id)) {
     throw MatchError("Failed to find door interactor. Player %u doesn't exist.",
                      player_id);
@@ -420,31 +420,21 @@ bool Match::interact_with_door(unsigned int player_id) {
   std::pair<unsigned int, unsigned int> cell(forward.getX(), forward.getY());
   std::shared_ptr<Door>& door = map.get_door(cell);
 
-  if (!checker.is_free(door->get_position())) {
-    return false;
-  }
-
-  if (door->interact(player, checker)) {
-    if (door->is_open()) {
-      ((ClockThread*)threads.at(CLOCK_KEY))->add_door_timer(cell);
-    }
+  if (door->open(player)) {
+    ((ClockThread*) threads.at(CLOCK_KEY))->add_door_timer(door->get_id(),
+                                                           cell);
     return true;
   } else {
     return false;
   }
 }
 
-bool Match::close_door(unsigned int door_id) {
-  if (!map.object_exists(door_id)) {
-    throw MatchError("Failed to find door. Door %u doesn't exist.", door_id);
-  }
+bool Match::close_door(std::pair<unsigned int, unsigned int> cell) {
+  auto door = map.get_door(cell);
 
-  auto door = (Door*)map.get_object(door_id);
-
-  door->close(checker);
-
-  if (!door->is_open()) {
-    ((ClockThread*)threads.at(CLOCK_KEY))->delete_door_timer(door_id);
+  if (checker.is_free(door->get_position())) {
+    door->close();
+    ((ClockThread*) threads.at(CLOCK_KEY))->delete_door_timer(door->get_id());
     return true;
   } else {
     return false;

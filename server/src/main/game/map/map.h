@@ -23,8 +23,7 @@ class Map : public BaseMap {
   std::vector<Object*> unidentifiable_objects;
   std::unordered_map<unsigned int, Player> players;
   std::unordered_map<std::pair<unsigned int, unsigned int>,
-                     std::shared_ptr<Door>, PairHasher>
-      doors;
+                     std::shared_ptr<Door>, PairHasher> doors;
   std::vector<Point> dogs;
   std::vector<Point> spawn_points;
 
@@ -83,7 +82,7 @@ class Map : public BaseMap {
 
   /* Returns a reference to the objects with id */
   const std::unordered_map<unsigned int, Object*>& get_identifiable_objects()
-      const;
+  const;
 
   /* Returns a reference to the objects without id */
   const std::vector<Object*>& get_unidentifiable_objects() const;

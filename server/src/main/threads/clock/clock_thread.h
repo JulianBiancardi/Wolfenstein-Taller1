@@ -38,7 +38,8 @@ class ClockThread : public Thread {
   void force_stop();
 
   /* Adds door automatic close timer, if it already exists, it is reset */
-  void add_door_timer(std::pair<unsigned int, unsigned int> door_cell);
+  void add_door_timer(unsigned int door_id,
+                      const std::pair<unsigned int, unsigned int>& cell);
 
   /* Deletes door automatic close timer */
   void delete_door_timer(unsigned int door_id);

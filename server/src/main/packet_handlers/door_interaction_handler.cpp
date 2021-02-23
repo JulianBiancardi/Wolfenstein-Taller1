@@ -1,7 +1,5 @@
 #include "door_interaction_handler.h"
 
-#include "../../../../common/src/main/packets/packing.h"
-
 DoorInteractionHandler::DoorInteractionHandler() {}
 
 DoorInteractionHandler::~DoorInteractionHandler() {}
@@ -16,7 +14,7 @@ void DoorInteractionHandler::handle(Packet& packet,
 
   Match& match = match_manager.get_match(match_id);
 
-  if (match.interact_with_door(player_id)) {
+  if (match.open_door(player_id)) {
     const std::unordered_set<unsigned int>& clients = match.get_players_ids();
     client_manager.send_to_all(clients, packet);
   }

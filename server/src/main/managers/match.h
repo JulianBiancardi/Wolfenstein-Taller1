@@ -120,10 +120,10 @@ class Match {
   bool has_lives(unsigned int player_id);
 
   /* Returns if the door state changes */
-  bool interact_with_door(unsigned int player_id);
+  bool open_door(unsigned int player_id);
 
   /* Closes the door, returns if could do it */
-  bool close_door(unsigned int door_id);
+  bool close_door(std::pair<unsigned int, unsigned int> cell);
 
   /* Delete player from the match */
   void delete_player(unsigned int player_id);
