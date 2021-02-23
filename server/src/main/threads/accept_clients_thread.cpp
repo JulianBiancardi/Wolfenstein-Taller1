@@ -31,7 +31,6 @@ void AcceptClientsThread::run() {
            e.what());
   } catch (const std::exception& e) {
     syslog(LOG_ERR, "[Error] AcceptSocketsThread - Error: %s", e.what());
-    printf("AcceptClientsThread: %s\n", e.what());  // TODO DELETE
   } catch (...) {
     syslog(LOG_ERR, "[Error] AcceptSocketsThread - Unknown error");
   }
