@@ -101,6 +101,11 @@ void Map::shoot_player(unsigned int player_id, unsigned char damage,
   }
 }
 
+const std::unique_ptr<BaseDoor>& Map::get_door(
+    const std::pair<unsigned int, unsigned int>& cell) const {
+  return doors.at(cell);
+}
+
 void Map::change_gun(unsigned int player_id, unsigned char gun_id) {
   players.at(player_id)->set_gun(gun_id);
 }
@@ -108,6 +113,8 @@ void Map::change_gun(unsigned int player_id, unsigned char gun_id) {
 void Map::use_bullets(unsigned int player_id, unsigned char gun_id) {
   players.at(player_id)->decrease_bullets(gun_id);
 }
+
+void Map::use_key(unsigned int player_id) { players.at(player_id)->use_key(); }
 
 int Map::pick_item(unsigned int player_id, unsigned int item_id) {
   Player& player = *(players.at(player_id));

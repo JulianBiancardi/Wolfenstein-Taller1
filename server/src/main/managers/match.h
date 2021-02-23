@@ -119,11 +119,11 @@ class Match {
   /* Returns true if the player has lives left */
   bool has_lives(unsigned int player_id);
 
-  /* Returns if the door state changes */
-  bool open_door(unsigned int player_id);
+  /* Returns the door opened if the player could open one, nullptr otherwise. */
+  std::shared_ptr<Door> open_door(unsigned int player_id);
 
   /* Closes the door, returns if could do it */
-  bool close_door(std::pair<unsigned int, unsigned int> cell);
+  bool close_door(const std::pair<unsigned int, unsigned int>& cell);
 
   /* Delete player from the match */
   void delete_player(unsigned int player_id);

@@ -6,6 +6,10 @@ LockedDoor::LockedDoor(const Point& center, unsigned int id)
     : Door(center, id), locked(true) {}
 
 bool LockedDoor::open(Player& who) {
+  if (is_open()) {
+    return false;
+  }
+
   if (locked) {
     if (who.has_keys()) {
       locked = false;
@@ -14,11 +18,7 @@ bool LockedDoor::open(Player& who) {
       return true;
     }
   } else {
-    if (is_open()) {
-      return false;
-    } else {
-      change_state();
-      return true;
-    }
+    change_state();
+    return true;
   }
 }

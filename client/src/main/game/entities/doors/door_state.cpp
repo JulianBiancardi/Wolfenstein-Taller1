@@ -4,9 +4,9 @@ DoorState::DoorState() : openness(0.0), speed(0.0) {}
 
 DoorState::~DoorState() {}
 
-void DoorState::open() { speed = CL::door_speed / CL::fps; }
+void DoorState::open() { speed = 64 * CL::door_speed / CL::fps; }
 
-void DoorState::close() { speed = -CL::door_speed / CL::fps; }
+void DoorState::close() { speed = 64 * -CL::door_speed / CL::fps; }
 
 void DoorState::update() {
   openness = std::max(0.0, std::min(64.0, openness += speed));

@@ -23,7 +23,8 @@ class Map : public BaseMap {
   std::vector<Object*> unidentifiable_objects;
   std::unordered_map<unsigned int, Player> players;
   std::unordered_map<std::pair<unsigned int, unsigned int>,
-                     std::shared_ptr<Door>, PairHasher> doors;
+                     std::shared_ptr<Door>, PairHasher>
+      doors;
   std::vector<Point> dogs;
   std::vector<Point> spawn_points;
 
@@ -63,7 +64,15 @@ class Map : public BaseMap {
   Object* get_object(unsigned int object_id);
 
   /* Returns the requested shared_ptr<Door>. */
-  std::shared_ptr<Door>& get_door(std::pair<unsigned int, unsigned int>& cell);
+  std::shared_ptr<Door>& get_door(
+      const std::pair<unsigned int, unsigned int>& cell);
+
+  const std::unordered_map<std::pair<unsigned int, unsigned int>,
+                           std::shared_ptr<Door>, PairHasher>&
+  get_doors() const;
+
+  /* Returns true if the cell is a door, otherwise false. */
+  bool is_door(const std::pair<unsigned int, unsigned int>& cell);
 
   /* Returns if it has the object */
   bool object_exists(unsigned int object_id);
@@ -82,7 +91,7 @@ class Map : public BaseMap {
 
   /* Returns a reference to the objects with id */
   const std::unordered_map<unsigned int, Object*>& get_identifiable_objects()
-  const;
+      const;
 
   /* Returns a reference to the objects without id */
   const std::vector<Object*>& get_unidentifiable_objects() const;

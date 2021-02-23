@@ -82,6 +82,9 @@ class Player : public IdentifiableObject {
   /* Adds a key to the player. */
   void add_key();
 
+  /* Removes a key from the player. */
+  void use_key();
+
   /* Removes health from the player. */
   void decrease_health(unsigned int lost_health);
 

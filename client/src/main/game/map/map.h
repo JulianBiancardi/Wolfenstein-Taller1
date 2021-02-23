@@ -67,8 +67,12 @@ class Map : public BaseMap {
                     unsigned int damager_id);
   void change_gun(unsigned int player_id, unsigned char gun_id);
   void use_bullets(unsigned int player_id, unsigned char gun_id);
+  void use_key(unsigned int player_id);
   int pick_item(unsigned int player_id, unsigned int item_id);
   Hit update_gun(unsigned int player_id, bool trigger);
+
+  const std::unique_ptr<BaseDoor>& get_door(
+      const std::pair<unsigned int, unsigned int>& cell) const;
 
   /* The player sent launches a rocket, new rocket is created */
   void shoot_rocket(unsigned int player_id);

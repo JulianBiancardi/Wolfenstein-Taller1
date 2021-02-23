@@ -115,6 +115,8 @@ unsigned int CL::match_length =
     CL::yaml_file["match_length"].as<unsigned int>();
 unsigned int CL::door_timer = CL::yaml_file["door_timer"].as<unsigned int>();
 double CL::door_speed = CL::yaml_file["door_speed"].as<double>();
+double CL::door_interaction_range =
+    CL::yaml_file["door_interaction_range"].as<double>();
 
 ConfigLoader::ConfigLoader() = default;
 

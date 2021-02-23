@@ -71,26 +71,35 @@
 #define ADD_ITEM 14
 #define ADD_ITEM_SIZE 6
 
+/* Used to add a rocket on the client. */
 #define ROCKET_ADD 15
 #define ROCKET_ADD_SIZE 3
 
+/* Used to move a rocket. */
 #define ROCKET_MOVE 16
 #define ROCKET_MOVE_SIZE 6
 
+/* Used to explode a rocket. */
 #define ROCKET_EXPLODE 17
 #define ROCKET_EXPLODE_MAX_PLAYERS 5
 #define ROCKET_EXPLODE_SIZE 3 + ROCKET_EXPLODE_MAX_PLAYERS * 3
 
+/* Used to attempt to open a doorway. */
 #define DOORWAY_INTERACTION 18
 #define DOORWAY_INTERACTION_SIZE 4
 
-#define CLOSE_DOOR 19
+/* Used to open or close a door on the client. */
+#define DOOR_UPDATE 19
+#define DOOR_UPDATE_SIZE 9
+
+/* Used to close a door on the server. */
+#define CLOSE_DOOR 20
 #define CLOSE_DOOR_SIZE 6
 
-#define GAME_OVER 20
+#define GAME_OVER 21
 #define GAME_OVER_SIZE 3
 
-#define EXIT_MATCH 21
+#define EXIT_MATCH 22
 #define EXIT_MATCH_SIZE 4
 
 #endif

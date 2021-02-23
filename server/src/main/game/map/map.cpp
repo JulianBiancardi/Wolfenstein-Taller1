@@ -62,7 +62,7 @@ Player& Map::get_player(unsigned int player_id) {
 void Map::delete_player(unsigned int player_id) { players.erase(player_id); }
 
 Item& Map::get_item(unsigned int item_id) {
-  return (Item&) (*items.at(item_id));
+  return (Item&)(*items.at(item_id));
 }
 
 Object* Map::get_object(unsigned int object_id) {
@@ -70,8 +70,18 @@ Object* Map::get_object(unsigned int object_id) {
 }
 
 std::shared_ptr<Door>& Map::get_door(
-    std::pair<unsigned int, unsigned int>& cell) {
+    const std::pair<unsigned int, unsigned int>& cell) {
   return doors.at(cell);
+}
+
+const std::unordered_map<std::pair<unsigned int, unsigned int>,
+                         std::shared_ptr<Door>, PairHasher>&
+Map::get_doors() const {
+  return doors;
+}
+
+bool Map::is_door(const std::pair<unsigned int, unsigned int>& cell) {
+  return doors.find(cell) != doors.end();
 }
 
 bool Map::object_exists(unsigned int object_id) {
@@ -97,7 +107,7 @@ const std::unordered_map<unsigned int, Item*>& Map::get_items() const {
 }
 
 const std::unordered_map<unsigned int, Object*>& Map::get_identifiable_objects()
-const {
+    const {
   return identifiable_objects;
 }
 
@@ -152,7 +162,8 @@ void Map::add_gun_drop(Player& dead_player) {
       next_id++;
       break;
     }
-    default:break;
+    default:
+      break;
   }
 }
 

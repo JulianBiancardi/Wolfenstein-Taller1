@@ -228,6 +228,8 @@ void Player::decrease_health(unsigned int lost_health) {
 
 void Player::add_key() { keys++; }
 
+void Player::use_key() { keys--; }
+
 void Player::update() { state.update(); }
 
 Image* Player::get_image(ResourceManager& resource_manager) {

@@ -9,6 +9,7 @@
 #include "ray_casting.h"
 #include "sdl/image.h"
 
+#define IMG_DIM 64
 #define SCALING_FACTOR 70
 #define FOV_DEG 70
 #define FOV (FOV_DEG * M_PI / 180)
@@ -112,11 +113,7 @@ double GameCaster::draw_wall(Collision& collision, size_t screen_pos,
         map.get_door(std::make_pair(collision_x, collision_y));
 
     is_door = door->update_collision(collision, ray_angle);
-    /*if ((int)collision_x == 27 && (int)collision_y == 12) {
-      printf("ISDOOR: %d\n", is_door);
-    }*/ // TODO Delete
     if (is_door) {
-      // printf("%d\n", collision.get_collided_obj_id());
       collision_x = collision.get_collision_point().getX();
       collision_y = collision.get_collision_point().getY();
       slice = door->get_slice(nullptr);
@@ -138,10 +135,10 @@ double GameCaster::draw_wall(Collision& collision, size_t screen_pos,
       collision.get_distance_from_src());
 
   int wall_size = (SCALING_FACTOR * window.get_height()) /
-      (projected_distance * image->get_height());
+                  (projected_distance * image->get_height());
 
-  size_t img_width = 64;  // TODO Remove hardcoding
-  size_t img_height = 64;
+  size_t img_width = IMG_DIM;
+  size_t img_height = IMG_DIM;
   int line = 0;
   if (collision.is_x_collision()) {
     double tmp;
@@ -153,9 +150,8 @@ double GameCaster::draw_wall(Collision& collision, size_t screen_pos,
     line = x_offset * img_width;
   }
 
-  SDL_Rect pos = {(int) screen_pos, (window.get_height() / 2) - (wall_size / 2),
+  SDL_Rect pos = {(int)screen_pos, (window.get_height() / 2) - (wall_size / 2),
                   1, wall_size};
-<<<<<<< HEAD
   if (is_door) {
     slice->x += line;
     slice->w = 1;
@@ -165,10 +161,6 @@ double GameCaster::draw_wall(Collision& collision, size_t screen_pos,
   image->draw(&pos, slice);
 
   return projected_distance;
-=======
-  SDL_Rect slice = {line, 0, 1, (int) img_height};
-  image->draw(&pos, &slice);
->>>>>>> 07075208c1dc9c4d85f5a4a5529185e136da6892
 }
 
 void GameCaster::draw_objects(std::vector<double>& wall_distances) {
@@ -230,7 +222,7 @@ void GameCaster::draw_object(Object& object, double distance,
     SDL_Rect pos = {x0, (window.get_height() / 2) - (sprite_size / 2), 1,
                     sprite_size};
     SDL_Rect* slice = object.get_slice(&player_angle);
-    slice->x += (int) (i * img_width) / sprite_size;
+    slice->x += (int)(i * img_width) / sprite_size;
     slice->w = 1;
 
     image->draw(&pos, slice);

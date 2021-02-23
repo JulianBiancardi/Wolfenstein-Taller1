@@ -2,8 +2,8 @@
 
 #include <cmath>
 
-#include "../collisions/switch_mask.h"
 #include "../collisions/circle_mask.h"
+#include "../collisions/switch_mask.h"
 
 Moveable::Moveable(double x, double y, double angle, double speed,
                    double rotation_speed, double radius, unsigned int id)
@@ -37,7 +37,7 @@ Moveable::Moveable(const Moveable& other)
 
 Moveable::~Moveable() = default;
 
-Point Moveable::next_position(double direction_angle) {
+Point Moveable::_next_position(double direction_angle, double speed) {
   double movement_angle = position.get_angle() + direction_angle;
 
   double next_x = position.get_origin().getX() + cos(movement_angle) * speed;
@@ -47,15 +47,27 @@ Point Moveable::next_position(double direction_angle) {
 }
 
 Point Moveable::next_position(int direction) {
+  return next_position(direction, speed);
+}
+
+Point Moveable::next_position(int direction, double speed) {
   switch (direction) {
-    case UP:return next_position(0.0);
-    case UP_LEFT:return next_position(M_PI / 4);
-    case UP_RIGHT:return next_position(7 * M_PI / 4);
-    case LEFT:return next_position(M_PI / 2);
-    case RIGHT:return next_position(3 * M_PI / 2);
-    case DOWN_LEFT:return next_position(3 * M_PI / 4);
-    case DOWN_RIGHT:return next_position(5 * M_PI / 4);
-    case DOWN:return next_position(M_PI);
+    case UP:
+      return _next_position(0.0, speed);
+    case UP_LEFT:
+      return _next_position(M_PI / 4, speed);
+    case UP_RIGHT:
+      return _next_position(7 * M_PI / 4, speed);
+    case LEFT:
+      return _next_position(M_PI / 2, speed);
+    case RIGHT:
+      return _next_position(3 * M_PI / 2, speed);
+    case DOWN_LEFT:
+      return _next_position(3 * M_PI / 4, speed);
+    case DOWN_RIGHT:
+      return _next_position(5 * M_PI / 4, speed);
+    case DOWN:
+      return _next_position(M_PI, speed);
     default:  // Do nothing
       break;
   }
@@ -73,8 +85,8 @@ void Moveable::rotate(int direction) {
 
 Point Moveable::collision_mask_bound(const Point& next_position) const {
   double angle = position.get_origin().angle_to(next_position);
-  double mask_radius = ((CircleMask*) (((SwitchMask*) mask)->get_mask()))
-      ->get_radius();
+  double mask_radius =
+      ((CircleMask*)(((SwitchMask*)mask)->get_mask()))->get_radius();
 
   double front_x = next_position.getX() + cos(angle) * mask_radius;
   double front_y = next_position.getY() - sin(angle) * mask_radius;
