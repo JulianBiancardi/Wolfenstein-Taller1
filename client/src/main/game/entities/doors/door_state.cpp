@@ -13,7 +13,6 @@ void DoorState::update() {
 }
 
 bool DoorState::is_open_by(double amount) {
-  printf("%f > %f ?\n", amount, (1.0 - (openness) / 64.0));
   return amount >= (1.0 - (openness) / 64.0);
 }
 

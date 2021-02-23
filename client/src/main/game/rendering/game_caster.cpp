@@ -155,7 +155,6 @@ double GameCaster::draw_wall(Collision& collision, size_t screen_pos,
   if (is_door) {
     slice->x += line;
     slice->w = 1;
-    printf("%d,%d,%d,%d\n", slice->x, slice->y, slice->w, slice->h);
   } else {
     set_slice(slice, line, 0, 1, (int)img_height);
   }

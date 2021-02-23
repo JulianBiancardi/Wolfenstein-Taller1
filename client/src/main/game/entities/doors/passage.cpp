@@ -6,7 +6,6 @@ Passage::Passage(size_t x, size_t y, unsigned int resource_id)
 Passage::~Passage() {}
 
 bool Passage::update_collision(Collision& collision, double angle) {
-  printf("Update: %d\n", !state.is_open_by(1.0));
   return !state.is_open_by(0.0);
 }
 
