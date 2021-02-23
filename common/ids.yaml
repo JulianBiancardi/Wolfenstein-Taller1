@@ -209,7 +209,7 @@
   type: 6
   name: "Water"
   image: ../../res/images/ambient/water.png"
-  icon: "../../../../res/images/ambient/water.png"
+  icon: "../resources/images/objects/water.png"
 
 61:
   type: 6
@@ -222,22 +222,22 @@
   type: 7
   name: "Horizontal Door"
   image: "../../res/images/doors/door.png"
-  icon: "..."
+  icon: "../../../../res/images/doors/door_basic.png"
 71:
   type: 7
   name: "Vertical Door"
   image: "../../res/images/doors/door.png"
-  icon: "..."
+  icon: "../../../../res/images/doors/door_basic.png"
 72:
   type: 7
   name: "Horizontal Locked Door"
   image: "../../res/images/doors/locked_door.png"
-  icon: "..."
+  icon: "../../../../res/images/doors/locked_door_basic.bmp"
 73:
   type: 7
   name: "Vertical Locked Door"
   image: "../../res/images/doors/locked_door.png"
-  icon: "..."
+  icon: "../../../../res/images/doors/locked_door_basic.bmp"
 74:
   type: 7
   name: "Grey Brick Passage"
