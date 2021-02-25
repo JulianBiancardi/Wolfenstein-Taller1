@@ -6,6 +6,7 @@
 
 #include "../../../../../common/src/main/config_loader.h"
 #include "../../../../../common/src/main/ids/map_ids.h"
+#include "../../../../../common/src/main/paths.h"
 #include "../entities/doors/horizontal_door.h"
 #include "../entities/doors/passage.h"
 #include "../entities/doors/vertical_door.h"
@@ -102,7 +103,8 @@ void MapLoader::add_item(const Ray& position, unsigned int resource_id) {
 }
 
 void MapLoader::load_map(const std::string& map_name) {
-  YAML::Node yaml_file = YAML::LoadFile("../../res/maps/" + map_name + ".yaml");
+  YAML::Node yaml_file =
+      YAML::LoadFile(asset_path("/res/maps/") + map_name + ".yaml");
 
   const YAML::Node& objects = yaml_file["objects"];
 

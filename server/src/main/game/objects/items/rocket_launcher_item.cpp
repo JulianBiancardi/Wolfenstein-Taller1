@@ -1,6 +1,6 @@
 #include "rocket_launcher_item.h"
 
-#include "../../../../common/src/main/ids/gun_ids.h"
+#include "../../../../../../common/src/main/ids/gun_ids.h"
 
 RocketLauncherItem::RocketLauncherItem(const Point& center, unsigned int id)
     : Item(center, id) {}

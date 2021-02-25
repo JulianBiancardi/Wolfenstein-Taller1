@@ -1,7 +1,7 @@
 #ifndef BASE_DOOR_H
 #define BASE_DOOR_H
 
-#include "../../../../../common/src/main/utils/point.h"
+#include "../../../../../../common/src/main/utils/point.h"
 #include "../../rendering/collision.h"
 #include "../drawable.h"
 #include "door_state.h"

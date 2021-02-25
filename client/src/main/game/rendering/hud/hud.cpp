@@ -189,8 +189,8 @@ void Hud::_show_face(const Player& player) {
 
   Uint32 ticks = SDL_GetTicks();
   Uint32 seconds = ticks / 1000;
-  Uint32 sprite_x = seconds % FACE_FRAME_X_COUNT;
-  Uint32 sprite_y =
+  int sprite_x = seconds % FACE_FRAME_X_COUNT;
+  int sprite_y =
       ((100 - health) / (FACE_FRAME_Y_COUNT * 2)) % FACE_FRAME_Y_COUNT;
 
   SDL_Rect rect_face;
@@ -214,8 +214,8 @@ void Hud::_show_death_face() {
   int frame_height =
       (bj_faces->get_height() - 7 * PIXEL) / (FACE_FRAME_Y_COUNT + 1);
 
-  Uint32 sprite_x = 1;
-  Uint32 sprite_y = 7;
+  int sprite_x = 1;
+  int sprite_y = 7;
 
   SDL_Rect rect_face;
   rect_face.x = FACE_X_POS * scale_x;

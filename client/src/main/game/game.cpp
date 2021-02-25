@@ -11,12 +11,12 @@
 #include "../../../../../common/src/main/packets/packet_error.h"
 #include "../../../../../common/src/main/packets/packet_handler_factory_error.h"
 #include "../../../../../common/src/main/packets/packing.h"
+#include "../../../../../common/src/main/paths.h"
 #include "guns/hit.h"
 #include "packet_handlers/packet_handler.h"
 #include "packet_handlers/packet_handler_factory.h"
 #include "rendering/frame_limiter.h"
 #include "rendering/leaderboard/leaderboard.h"
-
 #define GAME_NAME "Wolfenstein 3D"
 
 #define FORWARD_FLAG 0
@@ -39,7 +39,7 @@ Game::Game(Server& server, const Settings& settings, Match& match)
       server(server),
       window(GAME_NAME, settings.get_screen_width(),
              settings.get_screen_height(), settings.is_fullscreen(),
-             "../../res/images/Wolfenstein3DIcon.png"),
+             asset_path("res/images/Wolfenstein3DIcon.png")),
       res_manager(window),
       map(match.get_map_name()),
       caster(window, res_manager, map, player_id),

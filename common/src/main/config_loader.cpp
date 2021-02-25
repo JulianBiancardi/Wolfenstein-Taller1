@@ -1,9 +1,8 @@
 #include "config_loader.h"
 
-#include <iostream>  // TODO DELETE
 #include <string>
 
-YAML::Node CL::yaml_file = YAML::LoadFile("../../common/src/main/config.yaml");
+YAML::Node CL::yaml_file = YAML::LoadFile("../common/src/main/config.yaml");
 
 std::string CL::sv_host = CL::yaml_file["sv_host"].as<std::string>();
 std::string CL::sv_port = CL::yaml_file["sv_port"].as<std::string>();

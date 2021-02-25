@@ -1,7 +1,7 @@
 #include "base_map.h"
 
-#define AIR 0  // TODO Remove this and ask in Config
 #include "../ids/map_ids.h"
+#include "../paths.h"
 #include "yaml-cpp/yaml.h"
 
 // TODO Eventually remove
@@ -17,7 +17,8 @@ BaseMap::BaseMap(const std::string& map_name)
 BaseMap::~BaseMap() {}
 
 void BaseMap::load_map_matrix() {
-  YAML::Node yaml_file = YAML::LoadFile("../../res/maps/" + map_name + ".yaml");
+  YAML::Node yaml_file =
+      YAML::LoadFile(asset_path("res/maps/") + map_name + ".yaml");
   size_t width = yaml_file["width"].as<int>();
   size_t height = yaml_file["height"].as<int>();
   Matrix<int> map_data(height, width, 0);
@@ -44,7 +45,8 @@ void BaseMap::load_map_matrix() {
 }
 
 void BaseMap::load_capacity() {
-  YAML::Node yaml_file = YAML::LoadFile("../../res/maps/" + map_name + ".yaml");
+  YAML::Node yaml_file =
+      YAML::LoadFile(asset_path("res/maps/") + map_name + ".yaml");
   player_capacity = yaml_file["max_players"].as<unsigned char>();
 }
 

@@ -2,15 +2,15 @@
 
 #include <dirent.h>
 
-#include "../../../../common/src/main/packets/packet.h"
-#include "../../../../common/src/main/packets/packing.h"
-#include "../../../../common/src/main/ids/map_ids.h"
+#include "../../../../../common/src/main/ids/map_ids.h"
+#include "../../../../../common/src/main/packets/packet.h"
+#include "../../../../../common/src/main/packets/packing.h"
+#include "../../../../../common/src/main/paths.h"
+#include "../include/launcher_error.h"
 #include "iostream"
-#include "launcher_error.h"
 #include "yaml-cpp/yaml.h"
 
-#define DIR_MAPS_NAMES "../../res/maps"
-#define BASH "../../res/maps/"
+#define DIR_MAPS_NAMES "res/maps/"
 #define YAML_EXTENSION ".yaml"
 #define MAP_NAME_MAX_SIZE 64  // TODO Move somewhere where it belongs
 
@@ -22,7 +22,7 @@ Launcher::Launcher(Server* server) : server(server), maps(), matches() {
 void Launcher::obtain_maps_names() {
   DIR* dir;
   struct dirent* ent;
-  dir = opendir(DIR_MAPS_NAMES);
+  dir = opendir(asset_path(DIR_MAPS_NAMES).c_str());
   if (dir == NULL) {
     throw LauncherError("Failed too obtain the maps names.");
   }
@@ -31,7 +31,7 @@ void Launcher::obtain_maps_names() {
   while ((ent = readdir(dir)) != NULL) {
     if ((strcmp(ent->d_name, ".") != 0) && (strcmp(ent->d_name, "..") != 0)) {
       std::string name(ent->d_name);
-      YAML::Node yaml_file = YAML::LoadFile(BASH + name);
+      YAML::Node yaml_file = YAML::LoadFile(asset_path(DIR_MAPS_NAMES) + name);
       unsigned char max_players = yaml_file["max_players"].as<unsigned char>();
 
       size_t pos = name.find(yaml_extension);
@@ -127,8 +127,8 @@ unsigned char Launcher::join_match(unsigned char match_id) {
 
 void Launcher::request_join_match(unsigned char match_id) {
   unsigned char packet[JOIN_MATCH_SIZE];
-  size_t size = pack(packet, "CICC", JOIN_MATCH, server->get_id(),
-                     PISTOL, match_id);
+  size_t size =
+      pack(packet, "CICC", JOIN_MATCH, server->get_id(), PISTOL, match_id);
   Packet join_match_packet(size, packet);
   server->send(join_match_packet);
 }

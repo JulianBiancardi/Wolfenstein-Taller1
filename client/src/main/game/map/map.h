@@ -8,8 +8,8 @@
 #include <vector>
 
 #include "../../../../../common/src/main/utils/base_map.h"
-#include "../../../../common/src/main/utils/matrix.h"
-#include "../../../../common/src/main/utils/ray.h"
+#include "../../../../../common/src/main/utils/matrix.h"
+#include "../../../../../common/src/main/utils/ray.h"
 #include "../entities/doors/base_door.h"
 #include "../entities/identifiable_object.h"
 #include "../entities/items/item.h"

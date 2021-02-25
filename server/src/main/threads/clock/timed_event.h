@@ -2,8 +2,9 @@
 #define TIMED_EVENT_H
 
 #include <chrono>
-#include "../../../../common/src/main/packets/packet.h"
-#include "../../../../common/src/main/data_structures/blocking_queue.h"
+
+#include "../../../../../common/src/main/data_structures/blocking_queue.h"
+#include "../../../../../common/src/main/packets/packet.h"
 
 #define TICS_PER_SECOND 30.0
 
@@ -15,8 +16,7 @@ class TimedEvent {
 
  protected:
   BlockingQueue<Packet>& reception_queue;
-  TimedEvent(unsigned int duration,
-             BlockingQueue<Packet>& queue,
+  TimedEvent(unsigned int duration, BlockingQueue<Packet>& queue,
              unsigned char match_id);
 
   unsigned char match_id;

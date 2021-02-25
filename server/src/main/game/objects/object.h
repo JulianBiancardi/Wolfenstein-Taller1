@@ -1,9 +1,9 @@
 #ifndef SERVER_OBJECT_H
 #define SERVER_OBJECT_H
 
-#include "../../../../common/src/main/identifiable.h"
-#include "../../../../common/src/main/utils/point.h"
-#include "../../../../common/src/main/utils/ray.h"
+#include "../../../../../common/src/main/identifiable.h"
+#include "../../../../../common/src/main/utils/point.h"
+#include "../../../../../common/src/main/utils/ray.h"
 #include "../collisions/mask.h"
 
 class Object {

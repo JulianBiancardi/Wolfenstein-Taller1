@@ -4,8 +4,8 @@
 #include <limits>
 #include <utility>
 
-#include "../../../../common/src/main/config_loader.h"
-#include "../../../../common/src/main/ids/gun_ids.h"
+#include "../../../../../common/src/main/config_loader.h"
+#include "../../../../../common/src/main/ids/gun_ids.h"
 #include "../entities/player.h"
 #include "../rendering/ray_casting.h"
 

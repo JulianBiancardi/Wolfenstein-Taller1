@@ -1,6 +1,6 @@
 #include "machine_gun_item.h"
 
-#include "../../../../common/src/main/ids/gun_ids.h"
+#include "../../../../../../common/src/main/ids/gun_ids.h"
 
 MachineGunItem::MachineGunItem(const Point& center, unsigned int id)
     : Item(center, id) {}

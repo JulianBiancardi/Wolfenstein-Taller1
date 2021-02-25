@@ -89,11 +89,10 @@ function all() {
 function uninstall() {
     echo "=== DESINSTALADOR ==="
     sudo rm -rf build
-    sudo rm -rf /etc/wolfenstein
-    sudo rm -rf /var/wolfenstein
+    sudo rm -rf /usr/lib/libcommon.so
+    sudo rm -rf /usr/bin/wolfenstein3D
     sudo rm -rf /usr/bin/server
-    sudo rm -rf /usr/bin/argentum
-    sudo rm -rf /usr/lib/libao-common.so
+    sudo rm -rf /var/wolfenstein
     echo ""
     echo "Se ha desinstalado el juego con éxito."
     echo ""

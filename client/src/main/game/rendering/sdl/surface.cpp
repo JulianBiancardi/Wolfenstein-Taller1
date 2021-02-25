@@ -1,9 +1,10 @@
 #include "surface.h"
 
+#include "../../../../../../common/src/main/paths.h"
 #include "sdl_error.h"
 
 Surface::Surface(const std::string& file) {
-  surface = IMG_Load(file.c_str());
+  surface = IMG_Load(asset_path(file.c_str()).c_str());
   if (surface == nullptr) {
     throw SDLError("SDLError: failed to load image '%s' - %s\n", file.c_str(),
                    SDL_GetError());

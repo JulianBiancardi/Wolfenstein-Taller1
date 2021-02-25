@@ -3,7 +3,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "../../../../common/src/main/packets/packing.h"
+#include "../../../../../common/src/main/packets/packing.h"
 #include "door_timer.h"
 #include "rocket_controller.h"
 
@@ -63,8 +63,8 @@ void ClockThread::run() {
     double tics_spent = seconds_spent * TICS_PER_SECOND;
 
     if (tics_spent >= 1) {
-      remaining_tics -= (int) tics_spent;
-      tics_spent = tics_spent - (int) tics_spent;
+      remaining_tics -= (int)tics_spent;
+      tics_spent = tics_spent - (int)tics_spent;
     }
 
     double seconds_to_sleep = (1 - tics_spent) * SECONDS_PER_TICS;
@@ -83,17 +83,16 @@ unsigned int get_door_id(unsigned int door_id) {
   return stoul(std::to_string(DOOR_TYPE) + std::to_string(door_id));
 }
 
-void ClockThread::add_door_timer(unsigned int door_id,
-                                 const std::pair<unsigned int,
-                                                 unsigned int>& cell) {
+void ClockThread::add_door_timer(
+    unsigned int door_id, const std::pair<unsigned int, unsigned int>& cell) {
   const std::lock_guard<std::mutex> lock(this->mutex);
   unsigned int id = get_door_id(door_id);
 
   if (timed_event_exist(id)) {
     timed_events.at(id)->reset();
   } else {
-    timed_events.insert({id, new DoorTimer(reception_queue, match_id,
-                                           door_id, cell)});
+    timed_events.insert(
+        {id, new DoorTimer(reception_queue, match_id, door_id, cell)});
   }
 }
 

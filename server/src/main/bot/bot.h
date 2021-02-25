@@ -50,7 +50,7 @@ class Bot {
   Map& map;
   Match* match;
   void lua_checker(int status);
-  void lua_push_table_number(const char* key, const auto value);
+  void lua_push_table_number(const char* key, const lua_Number value);
   void send_creation_package();
   void send_movement_package(unsigned char direction);
   void send_rotation_package(unsigned char direction);

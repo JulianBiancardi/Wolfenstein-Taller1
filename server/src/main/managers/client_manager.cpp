@@ -15,8 +15,8 @@ BlockingQueue<Packet>& ClientManager::get_reception_queue() {
 }
 
 void ClientManager::add_client(Socket& client_socket) {
-  std::unique_ptr<Client> client =
-      std::make_unique<Client>(next_id, client_socket, reception_queue);
+  std::unique_ptr<Client> client = std::unique_ptr<Client>(
+      new Client(next_id, client_socket, reception_queue));
   clients.insert(std::make_pair(next_id, std::move(client)));
   next_id++;
 }

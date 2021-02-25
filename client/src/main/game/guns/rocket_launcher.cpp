@@ -1,6 +1,6 @@
 #include "rocket_launcher.h"
 
-#include "../../../../common/src/main/ids/gun_ids.h"
+#include "../../../../../common/src/main/ids/gun_ids.h"
 
 Hit RocketLauncher::shoot(
     Object& player, BaseMap& map,
