@@ -5,9 +5,10 @@
 
 #include "../../../../../../common/src/main/config_loader.h"
 #include "../../../../../../common/src/main/ids/images_ids.h"
+#include "../../../../../../common/src/main/paths.h"
 #include "../sdl/text.h"
 
-#define FONT_PATH "../../res/fonts/Montserrat-Regular.ttf"
+#define FONT_PATH "res/fonts/Montserrat-Regular.ttf"
 #define FONT_SIZE 14
 
 #define TITLES_X_POS 88
@@ -36,7 +37,7 @@ Leaderboard::Leaderboard(Window& window, ResourceManager& res_manager,
       victory(false),
       scale_x(window.get_width() / PREFEER_WIDTH),
       scale_y(window.get_height() / PREFEER_HEIGHT) {
-  font = TTF_OpenFont(FONT_PATH, FONT_SIZE * scale_x);
+  font = TTF_OpenFont(asset_path(FONT_PATH).c_str(), FONT_SIZE * scale_x);
 }
 
 Leaderboard::~Leaderboard() = default;

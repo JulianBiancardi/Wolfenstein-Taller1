@@ -18,6 +18,7 @@
 #include "rendering/frame_limiter.h"
 #include "rendering/leaderboard/leaderboard.h"
 #define GAME_NAME "Wolfenstein 3D"
+#define ICON_PATH "res/images/Wolfenstein3DIcon.png"
 
 #define FORWARD_FLAG 0
 #define LEFT_FLAG (FORWARD_FLAG + 1)
@@ -38,8 +39,7 @@ Game::Game(Server& server, const Settings& settings, Match& match)
       match_id(match.get_match_id()),
       server(server),
       window(GAME_NAME, settings.get_screen_width(),
-             settings.get_screen_height(), settings.is_fullscreen(),
-             asset_path("res/images/Wolfenstein3DIcon.png")),
+             settings.get_screen_height(), settings.is_fullscreen(), ICON_PATH),
       res_manager(window),
       map(match.get_map_name()),
       caster(window, res_manager, map, player_id),
