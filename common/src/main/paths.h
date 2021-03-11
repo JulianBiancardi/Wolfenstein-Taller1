@@ -4,5 +4,6 @@
 #include <string>
 
 std::string asset_path(const char* relative_path);
+std::string config_path(const char* relative_path);
 
 #endif  // PATHS_H

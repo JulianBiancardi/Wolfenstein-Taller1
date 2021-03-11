@@ -231,7 +231,7 @@
 72:
   type: 7
   name: "Horizontal Locked Door"
-  image: "../../res/images/doors/locked_door.png"
+  image: "res/images/doors/locked_door.png"
   icon: "../resources/images/walls/locked_door.bmp"
 73:
   type: 7

@@ -3,6 +3,7 @@
 #include <map>
 #include <string>
 
+#include "../../../../../common/src/main/paths.h"
 #include "yaml-cpp/yaml.h"
 
 Resource::Resource() : id(-1), loaded(false), image(NULL) {}
@@ -20,7 +21,7 @@ bool Resource::is_loaded() { return loaded; }
 // Use the YAML to find the relevant data
 // TODO Fix this
 void Resource::load(SDL_Renderer* renderer) {
-  YAML::Node yaml_file = YAML::LoadFile("../common/ids.yaml");
+  YAML::Node yaml_file = YAML::LoadFile(config_path("ids.yaml"));
 
   std::map<std::string, std::string> resource_data =
       yaml_file[id].as<std::map<std::string, std::string>>();

@@ -8,7 +8,7 @@
 #include "../../../../../../common/src/main/paths.h"
 #include "../sdl/text.h"
 
-#define FONT_PATH "res/fonts/Montserrat-Regular.ttf"
+#define FONT_PATH "fonts/Montserrat-Regular.ttf"
 #define FONT_SIZE 14
 
 #define TITLES_X_POS 88

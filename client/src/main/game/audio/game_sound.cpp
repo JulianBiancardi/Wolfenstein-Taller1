@@ -4,6 +4,7 @@
 
 #include "../../../../../common/src/main/ids/gun_ids.h"
 #include "../../../../../common/src/main/ids/map_ids.h"
+#include "../../../../../common/src/main/paths.h"
 
 #define SOUND_SHOOT 2
 #define SOUND_GUARD_DEATH 3
@@ -27,7 +28,6 @@
 
 #define OPEN_DOOR 30
 #define CLOSE_DOOR 31
-#define AUDIO_PATH "../../res/audio/"
 
 GameSound::GameSound(const Point& furthest_point, size_t music_volume,
                      size_t effect_volume)
@@ -46,36 +46,49 @@ GameSound::GameSound(const Point& furthest_point, size_t music_volume,
   _load_items_sounds();
 
   sounds.insert(
-      {SOUND_SHOOT, Mix_LoadWAV("../../res/audio/weapons/deagle-1.wav")});
+      {SOUND_SHOOT,
+       Mix_LoadWAV(asset_path("res/audio/weapons/deagle-1.wav").c_str())});
   sounds.insert(
-      {SOUND_GUARD_DEATH, Mix_LoadWAV("../../res/audio/guard_death.wav")});
+      {SOUND_GUARD_DEATH,
+       Mix_LoadWAV(asset_path("/res/audio/guard_death.wav").c_str())});
+  sounds.insert({SOUND_OPEN_DOOR,
+                 Mix_LoadWAV(asset_path("res/audio/open_door.wav").c_str())});
+  sounds.insert({SOUND_CLOSE_DOOR,
+                 Mix_LoadWAV(asset_path("res/audio/close_door.wav").c_str())});
+  sounds.insert({SOUND_SELF_DEATH,
+                 Mix_LoadWAV(asset_path("res/audio/death.wav").c_str())});
   sounds.insert(
-      {SOUND_OPEN_DOOR, Mix_LoadWAV("../../res/audio/open_door.wav")});
+      {SOUND_KNIFE_MISS,
+       Mix_LoadWAV(asset_path("res/audio/knife/knife_hitwall1.wav").c_str())});
   sounds.insert(
-      {SOUND_CLOSE_DOOR, Mix_LoadWAV("../../res/audio/close_door.wav")});
-  sounds.insert({SOUND_SELF_DEATH, Mix_LoadWAV("../../res/audio/death.wav")});
-  sounds.insert({SOUND_KNIFE_MISS,
-                 Mix_LoadWAV("../../res/audio/knife/knife_hitwall1.wav")});
+      {SOUND_KNIFE_STAB,
+       Mix_LoadWAV(asset_path("res/audio/knife/knife_stab.wav").c_str())});
   sounds.insert(
-      {SOUND_KNIFE_STAB, Mix_LoadWAV("../../res/audio/knife/knife_stab.wav")});
+      {SOUND_KNIFE_HIT_1,
+       Mix_LoadWAV(asset_path("res/audio/knife/knife_hit1.wav").c_str())});
   sounds.insert(
-      {SOUND_KNIFE_HIT_1, Mix_LoadWAV("../../res/audio/knife/knife_hit1.wav")});
+      {SOUND_KNIFE_HIT_2,
+       Mix_LoadWAV(asset_path("res/audio/knife/knife_hit2.wav").c_str())});
   sounds.insert(
-      {SOUND_KNIFE_HIT_2, Mix_LoadWAV("../../res/audio/knife/knife_hit2.wav")});
-  sounds.insert({SOUND_MACHINE_GUN_SHOOT,
-                 Mix_LoadWAV("../../res/audio/weapons/m4a1-1.wav")});
-  sounds.insert({SOUND_CHAIN_CANNON_SHOOT,
-                 Mix_LoadWAV("../../res/audio/weapons/m249-1.wav")});
-  sounds.insert({SOUND_KNIFE_CHANGE,
-                 Mix_LoadWAV("../../res/audio/knife/knife_deploy1.wav")});
-  sounds.insert({SOUND_PISTOL_CHANGE,
-                 Mix_LoadWAV("../../res/audio/weapons/usp_slideback.wav")});
-  sounds.insert({SOUND_MACHINE_GUN_CHANGE,
-                 Mix_LoadWAV("../../res/audio/weapons/m4a1_deploy.wav")});
-  sounds.insert({SOUND_CHAIN_CANNON_CHANGE,
-                 Mix_LoadWAV("../../res/audio/weapons/m249_chain.wav")});
+      {SOUND_MACHINE_GUN_SHOOT,
+       Mix_LoadWAV(asset_path("res/audio/weapons/m4a1-1.wav").c_str())});
+  sounds.insert(
+      {SOUND_CHAIN_CANNON_SHOOT,
+       Mix_LoadWAV(asset_path("res/audio/weapons/m249-1.wav").c_str())});
+  sounds.insert(
+      {SOUND_KNIFE_CHANGE,
+       Mix_LoadWAV(asset_path("res/audio/knife/knife_deploy1.wav").c_str())});
+  sounds.insert(
+      {SOUND_PISTOL_CHANGE,
+       Mix_LoadWAV(asset_path("res/audio/weapons/usp_slideback.wav").c_str())});
+  sounds.insert(
+      {SOUND_MACHINE_GUN_CHANGE,
+       Mix_LoadWAV(asset_path("/res/audio/weapons/m4a1_deploy.wav").c_str())});
+  sounds.insert(
+      {SOUND_CHAIN_CANNON_CHANGE,
+       Mix_LoadWAV(asset_path("res/audio/weapons/m249_chain.wav").c_str())});
 
-  music = Mix_LoadMUS("../../res/audio/background.mp3");
+  music = Mix_LoadMUS(asset_path("res/audio/background.mp3").c_str());
   if (!music) std::cerr << Mix_GetError();
 }
 
@@ -89,19 +102,31 @@ GameSound::~GameSound() {
 
 void GameSound::_load_items_sounds() {
   sounds.insert(
-      {CHAIN_CANNON, Mix_LoadWAV("../../res/audio/items/chaincannon.wav")});
+      {CHAIN_CANNON,
+       Mix_LoadWAV(asset_path("res/audio/items/chaincannon.wav").c_str())});
   sounds.insert(
-      {MACHINE_GUN, Mix_LoadWAV("../../res/audio/items/machinegun.wav")});
+      {MACHINE_GUN,
+       Mix_LoadWAV(asset_path("res/audio/items/machinegun.wav").c_str())});
   sounds.insert(
-      {ROCKET_LAUNCHER, Mix_LoadWAV("../../res/audio/items/machinegun.wav")});
-  sounds.insert({BULLETS, Mix_LoadWAV("../../res/audio/items/bullets.wav")});
-  sounds.insert({FOOD, Mix_LoadWAV("../../res/audio/items/food.wav")});
-  sounds.insert({MEDKIT, Mix_LoadWAV("../../res/audio/items/medikit.wav")});
-  sounds.insert({CROSS, Mix_LoadWAV("../../res/audio/items/cross.wav")});
-  sounds.insert({CROWN, Mix_LoadWAV("../../res/audio/items/crown.wav")});
-  sounds.insert({CUP, Mix_LoadWAV("../../res/audio/items/cup.wav")});
-  sounds.insert({CHEST, Mix_LoadWAV("../../res/audio/items/chest.wav")});
-  sounds.insert({KEY, Mix_LoadWAV("../../res/audio/items/key.wav")});
+      {ROCKET_LAUNCHER,
+       Mix_LoadWAV(asset_path("res/audio/items/machinegun.wav").c_str())});
+  sounds.insert(
+      {BULLETS,
+       Mix_LoadWAV(asset_path("res/audio/items/bullets.wav").c_str())});
+  sounds.insert(
+      {FOOD, Mix_LoadWAV(asset_path("res/audio/items/food.wav").c_str())});
+  sounds.insert(
+      {MEDKIT, Mix_LoadWAV(asset_path("res/audio/items/medikit.wav").c_str())});
+  sounds.insert(
+      {CROSS, Mix_LoadWAV(asset_path("res/audio/items/cross.wav").c_str())});
+  sounds.insert(
+      {CROWN, Mix_LoadWAV(asset_path("res/audio/items/crown.wav").c_str())});
+  sounds.insert(
+      {CUP, Mix_LoadWAV(asset_path("res/audio/items/cup.wav").c_str())});
+  sounds.insert(
+      {CHEST, Mix_LoadWAV(asset_path("res/audio/items/chest.wav").c_str())});
+  sounds.insert(
+      {KEY, Mix_LoadWAV(asset_path("res/audio/items/key.wav").c_str())});
 }
 
 void GameSound::play_background() {

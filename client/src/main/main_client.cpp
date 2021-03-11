@@ -11,7 +11,6 @@ int main(int argc, char** argv) {
     client.run_client(argc, argv);
     return EXIT_SUCCESS;
   } catch (const std::exception& e) {
-    printf(" %s\n", e.what());
     syslog(LOG_ERR, "[Error] Server Main Thread - Error: %s\n", e.what());
     return EXIT_FAILURE;
   } catch (...) {

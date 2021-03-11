@@ -2,7 +2,9 @@
 
 #include <string>
 
-YAML::Node CL::yaml_file = YAML::LoadFile("../common/src/main/config.yaml");
+#include "paths.h"
+
+YAML::Node CL::yaml_file = YAML::LoadFile(config_path("config.yaml"));
 
 std::string CL::sv_host = CL::yaml_file["sv_host"].as<std::string>();
 std::string CL::sv_port = CL::yaml_file["sv_port"].as<std::string>();

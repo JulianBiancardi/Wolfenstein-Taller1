@@ -12,7 +12,7 @@
 
 #define DIR_MAPS_NAMES "res/maps/"
 #define YAML_EXTENSION ".yaml"
-#define MAP_NAME_MAX_SIZE 64  // TODO Move somewhere where it belongs
+#define MAP_NAME_MAX_SIZE 64
 
 Launcher::Launcher(Server* server) : server(server), maps(), matches() {
   obtain_maps_names();

@@ -1,41 +1,36 @@
-#!/bin/bash
-
-#----------------------------------MESSAGES------------------------------------------
-
-function waitingInputMessage() {
-    printf "> Ingrese una opción: "
-}
-
 function initialMessage () {
     clear
-    echo "======================================================"
-    echo "=               WOLFENSTEIN 3D ONLINE                ="
-    echo "======================================================"
+    echo "=========================================================="
+    echo "                  WOLFENSTEIN  3D  ONLINE              "
+    echo "                    +------------------+               "                                
+    echo "                    |       ___        |               "                                
+    echo "                    |   _  (,~ |   _   |               "
+    echo "                    |  (____/  |____)  |               "                                
+    echo "                    |  |||||    |||||  |               "
+    echo "                    |  |||||    |||||  |               "
+    echo "                    |  |||||\  /|||||  |               "            
+    echo "                    |  |||  /\/\  |||  |               "                                
+    echo "                    |  |' m' /\ 'm '|  |               "                                
+    echo "                    |       /||\       |               "                                
+    echo "                     \________________/                "                              
     echo ""
 }
 
 function helpMessage() {
-    echo "Opciones de instalación:"
-    echo "  d: instala dependencias necesarias."
-    echo "  i: instala el juego (no se instalan dependencias)."
-    echo "  a: instala todo (dependencias y juego)."
-    echo ""
-    echo "Opciones de desinstalación:"
-    echo "  u: desinstala el juego."
-    echo ""
-    echo "Otras opciones:"
-    echo "  h: muestra este mensaje."
-    echo "  q: cerrar."
+    echo "  d: install only dependencies"
+    echo "  i: install only the game"
+    echo "  a: install all"
+    echo "  u: unistall the game"
+    echo "  h: show helps"
+    echo "  q: close"
     echo ""
 }
 
 function unknownInput() {
-    echo "Opción desconocida (ingrese 'h' para ayuda, 'q' para salir)." 
-    echo ""
+    echo -e "\x1b[1m\x1b[31mOrder not found. Please enter 'h' for help. \x1b[0m\n"
 }
 
 
-#-------------------------------------BUILD AND EXECUTION------------------------------------
 function build() {
     sudo rm -rf build
     mkdir build
@@ -44,41 +39,30 @@ function build() {
 }
 
 function installDependencies() {
-    echo "=== INSTALACIÓN DE DEPENDENCIAS ==="
-    echo ""
-    echo ">> Instalando 'cmake'..."
+    echo -e "\x1b[1m\x1b[36mInstalling 'cmake'...\x1b[0m\n"
     sudo apt-get install cmake
-    echo ""
-    echo ">> Instalando 'libsdl2-dev'..."
+    echo -e "\x1b[1m\x1b[36mInstalling 'libsdl2-dev'...\x1b[0m\n"
     sudo apt-get install libsdl2-dev
-    echo ""
-    echo ">> Instalando 'libsdl2-image-dev'..."
+    echo -e "\x1b[1m\x1b[36mInstalling 'libsdl2-image-dev'...\x1b[0m\n"
     sudo apt-get install libsdl2-image-dev
-    echo ""
-    echo ">> Instalando 'libsdl2-ttf-dev'..."
+    echo -e "\x1b[1m\x1b[36mInstalling 'libsdl2-ttf-dev'...\x1b[0m\n"
     sudo apt-get install libsdl2-ttf-dev
-    echo ""
-    echo ">> Instalando 'libsdl2-mixer-dev'..."
+    echo -e "\x1b[1m\x1b[36mInstalling 'libsdl2-mixer-dev'...\x1b[0m\n"
     sudo apt-get install libsdl2-mixer-dev
-    echo ""
-    echo ">> Instalando 'libyaml-cpp-dev'..."
+    echo -e "\x1b[1m\x1b[36mInstalling 'libyaml-cpp-dev'...\x1b[0m\n"
     sudo apt install libyaml-cpp-dev
-    echo ""
-    echo ">> Instalando 'qt5'..."
+    echo -e "\x1b[1m\x1b[36mInstalling 'qt5'...\x1b[0m\n"
     sudo apt-get install qtcreator
     sudo apt-get install qt5-default
-    echo ""
-    echo "Instalación de dependencias finalizada."
-    echo ""
+    echo -e "\x1b[1m\x1b[36mInstalling 'lua5.3'...\x1b[0m\n"
+    sudo apt-get install lua5.3 liblua5.3-dev
+    echo -e "\x1b[1m\x1b[32mInstall dependencies complete\x1b[0m\n"
 }
 
 function installGame() {
-    echo "=== INSTALACIÓN DEL JUEGO ==="
     build
     sudo make install -j4
-    echo ""
-    echo "Instalación del juego finalizada."
-    echo ""
+    echo -e "\x1b[1m\x1b[32mInstall game complete\x1b[0m\n"
 }
 
 function all() {
@@ -87,28 +71,21 @@ function all() {
 }
 
 function uninstall() {
-    echo "=== DESINSTALADOR ==="
     sudo rm -rf build
     sudo rm -rf /usr/lib/libcommon.so
     sudo rm -rf /usr/bin/wolfenstein3D
     sudo rm -rf /usr/bin/server
-    sudo rm -rf /var/wolfenstein
-    echo ""
-    echo "Se ha desinstalado el juego con éxito."
-    echo ""
+    sudo rm -rf /var/wolfenstein3D
+    sudo rm -rf /etc/wolfenstein3D
+    echo -e "\x1b[1m\x1b[32mUninstall the game complete\x1b[0m\n"
 }
 
-#------------------------------------------------------------------------------
-
-#------------------------------------------------------------------------------
-# Loop ppal
 
 # exit when any command fails
 set -e
 
 initialMessage
 helpMessage
-waitingInputMessage
 
 while :
 do
@@ -117,29 +94,24 @@ do
         d)  
             echo ""
             installDependencies
-            waitingInputMessage
         ;;
         i)
             echo ""
-            installGame
-            waitingInputMessage
+              installGame
         ;;
         a)
             echo ""
             installDependencies
             installGame
-            waitingInputMessage
         ;;
         u)
             echo ""
             uninstall
-            waitingInputMessage
         ;;
         h)  
             echo ""
             clear
             helpMessage
-            waitingInputMessage
         ;;
         q)  
             echo ""
@@ -148,9 +120,6 @@ do
         *)  
             echo ""
             unknownInput
-            waitingInputMessage
         ;;
     esac
 done
-
-#------------------------------------------------------------------------------
