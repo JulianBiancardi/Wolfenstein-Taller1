@@ -1,7 +1,5 @@
 # Wolfenstein-Taller1
 
-Trabajo Práctico Grupal de la materia Taller de Programación 1 de FIUBA
-
 <img src="Banner.png" alt="drawing" width="800" height="350"/>
 
 ## Integrantes
@@ -23,6 +21,9 @@ Corrector: **[DI PAOLA, Martin](https://github.com/eldipa)**
 5. [Editor](#id5)
 
 ## 1. Introducción<a name="id1"></a>
+
+Este juego, inspirado en el original Wolfenstein3d, es parte del trabajo final y grupal realizado para la materia de Taller de Programación I dictada en la Facultad de Ingeniería de la Universidad de Buenos Aires (FIUBA) durante el segundo cuatrimestre del 2020.
+
 
 ## 2. Requisitos<a name="id2"></a>
 
