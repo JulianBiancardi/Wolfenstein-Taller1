@@ -15,16 +15,33 @@ Nombre | Padrón
      
 Corrector: **[DI PAOLA, Martin](https://github.com/eldipa)**
 
-## Requisitos
+# Indice   
+1. [Introducción](#id1)
+2. [Requisitos](#id2)
+3. [Instalación](#id3)
+4. [Ejecución](#id4)
+5. [Editor](#id5)
+
+## 1. Introducción<a name="id1"></a>
+
+## 2. Requisitos<a name="id2"></a>
 
 * SDL, SDL_image, SDL_ttf, SDL_mixer
 * QT5
 * Lua
 * Sistema operativo: Linux
 
-## Instalación
+## 3. Instalación<a name="id3"></a>
 
 Para instalar el juego utilizar el archivo *installer.sh* que se encuentra en la raiz del proyecto.
-Abrir una consola en la raiz del proyecto y ejecutar el siguiente comando:
+Abrir una consola en la raiz del proyecto (Ctrl + Alt + T) y ejecutar el siguiente comando:
 
         $ bash installer.sh
+        
+## 4. Ejecución<a name="id4"></a>
+
+## 5. Editor<a name="id5"></a>
+
+## Instalación
+
+
