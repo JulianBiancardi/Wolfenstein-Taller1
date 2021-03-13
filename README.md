@@ -2,6 +2,8 @@
 
 Trabajo Práctico Grupal de la materia Taller de Programación 1 de FIUBA
 
+<img src="Banner.png" alt="drawing" width="800" height="350"/>
+
 ## Integrantes
 * **Biancardi, Julián** - [JulianBiancardi](https://github.com/JulianBiancardi)
 * **Czop, Santiago** - [Santiago-Czop](https://github.com/Santiago-Czop)
