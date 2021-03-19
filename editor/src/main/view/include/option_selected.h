@@ -1,11 +1,12 @@
 #ifndef OPTION_SELECTED_H
 #define OPTION_SELECTED_H
 
-#include <Iobservable.h>
 #include <sys/types.h>
 
 #include <QtCore/QString>
 #include <QtGui/QPixmap>
+
+#include "../../model/include/Iobservable.h"
 
 class OptionSelected : public IObservable {
  private:

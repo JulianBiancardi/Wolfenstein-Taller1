@@ -5,8 +5,8 @@
 #include <QtWidgets/QWidget>
 #include <string>
 
-#include "../model/include/Iobserver.h"
-#include "../model/include/map.h"
+#include "../../model/include/Iobserver.h"
+#include "../../model/include/map.h"
 #include "itemsid.h"
 #include "option_selected.h"
 #include "ui_mapgrid.h"

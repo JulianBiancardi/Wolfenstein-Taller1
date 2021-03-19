@@ -6,8 +6,8 @@
 #include <QtWidgets/QUndoStack>
 #include <QtWidgets/QWidget>
 
-#include "../model/include/Iobserver.h"
-#include "../model/include/cell.h"
+#include "../../model/include/Iobserver.h"
+#include "../../model/include/cell.h"
 #include "itemsid.h"
 #include "option_selected.h"
 #include "ui_cellview.h"

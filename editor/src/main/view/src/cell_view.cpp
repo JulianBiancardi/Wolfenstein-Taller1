@@ -1,18 +1,17 @@
 #include "cell_view.h"
 
-#include <clear_command.h>
-#include <drop_command.h>
-#include <edit_command.h>
-#include <event_filter.h>
-
 #include <QtCore/QDebug>
 #include <QtCore/QMimeData>
 #include <QtCore/QString>
 #include <QtGui/QDrag>
 #include <iostream>
 
-#include "cell_mimedata.h"
-#include "mapgrid.h"
+#include "../include/cell_mimedata.h"
+#include "../include/event_filter.h"
+#include "../include/mapgrid.h"
+#include "commands/clear_command.h"
+#include "commands/drop_command.h"
+#include "commands/edit_command.h"
 #include "moc_cell_view.cpp"
 
 CellView::CellView(QWidget* parent, Cell* cell, ItemsId* ids,

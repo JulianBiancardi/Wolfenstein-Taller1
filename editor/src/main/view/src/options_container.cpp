@@ -29,8 +29,7 @@ void OptionsContainer::addOptions(ItemsId* ids,
     Option* option =
         new Option(this, ids->get_type(id), id, ids->get_tooltip(id),
                    ids->get_icon_path(id), current_option);
-    // size_t row = (id - 1) / this->columns;
-    // size_t column = (id - 1) % this->columns;
+
     row = counter / this->columns;
     column = counter % this->columns;
     gridlayout->addWidget(option, row, column);

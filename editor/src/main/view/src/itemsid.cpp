@@ -2,11 +2,12 @@
 
 #include <string>
 
+#include "../../../../../common/src/main/paths.h"
 #include "iostream"
 #include "yaml-cpp/yaml.h"
 
 ItemsId::ItemsId() {
-  YAML::Node ids_file = YAML::LoadFile("../common/ids.yaml");
+  YAML::Node ids_file = YAML::LoadFile(config_path("ids.yaml"));
 
   YAML::const_iterator iter;
   for (iter = ids_file.begin(); iter != ids_file.end(); iter++) {
@@ -14,7 +15,10 @@ ItemsId::ItemsId() {
     QMap<QString, QString> resources;
     resources.insert("type", iter->second["type"].as<std::string>().c_str());
     resources.insert("name", iter->second["name"].as<std::string>().c_str());
-    resources.insert("icon", iter->second["icon"].as<std::string>().c_str());
+
+    resources.insert(
+        "icon",
+        asset_path(iter->second["icon"].as<std::string>().c_str()).c_str());
     this->ids.insert(id, resources);
   }
 }

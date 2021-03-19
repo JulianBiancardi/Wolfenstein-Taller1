@@ -1,6 +1,6 @@
 function initialMessage () {
     clear
-    echo "=========================================================="
+    echo "==================================================================="
     echo "                  WOLFENSTEIN  3D  ONLINE              "
     echo "                    +------------------+               "                                
     echo "                    |       ___        |               "                                
@@ -14,9 +14,14 @@ function initialMessage () {
     echo "                    |       /||\       |               "                                
     echo "                     \________________/                "                              
     echo ""
+    echo "Welcome to the Wolfenstein 3D oline installer. 
+
+The following work is a final project for the subject Taller de Programación I (FUIBA). For more information visit https://github.com/JulianBiancardi/Wolfenstein-Taller1.
+"
 }
 
 function helpMessage() {
+    echo "The available commands are as follows"
     echo "  d: install only dependencies"
     echo "  i: install only the game"
     echo "  a: install all"
@@ -65,11 +70,6 @@ function installGame() {
     echo -e "\x1b[1m\x1b[32mInstall game complete\x1b[0m\n"
 }
 
-function all() {
-    installDependencies
-    installGame
-}
-
 function uninstall() {
     sudo rm -rf build
     sudo rm -rf /usr/lib/libcommon.so
@@ -97,7 +97,7 @@ do
         ;;
         i)
             echo ""
-              installGame
+            installGame
         ;;
         a)
             echo ""

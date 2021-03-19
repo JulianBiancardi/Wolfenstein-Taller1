@@ -7,13 +7,13 @@
 #include "file_manager.h"
 #include "itemsid.h"
 #include "option_selected.h"
-#include "ui_mainwindow.h"
+#include "ui_editorwindow.h"
 
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
  private:
-  Ui::MainWindow ui;
+  Ui::EditorWindow ui;
   ItemsId* ids;
   OptionSelected* current_option;
   FileManager* file_manager;

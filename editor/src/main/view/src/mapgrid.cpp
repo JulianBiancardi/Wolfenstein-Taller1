@@ -124,6 +124,4 @@ void MapGrid::generate_yamlfile(const std::string& file_path) {
   file_generator.generate_yamlfile(file_path, map);
 }
 
-MapGrid::~MapGrid() {
-  // delete map;
-}
+MapGrid::~MapGrid() { delete map; }

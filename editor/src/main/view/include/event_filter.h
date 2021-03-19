@@ -1,12 +1,11 @@
 #ifndef EVENT_FILTER_H
 #define EVENT_FILTER_H
 
-#include <cell_view.h>
-#include <option_selected.h>
-
 #include <QtCore/QDebug>
 #include <QtCore/QObject>
-#include <iostream>
+
+#include "cell_view.h"
+#include "option_selected.h"
 #define PAINT_STATE 1
 #define DRAG_STATE 2
 

@@ -3,7 +3,7 @@
 
 #include <QtCore/QMimeData>
 
-#include "../model/include/cell.h"
+#include "../../model/include/cell.h"
 
 class CellMimeData : public QMimeData {
  private:

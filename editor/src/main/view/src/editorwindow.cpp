@@ -1,8 +1,8 @@
-#include "mainwindow.h"
+#include "editorwindow.h"
 
-#include "../model/include/map_generator.h"
+#include "../../model/include/map_generator.h"
 #include "iostream"
-#include "moc_mainwindow.cpp"
+#include "moc_editorwindow.cpp"
 
 #define WINDOW_TITLE "Wolfenstein Editor"
 

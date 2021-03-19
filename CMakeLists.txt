@@ -23,13 +23,29 @@ set(CMAKE_FIND_LIBRARY_SUFFIXES ".so")
 find_package(Qt5Widgets)
 
 include_directories(${PROJECT_SOURCE_DIR}/client/src/main/launcher/include)
+include_directories(${PROJECT_SOURCE_DIR}/editor/src/main/view/include)
+include_directories(${PROJECT_SOURCE_DIR}/editor/src/main/model/include)
+include_directories(${PROJECT_SOURCE_DIR}/editor/src/main/view/src/commands)
 
-qt5_wrap_ui(UIS_HEADERS
+qt5_wrap_ui(UIS_CLIENT_HEADERS
   client/src/main/launcher/ui/mainwindow.ui
   client/src/main/launcher/ui/match_view.ui
   client/src/main/launcher/ui/map_view.ui
   client/src/main/launcher/ui/settings_view.ui
 )
+
+qt5_wrap_ui(UIS_EDITOR_HEADERS
+  editor/src/main/view/ui/option.ui
+  editor/src/main/view/ui/options_container.ui
+  editor/src/main/view/ui/option_info.ui
+  editor/src/main/view/ui/tools.ui
+  editor/src/main/view/ui/cellview.ui
+  editor/src/main/view/ui/mapgrid.ui
+  editor/src/main/view/ui/editorwindow.ui
+)
+#  Agrego los recursos (imagenes) de la aplicacion
+qt5_add_resources(RESOURCES_APP res/editor/resources.qrc)
+
 include_directories(${PROJECT_BINARY_DIR})
 set(CMAKE_AUTOMOC on)
 #---------------------------------------------------------  QT5    ---------------------------------------------------------#
@@ -40,6 +56,7 @@ set(CMAKE_AUTOMOC on)
 FILE(GLOB_RECURSE common_src "common/src/*.cpp")
 FILE(GLOB_RECURSE client_src "client/src/*.cpp")
 FILE(GLOB_RECURSE server_src "server/src/*.cpp")
+FILE(GLOB_RECURSE editor_src "editor/src/*.cpp")
 
 #------------------------------------------------------------------------------
 
@@ -48,12 +65,16 @@ FILE(GLOB_RECURSE server_src "server/src/*.cpp")
 add_library(common SHARED ${common_src})
 
 # Client
-add_executable(wolfenstein3D ${client_src} ${UIS_HEADERS})
+add_executable(wolfenstein3D ${client_src} ${UIS_CLIENT_HEADERS})
 target_link_libraries(wolfenstein3D common SDL2 SDL2_image SDL2_ttf SDL2_mixer yaml-cpp Qt5::Widgets)
 
 # Server
 add_executable(server ${server_src})
 target_link_libraries(server common yaml-cpp lua dl)
+
+# Editor
+add_executable(editor ${editor_src} res/editor/resources.qrc ${UIS_EDITOR_HEADERS})
+target_link_libraries(editor common yaml-cpp Qt5::Widgets ${RESOURCES_APP})
 #------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------

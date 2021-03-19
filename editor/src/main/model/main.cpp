@@ -1,8 +1,8 @@
 #include <QtWidgets/QApplication>
 
 #include "../model/include/map.h"
+#include "../view/include/editorwindow.h"
 #include "iostream"
-#include "mainwindow.h"
 
 int main(int argc, char** argv) {
   // Clase que contiene el loop principal

@@ -8,94 +8,94 @@
   type: 1
   name: "Grey Brick"
   image: "res/images/walls/grey_brick_wall.bmp"
-  icon: "../../../../res/images/walls/grey_brick_wall.bmp"
+  icon: "res/images/walls/grey_brick_wall.bmp"
 2:
   type: 1
   name: "Wood Wall"
   image: "res/images/walls/wood_wall.bmp"
-  icon: "../../../../res/images/walls/wood_wall.bmp"
+  icon: "res/images/walls/wood_wall.bmp"
 3:
   type: 1
   name: "Grey Stone"
   image: "res/images/walls/grey_stone.bmp"
-  icon: "../../../../res/images/walls/grey_stone.bmp"
+  icon: "res/images/walls/grey_stone.bmp"
 4:
   type: 1
   name: "Grey Stone with Swastika"
   image: "res/images/walls/grey_stone_swastika.bmp"
-  icon: "../../../../res/images/walls/grey_stone_swastika.bmp"
+  icon: "res/images/walls/grey_stone_swastika.bmp"
 5:
   type: 1
   name: "Blue Wall"
   image: "res/images/walls/blue_wall.bmp"
-  icon: "../../../../res/images/walls/blue_wall.bmp"
+  icon: "res/images/walls/blue_wall.bmp"
 6:
   type: 1
   name: "Blue Wall with Hitler"
   image: "res/images/walls/blue_wall_hitler.bmp"
-  icon: "../../../../res/images/walls/blue_wall_hitler.bmp"
+  icon: "res/images/walls/blue_wall_hitler.bmp"
 7:
   type: 1
   name: "Blue Wall with Banner"
   image: "res/images/walls/blue_wall_banner.bmp"
-  icon: "../../../../res/images/walls/blue_wall_banner.bmp"
+  icon: "res/images/walls/blue_wall_banner.bmp"
 8:
   type: 1
   name: "Rock Wall 1"
   image: "res/images/walls/rock_wall_1.bmp"
-  icon: "../../../../res/images/walls/rock_wall_1.bmp"
+  icon: "res/images/walls/rock_wall_1.bmp"
 9:
   type: 1
   name: "Rock Wall 2"
   image: "res/images/walls/rock_wall_2.bmp"
-  icon: "../../../../res/images/walls/rock_wall_2.bmp"
+  icon: "res/images/walls/rock_wall_2.bmp"
 10:
   type: 1
   name: "Rock Wall with Banner"
   image: "res/images/walls/rock_wall_banner.bmp"
-  icon: "../../../../res/images/walls/rock_wall_banner.bmp"
+  icon: "res/images/walls/rock_wall_banner.bmp"
 11:
   type: 1
   name: "Rock wall with Swastika"
   image: "res/images/walls/rock_wall_swastika.bmp"
-  icon: "../../../../res/images/walls/rock_wall_swastika.bmp"
+  icon: "res/images/walls/rock_wall_swastika.bmp"
 12:
   type: 1
   name: "Rock wall with Warning"
   image: "res/images/walls/rock_wall_warning.bmp"
-  icon: "../../../../res/images/walls/rock_wall_warning.bmp"
+  icon: "res/images/walls/rock_wall_warning.bmp"
 
 # Players
 20:
   type: 2
   name: "Spawn Point"
   image: "..."
-  icon: "../resources/images/items/IMG_SpawnPoint.png"
+  icon: "res/editor/images/items/IMG_SpawnPoint.png"
 21:
   type: 2
   name: "Dog"
   image: "res/images/enemies/dog.png"
-  icon: "../resources/images/enemies/IMG_Dog.png"
+  icon: "res/editor/images/enemies/IMG_Dog.png"
 22:
   type: 2
   name: "Guard"
   image: "res/images/enemies/guard.png"
-  icon: "../resources/images/enemies/IMG_Guard.png"
+  icon: "res/editor/images/enemies/IMG_Guard.png"
 23:
   type: 2
   name: "Schutzstaffel"
   image: "res/images/enemies/ss.png"
-  icon: "../resources/images/enemies/IMG_SS.png"
+  icon: "res/editor/images/enemies/IMG_SS.png"
 24:
   type: 2
   name: "Officer"
   image: "res/images/enemies/officer.png"
-  icon: "../resources/images/enemies/IMG_Officer.png"
+  icon: "res/editor/images/enemies/IMG_Officer.png"
 25:
   type: 2
   name: "Mutant"
   image: "res/images/enemies/mutant.png"
-  icon: "../resources/images/enemies/IMG_Mutant.png"
+  icon: "res/editor/images/enemies/IMG_Mutant.png"
 
 # Guns
 30:
@@ -114,19 +114,19 @@
   type: 3
   name: "Machine Gun"
   image: "res/images/items/guns/machine_gun.bmp"
-  icon: "../resources/images/weapons/IMG_Machingun.png"
+  icon: "res/editor/images/weapons/IMG_Machingun.png"
   sound: "..."
 33:
   type: 3
   name: "Chain Cannon"
   image: "res/images/items/guns/chain_cannon.bmp"
-  icon: "../resources/images/weapons/IMG_Chaingun.png"
+  icon: "res/editor/images/weapons/IMG_Chaingun.png"
   sound: "..."
 34:
   type: 3
   name: "Rocket Launcher"
   image: "res/images/items/guns/rocket_launcher_item.png"
-  icon: "../resources/images/weapons/IMG_Bazooka.png"
+  icon: "res/editor/images/weapons/IMG_Bazooka.png"
   sound: ""
 35:
   type: 0
@@ -140,129 +140,129 @@
   type: 4
   name: "Food"
   image: "res/images/items/items/food.bmp"
-  icon: "../resources/images/items/IMG_Food.png"
+  icon: "res/editor/images/items/IMG_Food.png"
 41:
   type: 4
   name: "MedKit"
   image: "res/images/items/items/medkit.bmp"
-  icon: "../resources/images/items/IMG_MedKit.png"
+  icon: "res/editor/images/items/IMG_MedKit.png"
 42:
   type: 4
   name: "Blood"
   image: "res/images/items/items/blood.bmp"
-  icon: "../resources/images/items/IMG_Blood.png"
+  icon: "res/editor/images/items/IMG_Blood.png"
 43:
   type: 4
   name: "Bullets"
   image: "res/images/items/items/bullets.bmp"
-  icon: "../resources/images/items/IMG_Bullets.png"
+  icon: "res/editor/images/items/IMG_Bullets.png"
 44:
   type: 4
   name: "Cross"
   image: "res/images/items/treasures/cross.bmp"
-  icon: "../resources/images/items/IMG_Cross.png"
+  icon: "res/editor/images/items/IMG_Cross.png"
 45:
   type: 4
   name: "Cup"
   image: "res/images/items/treasures/cup.bmp"
-  icon: "../resources/images/items/IMG_Treasure_Cup.png"
+  icon: "res/editor/images/items/IMG_Treasure_Cup.png"
 46:
   type: 4
   name: "Chest"
   image: "res/images/items/treasures/chest.bmp"
-  icon: "../resources/images/items/IMG_Treasure_Chest.png"
+  icon: "res/editor/images/items/IMG_Treasure_Chest.png"
 47:
   type: 4
   name: "Crown"
   image: "res/images/items/treasures/crown.bmp"
-  icon: "../resources/images/items/IMG_Treasure_Crown.png"
+  icon: "res/editor/images/items/IMG_Treasure_Crown.png"
 48:
   type: 4
   name: "Key"
   image: "res/images/items/items/key.bmp"
-  icon: "../resources/images/items/IMG_Key.png"
+  icon: "res/editor/images/items/IMG_Key.png"
 
 # Solid Objects
 50:
   type: 5
   name: "Pillar"
   image: "res/images/ambient/pillar.bmp"
-  icon: "../resources/images/objects/IMG_Pillar.png"
+  icon: "res/editor/images/objects/IMG_Pillar.png"
 51:
   type: 5
   name: "Table 1"
   image: "res/images/ambient/table1.bmp"
-  icon: "../resources/images/objects/IMG_Table.png"
+  icon: "res/editor/images/objects/IMG_Table.png"
 52:
   type: 5
   name: "Table 2"
   image: "res/images/ambient/table2.bmp"
-  icon: "../resources/images/objects/IMG_Table.png"
+  icon: "res/editor/images/objects/IMG_Table.png"
 53:
   type: 5
   name: "Barrel"
   image: "res/images/ambient/barrel1.bmp"
-  icon: "../resources/images/objects/IMG_Barrel.png"
+  icon: "res/editor/images/objects/IMG_Barrel.png"
 
 # Non-solid Objects
 60:
   type: 6
   name: "Water"
   image: "res/images/ambient/water.png"
-  icon: "../resources/images/objects/water.png"
+  icon: "res/editor/images/objects/water.png"
 
 61:
   type: 6
   name: "Floor Blood"
   image: "res/images/items/items/blood.bmp"
-  icon: "../resources/images/items/IMG_Blood.png"
+  icon: "res/editor/images/items/IMG_Blood.png"
 
 # Doors
 70:
   type: 7
   name: "Horizontal Door"
   image: "res/images/doors/door.png"
-  icon: "../resources/images/walls/door.png"
+  icon: "res/editor/images/walls/door.png"
 71:
   type: 7
   name: "Vertical Door"
   image: "res/images/doors/door.png"
-  icon: "../resources/images/walls/door.png"
+  icon: "res/editor/images/walls/door.png"
 72:
   type: 7
   name: "Horizontal Locked Door"
   image: "res/images/doors/locked_door.png"
-  icon: "../resources/images/walls/locked_door.bmp"
+  icon: "res/editor/images/walls/locked_door.bmp"
 73:
   type: 7
   name: "Vertical Locked Door"
   image: "res/images/doors/locked_door.png"
-  icon: "../resources/images/walls/locked_door.bmp"
+  icon: "res/editor/images/walls/locked_door.bmp"
 74:
   type: 7
   name: "Grey Brick Passage"
   image: "res/images/doors/grey_brick_passage.png"
-  icon: "../../../../res/images/walls/grey_brick_wall.bmp"
+  icon: "res/images/walls/grey_brick_wall.bmp"
 75:
   type: 7
   name: "Wood Wall Passage"
   image: "res/images/doors/wood_wall_passage.png"
-  icon: "../../../../res/images/walls/wood_wall.bmp"
+  icon: "res/images/walls/wood_wall.bmp"
 76:
   type: 7
   name: "Grey Stone Passage"
   image: "res/images/doors/grey_stone_passage.png"
-  icon: "../../../../res/images/walls/grey_stone.bmp"
+  icon: "res/images/walls/grey_stone.bmp"
 77:
   type: 7
   name: "Blue Wall Passage"
   image: "res/images/doors/blue_wall_passage.png"
-  icon: "../../../../res/images/walls/blue_wall.bmp"
+  icon: "res/images/walls/blue_wall.bmp"
 78:
   type: 7
   name: "Rock Wall Passage"
   image: "res/images/doors/rock_wall_passage.png"
-  icon: "../../../../res/images/walls/rock_wall_1.bmp"
+  icon: "res/images/walls/rock_wall_1.bmp"
 
 #HUD
 90:
