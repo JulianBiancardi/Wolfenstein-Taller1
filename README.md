@@ -1,6 +1,6 @@
 # Wolfenstein-Taller1
 
-<img src="Banner.png" alt="drawing" width="800" height="350"/>
+<img src="readme/Banner.png" alt="drawing" width="800" height="350"/>
 
 ## Integrantes
 
@@ -75,8 +75,10 @@ Ver la guía de usuario <EditorManual.pdf>
 
 ## 7. Screenshoots<a name="id7"></a>
 
-
-
-<img src="editor1.png" alt="drawing" width="800" height="350"/>
+<img src="readme/editor1.png" alt="drawing" width="800" height="350"/>
+<img src="readme/editor2.png" alt="drawing" width="800" height="350"/>
+<img src="readme/editor3.png" alt="drawing" width="800" height="350"/>
+<img src="readme/editor4.png" alt="drawing" width="800" height="350"/>
+<img src="readme/editor5.png" alt="drawing" width="800" height="350"/>
 
 
