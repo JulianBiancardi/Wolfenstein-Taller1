@@ -19,8 +19,7 @@ Corrector: **[DI PAOLA, Martin](https://github.com/eldipa)**
 3. [Instalación](#id3)
 4. [Ejecución](#id4)
 5. [Juego](#id5)
-6. [Editor](#id6)
-7. [Imagenes](#id7)
+6. [Imagenes](#id7)
 
 ## 1. Introducción<a name="id1"></a>
 
@@ -75,7 +74,7 @@ El archivo **editor** representa el editor de mapas. El mismo se corre con el si
 (Ver la guía de usuario [EditorManual.pdf](https://github.com/JulianBiancardi/Wolfenstein-Taller1/blob/main/EditorManual.pdf).)
 
 
-## 7. Juego<a name="id7"></a>
+## 5. Juego<a name="id5"></a>
 
 Para poder empezar a jugar primero debemos correr el servidor que se encargara del manejo y correcto funcionamiento de las partidas creadas por los distintos clientes.
 
@@ -97,11 +96,7 @@ Para comnezar la partida, el creador de la misma es decir el host debera presion
 
 Para crear una nueva partida presione el boton *NEW* y podrá elegir el mapa. Los mapas son creados por el editor de niveles que tambien se le provee en este proyecto.
 
-### Controles
-
-
-
-## 7. Imagenes<a name="id7"></a>
+## 6. Imagenes<a name="id7"></a>
 
  - Imagenes del juego
   
